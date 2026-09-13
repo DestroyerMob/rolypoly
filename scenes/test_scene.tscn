@@ -22,7 +22,7 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_nd71p")
 ambient_light_source = 2
-ambient_light_color = Color(1, 0.5412427, 0.47674388, 1)
+ambient_light_color = Color(1, 0.5552364, 0.33680508, 1)
 ambient_light_energy = 0.5
 
 [node name="Scene" type="Node3D" unique_id=494819204]
@@ -41,6 +41,7 @@ shape = SubResource("SphereShape3D_b77r1")
 debug_color = Color(0.36453402, 0.4798193, 1, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D" unique_id=608695759]
+layers = 3
 material_override = ExtResource("3_nd71p")
 mesh = SubResource("SphereMesh_b77r1")
 
@@ -58,3 +59,9 @@ transform = Transform3D(0.82024884, 0.3122259, -0.4792775, -0.09749329, 0.901938
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=468336834]
 environment = SubResource("Environment_b77r1")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=2112215955]
+visible = false
+update_mode = 1
+cull_mask = 1047553
+reflection_mask = 1047553
