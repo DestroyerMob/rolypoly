@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="1_6artv"]
 [ext_resource type="PackedScene" uid="uid://cqio8226fip5l" path="res://packed_scenes/cube_tile.tscn" id="1_77rll"]
+[ext_resource type="Script" uid="uid://btmyyfjadhpbe" path="res://scripts/LevelBuilder.gd" id="1_kkt7t"]
 [ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_diroj"]
 [ext_resource type="Resource" uid="uid://cwpf5s3yvr55o" path="res://data/StandardSurface.tres" id="2_yyvap"]
 
@@ -19,6 +20,9 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.5
 
 [node name="LevelBuilder" type="Node3D" unique_id=1059189124]
+script = ExtResource("1_kkt7t")
+Tile = ExtResource("1_77rll")
+SurfaceMaterial = ExtResource("2_yyvap")
 
 [node name="Camera3D" parent="." unique_id=280752300 instance=ExtResource("1_6artv")]
 transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 3.3262951, 5.343068)
