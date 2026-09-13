@@ -15,6 +15,7 @@ var build_mode := true
 var build_camera_transform: Transform3D
 var spawn_position: Vector3
 var spawn_flag := Node3D.new()
+var flag_placed := false
 var flag_placement_requested := false
 
 func _ready() -> void:
@@ -25,6 +26,7 @@ func _ready() -> void:
 
 func set_build_mode(enabled: bool) -> void:
 	build_mode = enabled
+	spawn_flag.visible = enabled and flag_placed
 	flag_placement_requested = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	player.set_active(false)
@@ -86,7 +88,8 @@ func place_spawn_flag_at_mouse() -> void:
 
 func set_spawn_cell(world_position: Vector3) -> void:
 	spawn_flag.global_position = snap_to_grid(world_position) + Vector3.UP * CELL_SIZE * 0.5
-	spawn_flag.show()
+	flag_placed = true
+	spawn_flag.visible = build_mode
 	spawn_position = spawn_flag.global_position + Vector3.UP
 
 func snap_to_grid(world_position: Vector3) -> Vector3:
