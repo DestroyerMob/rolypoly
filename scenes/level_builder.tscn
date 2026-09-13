@@ -16,8 +16,13 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_nd71p")
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.5
+ambient_light_color = Color(0.75, 0.85, 1, 1)
+ambient_light_energy = 0.22
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 1.5
+ssao_intensity = 1.0
 
 [node name="LevelBuilder" type="Node3D" unique_id=1059189124]
 script = ExtResource("1_kkt7t")
@@ -34,3 +39,10 @@ surface = ExtResource("2_yyvap")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=7238165]
 environment = SubResource("Environment_kkt7t")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.785398, -0.523599, 0)
+light_color = Color(1, 0.95, 0.88, 1)
+light_energy = 1.2
+shadow_enabled = true
+directional_shadow_max_distance = 160.0
