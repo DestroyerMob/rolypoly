@@ -7,4 +7,4 @@ func _ready() -> void:
 	start_position = global_position
 
 func _physics_process(delta: float) -> void:
-	global_position = start_position + Vector3(player.global_position.x, 0, player.global_position.z)
+	global_position = start_position + player.global_position
