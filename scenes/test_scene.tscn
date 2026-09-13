@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://b1xsrmop648n1"]
 
-[ext_resource type="Script" uid="uid://dxsbgpvy6d2dv" path="res://scripts/player.gd" id="1_g7g4h"]
 [ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="1_j8ivh"]
-[ext_resource type="Material" uid="uid://cmmecjhylkj1j" path="res://materials/MetalBall.tres" id="3_nd71p"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_b77r1"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_b77r1"]
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_j8ivh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vtqdj"]
 
@@ -31,19 +26,8 @@ ambient_light_energy = 0.5
 transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 3.3262951, 5.343068)
 script = ExtResource("1_j8ivh")
 
-[node name="Player" type="RigidBody3D" parent="." unique_id=481253934]
+[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("2_j8ivh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.542687, 0)
-gravity_scale = 2.0
-script = ExtResource("1_g7g4h")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1022840187]
-shape = SubResource("SphereShape3D_b77r1")
-debug_color = Color(0.36453402, 0.4798193, 1, 0.41960785)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D" unique_id=608695759]
-layers = 3
-material_override = ExtResource("3_nd71p")
-mesh = SubResource("SphereMesh_b77r1")
 
 [node name="Platform" type="StaticBody3D" parent="." unique_id=1334623333]
 

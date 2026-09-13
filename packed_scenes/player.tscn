@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://djiilbxcqnx2h"]
+
+[ext_resource type="Script" uid="uid://dxsbgpvy6d2dv" path="res://scripts/player.gd" id="1_jbiuv"]
+[ext_resource type="Material" uid="uid://ds4do48th3p68" path="res://materials/StandardBall.tres" id="2_b454a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b77r1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_b77r1"]
+
+[node name="Player" type="RigidBody3D" unique_id=1887833892]
+gravity_scale = 2.0
+script = ExtResource("1_jbiuv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=181200873]
+shape = SubResource("SphereShape3D_b77r1")
+debug_color = Color(0.36453402, 0.4798193, 1, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1398664333]
+layers = 3
+material_override = ExtResource("2_b454a")
+mesh = SubResource("SphereMesh_b77r1")
