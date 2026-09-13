@@ -11,24 +11,42 @@ func _ready() -> void:
 	max_contacts_reported = 8
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	on_ground = has_ground_contact(state)
+
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("jump"):
+		jump()
+	move(Input.get_vector("left", "right", "forward", "backward"))
+
+func set_active(active: bool) -> void:
+	freeze = not active
+	set_physics_process(active)
+	visible = active
+	if active:
+		sleeping = false
+
+func respawn(world_position: Vector3) -> void:
+	var was_frozen := freeze
+	freeze = true
+	global_transform = Transform3D(Basis.IDENTITY, world_position)
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
 	on_ground = false
+	freeze = was_frozen
+	sleeping = false
+
+func move(input: Vector2) -> void:
+	apply_central_force(Vector3(input.x, 0.0, input.y) * speed_force)
+
+func jump() -> void:
+	if not on_ground:
+		return
+	apply_central_impulse(Vector3.UP * 7.0)
+	on_ground = false
+
+func has_ground_contact(state: PhysicsDirectBodyState3D) -> bool:
 	for i in range(state.get_contact_count()):
 		if state.get_contact_collider_object(i) is TileShape:
 			if state.get_contact_local_normal(i).dot(Vector3.UP) > 0.5:
-				on_ground = true
-				break
-
-func _physics_process(delta: float) -> void:
-	var input := Input.get_vector(
-		"left", "right", "forward", "backward"
-	)
-	
-	if Input.is_action_just_pressed("jump") and on_ground:
-		apply_central_impulse(Vector3.UP * 7.0)
-		on_ground = false
-	
-	var direction := Vector3(input.x, 0.0, input.y)
-	
-	apply_central_force(direction * speed_force)
-	
-	
+				return true
+	return false
