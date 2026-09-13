@@ -1,3 +1,32 @@
 [gd_scene format=3 uid="uid://dohfdsgyakvk0"]
 
+[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="1_6artv"]
+[ext_resource type="PackedScene" uid="uid://cqio8226fip5l" path="res://packed_scenes/cube_tile.tscn" id="1_77rll"]
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_diroj"]
+[ext_resource type="Resource" uid="uid://cwpf5s3yvr55o" path="res://data/StandardSurface.tres" id="2_yyvap"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_diroj"]
+
+[sub_resource type="Sky" id="Sky_nd71p"]
+sky_material = SubResource("ProceduralSkyMaterial_diroj")
+
+[sub_resource type="Environment" id="Environment_kkt7t"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_nd71p")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
 [node name="LevelBuilder" type="Node3D" unique_id=1059189124]
+
+[node name="Camera3D" parent="." unique_id=280752300 instance=ExtResource("1_6artv")]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 3.3262951, 5.343068)
+
+[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("2_diroj")]
+
+[node name="Tile" parent="." unique_id=236246291 instance=ExtResource("1_77rll")]
+surface = ExtResource("2_yyvap")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=7238165]
+environment = SubResource("Environment_kkt7t")
