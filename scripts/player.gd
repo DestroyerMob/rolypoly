@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 		"left", "right", "forward", "backward"
 	)
 	
-	on_ground = get_colliding_bodies().has($"../Platform")
+	on_ground = get_colliding_bodies().size() > 0
 	
 	if Input.is_action_just_pressed("jump") and on_ground:
 		apply_central_impulse(Vector3.UP * 7.0)
