@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://rolsq1ks6mqe"]
+
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="1_ljh47"]
+[ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="2_eanlv"]
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="3_8ywi8"]
+[ext_resource type="PackedScene" uid="uid://bb3evr04ihd2t" path="res://scenes/flag_hole.tscn" id="4_flghl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtqdj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b77r1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nd71p"]
+
+[sub_resource type="Sky" id="Sky_nd71p"]
+sky_material = SubResource("ProceduralSkyMaterial_nd71p")
+
+[sub_resource type="Environment" id="Environment_b77r1"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_nd71p")
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.5552364, 0.33680508, 1)
+ambient_light_energy = 0.5
+
+[node name="Scene" type="Node3D" unique_id=494819204]
+
+[node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("1_ljh47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.0516887, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=213024848]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 7, 5.343068)
+script = ExtResource("2_eanlv")
+
+[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("3_8ywi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.542687, 0)
+
+[node name="Platform" type="StaticBody3D" parent="." unique_id=1334623333]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform" unique_id=2078325249]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 25, 0, -4.464458, -0.58234835)
+shape = SubResource("BoxShape3D_vtqdj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform/CollisionShape3D" unique_id=646072752]
+mesh = SubResource("BoxMesh_b77r1")
+
+[node name="Platform2" type="CSGBox3D" parent="." unique_id=900000001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.464458, -24.55769)
+use_collision = true
+size = Vector3(16, 11, 32)
+
+[node name="Hole" type="CSGCylinder3D" parent="Platform2" unique_id=900000009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.44231)
+operation = 2
+radius = 1.5
+height = 20.0
+
+[node name="Cup" type="StaticBody3D" parent="." unique_id=900000006]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cup" unique_id=900000007]
+transform = Transform3D(1.5, 0, 0, 0, 0.2, 0, 0, 0, 1.5, 0, -5, -37)
+shape = SubResource("BoxShape3D_vtqdj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cup/CollisionShape3D" unique_id=900000008]
+mesh = SubResource("BoxMesh_b77r1")
+
+[node name="FlagHole" parent="." unique_id=900000004 instance=ExtResource("4_flghl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -37)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=687898954]
+transform = Transform3D(0.82024884, 0.3122259, -0.4792775, -0.09749329, 0.90193856, 0.42071626, 0.5636372, -0.29836562, 0.7702539, -10.4062, 7.680967, 11.198481)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=468336834]
+environment = SubResource("Environment_b77r1")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=2112215955]
+visible = false
+update_mode = 1
+cull_mask = 1047553
+reflection_mask = 1047553

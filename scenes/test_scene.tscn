@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="1_j8ivh"]
 [ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_j8ivh"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="3_nd71p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vtqdj"]
 
@@ -22,8 +23,11 @@ ambient_light_energy = 0.5
 
 [node name="Scene" type="Node3D" unique_id=494819204]
 
+[node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("3_nd71p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.0516887, 0)
+
 [node name="Camera3D" parent="." unique_id=280752300 instance=ExtResource("1_j8ivh")]
-transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 3.3262951, 5.343068)
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 7, 5.343068)
 
 [node name="Player" parent="." unique_id=1887833892 instance=ExtResource("2_j8ivh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.542687, 0)
