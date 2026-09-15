@@ -67,7 +67,7 @@ ambient_light_energy = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.0516887, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=213024848]
-transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 3.3262951, 5.343068)
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 7, 5.343068)
 fov = 100.0
 script = ExtResource("2_ido6k")
 
