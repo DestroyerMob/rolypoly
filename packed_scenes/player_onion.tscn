@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ctmge4npvbnl6"]
+
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_inbge"]
+[ext_resource type="PackedScene" uid="uid://cuhcrlgs2ujyx" path="res://models/vegetables/onion/Onion.glb" id="2_onion"]
+
+[node name="Player" unique_id=1887833892 instance=ExtResource("1_inbge")]
+
+[node name="MeshInstance3D" parent="CollisionShape3D" parent_id_path=PackedInt32Array(181200873) index="0" unique_id=1398664333]
+visible = false
+
+[node name="Onion" parent="CollisionShape3D" parent_id_path=PackedInt32Array(181200873) index="1" unique_id=1261362989 instance=ExtResource("2_onion")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.46554565, 0)
