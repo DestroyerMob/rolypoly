@@ -1,11 +1,18 @@
 class_name Player
 extends RigidBody3D
 
+signal squished
+
 @export var speed_force := 20.0
+@export var jump_impulse := 9.5
 @onready var collider := $CollisionShape3D
+@onready var visual := $CollisionShape3D/MeshInstance3D
+@onready var original_visual_scale: Vector3 = visual.scale
 
 var on_ground := false
 var spawn_position: Vector3
+var is_squished := false
+var squish_tween: Tween
 
 func _ready() -> void:
 	spawn_position = global_position
@@ -16,12 +23,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	on_ground = has_ground_contact(state)
 
 func _physics_process(_delta: float) -> void:
+	if is_squished:
+		return
 	if Input.is_action_just_pressed("jump"):
 		jump()
 	move(Input.get_vector("left", "right", "forward", "backward"))
 
 func set_active(active: bool) -> void:
-	freeze = not active
+	freeze = not active or is_squished
 	set_physics_process(active)
 	visible = active
 	if active:
@@ -30,6 +39,13 @@ func set_active(active: bool) -> void:
 func respawn(world_position: Vector3) -> void:
 	spawn_position = world_position
 	var was_frozen := freeze
+	if is_squished:
+		was_frozen = not is_physics_processing()
+		is_squished = false
+		if squish_tween:
+			squish_tween.kill()
+		if is_instance_valid(visual):
+			visual.scale = original_visual_scale
 	freeze = true
 	global_transform = Transform3D(Basis.IDENTITY, world_position)
 	linear_velocity = Vector3.ZERO
@@ -44,7 +60,7 @@ func move(input: Vector2) -> void:
 func jump() -> void:
 	if not on_ground:
 		return
-	apply_central_impulse(Vector3.UP * 7.0)
+	apply_central_impulse(Vector3.UP * jump_impulse)
 	on_ground = false
 
 func has_ground_contact(state: PhysicsDirectBodyState3D) -> bool:
@@ -52,3 +68,27 @@ func has_ground_contact(state: PhysicsDirectBodyState3D) -> bool:
 		if state.get_contact_local_normal(i).dot(Vector3.UP) > 0.5:
 			return true
 	return false
+
+func squish_and_respawn(squish_duration := 0.18, respawn_delay := 0.55) -> void:
+	if is_squished or not is_physics_processing():
+		return
+
+	is_squished = true
+	freeze = true
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+
+	squish_tween = create_tween()
+	if is_instance_valid(visual):
+		var squashed_scale := Vector3(
+			original_visual_scale.x * 1.55,
+			original_visual_scale.y * 0.18,
+			original_visual_scale.z * 1.55
+		)
+		squish_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		squish_tween.tween_property(visual, "scale", squashed_scale, squish_duration)
+
+	# Reuse respawn so the builder keeps its placed tiles and spawn flag.
+	squish_tween.tween_interval(respawn_delay)
+	squish_tween.tween_callback(respawn.bind(spawn_position))
+	squished.emit()

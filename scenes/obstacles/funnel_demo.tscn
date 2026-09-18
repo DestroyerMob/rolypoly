@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/funnel.tscn" id="2_funnel"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death_zone"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(12, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(12, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.28, 0.34, 0.42, 1)
+roughness = 0.78
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_target"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_target"]
+albedo_color = Color(0.35, 0.88, 0.38, 1)
+emission_enabled = true
+emission = Color(0.08, 0.35, 0.09, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.04, 0.08, 0.15, 1)
+sky_horizon_color = Color(0.42, 0.55, 0.67, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.7
+
+[node name="FunnelDemo" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_floor")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(-3.2, 0.6, 0)
+
+[node name="Funnel" parent="." instance=ExtResource("2_funnel")]
+position = Vector3(0, 0.45, 0)
+drop_target_path = NodePath("../DropTarget")
+
+[node name="DropTarget" type="Marker3D" parent="."]
+position = Vector3(4, 0.6, 0)
+
+[node name="TargetPad" type="MeshInstance3D" parent="DropTarget"]
+position = Vector3(0, -0.56, 0)
+material_override = SubResource("StandardMaterial3D_target")
+mesh = SubResource("CylinderMesh_target")
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death_zone")]
+position = Vector3(0, -5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.786744, 0.617279, 0, -0.617279, 0.786744, -3.2, 7, 7.5)
+script = ExtResource("3_camera")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -35, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_demo")
