@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/ladle.tscn" id="2_ladle"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death_zone"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(16, 1, 10)
@@ -45,6 +46,9 @@ position = Vector3(-4.3, 1.55, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector3(0.08, 0.88, 0)
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death_zone")]
+position = Vector3(0, -5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 position = Vector3(4.3, 7.5, 12)

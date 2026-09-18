@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/masher.tscn" id="2_masher"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death_zone"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(10, 1, 10)
@@ -44,6 +45,9 @@ mesh = SubResource("BoxMesh_floor")
 position = Vector3(0, 0.6, 0)
 
 [node name="Masher" parent="." instance=ExtResource("2_masher")]
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death_zone")]
+position = Vector3(0, -5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.786744, 0.617279, 0, -0.617279, 0.786744, 0, 7, 7.5)
