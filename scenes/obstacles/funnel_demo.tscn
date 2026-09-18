@@ -70,7 +70,7 @@ mesh = SubResource("CylinderMesh_target")
 position = Vector3(0, -5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.786744, 0.617279, 0, -0.617279, 0.786744, 0, 7, 8.5)
+transform = Transform3D(1, 0, 0, 0, 0.786744, 0.617279, 0, -0.617279, 0.786744, -3.2, 7, 7.5)
 script = ExtResource("3_camera")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
