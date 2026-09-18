@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/obstacles/funnel.gd" id="1_funnel"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/Funnel.glb" id="2_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_capture"]
+height = 1.0
+radius = 2.05
+
+[node name="Funnel" type="Node3D"]
+script = ExtResource("1_funnel")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+
+[node name="CaptureArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CaptureArea"]
+position = Vector3(0, 2.55, 0)
+shape = SubResource("CylinderShape3D_capture")
+
+[node name="CapturePoint" type="Marker3D" parent="."]
+position = Vector3(0, 2.38, 0)
+
+[node name="ThroatPoint" type="Marker3D" parent="."]
+position = Vector3(0, 0.52, 0)
+
+[node name="DefaultDropPoint" type="Marker3D" parent="."]
+position = Vector3(0, -0.75, 0)
