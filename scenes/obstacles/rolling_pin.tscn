@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/obstacles/rolling_pin.gd" id="1_rolling"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/RollingPin.glb" id="2_model"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roller"]
+friction = 1.0
+rough = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_roller"]
+height = 3.6
+radius = 0.56
+
+[node name="RollingPin" type="Node3D"]
+script = ExtResource("1_rolling")
+
+[node name="MovingPart" type="AnimatableBody3D" parent="."]
+position = Vector3(0, 0.58, -2)
+physics_material_override = SubResource("PhysicsMaterial_roller")
+
+[node name="Model" parent="MovingPart" instance=ExtResource("2_model")]
+position = Vector3(0, -0.58, 0)
+
+[node name="RollerCollision" type="CollisionShape3D" parent="MovingPart"]
+rotation = Vector3(0, 0, 1.5708)
+shape = SubResource("CylinderShape3D_roller")
