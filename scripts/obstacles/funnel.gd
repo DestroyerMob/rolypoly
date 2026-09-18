@@ -8,30 +8,29 @@ signal player_released(player: Player)
 @export_node_path("Node3D") var drop_target_path: NodePath
 @export var release_velocity := Vector3(0.0, -1.5, 0.0)
 
-@export_category("Timing")
-@export_range(0.05, 2.0, 0.05) var capture_duration := 0.2
-@export_range(0.05, 3.0, 0.05) var funnel_duration := 0.45
+@export_category("Transition")
+@export_range(0.0, 1.0, 0.01) var transition_delay := 0.08
 @export_range(0.0, 2.0, 0.05) var cooldown := 0.35
 
-@onready var capture_area: Area3D = $CaptureArea
-@onready var capture_point: Marker3D = $CapturePoint
-@onready var throat_point: Marker3D = $ThroatPoint
+@onready var model: Node3D = $Model
+@onready var throat_area: Area3D = $ThroatArea
 @onready var default_drop_point: Marker3D = $DefaultDropPoint
 
 var _busy := false
 
 
 func _ready() -> void:
-	capture_area.body_entered.connect(_on_capture_area_body_entered)
+	_create_physical_funnel_collision()
+	throat_area.body_entered.connect(_on_throat_area_body_entered)
 
 
-func _on_capture_area_body_entered(body: Node3D) -> void:
+func _on_throat_area_body_entered(body: Node3D) -> void:
 	if _busy or not body is Player:
 		return
-	_transport_player(body as Player)
+	_drop_player_at_target(body as Player)
 
 
-func _transport_player(player: Player) -> void:
+func _drop_player_at_target(player: Player) -> void:
 	_busy = true
 	player_captured.emit(player)
 	player.freeze = true
@@ -39,22 +38,8 @@ func _transport_player(player: Player) -> void:
 	player.linear_velocity = Vector3.ZERO
 	player.angular_velocity = Vector3.ZERO
 
-	var tween := create_tween()
-	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(
-		player,
-		"global_position",
-		capture_point.global_position,
-		capture_duration
-	)
-	tween.tween_property(
-		player,
-		"global_position",
-		throat_point.global_position,
-		funnel_duration
-	)
-	await tween.finished
+	if transition_delay > 0.0:
+		await get_tree().create_timer(transition_delay).timeout
 
 	if not is_instance_valid(player):
 		_busy = false
@@ -72,6 +57,23 @@ func _transport_player(player: Player) -> void:
 	if cooldown > 0.0:
 		await get_tree().create_timer(cooldown).timeout
 	_busy = false
+
+
+func _create_physical_funnel_collision() -> void:
+	var body_mesh := model.find_child("Funnel_Body", true, false) as MeshInstance3D
+	if body_mesh == null or body_mesh.mesh == null:
+		push_warning("Funnel_Body mesh was not found; physical funnel collision was not created.")
+		return
+
+	var static_body := StaticBody3D.new()
+	static_body.name = "GeneratedFunnelCollision"
+	body_mesh.get_parent().add_child(static_body)
+	static_body.transform = body_mesh.transform
+
+	var collision := CollisionShape3D.new()
+	collision.name = "CollisionShape3D"
+	collision.shape = body_mesh.mesh.create_trimesh_shape()
+	static_body.add_child(collision)
 
 
 func _get_drop_target() -> Node3D:

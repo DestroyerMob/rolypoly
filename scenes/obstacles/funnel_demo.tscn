@@ -51,9 +51,10 @@ material_override = SubResource("StandardMaterial3D_floor")
 mesh = SubResource("BoxMesh_floor")
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector3(0, 4.1, 0)
+position = Vector3(-3.2, 0.6, 0)
 
 [node name="Funnel" parent="." instance=ExtResource("2_funnel")]
+position = Vector3(0, 0.45, 0)
 drop_target_path = NodePath("../DropTarget")
 
 [node name="DropTarget" type="Marker3D" parent="."]

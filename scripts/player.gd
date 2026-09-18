@@ -4,6 +4,7 @@ extends RigidBody3D
 signal squished
 
 @export var speed_force := 20.0
+@export var jump_impulse := 9.5
 @onready var collider := $CollisionShape3D
 @onready var visual := $CollisionShape3D/MeshInstance3D
 
@@ -25,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	on_ground = get_colliding_bodies().size() > 0
 	
 	if Input.is_action_just_pressed("jump") and on_ground:
-		apply_central_impulse(Vector3.UP * 7.0)
+		apply_central_impulse(Vector3.UP * jump_impulse)
 	
 	var direction := Vector3(input.x, 0.0, input.y)
 	
