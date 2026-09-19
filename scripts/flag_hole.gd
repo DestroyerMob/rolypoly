@@ -4,4 +4,4 @@ extends Area3D
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		print("You win!")
-		get_tree().reload_current_scene()
+		body.call_deferred("respawn", body.spawn_position)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TileSurface" format=3 uid="uid://cwpf5s3yvr55o"]
+
+[ext_resource type="Script" uid="uid://beewu1supsflm" path="res://scripts/TileSurface.gd" id="1_7rhw5"]
+[ext_resource type="Material" uid="uid://cpddhup0sflfy" path="res://materials/StandardTile.tres" id="1_b7chd"]
+[ext_resource type="PhysicsMaterial" uid="uid://ctjaakpok6sre" path="res://materials/physics/StandardPhysics.tres" id="2_w8ddb"]
+
+[resource]
+script = ExtResource("1_7rhw5")
+appearance = ExtResource("1_b7chd")
+physics = ExtResource("2_w8ddb")
+metadata/_custom_type_script = "uid://beewu1supsflm"

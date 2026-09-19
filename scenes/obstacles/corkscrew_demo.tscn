@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="1_corkscrew"]
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="3_death_zone"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(12, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(12, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.31, 0.36, 0.43, 1)
+roughness = 0.78
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.05, 0.08, 0.15, 1)
+sky_horizon_color = Color(0.46, 0.55, 0.67, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.7
+
+[node name="CorkscrewDemo" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_floor")
+
+[node name="Corkscrew" parent="." instance=ExtResource("1_corkscrew")]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector3(-2.5, 0.6, 1)
+
+[node name="DeathZone" parent="." instance=ExtResource("3_death_zone")]
+position = Vector3(0, -5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 6.5, 11)
+rotation_degrees = Vector3(-22.5, 0, 0)
+current = true
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -35, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_demo")

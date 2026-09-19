@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://1wtqcea6r5i0"]
+
+[ext_resource type="ArrayMesh" uid="uid://b4plddhbu4a2y" path="res://assets/models/obstacles/electronic_scale/electronicScale.obj" id="1_model"]
+[ext_resource type="Shader" uid="uid://dfrv2ejpwj21b" path="res://shaders/scale_display.gdshader" id="2_display"]
+[ext_resource type="Script" uid="uid://b1dn37v0h2mhq" path="res://scripts/obstacles/scale.gd" id="3_scale"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_base"]
+size = Vector3(2.94, 0.2888, 3.421)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_display_housing"]
+points = PackedVector3Array(-1.47, 0.0392, 1.691, 1.47, 0.0392, 1.691, -1.47, 0.0392, 2.609, 1.47, 0.0392, 2.609, -1.47, 0.366, 1.691, 1.47, 0.366, 1.691, -1.47, 0.2046, 2.609, 1.47, 0.2046, 2.609)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_foot"]
+height = 0.04
+radius = 0.137
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_metal_platform"]
+size = Vector3(2.8748, 0.0676, 3.382)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_detection"]
+size = Vector3(2.8948, 0.1, 3.402)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_display"]
+render_priority = 0
+shader = ExtResource("2_display")
+shader_parameter/screen_color = Color(0.68, 0.72, 0.64, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_display"]
+material = SubResource("ShaderMaterial_display")
+size = Vector2(1.184, 0.474)
+
+[node name="Scale" type="Node3D" unique_id=886191544]
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1100083972]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.3844, 0)
+mesh = ExtResource("1_model")
+
+[node name="Body" type="StaticBody3D" parent="." unique_id=1408427093]
+
+[node name="BaseCollision" type="CollisionShape3D" parent="Body" unique_id=283370215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1836, -0.0195)
+shape = SubResource("BoxShape3D_base")
+
+[node name="DisplayHousingCollision" type="CollisionShape3D" parent="Body" unique_id=771211233]
+shape = SubResource("ConvexPolygonShape3D_display_housing")
+
+[node name="FrontLeftFootCollision" type="CollisionShape3D" parent="Body" unique_id=1373789534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9118, 0.02, 1.219)
+shape = SubResource("CylinderShape3D_foot")
+
+[node name="FrontRightFootCollision" type="CollisionShape3D" parent="Body" unique_id=147208998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9118, 0.02, 1.219)
+shape = SubResource("CylinderShape3D_foot")
+
+[node name="BackLeftFootCollision" type="CollisionShape3D" parent="Body" unique_id=783899913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9118, 0.02, -1.219)
+shape = SubResource("CylinderShape3D_foot")
+
+[node name="BackRightFootCollision" type="CollisionShape3D" parent="Body" unique_id=329391871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9118, 0.02, -1.219)
+shape = SubResource("CylinderShape3D_foot")
+
+[node name="WeighingPlatform" type="StaticBody3D" parent="." unique_id=1351786269]
+unique_name_in_owner = true
+script = ExtResource("3_scale")
+
+[node name="MetalPlatformCollision" type="CollisionShape3D" parent="WeighingPlatform" unique_id=388996267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3618, 0)
+shape = SubResource("BoxShape3D_metal_platform")
+
+[node name="Detection" type="Area3D" parent="WeighingPlatform" unique_id=382167010]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeighingPlatform/Detection" unique_id=84391767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4356, 0)
+shape = SubResource("BoxShape3D_detection")
+
+[node name="WeighingSurface" type="Marker3D" parent="." unique_id=159147351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3956, 0)
+
+[node name="Display" type="Node3D" parent="." unique_id=2047410468]
+transform = Transform3D(1, 0, 0, 0, 0.20462936, 0.9788395, 0, -0.9788395, 0.20462936, 0.0088, 0.325251, 2.07628)
+
+[node name="Screen" type="MeshInstance3D" parent="Display" unique_id=1955194724]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_display")
+
+[node name="WeightDisplay" type="Label3D" parent="Display" unique_id=665458554]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
+pixel_size = 0.0024
+modulate = Color(0.08, 0.11, 0.075, 1)
+font_size = 96
+outline_size = 0

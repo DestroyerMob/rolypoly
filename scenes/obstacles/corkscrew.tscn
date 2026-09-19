@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/corkscrew/corkscrew.gltf" id="1_model"]
+[ext_resource type="Shape3D" path="res://assets/models/obstacles/corkscrew/corkscrew_collision.tres" id="2_collision"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_corkscrew"]
+friction = 0.85
+rough = true
+
+[node name="Corkscrew" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+position = Vector3(0, 3.961229086, 0)
+scale = Vector3(0.5, 0.5, 0.5)
+
+[node name="Body" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_corkscrew")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+shape = ExtResource("2_collision")

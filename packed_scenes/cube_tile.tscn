@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cqio8226fip5l"]
+
+[ext_resource type="Script" uid="uid://dkttbxl8pptl5" path="res://scripts/TileShape.gd" id="1_yeemx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtqdj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b77r1"]
+
+[node name="Tile" type="StaticBody3D" unique_id=236246291]
+script = ExtResource("1_yeemx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=447298596]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, -4.464458, 0)
+shape = SubResource("BoxShape3D_vtqdj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1291967224]
+mesh = SubResource("BoxMesh_b77r1")
