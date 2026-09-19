@@ -14,10 +14,11 @@ the display extends toward +Z. `WeighingSurface` marks the top of that platform
 for future puzzle logic.
 
 The LCD interior is covered by `Display/Screen`, leaving the original bezel and
-printed button labels visible. `Display/WeightDisplay` is a blank `Label3D`,
-aligned with the screen and accessible as `%WeightDisplay` from a future scene
-script. Set its `text` property to supply the eventual readout, including units.
-It starts empty; no values, units, calculations, or automatic updates are supplied.
+printed button labels visible. `Display/WeightDisplay` shows the sum of `mass`
+for rigid bodies directly contacting the metal plate's top face, in kilograms.
+Each body counts once; side contacts and objects on the housing do not count.
+The detection area enables contact reporting on nearby bodies; actual collision
+contacts determine the total. An empty scale reads `0.00 kg`.
 The source texture is unchanged. The screen shader supplies the rounded blank
 background, and the label's font, color, and pixel size can be edited in Godot.
 
@@ -31,4 +32,5 @@ reference `%WeighingPlatform` independently of the housing.
 
 Collision dimensions and positions include the model's scale and floor offset.
 If the model transform changes, update the collision and marker to match, or
-transform the entire scene instance. No weighing or puzzle behavior is implemented yet.
+transform the entire scene instance. Objects stacked without touching the plate
+are not included; no puzzle triggers are implemented yet.

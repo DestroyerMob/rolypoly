@@ -3,6 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b4plddhbu4a2y" path="res://assets/models/obstacles/electronic_scale/electronicScale.obj" id="1_model"]
 
 [ext_resource type="Shader" path="res://shaders/scale_display.gdshader" id="2_display"]
+[ext_resource type="Script" path="res://scripts/obstacles/scale.gd" id="3_scale"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_display"]
 shader = ExtResource("2_display")
@@ -23,6 +24,9 @@ radius = 0.137
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_metal_platform"]
 size = Vector3(2.8748, 0.0676, 3.382)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_detection"]
+size = Vector3(2.8948, 0.1, 3.402)
 
 [node name="Scale" type="Node3D" unique_id=886191544]
 
@@ -57,10 +61,19 @@ shape = SubResource("CylinderShape3D_foot")
 
 [node name="WeighingPlatform" type="StaticBody3D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("3_scale")
 
 [node name="MetalPlatformCollision" type="CollisionShape3D" parent="WeighingPlatform"]
 position = Vector3(0, 0.3618, 0)
 shape = SubResource("BoxShape3D_metal_platform")
+
+[node name="Detection" type="Area3D" parent="WeighingPlatform"]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeighingPlatform/Detection"]
+position = Vector3(0, 0.4356, 0)
+shape = SubResource("BoxShape3D_detection")
 
 [node name="WeighingSurface" type="Marker3D" parent="." unique_id=159147351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3956, 0)
