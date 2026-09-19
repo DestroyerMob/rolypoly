@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/scale.tscn" id="2_scale"]
+[ext_resource type="PackedScene" path="res://packed_scenes/cube_tile.tscn" id="3_tile"]
+[ext_resource type="PackedScene" path="res://packed_scenes/default_camera.tscn" id="4_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="5_death_zone"]
+[ext_resource type="Resource" path="res://data/StandardSurface.tres" id="6_surface"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.05, 0.08, 0.14, 1)
+sky_horizon_color = Color(0.38, 0.48, 0.62, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.7
+
+[node name="ScaleDemo" type="Node3D"]
+
+[node name="LeftTile" parent="." instance=ExtResource("3_tile")]
+position = Vector3(-4, 0.464458, 0)
+surface = ExtResource("6_surface")
+
+[node name="RightTile" parent="." instance=ExtResource("3_tile")]
+position = Vector3(4, 0.464458, 0)
+surface = ExtResource("6_surface")
+
+[node name="Scale" parent="." instance=ExtResource("2_scale")]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1, 0)
+
+[node name="Camera3D" parent="." instance=ExtResource("4_camera")]
+position = Vector3(0, 4.5, 6.5)
+current = true
+fov = 50.0
+
+[node name="DeathZone" parent="." instance=ExtResource("5_death_zone")]
+position = Vector3(0, -10, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -30, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_demo")
