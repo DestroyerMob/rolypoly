@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvcmiuroex4jf"]
+
+[ext_resource type="Script" uid="uid://cd4rb6ctxth5d" path="res://scripts/player_start.gd" id="1_hro80"]
+
+[node name="PlayerStart" type="Marker3D" unique_id=2025540899]
+script = ExtResource("1_hro80")

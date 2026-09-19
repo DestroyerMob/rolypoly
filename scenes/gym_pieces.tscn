@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bw45456m1v0p1"]
+
+[ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="1_4nuld"]
+[ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="1_meaft"]
+[ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="2_1yo35"]
+[ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_s4hep"]
+[ext_resource type="Script" uid="uid://cd4rb6ctxth5d" path="res://scripts/player_start.gd" id="5_a6ejg"]
+[ext_resource type="Script" uid="uid://c3d1xouymugbb" path="res://scripts/proto_cylinder.gd" id="6_wtxcq"]
+
+[node name="GymPieces" type="Node3D" unique_id=844906366]
+
+[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("1_4nuld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03666377, 0.48056245, 0.03766513)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1724671977]
+script = ExtResource("1_meaft")
+size = Vector3(20, 0.2, 20)
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="ProtoRamp" type="StaticBody3D" parent="." unique_id=620833451]
+transform = Transform3D(-0.01089961, 0, 0.9999406, 0, 1, 0, -0.9999406, 0, -0.01089961, -0.042241573, 0, -10.47784)
+script = ExtResource("2_1yo35")
+metadata/_custom_type_script = "uid://c7557x0xku2rq"
+
+[node name="ProtoBox" type="StaticBody3D" parent="ProtoRamp" unique_id=1481800681]
+transform = Transform3D(0.07919234, 0, -0.99685985, 0, 1, 0, 0.99685985, 0, 0.07919234, -8.633528, 0.4377241, 7.5690246)
+script = ExtResource("1_meaft")
+size = Vector3(1, 5, 8)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1887820177]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 7, 5.343068)
+script = ExtResource("3_s4hep")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=205890179]
+transform = Transform3D(0.82024884, 0.3122259, -0.4792775, -0.09749329, 0.90193856, 0.42071626, 0.5636372, -0.29836562, 0.7702539, -10.4062, 7.680967, 11.198481)
+
+[node name="PlayerStart" type="Marker3D" parent="." unique_id=373033816]
+script = ExtResource("5_a6ejg")
+metadata/_custom_type_script = "uid://cd4rb6ctxth5d"
+
+[node name="ProtoCylinder" type="StaticBody3D" parent="." unique_id=335226083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.950941, -0.11155057, -2.5095963)
+script = ExtResource("6_wtxcq")
+fn = 2
+metadata/_custom_type_script = "uid://c3d1xouymugbb"

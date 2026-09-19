@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ccc2ubn8p8c0l"]
+
+[ext_resource type="Material" uid="uid://dbq0gvwdi3h1h" path="res://materials/level_prototyping/MM_world_grid_prototype.tres" id="1_1qung"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5yy73"]
+
+[node name="UnitCube" type="MeshInstance3D" unique_id=1901997781]
+transform = Transform3D(0.9998669, 0, 0, 0, 0.9998669, 0, 0, 0, 0.9998669, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_5yy73")
+surface_material_override/0 = ExtResource("1_1qung")
