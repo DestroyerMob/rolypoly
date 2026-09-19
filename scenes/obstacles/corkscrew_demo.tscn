@@ -43,7 +43,7 @@ mesh = SubResource("BoxMesh_floor")
 [node name="Corkscrew" parent="." instance=ExtResource("1_corkscrew")]
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector3(-2.5, 0.6, 1)
+position = Vector3(0, 5.1, 0)
 
 [node name="DeathZone" parent="." instance=ExtResource("3_death_zone")]
 position = Vector3(0, -5, 0)
