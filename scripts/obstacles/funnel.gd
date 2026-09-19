@@ -25,8 +25,10 @@ func _ready() -> void:
 
 
 func _on_throat_area_body_entered(body: Node3D) -> void:
+	var player = body
 	if _busy or not body is Player:
 		return
+	player.enter_condition(Player.Condition.DIZZY)
 	_drop_player_at_target(body as Player)
 
 
@@ -53,7 +55,7 @@ func _drop_player_at_target(player: Player) -> void:
 	player.linear_velocity = release_velocity
 	player.angular_velocity = Vector3.ZERO
 	player_released.emit(player)
-
+	player.exit_condition(Player.Condition.NORMAL)
 	if cooldown > 0.0:
 		await get_tree().create_timer(cooldown).timeout
 	_busy = false
@@ -82,3 +84,6 @@ func _get_drop_target() -> Node3D:
 		if target:
 			return target
 	return default_drop_point
+	
+
+	

@@ -3,6 +3,12 @@ extends RigidBody3D
 
 signal squished
 
+#ENUMS FOR PLAYER STATE CONDITIONS
+## Highest Priority first 
+enum Condition {NORMAL,DIZZY,HURT,DEAD,WIN}
+const PRIORITY := [Condition.WIN, Condition.DEAD, Condition.HURT, Condition.DIZZY, Condition.NORMAL]
+signal condition_changed(new_condition: Condition)
+
 @export var speed_force := 20.0
 @export var jump_impulse := 9.5
 @onready var collider := $CollisionShape3D
@@ -12,6 +18,7 @@ signal squished
 var on_ground := false
 var _teleport_target: Transform3D
 var _teleport_queued := false
+var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness ourselves
 ## Distance from this character's origin down to its lowest point.
 ## Ball 0.25, egg and corn will be different. Each character scene sets its own.
 @export var spawn_clearance := 0.25
@@ -46,6 +53,24 @@ func _physics_process(_delta: float) -> void:
 	var direction := Vector3(input.x, 0.0, input.y)
 	
 	apply_central_force(direction * speed_force)
+
+#VFX
+
+func enter_condition(condition: Condition)-> void:
+	if not _active_conditions.has(condition): #Unless the condition is already in our array (enforce uniqueness)
+		_active_conditions.append(condition) #append the condition to the array
+	_resolve_condition()
+
+func exit_condition(condition: Condition)-> void:
+	_active_conditions.erase(condition)
+	_resolve_condition()
+
+func _resolve_condition() -> void:
+	for condition in PRIORITY:
+		if _active_conditions.has(condition):
+			condition_changed.emit(condition)
+			return 
+	condition_changed.emit(Condition.NORMAL)
 	
 #DEV 
 #func _switch_character:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bw45456m1v0p1"]
 
-[ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="1_4nuld"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="1_0rc31"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="1_meaft"]
 [ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="2_1yo35"]
 [ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_s4hep"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="11_y7qnj"]
 [ext_resource type="PackedScene" uid="uid://bo6kbhm3vsw2o" path="res://scenes/obstacles/rolling_pin_log.tscn" id="12_ynvtq"]
 [ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="13_7pkvk"]
+[ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="14_ydhvk"]
+[ext_resource type="PackedScene" uid="uid://bb3evr04ihd2t" path="res://scenes/flag_hole.tscn" id="15_0rc31"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -26,8 +28,8 @@ height = 0.08
 
 [node name="GymPieces" type="Node3D" unique_id=844906366]
 
-[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("1_4nuld")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -6.2568617, 0, -21.712048)
+[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("1_0rc31")]
+jump_impulse = 6.0
 
 [node name="_Kitchen" type="Node" parent="." unique_id=1110794294]
 
@@ -104,7 +106,7 @@ metadata/_custom_type_script = "uid://c7557x0xku2rq"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1887820177]
 transform = Transform3D(1, 0, 0, 0, 0.9987887, 0.04920444, 0, -0.04920444, 0.9987887, 0, 7, 5.343068)
-fov = 90.0
+fov = 80.0
 script = ExtResource("3_s4hep")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=205890179]
@@ -115,7 +117,7 @@ script = ExtResource("5_a6ejg")
 metadata/_custom_type_script = "uid://cd4rb6ctxth5d"
 
 [node name="ProtoCylinder" type="StaticBody3D" parent="." unique_id=335226083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.310064, -0.11155057, -2.5095963)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.891077, -0.11155057, 0.27761364)
 script = ExtResource("6_wtxcq")
 fn = 2
 metadata/_custom_type_script = "uid://c3d1xouymugbb"
@@ -209,3 +211,28 @@ spin_speed_degrees = 120.0
 
 [node name="knife" parent="." unique_id=1530698396 instance=ExtResource("13_7pkvk")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -34.234715)
+
+[node name="knife5" parent="." unique_id=986726122 instance=ExtResource("13_7pkvk")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -40.738247)
+
+[node name="knife6" parent="." unique_id=421950800 instance=ExtResource("13_7pkvk")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -50.492283)
+
+[node name="knife2" parent="." unique_id=1753645731 instance=ExtResource("13_7pkvk")]
+transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -37.061115)
+
+[node name="knife3" parent="." unique_id=1171879289 instance=ExtResource("13_7pkvk")]
+transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -45.10673)
+
+[node name="knife4" parent="." unique_id=100515018 instance=ExtResource("13_7pkvk")]
+transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -54.74788)
+
+[node name="Scale" parent="." unique_id=886191544 instance=ExtResource("14_ydhvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.112423, 0.0018159449, 1.0158243)
+
+[node name="FlagHole" parent="." unique_id=480481789 instance=ExtResource("15_0rc31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.396939, 1.143867, 1.0263948)
+
+[node name="Funnel" parent="." unique_id=157579398 instance=ExtResource("4_wt0ny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.980881, 0.49999952, 2.1436577)
+drop_target_path = NodePath("../ProtoCylinder")

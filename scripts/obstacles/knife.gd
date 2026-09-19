@@ -18,18 +18,16 @@ func _chop() -> void:
 	#destroy old tween before making new one
 	if _knife_tween != null and _knife_tween.is_running():
 		_knife_tween.kill()
+		
 	_knife_tween = create_tween()
 	
 	_knife_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	#todo loop
-	_knife_tween.set_loops()
 	
-	#Knife Down
-	_knife_tween.tween_property(knife, "rotation_degrees:z",chop_angle_degrees,chop_time)
-	#Knife pause
-	_knife_tween.tween_interval(pause_down)
-	#Knife lift
-	_knife_tween.tween_property(knife,"rotation_degrees:z",0.0,lift_time)
-	#knife pause up
-	_knife_tween.tween_interval(pause_up)
+	_knife_tween.set_loops() #Ensure Tween Loops
+	
+	#Knife Animation 
+	_knife_tween.tween_property(knife, "rotation_degrees:z",chop_angle_degrees,chop_time) #Knife Down
+	_knife_tween.tween_interval(pause_down)#Knife pause down
+	_knife_tween.tween_property(knife,"rotation_degrees:z",0.0,lift_time)#Knife lift
+	_knife_tween.tween_interval(pause_up)#knife pause up
 		
