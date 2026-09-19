@@ -1,10 +1,15 @@
 extends StaticBody3D
 
+signal weight_changed(weight: float, id: StringName)
+
+@export var scale_id: StringName = &""
+
 @onready var detection: Area3D = $Detection
 @onready var display: Label3D = %WeightDisplay
 
 
 func _ready() -> void:
+	display.text = "0.00 kg"
 	detection.body_entered.connect(_on_body_entered)
 
 
@@ -27,6 +32,8 @@ func _physics_process(_delta: float) -> void:
 			if state.get_contact_collider(contact) == get_rid() and state.get_contact_local_normal(contact).dot(global_basis.y.normalized()) > 0.5:
 				total_mass += body.mass
 				break
-	var readout := "%.2f kg" % total_mass
+	var weight := snappedf(total_mass, 0.01)
+	var readout := "%.2f kg" % weight
 	if display.text != readout:
 		display.text = readout
+		weight_changed.emit(weight, scale_id)
