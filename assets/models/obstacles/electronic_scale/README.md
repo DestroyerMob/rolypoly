@@ -21,7 +21,14 @@ It starts empty; no values, units, calculations, or automatic updates are suppli
 The source texture is unchanged. The screen shader supplies the rounded blank
 background, and the label's font, color, and pixel size can be edited in Godot.
 
-`Body/CollisionShape3D` contains static triangle collision derived from the OBJ,
-with scale and floor offset baked into the points. If the model transform changes,
-update the collision and marker to match, or transform the entire scene instance.
-No weighing or puzzle behavior is implemented yet.
+Collision uses simple shapes: `Body/BaseCollision` is a box,
+`Body/DisplayHousingCollision` is a convex wedge matching the sloped front, and
+four cylinder colliders cover the feet. The metal weighing plate has its own
+static body, `WeighingPlatform`, with a dedicated `MetalPlatformCollision` box.
+The platform collider's top matches `WeighingSurface` at Y = 0.3956, and the base
+collider stops at the underside of the metal plate. Future puzzle scripts can
+reference `%WeighingPlatform` independently of the housing.
+
+Collision dimensions and positions include the model's scale and floor offset.
+If the model transform changes, update the collision and marker to match, or
+transform the entire scene instance. No weighing or puzzle behavior is implemented yet.
