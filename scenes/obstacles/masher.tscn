@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://645kiyhkt6d8"]
+
+[ext_resource type="Script" uid="uid://drtarr2t17ud7" path="res://scripts/obstacles/masher.gd" id="1_masher"]
+[ext_resource type="PackedScene" uid="uid://cifvxl0bi3554" path="res://assets/models/obstacles/Masher.glb" id="2_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_plate"]
+height = 0.28
+radius = 1.38
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_zone"]
+height = 0.9
+radius = 1.25
+
+[node name="Masher" type="Node3D" unique_id=694511634]
+script = ExtResource("1_masher")
+
+[node name="MovingPart" type="AnimatableBody3D" parent="." unique_id=1492517800]
+position = Vector3(0, 3, 0)
+
+[node name="Model" parent="MovingPart" unique_id=1564392011 instance=ExtResource("2_model")]
+
+[node name="PlateCollision" type="CollisionShape3D" parent="MovingPart" unique_id=501786890]
+position = Vector3(0, 0.18, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="SquishZone" type="Area3D" parent="MovingPart" unique_id=997687730]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPart/SquishZone" unique_id=1517501159]
+position = Vector3(0, -0.36, 0)
+shape = SubResource("CylinderShape3D_zone")
