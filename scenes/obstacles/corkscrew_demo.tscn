@@ -72,16 +72,3 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1462101735]
 environment = SubResource("Environment_demo")
-
-[node name="Instructions" type="CanvasLayer" parent="." unique_id=2125730432]
-
-[node name="Label" type="Label" parent="Instructions" unique_id=702030203]
-offset_left = 24.0
-offset_top = 20.0
-theme_override_colors/font_color = Color(0.93, 0.96, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.03, 0.04, 0.06, 0.8)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 20
-text = "Roll onto the middle of the handle to activate.
-WASD / arrows: move   ·   Space: jump   ·   R: reset"
