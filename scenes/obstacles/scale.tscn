@@ -3,12 +3,13 @@
 [ext_resource type="ArrayMesh" uid="uid://b4plddhbu4a2y" path="res://assets/models/obstacles/electronic_scale/electronicScale.obj" id="1_model"]
 [ext_resource type="Shader" uid="uid://dfrv2ejpwj21b" path="res://shaders/scale_display.gdshader" id="2_display"]
 [ext_resource type="Script" uid="uid://b1dn37v0h2mhq" path="res://scripts/obstacles/scale.gd" id="3_scale"]
+[ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="4_qo5hq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_base"]
 size = Vector3(2.94, 0.2888, 3.421)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_display_housing"]
-points = PackedVector3Array(-1.47, 0.0392, 1.691, 1.47, 0.0392, 1.691, -1.47, 0.0392, 2.609, 1.47, 0.0392, 2.609, -1.47, 0.366, 1.691, 1.47, 0.366, 1.691, -1.47, 0.2046, 2.609, 1.47, 0.2046, 2.609)
+points = PackedVector3Array(-1.47, 0.0392, 1.691, 1.47, 0.0392, 1.691, -1.47, 0.0392, 2.609, 1.47, 0.0392, 2.609, -1.47, 0.4, 1.691, 1.47, 0.4, 1.691, -1.47, 0.1, 2.609, 1.47, 0.1, 2.609)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_foot"]
 height = 0.04
@@ -42,6 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1836, -0.0195)
 shape = SubResource("BoxShape3D_base")
 
 [node name="DisplayHousingCollision" type="CollisionShape3D" parent="Body" unique_id=771211233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0018168986, 0.014998913)
 shape = SubResource("ConvexPolygonShape3D_display_housing")
 
 [node name="FrontLeftFootCollision" type="CollisionShape3D" parent="Body" unique_id=1373789534]
@@ -73,7 +75,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeighingPlatform/Detection" unique_id=84391767]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4356, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3538306, 0)
 shape = SubResource("BoxShape3D_detection")
 
 [node name="WeighingSurface" type="Marker3D" parent="." unique_id=159147351]
@@ -93,3 +95,30 @@ pixel_size = 0.0024
 modulate = Color(0.08, 0.11, 0.075, 1)
 font_size = 96
 outline_size = 0
+
+[node name="ProtoRampLeft_Hidden" type="StaticBody3D" parent="." unique_id=1451424848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7042627, 0, 0)
+visible = false
+script = ExtResource("4_qo5hq")
+run = 0.5
+rise = 0.38
+width = 3.25
+metadata/_custom_type_script = "uid://c7557x0xku2rq"
+
+[node name="ProtoRampRight_Hidden2" type="StaticBody3D" parent="." unique_id=1036441403]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.7234516, 0, 0)
+visible = false
+script = ExtResource("4_qo5hq")
+run = 0.5
+rise = 0.38
+width = 3.25
+metadata/_custom_type_script = "uid://c7557x0xku2rq"
+
+[node name="ProtoRampBack_Hidden3" type="StaticBody3D" parent="." unique_id=1768832247]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -0.036322832, 0, -1.958648)
+visible = false
+script = ExtResource("4_qo5hq")
+run = 0.5
+rise = 0.38
+width = 2.75
+metadata/_custom_type_script = "uid://c7557x0xku2rq"

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dguw72h1hgtq3"]
 
 [ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles/ladle.tscn" id="2_ladle"]
+[ext_resource type="PackedScene" uid="uid://bg0dphpqhwup" path="res://scenes/obstacles/ladle.tscn" id="2_ladle"]
 [ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_camera"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="4_death_zone"]
 
@@ -28,35 +28,35 @@ sky = SubResource("Sky_demo")
 ambient_light_source = 3
 ambient_light_energy = 0.75
 
-[node name="LadleDemo" type="Node3D" unique_id=1464081472]
+[node name="LadleDemo" type="Node3D" unique_id=2102519817]
 
-[node name="Floor" type="StaticBody3D" parent="." unique_id=1371977957]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=878826590]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1900354142]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1351468975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_floor")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=479955504]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1804825433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_floor")
 mesh = SubResource("BoxMesh_floor")
 
-[node name="Ladle" parent="." unique_id=1173009541 instance=ExtResource("2_ladle")]
+[node name="Ladle" parent="." unique_id=651007850 instance=ExtResource("2_ladle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 1.55, 0)
 
-[node name="Player" parent="." unique_id=286450578 instance=ExtResource("1_player")]
+[node name="Player" parent="." unique_id=92943531 instance=ExtResource("1_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.88, 0)
 
-[node name="DeathZone" parent="." unique_id=924870913 instance=ExtResource("4_death_zone")]
+[node name="DeathZone" parent="." unique_id=2016846925 instance=ExtResource("4_death_zone")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=684851390]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=572163648]
 transform = Transform3D(1, 0, 0, 0, 0.786744, 0.617279, 0, -0.617279, 0.786744, 0, 7, 7.5)
 script = ExtResource("3_camera")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1346687004]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=644237395]
 transform = Transform3D(0.8480481, 0.3938068, -0.35458517, 0, 0.66913056, 0.74314487, 0.52991927, -0.63022256, 0.5674549, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=519617765]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=54984007]
 environment = SubResource("Environment_demo")

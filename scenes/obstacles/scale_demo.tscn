@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://cereabnjoxxnr"]
 
-[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles/scale.tscn" id="2_scale"]
-[ext_resource type="PackedScene" path="res://packed_scenes/cube_tile.tscn" id="3_tile"]
-[ext_resource type="PackedScene" path="res://packed_scenes/default_camera.tscn" id="4_camera"]
-[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="5_death_zone"]
-[ext_resource type="Resource" path="res://data/StandardSurface.tres" id="6_surface"]
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="2_scale"]
+[ext_resource type="PackedScene" uid="uid://cqio8226fip5l" path="res://packed_scenes/cube_tile.tscn" id="3_tile"]
+[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="4_camera"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="5_death_zone"]
+[ext_resource type="Resource" uid="uid://cwpf5s3yvr55o" path="res://data/StandardSurface.tres" id="6_surface"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
 sky_top_color = Color(0.05, 0.08, 0.14, 1)
@@ -20,32 +20,32 @@ sky = SubResource("Sky_demo")
 ambient_light_source = 3
 ambient_light_energy = 0.7
 
-[node name="ScaleDemo" type="Node3D"]
+[node name="ScaleDemo" type="Node3D" unique_id=1906207702]
 
-[node name="LeftTile" parent="." instance=ExtResource("3_tile")]
-position = Vector3(-4, 0.464458, 0)
+[node name="LeftTile" parent="." unique_id=275730418 instance=ExtResource("3_tile")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.464458, 0)
 surface = ExtResource("6_surface")
 
-[node name="RightTile" parent="." instance=ExtResource("3_tile")]
-position = Vector3(4, 0.464458, 0)
+[node name="RightTile" parent="." unique_id=772305775 instance=ExtResource("3_tile")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.464458, 0)
 surface = ExtResource("6_surface")
 
-[node name="Scale" parent="." instance=ExtResource("2_scale")]
+[node name="Scale" parent="." unique_id=851716266 instance=ExtResource("2_scale")]
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector3(0, 1, 0)
+[node name="Player" parent="." unique_id=1773032157 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Camera3D" parent="." instance=ExtResource("4_camera")]
-position = Vector3(0, 4.5, 6.5)
+[node name="Camera3D" parent="." unique_id=1048978617 instance=ExtResource("4_camera")]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 4.5, 6.5)
 current = true
 fov = 50.0
 
-[node name="DeathZone" parent="." instance=ExtResource("5_death_zone")]
-position = Vector3(0, -10, 0)
+[node name="DeathZone" parent="." unique_id=1103772694 instance=ExtResource("5_death_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-55, -30, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1257170419]
+transform = Transform3D(0.8660254, 0.40957603, -0.28678823, 0, 0.57357645, 0.81915206, 0.5, -0.7094065, 0.49673176, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=141929244]
 environment = SubResource("Environment_demo")
