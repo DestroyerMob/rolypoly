@@ -24,30 +24,38 @@ func _initialize() -> void:
 				_parents[_root(_key(vertices[indices[face + corner]]))] = _root(first)
 
 	var is_blade: Dictionary[Vector3i, bool] = {}
+	var is_lid: Dictionary[Vector3i, bool] = {}
 	for surface in range(mesh.get_surface_count()):
 		var vertices: PackedVector3Array = mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]
 		for vertex in vertices:
 			var component := _root(_key(vertex))
 			is_blade[component] = is_blade.get(component, true) and BLADE_REGION.has_point(vertex)
+			# The lid and its center plug sit above the jar as whole components.
+			is_lid[component] = is_lid.get(component, true) and vertex.z > 0.0263
 
 	var housing_mesh := ArrayMesh.new()
 	var blade_mesh := ArrayMesh.new()
+	var lid_mesh := ArrayMesh.new()
 	for surface in range(mesh.get_surface_count()):
 		var arrays := mesh.surface_get_arrays(surface)
 		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
 		var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX]
 		var housing_indices := PackedInt32Array()
 		var blade_indices := PackedInt32Array()
+		var lid_indices := PackedInt32Array()
 		for face in range(0, indices.size(), 3):
 			if is_blade[_root(_key(vertices[indices[face]]))]:
 				blade_indices.append_array(indices.slice(face, face + 3))
+			elif is_lid[_root(_key(vertices[indices[face]]))]:
+				lid_indices.append_array(indices.slice(face, face + 3))
 			else:
 				housing_indices.append_array(indices.slice(face, face + 3))
 		_append_surface(housing_mesh, arrays, housing_indices, mesh.surface_get_material(surface))
 		_append_surface(blade_mesh, arrays, blade_indices, mesh.surface_get_material(surface))
+		_append_surface(lid_mesh, arrays, lid_indices, mesh.surface_get_material(surface))
 
-	if blade_mesh.get_surface_count() == 0 or housing_mesh.get_surface_count() == 0:
-		push_error("Blender source geometry changed; could not separate the blade.")
+	if blade_mesh.get_surface_count() == 0 or housing_mesh.get_surface_count() == 0 or lid_mesh.get_surface_count() == 0:
+		push_error("Blender source geometry changed; could not separate the blade and lid.")
 		source.free()
 		quit(1)
 		return
@@ -57,6 +65,16 @@ func _initialize() -> void:
 		return
 	housing_mesh.take_over_path(ASSET_DIR + "housing.res")
 	blade_mesh.take_over_path(ASSET_DIR + "blade.res")
+	if ResourceSaver.save(lid_mesh, ASSET_DIR + "lid.res") != OK:
+		quit(1)
+		return
+	lid_mesh.take_over_path(ASSET_DIR + "lid.res")
+	var housing_collision := housing_mesh.create_trimesh_shape()
+	housing_collision.set_faces(original.transform * housing_collision.get_faces())
+	housing_collision.backface_collision = true
+	if ResourceSaver.save(housing_collision, ASSET_DIR + "housing_collision.res") != OK:
+		quit(1)
+		return
 	print("Separated blade bounds: ", blade_mesh.get_aabb())
 	var model := Node3D.new()
 	model.name = "BlenderModel"
@@ -66,6 +84,12 @@ func _initialize() -> void:
 	housing.transform = original.transform
 	model.add_child(housing)
 	housing.owner = model
+	var lid := MeshInstance3D.new()
+	lid.name = "Lid"
+	lid.mesh = lid_mesh
+	lid.transform = original.transform
+	model.add_child(lid)
+	lid.owner = model
 	var pivot := Node3D.new()
 	pivot.name = "BladePivot"
 	pivot.position = original.transform * Vector3(0, 0, 0.0048618)
@@ -81,7 +105,7 @@ func _initialize() -> void:
 	var result := scene.pack(model)
 	if result == OK:
 		result = ResourceSaver.save(scene, ASSET_DIR + "blender_model.tscn")
-	print("Saved blender model with separate housing and blade: ", error_string(result))
+	print("Saved blender model with separate housing, lid, and blade: ", error_string(result))
 	source.free()
 	model.free()
 	quit(0 if result == OK else 1)

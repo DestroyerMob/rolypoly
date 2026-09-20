@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://ommweweww0d6"]
+
+[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="1_blender"]
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="3_start"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="4_death_zone"]
+[ext_resource type="Shape3D" path="res://assets/models/obstacles/blender/housing_collision.res" id="5_housing_collision"]
+[ext_resource type="PhysicsMaterial" uid="uid://ctjaakpok6sre" path="res://materials/physics/StandardPhysics.tres" id="6_physics"]
+[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="7_camera"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.24, 0.29, 0.36, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+material = SubResource("StandardMaterial3D_floor")
+size = Vector3(12, 0.5, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(12, 0.5, 12)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.05, 0.08, 0.14, 1)
+sky_horizon_color = Color(0.38, 0.48, 0.62, 1)
+ground_bottom_color = Color(0.05, 0.07, 0.11, 1)
+ground_horizon_color = Color(0.25, 0.32, 0.42, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.7
+
+[node name="BlenderDemo" type="Node3D" unique_id=964168994]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=836634688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+physics_material_override = ExtResource("6_physics")
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor" unique_id=977516897]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1740034875]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="Blender" parent="." unique_id=1473916795 instance=ExtResource("1_blender")]
+transform = Transform3D(-1, 8.742278e-08, -6.600236e-15, 0, 7.54979e-08, 1, 8.742278e-08, 1, -7.54979e-08, 0, 0.945, -1.85)
+
+[node name="Lid" parent="Blender/Model" index="1" unique_id=1347012686]
+visible = false
+
+[node name="Body" type="StaticBody3D" parent="Blender" unique_id=1527098349]
+physics_material_override = ExtResource("6_physics")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blender/Body" unique_id=1895191201]
+shape = ExtResource("5_housing_collision")
+
+[node name="PlayerStart" parent="." unique_id=945333811 instance=ExtResource("3_start")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 2.5)
+
+[node name="Player" parent="." unique_id=1515842576 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.55, 2.5)
+spawn_clearance = 0.55
+
+[node name="DeathZone" parent="." unique_id=2068900471 instance=ExtResource("4_death_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Camera3D" parent="." unique_id=399324456 instance=ExtResource("7_camera")]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 1.75, 4.05, 9)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=490161186]
+transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 0, 0)
+shadow_enabled = true
+
+[node name="OpeningLight" type="OmniLight3D" parent="." unique_id=880729808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 2.8)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=551695079]
+environment = SubResource("Environment_demo")
+
+[editable path="Blender"]
+[editable path="Blender/Model"]
