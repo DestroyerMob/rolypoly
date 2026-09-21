@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="1_ljh47"]
 [ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="2_eanlv"]
-[ext_resource type="PackedScene" uid="uid://bw0rr7rnpumuh" path="res://packed_scenes/player_naked_onion.tscn" id="3_eanlv"]
+[ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="3_eanlv"]
 [ext_resource type="PackedScene" uid="uid://bb3evr04ihd2t" path="res://scenes/flag_hole.tscn" id="4_flghl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vtqdj"]
