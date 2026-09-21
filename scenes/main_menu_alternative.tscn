@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" path="res://packed_scenes/menu_music.tscn" id="25_music"]
 [ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="26_mx2v7"]
 [ext_resource type="Script" uid="uid://bwvg3nhl2uo20" path="res://scripts/main_menu_alternative.gd" id="27_menu"]
+[ext_resource type="Texture2D" uid="uid://dqi1v6tqo7fl7" path="res://textures/icons/volume_grabber.svg" id="28_volume"]
+[ext_resource type="Texture2D" uid="uid://y518k0he5cxl" path="res://textures/icons/volume_grabber_active.svg" id="29_volume_active"]
 
 [sub_resource type="ShaderMaterial" id="Material_ramp_wood"]
 render_priority = 0
@@ -165,7 +167,41 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 0.9, 0.8, 1)
 ambient_light_energy = 0.7
 
+[sub_resource type="StyleBoxFlat" id="Style_volume_panel"]
+content_margin_left = 24.0
+content_margin_top = 18.0
+content_margin_right = 24.0
+content_margin_bottom = 18.0
+bg_color = Color(0.98, 0.95, 0.9, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="Style_volume_track"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.76, 0.72, 0.64, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="Style_volume_fill"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.24, 0.57, 0.3, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="BoxMesh" id="BoxMesh_b77r1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eoxm0"]
 
 [node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
 script = ExtResource("27_menu")
@@ -538,6 +574,45 @@ offset_bottom = 988.0
 layout_mode = 2
 theme_override_constants/separation = 14
 
+[node name="VolumePanel" type="PanelContainer" parent="SettingsButtonsCenter/MenuButtons" unique_id=1288629672]
+custom_minimum_size = Vector2(400, 138)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Style_volume_panel")
+
+[node name="Content" type="VBoxContainer" parent="SettingsButtonsCenter/MenuButtons/VolumePanel" unique_id=1637595372]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heading" type="HBoxContainer" parent="SettingsButtonsCenter/MenuButtons/VolumePanel/Content" unique_id=1908847371]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsButtonsCenter/MenuButtons/VolumePanel/Content/Heading" unique_id=68444660]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_font_sizes/font_size = 30
+text = "Music"
+
+[node name="Value" type="Label" parent="SettingsButtonsCenter/MenuButtons/VolumePanel/Content/Heading" unique_id=1425535777]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.48, 0.29, 1)
+theme_override_font_sizes/font_size = 28
+text = "100%"
+horizontal_alignment = 2
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsButtonsCenter/MenuButtons/VolumePanel/Content" unique_id=132479654]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Music volume — drag, click the track, or use the arrow keys."
+theme_override_icons/grabber = ExtResource("28_volume")
+theme_override_icons/grabber_highlight = ExtResource("29_volume_active")
+theme_override_styles/slider = SubResource("Style_volume_track")
+theme_override_styles/grabber_area = SubResource("Style_volume_fill")
+theme_override_styles/grabber_area_highlight = SubResource("Style_volume_fill")
+value = 100.0
+
 [node name="Back" type="Button" parent="SettingsButtonsCenter/MenuButtons" unique_id=1527760325]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
@@ -558,9 +633,19 @@ icon = ExtResource("11_ahe7m")
 alignment = 0
 
 [node name="knife" parent="." unique_id=1530698396 instance=ExtResource("26_mx2v7")]
-transform = Transform3D(-0.45372698, -0.89055693, -0.03225283, -0.8910205, 0.45396313, 0, 0.014641595, 0.028737932, -0.9994798, 9.683043, -2.1395073, -0.09776449)
+transform = Transform3D(-0.45372698, -0.89055693, -0.03225283, -0.8910205, 0.45396313, 0, 0.014641595, 0.028737932, -0.9994798, 9.683043, -2.1395073, 0.3965814)
 chop_angle_degrees = -36.5
 
 [node name="board" type="MeshInstance3D" parent="." unique_id=938451158]
 transform = Transform3D(5.4880004, 0, 0, 0, 0.39999998, 0, 0, 0, 2.42, 2.8946133, -4.3200655, 0.6208489)
 mesh = SubResource("BoxMesh_b77r1")
+
+[node name="Spawner2" type="Marker3D" parent="board" unique_id=141031573]
+transform = Transform3D(-0.18219833, 0, -0.0025198653, 0, 2.4999995, 0, 0.0057144705, 0, -0.4131836, 0.014254332, 3.7333832, -0.05899678)
+script = ExtResource("2_spawner")
+models = Array[PackedScene]([ExtResource("3_onion"), ExtResource("4_tomato"), ExtResource("5_onion")])
+
+[node name="StaticBody3D" type="StaticBody3D" parent="board" unique_id=2071290522]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="board/StaticBody3D" unique_id=1100659850]
+shape = SubResource("BoxShape3D_eoxm0")

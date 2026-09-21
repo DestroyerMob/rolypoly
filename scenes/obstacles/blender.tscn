@@ -23,6 +23,7 @@ position = Vector3(0, -0.012, 0)
 collision_layer = 0
 monitorable = false
 script = ExtResource("3_death_zone")
+kills_produce = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Model/BladePivot/BladeDeathZone"]
 shape = SubResource("CylinderShape3D_blade")

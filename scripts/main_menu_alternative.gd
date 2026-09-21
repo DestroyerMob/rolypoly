@@ -6,6 +6,8 @@ var _transitioning := false
 
 @onready var _main_controls: Array[Control] = [$MainTitle, $MenuButtonsCenter, $LevelGridCenter]
 @onready var _settings_controls: Array[Control] = [$SettingsTitle, $SettingsButtonsCenter]
+@onready var _volume_slider: HSlider = $SettingsButtonsCenter/MenuButtons/VolumePanel/Content/VolumeSlider
+@onready var _volume_value: Label = $SettingsButtonsCenter/MenuButtons/VolumePanel/Content/Heading/Value
 
 
 func _ready() -> void:
@@ -15,6 +17,14 @@ func _ready() -> void:
 		control.modulate.a = 0.0
 	$MenuButtonsCenter/MenuButtons/SettingsButton.pressed.connect(_show_settings.bind(true))
 	$SettingsButtonsCenter/MenuButtons/Back.pressed.connect(_show_settings.bind(false))
+	_volume_slider.set_value_no_signal($MenuMusic.volume_percent)
+	_volume_value.text = "Muted" if _volume_slider.value == 0.0 else "%d%%" % _volume_slider.value
+	_volume_slider.value_changed.connect(_on_music_volume_changed)
+
+
+func _on_music_volume_changed(value: float) -> void:
+	_volume_value.text = "Muted" if value == 0.0 else "%d%%" % value
+	$MenuMusic.set_volume_percent(value)
 
 
 func _show_settings(show_settings: bool) -> void:
