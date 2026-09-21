@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c4ujhjjhr4jdl"]
+
+[ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="1_lxcy2"]
+
+[node name="ProtoRamp" type="StaticBody3D" unique_id=1791653073]
+script = ExtResource("1_lxcy2")
+metadata/_custom_type_script = "uid://c7557x0xku2rq"

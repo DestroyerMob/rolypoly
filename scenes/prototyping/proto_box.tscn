@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://8f31uiayst6r"]
+
+[ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="1_m80ks"]
+
+[node name="ProtoBox" type="StaticBody3D" unique_id=801422939]
+script = ExtResource("1_m80ks")
+metadata/_custom_type_script = "uid://bdadou88ia27u"
