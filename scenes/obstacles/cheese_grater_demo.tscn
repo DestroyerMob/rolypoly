@@ -48,7 +48,7 @@ tonemap_mode = 2
 [node name="CheeseGraterDemo" type="Node3D" unique_id=1749016993]
 
 [node name="UpperPlatform" type="StaticBody3D" parent="." unique_id=1312916043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 204.20662, 181.10071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.2124, 21.2629)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperPlatform" unique_id=703378923]
 material_override = SubResource("Material_start")
@@ -58,7 +58,7 @@ mesh = SubResource("Mesh_platform")
 shape = SubResource("Shape_platform")
 
 [node name="LowerPlatform" type="StaticBody3D" parent="." unique_id=580450459]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 131.75594, 17.987268)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7124, -1.5631)
 
 [node name="Mesh" type="MeshInstance3D" parent="LowerPlatform" unique_id=1221403754]
 material_override = SubResource("Material_landing")
@@ -72,17 +72,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265, 0)
 mesh = SubResource("Mesh_goal")
 
 [node name="GraterSlide" type="Node3D" parent="." unique_id=402593338]
-transform = Transform3D(-1, 0, 0, 0, 0.9063078, -0.42261827, 0, -0.42261827, -0.9063078, 0, 100, 0)
+transform = Transform3D(-1, 0, 0, 0, 0.9063078, -0.42261827, 0, -0.42261827, -0.9063078, 0, 6, 0)
 
 [node name="CheeseGrater" parent="GraterSlide" unique_id=1222647951 instance=ExtResource("1_grater")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -236.94196)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -23.694196)
 
 [node name="Player" parent="." unique_id=2031062158 instance=ExtResource("2_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 205.05661, 179.60071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.0624, 20.4629)
 continuous_cd = true
 
 [node name="Camera3D" parent="." unique_id=2068754311 instance=ExtResource("3_camera")]
-transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 211.4566, 187.10071)
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 23.4624, 27.9629)
 current = true
 fov = 50.0
 
