@@ -18,6 +18,9 @@ script = ExtResource("2_blender")
 
 [node name="Model" parent="." instance=ExtResource("1_model")]
 
+[node name="ParticleOutlet" type="Marker3D" parent="."]
+position = Vector3(0, 3.4, 0)
+
 [node name="BladeDeathZone" type="Area3D" parent="Model/BladePivot"]
 position = Vector3(0, -0.012, 0)
 collision_layer = 0

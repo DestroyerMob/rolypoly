@@ -1,5 +1,7 @@
 extends Node3D
 
+const ProduceBody := preload("res://scripts/produce_body.gd")
+
 ## Seconds per full blade rotation. Smaller values spin faster; zero stops it.
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var rotation_duration := 1.0
 ## Length of the force cone along the blade's local positive Y axis.
@@ -16,6 +18,7 @@ var _force_dimensions := Vector2(-1, -1)
 
 
 func _ready() -> void:
+	$Model/BladePivot/BladeDeathZone.body_entered.connect(_on_produce_entered)
 	_update_force_shape()
 	var collision := CollisionShape3D.new()
 	collision.shape = _force_shape
@@ -26,6 +29,11 @@ func _ready() -> void:
 	# Keep the cone centered on the blade without spinning its polygonal collider.
 	blade_pivot.get_parent().add_child(_force_area)
 	_force_area.transform = blade_pivot.transform
+
+
+func _on_produce_entered(body: Node3D) -> void:
+	if body is ProduceBody:
+		body.call_deferred("burst", $ParticleOutlet.global_transform)
 
 
 func _update_force_shape() -> void:

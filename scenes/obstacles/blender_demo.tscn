@@ -48,18 +48,12 @@ shape = SubResource("BoxShape3D_floor")
 [node name="Blender" parent="." unique_id=1473916795 instance=ExtResource("1_blender")]
 transform = Transform3D(-1, 8.742278e-08, -6.600236e-15, 0, 7.54979e-08, 1, 8.742278e-08, 1, -7.54979e-08, 0, 0.945, -1.85)
 
-[node name="Lid" parent="Blender/Model" index="1" unique_id=1347012686]
-visible = false
-
 [node name="BladeDeathZone" parent="Blender/Model/BladePivot" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012, 0)
 
 [node name="PullBlender" parent="." unique_id=1912716597 instance=ExtResource("1_blender")]
 transform = Transform3D(-1, 8.742278e-08, -6.600236e-15, 0, 7.54979e-08, 1, 8.742278e-08, 1, -7.54979e-08, 4, 0.945, -1.85)
 force_strength = -10.0
-
-[node name="Lid" parent="PullBlender/Model" index="1" unique_id=1347012686]
-visible = false
 
 [node name="BladeDeathZone" parent="PullBlender/Model/BladePivot" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012, 0)

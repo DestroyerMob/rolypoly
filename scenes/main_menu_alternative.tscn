@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://pm1arxykf2bx"]
+
+[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="1_60nkq"]
+[ext_resource type="Script" uid="uid://dxl3poxxt86ch" path="res://scripts/menu_produce_spawner.gd" id="2_spawner"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="3_onion"]
+[ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="4_tomato"]
+[ext_resource type="PackedScene" uid="uid://bw0rr7rnpumuh" path="res://packed_scenes/player_naked_onion.tscn" id="5_onion"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gj10c"]
+size = Vector3(2.4, 0.16, 0.8)
+
+[sub_resource type="BoxShape3D" id="Shape_ramp"]
+size = Vector3(2.4, 0.16, 0.8)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_60nkq"]
+sky_top_color = Color(0.3, 0.4, 0.55, 1)
+sky_horizon_color = Color(0.8, 0.85, 0.9, 1)
+ground_bottom_color = Color(0.16, 0.2, 0.24, 1)
+ground_horizon_color = Color(0.55, 0.6, 0.65, 1)
+
+[sub_resource type="Sky" id="Sky_studio"]
+sky_material = SubResource("ProceduralSkyMaterial_60nkq")
+
+[sub_resource type="Environment" id="Environment_qlt2o"]
+background_mode = 2
+sky = SubResource("Sky_studio")
+ambient_light_source = 3
+ambient_light_energy = 0.6
+reflected_light_source = 2
+tonemap_mode = 2
+
+[node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1710163703]
+transform = Transform3D(1, 0, 0, 0, 0.95562094, 0.29459912, 0, -0.29459912, 0.95562094, 0.9868963, 1.0527158, 3.264645)
+
+[node name="Ramp" type="StaticBody3D" parent="." unique_id=2145052810]
+transform = Transform3D(0.9838437, 0.17902958, 0, -0.17902958, 0.9838437, 0, 0, 0, 1, 0, 0.79340583, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp" unique_id=296932879]
+mesh = SubResource("BoxMesh_gj10c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp" unique_id=1418727181]
+shape = SubResource("Shape_ramp")
+
+[node name="ParticleCollision" type="GPUParticlesCollisionBox3D" parent="Ramp" unique_id=39566175]
+size = Vector3(2.4, 0.16, 0.8)
+
+[node name="Spawner" type="Marker3D" parent="." unique_id=2061564881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 1.5, 0)
+script = ExtResource("2_spawner")
+models = Array[PackedScene]([ExtResource("3_onion"), ExtResource("4_tomato"), ExtResource("5_onion")])
+
+[node name="Blender" parent="." unique_id=925147632 instance=ExtResource("1_60nkq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7837731, -4.542637, -0.003952384)
+force_strength = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1732250987]
+environment = SubResource("Environment_qlt2o")
