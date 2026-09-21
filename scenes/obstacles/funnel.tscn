@@ -1,25 +1,24 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://d082epsq48fks"]
 
-[ext_resource type="Script" path="res://scripts/obstacles/funnel.gd" id="1_funnel"]
-[ext_resource type="PackedScene" path="res://assets/models/obstacles/Funnel.glb" id="2_model"]
+[ext_resource type="Script" uid="uid://cy0d3oxs3j2xr" path="res://scripts/obstacles/funnel.gd" id="1_funnel"]
+[ext_resource type="PackedScene" uid="uid://c8jyg76u2p7ni" path="res://assets/models/obstacles/Funnel.glb" id="2_model"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_throat"]
 height = 0.42
 radius = 0.52
 
-[node name="Funnel" type="Node3D"]
+[node name="Funnel" type="Node3D" unique_id=259827820]
 script = ExtResource("1_funnel")
 
-[node name="Model" parent="." instance=ExtResource("2_model")]
+[node name="Model" parent="." unique_id=1626853240 instance=ExtResource("2_model")]
 
-[node name="ThroatArea" type="Area3D" parent="."]
+[node name="ThroatArea" type="Area3D" parent="." unique_id=1742935777]
 collision_layer = 0
-collision_mask = 1
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ThroatArea"]
-position = Vector3(0, 0.3, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThroatArea" unique_id=1032609748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("CylinderShape3D_throat")
 
-[node name="DefaultDropPoint" type="Marker3D" parent="."]
-position = Vector3(0, -0.5, 0)
+[node name="DefaultDropPoint" type="Marker3D" parent="." unique_id=1880155039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

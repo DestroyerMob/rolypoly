@@ -1,51 +1,50 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3 uid="uid://bg0dphpqhwup"]
 
-[ext_resource type="Script" path="res://scripts/obstacles/ladle.gd" id="1_ladle"]
-[ext_resource type="PackedScene" path="res://assets/models/obstacles/Ladle.glb" id="2_model"]
+[ext_resource type="Script" uid="uid://bl4kuweonv2eo" path="res://scripts/obstacles/ladle.gd" id="1_ladle"]
+[ext_resource type="PackedScene" uid="uid://d1b056vaxthxa" path="res://assets/models/obstacles/Ladle.glb" id="2_model"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ladle"]
 friction = 0.85
 rough = true
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_handle"]
-radius = 0.22
-height = 3.05
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_pivot"]
-height = 1.2
-radius = 0.24
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axle"]
+albedo_color = Color(0.1, 0.14, 0.19, 1)
+metallic = 0.75
+roughness = 0.28
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_axle"]
 top_radius = 0.22
 bottom_radius = 0.22
 height = 1.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axle"]
-albedo_color = Color(0.10, 0.14, 0.19, 1)
-metallic = 0.75
-roughness = 0.28
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pivot"]
+height = 1.2
+radius = 0.24
 
-[node name="Ladle" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_handle"]
+radius = 0.22
+height = 3.05
+
+[node name="Ladle" type="Node3D" unique_id=199721807]
 script = ExtResource("1_ladle")
 
-[node name="PivotMount" type="StaticBody3D" parent="."]
+[node name="PivotMount" type="StaticBody3D" parent="." unique_id=1460190009]
 physics_material_override = SubResource("PhysicsMaterial_ladle")
 
-[node name="AxleMesh" type="MeshInstance3D" parent="PivotMount"]
-position = Vector3(0, 0.3, 0)
+[node name="AxleMesh" type="MeshInstance3D" parent="PivotMount" unique_id=1024262378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 material_override = SubResource("StandardMaterial3D_axle")
 mesh = SubResource("CylinderMesh_axle")
 
-[node name="AxleCollision" type="CollisionShape3D" parent="PivotMount"]
-position = Vector3(0, 0.3, 0)
+[node name="AxleCollision" type="CollisionShape3D" parent="PivotMount" unique_id=57347424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("CylinderShape3D_pivot")
 
-[node name="SwingingPart" type="AnimatableBody3D" parent="."]
+[node name="SwingingPart" type="AnimatableBody3D" parent="." unique_id=1159433212]
 physics_material_override = SubResource("PhysicsMaterial_ladle")
 
-[node name="Model" parent="SwingingPart" instance=ExtResource("2_model")]
+[node name="Model" parent="SwingingPart" unique_id=1471773878 instance=ExtResource("2_model")]
 
-[node name="HandleCollision" type="CollisionShape3D" parent="SwingingPart"]
-position = Vector3(1.54, 0.21, 0)
-rotation = Vector3(0, 0, 1.5708)
+[node name="HandleCollision" type="CollisionShape3D" parent="SwingingPart" unique_id=941493934]
+transform = Transform3D(-3.6199901e-06, -1, 0, 1, -3.6199901e-06, 0, 0, 0, 1, 1.54, 0.21, 0)
 shape = SubResource("CapsuleShape3D_handle")

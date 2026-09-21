@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://ce8wuprk782li"]
+
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="2_corkscrew"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="3_death_zone"]
+[ext_resource type="Script" uid="uid://cippae3iaefmb" path="res://scripts/obstacles/corkscrew_demo.gd" id="4_demo"]
+[ext_resource type="Material" uid="uid://cpddhup0sflfy" path="res://materials/StandardTile.tres" id="5_tile_material"]
+[ext_resource type="PhysicsMaterial" uid="uid://ctjaakpok6sre" path="res://materials/physics/StandardPhysics.tres" id="6_tile_physics"]
+[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="7_camera"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_platform"]
+material = ExtResource("5_tile_material")
+size = Vector3(3, 0.3, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_platform"]
+size = Vector3(3, 0.3, 2)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.05, 0.08, 0.14, 1)
+sky_horizon_color = Color(0.38, 0.48, 0.62, 1)
+ground_bottom_color = Color(0.05, 0.07, 0.11, 1)
+ground_horizon_color = Color(0.25, 0.32, 0.42, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.7
+
+[node name="CorkscrewDemo" type="Node3D" unique_id=659065908]
+script = ExtResource("4_demo")
+
+[node name="StartPlatform" type="StaticBody3D" parent="." unique_id=263784104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88, 4.13, 0)
+physics_material_override = ExtResource("6_tile_physics")
+
+[node name="Mesh" type="MeshInstance3D" parent="StartPlatform" unique_id=196109686]
+mesh = SubResource("BoxMesh_platform")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartPlatform" unique_id=127959436]
+shape = SubResource("BoxShape3D_platform")
+
+[node name="LandingPlatform" type="StaticBody3D" parent="." unique_id=416919729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88, 3.13, 0)
+physics_material_override = ExtResource("6_tile_physics")
+
+[node name="Mesh" type="MeshInstance3D" parent="LandingPlatform" unique_id=322017644]
+mesh = SubResource("BoxMesh_platform")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LandingPlatform" unique_id=922988374]
+shape = SubResource("BoxShape3D_platform")
+
+[node name="Corkscrew" parent="." unique_id=1972809118 instance=ExtResource("2_corkscrew")]
+
+[node name="Player" parent="." unique_id=976569790 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 4.83, 0)
+
+[node name="Camera3D" parent="." unique_id=539925490 instance=ExtResource("7_camera")]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, -2.7, 8.33, 9)
+current = true
+fov = 50.0
+
+[node name="DeathZone" parent="." unique_id=437773252 instance=ExtResource("3_death_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=489816226]
+transform = Transform3D(0.8660254, 0.40957603, -0.28678823, 0, 0.57357645, 0.81915206, 0.5, -0.7094065, 0.49673176, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1462101735]
+environment = SubResource("Environment_demo")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d368ew4qamyqu"]
+
+[ext_resource type="PackedScene" uid="uid://disd4xf2b84do" path="res://assets/models/obstacles/Knife.glb" id="1_jg8em"]
+[ext_resource type="Script" uid="uid://cf5oiyo28xbao" path="res://scripts/obstacles/knife.gd" id="1_jy42b"]
+
+[node name="knife" type="Node3D" unique_id=1530698396]
+script = ExtResource("1_jy42b")
+
+[node name="model" parent="." unique_id=1765628846 instance=ExtResource("1_jg8em")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

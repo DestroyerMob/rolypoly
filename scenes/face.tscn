@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d16odxtlysqks"]
+
+[ext_resource type="Script" uid="uid://b8yga0ukw3wi0" path="res://scripts/face.gd" id="1_3alo4"]
+[ext_resource type="Texture2D" uid="uid://46ouv7qehq55" path="res://assets/face/happy.png" id="3_a50ll"]
+
+[node name="Face" type="Node3D" unique_id=856252447]
+script = ExtResource("1_3alo4")
+
+[node name="Face_Decal" type="Decal" parent="." unique_id=1419663672]
+transform = Transform3D(1.3, 0, 0, 0, -5.6824803e-08, -1.3, 0, 1.3, -5.6824803e-08, 0, 0.20455498, 0.9678371)
+texture_albedo = ExtResource("3_a50ll")
