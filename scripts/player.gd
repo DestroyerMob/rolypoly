@@ -41,19 +41,6 @@ func _physics_process(_delta: float) -> void:
 		jump()
 	move(Input.get_vector("left", "right", "forward", "backward"))
 
-	var input := Input.get_vector(
-		"left", "right", "forward", "backward"
-	)
-	
-	on_ground = get_colliding_bodies().size() > 0
-	
-	if Input.is_action_just_pressed("jump") and on_ground:
-		apply_central_impulse(Vector3.UP * jump_impulse)
-	
-	var direction := Vector3(input.x, 0.0, input.y)
-	
-	apply_central_force(direction * speed_force)
-
 #VFX
 
 func enter_condition(condition: Condition)-> void:
