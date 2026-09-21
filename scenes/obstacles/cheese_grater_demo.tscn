@@ -1,22 +1,33 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="PackedScene" path="res://assets/models/obstacles/cheese_grater/cheese_grater.glb" id="1_grater"]
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://packed_scenes/default_camera.tscn" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death_zone"]
 
-[sub_resource type="StandardMaterial3D" id="Material_counter"]
-albedo_color = Color(0.16, 0.22, 0.24, 1)
-roughness = 0.8
-
-[sub_resource type="BoxMesh" id="Mesh_counter"]
-material = SubResource("Material_counter")
-size = Vector3(200, 0.3, 200)
-
-[sub_resource type="StandardMaterial3D" id="Material_board"]
+[sub_resource type="StandardMaterial3D" id="Material_start"]
 albedo_color = Color(0.48, 0.28, 0.12, 1)
-roughness = 0.65
+roughness = 0.75
 
-[sub_resource type="BoxMesh" id="Mesh_board"]
-material = SubResource("Material_board")
-size = Vector3(2.2, 0.16, 4.5)
+[sub_resource type="StandardMaterial3D" id="Material_landing"]
+albedo_color = Color(0.22, 0.48, 0.35, 1)
+roughness = 0.75
+
+[sub_resource type="BoxMesh" id="Mesh_platform"]
+size = Vector3(5, 0.5, 4)
+
+[sub_resource type="BoxShape3D" id="Shape_platform"]
+size = Vector3(5, 0.5, 4)
+
+[sub_resource type="PhysicsMaterial" id="Physics_slide"]
+friction = 0.12
+bounce = 0.0
+
+[sub_resource type="BoxShape3D" id="Shape_grating_surface"]
+size = Vector3(2.28, 0.12, 4.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="Shape_handle"]
+points = PackedVector3Array(-0.32, 0.3, -0.65, 0.32, 0.3, -0.65, -0.32, 0.48, -0.65, 0.32, 0.48, -0.65, -0.5, 0.1, 2.5, 0.5, 0.1, 2.5, -0.5, 0.8, 2.5, 0.5, 0.8, 2.5, -0.35, 0.34, 5.5, 0.35, 0.34, 5.5, -0.35, 0.51, 5.5, 0.35, 0.51, 5.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="Material_sky"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -35,26 +46,67 @@ ambient_light_energy = 0.6
 reflected_light_source = 2
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="Material_goal"]
+albedo_color = Color(0.7, 0.95, 0.55, 1)
+
+[sub_resource type="CylinderMesh" id="Mesh_goal"]
+material = SubResource("Material_goal")
+top_radius = 0.8
+bottom_radius = 0.8
+height = 0.025
+
 [node name="CheeseGraterDemo" type="Node3D"]
 
-[node name="Counter" type="MeshInstance3D" parent="."]
-position = Vector3(0, -0.15, 0)
-mesh = SubResource("Mesh_counter")
+[node name="UpperPlatform" type="StaticBody3D" parent="."]
+position = Vector3(0, 4.53, 6.75)
 
-[node name="CuttingBoard" type="MeshInstance3D" parent="."]
-position = Vector3(0, 0.08, 0)
-mesh = SubResource("Mesh_board")
+[node name="Mesh" type="MeshInstance3D" parent="UpperPlatform"]
+mesh = SubResource("Mesh_platform")
+material_override = SubResource("Material_start")
 
-[node name="CheeseGrater" parent="." instance=ExtResource("1_grater")]
-position = Vector3(0, 0.16, 0)
-scale = Vector3(10, 10, 10)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpperPlatform"]
+shape = SubResource("Shape_platform")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-position = Vector3(3, 5, 4.5)
-rotation = Vector3(-0.7467, 0.588, 0)
+[node name="LowerPlatform" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.15, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerPlatform"]
+mesh = SubResource("Mesh_platform")
+material_override = SubResource("Material_landing")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowerPlatform"]
+shape = SubResource("Shape_platform")
+
+[node name="LandingMarker" type="MeshInstance3D" parent="LowerPlatform"]
+position = Vector3(0, 0.265, 0)
+mesh = SubResource("Mesh_goal")
+
+[node name="GraterSlide" type="StaticBody3D" parent="."]
+position = Vector3(0, 2, 0)
+rotation_degrees = Vector3(-25, 0, 0)
+physics_material_override = SubResource("Physics_slide")
+
+[node name="CheeseGrater" parent="GraterSlide" instance=ExtResource("1_grater")]
+scale = Vector3(30, 30, 30)
+
+[node name="GratingSurface" type="CollisionShape3D" parent="GraterSlide"]
+position = Vector3(0, 0.39, -3.05)
+shape = SubResource("Shape_grating_surface")
+
+[node name="Handle" type="CollisionShape3D" parent="GraterSlide"]
+shape = SubResource("Shape_handle")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector3(0, 5.35, 6.5)
+continuous_cd = true
+
+[node name="Camera3D" parent="." instance=ExtResource("3_camera")]
+position = Vector3(0, 8.85, 15.5)
 current = true
-projection = 1
-size = 6.3
+fov = 50.0
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death_zone")]
+position = Vector3(0, -5, 0)
 
 [node name="KeyLight" type="DirectionalLight3D" parent="."]
 rotation_degrees = Vector3(-55, -35, 0)
