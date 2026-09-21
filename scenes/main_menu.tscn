@@ -62,6 +62,14 @@ corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pajh"]
+content_margin_left = 34.0
+bg_color = Color(0.32941177, 0.78039217, 1, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
 content_margin_left = 34.0
 bg_color = Color(0.98, 0.95, 0.9, 1)
@@ -155,6 +163,24 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_play_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "Play"
+icon = ExtResource("5_iplay")
+alignment = 0
+
+[node name="Kitchen Gym" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1446814899]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5pajh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_play_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
+text = "Kitchen Gym"
 icon = ExtResource("5_iplay")
 alignment = 0
 

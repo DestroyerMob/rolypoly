@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bw45456m1v0p1"]
 
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="1_0rc31"]
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_jrvun"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="1_meaft"]
 [ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="2_1yo35"]
 [ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_s4hep"]
@@ -19,6 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://50a5u2opqyr" path="res://scenes/prototyping/proto_cylinder.tscn" id="17_xjhk5"]
 [ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="18_qxyph"]
 [ext_resource type="PackedScene" uid="uid://bwghfcy21irpb" path="res://scenes/prototyping/proto_half_pipe.tscn" id="19_xjhk5"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="20_qxyph"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/cheese_grater.tscn" id="21_6mmbi"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="22_jrmgl"]
+[ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="23_2tvl1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -32,30 +37,34 @@ height = 0.08
 
 [node name="GymPieces" type="Node3D" unique_id=844906366]
 
-[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("1_0rc31")]
+[node name="PlayerRig" type="Node" parent="." unique_id=1144157139]
+script = ExtResource("1_jrvun")
+
+[node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("1_0rc31")]
 transform = Transform3D(-0.9929082, 0, -0.118883915, 0, 1, 0, 0.118883915, 0, -0.9929082, 0, 0, 0)
 jump_impulse = 6.0
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1887820177]
+[node name="Camera3D" type="Camera3D" parent="PlayerRig" unique_id=1887820177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 8.838481)
 fov = 80.0
 script = ExtResource("3_s4hep")
 
 [node name="_Kitchen" type="Node" parent="." unique_id=1110794294]
 
-[node name="_Table" type="Node" parent="_Kitchen" unique_id=857539655]
+[node name="_Core" type="Node" parent="_Kitchen" unique_id=1247500057]
 
-[node name="Table_Top" type="StaticBody3D" parent="_Kitchen/_Table" unique_id=318076219]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -150)
+[node name="_Floor" type="Node" parent="_Kitchen/_Core" unique_id=758004058]
+
+[node name="Floor" type="StaticBody3D" parent="_Kitchen/_Core/_Floor" unique_id=38239534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 script = ExtResource("1_meaft")
-size = Vector3(122, 100, 360)
-fn = 11
-pivot = 2
+size = Vector3(1500, 0.05, 1500)
+fn = 10
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="_Island" type="Node" parent="_Kitchen" unique_id=1745542445]
+[node name="_Island" type="Node" parent="_Kitchen/_Core" unique_id=1745542445]
 
-[node name="Island" type="StaticBody3D" parent="_Kitchen/_Island" unique_id=645874024]
+[node name="Island" type="StaticBody3D" parent="_Kitchen/_Core/_Island" unique_id=645874024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
 script = ExtResource("1_meaft")
 size = Vector3(240, 100, 180)
@@ -63,22 +72,23 @@ fn = 11
 pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="_Floor" type="Node" parent="_Kitchen" unique_id=758004058]
+[node name="_PianoDeCuisson" type="Node" parent="_Kitchen/_Core" unique_id=867997842]
 
-[node name="Floor" type="StaticBody3D" parent="_Kitchen/_Floor" unique_id=38239534]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
-script = ExtResource("1_meaft")
-size = Vector3(1500, 0.05, 1500)
-fn = 10
-metadata/_custom_type_script = "uid://bdadou88ia27u"
-
-[node name="_PianoDeCuisson" type="Node" parent="_Kitchen" unique_id=867997842]
-
-[node name="_LaCornue" type="StaticBody3D" parent="_Kitchen/_PianoDeCuisson" unique_id=697905794]
+[node name="_LaCornue" type="StaticBody3D" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=697905794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -792.07)
 script = ExtResource("1_meaft")
 size = Vector3(109.2, 110, 93.7)
 fn = 8
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="_Table" type="Node" parent="_Kitchen/_Core" unique_id=857539655]
+
+[node name="Table_Top" type="StaticBody3D" parent="_Kitchen/_Core/_Table" unique_id=318076219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -150)
+script = ExtResource("1_meaft")
+size = Vector3(122, 100, 360)
+fn = 11
+pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="_Obstacles" type="Node" parent="." unique_id=354915527]
@@ -288,6 +298,16 @@ run = 10.0
 rise = 6.3
 width = 10.0
 
+[node name="ProtoBox2" parent="." unique_id=467829939 instance=ExtResource("16_dits3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.037907, 0, -37.26811)
+size = Vector3(10, 6.3, 3)
+
+[node name="ProtoRamp3" parent="." unique_id=929903718 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 41.062874, 0, -30.848331)
+run = 10.0
+rise = 6.3
+width = 10.0
+
 [node name="ProtoHalfPipe" parent="." unique_id=365574967 instance=ExtResource("19_xjhk5")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 31.257, 0.3, -53.802)
 height = 6.0
@@ -296,3 +316,45 @@ radius = 21.75
 arc_degrees = 87.20563794540725
 length = 10.0
 pivot = 2
+
+[node name="ProtoHalfPipe2" parent="." unique_id=1073028927 instance=ExtResource("19_xjhk5")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 40.99374, 0.3, -53.802)
+height = 6.0
+width = 30.0
+radius = 21.75
+arc_degrees = 87.20563794540725
+length = 10.0
+pivot = 2
+
+[node name="Blender" parent="." unique_id=1725696530 instance=ExtResource("20_qxyph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.773422, 3.8146973e-06, -17.83685)
+
+[node name="CheeseGrater" parent="." unique_id=1110011585 instance=ExtResource("21_6mmbi")]
+transform = Transform3D(-0.999984, 0, 0.0056539793, 0, 1, 0, -0.0056539793, 0, -0.999984, 31.381016, 3.6182108, -90.41352)
+
+[node name="CheeseGrater2" parent="." unique_id=884645599 instance=ExtResource("21_6mmbi")]
+transform = Transform3D(0.99994516, 0, -0.010469723, 0, 1, 0, 0.010469723, 0, 0.99994516, 41.41399, 3.6182108, -66.08304)
+
+[node name="Corkscrew" parent="." unique_id=1535655422 instance=ExtResource("22_jrmgl")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 24.179638, -0.21049213, -37.515522)
+
+[node name="Winebottle" parent="." unique_id=1584647438 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 18.571314, -9.536743e-07, -36.162888)
+
+[node name="Winebottle2" parent="." unique_id=59152435 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20.157583, -9.536743e-07, -36.162888)
+
+[node name="Winebottle3" parent="." unique_id=2115014493 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 19.416782, -9.536743e-07, -38.83469)
+
+[node name="Winebottle4" parent="." unique_id=877573197 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 21.426783, -9.536743e-07, -38.83469)
+
+[node name="Winebottle5" parent="." unique_id=733957233 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.511889, -9.536743e-07, -38.83469)
+
+[node name="Winebottle6" parent="." unique_id=1801286446 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 19.394772, -9.536743e-07, -34.21204)
+
+[node name="ProtoRamp4" parent="." unique_id=1490542611 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.51011, 1.9073486e-06, -28.043505)
