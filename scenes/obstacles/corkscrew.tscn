@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/corkscrew/corkscrew.gltf" id="1_model"]
+[ext_resource type="Shape3D" path="res://assets/models/obstacles/corkscrew/corkscrew_collision.tres" id="2_collision"]
+[ext_resource type="Script" path="res://scripts/obstacles/corkscrew.gd" id="3_corkscrew"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_corkscrew"]
+friction = 0.85
+rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trigger"]
+size = Vector3(1.2, 0.6, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_handle_support"]
+size = Vector3(2.7, 0.5, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_occupancy"]
+size = Vector3(2.7, 1.2, 1.2)
+
+[node name="Corkscrew" type="Node3D"]
+script = ExtResource("3_corkscrew")
+
+[node name="Body" type="AnimatableBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_corkscrew")
+
+[node name="Model" parent="Body" instance=ExtResource("1_model")]
+position = Vector3(0, 3.961229086, 0)
+scale = Vector3(0.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+shape = ExtResource("2_collision")
+
+[node name="HandleSupport" type="CollisionShape3D" parent="Body"]
+position = Vector3(0, 4.15, 0)
+shape = SubResource("BoxShape3D_handle_support")
+
+[node name="Trigger" type="Area3D" parent="Body"]
+position = Vector3(0, 4.64, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Trigger"]
+shape = SubResource("BoxShape3D_trigger")
+
+[node name="Occupancy" type="Area3D" parent="Body"]
+position = Vector3(0, 5, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Occupancy"]
+shape = SubResource("BoxShape3D_occupancy")
