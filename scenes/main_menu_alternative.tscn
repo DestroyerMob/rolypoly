@@ -22,7 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://bj1eja51yxl7s" path="res://packed_scenes/level_button.tscn" id="20_ddjdt"]
 [ext_resource type="Shader" uid="uid://d107xknekaw56" path="res://assets/shaders/menu_ramp_wood.gdshader" id="22_wood"]
 [ext_resource type="Shader" uid="uid://cp2xo2xkux8ce" path="res://assets/shaders/menu_backdrop_shade.gdshader" id="23_shade"]
-[ext_resource type="AudioStream" path="res://assets/audio/blender_chop_menu.wav" id="24_blender_audio"]
+[ext_resource type="AudioStream" uid="uid://33wplcvekdpr" path="res://assets/audio/blender_chop_menu.wav" id="24_blender_audio"]
+[ext_resource type="PackedScene" path="res://packed_scenes/menu_music.tscn" id="25_music"]
 
 [sub_resource type="ShaderMaterial" id="Material_ramp_wood"]
 render_priority = 0
@@ -164,6 +165,8 @@ ambient_light_energy = 0.7
 
 [node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
 
+[node name="MenuMusic" parent="." unique_id=1730181901 instance=ExtResource("25_music")]
+
 [node name="WoodenKitchen" parent="." unique_id=2096602144 instance=ExtResource("6_kitchen")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -18.228529, -12.82253, -2.0067492)
 
@@ -210,6 +213,7 @@ models = Array[PackedScene]([ExtResource("3_onion"), ExtResource("4_tomato"), Ex
 transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, -8.4458475, -4.542637, 9.888683)
 force_strength = 0.0
 blend_sound = ExtResource("24_blender_audio")
+blend_volume_db = -6.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1732250987]
 environment = SubResource("Environment_qlt2o")

@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://co120j7kgedym" path="res://assets/face/uwu.png" id="12_uwu"]
 [ext_resource type="PackedScene" uid="uid://c1wj4ry2r1mat" path="res://models/vegetables/tomato/Tomato.glb" id="13_tomato"]
 [ext_resource type="PackedScene" uid="uid://ch3gwcp33g4o" path="res://models/vegetables/egg/egg.glb" id="14_egg"]
+[ext_resource type="PackedScene" path="res://packed_scenes/menu_music.tscn" id="15_music"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play"]
 content_margin_left = 34.0
@@ -116,6 +117,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mmenu")
+
+[node name="MenuMusic" parent="." instance=ExtResource("15_music")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1025812514]
 layout_mode = 1
