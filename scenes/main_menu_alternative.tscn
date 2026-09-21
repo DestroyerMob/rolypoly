@@ -1,12 +1,37 @@
 [gd_scene format=3 uid="uid://pm1arxykf2bx"]
 
-[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="1_60nkq"]
+[ext_resource type="PackedScene" uid="uid://bcglepmuufbpx" path="res://scenes/obstacles/blender.tscn" id="1_60nkq"]
 [ext_resource type="Script" uid="uid://dxl3poxxt86ch" path="res://scripts/menu_produce_spawner.gd" id="2_spawner"]
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="3_onion"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="4_tomato"]
 [ext_resource type="PackedScene" uid="uid://bw0rr7rnpumuh" path="res://packed_scenes/player_naked_onion.tscn" id="5_onion"]
+[ext_resource type="PackedScene" uid="uid://bnfkgp8ewtxhp" path="res://assets/models/environment/wooden_kitchen/wooden_kitchen.glb" id="6_kitchen"]
+[ext_resource type="Texture2D" uid="uid://ck250854bpuud" path="res://textures/GameTitle.png" id="7_3m32m"]
+[ext_resource type="Texture2D" uid="uid://dl1vprd31rfpw" path="res://textures/icons/play.svg" id="8_tcdr2"]
+[ext_resource type="Texture2D" uid="uid://ckiybmp0rb74e" path="res://textures/icons/trophy.svg" id="9_nql72"]
+[ext_resource type="Texture2D" uid="uid://b4updu5fkjidm" path="res://textures/icons/gear.svg" id="10_qrv2f"]
+[ext_resource type="Texture2D" uid="uid://cde3tn0o5dqyo" path="res://textures/icons/exit.svg" id="11_ahe7m"]
+[ext_resource type="Script" uid="uid://chdcwu15m8nje" path="res://scripts/menu_veg.gd" id="12_g03te"]
+[ext_resource type="PackedScene" uid="uid://cuhcrlgs2ujyx" path="res://models/vegetables/onion/Onion.glb" id="13_mx2v7"]
+[ext_resource type="PackedScene" uid="uid://d16odxtlysqks" path="res://scenes/face.tscn" id="14_gsyvv"]
+[ext_resource type="Texture2D" uid="uid://co120j7kgedym" path="res://assets/face/uwu.png" id="15_eoxm0"]
+[ext_resource type="PackedScene" uid="uid://c1wj4ry2r1mat" path="res://models/vegetables/tomato/Tomato.glb" id="16_7w1xn"]
+[ext_resource type="PackedScene" uid="uid://ch3gwcp33g4o" path="res://models/vegetables/egg/egg.glb" id="17_iexkf"]
+[ext_resource type="Texture2D" uid="uid://dlynoy27f71tg" path="res://textures/level_bg.png" id="18_pjrql"]
+[ext_resource type="Texture2D" uid="uid://tgc6q2xd5kl" path="res://textures/LevelsText.png" id="19_ipj77"]
+[ext_resource type="PackedScene" uid="uid://bj1eja51yxl7s" path="res://packed_scenes/level_button.tscn" id="20_ddjdt"]
+[ext_resource type="Shader" uid="uid://d107xknekaw56" path="res://assets/shaders/menu_ramp_wood.gdshader" id="22_wood"]
+[ext_resource type="Shader" uid="uid://cp2xo2xkux8ce" path="res://assets/shaders/menu_backdrop_shade.gdshader" id="23_shade"]
+[ext_resource type="AudioStream" path="res://assets/audio/blender_chop_menu.wav" id="24_blender_audio"]
+
+[sub_resource type="ShaderMaterial" id="Material_ramp_wood"]
+render_priority = 0
+shader = ExtResource("22_wood")
+shader_parameter/light_wood = Color(0.72, 0.46, 0.23, 1)
+shader_parameter/dark_wood = Color(0.38, 0.2, 0.08, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gj10c"]
+material = SubResource("Material_ramp_wood")
 size = Vector3(2.4, 0.16, 0.8)
 
 [sub_resource type="BoxShape3D" id="Shape_ramp"]
@@ -25,17 +50,147 @@ sky_material = SubResource("ProceduralSkyMaterial_60nkq")
 background_mode = 2
 sky = SubResource("Sky_studio")
 ambient_light_source = 3
-ambient_light_energy = 0.6
+ambient_light_color = Color(1, 0.88, 0.72, 1)
+ambient_light_sky_contribution = 0.55
+ambient_light_energy = 0.45
 reflected_light_source = 2
-tonemap_mode = 2
+tonemap_mode = 3
+tonemap_exposure = 1.05
+ssao_enabled = true
+ssao_radius = 1.2
+ssao_intensity = 1.1
+ssao_power = 1.3
+ssil_enabled = true
+ssil_intensity = 0.5
+glow_enabled = true
+glow_hdr_threshold = 1.4
+adjustment_enabled = true
+adjustment_contrast = 1.05
+adjustment_saturation = 1.08
+
+[sub_resource type="ShaderMaterial" id="Material_menu_shade"]
+shader = ExtResource("23_shade")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl6e4"]
+content_margin_left = 34.0
+bg_color = Color(0.24, 0.57, 0.3, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ummh"]
+content_margin_left = 34.0
+bg_color = Color(0.26, 0.65, 0.33, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bldjp"]
+content_margin_left = 34.0
+bg_color = Color(0.4, 0.85, 0.47, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsbcx"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.15, 0.5, 0.22, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qeeg"]
+content_margin_left = 34.0
+bg_color = Color(0.64, 0.45, 0.24, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w4ni"]
+content_margin_left = 34.0
+bg_color = Color(0.98, 0.95, 0.9, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbdfu"]
+content_margin_left = 34.0
+bg_color = Color(0.7, 0.9, 0.72, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv21h"]
+content_margin_left = 34.0
+bg_color = Color(0.86, 0.96, 0.86, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="Environment" id="Environment_hfrvr"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.9, 0.8, 1)
+ambient_light_energy = 0.7
 
 [node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
 
+[node name="WoodenKitchen" parent="." unique_id=2096602144 instance=ExtResource("6_kitchen")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -18.228529, -12.82253, -2.0067492)
+
+[node name="KitchenLight" type="DirectionalLight3D" parent="." unique_id=632802514]
+transform = Transform3D(0.22875278, 0.48370513, -0.8448086, 0, 0.8678192, 0.4968801, 0.9734846, -0.113662705, 0.19851606, 0, 0, 0)
+light_color = Color(1, 0.86, 0.66, 1)
+light_energy = 1.5
+light_angular_distance = 3.0
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="WindowFill" type="OmniLight3D" parent="." unique_id=1176310380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8, 1.8, 9)
+light_color = Color(0.75, 0.86, 1, 1)
+omni_range = 13.0
+
+[node name="CounterBounce" type="OmniLight3D" parent="." unique_id=872422140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -1, 9)
+light_color = Color(1, 0.78, 0.51, 1)
+light_energy = 0.65
+omni_range = 10.0
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1710163703]
-transform = Transform3D(1, 0, 0, 0, 0.95562094, 0.29459912, 0, -0.29459912, 0.95562094, 0.9868963, 1.0527158, 3.264645)
+transform = Transform3D(-0.008559763, -0.29458833, 0.9555859, 0, 0.95562094, 0.29459912, -0.9999634, 0.0025216986, -0.008179888, -4.0966964, 1.0527158, 8.153152)
 
 [node name="Ramp" type="StaticBody3D" parent="." unique_id=2145052810]
-transform = Transform3D(0.9838437, 0.17902958, 0, -0.17902958, 0.9838437, 0, 0, 0, 1, 0, 0.79340583, 0)
+transform = Transform3D(-0.0068029165, -0.0012379438, 0.9999761, -0.1790296, 0.9838437, -8.297294e-09, -0.9838202, -0.17902532, -0.0069147646, -8.429561, 0.7934058, 11.672386)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp" unique_id=296932879]
 mesh = SubResource("BoxMesh_gj10c")
@@ -47,13 +202,307 @@ shape = SubResource("Shape_ramp")
 size = Vector3(2.4, 0.16, 0.8)
 
 [node name="Spawner" type="Marker3D" parent="." unique_id=2061564881]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 1.5, 0)
+transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, -8.423683, 1.5, 12.522367)
 script = ExtResource("2_spawner")
 models = Array[PackedScene]([ExtResource("3_onion"), ExtResource("4_tomato"), ExtResource("5_onion")])
 
 [node name="Blender" parent="." unique_id=925147632 instance=ExtResource("1_60nkq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7837731, -4.542637, -0.003952384)
+transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, -8.4458475, -4.542637, 9.888683)
 force_strength = 0.0
+blend_sound = ExtResource("24_blender_audio")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1732250987]
 environment = SubResource("Environment_qlt2o")
+
+[node name="MenuBackdropShade" type="ColorRect" parent="." unique_id=1462282189]
+material = SubResource("Material_menu_shade")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainTitle" type="TextureRect" parent="." unique_id=2081126877]
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 750.0
+offset_bottom = 400.0
+texture = ExtResource("7_3m32m")
+
+[node name="MenuButtonsCenter" type="CenterContainer" parent="." unique_id=319891845]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.4
+anchor_right = 0.3
+anchor_bottom = 0.84
+
+[node name="MenuButtons" type="VBoxContainer" parent="MenuButtonsCenter" unique_id=1711719891]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="PlayButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=894619530]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_nl6e4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ummh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bldjp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Play"
+icon = ExtResource("8_tcdr2")
+alignment = 0
+
+[node name="Kitchen Gym" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1788298352]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_2qeeg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ummh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bldjp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Kitchen Gym"
+icon = ExtResource("8_tcdr2")
+alignment = 0
+
+[node name="AchievementsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1952813082]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Achievements"
+icon = ExtResource("9_nql72")
+alignment = 0
+
+[node name="SettingsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1400543893]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Settings"
+icon = ExtResource("10_qrv2f")
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=209480952]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Quit"
+icon = ExtResource("11_ahe7m")
+alignment = 0
+
+[node name="VegViewportContainer" type="SubViewportContainer" parent="." unique_id=202400703]
+visible = false
+anchors_preset = -1
+anchor_left = 0.26
+anchor_top = 0.42
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = 40.80002
+offset_top = 7.4000244
+offset_right = 40.80005
+offset_bottom = 7.4000244
+mouse_filter = 2
+stretch = true
+
+[node name="OnionViewport" type="SubViewport" parent="VegViewportContainer" unique_id=1589571774]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+msaa_3d = 2
+size = Vector2i(460, 518)
+render_target_update_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VegViewportContainer/OnionViewport" unique_id=1829116087]
+environment = SubResource("Environment_hfrvr")
+
+[node name="Camera3D" type="Camera3D" parent="VegViewportContainer/OnionViewport" unique_id=1671383494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+fov = 35.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="VegViewportContainer/OnionViewport" unique_id=685021463]
+transform = Transform3D(0.906308, 0, 0.422618, 0.271654, 0.766044, -0.582563, -0.323744, 0.642788, 0.694272, -3, 6, 6)
+
+[node name="OnionPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=1985386632]
+transform = Transform3D(0.91882837, 0.39465734, 0, -0.3901633, 0.9083655, -0.15048203, -0.05938884, 0.13826716, 0.9886128, 0, 1, 0)
+script = ExtResource("12_g03te")
+
+[node name="Onion" parent="VegViewportContainer/OnionViewport/OnionPivot" unique_id=800354453 instance=ExtResource("13_mx2v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137, -2.25, 0)
+
+[node name="Face" parent="VegViewportContainer/OnionViewport/OnionPivot/Onion" unique_id=856252447 instance=ExtResource("14_gsyvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6595171, 0.113529086, 2.1999183, 1.0431988)
+visible = false
+normal_face = ExtResource("15_eoxm0")
+
+[node name="TomatoPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=861010902]
+transform = Transform3D(1.6918094, 1.0666682, 0, -1.0303581, 1.634219, -0.5173882, -0.27594078, 0.43766114, 1.9319186, -1.3, -0.5, 3)
+script = ExtResource("12_g03te")
+bob_height = 0.06
+phase = 2.0
+
+[node name="Tomato" parent="VegViewportContainer/OnionViewport/TomatoPivot" unique_id=2137851947 instance=ExtResource("16_7w1xn")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, -0.04, 0)
+
+[node name="EggPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=484016165]
+transform = Transform3D(1.4079255, -0.50633305, -0.10664256, 0.5174416, 1.3776999, 0.29016757, 2.2351742e-08, -0.30914375, 1.4677976, 1.3, -0.7, 3)
+script = ExtResource("12_g03te")
+bob_height = 0.06
+phase = 4.0
+
+[node name="Egg" parent="VegViewportContainer/OnionViewport/EggPivot" unique_id=787028999 instance=ExtResource("17_iexkf")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.042, 0)
+
+[node name="LevelGridCenter" type="CenterContainer" parent="." unique_id=547660974]
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.04
+anchor_right = 0.97
+anchor_bottom = 0.96
+offset_left = 347.2
+offset_top = 156.8
+offset_right = -62.400024
+offset_bottom = -36.799927
+
+[node name="TextureRect" type="TextureRect" parent="LevelGridCenter" unique_id=1128730892]
+custom_minimum_size = Vector2(800, 800)
+layout_mode = 2
+texture = ExtResource("18_pjrql")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelVBox" type="VBoxContainer" parent="LevelGridCenter" unique_id=2044523844]
+custom_minimum_size = Vector2(700, 700)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LevelTitle" type="TextureRect" parent="LevelGridCenter/LevelVBox" unique_id=1909361858]
+custom_minimum_size = Vector2(250, 71)
+layout_mode = 2
+texture = ExtResource("19_ipj77")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelGrid" type="GridContainer" parent="LevelGridCenter/LevelVBox" unique_id=1482566201]
+custom_minimum_size = Vector2(700, 600)
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 4
+
+[node name="Level1" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=894641680 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+
+[node name="Level2" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1154120662 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 2
+
+[node name="Level3" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=357116232 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 3
+unlocked = false
+
+[node name="Level4" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1554677543 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 4
+unlocked = false
+
+[node name="Level5" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1453233672 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 5
+unlocked = false
+
+[node name="Level6" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=674239962 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 6
+unlocked = false
+
+[node name="Level7" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=304032360 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 7
+unlocked = false
+
+[node name="Level8" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=616713806 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 8
+unlocked = false
+
+[node name="Level9" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1631371193 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 9
+unlocked = false
+
+[node name="Level10" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=549516127 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 10
+unlocked = false
+
+[node name="Level11" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1726627570 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 11
+unlocked = false
+
+[node name="Level12" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=528559097 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 12
+unlocked = false
+
+[node name="Level13" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=962704039 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 13
+unlocked = false
+
+[node name="Level14" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1053657722 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 14
+unlocked = false
+
+[node name="Level15" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=606804339 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 15
+unlocked = false
+
+[node name="Level16" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=344729334 instance=ExtResource("20_ddjdt")]
+layout_mode = 2
+level_number = 16
+unlocked = false
