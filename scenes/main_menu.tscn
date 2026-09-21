@@ -2,9 +2,103 @@
 
 [ext_resource type="Script" uid="uid://ny3mur0jceli" path="res://scripts/main_menu.gd" id="1_mmenu"]
 [ext_resource type="Texture2D" uid="uid://dty523vuhqk2m" path="res://textures/tempBackground.png" id="2_bqqt6"]
-[ext_resource type="PackedScene" path="res://packed_scenes/level_button.tscn" id="2_lvlbtn"]
+[ext_resource type="PackedScene" uid="uid://bj1eja51yxl7s" path="res://packed_scenes/level_button.tscn" id="2_lvlbtn"]
+[ext_resource type="Texture2D" uid="uid://ck250854bpuud" path="res://textures/GameTitle.png" id="3_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://dlynoy27f71tg" path="res://textures/level_bg.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://tgc6q2xd5kl" path="res://textures/LevelsText.png" id="4_lvltxt"]
+[ext_resource type="Texture2D" uid="uid://dl1vprd31rfpw" path="res://textures/icons/play.svg" id="5_iplay"]
+[ext_resource type="Texture2D" uid="uid://ckiybmp0rb74e" path="res://textures/icons/trophy.svg" id="6_itroph"]
+[ext_resource type="Texture2D" uid="uid://b4updu5fkjidm" path="res://textures/icons/gear.svg" id="7_igear"]
+[ext_resource type="Texture2D" uid="uid://cde3tn0o5dqyo" path="res://textures/icons/exit.svg" id="8_iexit"]
+[ext_resource type="Script" uid="uid://chdcwu15m8nje" path="res://scripts/menu_veg.gd" id="9_monion"]
+[ext_resource type="PackedScene" uid="uid://cuhcrlgs2ujyx" path="res://models/vegetables/onion/Onion.glb" id="10_onion"]
+[ext_resource type="PackedScene" uid="uid://d16odxtlysqks" path="res://scenes/face.tscn" id="11_face"]
+[ext_resource type="Texture2D" uid="uid://co120j7kgedym" path="res://assets/face/uwu.png" id="12_uwu"]
+[ext_resource type="PackedScene" uid="uid://c1wj4ry2r1mat" path="res://models/vegetables/tomato/Tomato.glb" id="13_tomato"]
+[ext_resource type="PackedScene" uid="uid://ch3gwcp33g4o" path="res://models/vegetables/egg/egg.glb" id="14_egg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play"]
+content_margin_left = 34.0
+bg_color = Color(0.33, 0.78, 0.4, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_pressed"]
+content_margin_left = 34.0
+bg_color = Color(0.26, 0.65, 0.33, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_hover"]
+content_margin_left = 34.0
+bg_color = Color(0.4, 0.85, 0.47, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_focus"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.15, 0.5, 0.22, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+content_margin_left = 34.0
+bg_color = Color(0.98, 0.95, 0.9, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill_pressed"]
+content_margin_left = 34.0
+bg_color = Color(0.7, 0.9, 0.72, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill_hover"]
+content_margin_left = 34.0
+bg_color = Color(0.86, 0.96, 0.86, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="Environment" id="Environment_onion"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.9, 0.8, 1)
+ambient_light_energy = 0.7
 
 [node name="MainMenu" type="Control" unique_id=823883384]
 layout_mode = 3
@@ -26,53 +120,159 @@ texture = ExtResource("2_bqqt6")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="TitleLabel" type="Label" parent="." unique_id=1160299198]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.02
-anchor_top = 0.03
-anchor_right = 0.45
-anchor_bottom = 0.13
-offset_left = 30.960001
-offset_top = 54.56
-offset_right = -179.39996
-offset_bottom = 102.76
-theme_override_font_sizes/font_size = 40
-text = "Where's the 
-lamb sauce?"
-horizontal_alignment = 1
+[node name="MainTitle" type="TextureRect" parent="." unique_id=147094965]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 750.0
+offset_bottom = 400.0
+texture = ExtResource("3_5dd4i")
 
 [node name="MenuButtonsCenter" type="CenterContainer" parent="." unique_id=2064303479]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.04
-anchor_top = 0.32
-anchor_right = 0.28
-anchor_bottom = 0.85
+anchor_left = 0.05
+anchor_top = 0.4
+anchor_right = 0.3
+anchor_bottom = 0.84
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuButtonsCenter" unique_id=1737650872]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 14
 
 [node name="PlayButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1652615328]
-custom_minimum_size = Vector2(220, 50)
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_play")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_play_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "Play"
+icon = ExtResource("5_iplay")
+alignment = 0
 
 [node name="AchievementsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=577791820]
-custom_minimum_size = Vector2(220, 50)
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_pill")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pill_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pill_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "Achievements"
+icon = ExtResource("6_itroph")
+alignment = 0
 
 [node name="SettingsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=913631211]
-custom_minimum_size = Vector2(220, 50)
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_pill")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pill_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pill_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "Settings"
+icon = ExtResource("7_igear")
+alignment = 0
 
 [node name="QuitButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=286397183]
-custom_minimum_size = Vector2(220, 50)
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_pill")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pill_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pill_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "Quit"
+icon = ExtResource("8_iexit")
+alignment = 0
+
+[node name="VegViewportContainer" type="SubViewportContainer" parent="." unique_id=1757007531]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26
+anchor_top = 0.42
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = 40.80002
+offset_top = 7.4000244
+offset_right = 40.80005
+offset_bottom = 7.4000244
+mouse_filter = 2
+stretch = true
+
+[node name="OnionViewport" type="SubViewport" parent="VegViewportContainer" unique_id=549058540]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+msaa_3d = 2
+size = Vector2i(460, 518)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VegViewportContainer/OnionViewport" unique_id=1410986921]
+environment = SubResource("Environment_onion")
+
+[node name="Camera3D" type="Camera3D" parent="VegViewportContainer/OnionViewport" unique_id=2073155044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+fov = 35.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="VegViewportContainer/OnionViewport" unique_id=365126074]
+transform = Transform3D(0.906308, 0, 0.422618, 0.271654, 0.766044, -0.582563, -0.323744, 0.642788, 0.694272, -3, 6, 6)
+
+[node name="OnionPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=1480523170]
+transform = Transform3D(0.91882837, 0.39465734, 0, -0.3901633, 0.9083655, -0.15048203, -0.05938884, 0.13826716, 0.9886128, 0, 1, 0)
+script = ExtResource("9_monion")
+
+[node name="Onion" parent="VegViewportContainer/OnionViewport/OnionPivot" unique_id=716720074 instance=ExtResource("10_onion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137, -2.25, 0)
+
+[node name="Face" parent="VegViewportContainer/OnionViewport/OnionPivot/Onion" unique_id=1315605660 instance=ExtResource("11_face")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6595171, 0.113529086, 2.1999183, 1.0431988)
+visible = false
+normal_face = ExtResource("12_uwu")
+
+[node name="TomatoPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=799105270]
+transform = Transform3D(1.6918094, 1.0666682, 0, -1.0303581, 1.634219, -0.5173882, -0.27594078, 0.43766114, 1.9319186, -1.3, -0.5, 3)
+script = ExtResource("9_monion")
+bob_height = 0.06
+phase = 2.0
+
+[node name="Tomato" parent="VegViewportContainer/OnionViewport/TomatoPivot" unique_id=479108540 instance=ExtResource("13_tomato")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, -0.04, 0)
+
+[node name="EggPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=1188481794]
+transform = Transform3D(1.4079255, -0.50633305, -0.10664256, 0.5174416, 1.3776999, 0.29016757, 2.2351742e-08, -0.30914375, 1.4677976, 1.3, -0.7, 3)
+script = ExtResource("9_monion")
+bob_height = 0.06
+phase = 4.0
+
+[node name="Egg" parent="VegViewportContainer/OnionViewport/EggPivot" unique_id=362875278 instance=ExtResource("14_egg")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.042, 0)
 
 [node name="LevelGridCenter" type="CenterContainer" parent="." unique_id=621658533]
 layout_mode = 1
@@ -81,15 +281,20 @@ anchor_left = 0.34
 anchor_top = 0.04
 anchor_right = 0.97
 anchor_bottom = 0.96
+offset_left = 347.2
+offset_top = 156.8
+offset_right = -62.400024
+offset_bottom = -36.799927
 
 [node name="TextureRect" type="TextureRect" parent="LevelGridCenter" unique_id=2107641890]
-custom_minimum_size = Vector2(590, 590)
+custom_minimum_size = Vector2(800, 800)
 layout_mode = 2
 texture = ExtResource("3_wu84c")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="LevelVBox" type="VBoxContainer" parent="LevelGridCenter" unique_id=900000101]
+custom_minimum_size = Vector2(700, 700)
 layout_mode = 2
 theme_override_constants/separation = 14
 
@@ -101,6 +306,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="LevelGrid" type="GridContainer" parent="LevelGridCenter/LevelVBox" unique_id=285093859]
+custom_minimum_size = Vector2(700, 600)
 layout_mode = 2
 theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
@@ -116,55 +322,69 @@ level_number = 2
 [node name="Level3" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1085937846 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 3
+unlocked = false
 
 [node name="Level4" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=354869117 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 4
+unlocked = false
 
 [node name="Level5" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1125940495 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 5
+unlocked = false
 
 [node name="Level6" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2004799663 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 6
+unlocked = false
 
 [node name="Level7" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1132311249 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 7
+unlocked = false
 
 [node name="Level8" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1104654767 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 8
+unlocked = false
 
 [node name="Level9" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2048530488 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 9
+unlocked = false
 
 [node name="Level10" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2027287154 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 10
+unlocked = false
 
 [node name="Level11" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=985505615 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 11
+unlocked = false
 
 [node name="Level12" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1565469137 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 12
+unlocked = false
 
 [node name="Level13" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=151836096 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 13
+unlocked = false
 
 [node name="Level14" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1709476056 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 14
+unlocked = false
 
 [node name="Level15" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2129266060 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 15
+unlocked = false
 
 [node name="Level16" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=673225356 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 16
+unlocked = false
