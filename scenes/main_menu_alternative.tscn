@@ -24,6 +24,7 @@
 [ext_resource type="Shader" uid="uid://cp2xo2xkux8ce" path="res://assets/shaders/menu_backdrop_shade.gdshader" id="23_shade"]
 [ext_resource type="AudioStream" uid="uid://33wplcvekdpr" path="res://assets/audio/blender_chop_menu.wav" id="24_blender_audio"]
 [ext_resource type="PackedScene" path="res://packed_scenes/menu_music.tscn" id="25_music"]
+[ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="26_mx2v7"]
 
 [sub_resource type="ShaderMaterial" id="Material_ramp_wood"]
 render_priority = 0
@@ -162,6 +163,8 @@ shadow_offset = Vector2(0, 3)
 ambient_light_source = 2
 ambient_light_color = Color(1, 0.9, 0.8, 1)
 ambient_light_energy = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_b77r1"]
 
 [node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
 
@@ -510,3 +513,10 @@ unlocked = false
 layout_mode = 2
 level_number = 16
 unlocked = false
+
+[node name="knife" parent="." unique_id=1530698396 instance=ExtResource("26_mx2v7")]
+transform = Transform3D(-0.45372698, -0.89055693, -0.03225283, -0.8910205, 0.45396313, 0, 0.014641595, 0.028737932, -0.9994798, 9.683043, -4.259961, -0.09776449)
+
+[node name="board" type="MeshInstance3D" parent="." unique_id=938451158]
+transform = Transform3D(5.4880004, 0, 0, 0, 0.39999998, 0, 0, 0, 2.42, 2.8946133, -4.3200655, 0.6208489)
+mesh = SubResource("BoxMesh_b77r1")
