@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://di7tcvjgbu4c5"]
+
+[ext_resource type="Script" uid="uid://jbrcq7w4lij8" path="res://scripts/obstacles/pot.gd" id="1_pot"]
+[ext_resource type="PackedScene" uid="uid://bqkghk3fqh14w" path="res://assets/models/obstacles/Pot.glb" id="2_model"]
+[ext_resource type="Shader" uid="uid://bflxrcasw2p3c" path="res://assets/shaders/simmer_water.gdshader" id="3_shader"]
+[ext_resource type="Script" uid="uid://3ffqnfx72db1" path="res://scripts/obstacles/simmer_float.gd" id="4_float"]
+[ext_resource type="PackedScene" uid="uid://cuhcrlgs2ujyx" path="res://models/vegetables/onion/Onion.glb" id="5_onion"]
+[ext_resource type="PackedScene" uid="uid://c1wj4ry2r1mat" path="res://models/vegetables/tomato/Tomato.glb" id="6_tomato"]
+[ext_resource type="PackedScene" uid="uid://ch3gwcp33g4o" path="res://models/vegetables/egg/egg.glb" id="7_egg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_floor"]
+height = 0.1
+radius = 0.95
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
+render_priority = 0
+shader = ExtResource("3_shader")
+shader_parameter/broth_color = Color(0.86, 0.46, 0.13, 1)
+shader_parameter/foam_color = Color(1, 0.86, 0.56, 1)
+shader_parameter/wave_height = 0.02
+shader_parameter/wave_speed = 1.5
+shader_parameter/bubble_density = 10.0
+shader_parameter/bubble_speed = 0.6
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_water"]
+material = SubResource("ShaderMaterial_water")
+size = Vector2(1.9, 1.9)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="Gradient" id="Gradient_life"]
+offsets = PackedFloat32Array(0, 0.25, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_life"]
+gradient = SubResource("Gradient_life")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
+emission_shape = 3
+emission_box_extents = Vector3(0.6, 0.01, 0.6)
+direction = Vector3(0, 1, 0)
+spread = 12.0
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+gravity = Vector3(0, 0.05, 0)
+scale_min = 0.6
+color_ramp = SubResource("GradientTexture1D_life")
+
+[sub_resource type="Gradient" id="Gradient_puff"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_puff"]
+gradient = SubResource("Gradient_puff")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_steam"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_puff")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_steam"]
+material = SubResource("StandardMaterial3D_steam")
+size = Vector2(0.55, 0.55)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_goal"]
+height = 0.7
+radius = 0.9
+
+[node name="Pot" type="Node3D" unique_id=1184813120]
+script = ExtResource("1_pot")
+
+[node name="Model" parent="." unique_id=1150352333 instance=ExtResource("2_model")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4913, 0.1794, 0)
+
+[node name="Walls" type="StaticBody3D" parent="." unique_id=1911604091]
+
+[node name="Floor" type="CollisionShape3D" parent="Walls" unique_id=1895196435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_floor")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=60328321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72, 0)
+mesh = SubResource("PlaneMesh_water")
+
+[node name="Floaters" type="Node3D" parent="." unique_id=252580666]
+
+[node name="FloatOnion" type="Node3D" parent="Floaters" unique_id=1944581171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.73, 0.15)
+script = ExtResource("4_float")
+
+[node name="Onion" parent="Floaters/FloatOnion" unique_id=1599403111 instance=ExtResource("5_onion")]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, -0.0096, -0.1575, 0)
+
+[node name="FloatTomato" type="Node3D" parent="Floaters" unique_id=566875537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32, 0.73, 0.3)
+script = ExtResource("4_float")
+bob_speed = 1.9
+
+[node name="Tomato" parent="Floaters/FloatTomato" unique_id=2140947002 instance=ExtResource("6_tomato")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.01, 0)
+
+[node name="FloatEgg" type="Node3D" parent="Floaters" unique_id=1632538875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.73, -0.42)
+script = ExtResource("4_float")
+bob_speed = 1.4
+
+[node name="Egg" parent="Floaters/FloatEgg" unique_id=421568127 instance=ExtResource("7_egg")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0121, 0)
+
+[node name="FloatTomatoSmall" type="Node3D" parent="Floaters" unique_id=652026452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, 0.73, -0.2)
+script = ExtResource("4_float")
+bob_speed = 2.2
+
+[node name="Tomato" parent="Floaters/FloatTomatoSmall" unique_id=1477547122 instance=ExtResource("6_tomato")]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, -0.007, 0)
+
+[node name="Steam" type="GPUParticles3D" parent="." unique_id=1075490869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+amount = 20
+lifetime = 2.6
+preprocess = 2.6
+process_material = SubResource("ParticleProcessMaterial_steam")
+draw_pass_1 = SubResource("QuadMesh_steam")
+
+[node name="GoalArea" type="Area3D" parent="." unique_id=249339793]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea" unique_id=302829850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+shape = SubResource("CylinderShape3D_goal")
