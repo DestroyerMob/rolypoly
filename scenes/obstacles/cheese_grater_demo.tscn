@@ -1,33 +1,32 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene format=3 uid="uid://bvqj1igloq0tf"]
 
-[ext_resource type="PackedScene" path="res://assets/models/obstacles/cheese_grater/cheese_grater.glb" id="1_grater"]
-[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://packed_scenes/default_camera.tscn" id="3_camera"]
-[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death_zone"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/cheese_grater.tscn" id="1_grater"]
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="3_camera"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="4_death_zone"]
 
 [sub_resource type="StandardMaterial3D" id="Material_start"]
 albedo_color = Color(0.48, 0.28, 0.12, 1)
 roughness = 0.75
 
+[sub_resource type="BoxMesh" id="Mesh_platform"]
+size = Vector3(8, 0.5, 8)
+
+[sub_resource type="BoxShape3D" id="Shape_platform"]
+size = Vector3(8, 0.5, 8)
+
 [sub_resource type="StandardMaterial3D" id="Material_landing"]
 albedo_color = Color(0.22, 0.48, 0.35, 1)
 roughness = 0.75
 
-[sub_resource type="BoxMesh" id="Mesh_platform"]
-size = Vector3(5, 0.5, 4)
+[sub_resource type="StandardMaterial3D" id="Material_goal"]
+albedo_color = Color(0.7, 0.95, 0.55, 1)
 
-[sub_resource type="BoxShape3D" id="Shape_platform"]
-size = Vector3(5, 0.5, 4)
-
-[sub_resource type="PhysicsMaterial" id="Physics_slide"]
-friction = 0.12
-bounce = 0.0
-
-[sub_resource type="BoxShape3D" id="Shape_grating_surface"]
-size = Vector3(2.28, 0.12, 4.9)
-
-[sub_resource type="ConvexPolygonShape3D" id="Shape_handle"]
-points = PackedVector3Array(-0.32, 0.3, -0.65, 0.32, 0.3, -0.65, -0.32, 0.48, -0.65, 0.32, 0.48, -0.65, -0.5, 0.1, 2.5, 0.5, 0.1, 2.5, -0.5, 0.8, 2.5, 0.5, 0.8, 2.5, -0.35, 0.34, 5.5, 0.35, 0.34, 5.5, -0.35, 0.51, 5.5, 0.35, 0.51, 5.5)
+[sub_resource type="CylinderMesh" id="Mesh_goal"]
+material = SubResource("Material_goal")
+top_radius = 0.8
+bottom_radius = 0.8
+height = 0.025
 
 [sub_resource type="ProceduralSkyMaterial" id="Material_sky"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -46,78 +45,60 @@ ambient_light_energy = 0.6
 reflected_light_source = 2
 tonemap_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="Material_goal"]
-albedo_color = Color(0.7, 0.95, 0.55, 1)
+[node name="CheeseGraterDemo" type="Node3D" unique_id=1749016993]
 
-[sub_resource type="CylinderMesh" id="Mesh_goal"]
-material = SubResource("Material_goal")
-top_radius = 0.8
-bottom_radius = 0.8
-height = 0.025
+[node name="UpperPlatform" type="StaticBody3D" parent="." unique_id=1312916043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 204.20662, 181.10071)
 
-[node name="CheeseGraterDemo" type="Node3D"]
-
-[node name="UpperPlatform" type="StaticBody3D" parent="."]
-position = Vector3(0, 4.53, 6.75)
-
-[node name="Mesh" type="MeshInstance3D" parent="UpperPlatform"]
-mesh = SubResource("Mesh_platform")
+[node name="Mesh" type="MeshInstance3D" parent="UpperPlatform" unique_id=703378923]
 material_override = SubResource("Material_start")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="UpperPlatform"]
-shape = SubResource("Shape_platform")
-
-[node name="LowerPlatform" type="StaticBody3D" parent="."]
-position = Vector3(0, -0.15, -7)
-
-[node name="Mesh" type="MeshInstance3D" parent="LowerPlatform"]
 mesh = SubResource("Mesh_platform")
-material_override = SubResource("Material_landing")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LowerPlatform"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpperPlatform" unique_id=1391095388]
 shape = SubResource("Shape_platform")
 
-[node name="LandingMarker" type="MeshInstance3D" parent="LowerPlatform"]
-position = Vector3(0, 0.265, 0)
+[node name="LowerPlatform" type="StaticBody3D" parent="." unique_id=580450459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 131.75594, 17.987268)
+
+[node name="Mesh" type="MeshInstance3D" parent="LowerPlatform" unique_id=1221403754]
+material_override = SubResource("Material_landing")
+mesh = SubResource("Mesh_platform")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowerPlatform" unique_id=1804700695]
+shape = SubResource("Shape_platform")
+
+[node name="LandingMarker" type="MeshInstance3D" parent="LowerPlatform" unique_id=1964271609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265, 0)
 mesh = SubResource("Mesh_goal")
 
-[node name="GraterSlide" type="StaticBody3D" parent="."]
-position = Vector3(0, 2, 0)
-rotation_degrees = Vector3(-25, 0, 0)
-physics_material_override = SubResource("Physics_slide")
+[node name="GraterSlide" type="Node3D" parent="." unique_id=402593338]
+transform = Transform3D(-1, 0, 0, 0, 0.9063078, -0.42261827, 0, -0.42261827, -0.9063078, 0, 100, 0)
 
-[node name="CheeseGrater" parent="GraterSlide" instance=ExtResource("1_grater")]
-scale = Vector3(30, 30, 30)
+[node name="CheeseGrater" parent="GraterSlide" unique_id=1222647951 instance=ExtResource("1_grater")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -236.94196)
 
-[node name="GratingSurface" type="CollisionShape3D" parent="GraterSlide"]
-position = Vector3(0, 0.39, -3.05)
-shape = SubResource("Shape_grating_surface")
-
-[node name="Handle" type="CollisionShape3D" parent="GraterSlide"]
-shape = SubResource("Shape_handle")
-
-[node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector3(0, 5.35, 6.5)
+[node name="Player" parent="." unique_id=2031062158 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 205.05661, 179.60071)
 continuous_cd = true
 
-[node name="Camera3D" parent="." instance=ExtResource("3_camera")]
-position = Vector3(0, 8.85, 15.5)
+[node name="Camera3D" parent="." unique_id=2068754311 instance=ExtResource("3_camera")]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 211.4566, 187.10071)
 current = true
 fov = 50.0
 
-[node name="DeathZone" parent="." instance=ExtResource("4_death_zone")]
-position = Vector3(0, -5, 0)
+[node name="DeathZone" parent="." unique_id=1454486266 instance=ExtResource("4_death_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 
-[node name="KeyLight" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-55, -35, 0)
+[node name="KeyLight" type="DirectionalLight3D" parent="." unique_id=1625848101]
+transform = Transform3D(0.81915206, 0.46984634, -0.32898995, 0, 0.57357645, 0.81915206, 0.57357645, -0.6710101, 0.46984634, 0, 0, 0)
 light_color = Color(1, 0.93, 0.82, 1)
 light_energy = 1.3
 shadow_enabled = true
 
-[node name="FillLight" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-35, 130, 0)
+[node name="FillLight" type="DirectionalLight3D" parent="." unique_id=787162843]
+transform = Transform3D(-0.64278764, -0.43938506, 0.62750685, 0, 0.81915206, 0.57357645, -0.76604444, 0.36868784, -0.5265408, 0, 0, 0)
 light_color = Color(0.75, 0.85, 1, 1)
 light_energy = 0.65
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=745310615]
 environment = SubResource("Environment_studio")
