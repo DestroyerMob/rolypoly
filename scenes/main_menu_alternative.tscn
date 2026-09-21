@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://33wplcvekdpr" path="res://assets/audio/blender_chop_menu.wav" id="24_blender_audio"]
 [ext_resource type="PackedScene" path="res://packed_scenes/menu_music.tscn" id="25_music"]
 [ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="26_mx2v7"]
+[ext_resource type="Script" uid="uid://bwvg3nhl2uo20" path="res://scripts/main_menu_alternative.gd" id="27_menu"]
 
 [sub_resource type="ShaderMaterial" id="Material_ramp_wood"]
 render_priority = 0
@@ -167,6 +168,7 @@ ambient_light_energy = 0.7
 [sub_resource type="BoxMesh" id="BoxMesh_b77r1"]
 
 [node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
+script = ExtResource("27_menu")
 
 [node name="MenuMusic" parent="." unique_id=1730181901 instance=ExtResource("25_music")]
 
@@ -194,6 +196,9 @@ omni_range = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1710163703]
 transform = Transform3D(-0.008559763, -0.29458833, 0.9555859, 0, 0.95562094, 0.29459912, -0.9999634, 0.0025216986, -0.008179888, -4.0966964, 1.0527158, 8.153152)
+
+[node name="SettingsAnchor" type="Node3D" parent="." unique_id=16036813]
+transform = Transform3D(1, 0, 0, 0, 0.8138164, 0.58112204, 0, -0.58112204, 0.8138164, 3.1052418, 0.9203026, 5.787857)
 
 [node name="Ramp" type="StaticBody3D" parent="." unique_id=2145052810]
 transform = Transform3D(-0.0068029165, -0.0012379438, 0.9999761, -0.1790296, 0.9838437, -8.297294e-09, -0.9838202, -0.17902532, -0.0069147646, -8.429561, 0.7934058, 11.672386)
@@ -243,6 +248,7 @@ anchor_left = 0.05
 anchor_top = 0.4
 anchor_right = 0.3
 anchor_bottom = 0.84
+offset_bottom = 80.80005
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuButtonsCenter" unique_id=1711719891]
 layout_mode = 2
@@ -514,8 +520,46 @@ layout_mode = 2
 level_number = 16
 unlocked = false
 
+[node name="SettingsTitle" type="TextureRect" parent="." unique_id=425740056]
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 750.0
+offset_bottom = 400.0
+texture = ExtResource("7_3m32m")
+
+[node name="SettingsButtonsCenter" type="CenterContainer" parent="." unique_id=25761179]
+anchors_preset = -1
+offset_left = 136.0
+offset_top = 432.0
+offset_right = 536.0
+offset_bottom = 988.0
+
+[node name="MenuButtons" type="VBoxContainer" parent="SettingsButtonsCenter" unique_id=1024383634]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Back" type="Button" parent="SettingsButtonsCenter/MenuButtons" unique_id=1527760325]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_constants/h_separation = 22
+theme_override_constants/icon_max_width = 26
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Back
+"
+icon = ExtResource("11_ahe7m")
+alignment = 0
+
 [node name="knife" parent="." unique_id=1530698396 instance=ExtResource("26_mx2v7")]
-transform = Transform3D(-0.45372698, -0.89055693, -0.03225283, -0.8910205, 0.45396313, 0, 0.014641595, 0.028737932, -0.9994798, 9.683043, -4.259961, -0.09776449)
+transform = Transform3D(-0.45372698, -0.89055693, -0.03225283, -0.8910205, 0.45396313, 0, 0.014641595, 0.028737932, -0.9994798, 9.683043, -2.1395073, -0.09776449)
+chop_angle_degrees = -36.5
 
 [node name="board" type="MeshInstance3D" parent="." unique_id=938451158]
 transform = Transform3D(5.4880004, 0, 0, 0, 0.39999998, 0, 0, 0, 2.42, 2.8946133, -4.3200655, 0.6208489)
