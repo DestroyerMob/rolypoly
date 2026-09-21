@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://bn5gqsvdqcka5"]
+
+[ext_resource type="Script" uid="uid://ny3mur0jceli" path="res://scripts/main_menu.gd" id="1_mmenu"]
+[ext_resource type="Texture2D" uid="uid://dty523vuhqk2m" path="res://textures/tempBackground.png" id="2_bqqt6"]
+[ext_resource type="PackedScene" path="res://packed_scenes/level_button.tscn" id="2_lvlbtn"]
+[ext_resource type="Texture2D" uid="uid://dlynoy27f71tg" path="res://textures/level_bg.png" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://tgc6q2xd5kl" path="res://textures/LevelsText.png" id="4_lvltxt"]
+
+[node name="MainMenu" type="Control" unique_id=823883384]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mmenu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1025812514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bqqt6")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1160299198]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.03
+anchor_right = 0.45
+anchor_bottom = 0.13
+offset_left = 30.960001
+offset_top = 54.56
+offset_right = -179.39996
+offset_bottom = 102.76
+theme_override_font_sizes/font_size = 40
+text = "Where's the 
+lamb sauce?"
+horizontal_alignment = 1
+
+[node name="MenuButtonsCenter" type="CenterContainer" parent="." unique_id=2064303479]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.32
+anchor_right = 0.28
+anchor_bottom = 0.85
+
+[node name="MenuButtons" type="VBoxContainer" parent="MenuButtonsCenter" unique_id=1737650872]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="PlayButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1652615328]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+text = "Play"
+
+[node name="AchievementsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=577791820]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+text = "Achievements"
+
+[node name="SettingsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=913631211]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=286397183]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+text = "Quit"
+
+[node name="LevelGridCenter" type="CenterContainer" parent="." unique_id=621658533]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.04
+anchor_right = 0.97
+anchor_bottom = 0.96
+
+[node name="TextureRect" type="TextureRect" parent="LevelGridCenter" unique_id=2107641890]
+custom_minimum_size = Vector2(590, 590)
+layout_mode = 2
+texture = ExtResource("3_wu84c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelVBox" type="VBoxContainer" parent="LevelGridCenter" unique_id=900000101]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LevelTitle" type="TextureRect" parent="LevelGridCenter/LevelVBox" unique_id=1441716719]
+custom_minimum_size = Vector2(250, 71)
+layout_mode = 2
+texture = ExtResource("4_lvltxt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelGrid" type="GridContainer" parent="LevelGridCenter/LevelVBox" unique_id=285093859]
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 4
+
+[node name="Level1" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=396333710 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+
+[node name="Level2" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=5024333 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 2
+
+[node name="Level3" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1085937846 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 3
+
+[node name="Level4" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=354869117 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 4
+
+[node name="Level5" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1125940495 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 5
+
+[node name="Level6" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2004799663 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 6
+
+[node name="Level7" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1132311249 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 7
+
+[node name="Level8" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1104654767 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 8
+
+[node name="Level9" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2048530488 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 9
+
+[node name="Level10" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2027287154 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 10
+
+[node name="Level11" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=985505615 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 11
+
+[node name="Level12" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1565469137 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 12
+
+[node name="Level13" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=151836096 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 13
+
+[node name="Level14" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1709476056 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 14
+
+[node name="Level15" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=2129266060 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 15
+
+[node name="Level16" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=673225356 instance=ExtResource("2_lvlbtn")]
+layout_mode = 2
+level_number = 16
