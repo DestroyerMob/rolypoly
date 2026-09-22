@@ -1,0 +1,181 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/DistinctOven.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/props/distinct_oven.gd" id="2_script"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oven"]
+friction = 0.82
+rough = true
+bounce = 0.04
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_body"]
+size = Vector3(8.35, 4.34, 3.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_backguard"]
+size = Vector3(8.24, 1.8, 0.42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_interaction"]
+size = Vector3(10.5, 6.2, 7.0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flame_outer"]
+shading_mode = 0
+albedo_color = Color(1, 0.19, 0.015, 1)
+emission_enabled = true
+emission = Color(1, 0.055, 0.005, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flame_inner"]
+shading_mode = 0
+albedo_color = Color(1, 0.92, 0.20, 1)
+emission_enabled = true
+emission = Color(1, 0.52, 0.035, 1)
+emission_energy_multiplier = 7.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_flame_outer"]
+top_radius = 0.07
+bottom_radius = 0.27
+height = 0.52
+radial_segments = 18
+rings = 3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_flame_inner"]
+top_radius = 0.025
+bottom_radius = 0.14
+height = 0.36
+radial_segments = 16
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cavity"]
+albedo_color = Color(0.004, 0.006, 0.008, 1)
+metallic = 0.35
+roughness = 0.22
+
+[sub_resource type="BoxMesh" id="BoxMesh_cavity"]
+size = Vector3(3.30, 2.12, 0.04)
+
+[node name="DistinctOven" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_oven")
+script = ExtResource("2_script")
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+
+[node name="LeftOvenCavity" type="MeshInstance3D" parent="."]
+position = Vector3(-2.02, 2.03, 1.69)
+material_override = SubResource("StandardMaterial3D_cavity")
+mesh = SubResource("BoxMesh_cavity")
+
+[node name="RightOvenCavity" type="MeshInstance3D" parent="."]
+position = Vector3(2.02, 2.03, 1.69)
+material_override = SubResource("StandardMaterial3D_cavity")
+mesh = SubResource("BoxMesh_cavity")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 2.17, 0)
+shape = SubResource("BoxShape3D_body")
+
+[node name="BackguardCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 5.05, -1.54)
+shape = SubResource("BoxShape3D_backguard")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+position = Vector3(0, 3.0, 1.0)
+shape = SubResource("BoxShape3D_interaction")
+
+[node name="InteractionPrompt" type="Label3D" parent="."]
+visible = false
+position = Vector3(0, 6.55, 1.85)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+pixel_size = 0.0016
+font_size = 40
+outline_size = 10
+modulate = Color(1, 0.82, 0.30, 1)
+text = "[F] FIRE: OFF     [E] DOORS: CLOSED"
+
+[node name="Flames" type="Node3D" parent="."]
+visible = false
+
+[node name="BurnerFlame1" type="Node3D" parent="Flames"]
+position = Vector3(-2.75, 4.70, 0.85)
+
+[node name="Outer" type="MeshInstance3D" parent="Flames/BurnerFlame1"]
+material_override = SubResource("StandardMaterial3D_flame_outer")
+mesh = SubResource("CylinderMesh_flame_outer")
+
+[node name="Inner" type="MeshInstance3D" parent="Flames/BurnerFlame1"]
+position = Vector3(0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_flame_inner")
+mesh = SubResource("CylinderMesh_flame_inner")
+
+[node name="BurnerFlame2" type="Node3D" parent="Flames"]
+position = Vector3(-2.75, 4.70, -0.62)
+
+[node name="Outer" type="MeshInstance3D" parent="Flames/BurnerFlame2"]
+material_override = SubResource("StandardMaterial3D_flame_outer")
+mesh = SubResource("CylinderMesh_flame_outer")
+
+[node name="Inner" type="MeshInstance3D" parent="Flames/BurnerFlame2"]
+position = Vector3(0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_flame_inner")
+mesh = SubResource("CylinderMesh_flame_inner")
+
+[node name="BurnerFlame3" type="Node3D" parent="Flames"]
+position = Vector3(0, 4.70, 0.85)
+
+[node name="Outer" type="MeshInstance3D" parent="Flames/BurnerFlame3"]
+material_override = SubResource("StandardMaterial3D_flame_outer")
+mesh = SubResource("CylinderMesh_flame_outer")
+
+[node name="Inner" type="MeshInstance3D" parent="Flames/BurnerFlame3"]
+position = Vector3(0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_flame_inner")
+mesh = SubResource("CylinderMesh_flame_inner")
+
+[node name="BurnerFlame4" type="Node3D" parent="Flames"]
+position = Vector3(0, 4.70, -0.62)
+
+[node name="Outer" type="MeshInstance3D" parent="Flames/BurnerFlame4"]
+material_override = SubResource("StandardMaterial3D_flame_outer")
+mesh = SubResource("CylinderMesh_flame_outer")
+
+[node name="Inner" type="MeshInstance3D" parent="Flames/BurnerFlame4"]
+position = Vector3(0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_flame_inner")
+mesh = SubResource("CylinderMesh_flame_inner")
+
+[node name="BurnerFlame5" type="Node3D" parent="Flames"]
+position = Vector3(2.75, 4.70, 0.85)
+
+[node name="Outer" type="MeshInstance3D" parent="Flames/BurnerFlame5"]
+material_override = SubResource("StandardMaterial3D_flame_outer")
+mesh = SubResource("CylinderMesh_flame_outer")
+
+[node name="Inner" type="MeshInstance3D" parent="Flames/BurnerFlame5"]
+position = Vector3(0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_flame_inner")
+mesh = SubResource("CylinderMesh_flame_inner")
+
+[node name="BurnerFlame6" type="Node3D" parent="Flames"]
+position = Vector3(2.75, 4.70, -0.62)
+
+[node name="Outer" type="MeshInstance3D" parent="Flames/BurnerFlame6"]
+material_override = SubResource("StandardMaterial3D_flame_outer")
+mesh = SubResource("CylinderMesh_flame_outer")
+
+[node name="Inner" type="MeshInstance3D" parent="Flames/BurnerFlame6"]
+position = Vector3(0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_flame_inner")
+mesh = SubResource("CylinderMesh_flame_inner")
+
+[node name="Glow" type="OmniLight3D" parent="Flames"]
+position = Vector3(0, 5.0, 0)
+light_color = Color(1, 0.22, 0.035, 1)
+light_energy = 4.5
+shadow_enabled = true
+omni_range = 8.0

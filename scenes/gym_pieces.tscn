@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="13_7pkvk"]
 [ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="14_ydhvk"]
 [ext_resource type="PackedScene" uid="uid://bb3evr04ihd2t" path="res://scenes/flag_hole.tscn" id="15_0rc31"]
+[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="16_oven"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -38,6 +39,9 @@ script = ExtResource("1_meaft")
 size = Vector3(80, 0.2, 120)
 pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="DistinctOven" parent="_Kitchen" instance=ExtResource("16_oven")]
+position = Vector3(-17, 0, -6)
 
 [node name="_Obstacles" type="Node" parent="." unique_id=354915527]
 

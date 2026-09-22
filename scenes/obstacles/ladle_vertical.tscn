@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/obstacles/ladle_vertical.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/LadleVertical.glb" id="2_model"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ladle"]
+friction = 0.9
+rough = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axle"]
+albedo_color = Color(0.1, 0.14, 0.19, 1)
+metallic = 0.75
+roughness = 0.28
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_axle"]
+top_radius = 0.22
+bottom_radius = 0.22
+height = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pivot"]
+height = 1.2
+radius = 0.24
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_handle"]
+radius = 0.22
+height = 3.15
+
+[node name="LadleVertical" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="PivotMount" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ladle")
+
+[node name="AxleMesh" type="MeshInstance3D" parent="PivotMount"]
+rotation = Vector3(0, 0, 1.5708)
+material_override = SubResource("StandardMaterial3D_axle")
+mesh = SubResource("CylinderMesh_axle")
+
+[node name="AxleCollision" type="CollisionShape3D" parent="PivotMount"]
+rotation = Vector3(0, 0, 1.5708)
+shape = SubResource("CylinderShape3D_pivot")
+
+[node name="SwingingPart" type="AnimatableBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ladle")
+
+[node name="Model" parent="SwingingPart" instance=ExtResource("2_model")]
+
+[node name="HandleCollision" type="CollisionShape3D" parent="SwingingPart"]
+position = Vector3(0, -1.62, 0)
+shape = SubResource("CapsuleShape3D_handle")

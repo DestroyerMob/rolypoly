@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://50a5u2opqyr"]
+
+[ext_resource type="Script" uid="uid://c3d1xouymugbb" path="res://scripts/proto_cylinder.gd" id="1_atje6"]
+
+[node name="ProtoCylinder" type="StaticBody3D"]
+script = ExtResource("1_atje6")
+metadata/_custom_type_script = "uid://c3d1xouymugbb"
