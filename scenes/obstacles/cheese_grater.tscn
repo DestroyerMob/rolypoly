@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/death_zone.gd" id="2_death_zone"]
 
 [sub_resource type="BoxShape3D" id="Shape_underside"]
-size = Vector3(9.6, 4, 44.05)
+size = Vector3(8.64, 4, 16.8)
 
 [node name="CheeseGrater" type="Node3D"]
 
@@ -12,7 +12,7 @@ size = Vector3(9.6, 4, 44.05)
 scale = Vector3(120, 120, 120)
 
 [node name="UndersideDeathArea" type="Area3D" parent="."]
-position = Vector3(0, -0.46, 0)
+position = Vector3(0, -0.46, -11.90926)
 collision_layer = 0
 collision_mask = 1
 monitorable = false

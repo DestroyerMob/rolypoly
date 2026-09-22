@@ -1,5 +1,7 @@
 extends Node3D
 
+const ProduceBody := preload("res://scripts/produce_body.gd")
+
 ## Seconds per full blade rotation. Smaller values spin faster; zero stops it.
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var rotation_duration := 1.0
 ## Length of the force cone along the blade's local positive Y axis.
@@ -8,14 +10,21 @@ extends Node3D
 @export_range(1.0, 80.0, 1.0, "suffix:°") var force_angle_degrees := 20.0
 ## Positive pushes along the blade's local Y axis; negative pulls.
 @export var force_strength := 10.0
+## One-shot motor sound when produce or a player reaches the blades.
+@export var blend_sound: AudioStream = preload("res://assets/audio/blender_chop.wav")
+@export_range(-40.0, 6.0, 0.5, "suffix:dB") var blend_volume_db := 0.0
 
 @onready var blade_pivot: Node3D = $Model/BladePivot
+@onready var blending_sound: AudioStreamPlayer3D = $BlendingSound
 var _force_area := Area3D.new()
 var _force_shape := ConvexPolygonShape3D.new()
 var _force_dimensions := Vector2(-1, -1)
 
 
 func _ready() -> void:
+	blending_sound.stream = blend_sound
+	blending_sound.volume_db = blend_volume_db
+	$Model/BladePivot/BladeDeathZone.body_entered.connect(_on_produce_entered)
 	_update_force_shape()
 	var collision := CollisionShape3D.new()
 	collision.shape = _force_shape
@@ -26,6 +35,16 @@ func _ready() -> void:
 	# Keep the cone centered on the blade without spinning its polygonal collider.
 	blade_pivot.get_parent().add_child(_force_area)
 	_force_area.transform = blade_pivot.transform
+
+
+func _on_produce_entered(body: Node3D) -> void:
+	if body is ProduceBody or body is Player:
+		# Several bodies can hit together; let the current motor cycle finish.
+		if not blending_sound.playing:
+			blending_sound.pitch_scale = randf_range(0.97, 1.03)
+			blending_sound.play()
+	if body is ProduceBody:
+		body.call_deferred("burst", $ParticleOutlet.global_transform)
 
 
 func _update_force_shape() -> void:
