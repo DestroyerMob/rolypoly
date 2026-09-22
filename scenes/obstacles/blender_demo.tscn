@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ommweweww0d6"]
 
-[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="1_blender"]
+[ext_resource type="PackedScene" uid="uid://bcglepmuufbpx" path="res://scenes/obstacles/blender.tscn" id="1_blender"]
 [ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="3_start"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="4_death_zone"]
@@ -48,15 +48,21 @@ shape = SubResource("BoxShape3D_floor")
 [node name="Blender" parent="." unique_id=1473916795 instance=ExtResource("1_blender")]
 transform = Transform3D(-1, 8.742278e-08, -6.600236e-15, 0, 7.54979e-08, 1, 8.742278e-08, 1, -7.54979e-08, 0, 0.945, -1.85)
 
-[node name="BladeDeathZone" parent="Blender/Model/BladePivot" index="1"]
+[node name="BladeDeathZone" parent="Blender/Model/BladePivot" parent_id_path=PackedInt32Array(1473916795, 1981505517, 1092834613) index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012, 0)
+
+[node name="BlendingSound" parent="Blender" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5836097, 0)
 
 [node name="PullBlender" parent="." unique_id=1912716597 instance=ExtResource("1_blender")]
 transform = Transform3D(-1, 8.742278e-08, -6.600236e-15, 0, 7.54979e-08, 1, 8.742278e-08, 1, -7.54979e-08, 4, 0.945, -1.85)
 force_strength = -10.0
 
-[node name="BladeDeathZone" parent="PullBlender/Model/BladePivot" index="1"]
+[node name="BladeDeathZone" parent="PullBlender/Model/BladePivot" parent_id_path=PackedInt32Array(1912716597, 1981505517, 1092834613) index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012, 0)
+
+[node name="BlendingSound" parent="PullBlender" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5836097, 0)
 
 [node name="PlayerStart" parent="." unique_id=945333811 instance=ExtResource("3_start")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 2.5)

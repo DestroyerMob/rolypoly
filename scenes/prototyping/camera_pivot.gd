@@ -10,6 +10,9 @@ extends Node3D
 @export var min_pitch_degrees := -50.0
 @export var max_pitch_degrees := -5.0
 @export var capture_mouse := true
+@export var initial_yaw_degrees := 0.0
+## Zero uses the normal follow distance; a shorter distance blends out at startup.
+@export_range(0.0, 30.0, 0.1) var initial_follow_distance := 0.0
 
 @export_group("Camera_Survey")
 ## How much further out the camera pulls while the survey button is held.
@@ -30,6 +33,13 @@ func _ready() -> void:
 		return
 	#Rig found so we can assign camera pivot 
 	_base_length = spring_arm.spring_length
+	if initial_follow_distance > 0.0:
+		spring_arm.spring_length = minf(initial_follow_distance, _base_length)
+	_yaw = deg_to_rad(initial_yaw_degrees)
+	rotation.y = _yaw
+	spring_arm.rotation.x = _pitch
+	# Start at the intended distance before the spring arm's first physics tick.
+	$SpringArm3D/Camera3D.position.z = spring_arm.spring_length
 	player_rig.player_swapped.connect(_on_player_swapped)
 	player = player_rig.current_player
 	if capture_mouse:

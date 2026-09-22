@@ -24,7 +24,6 @@
 [ext_resource type="Shader" uid="uid://cp2xo2xkux8ce" path="res://assets/shaders/menu_backdrop_shade.gdshader" id="23_shade"]
 [ext_resource type="AudioStream" uid="uid://33wplcvekdpr" path="res://assets/audio/blender_chop_menu.wav" id="24_blender_audio"]
 [ext_resource type="PackedScene" path="res://packed_scenes/menu_music.tscn" id="25_music"]
-[ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="26_mx2v7"]
 [ext_resource type="Script" uid="uid://bwvg3nhl2uo20" path="res://scripts/main_menu_alternative.gd" id="27_menu"]
 [ext_resource type="Texture2D" uid="uid://dqi1v6tqo7fl7" path="res://textures/icons/volume_grabber.svg" id="28_volume"]
 [ext_resource type="Texture2D" uid="uid://y518k0he5cxl" path="res://textures/icons/volume_grabber_active.svg" id="29_volume_active"]
@@ -199,11 +198,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="BoxMesh" id="BoxMesh_b77r1"]
-size = Vector3(1, 0.29101563, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eoxm0"]
-
 [node name="MainMenuAlternative" type="Node3D" unique_id=1840893866]
 script = ExtResource("27_menu")
 
@@ -215,6 +209,12 @@ transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, -4.5, 0)
 [node name="SpotLight3D2" parent="KitchenStudio/_Fitout/_ElevationA_Range/_PianoDeCuisson" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="1" unique_id=439307957]
 light_energy = 0.8
 spot_range = 15.0
+
+[node name="DistinctOven" parent="KitchenStudio/_Fitout/_ElevationA_Range/_PianoDeCuisson" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="2" unique_id=1845032690]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.4181128, -92.54431, -768.15845)
+
+[node name="_OvenCheckpoint" parent="KitchenStudio/_Fitout/_ElevationA_Range/_PianoDeCuisson" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="4" unique_id=865906226]
+visible = false
 
 [node name="BlenderModel" parent="KitchenStudio/_Fitout/_ElevationB_SinkWall" parent_id_path=PackedInt32Array(2096602144, 2003959935) index="4" unique_id=310644801]
 visible = false
@@ -242,7 +242,7 @@ omni_range = 10.0
 transform = Transform3D(-4.0707555e-08, 0.36430335, -0.9312804, 1.5924206e-08, 0.9312803, 0.36430338, 1, -1.7763568e-15, -4.371139e-08, 10.342412, 0.58994627, -21.577171)
 
 [node name="SettingsAnchor" type="Node3D" parent="." unique_id=16036813]
-transform = Transform3D(1, 0, 0, 0, 0.8961892, 0.4436721, 0, -0.4436721, 0.8961892, 10.3, 0.94, -25.4)
+transform = Transform3D(1, 0, 0, 0, 0.8961892, 0.4436721, 0, -0.4436721, 0.8961892, 0.22451544, -1.0525551, -25.4)
 
 [node name="Ramp" type="StaticBody3D" parent="." unique_id=2145052810]
 transform = Transform3D(-0.0068029165, -0.0012379438, 0.9999761, -0.1790296, 0.9838437, -8.297294e-09, -0.9838202, -0.17902532, -0.0069147646, 14.516287, 0.8360428, -21.016296)
@@ -639,23 +639,5 @@ text = "Back
 "
 icon = ExtResource("11_ahe7m")
 alignment = 0
-
-[node name="knife" parent="." unique_id=1530698396 instance=ExtResource("26_mx2v7")]
-transform = Transform3D(0.22699523, 0.44550323, 0, -0.4455032, 0.22699524, 0, 0, 0, 0.49999997, 11.043315, -3.8168924, -30.774267)
-chop_angle_degrees = -36.5
-
-[node name="board" type="MeshInstance3D" parent="." unique_id=938451158]
-transform = Transform3D(5.4880004, 0, 0, 0, 0.39999998, 0, 0, 0, 2.42, 12.792633, -4.4417973, -30.55)
-mesh = SubResource("BoxMesh_b77r1")
-
-[node name="Spawner2" type="Marker3D" parent="board" unique_id=141031573]
-transform = Transform3D(-0.18219833, 0, -0.0025198653, 0, 2.4999995, 0, 0.0057144705, 0, -0.4131836, 0.014254332, 3.7333832, -0.05899678)
-script = ExtResource("2_spawner")
-models = Array[PackedScene]([ExtResource("3_onion"), ExtResource("4_tomato"), ExtResource("5_onion")])
-
-[node name="StaticBody3D" type="StaticBody3D" parent="board" unique_id=2071290522]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="board/StaticBody3D" unique_id=1100659850]
-shape = SubResource("BoxShape3D_eoxm0")
 
 [editable path="KitchenStudio"]

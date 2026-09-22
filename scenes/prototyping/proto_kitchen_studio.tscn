@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
 [ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="2_ahvsm"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
+[ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="4_c7xwi"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
 [ext_resource type="PackedScene" uid="uid://bq1innw624ebu" path="res://assets/models/_SKM_Quinn_Simple.FBX" id="10_wj3rv"]
 [ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
-
 [ext_resource type="PackedScene" path="res://scenes/prototyping/kitchen_set.tscn" id="13_kitchen_set"]
+[ext_resource type="Script" uid="uid://c8i4wgjgkfkrf" path="res://scripts/kitchen_box_start.gd" id="14_box_start"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wj3rv"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -26,7 +27,11 @@ ambient_light_energy = 0.6
 reflected_light_source = 2
 tonemap_mode = 2
 
-[node name="ProtoKitchenStudio" type="Node3D" unique_id=321876781]
+[node name="ProtoKitchenStudio" type="Node3D" unique_id=321876781 node_paths=PackedStringArray("box", "player_rig", "camera_pivot")]
+script = ExtResource("14_box_start")
+box = NodePath("_Set/_Dressing/_Props/CardboardBox")
+player_rig = NodePath("_Systems/PlayerRig")
+camera_pivot = NodePath("_Systems/PlayerRig/CameraPivot")
 
 [node name="_Systems" type="Node" parent="." unique_id=1408849608]
 
@@ -39,6 +44,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -410)
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
 player_rig = NodePath("..")
+initial_yaw_degrees = -67.2
+initial_follow_distance = 3.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot" unique_id=193844503]
 spring_length = 17.5
@@ -55,7 +62,10 @@ spot_angle = 36.84
 
 [node name="_Course" type="Node" parent="." unique_id=1919119446]
 
-[node name="_Set" parent="." instance=ExtResource("13_kitchen_set")]
+[node name="_Set" parent="." unique_id=109183115 instance=ExtResource("13_kitchen_set")]
+
+[node name="CardboardBox" parent="_Set/_Dressing/_Props" parent_id_path=PackedInt32Array(109183115, 1727572606) index="0" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
+transform = Transform3D(-0.1252915, 3.4172328, 1.4390694, -3.7075086, -0.13593435, 0, 0.0527275, -1.4381034, 3.4195292, -98.67215, 4.5077605, -410.7317)
 
 [node name="_Lighting" type="Node" parent="." unique_id=971610010]
 
