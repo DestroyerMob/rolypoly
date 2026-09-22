@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://u2dhu05rqoj3"]
 
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
-[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="2_s3j4m"]
+[ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="2_ahvsm"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
 [ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
@@ -37,8 +37,8 @@ tonemap_mode = 2
 [node name="PlayerRig" type="Node" parent="_Systems" unique_id=1496141724]
 script = ExtResource("1_tdenf")
 
-[node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("2_s3j4m")]
-transform = Transform3D(-0.9929082, 0, -0.118883975, 0, 1, 0, 0.118883975, 0, -0.9929082, 0, 2.7609181, -414.08554)
+[node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("2_ahvsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -410)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")

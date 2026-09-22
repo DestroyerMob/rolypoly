@@ -3,9 +3,7 @@ class_name PlayerStart
 extends Marker3D
 
 # Preview so game designers can see where the spawn is, and how big and
-# how high off the floor it sits. Editor only, never saved, never shipped.
-# The radius here is a designer's guess at player size, not the truth.
-# Nothing depends on it being correct.
+# how high off the floor it sits. Editor only.
 @export var preview_radius := 0.25:
 	set(preview_radius_value):
 		preview_radius = preview_radius_value
