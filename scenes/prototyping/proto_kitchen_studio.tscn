@@ -340,10 +340,6 @@ width = 20.0
 [node name="Funnel" parent="." unique_id=259827820 instance=ExtResource("16_twewy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 2, -472)
 
-[node name="ProtoBox" parent="." unique_id=1253159212 instance=ExtResource("7_lp2do")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 17, -442)
-size = Vector3(20, 0.5, 20)
-
 [node name="RollingPin" parent="." unique_id=1688522341 instance=ExtResource("17_2j0ga")]
 transform = Transform3D(10, 0, 0, 0, 5.5, 0, 0, 0, 8.5, -8, 10.900034, -418)
 travel_distance = 6.0
