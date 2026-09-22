@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/obstacles/funnel_long.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/FunnelLong.glb" id="2_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_exit"]
+height = 0.5
+radius = 0.69
+
+[node name="FunnelLong" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+
+[node name="TubeExit" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TubeExit"]
+position = Vector3(0, -1.95, 0)
+shape = SubResource("CylinderShape3D_exit")
+
+[node name="DefaultDropPoint" type="Marker3D" parent="."]
+position = Vector3(0, -2.75, 0)
