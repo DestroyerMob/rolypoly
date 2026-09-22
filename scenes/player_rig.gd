@@ -14,12 +14,15 @@ signal player_swapped(new_player: Player)
 
 var current_player: Player 
 
-func _ready():
+func _enter_tree() -> void:
+	print("PlayerRig _enter_tree, children: ", get_children())
 	for child in get_children():
 		if child is Player:
 			current_player = child
+			print("  found player: ", child.name)
 			return
-
+	print("  NO PLAYER FOUND")
+	
 func _unhandled_input(event):
 	for input_action in CHARACTERS:
 			if event.is_action_pressed(input_action):

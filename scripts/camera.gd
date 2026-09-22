@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player: Player = $"../Player"
+@onready var player: Player
 @export var player_rig: PlayerRig 
 var start_offset: Vector3
 
@@ -12,7 +12,7 @@ func _ready() -> void:
 		return 
 	#Signal Connections
 	player_rig.player_swapped.connect(_on_player_swapped)
-	
+	player = player_rig.current_player
 	start_offset = global_position - player.global_position
 	
 func _physics_process(_delta: float) -> void:

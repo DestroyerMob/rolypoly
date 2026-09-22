@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="22_jrmgl"]
 [ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="23_2tvl1"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="25_4v77p"]
+[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="26_ricwt"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/funnel_long.tscn" id="27_mvr0u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -105,6 +107,34 @@ script = ExtResource("1_meaft")
 size = Vector3(109.2, 110, 93.7)
 fn = 8
 metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1311526747]
+transform = Transform3D(1, 0, 0, 0, 0.10034721, 0.9949525, 0, -0.9949525, 0.10034721, 7.2403316, 125.36374, -713.8521)
+spot_range = 370.438
+spot_attenuation = 0.01
+spot_angle = 52.2
+
+[node name="DistinctOven" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1732226114 instance=ExtResource("26_ricwt")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
+start_burners_on = true
+flame_speed = 3.8
+
+[node name="Pot" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1184813120 instance=ExtResource("25_4v77p")]
+transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 2.9536114, 20.43175, -748.3513)
+
+[node name="ProtoBox3" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=676159586 instance=ExtResource("16_dits3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.453926, 15.757149, -746.95966)
+size = Vector3(20, 20, 20)
+
+[node name="ProtoRamp5" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=539422024 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 47.297535, 15.7571335, -746.936)
+run = 20.0
+rise = 20.0
+width = 20.0
+
+[node name="Potcheckpoint" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=471194015 instance=ExtResource("17_xjhk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041222, 35.4818, -746.84467)
+fn = 9
 
 [node name="_Table" type="Node" parent="_Kitchen/_Core" unique_id=857539655]
 
@@ -418,5 +448,6 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 19.394772, -9.536743e-07, -34
 [node name="ProtoRamp4" parent="." unique_id=1490542611 instance=ExtResource("18_qxyph")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.51011, 1.9073486e-06, -28.043505)
 
-[node name="Pot" parent="." unique_id=1184813120 instance=ExtResource("25_4v77p")]
-transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 1.8281689, 10.830917, -789.53687)
+[node name="FunnelLong" parent="." unique_id=1014512211 instance=ExtResource("27_mvr0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.86205, 17.952127, -18.896011)
+drop_target_path = NodePath("../_Kitchen/_Core/_PianoDeCuisson/Potcheckpoint")
