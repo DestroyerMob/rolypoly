@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" path="res://scenes/obstacles/cheese_grater.tscn" id="21_6mmbi"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="22_jrmgl"]
 [ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="23_2tvl1"]
+[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="16_oven"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -90,6 +91,9 @@ size = Vector3(122, 100, 360)
 fn = 11
 pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="DistinctOven" parent="_Kitchen" instance=ExtResource("16_oven")]
+position = Vector3(-17, 0, -6)
 
 [node name="_Obstacles" type="Node" parent="." unique_id=354915527]
 

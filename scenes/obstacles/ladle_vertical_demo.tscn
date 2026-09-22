@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/ladle_vertical.tscn" id="2_ladle"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(14, 1, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(14, 1, 9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.24, 0.29, 0.36, 1)
+roughness = 0.8
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.035, 0.06, 0.12, 1)
+sky_horizon_color = Color(0.54, 0.62, 0.72, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.75
+
+[node name="LadleVerticalDemo" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_floor")
+
+[node name="LadleVertical" parent="." instance=ExtResource("2_ladle")]
+position = Vector3(0, 5.8, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(2, 0.6, 0)
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death")]
+position = Vector3(0, -5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.786744, 0.617279, 0, -0.617279, 0.786744, 2, 7, 7.5)
+script = ExtResource("3_camera")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-50, -32, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_demo")
