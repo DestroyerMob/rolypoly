@@ -4,8 +4,15 @@ extends StaticBody3D
 
 ## Base class for every parametric blockout piece.
 ## Subclasses override _build_mesh() and _build_shape() and nothing else.
-
-enum Fn { NEUT, ACC, RDIR, GATE, REST, HAZA, SURF, MOVE, GOAL, CHEC }
+#To use this class, go into  res://scenes/prototyping/ and then drag in the prototype piece .tscn directly into the level.
+#From there you can easily edit wiht the followiong settings
+#
+#Properties:
+	#Fn = Function = Sets the color of the piece to the right material instance
+	#Pivot = Object Pivot Point = Sets the pivot point of the object to either top center or base to easily manipulate
+	#
+###
+enum Fn { NEUT, ACC, RDIR, GATE, REST, HAZA, SURF, MOVE, GOAL, CHEC,DEAD,FURN }
 enum Pivot { BASE, CENTER, TOP }
 
 const MATERIALS := {
@@ -19,6 +26,8 @@ const MATERIALS := {
 	Fn.MOVE: preload("res://materials/level_prototyping/MI_MOVE_world_grid_prototype.tres"),
 	Fn.GOAL: preload("res://materials/level_prototyping/MI_GOAL_world_grid_prototype.tres"),
 	Fn.CHEC: preload("res://materials/level_prototyping/MI_CHEC_world_grid_prototype.tres"),
+	Fn.DEAD: preload("res://materials/level_prototyping/MI_DEAD_world_grid_prototype.tres"),
+	Fn.FURN: preload("res://materials/level_prototyping/MI_FURN_world_grid_prototype.tres"),
 }
 
 @export var fn: Fn = Fn.NEUT:

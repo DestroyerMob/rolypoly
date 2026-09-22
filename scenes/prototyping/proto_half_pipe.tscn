@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bwghfcy21irpb"]
 
-[ext_resource type="Script" path="res://scripts/proto_half_pipe.gd" id="1_half_pipe"]
+[ext_resource type="Script" uid="uid://bmsy360tkdoix" path="res://scripts/proto_half_pipe.gd" id="1_e1knq"]
 
-[node name="ProtoHalfPipe" type="StaticBody3D"]
-script = ExtResource("1_half_pipe")
+[node name="ProtoHalfPipe" type="StaticBody3D" unique_id=365574967]
+script = ExtResource("1_e1knq")
 width = 4.0
 segments = 12
+metadata/_custom_type_script = "uid://bmsy360tkdoix"

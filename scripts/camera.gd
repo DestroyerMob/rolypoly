@@ -7,13 +7,23 @@ extends Node3D
 @export_range(0.05, 1.0, 0.05) var mouse_pitch_sensitivity := 0.22
 @export_range(10.0, 90.0, 1.0) var keyboard_pitch_speed := 42.0
 
-@onready var player: Player = $"../Player"
+@export var player_rig: PlayerRig
+var player: Player
 var start_offset: Vector3
 var _follow_distance := 1.0
 var _horizontal_direction := Vector3.BACK
 var _pitch_radians := deg_to_rad(45.0)
 
 func _ready() -> void:
+	if player_rig != null:
+		player_rig.player_swapped.connect(_on_player_swapped)
+		player = player_rig.current_player
+	else:
+		player = get_node_or_null("../Player") as Player
+	if player == null:
+		push_error("%s needs a player_rig or a sibling Player." % name)
+		set_physics_process(false)
+		return
 	start_offset = global_position - player.global_position
 	_follow_distance = maxf(start_offset.length(), 0.1)
 	var horizontal := Vector3(start_offset.x, 0.0, start_offset.z)
@@ -49,6 +59,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func follow_player() -> void:
+	if not is_instance_valid(player):
+		return
 	global_position = player.global_position + start_offset
 	look_at(player.global_position, Vector3.UP)
 
@@ -75,3 +87,7 @@ func move_free(delta: float, speed: float) -> void:
 func look_free(mouse_motion: Vector2) -> void:
 	rotation.y -= mouse_motion.x * 0.003
 	rotation.x = clampf(rotation.x - mouse_motion.y * 0.003, -1.5, 1.5)
+
+
+func _on_player_swapped(new_player: Player) -> void:
+	player = new_player

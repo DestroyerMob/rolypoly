@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bw45456m1v0p1"]
 
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="1_0rc31"]
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_jrvun"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="1_meaft"]
 [ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="2_1yo35"]
 [ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_s4hep"]
@@ -15,7 +16,17 @@
 [ext_resource type="PackedScene" uid="uid://d368ew4qamyqu" path="res://scenes/obstacles/knife.tscn" id="13_7pkvk"]
 [ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="14_ydhvk"]
 [ext_resource type="PackedScene" uid="uid://bb3evr04ihd2t" path="res://scenes/flag_hole.tscn" id="15_0rc31"]
-[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="16_oven"]
+[ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="16_dits3"]
+[ext_resource type="PackedScene" uid="uid://50a5u2opqyr" path="res://scenes/prototyping/proto_cylinder.tscn" id="17_xjhk5"]
+[ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="18_qxyph"]
+[ext_resource type="PackedScene" uid="uid://bwghfcy21irpb" path="res://scenes/prototyping/proto_half_pipe.tscn" id="19_xjhk5"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="20_qxyph"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/cheese_grater.tscn" id="21_6mmbi"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="22_jrmgl"]
+[ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="23_2tvl1"]
+[ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="25_4v77p"]
+[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="26_ricwt"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/funnel_long.tscn" id="27_mvr0u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -27,21 +38,113 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 0.08
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4v77p"]
+sky_top_color = Color(0.3, 0.4, 0.55, 1)
+sky_horizon_color = Color(0.8, 0.85, 0.9, 1)
+ground_bottom_color = Color(0.16, 0.2, 0.24, 1)
+ground_horizon_color = Color(0.55, 0.6, 0.65, 1)
+
+[sub_resource type="Sky" id="Sky_mvr0u"]
+sky_material = SubResource("ProceduralSkyMaterial_4v77p")
+
+[sub_resource type="Environment" id="Environment_ricwt"]
+background_mode = 2
+sky = SubResource("Sky_mvr0u")
+ambient_light_source = 3
+ambient_light_energy = 0.6
+reflected_light_source = 2
+tonemap_mode = 2
+
 [node name="GymPieces" type="Node3D" unique_id=844906366]
 
-[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("1_0rc31")]
+[node name="PlayerRig" type="Node" parent="." unique_id=1144157139]
+script = ExtResource("1_jrvun")
+
+[node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("1_0rc31")]
+transform = Transform3D(-0.9929082, 0, -0.118883915, 0, 1, 0, 0.118883915, 0, -0.9929082, 0, 0.5025821, 0)
 jump_impulse = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig" unique_id=1887820177 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 8.838481)
+fov = 80.0
+script = ExtResource("3_s4hep")
+player_rig = NodePath("..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerRig/Camera3D" unique_id=1645231805]
+transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.9988193, 0, 0, 7.6655684)
+spot_range = 97.89
+spot_attenuation = 0.22
+spot_angle = 36.84
 
 [node name="_Kitchen" type="Node" parent="." unique_id=1110794294]
 
-[node name="Table" type="StaticBody3D" parent="_Kitchen" unique_id=1724671977]
+[node name="_Core" type="Node" parent="_Kitchen" unique_id=1247500057]
+
+[node name="_Floor" type="Node" parent="_Kitchen/_Core" unique_id=758004058]
+
+[node name="Floor" type="StaticBody3D" parent="_Kitchen/_Core/_Floor" unique_id=38239534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 script = ExtResource("1_meaft")
-size = Vector3(80, 0.2, 120)
+size = Vector3(1500, 0.05, 1500)
+fn = 10
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="_Island" type="Node" parent="_Kitchen/_Core" unique_id=1745542445]
+
+[node name="Island" type="StaticBody3D" parent="_Kitchen/_Core/_Island" unique_id=645874024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
+script = ExtResource("1_meaft")
+size = Vector3(240, 100, 180)
+fn = 11
 pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="DistinctOven" parent="_Kitchen" instance=ExtResource("16_oven")]
-position = Vector3(-17, 0, -6)
+[node name="_PianoDeCuisson" type="Node" parent="_Kitchen/_Core" unique_id=867997842]
+
+[node name="_LaCornue" type="StaticBody3D" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=697905794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -792.07)
+script = ExtResource("1_meaft")
+size = Vector3(109.2, 110, 93.7)
+fn = 8
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1311526747]
+transform = Transform3D(1, 0, 0, 0, 0.10034721, 0.9949525, 0, -0.9949525, 0.10034721, 7.2403316, 125.36374, -713.8521)
+spot_range = 370.438
+spot_attenuation = 0.01
+spot_angle = 52.2
+
+[node name="DistinctOven" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1732226114 instance=ExtResource("26_ricwt")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
+start_burners_on = true
+flame_speed = 3.8
+
+[node name="Pot" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1184813120 instance=ExtResource("25_4v77p")]
+transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 2.9536114, 20.43175, -748.3513)
+
+[node name="ProtoBox3" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=676159586 instance=ExtResource("16_dits3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.453926, 15.757149, -746.95966)
+size = Vector3(20, 20, 20)
+
+[node name="ProtoRamp5" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=539422024 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 47.297535, 15.7571335, -746.936)
+run = 20.0
+rise = 20.0
+width = 20.0
+
+[node name="Potcheckpoint" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=471194015 instance=ExtResource("17_xjhk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041222, 35.4818, -746.84467)
+fn = 9
+
+[node name="_Table" type="Node" parent="_Kitchen/_Core" unique_id=857539655]
+
+[node name="Table_Top" type="StaticBody3D" parent="_Kitchen/_Core/_Table" unique_id=318076219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -150)
+script = ExtResource("1_meaft")
+size = Vector3(122, 100, 360)
+fn = 11
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="_Obstacles" type="Node" parent="." unique_id=354915527]
 
@@ -103,140 +206,248 @@ bowl_collision = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.166488, 2.0942724, -33.232727)
 
 [node name="ProtoRamp" type="StaticBody3D" parent="." unique_id=620833451]
-transform = Transform3D(-0.01089961, 0, 0.9999406, 0, 1, 0, -0.9999406, 0, -0.01089961, -10.882939, 0, -13.914733)
+transform = Transform3D(-0.01089961, 0, 0.9999406, 0, 1, 0, -0.9999406, 0, -0.01089961, -10.882939, 0, -13.273044)
 script = ExtResource("2_1yo35")
 rise = 2.0
 metadata/_custom_type_script = "uid://c7557x0xku2rq"
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1887820177]
-transform = Transform3D(1, 0, 0, 0, 0.9987887, 0.04920444, 0, -0.04920444, 0.9987887, 0, 7, 5.343068)
-fov = 80.0
-script = ExtResource("3_s4hep")
+[node name="ROOF" type="StaticBody3D" parent="." unique_id=336511797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL1" type="StaticBody3D" parent="." unique_id=1095671975]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -852.0043, -1423.593)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL4" type="StaticBody3D" parent="." unique_id=251059600]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -524.23834, 1407.885)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL2" type="StaticBody3D" parent="." unique_id=1053855949]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -1525.5367, -1083.3176, 0)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL3" type="StaticBody3D" parent="." unique_id=885768829]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 1491.4038, -1061.2686, 22.834717)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=904198989]
+environment = SubResource("Environment_ricwt")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=205890179]
-transform = Transform3D(0.82024884, 0.3122259, -0.4792775, -0.09749329, 0.90193856, 0.42071626, 0.5636372, -0.29836562, 0.7702539, -10.4062, 7.680967, 11.198481)
+transform = Transform3D(0.82024884, 0.31222585, -0.47927737, -0.09749329, 0.90193844, 0.42071617, 0.5636372, -0.29836562, 0.77025384, -10.4062, 7.680967, 11.84017)
+visible = false
 
 [node name="PlayerStart" type="Marker3D" parent="." unique_id=373033816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6416893)
 script = ExtResource("5_a6ejg")
 metadata/_custom_type_script = "uid://cd4rb6ctxth5d"
 
 [node name="ProtoCylinder" type="StaticBody3D" parent="." unique_id=335226083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.891077, -0.11155057, 0.27761364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.891077, -0.11155057, 0.91930294)
 script = ExtResource("6_wtxcq")
 fn = 2
 metadata/_custom_type_script = "uid://c3d1xouymugbb"
 
 [node name="HAZA_chillies" type="StaticBody3D" parent="." unique_id=1959961971]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4708934, 0, -8.790934)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4708934, 0, -8.149244)
 script = ExtResource("1_meaft")
 size = Vector3(10, 0.1, 15)
 fn = 5
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="HAZA_ChoppingBoard" type="StaticBody3D" parent="." unique_id=497843345]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.168554, 0, -43.363094)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.168554, 0, -42.721405)
 script = ExtResource("1_meaft")
 size = Vector3(5, 0.5, 30)
 fn = 5
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="REST_ProtoBox_R_2000mm" type="StaticBody3D" parent="." unique_id=826116318]
-transform = Transform3D(-0.004213126, 0, 0.9999911, 0, 1, 0, -0.9999911, 0, -0.004213126, 3.8085876, 0, 0.4510212)
+transform = Transform3D(-0.004213126, 0, 0.9999911, 0, 1, 0, -0.9999911, 0, -0.004213126, 3.8085876, 0, 1.0927105)
 script = ExtResource("1_meaft")
 size = Vector3(4, 2, 4)
 fn = 4
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="REST_ProtoBox_R_2000mm2" type="StaticBody3D" parent="." unique_id=1439817769]
-transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, 4.806836, 0, -18.87393)
+transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, 4.806836, 0, -18.23224)
 script = ExtResource("1_meaft")
 size = Vector3(8, 2, 4)
 fn = 4
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="REST_ProtoBox_R_2000mm3" type="StaticBody3D" parent="." unique_id=262385318]
-transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, -26.07576, 0, -20.706154)
+transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, -26.07576, 0, -20.064465)
 script = ExtResource("1_meaft")
 size = Vector3(8, 20, 8)
 fn = 4
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="REST_ProtoBox_R_2000mm4" type="StaticBody3D" parent="." unique_id=905766275]
-transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, -27.365427, 0, -59.460224)
+transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, -27.365427, 0, -58.818535)
 script = ExtResource("1_meaft")
 size = Vector3(8, 20, 8)
 fn = 4
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="REST_ProtoBox_R_2000mm5" type="StaticBody3D" parent="." unique_id=1427699760]
-transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, 3.7808704, -18.05847, -81.92669)
+transform = Transform3D(-0.9999645, 0, -0.008426178, 0, 1, 0, 0.008426178, 0, -0.9999645, 3.7808704, -18.05847, -81.285)
 script = ExtResource("1_meaft")
 size = Vector3(8, 20, 10)
 fn = 4
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="ProtoBox_R_2000mm2" type="StaticBody3D" parent="." unique_id=762136792]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8085876, 0, -30.930733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8085876, 0, -30.289043)
 script = ExtResource("1_meaft")
 size = Vector3(6, 2, 20)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="ProtoBox_R_2000mm4" type="StaticBody3D" parent="." unique_id=1604156725]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8085876, 0, -47.012512)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8085876, 0, -46.370823)
 script = ExtResource("1_meaft")
 size = Vector3(6, 2, 20)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="ProtoBox_R_2000mm5" type="StaticBody3D" parent="." unique_id=1746169909]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8085876, 0, -66.80911)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8085876, 0, -66.16742)
 script = ExtResource("1_meaft")
 size = Vector3(6, 2, 20)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="ProtoBox_R_2000mm3" type="StaticBody3D" parent="." unique_id=744904743]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.783624, 0, -25.894962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.783624, 0, -25.253273)
 script = ExtResource("1_meaft")
 size = Vector3(6, 2, 10)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="ProtoRamp_R_1500mm" type="StaticBody3D" parent="." unique_id=1472397604]
-transform = Transform3D(-0.004213126, 0, 0.9999911, 0, 1, 0, -0.9999911, 0, -0.004213126, 3.8085876, 0, 5.3953643)
+transform = Transform3D(-0.004213126, 0, 0.9999911, 0, 1, 0, -0.9999911, 0, -0.004213126, 3.8085876, 0, 6.0370536)
 script = ExtResource("2_1yo35")
 rise = 2.0
 metadata/_custom_type_script = "uid://c7557x0xku2rq"
 
 [node name="RollingPin" parent="." unique_id=743602974 instance=ExtResource("11_y7qnj")]
-transform = Transform3D(-0.0066753565, 0, -0.9999777, 0, 1, 0, 0.9999777, 0, -0.0066753565, 7.765317, 2.02, -25.391087)
+transform = Transform3D(-0.0066753565, 0, -0.9999777, 0, 1, 0, 0.9999777, 0, -0.0066753565, 7.765317, 2.02, -24.749397)
 travel_distance = 12.0
 
 [node name="RollingPinLog" parent="." unique_id=1688522341 instance=ExtResource("12_ynvtq")]
-transform = Transform3D(0.30812138, 0, -7.9940643, 0, 8, 0, 7.9940643, 0, 0.30812138, -42.24267, 11.429054, -38.94813)
+transform = Transform3D(0.30812138, 0, -7.9940643, 0, 8, 0, 7.9940643, 0, 0.30812138, -42.24267, 11.429054, -38.306442)
 spin_speed_degrees = 120.0
 
 [node name="knife" parent="." unique_id=1530698396 instance=ExtResource("13_7pkvk")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -34.234715)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -33.593025)
 
 [node name="knife5" parent="." unique_id=986726122 instance=ExtResource("13_7pkvk")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -40.738247)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -40.096558)
 
 [node name="knife6" parent="." unique_id=421950800 instance=ExtResource("13_7pkvk")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -50.492283)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -17.23566, 1.6929424, -49.850594)
 
 [node name="knife2" parent="." unique_id=1753645731 instance=ExtResource("13_7pkvk")]
-transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -37.061115)
+transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -36.419426)
 
 [node name="knife3" parent="." unique_id=1171879289 instance=ExtResource("13_7pkvk")]
-transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -45.10673)
+transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -44.465042)
 
 [node name="knife4" parent="." unique_id=100515018 instance=ExtResource("13_7pkvk")]
-transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -54.74788)
+transform = Transform3D(-0.998461, 0, -0.05546044, 0, 1.0000001, 0, 0.05546045, 0, -0.9984609, -7.0846214, 1.6929424, -54.10619)
 
 [node name="Scale" parent="." unique_id=886191544 instance=ExtResource("14_ydhvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.112423, 0.0018159449, 1.0158243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.112423, 0.0018159449, 1.6575136)
 
 [node name="FlagHole" parent="." unique_id=480481789 instance=ExtResource("15_0rc31")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.396939, 1.143867, 1.0263948)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.396939, 1.143867, 1.6680841)
 
 [node name="Funnel" parent="." unique_id=157579398 instance=ExtResource("4_wt0ny")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.980881, 0.49999952, 2.1436577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.980881, 0.49999952, 2.785347)
 drop_target_path = NodePath("../ProtoCylinder")
+
+[node name="ProtoBox" parent="." unique_id=801422939 instance=ExtResource("16_dits3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.216908, 0, -37.26811)
+size = Vector3(10, 6.3, 3)
+
+[node name="ProtoCylinder2" parent="." unique_id=767664669 instance=ExtResource("17_xjhk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.852013, 0, -7.797661)
+
+[node name="ProtoRamp2" parent="." unique_id=1791653073 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.241873, 0, -30.848331)
+run = 10.0
+rise = 6.3
+width = 10.0
+
+[node name="ProtoBox2" parent="." unique_id=467829939 instance=ExtResource("16_dits3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.037907, 0, -37.26811)
+size = Vector3(10, 6.3, 3)
+
+[node name="ProtoRamp3" parent="." unique_id=929903718 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 41.062874, 0, -30.848331)
+run = 10.0
+rise = 6.3
+width = 10.0
+
+[node name="ProtoHalfPipe" parent="." unique_id=365574967 instance=ExtResource("19_xjhk5")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 31.257, 0.3, -53.802)
+height = 6.0
+width = 30.0
+radius = 21.75
+arc_degrees = 87.20563794540725
+length = 10.0
+pivot = 2
+
+[node name="ProtoHalfPipe2" parent="." unique_id=1073028927 instance=ExtResource("19_xjhk5")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 40.99374, 0.3, -53.802)
+height = 6.0
+width = 30.0
+radius = 21.75
+arc_degrees = 87.20563794540725
+length = 10.0
+pivot = 2
+
+[node name="Blender" parent="." unique_id=1725696530 instance=ExtResource("20_qxyph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.773422, 3.8146973e-06, -17.83685)
+
+[node name="CheeseGrater" parent="." unique_id=1110011585 instance=ExtResource("21_6mmbi")]
+transform = Transform3D(-0.999984, 0, 0.0056539793, 0, 1, 0, -0.0056539793, 0, -0.999984, 31.381016, 3.6182108, -90.41352)
+
+[node name="CheeseGrater2" parent="." unique_id=884645599 instance=ExtResource("21_6mmbi")]
+transform = Transform3D(0.99994516, 0, -0.010469723, 0, 1, 0, 0.010469723, 0, 0.99994516, 41.458893, 3.6182108, -66.08304)
+
+[node name="Corkscrew" parent="." unique_id=1535655422 instance=ExtResource("22_jrmgl")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 24.179638, -0.21049213, -37.515522)
+
+[node name="Winebottle" parent="." unique_id=1584647438 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 18.571314, -9.536743e-07, -36.162888)
+
+[node name="Winebottle2" parent="." unique_id=59152435 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20.157583, -9.536743e-07, -36.162888)
+
+[node name="Winebottle3" parent="." unique_id=2115014493 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 19.416782, -9.536743e-07, -38.83469)
+
+[node name="Winebottle4" parent="." unique_id=877573197 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 21.426783, -9.536743e-07, -38.83469)
+
+[node name="Winebottle5" parent="." unique_id=733957233 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 17.511889, -9.536743e-07, -38.83469)
+
+[node name="Winebottle6" parent="." unique_id=1801286446 instance=ExtResource("23_2tvl1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 19.394772, -9.536743e-07, -34.21204)
+
+[node name="ProtoRamp4" parent="." unique_id=1490542611 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.51011, 1.9073486e-06, -28.043505)
+
+[node name="FunnelLong" parent="." unique_id=1014512211 instance=ExtResource("27_mvr0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.86205, 17.952127, -18.896011)
+drop_target_path = NodePath("../_Kitchen/_Core/_PianoDeCuisson/Potcheckpoint")

@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://u2dhu05rqoj3"]
+
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
+[ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="2_ahvsm"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
+[ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="4_c7xwi"]
+[ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
+[ext_resource type="PackedScene" uid="uid://bq1innw624ebu" path="res://assets/models/_SKM_Quinn_Simple.FBX" id="10_wj3rv"]
+[ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
+[ext_resource type="PackedScene" path="res://scenes/prototyping/kitchen_set.tscn" id="13_kitchen_set"]
+[ext_resource type="Script" uid="uid://c8i4wgjgkfkrf" path="res://scripts/kitchen_box_start.gd" id="14_box_start"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wj3rv"]
+sky_top_color = Color(0.3, 0.4, 0.55, 1)
+sky_horizon_color = Color(0.8, 0.85, 0.9, 1)
+ground_bottom_color = Color(0.16, 0.2, 0.24, 1)
+ground_horizon_color = Color(0.55, 0.6, 0.65, 1)
+
+[sub_resource type="Sky" id="Sky_studio"]
+sky_material = SubResource("ProceduralSkyMaterial_wj3rv")
+
+[sub_resource type="Environment" id="Environment_lp2do"]
+background_mode = 2
+sky = SubResource("Sky_studio")
+ambient_light_source = 3
+ambient_light_energy = 0.6
+reflected_light_source = 2
+tonemap_mode = 2
+
+[node name="ProtoKitchenStudio" type="Node3D" unique_id=321876781 node_paths=PackedStringArray("box", "player_rig", "camera_pivot")]
+script = ExtResource("14_box_start")
+box = NodePath("_Set/_Dressing/_Props/CardboardBox")
+player_rig = NodePath("_Systems/PlayerRig")
+camera_pivot = NodePath("_Systems/PlayerRig/CameraPivot")
+
+[node name="_Systems" type="Node" parent="." unique_id=1408849608]
+
+[node name="PlayerRig" type="Node" parent="_Systems" unique_id=1496141724]
+script = ExtResource("1_tdenf")
+
+[node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("2_ahvsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -410)
+
+[node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
+script = ExtResource("3_lp2do")
+player_rig = NodePath("..")
+initial_yaw_degrees = -67.2
+initial_follow_distance = 3.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot" unique_id=193844503]
+spring_length = 17.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="_Systems/PlayerRig/CameraPivot/SpringArm3D" unique_id=918557119]
+fov = 80.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="_Systems/PlayerRig/CameraPivot/SpringArm3D/Camera3D" unique_id=173904390]
+transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.9988193, 0, 0, 7.6655684)
+spot_range = 97.89
+spot_attenuation = 0.22
+spot_angle = 36.84
+
+[node name="_Course" type="Node" parent="." unique_id=1919119446]
+
+[node name="_Set" parent="." unique_id=109183115 instance=ExtResource("13_kitchen_set")]
+
+[node name="CardboardBox" parent="_Set/_Dressing/_Props" parent_id_path=PackedInt32Array(109183115, 1727572606) index="0" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
+transform = Transform3D(-0.1252915, 3.4172328, 1.4390694, -3.7075086, -0.13593435, 0, 0.0527275, -1.4381034, 3.4195292, -98.67215, 4.5077605, -410.7317)
+
+[node name="_Lighting" type="Node" parent="." unique_id=971610010]
+
+[node name="_ReferencePoints" type="Node" parent="." unique_id=118702667]
+
+[node name="_People" type="Node" parent="_ReferencePoints" unique_id=614854488]
+
+[node name="_SKM_Quinn_Simple" parent="_ReferencePoints/_People" unique_id=922609980 instance=ExtResource("10_wj3rv")]
+transform = Transform3D(1.1815854, 0, -104.993355, 0, 105, 0, 104.993355, 0, 1.1815854, 104.50786, -99.69594, -667.218)
+
+[node name="ProtoBox_200mmx200mm" type="StaticBody3D" parent="_ReferencePoints/_People/_SKM_Quinn_Simple" unique_id=1320542154]
+transform = Transform3D(0.00952381, 0, 0, 0, 0.00952381, 0, 0, 0, 0.00952381, 0, 0, 0)
+script = ExtResource("4_g02x1")
+size = Vector3(4, 200, 4)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2133525193]
+environment = SubResource("Environment_lp2do")
+
+[node name="powerpoint" parent="." unique_id=313599797 instance=ExtResource("12_ahvsm")]
+transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
+
+[editable path="_Set"]

@@ -9,7 +9,8 @@ const REVEAL_TIME := 0.5
 const REVEAL_DELAY := 0.25
 const TITLE_BUTTON_GAP := 24.0
 const GRID_SLIDE_OFFSET := Vector2(120, 0)
-
+const KITCHEN_GYM := preload("res://scenes/gym_pieces.tscn")
+ 
 @onready var main_title: Control = $MainTitle
 @onready var menu_center: Control = $MenuButtonsCenter
 @onready var menu_buttons: Control = $MenuButtonsCenter/MenuButtons
@@ -20,6 +21,8 @@ const GRID_SLIDE_OFFSET := Vector2(120, 0)
 @onready var achievements_button: Button = $MenuButtonsCenter/MenuButtons/AchievementsButton
 @onready var settings_button: Button = $MenuButtonsCenter/MenuButtons/SettingsButton
 @onready var quit_button: Button = $MenuButtonsCenter/MenuButtons/QuitButton
+#IROH TO REMOVE FOR PRODUCTION
+@onready var kitchen_gym_button: Button = $"MenuButtonsCenter/MenuButtons/Kitchen Gym"
 
 var _levels_shown := false
 var _final_title_pos: Vector2
@@ -31,6 +34,7 @@ func _ready() -> void:
 	achievements_button.pressed.connect(_on_achievements_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	kitchen_gym_button.pressed.connect(_on_kitchen_gym_pressed)
 
 	for child in level_grid.get_children():
 		var level_button := child as LevelButton
@@ -93,3 +97,6 @@ func _on_settings_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+	
+func _on_kitchen_gym_pressed() ->void:
+	get_tree().change_scene_to_packed(KITCHEN_GYM)
