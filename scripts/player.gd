@@ -124,9 +124,25 @@ func respawn(world_position: Vector3) -> void:
 	freeze = was_frozen
 	sleeping = false
 
-func move(input: Vector2) -> void:
-	apply_central_force(Vector3(input.x, 0.0, input.y) * speed_force)
+#Iroh Temporarily Supersede to test Orbital Camera with Slight Movement
 
+#func move(input: Vector2) -> void: #5:15pm 22nd September 2026 Orbital Camera Work
+	#apply_central_force(Vector3(input.x, 0.0, input.y) * speed_force)
+	
+func move(input: Vector2) -> void:
+	var camera := get_viewport().get_camera_3d()
+	var wish := Vector3(input.x, 0.0, input.y)
+
+	if camera == null:
+		apply_central_force(wish * speed_force)
+		return
+
+	var direction := camera.global_basis * wish
+	direction.y = 0.0
+	direction = direction.normalized() * wish.length()
+
+	apply_central_force(direction * speed_force)
+	
 func jump() -> void:
 	if not on_ground:
 		return

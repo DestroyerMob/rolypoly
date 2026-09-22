@@ -24,7 +24,9 @@
 [ext_resource type="PackedScene" path="res://scenes/obstacles/cheese_grater.tscn" id="21_6mmbi"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="22_jrmgl"]
 [ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="23_2tvl1"]
-[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="16_oven"]
+[ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="25_4v77p"]
+[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="26_ricwt"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/funnel_long.tscn" id="27_mvr0u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
 albedo_color = Color(0.35, 0.88, 0.38, 1)
@@ -36,19 +38,43 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 0.08
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4v77p"]
+sky_top_color = Color(0.3, 0.4, 0.55, 1)
+sky_horizon_color = Color(0.8, 0.85, 0.9, 1)
+ground_bottom_color = Color(0.16, 0.2, 0.24, 1)
+ground_horizon_color = Color(0.55, 0.6, 0.65, 1)
+
+[sub_resource type="Sky" id="Sky_mvr0u"]
+sky_material = SubResource("ProceduralSkyMaterial_4v77p")
+
+[sub_resource type="Environment" id="Environment_ricwt"]
+background_mode = 2
+sky = SubResource("Sky_mvr0u")
+ambient_light_source = 3
+ambient_light_energy = 0.6
+reflected_light_source = 2
+tonemap_mode = 2
+
 [node name="GymPieces" type="Node3D" unique_id=844906366]
 
 [node name="PlayerRig" type="Node" parent="." unique_id=1144157139]
 script = ExtResource("1_jrvun")
 
 [node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("1_0rc31")]
-transform = Transform3D(-0.9929082, 0, -0.118883915, 0, 1, 0, 0.118883915, 0, -0.9929082, 0, 0, 0)
+transform = Transform3D(-0.9929082, 0, -0.118883915, 0, 1, 0, 0.118883915, 0, -0.9929082, 0, 0.5025821, 0)
 jump_impulse = 6.0
 
-[node name="Camera3D" type="Camera3D" parent="PlayerRig" unique_id=1887820177]
+[node name="Camera3D" type="Camera3D" parent="PlayerRig" unique_id=1887820177 node_paths=PackedStringArray("player_rig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 8.838481)
 fov = 80.0
 script = ExtResource("3_s4hep")
+player_rig = NodePath("..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerRig/Camera3D" unique_id=1645231805]
+transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.9988193, 0, 0, 7.6655684)
+spot_range = 97.89
+spot_attenuation = 0.22
+spot_angle = 36.84
 
 [node name="_Kitchen" type="Node" parent="." unique_id=1110794294]
 
@@ -82,6 +108,34 @@ size = Vector3(109.2, 110, 93.7)
 fn = 8
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
+[node name="SpotLight3D2" type="SpotLight3D" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1311526747]
+transform = Transform3D(1, 0, 0, 0, 0.10034721, 0.9949525, 0, -0.9949525, 0.10034721, 7.2403316, 125.36374, -713.8521)
+spot_range = 370.438
+spot_attenuation = 0.01
+spot_angle = 52.2
+
+[node name="DistinctOven" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1732226114 instance=ExtResource("26_ricwt")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
+start_burners_on = true
+flame_speed = 3.8
+
+[node name="Pot" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=1184813120 instance=ExtResource("25_4v77p")]
+transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 2.9536114, 20.43175, -748.3513)
+
+[node name="ProtoBox3" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=676159586 instance=ExtResource("16_dits3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.453926, 15.757149, -746.95966)
+size = Vector3(20, 20, 20)
+
+[node name="ProtoRamp5" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=539422024 instance=ExtResource("18_qxyph")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 47.297535, 15.7571335, -746.936)
+run = 20.0
+rise = 20.0
+width = 20.0
+
+[node name="Potcheckpoint" parent="_Kitchen/_Core/_PianoDeCuisson" unique_id=471194015 instance=ExtResource("17_xjhk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041222, 35.4818, -746.84467)
+fn = 9
+
 [node name="_Table" type="Node" parent="_Kitchen/_Core" unique_id=857539655]
 
 [node name="Table_Top" type="StaticBody3D" parent="_Kitchen/_Core/_Table" unique_id=318076219]
@@ -91,9 +145,6 @@ size = Vector3(122, 100, 360)
 fn = 11
 pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
-
-[node name="DistinctOven" parent="_Kitchen" instance=ExtResource("16_oven")]
-position = Vector3(-17, 0, -6)
 
 [node name="_Obstacles" type="Node" parent="." unique_id=354915527]
 
@@ -160,8 +211,42 @@ script = ExtResource("2_1yo35")
 rise = 2.0
 metadata/_custom_type_script = "uid://c7557x0xku2rq"
 
+[node name="ROOF" type="StaticBody3D" parent="." unique_id=336511797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL1" type="StaticBody3D" parent="." unique_id=1095671975]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -852.0043, -1423.593)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL4" type="StaticBody3D" parent="." unique_id=251059600]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -524.23834, 1407.885)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL2" type="StaticBody3D" parent="." unique_id=1053855949]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -1525.5367, -1083.3176, 0)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WALL3" type="StaticBody3D" parent="." unique_id=885768829]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 1491.4038, -1061.2686, 22.834717)
+script = ExtResource("1_meaft")
+size = Vector3(3000, 0.5, 3000)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=904198989]
+environment = SubResource("Environment_ricwt")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=205890179]
 transform = Transform3D(0.82024884, 0.31222585, -0.47927737, -0.09749329, 0.90193844, 0.42071617, 0.5636372, -0.29836562, 0.77025384, -10.4062, 7.680967, 11.84017)
+visible = false
 
 [node name="PlayerStart" type="Marker3D" parent="." unique_id=373033816]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6416893)
@@ -337,7 +422,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.773422, 3.8146973e-06, -17
 transform = Transform3D(-0.999984, 0, 0.0056539793, 0, 1, 0, -0.0056539793, 0, -0.999984, 31.381016, 3.6182108, -90.41352)
 
 [node name="CheeseGrater2" parent="." unique_id=884645599 instance=ExtResource("21_6mmbi")]
-transform = Transform3D(0.99994516, 0, -0.010469723, 0, 1, 0, 0.010469723, 0, 0.99994516, 41.41399, 3.6182108, -66.08304)
+transform = Transform3D(0.99994516, 0, -0.010469723, 0, 1, 0, 0.010469723, 0, 0.99994516, 41.458893, 3.6182108, -66.08304)
 
 [node name="Corkscrew" parent="." unique_id=1535655422 instance=ExtResource("22_jrmgl")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 24.179638, -0.21049213, -37.515522)
@@ -362,3 +447,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 19.394772, -9.536743e-07, -34
 
 [node name="ProtoRamp4" parent="." unique_id=1490542611 instance=ExtResource("18_qxyph")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.51011, 1.9073486e-06, -28.043505)
+
+[node name="FunnelLong" parent="." unique_id=1014512211 instance=ExtResource("27_mvr0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.86205, 17.952127, -18.896011)
+drop_target_path = NodePath("../_Kitchen/_Core/_PianoDeCuisson/Potcheckpoint")
