@@ -1,11 +1,20 @@
 extends Node3D
 
 @onready var player: Player = $"../Player"
+@export var player_rig: PlayerRig 
 var start_offset: Vector3
 
+## Camera needs a player rig to work
 func _ready() -> void:
+	#Guards
+	if player_rig == null:
+		push_error("%s has no player_rig assigned." % name)
+		return 
+	#Signal Connections
+	player_rig.player_swapped.connect(_on_player_swapped)
+	
 	start_offset = global_position - player.global_position
-
+	
 func _physics_process(_delta: float) -> void:
 	follow_player()
 
@@ -25,3 +34,8 @@ func move_free(delta: float, speed: float) -> void:
 func look_free(mouse_motion: Vector2) -> void:
 	rotation.y -= mouse_motion.x * 0.003
 	rotation.x = clampf(rotation.x - mouse_motion.y * 0.003, -1.5, 1.5)
+
+func _on_player_swapped(new_player: Player) -> void:
+	#Assign new_player to current camera's player and physics process will update it 
+	player = new_player
+	
