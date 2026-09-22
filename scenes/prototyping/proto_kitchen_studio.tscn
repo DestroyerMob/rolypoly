@@ -1,10 +1,12 @@
-[gd_scene format=3 uid="uid://u2dhu05rqoj3"]
+[gd_scene format=3 uid="uid://cts3uc4t4uds5"]
 
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
-[ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_36mbm"]
+[ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="2_ahvsm"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="2_s3j4m"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
 [ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="4_1gqfv"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/rolling_pin_spinner.tscn" id="4_kuif3"]
 [ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="6_wj3rv"]
 [ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="7_lp2do"]
@@ -20,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="17_2j0ga"]
 [ext_resource type="PackedScene" uid="uid://dim3tp33qahpt" path="res://packed_scenes/not_a_player_egg.tscn" id="19_5nqe5"]
 [ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="19_nm6sv"]
+[ext_resource type="PackedScene" uid="uid://byub54rxkinip" path="res://assets/models/props/chair.glb" id="20_nm6sv"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5yy73"]
 top_radius = 0.0
@@ -51,15 +54,9 @@ tonemap_mode = 2
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 15.919998, -417)
-
-[node name="Camera3D" type="Camera3D" parent="_Systems/PlayerRig" unique_id=1107606323 node_paths=PackedStringArray("player_rig")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 15.919998, -417)
-script = ExtResource("3_36mbm")
-player_rig = NodePath("..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 38.92, -745)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
-visible = false
 script = ExtResource("3_lp2do")
 player_rig = NodePath("..")
 
@@ -76,6 +73,9 @@ spot_range = 97.89
 spot_attenuation = 0.22
 spot_angle = 36.84
 
+[node name="RollingPinSpinner" parent="_Systems/PlayerRig" unique_id=985898970 instance=ExtResource("4_kuif3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -517)
+
 [node name="_Course" type="Node" parent="." unique_id=1919119446]
 
 [node name="PlayerStart" parent="_Course" unique_id=2025540899 instance=ExtResource("4_1gqfv")]
@@ -83,29 +83,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 17.949999, -433)
 preview_radius = 1.0
 
 [node name="BoxStart" parent="_Course" unique_id=1475111092 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(21.2132, 0, 21.213202, 0, 29.999998, 0, -21.213202, 0, 21.2132, -94, 7.3499985, -435)
+transform = Transform3D(21.2132, 0, 21.213202, 0, 29.999998, 0, -21.213202, 0, 21.2132, -105, 7.3499985, -473)
 
 [node name="_Pieces" type="Node" parent="_Course" unique_id=1211791188]
 
 [node name="_Static" type="Node" parent="_Course/_Pieces" unique_id=1077978003]
 
 [node name="BoxStart_A" parent="_Course/_Pieces/_Static" unique_id=953123952 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(25, 0, 7.9472875e-07, 0, 25, 0, -7.9472875e-07, 0, 25, -74, 7.3499985, -419)
+transform = Transform3D(25, 0, 7.9472875e-07, 0, 25, 0, -7.9472875e-07, 0, 25, -74, 7.3499985, -469)
 
 [node name="BoxStart_A2" parent="_Course/_Pieces/_Static" unique_id=457395007 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(25.114073, 0, -6.7292933, 0, 26, 0, 6.7292933, 0, 25.114073, -51, 7.3499985, -416)
+transform = Transform3D(25.114073, 0, -6.7292933, 0, 26, 0, 6.7292933, 0, 25.114073, -51, 7.3499985, -466)
 
 [node name="BoxStart_A6" parent="_Course/_Pieces/_Static" unique_id=1752077848 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(44.614067, 0, -26.229286, 0, 26, 0, 11.954299, 0, 97.88906, 33, 7.3499985, -426)
+transform = Transform3D(44.614067, 0, -26.229286, 0, 26, 0, 11.954299, 0, 97.88906, 33, 7.3499985, -476)
 
 [node name="BoxStart_A3" parent="_Course/_Pieces/_Static" unique_id=1052716001 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, -24, 7.3499985, -416)
+transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, -24, 7.3499985, -466)
 
 [node name="BoxStart_A4" parent="_Course/_Pieces/_Static" unique_id=21025723 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, 0, 7.3499985, -416)
+transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, 0, 7.3499985, -466)
 
 [node name="BoxStart_A5" parent="_Course/_Pieces/_Static" unique_id=1729906718 instance=ExtResource("15_vk1ru")]
-transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, -12, 7.3499985, -416)
+transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, -12, 7.3499985, -466)
+
+[node name="Funnel" parent="_Course/_Pieces/_Static" unique_id=259827820 instance=ExtResource("16_twewy")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 46, 10, -515)
+drop_target_path = NodePath("../../../GOAL_FinishPot/_OvenCheckpoint/Potcheckpoint")
+
+[node name="RollingPin" parent="_Course/_Pieces/_Static" unique_id=1688522341 instance=ExtResource("17_2j0ga")]
+transform = Transform3D(10, 0, 0, 0, 5.5, 0, 0, 0, 8.5, -8, 10.900034, -473)
+travel_distance = 6.0
+travel_speed = 8.0
+pause_at_ends = 3.0
+
+[node name="Scale" parent="_Course/_Pieces/_Static/RollingPin" unique_id=886191544 instance=ExtResource("19_nm6sv")]
+transform = Transform3D(-0.23293725, 0, -0.676148, 0, 0.49999997, 0, 0.86933327, 0, -0.18117334, 9.700005, -1.9818245, -0.23527908)
+
+[node name="ProtoRamp" parent="_Course/_Pieces/_Static/RollingPin" unique_id=232420884 instance=ExtResource("8_ahvsm")]
+transform = Transform3D(-0.0965926, 0, 0.030449314, 0, 0.18181819, 0, -0.02588191, 0, -0.113638334, 7.0000005, -1.8000062, -0.8235283)
+run = 20.0
+rise = 12.0
+width = 30.0
+
+[node name="ProtoBox" parent="_Course/_Pieces/_Static" unique_id=1826565477 instance=ExtResource("7_lp2do")]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 104, 0, -468)
+size = Vector3(10, 15, 30)
+
+[node name="ProtoBox2" parent="_Course/_Pieces/_Static" unique_id=1735851344 instance=ExtResource("7_lp2do")]
+transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 81, 0, -457)
+size = Vector3(15, 15, 30)
+
+[node name="ProtoBox3" parent="_Course/_Pieces/_Static" unique_id=1503529007 instance=ExtResource("7_lp2do")]
+transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 94, 0, -493)
+size = Vector3(15, 15, 30)
 
 [node name="_Movers" type="Node" parent="_Course/_Pieces" unique_id=1045172506]
 
@@ -164,7 +195,7 @@ size = Vector3(4, 300, 900)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="WallC_Open" type="StaticBody3D" parent="_Set/_Shell" unique_id=1554466654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.32605, -100, 744.1223)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.32605, -100, 180.12231)
 script = ExtResource("4_g02x1")
 size = Vector3(1000, 300, 4)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
@@ -184,7 +215,7 @@ metadata/_custom_type_script = "uid://bdadou88ia27u"
 [node name="_Fitout" type="Node" parent="_Set" unique_id=720298826]
 
 [node name="Island" type="StaticBody3D" parent="_Set/_Fitout" unique_id=726270753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -455.96198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -498.96198)
 script = ExtResource("4_g02x1")
 size = Vector3(240, 100, 120)
 fn = 11
@@ -234,6 +265,15 @@ spot_angle = 52.2
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
 start_burners_on = true
 flame_speed = 3.8
+
+[node name="Player" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=537463657 instance=ExtResource("2_ahvsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -543)
+
+[node name="Player2" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=411067843 instance=ExtResource("2_s3j4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -540)
+
+[node name="Player3" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=1521831883 instance=ExtResource("14_ybb3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -536)
 
 [node name="BenchA_LandingR" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=273185192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252.90303, 0, -769.723)
@@ -349,37 +389,9 @@ run = 20.0
 rise = 15.0
 width = 20.0
 
-[node name="Funnel" parent="." unique_id=259827820 instance=ExtResource("16_twewy")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 46, 11, -458)
-drop_target_path = NodePath("../_Course/GOAL_FinishPot/_OvenCheckpoint/Potcheckpoint")
-
-[node name="RollingPin" parent="." unique_id=1688522341 instance=ExtResource("17_2j0ga")]
-transform = Transform3D(10, 0, 0, 0, 5.5, 0, 0, 0, 8.5, -8, 10.900034, -418)
-travel_distance = 6.0
-travel_speed = 8.0
-pause_at_ends = 3.0
-
-[node name="Scale" parent="RollingPin" unique_id=886191544 instance=ExtResource("19_nm6sv")]
-transform = Transform3D(-0.23293725, 0, -0.676148, 0, 0.49999997, 0, 0.86933327, 0, -0.18117334, 9.700005, -1.9818245, -0.23527908)
-
-[node name="ProtoRamp" parent="RollingPin" unique_id=232420884 instance=ExtResource("8_ahvsm")]
-transform = Transform3D(-0.0965926, 0, 0.030449314, 0, 0.18181819, 0, -0.02588191, 0, -0.113638334, 7.0000005, -1.8000062, -0.8235283)
-run = 20.0
-rise = 12.0
-width = 30.0
-
 [node name="Player" parent="." unique_id=427622554 instance=ExtResource("19_5nqe5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 16, -424)
 mass = 0.1
 
-[node name="ProtoBox" parent="." unique_id=1826565477 instance=ExtResource("7_lp2do")]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 104, 0, -413)
-size = Vector3(10, 15, 30)
-
-[node name="ProtoBox2" parent="." unique_id=1735851344 instance=ExtResource("7_lp2do")]
-transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 81, 0, -402)
-size = Vector3(15, 15, 30)
-
-[node name="ProtoBox3" parent="." unique_id=1503529007 instance=ExtResource("7_lp2do")]
-transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 94, 0, -438)
-size = Vector3(15, 15, 30)
+[node name="chair2" parent="." unique_id=904532963 instance=ExtResource("20_nm6sv")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -47, -100.14258, -151)

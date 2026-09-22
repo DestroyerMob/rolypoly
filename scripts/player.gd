@@ -9,8 +9,8 @@ enum Condition {NORMAL,DIZZY,HURT,DEAD,WIN}
 const PRIORITY := [Condition.WIN, Condition.DEAD, Condition.HURT, Condition.DIZZY, Condition.NORMAL]
 signal condition_changed(new_condition: Condition)
 
-@export var speed_force := 20.0
-@export var jump_impulse := 9.5
+@export var speed_force := 20.0  #  
+@export var jump_impulse := 9.5 # Instantaneous velocity in upwards direction
 @onready var collider := $CollisionShape3D
 @onready var visual := $CollisionShape3D/MeshInstance3D
 @onready var original_visual_scale: Vector3 = visual.scale
