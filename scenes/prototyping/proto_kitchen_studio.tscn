@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="2_s3j4m"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
 [ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="4_1gqfv"]
+[ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="4_c7xwi"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/rolling_pin_spinner.tscn" id="4_kuif3"]
-[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
+[ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="6_wj3rv"]
 [ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="7_lp2do"]
 [ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="8_ahvsm"]
@@ -15,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://assets/models/obstacles/blender/blender_model.tscn" id="10_lp2do"]
 [ext_resource type="PackedScene" uid="uid://bq1innw624ebu" path="res://assets/models/_SKM_Quinn_Simple.FBX" id="10_wj3rv"]
 [ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
+[ext_resource type="Script" uid="uid://c8i4wgjgkfkrf" path="res://scripts/kitchen_box_start.gd" id="14_box_start"]
 [ext_resource type="PackedScene" uid="uid://c8m6nxngnnw1g" path="res://assets/models/props/table.glb" id="14_vk1ru"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="14_ybb3e"]
 [ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="15_vk1ru"]
@@ -28,12 +30,6 @@
 top_radius = 0.0
 bottom_radius = 34.429
 height = 36.487
-[ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="4_c7xwi"]
-[ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
-[ext_resource type="PackedScene" uid="uid://bq1innw624ebu" path="res://assets/models/_SKM_Quinn_Simple.FBX" id="10_wj3rv"]
-[ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
-[ext_resource type="PackedScene" path="res://scenes/prototyping/kitchen_set.tscn" id="13_kitchen_set"]
-[ext_resource type="Script" uid="uid://c8i4wgjgkfkrf" path="res://scripts/kitchen_box_start.gd" id="14_box_start"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wj3rv"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -365,9 +361,8 @@ fn = 3
 [node name="_Dressing" type="Node" parent="_Set" unique_id=1332525405]
 
 [node name="_Props" type="Node" parent="_Set/_Dressing" unique_id=1727572606]
-[node name="_Set" parent="." unique_id=109183115 instance=ExtResource("13_kitchen_set")]
 
-[node name="CardboardBox" parent="_Set/_Dressing/_Props" parent_id_path=PackedInt32Array(109183115, 1727572606) index="0" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
+[node name="CardboardBox" parent="_Set/_Dressing/_Props" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
 transform = Transform3D(-0.1252915, 3.4172328, 1.4390694, -3.7075086, -0.13593435, 0, 0.0527275, -1.4381034, 3.4195292, -98.67215, 4.5077605, -410.7317)
 
 [node name="Rug" parent="_Set/_Dressing/_Props" unique_id=1957787597 instance=ExtResource("7_lp2do")]
@@ -411,7 +406,6 @@ mass = 0.1
 
 [node name="chair2" parent="." unique_id=904532963 instance=ExtResource("20_nm6sv")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -47, -100.14258, -151)
-[node name="powerpoint" parent="." unique_id=313599797 instance=ExtResource("12_ahvsm")]
-transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
 
-[editable path="_Set"]
+[node name="powerpoint" parent="." unique_id=1367596226 instance=ExtResource("12_ahvsm")]
+transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)

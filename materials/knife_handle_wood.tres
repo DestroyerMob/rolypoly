@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://coi6tl1ee0r25"]
+
+[ext_resource type="Texture2D" uid="uid://bm5qgjp3bnjt" path="res://assets/textures/T_Wood_Veneer_Smoke_1K_BC.jpg" id="1_437bd"]
+[ext_resource type="Texture2D" uid="uid://hcm0j28mu3ei" path="res://assets/textures/T_Wood_Veneer_Smoke_1K_H.png" id="2_26n33"]
+[ext_resource type="Texture2D" uid="uid://bb2vcfs5grugu" path="res://assets/textures/T_Wood_Veneer_Smoke_1K_AO.jpg" id="2_y5rnl"]
+
+[resource]
+resource_name = "knife_handle"
+cull_mode = 2
+albedo_color = Color(1, 0.99116206, 0.96463734, 1)
+albedo_texture = ExtResource("1_437bd")
+roughness = 0.5
+bent_normal_enabled = true
+ao_texture = ExtResource("2_y5rnl")
+heightmap_enabled = true
+heightmap_scale = -12.107
+heightmap_texture = ExtResource("2_26n33")
