@@ -13,11 +13,13 @@ const CHARACTERS := {
 signal player_swapped(new_player: Player)
 
 var current_player: Player 
+@export_range(0.1, 2.0, 0.05) var player_size_multiplier := 1.0
 
 func _enter_tree() -> void:
 	print("PlayerRig _enter_tree, children: ", get_children())
 	for child in get_children():
 		if child is Player:
+			_resize_player(child)
 			current_player = child
 			print("  found player: ", child.name)
 			return
@@ -45,6 +47,7 @@ func swap_to(scene: PackedScene) -> void:
 	
 	#Job 3: Instantiate the new player
 	var player_to_load: Player = scene.instantiate()
+	_resize_player(player_to_load)
 	add_child(player_to_load)
 	
 	#Job 4: Put the old_state into the state of the new player 
@@ -57,5 +60,18 @@ func swap_to(scene: PackedScene) -> void:
 	
 	#Job5: Emit Signal for camera
 	player_swapped.emit(current_player)
+
+
+func _resize_player(player: Player) -> void:
+	if is_equal_approx(player_size_multiplier, 1.0):
+		return
+	# Scale the collider and its artwork together, without scaling the rigid body.
+	var collider := player.get_node("CollisionShape3D") as CollisionShape3D
+	collider.scale *= player_size_multiplier
+	collider.position *= player_size_multiplier
+	if collider.shape is SphereShape3D:
+		player.spawn_clearance = collider.shape.radius * collider.scale.y - collider.position.y
+	elif collider.shape is CapsuleShape3D:
+		player.spawn_clearance = collider.shape.height * 0.5 * collider.scale.y - collider.position.y
 	
 	

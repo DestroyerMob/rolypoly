@@ -11,6 +11,10 @@ var _equipped_scene: PackedScene
 var _gadget: Node3D
 
 
+func _ready() -> void:
+	player_rig.player_swapped.connect(func(_player: Player): _update_attachment())
+
+
 func equip(scene: PackedScene) -> void:
 	if scene == null or scene == _equipped_scene:
 		return
@@ -27,6 +31,10 @@ func _process(_delta: float) -> void:
 	_update_attachment()
 
 
+func _physics_process(_delta: float) -> void:
+	_update_attachment()
+
+
 func _update_attachment() -> void:
 	if not is_instance_valid(_gadget):
 		return
@@ -36,6 +44,7 @@ func _update_attachment() -> void:
 	visible = is_instance_valid(player_rig.current_player)
 	if not visible:
 		return
+	player_rig.current_player.gadget = _gadget if _gadget.has_method("activate") else null
 	# Follow position and camera aim, never the rolling body's orientation.
 	var aim := camera.global_basis.orthonormalized()
 	var right := Vector3(aim.x.x, 0, aim.x.z).normalized()

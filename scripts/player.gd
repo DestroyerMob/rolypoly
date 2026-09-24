@@ -23,6 +23,7 @@ var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness our
 ## Ball 0.25, egg and corn will be different. Each character scene sets its own.
 @export var spawn_clearance := 0.25
 var spawn_position: Vector3
+var gadget: Node3D
 var is_squished := false
 var squish_tween: Tween
 
@@ -38,7 +39,10 @@ func _physics_process(_delta: float) -> void:
 	if is_squished:
 		return
 	if Input.is_action_just_pressed("jump"):
-		jump()
+		if is_instance_valid(gadget):
+			gadget.activate(self)
+		else:
+			jump()
 	move(Input.get_vector("left", "right", "forward", "backward"))
 
 #VFX
