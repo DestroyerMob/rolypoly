@@ -51,8 +51,11 @@ func _release(launch := false) -> void:
 		_held.freeze = _was_frozen
 		_held.sleeping = false
 		if launch and not _held.freeze:
-			var direction := (anchor.global_position - _player.global_position).normalized()
-			_held.apply_central_impulse(direction * launch_impulse)
+			var camera := get_viewport().get_camera_3d()
+			if camera != null:
+				var center := get_viewport().get_visible_rect().size * 0.5
+				var direction := camera.project_ray_normal(center)
+				_held.apply_central_impulse(direction * launch_impulse)
 	_held = null
 
 
