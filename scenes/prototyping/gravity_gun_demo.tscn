@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="7_mount"]
 [ext_resource type="PackedScene" uid="uid://bmb1ilpf7j6if" path="res://scenes/props/upgrade_plate.tscn" id="8_plate"]
 [ext_resource type="PackedScene" path="res://scenes/props/gravity_gun.tscn" id="9_gadget"]
-[ext_resource type="PackedScene" path="res://packed_scenes/not_a_player_egg.tscn" id="10_vegetable"]
+[ext_resource type="PackedScene" uid="uid://dim3tp33qahpt" path="res://packed_scenes/not_a_player_egg.tscn" id="10_vegetable"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_demo"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -37,8 +37,8 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 0.8)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
-corner_radius_bottom_left = 3
 corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="GravityGunDemo" type="Node3D" unique_id=1598349460]
 
@@ -46,25 +46,24 @@ corner_radius_bottom_right = 3
 
 [node name="PlayerRig" type="Node" parent="_Systems" unique_id=567081143]
 script = ExtResource("1_rig")
-player_size_multiplier = 0.45
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=446073663 instance=ExtResource("2_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 24)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=851238088 node_paths=PackedStringArray("player_rig")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.3, 24)
 script = ExtResource("3_camera")
 player_rig = NodePath("..")
-follow_offset = Vector3(0, 1.5, 0)
+follow_offset = Vector3(0, 3.3, 0)
 max_pitch_degrees = 50.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot" unique_id=2109718514]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)
-spring_length = 17.5
+spring_length = 35.0
 margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="_Systems/PlayerRig/CameraPivot/SpringArm3D" unique_id=1217736528]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35)
 current = true
 fov = 80.0
 
@@ -78,23 +77,22 @@ spot_angle = 36.84
 script = ExtResource("7_mount")
 player_rig = NodePath("..")
 camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
-side_distance = 1.85
 
 [node name="_Course" type="Node" parent="." unique_id=1876803619]
 
 [node name="PlayerStart" parent="_Course" unique_id=812262930 instance=ExtResource("4_start")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 12)
-preview_radius = 0.99
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 24)
+preview_radius = 2.2
 
 [node name="Platform" parent="_Course" unique_id=586140474 instance=ExtResource("6_platform")]
-size = Vector3(60, 2, 60)
+size = Vector3(120, 4, 120)
 pivot = 2
 
 [node name="DeathZone" parent="_Course" unique_id=239999938 instance=ExtResource("5_death")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
 
-[node name="Vegetable" parent="_Course" groups=["vegetable"] instance=ExtResource("10_vegetable")]
-position = Vector3(3.1, 2.5, -7)
+[node name="Vegetable" parent="_Course" unique_id=884034302 groups=["vegetable"] instance=ExtResource("10_vegetable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 2.5, -14)
 
 [node name="_Lighting" type="Node" parent="." unique_id=131691982]
 
@@ -112,9 +110,9 @@ gadget_scene = ExtResource("9_gadget")
 gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
 preview_scale = 1.0
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1288797673]
 
-[node name="Crosshair" type="Panel" parent="HUD"]
+[node name="Crosshair" type="Panel" parent="HUD" unique_id=912398800]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

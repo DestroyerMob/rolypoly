@@ -1,7 +1,8 @@
 extends Node3D
 
 @export var pull_speed := 12.0
-@export var grab_range := 30.0
+@export var grab_range := 60.0
+@export var launch_impulse := 30.0
 
 @onready var ray: RayCast3D = $GrabRay
 @onready var anchor: Marker3D = $HoldAnchor
@@ -21,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	if _fire_requested:
 		_fire_requested = false
 		if is_instance_valid(_held):
-			_release()
+			_release(is_instance_valid(_player) and not _player.on_ground)
 		else:
 			var camera := get_viewport().get_camera_3d()
 			if camera == null:
@@ -45,10 +46,13 @@ func _physics_process(delta: float) -> void:
 			anchor.global_position, 1.0 - exp(-pull_speed * delta))
 
 
-func _release() -> void:
+func _release(launch := false) -> void:
 	if is_instance_valid(_held):
 		_held.freeze = _was_frozen
 		_held.sleeping = false
+		if launch and not _held.freeze:
+			var direction := (anchor.global_position - _player.global_position).normalized()
+			_held.apply_central_impulse(direction * launch_impulse)
 	_held = null
 
 

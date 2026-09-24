@@ -39,10 +39,9 @@ func _physics_process(_delta: float) -> void:
 	if is_squished:
 		return
 	if Input.is_action_just_pressed("jump"):
-		if is_instance_valid(gadget):
-			gadget.activate(self)
-		else:
-			jump()
+		jump()
+	if Input.is_action_just_pressed("activate_equipment") and is_instance_valid(gadget):
+		gadget.activate(self)
 	move(Input.get_vector("left", "right", "forward", "backward"))
 
 #VFX
