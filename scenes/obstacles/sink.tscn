@@ -1,0 +1,213 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/sink/SinkBasin.glb" id="1_sink"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/sink/SinkPlate.glb" id="2_plate"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/sink/SinkBowl.glb" id="3_bowl"]
+[ext_resource type="Shader" path="res://assets/shaders/sink_water.gdshader" id="4_water"]
+[ext_resource type="Script" path="res://scripts/obstacles/sinkable_dish.gd" id="5_dish"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dish"]
+friction = 0.88
+rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bottom"]
+size = Vector3(9.45, 0.36, 6.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_side"]
+size = Vector3(0.68, 3.3, 7.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_end"]
+size = Vector3(10.55, 3.3, 0.68)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
+render_priority = 1
+shader = ExtResource("4_water")
+shader_parameter/shallow_color = Color(0.05, 0.55, 0.72, 0.68)
+shader_parameter/deep_color = Color(0.015, 0.2, 0.38, 0.82)
+shader_parameter/highlight_color = Color(0.62, 0.94, 1, 1)
+shader_parameter/wave_height = 0.045
+shader_parameter/wave_speed = 1.15
+shader_parameter/wave_scale = 11.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_water"]
+material = SubResource("ShaderMaterial_water")
+size = Vector2(9.35, 6.35)
+subdivide_width = 56
+subdivide_depth = 42
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_plate"]
+height = 0.18
+radius = 1.10
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bowl"]
+height = 0.42
+radius = 0.98
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_plate_sensor"]
+height = 0.85
+radius = 1.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bowl_sensor"]
+height = 0.95
+radius = 0.93
+
+[node name="Sink" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_sink")]
+
+[node name="BasinCollision" type="StaticBody3D" parent="."]
+
+[node name="Bottom" type="CollisionShape3D" parent="BasinCollision"]
+position = Vector3(0, 0.32, 0)
+shape = SubResource("BoxShape3D_bottom")
+
+[node name="LeftWall" type="CollisionShape3D" parent="BasinCollision"]
+position = Vector3(-4.95, 1.65, 0)
+shape = SubResource("BoxShape3D_side")
+
+[node name="RightWall" type="CollisionShape3D" parent="BasinCollision"]
+position = Vector3(4.95, 1.65, 0)
+shape = SubResource("BoxShape3D_side")
+
+[node name="FrontWall" type="CollisionShape3D" parent="BasinCollision"]
+position = Vector3(0, 1.65, 3.53)
+shape = SubResource("BoxShape3D_end")
+
+[node name="BackWall" type="CollisionShape3D" parent="BasinCollision"]
+position = Vector3(0, 1.65, -3.53)
+shape = SubResource("BoxShape3D_end")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.12, 0)
+mesh = SubResource("PlaneMesh_water")
+
+[node name="Dishes" type="Node3D" parent="."]
+
+[node name="PlateFrontLeft" type="AnimatableBody3D" parent="Dishes"]
+position = Vector3(-3.1, 2.22, 2.0)
+rotation = Vector3(0, 0.18, 0)
+sync_to_physics = true
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+phase_degrees = 15.0
+
+[node name="Model" parent="Dishes/PlateFrontLeft" instance=ExtResource("2_plate")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateFrontLeft"]
+position = Vector3(0, 0.04, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/PlateFrontLeft"]
+position = Vector3(0, 0.42, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateFrontLeft/PlayerSensor"]
+shape = SubResource("CylinderShape3D_plate_sensor")
+
+[node name="BowlFrontRight" type="AnimatableBody3D" parent="Dishes"]
+position = Vector3(3.05, 2.13, 1.65)
+rotation = Vector3(0, -0.32, 0)
+sync_to_physics = true
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.08
+sink_speed = 0.32
+bob_speed = 1.15
+phase_degrees = 105.0
+
+[node name="Model" parent="Dishes/BowlFrontRight" instance=ExtResource("3_bowl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlFrontRight"]
+position = Vector3(0, 0.18, 0)
+shape = SubResource("CylinderShape3D_bowl")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/BowlFrontRight"]
+position = Vector3(0, 0.48, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlFrontRight/PlayerSensor"]
+shape = SubResource("CylinderShape3D_bowl_sensor")
+
+[node name="PlateMiddle" type="AnimatableBody3D" parent="Dishes"]
+position = Vector3(0, 2.23, 0)
+rotation = Vector3(0, 0.5, 0)
+sync_to_physics = true
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.12
+sink_speed = 0.34
+bob_speed = 1.55
+phase_degrees = 210.0
+
+[node name="Model" parent="Dishes/PlateMiddle" instance=ExtResource("2_plate")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateMiddle"]
+position = Vector3(0, 0.04, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/PlateMiddle"]
+position = Vector3(0, 0.42, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateMiddle/PlayerSensor"]
+shape = SubResource("CylinderShape3D_plate_sensor")
+
+[node name="BowlBackLeft" type="AnimatableBody3D" parent="Dishes"]
+position = Vector3(-3.0, 2.13, -1.65)
+rotation = Vector3(0, 0.38, 0)
+sync_to_physics = true
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.05
+sink_speed = 0.31
+return_speed = 0.70
+bob_speed = 1.25
+phase_degrees = -70.0
+
+[node name="Model" parent="Dishes/BowlBackLeft" instance=ExtResource("3_bowl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlBackLeft"]
+position = Vector3(0, 0.18, 0)
+shape = SubResource("CylinderShape3D_bowl")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/BowlBackLeft"]
+position = Vector3(0, 0.48, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlBackLeft/PlayerSensor"]
+shape = SubResource("CylinderShape3D_bowl_sensor")
+
+[node name="PlateBackRight" type="AnimatableBody3D" parent="Dishes"]
+position = Vector3(3.1, 2.22, -2.0)
+rotation = Vector3(0, -0.22, 0)
+sync_to_physics = true
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.0
+sink_speed = 0.38
+return_speed = 0.85
+bob_speed = 1.7
+phase_degrees = 55.0
+
+[node name="Model" parent="Dishes/PlateBackRight" instance=ExtResource("2_plate")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight"]
+position = Vector3(0, 0.04, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/PlateBackRight"]
+position = Vector3(0, 0.42, 0)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight/PlayerSensor"]
+shape = SubResource("CylinderShape3D_plate_sensor")
