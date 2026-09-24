@@ -128,6 +128,12 @@ func respawn(world_position: Vector3) -> void:
 	on_ground = false
 	freeze = was_frozen
 	sleeping = false
+	_reset_equipment()
+
+
+func _reset_equipment() -> void:
+	if is_instance_valid(gadget) and gadget.has_method("reset_equipment"):
+		gadget.reset_equipment()
 
 #Iroh Temporarily Supersede to test Orbital Camera with Slight Movement
 
@@ -150,6 +156,8 @@ func move(input: Vector2) -> void:
 	
 func jump() -> void:
 	if not on_ground:
+		if is_instance_valid(gadget) and gadget.has_method("air_jump"):
+			gadget.air_jump(self)
 		return
 	apply_central_impulse(Vector3.UP * jump_impulse)
 	on_ground = false

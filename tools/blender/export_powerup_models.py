@@ -2,6 +2,7 @@
 from pathlib import Path
 
 import bpy
+import bmesh
 from mathutils import Matrix, Vector
 
 
@@ -74,6 +75,23 @@ for suffix, socket, color_data in (
 mesh.materials.clear()
 mesh.materials.append(mat)
 export(can, cream_dir / "whipped_cream.glb")
+
+# Keep the capped pickup model, and expose the nozzle on the equipped version.
+lid_group = source.vertex_groups["Lid"].index
+lid_vertices = {
+    vertex.index for vertex in source.data.vertices
+    if any(group.group == lid_group and group.weight > 0.5 for group in vertex.groups)
+}
+uncapped = mesh.copy()
+editable = bmesh.new()
+editable.from_mesh(uncapped)
+editable.verts.ensure_lookup_table()
+bmesh.ops.delete(editable, geom=[editable.verts[index] for index in lid_vertices], context="VERTS")
+editable.to_mesh(uncapped)
+editable.free()
+can.data = uncapped
+export(can, cream_dir / "whipped_cream_uncapped.glb")
+print("Uncapped nozzle height:", max(vertex.co.z for vertex in uncapped.vertices))
 
 clear_scene()
 base_dir = PROPS / "powerup_base"
