@@ -9,7 +9,7 @@ extends Node3D
 @export var follow_speed := 10.0
 @export var min_pitch_degrees := -50.0
 @export var max_pitch_degrees := -5.0
-@export var capture_mouse := true
+@export var capture_mouse := true 
 @export var initial_yaw_degrees := 0.0
 ## Zero uses the normal follow distance; a shorter distance blends out at startup.
 @export_range(0.0, 30.0, 0.1) var initial_follow_distance := 0.0

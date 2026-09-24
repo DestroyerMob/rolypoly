@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dim3tp33qahpt"]
+
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_hh4s4"]
+[ext_resource type="PackedScene" uid="uid://ch3gwcp33g4o" path="res://models/vegetables/egg/egg.glb" id="2_uj6k4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57pk1"]
+radius = 1.6
+height = 4.1
+
+[node name="Player" unique_id=1887833892 instance=ExtResource("1_hh4s4")]
+script = null
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21113563, 0)
+shape = SubResource("CapsuleShape3D_57pk1")
+debug_color = Color(0.3647059, 0.47843137, 1, 0.93333334)
+
+[node name="egg" parent="CollisionShape3D" index="0" unique_id=92104476 instance=ExtResource("2_uj6k4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108451724, 0)
+
+[node name="MeshInstance3D" parent="CollisionShape3D" index="1" unique_id=1398664333]
+visible = false

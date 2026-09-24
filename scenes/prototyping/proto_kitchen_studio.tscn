@@ -1,14 +1,35 @@
-[gd_scene format=3 uid="uid://u2dhu05rqoj3"]
+[gd_scene format=3 uid="uid://cts3uc4t4uds5"]
 
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
 [ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="2_ahvsm"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="2_s3j4m"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
+[ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="4_1gqfv"]
 [ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="4_c7xwi"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/rolling_pin_spinner.tscn" id="4_kuif3"]
+[ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
+[ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="6_wj3rv"]
+[ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="7_lp2do"]
+[ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="8_ahvsm"]
+[ext_resource type="PackedScene" uid="uid://50a5u2opqyr" path="res://scenes/prototyping/proto_cylinder.tscn" id="9_1gqfv"]
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/blender/blender_model.tscn" id="10_lp2do"]
 [ext_resource type="PackedScene" uid="uid://bq1innw624ebu" path="res://assets/models/_SKM_Quinn_Simple.FBX" id="10_wj3rv"]
 [ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
-[ext_resource type="PackedScene" path="res://scenes/prototyping/kitchen_set.tscn" id="13_kitchen_set"]
 [ext_resource type="Script" uid="uid://c8i4wgjgkfkrf" path="res://scripts/kitchen_box_start.gd" id="14_box_start"]
+[ext_resource type="PackedScene" uid="uid://c8m6nxngnnw1g" path="res://assets/models/props/table.glb" id="14_vk1ru"]
+[ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="14_ybb3e"]
+[ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="15_vk1ru"]
+[ext_resource type="PackedScene" uid="uid://d082epsq48fks" path="res://scenes/obstacles/funnel.tscn" id="16_twewy"]
+[ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="17_2j0ga"]
+[ext_resource type="PackedScene" uid="uid://dim3tp33qahpt" path="res://packed_scenes/not_a_player_egg.tscn" id="19_5nqe5"]
+[ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="19_nm6sv"]
+[ext_resource type="PackedScene" uid="uid://byub54rxkinip" path="res://assets/models/props/chair.glb" id="20_nm6sv"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5yy73"]
+top_radius = 0.0
+bottom_radius = 34.429
+height = 36.487
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wj3rv"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -38,8 +59,8 @@ camera_pivot = NodePath("_Systems/PlayerRig/CameraPivot")
 [node name="PlayerRig" type="Node" parent="_Systems" unique_id=1496141724]
 script = ExtResource("1_tdenf")
 
-[node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("2_ahvsm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -410)
+[node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 38.92, -745)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -60,12 +81,300 @@ spot_range = 97.89
 spot_attenuation = 0.22
 spot_angle = 36.84
 
+[node name="RollingPinSpinner" parent="_Systems/PlayerRig" unique_id=985898970 instance=ExtResource("4_kuif3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -517)
+
 [node name="_Course" type="Node" parent="." unique_id=1919119446]
 
-[node name="_Set" parent="." unique_id=109183115 instance=ExtResource("13_kitchen_set")]
+[node name="PlayerStart" parent="_Course" unique_id=2025540899 instance=ExtResource("4_1gqfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 17.949999, -433)
+preview_radius = 1.0
 
-[node name="CardboardBox" parent="_Set/_Dressing/_Props" parent_id_path=PackedInt32Array(109183115, 1727572606) index="0" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
+[node name="BoxStart" parent="_Course" unique_id=1475111092 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(21.2132, 0, 21.213202, 0, 29.999998, 0, -21.213202, 0, 21.2132, -105, 7.3499985, -473)
+
+[node name="_Pieces" type="Node" parent="_Course" unique_id=1211791188]
+
+[node name="_Static" type="Node" parent="_Course/_Pieces" unique_id=1077978003]
+
+[node name="BoxStart_A" parent="_Course/_Pieces/_Static" unique_id=953123952 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(25, 0, 7.9472875e-07, 0, 25, 0, -7.9472875e-07, 0, 25, -74, 7.3499985, -469)
+
+[node name="BoxStart_A2" parent="_Course/_Pieces/_Static" unique_id=457395007 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(25.114073, 0, -6.7292933, 0, 26, 0, 6.7292933, 0, 25.114073, -51, 7.3499985, -466)
+
+[node name="BoxStart_A6" parent="_Course/_Pieces/_Static" unique_id=1752077848 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(44.614067, 0, -26.229286, 0, 26, 0, 11.954299, 0, 97.88906, 33, 7.3499985, -476)
+
+[node name="BoxStart_A3" parent="_Course/_Pieces/_Static" unique_id=1052716001 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, -24, 7.3499985, -466)
+
+[node name="BoxStart_A4" parent="_Course/_Pieces/_Static" unique_id=21025723 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, 0, 7.3499985, -466)
+
+[node name="BoxStart_A5" parent="_Course/_Pieces/_Static" unique_id=1729906718 instance=ExtResource("15_vk1ru")]
+transform = Transform3D(7.2902236, 0, 9.138444, 0, 26, 0, -27.207497, 0, 2.4486372, -12, 7.3499985, -466)
+
+[node name="Funnel" parent="_Course/_Pieces/_Static" unique_id=259827820 instance=ExtResource("16_twewy")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 46, 10, -515)
+drop_target_path = NodePath("../../../GOAL_FinishPot/_OvenCheckpoint/Potcheckpoint")
+
+[node name="RollingPin" parent="_Course/_Pieces/_Static" unique_id=1688522341 instance=ExtResource("17_2j0ga")]
+transform = Transform3D(10, 0, 0, 0, 5.5, 0, 0, 0, 8.5, -8, 10.900034, -473)
+travel_distance = 6.0
+travel_speed = 8.0
+pause_at_ends = 3.0
+
+[node name="Scale" parent="_Course/_Pieces/_Static/RollingPin" unique_id=886191544 instance=ExtResource("19_nm6sv")]
+transform = Transform3D(-0.23293725, 0, -0.676148, 0, 0.49999997, 0, 0.86933327, 0, -0.18117334, 9.700005, -1.9818245, -0.23527908)
+
+[node name="ProtoRamp" parent="_Course/_Pieces/_Static/RollingPin" unique_id=232420884 instance=ExtResource("8_ahvsm")]
+transform = Transform3D(-0.0965926, 0, 0.030449314, 0, 0.18181819, 0, -0.02588191, 0, -0.113638334, 7.0000005, -1.8000062, -0.8235283)
+run = 20.0
+rise = 12.0
+width = 30.0
+
+[node name="ProtoBox" parent="_Course/_Pieces/_Static" unique_id=1826565477 instance=ExtResource("7_lp2do")]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 104, 0, -468)
+size = Vector3(10, 15, 30)
+
+[node name="ProtoBox2" parent="_Course/_Pieces/_Static" unique_id=1735851344 instance=ExtResource("7_lp2do")]
+transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 81, 0, -457)
+size = Vector3(15, 15, 30)
+
+[node name="ProtoBox3" parent="_Course/_Pieces/_Static" unique_id=1503529007 instance=ExtResource("7_lp2do")]
+transform = Transform3D(-0.2588191, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, -0.2588191, 94, 0, -493)
+size = Vector3(15, 15, 30)
+
+[node name="_Movers" type="Node" parent="_Course/_Pieces" unique_id=1045172506]
+
+[node name="_Hazards" type="Node" parent="_Course/_Pieces" unique_id=1734536097]
+
+[node name="GOAL_FinishPot" type="Node" parent="_Course" unique_id=1303801495]
+
+[node name="Pot" parent="_Course/GOAL_FinishPot" unique_id=1184813120 instance=ExtResource("6_wj3rv")]
+transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 2.9536114, 20.43175, -748.3513)
+
+[node name="_OvenCheckpoint" type="Node" parent="_Course/GOAL_FinishPot" unique_id=865906226]
+
+[node name="Rest" parent="_Course/GOAL_FinishPot/_OvenCheckpoint" unique_id=1324294659 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.453926, 15.757149, -746.95966)
+size = Vector3(20, 20, 20)
+
+[node name="Ramp" parent="_Course/GOAL_FinishPot/_OvenCheckpoint" unique_id=2022363337 instance=ExtResource("8_ahvsm")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 47.297535, 15.7571335, -746.936)
+run = 20.0
+rise = 20.0
+width = 20.0
+
+[node name="Potcheckpoint" parent="_Course/GOAL_FinishPot/_OvenCheckpoint" unique_id=767664669 instance=ExtResource("9_1gqfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041222, 35.4818, -746.84467)
+fn = 9
+
+[node name="_Set" type="Node" parent="." unique_id=1760075188]
+
+[node name="_Shell" type="Node" parent="_Set" unique_id=331730971]
+
+[node name="Ceiling" type="StaticBody3D" parent="_Set/_Shell" unique_id=1980312559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 201, -424.9923)
+script = ExtResource("4_g02x1")
+size = Vector3(1300, 0.5, 1300)
+fn = 11
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=425517740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -336.14948)
+script = ExtResource("4_g02x1")
+size = Vector3(1500, 0.5, 1500)
+fn = 10
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WallA_Range" type="StaticBody3D" parent="_Set/_Shell" unique_id=1392113805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97, -100, -810.4344)
+script = ExtResource("4_g02x1")
+size = Vector3(1000, 300, 4)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WallB_Sink" type="StaticBody3D" parent="_Set/_Shell" unique_id=667853887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.132, -100, -363.57587)
+visible = false
+script = ExtResource("4_g02x1")
+size = Vector3(4, 300, 900)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WallC_Open" type="StaticBody3D" parent="_Set/_Shell" unique_id=1554466654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.32605, -100, 180.12231)
+script = ExtResource("4_g02x1")
+size = Vector3(1000, 300, 4)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WallD_Tall" type="StaticBody3D" parent="_Set/_Shell" unique_id=1664346964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -399.5967, -100, -1179.5208)
+script = ExtResource("4_g02x1")
+size = Vector3(4, 300, 900)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="WallD_Tall2" type="StaticBody3D" parent="_Set/_Shell" unique_id=1766030448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -399.5967, -100, -272.3091)
+script = ExtResource("4_g02x1")
+size = Vector3(4, 300, 450)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="_Fitout" type="Node" parent="_Set" unique_id=720298826]
+
+[node name="Island" type="StaticBody3D" parent="_Set/_Fitout" unique_id=726270753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -498.96198)
+script = ExtResource("4_g02x1")
+size = Vector3(240, 100, 120)
+fn = 11
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="Table" parent="_Set/_Fitout" unique_id=397417103 instance=ExtResource("14_vk1ru")]
+transform = Transform3D(-3.715468e-06, 0, 85, 0, 85, 0, -85, 0, -3.715468e-06, 5, -99.933655, -113)
+
+[node name="_ElevationA_Range" type="Node" parent="_Set/_Fitout" unique_id=846560408]
+
+[node name="_PianoDeCuisson" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1401073423]
+
+[node name="_Rangehood" type="Node" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=829433422]
+
+[node name="ProtoBox" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=801422939 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 133, -783)
+size = Vector3(35, 80, 100)
+fn = 11
+
+[node name="ProtoBox2" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=1909754302 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 127, -783)
+size = Vector3(160, 30, 100)
+fn = 11
+
+[node name="ProtoRamp" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=1791653073 instance=ExtResource("8_ahvsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 127, -773)
+run = 20.0
+rise = 30.0
+width = 80.0
+fn = 11
+
+[node name="ProtoRamp2" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=458276386 instance=ExtResource("8_ahvsm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 90, 127, -773)
+run = 20.0
+rise = 30.0
+width = 80.0
+fn = 11
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=439307957]
+transform = Transform3D(1, 0, 0, 0, 0.10034721, 0.9949525, 0, -0.9949525, 0.10034721, 7.2403316, 185.36374, -767.8521)
+spot_range = 370.438
+spot_attenuation = 0.01
+spot_angle = 52.2
+
+[node name="DistinctOven" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=1845032690 instance=ExtResource("5_5amv0")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
+start_burners_on = true
+flame_speed = 3.8
+
+[node name="Player" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=537463657 instance=ExtResource("2_ahvsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -543)
+
+[node name="Player2" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=411067843 instance=ExtResource("2_s3j4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -540)
+
+[node name="Player3" parent="_Set/_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=1521831883 instance=ExtResource("14_ybb3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -536)
+
+[node name="BenchA_LandingR" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=273185192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252.90303, 0, -769.723)
+script = ExtResource("4_g02x1")
+size = Vector3(300, 100, 80)
+fn = 11
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="BenchA_LandingR2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1251511175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.28746, 0, -769.723)
+script = ExtResource("4_g02x1")
+size = Vector3(300, 100, 80)
+fn = 11
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="_ElevationB_SinkWall" type="Node" parent="_Set/_Fitout" unique_id=2003959935]
+
+[node name="ServingWindowTable" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=2124700358 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 438, 0, -602)
+size = Vector3(60, 0.5, 350)
+
+[node name="SinkBench" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1201772810]
+transform = Transform3D(-0.0024435932, 0, -0.999997, 0, 1, 0, 0.999997, 0, -0.0024435932, 362.4358, 0, -584.2418)
+script = ExtResource("4_g02x1")
+size = Vector3(300, 100, 80)
+fn = 11
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="ActualSink" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=869975511 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 364.3402, -58.345505, -624.91565)
+size = Vector3(55, 60, 100)
+
+[node name="SinkWall" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1581961109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 299.38358, 94.7811, -601.3451)
+use_collision = true
+
+[node name="CSGBox3D_Union" type="CSGBox3D" parent="_Set/_Fitout/_ElevationB_SinkWall/SinkWall" unique_id=711154177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.59387, -44.281097, -63.81311)
+size = Vector3(4, 300, 800)
+
+[node name="CSGBox3D_Subtraction_Window" type="CSGBox3D" parent="_Set/_Fitout/_ElevationB_SinkWall/SinkWall" unique_id=1744873712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.951294, -16.218475, 0.54608154)
+operation = 2
+size = Vector3(11, 159, 300)
+
+[node name="BlenderModel" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=310644801 instance=ExtResource("10_lp2do")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 288.80304, 1.5258789e-05, -780.01385)
+
+[node name="_ElevationD_Tall" type="Node" parent="_Set/_Fitout" unique_id=237766516]
+
+[node name="PantryWallA" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=614508104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -680.5967, -100, -622.52075)
+script = ExtResource("4_g02x1")
+size = Vector3(4, 300, 400)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="PantryWallB" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=1261945058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -533.5967, -100, -801.52075)
+script = ExtResource("4_g02x1")
+size = Vector3(300, 300, 4)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="PantryWallD" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=372687611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -548.5967, -100, -426.52075)
+script = ExtResource("4_g02x1")
+size = Vector3(300, 300, 4)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="Fridge" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=1068473685 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -423.38528, -99.50001, -362.07465)
+size = Vector3(70, 213, 121)
+fn = 3
+
+[node name="_Dressing" type="Node" parent="_Set" unique_id=1332525405]
+
+[node name="_Props" type="Node" parent="_Set/_Dressing" unique_id=1727572606]
+
+[node name="CardboardBox" parent="_Set/_Dressing/_Props" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
 transform = Transform3D(-0.1252915, 3.4172328, 1.4390694, -3.7075086, -0.13593435, 0, 0.0527275, -1.4381034, 3.4195292, -98.67215, 4.5077605, -410.7317)
+
+[node name="Rug" parent="_Set/_Dressing/_Props" unique_id=1957787597 instance=ExtResource("7_lp2do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -99.5, -126)
+size = Vector3(200, 0.5, 300)
+
+[node name="Table_OverheadLight" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=471774795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 183, -121)
+mesh = SubResource("CylinderMesh_5yy73")
+
+[node name="powerpoint" parent="_Set/_Dressing/_Props" unique_id=313599797 instance=ExtResource("12_ahvsm")]
+transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
 
 [node name="_Lighting" type="Node" parent="." unique_id=971610010]
 
@@ -85,7 +394,18 @@ metadata/_custom_type_script = "uid://bdadou88ia27u"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2133525193]
 environment = SubResource("Environment_lp2do")
 
-[node name="powerpoint" parent="." unique_id=313599797 instance=ExtResource("12_ahvsm")]
-transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
+[node name="ProtoRamp" parent="." unique_id=971998148 instance=ExtResource("8_ahvsm")]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -79, 0, -451)
+run = 20.0
+rise = 15.0
+width = 20.0
 
-[editable path="_Set"]
+[node name="Player" parent="." unique_id=427622554 instance=ExtResource("19_5nqe5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 16, -424)
+mass = 0.1
+
+[node name="chair2" parent="." unique_id=904532963 instance=ExtResource("20_nm6sv")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -47, -100.14258, -151)
+
+[node name="powerpoint" parent="." unique_id=1367596226 instance=ExtResource("12_ahvsm")]
+transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
