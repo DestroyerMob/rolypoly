@@ -5,10 +5,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_63yp5")
-shader_parameter/cell_size = 1.0
-shader_parameter/subdivisions = 10.0
-shader_parameter/major_line_width = 0.025
-shader_parameter/minor_line_width = 0.008
+shader_parameter/cell_size = 100.0
+shader_parameter/subdivisions = 5.0
+shader_parameter/major_line_width = 1.0
+shader_parameter/minor_line_width = 0.25
 shader_parameter/world_offset = Vector3(0, 0, 0)
 shader_parameter/checker_a = Color(0.36078432, 0.23921569, 0.54901963, 1)
 shader_parameter/checker_b = Color(0.45490196, 0.3137255, 0.6784314, 1)

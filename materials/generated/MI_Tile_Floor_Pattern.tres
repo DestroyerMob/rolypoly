@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1i4mo8jhsmr4"]
+
+[ext_resource type="Texture2D" uid="uid://bw7kwerauunyp" path="res://assets/textures/T_Tile_Floor_Pattern_1K_BC.jpg" id="1_q351w"]
+[ext_resource type="Texture2D" uid="uid://c2hr26qwsw87c" path="res://assets/textures/T_Tile_Floor_Pattern_1K_N.jpg" id="2_egb0g"]
+[ext_resource type="Texture2D" uid="uid://cjkj7m0s75ehu" path="res://assets/textures/T_Tile_Floor_Pattern_1K_R.jpg" id="3_tnq8k"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.737193, 0.7371929, 0.7371929, 1)
+albedo_texture = ExtResource("1_q351w")
+roughness_texture = ExtResource("3_tnq8k")
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = ExtResource("2_egb0g")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cry2k630yfqw6"]
+
+[ext_resource type="Texture2D" uid="uid://bixik65bmxmps" path="res://assets/textures/T_Veneer_Rosewood_North_1K_BC.jpg" id="1_in51i"]
+[ext_resource type="Texture2D" uid="uid://cgka6vkk3qtdf" path="res://assets/textures/T_Veneer_Rosewood_North_1K_N.jpg" id="2_vq7wb"]
+[ext_resource type="Texture2D" uid="uid://cm58cel4y7q5x" path="res://assets/textures/T_Veneer_Rosewood_North_1K_R.jpg" id="3_1nu4k"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_in51i")
+roughness_texture = ExtResource("3_1nu4k")
+normal_enabled = true
+normal_texture = ExtResource("2_vq7wb")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

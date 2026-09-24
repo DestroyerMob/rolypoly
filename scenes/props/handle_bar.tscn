@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cl16b4t6pnt8c"]
+
+[ext_resource type="Script" uid="uid://cnqv1ieg4fx1y" path="res://scripts/art_box.gd" id="1_fmujj"]
+[ext_resource type="Material" uid="uid://b6x5gidt3y2c0" path="res://materials/MI_Metal_Cabinets_Handle.tres" id="2_1al60"]
+
+[node name="HandleBar" type="Node3D" unique_id=996808862]
+
+[node name="Bar" type="StaticBody3D" parent="." unique_id=45310090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("1_fmujj")
+size = Vector3(22, 2, 2)
+material = ExtResource("2_1al60")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Standoff_L" type="StaticBody3D" parent="." unique_id=676801152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 2)
+script = ExtResource("1_fmujj")
+size = Vector3(2, 2, 4)
+material = ExtResource("2_1al60")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Standoff_R" type="StaticBody3D" parent="." unique_id=515927826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2)
+script = ExtResource("1_fmujj")
+size = Vector3(2, 2, 4)
+material = ExtResource("2_1al60")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"

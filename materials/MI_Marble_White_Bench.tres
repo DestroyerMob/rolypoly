@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cwco7sn04w4el"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_gt4g1"]
+[ext_resource type="Texture2D" uid="uid://gqa7n7ij6ofb" path="res://assets/textures/T_Marble_White_1K_BC.jpg" id="2_rxi5b"]
+[ext_resource type="Texture2D" uid="uid://d0ar8ek613fhl" path="res://assets/textures/T_Marble_White_1K_N.jpg" id="3_n7k8f"]
+[ext_resource type="Texture2D" uid="uid://76bmnqd87bpd" path="res://assets/textures/T_Marble_White_1K_R.jpg" id="4_ih4f2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gt4g1")
+shader_parameter/albedo_texture = ExtResource("2_rxi5b")
+shader_parameter/albedo_tint = Color(0.8877086, 0.9210283, 0.961698, 1)
+shader_parameter/roughness_value = 1.0
+shader_parameter/use_roughness_map = false
+shader_parameter/roughness_map = ExtResource("4_ih4f2")
+shader_parameter/metallic_value = 0.0
+shader_parameter/use_metallic_map = false
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = false
+shader_parameter/normal_map = ExtResource("3_n7k8f")
+shader_parameter/normal_strength = 1.0
+shader_parameter/world_scale = 100.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)

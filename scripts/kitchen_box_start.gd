@@ -1,5 +1,7 @@
 extends Node3D
 
+## We need a box_start.tscn 
+
 const COMPANIONS := [
 	preload("res://packed_scenes/player_onion.tscn"),
 	preload("res://packed_scenes/player_tomato.tscn"),
@@ -15,7 +17,7 @@ const COMPANION_POSITIONS := [
 	Vector3(0.55, -0.35, 0.5),
 ]
 
-@export var box: Node3D
+@export var box_start: Node3D  #Renamed to box start for clarity
 @export var player_rig: PlayerRig
 @export var camera_pivot: Node3D
 @export var player_box_position := Vector3(0.05, 0.4, 0.2)
@@ -26,10 +28,13 @@ var _bodies: Array[RigidBody3D] = []
 
 
 func _ready() -> void:
+	#Stage Guards
+	if box_start == null:
+		push_error("Put the box_start.tscn in the level and assign it in the inspector to the node that runs this script.")
 	var player := player_rig.current_player
 	_normalize_produce(player)
 	player_rig.player_swapped.connect(_normalize_produce)
-	player.global_position = box.to_global(player_box_position)
+	player.global_position = box_start.to_global(player_box_position)
 	player.spawn_position = player.global_position
 	player.continuous_cd = true
 	_bodies.append(player)
@@ -43,7 +48,7 @@ func _ready() -> void:
 		body.continuous_cd = true
 		_normalize_produce(body)
 		add_child(body)
-		body.global_position = box.to_global(COMPANION_POSITIONS[index])
+		body.global_position = box_start.to_global(COMPANION_POSITIONS[index])
 		_bodies.append(body)
 
 
@@ -94,8 +99,8 @@ func _collect_mesh_bounds(node: Node3D, relative: Transform3D, bounds: Array[AAB
 
 func _physics_process(_delta: float) -> void:
 	# A single impulse starts the spill; ordinary rigid-body physics takes over.
-	var outward := box.global_basis.y.normalized()
-	var sideways := box.global_basis.z.normalized()
+	var outward := box_start.global_basis.y.normalized()
+	var sideways := box_start.global_basis.z.normalized()
 	for index in _bodies.size():
 		var body := _bodies[index]
 		var spread := float(index - 2) * 0.06

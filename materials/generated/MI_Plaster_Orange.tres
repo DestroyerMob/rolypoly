@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b4wb4ribsi5xq"]
+
+[ext_resource type="Texture2D" uid="uid://v07h7gw2racx" path="res://assets/textures/T_Plaster_Orange_1K_BC.jpg" id="1_s5o6y"]
+[ext_resource type="Texture2D" uid="uid://445kdxv6akh0" path="res://assets/textures/T_Plaster_Orange_1K_N.jpg" id="2_hu31t"]
+[ext_resource type="Texture2D" uid="uid://b40cgb4rghlvp" path="res://assets/textures/T_Plaster_Orange_1K_R.jpg" id="3_m01ue"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_s5o6y")
+roughness_texture = ExtResource("3_m01ue")
+normal_enabled = true
+normal_texture = ExtResource("2_hu31t")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

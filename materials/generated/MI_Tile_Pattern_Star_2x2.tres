@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://l64gnvxuxvnn"]
+
+[ext_resource type="Texture2D" uid="uid://btep3p3okw1mj" path="res://assets/textures/T_Tile_Pattern_Star_2x2_1K_BC.jpg" id="1_hj4de"]
+[ext_resource type="Texture2D" uid="uid://dwh361sbruvkj" path="res://assets/textures/T_Tile_Pattern_Star_2x2_1K_N.jpg" id="2_pem1y"]
+[ext_resource type="Texture2D" uid="uid://cotl1ssujbo8c" path="res://assets/textures/T_Tile_Pattern_Star_2x2_1K_R.jpg" id="3_d0ylp"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_hj4de")
+roughness_texture = ExtResource("3_d0ylp")
+normal_enabled = true
+normal_texture = ExtResource("2_pem1y")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

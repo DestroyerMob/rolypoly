@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://2ft6qpby5qsl"]
+
+[ext_resource type="Texture2D" uid="uid://cgchwvjvfgi5i" path="res://assets/textures/T_Veneer_Poplar_1K_BC.jpg" id="1_3ieao"]
+[ext_resource type="Texture2D" uid="uid://beyegjqg1pgl2" path="res://assets/textures/T_Veneer_Poplar_1K_N.jpg" id="2_m7qxh"]
+[ext_resource type="Texture2D" uid="uid://b1onov8w02yw3" path="res://assets/textures/T_Veneer_Poplar_1K_R.jpg" id="3_755vu"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_3ieao")
+roughness_texture = ExtResource("3_755vu")
+normal_enabled = true
+normal_texture = ExtResource("2_m7qxh")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
