@@ -44,10 +44,12 @@ func _update_attachment() -> void:
 	visible = is_instance_valid(player_rig.current_player)
 	if not visible:
 		return
-	player_rig.current_player.gadget = _gadget if _gadget.has_method("activate") else null
+	player_rig.current_player.gadget = _gadget
 	# Follow position and camera aim, never the rolling body's orientation.
 	var aim := camera.global_basis.orthonormalized()
 	var right := Vector3(aim.x.x, 0, aim.x.z).normalized()
 	global_transform = Transform3D(aim, player_rig.current_player.global_position
 		+ right * side_distance + Vector3.UP * height)
 	_gadget.position = model_offset
+	if _gadget.has_method("update_attachment"):
+		_gadget.update_attachment(player_rig.current_player, self)

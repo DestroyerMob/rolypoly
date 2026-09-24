@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/umbrella/umbrella_closed.glb" id="1_model"]
+
+[node name="UmbrellaClosed" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+scale = Vector3(4, 4, 4)
+position = Vector3(0, -2, 0)

@@ -34,13 +34,15 @@ func _ready() -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	on_ground = has_ground_contact(state)
+	if is_instance_valid(gadget) and gadget.has_method("integrate_equipment_forces"):
+		gadget.integrate_equipment_forces(self, state)
 
 func _physics_process(_delta: float) -> void:
 	if is_squished:
 		return
 	if Input.is_action_just_pressed("jump"):
 		jump()
-	if Input.is_action_just_pressed("activate_equipment") and is_instance_valid(gadget):
+	if Input.is_action_just_pressed("activate_equipment") and is_instance_valid(gadget) and gadget.has_method("activate"):
 		gadget.activate(self)
 	move(Input.get_vector("left", "right", "forward", "backward"))
 
