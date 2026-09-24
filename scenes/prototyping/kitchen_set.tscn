@@ -1,14 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cq7uaiijddevi"]
 
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
-[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
+[ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="6_wj3rv"]
 [ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="7_lp2do"]
 [ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="8_ahvsm"]
 [ext_resource type="PackedScene" uid="uid://50a5u2opqyr" path="res://scenes/prototyping/proto_cylinder.tscn" id="9_1gqfv"]
 [ext_resource type="PackedScene" path="res://assets/models/obstacles/blender/blender_model.tscn" id="10_lp2do"]
+[ext_resource type="Material" uid="uid://cy7bbnc744y84" path="res://materials/level_prototyping/MI_NEUT_world_grid_prototype.tres" id="11_wall_material"]
 
-[node name="KitchenSet" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_wall_a"]
+material = ExtResource("11_wall_material")
+size = Vector3(1000, 300, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_a"]
+size = Vector3(1000, 300, 4)
+
+[node name="KitchenSet" type="Node3D" unique_id=895408248]
 
 [node name="_Shell" type="Node3D" parent="." unique_id=331730971]
 
@@ -28,9 +36,14 @@ metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="WallA_Range" type="StaticBody3D" parent="_Shell" unique_id=1392113805]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97, -100, -810.4344)
-script = ExtResource("4_g02x1")
-size = Vector3(1000, 300, 4)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="Mesh" type="MeshInstance3D" parent="_Shell/WallA_Range" unique_id=174053732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+mesh = SubResource("BoxMesh_wall_a")
+
+[node name="Collision" type="CollisionShape3D" parent="_Shell/WallA_Range" unique_id=1061477671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+shape = SubResource("BoxShape3D_wall_a")
 
 [node name="WallB_Sink" type="StaticBody3D" parent="_Shell" unique_id=667853887]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.132, -100, -363.57587)
@@ -207,4 +220,3 @@ fn = 3
 [node name="_Dressing" type="Node3D" parent="." unique_id=1332525405]
 
 [node name="_Props" type="Node3D" parent="_Dressing" unique_id=1727572606]
-

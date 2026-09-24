@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bdw4vygcfdsow"]
+
+[ext_resource type="Texture2D" uid="uid://bk8y01qtneykn" path="res://textures/materials/red_marble_tiles/albedo.jpg" id="1_albedo"]
+[ext_resource type="Texture2D" uid="uid://dpjnr4wt4rkfg" path="res://textures/materials/red_marble_tiles/normal.jpg" id="2_normal"]
+[ext_resource type="Texture2D" uid="uid://cmws852dqpwce" path="res://textures/materials/red_marble_tiles/roughness.jpg" id="3_roughness"]
+[ext_resource type="Texture2D" uid="uid://1vselaw6ahoo" path="res://textures/materials/red_marble_tiles/ambient_occlusion.jpg" id="4_ao"]
+
+[resource]
+resource_name = "Red Marble Tiles"
+albedo_texture = ExtResource("1_albedo")
+roughness_texture = ExtResource("3_roughness")
+normal_enabled = true
+normal_texture = ExtResource("2_normal")
+ao_enabled = true
+ao_texture = ExtResource("4_ao")
+uv1_scale = Vector3(0.041666668, 0.041666668, 0.041666668)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
