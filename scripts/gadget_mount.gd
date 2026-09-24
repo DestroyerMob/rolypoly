@@ -1,0 +1,44 @@
+class_name GadgetMount
+extends Node3D
+
+@export var player_rig: PlayerRig
+@export var camera: Camera3D
+@export var side_distance := 3.1
+@export var height := 0.0
+@export var model_offset := Vector3(0, -0.55, 0)
+
+var _equipped_scene: PackedScene
+var _gadget: Node3D
+
+
+func equip(scene: PackedScene) -> void:
+	if scene == null or scene == _equipped_scene:
+		return
+	if is_instance_valid(_gadget):
+		remove_child(_gadget)
+		_gadget.queue_free()
+	_gadget = scene.instantiate() as Node3D
+	add_child(_gadget)
+	_equipped_scene = scene
+	_update_attachment()
+
+
+func _process(_delta: float) -> void:
+	_update_attachment()
+
+
+func _update_attachment() -> void:
+	if not is_instance_valid(_gadget):
+		return
+	visible = is_instance_valid(player_rig) and is_instance_valid(camera)
+	if not visible:
+		return
+	visible = is_instance_valid(player_rig.current_player)
+	if not visible:
+		return
+	# Follow position and camera aim, never the rolling body's orientation.
+	var aim := camera.global_basis.orthonormalized()
+	var right := Vector3(aim.x.x, 0, aim.x.z).normalized()
+	global_transform = Transform3D(aim, player_rig.current_player.global_position
+		+ right * side_distance + Vector3.UP * height)
+	_gadget.position = model_offset

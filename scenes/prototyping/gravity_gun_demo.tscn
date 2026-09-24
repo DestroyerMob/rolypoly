@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="4_start"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="5_death"]
 [ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="6_platform"]
+[ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="7_mount"]
+[ext_resource type="PackedScene" uid="uid://bmb1ilpf7j6if" path="res://scenes/props/upgrade_plate.tscn" id="8_plate"]
+[ext_resource type="PackedScene" path="res://scenes/props/gravity_gun.tscn" id="9_gadget"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_demo"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -24,9 +27,6 @@ ambient_light_energy = 0.6
 reflected_light_source = 2
 tonemap_mode = 2
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_tu4y3"]
-height = 0.06341553
-
 [node name="GravityGunDemo" type="Node3D" unique_id=1598349460]
 
 [node name="_Systems" type="Node" parent="." unique_id=1830272868]
@@ -41,6 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 12)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 12)
 script = ExtResource("3_camera")
 player_rig = NodePath("..")
+max_pitch_degrees = 50.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot" unique_id=2109718514]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)
@@ -57,6 +58,11 @@ transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.998
 spot_range = 97.89
 spot_attenuation = 0.22
 spot_angle = 36.84
+
+[node name="GadgetMount" type="Node3D" parent="_Systems/PlayerRig" unique_id=259349339 node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("7_mount")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
 
 [node name="_Course" type="Node" parent="." unique_id=1876803619]
 
@@ -81,13 +87,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="_Lighting" unique_id=1442818016]
 environment = SubResource("Environment_demo")
 
-[node name="UpgradePlate" type="MeshInstance3D" parent="." unique_id=1032650964]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0.11505234, 0)
-mesh = SubResource("CylinderMesh_tu4y3")
-
-[node name="UpperPlate" type="MeshInstance3D" parent="UpgradePlate" unique_id=1983376617]
-transform = Transform3D(0.76800007, 0, 0, 0, 1, 0, 0, 0, 0.76800007, 0, 0.055277407, 0)
-mesh = SubResource("CylinderMesh_tu4y3")
-
-[node name="UpgradeNode" type="Node3D" parent="UpgradePlate" unique_id=913845119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8734, 0)
+[node name="UpgradePlate" parent="." unique_id=1032650964 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("8_plate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+gadget_scene = ExtResource("9_gadget")
+gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
+preview_scale = 1.0

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bmb1ilpf7j6if"]
+
+[ext_resource type="Script" uid="uid://c5uhfj5ornj22" path="res://scripts/upgrade_plate.gd" id="1_plate"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_plate"]
+top_radius = 2.75
+bottom_radius = 2.75
+height = 0.12
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_trigger"]
+height = 1.0
+radius = 2.75
+
+[node name="UpgradePlate" type="Node3D" unique_id=1110923518]
+script = ExtResource("1_plate")
+
+[node name="Plate" type="MeshInstance3D" parent="." unique_id=1022884210]
+mesh = SubResource("CylinderMesh_plate")
+
+[node name="UpperPlate" type="MeshInstance3D" parent="Plate" unique_id=1123863205]
+transform = Transform3D(0.76800007, 0, 0, 0, 1, 0, 0, 0, 0.76800007, 0, 0.12, 0)
+mesh = SubResource("CylinderMesh_plate")
+
+[node name="UpgradeNode" type="Node3D" parent="." unique_id=2127337909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55413, 0)
+
+[node name="PickupArea" type="Area3D" parent="." unique_id=1105772594]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" unique_id=952537858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_trigger")
