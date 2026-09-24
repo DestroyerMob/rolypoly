@@ -1,11 +1,34 @@
 [gd_scene format=3 uid="uid://bmb1ilpf7j6if"]
 
 [ext_resource type="Script" uid="uid://c5uhfj5ornj22" path="res://scripts/upgrade_plate.gd" id="1_plate"]
+[ext_resource type="PackedScene" path="res://assets/models/props/powerup_base/powerup_base.glb" id="2_base"]
+[ext_resource type="Shader" path="res://shaders/powerup_glow.gdshader" id="3_glow"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_plate"]
-top_radius = 2.75
-bottom_radius = 2.75
-height = 0.12
+[sub_resource type="StandardMaterial3D" id="Material_light"]
+albedo_color = Color(0.15, 0.85, 0.75, 1)
+shading_mode = 0
+emission_enabled = true
+emission = Color(0.12, 0.95, 0.8, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="TorusMesh" id="Torus_light"]
+material = SubResource("Material_light")
+inner_radius = 2.28
+outer_radius = 2.34
+rings = 64
+ring_segments = 8
+
+[sub_resource type="ShaderMaterial" id="Material_glow"]
+shader = ExtResource("3_glow")
+
+[sub_resource type="CylinderMesh" id="Mesh_glow"]
+material = SubResource("Material_glow")
+top_radius = 2.55
+bottom_radius = 2.2
+height = 4.4
+radial_segments = 64
+cap_top = false
+cap_bottom = false
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_trigger"]
 height = 1.0
@@ -14,15 +37,27 @@ radius = 2.75
 [node name="UpgradePlate" type="Node3D" unique_id=1110923518]
 script = ExtResource("1_plate")
 
-[node name="Plate" type="MeshInstance3D" parent="." unique_id=1022884210]
-mesh = SubResource("CylinderMesh_plate")
+[node name="Plate" parent="." instance=ExtResource("2_base")]
 
-[node name="UpperPlate" type="MeshInstance3D" parent="Plate" unique_id=1123863205]
-transform = Transform3D(0.76800007, 0, 0, 0, 1, 0, 0, 0, 0.76800007, 0, 0.12, 0)
-mesh = SubResource("CylinderMesh_plate")
+[node name="LightRing" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.56, 0)
+mesh = SubResource("Torus_light")
+cast_shadow = 0
+
+[node name="HoverGlow" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.76, 0)
+mesh = SubResource("Mesh_glow")
+cast_shadow = 0
+
+[node name="ItemLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 2.2, 0)
+light_color = Color(0.35, 1, 0.86, 1)
+light_energy = 1.4
+omni_range = 6.5
+omni_attenuation = 1.5
 
 [node name="UpgradeNode" type="Node3D" parent="." unique_id=2127337909]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55413, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0, 0)
 
 [node name="PickupArea" type="Area3D" parent="." unique_id=1105772594]
 collision_layer = 0

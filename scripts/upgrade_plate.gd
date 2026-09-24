@@ -5,6 +5,7 @@ extends Node3D
 @export var preview_scene: PackedScene
 @export var gadget_mount: GadgetMount
 @export var preview_scale := 0.3
+@export var preview_spin_degrees := 18.0
 
 
 func _ready() -> void:
@@ -14,6 +15,10 @@ func _ready() -> void:
 		$UpgradeNode.add_child(preview)
 		preview.scale = Vector3.ONE * preview_scale
 	$PickupArea.body_entered.connect(_on_body_entered)
+
+
+func _process(delta: float) -> void:
+	$UpgradeNode.rotate_y(deg_to_rad(preview_spin_degrees) * delta)
 
 
 func _on_body_entered(body: Node3D) -> void:

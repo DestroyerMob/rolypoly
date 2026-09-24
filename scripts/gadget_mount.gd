@@ -3,8 +3,8 @@ extends Node3D
 
 @export var player_rig: PlayerRig
 @export var camera: Camera3D
-@export var side_distance := 3.1
-@export var height := 0.0
+@export var side_distance := 4.0
+@export var height := 0.8
 @export var model_offset := Vector3(0, -0.55, 0)
 
 var _equipped_scene: PackedScene

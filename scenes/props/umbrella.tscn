@@ -9,6 +9,7 @@ script = ExtResource("1_script")
 
 [node name="Closed" parent="." instance=ExtResource("2_closed")]
 position = Vector3(0, 0.75, 0)
+scale = Vector3(1.5, 1.2, 1.5)
 
 [node name="Open" parent="." instance=ExtResource("3_open")]
 visible = false

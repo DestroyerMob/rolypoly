@@ -28,6 +28,9 @@ ambient_light_source = 3
 ambient_light_energy = 0.6
 reflected_light_source = 2
 tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.65
+glow_bloom = 0.08
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crosshair"]
 bg_color = Color(1, 1, 1, 1)
