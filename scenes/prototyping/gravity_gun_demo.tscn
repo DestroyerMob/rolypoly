@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dim3tp33qahpt" path="res://packed_scenes/not_a_player_egg.tscn" id="10_vegetable"]
 [ext_resource type="PackedScene" path="res://scenes/props/umbrella_upgrade.tscn" id="11_umbrella"]
 [ext_resource type="PackedScene" path="res://scenes/props/whipped_cream_upgrade.tscn" id="12_cream"]
+[ext_resource type="PackedScene" path="res://scenes/props/ice_cube_upgrade.tscn" id="13_ice"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_demo"]
 sky_top_color = Color(0.3, 0.4, 0.55, 1)
@@ -121,6 +122,10 @@ gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
 
 [node name="WhippedCreamUpgrade" parent="." unique_id=537335176 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("12_cream")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.06, 0)
+gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
+
+[node name="IceCubeUpgrade" parent="." unique_id=1013483398 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("13_ice")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.06, 0)
 gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1288797673]

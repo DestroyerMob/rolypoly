@@ -25,4 +25,4 @@ func _on_body_entered(body: Node3D) -> void:
 	if not is_instance_valid(gadget_mount) or not is_instance_valid(gadget_mount.player_rig):
 		return
 	if body == gadget_mount.player_rig.current_player:
-		gadget_mount.equip(gadget_scene)
+		gadget_mount.equip.call_deferred(gadget_scene)

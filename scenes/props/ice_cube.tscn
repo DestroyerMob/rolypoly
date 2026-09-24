@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ice_cube.gd" id="1_script"]
+[ext_resource type="ArrayMesh" path="res://assets/models/props/ice_cube/ice_cube.obj" id="2_model"]
+[ext_resource type="Shader" path="res://assets/shaders/ice_cube.gdshader" id="3_shader"]
+[ext_resource type="Texture2D" path="res://assets/models/props/ice_cube/albedo.png" id="4_color"]
+[ext_resource type="Texture2D" path="res://assets/models/props/ice_cube/opacity.png" id="5_opacity"]
+[ext_resource type="Texture2D" path="res://assets/models/props/ice_cube/normal.png" id="6_normal"]
+
+[sub_resource type="ShaderMaterial" id="Material_ice"]
+shader = ExtResource("3_shader")
+shader_parameter/ice_color = ExtResource("4_color")
+shader_parameter/ice_opacity = ExtResource("5_opacity")
+shader_parameter/ice_normal = ExtResource("6_normal")
+
+[node name="IceCube" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+material_override = SubResource("Material_ice")
+mesh = ExtResource("2_model")

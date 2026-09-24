@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/upgrade_plate.tscn" id="1_plate"]
+[ext_resource type="PackedScene" path="res://scenes/props/ice_cube.tscn" id="2_equipment"]
+[ext_resource type="PackedScene" path="res://assets/models/props/ice_cube/cooler_box.glb" id="3_icon"]
+
+[node name="IceCubeUpgrade" instance=ExtResource("1_plate")]
+gadget_scene = ExtResource("2_equipment")
+preview_scene = ExtResource("3_icon")
+preview_scale = 1.0
