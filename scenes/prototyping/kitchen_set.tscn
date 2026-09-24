@@ -1,222 +1,517 @@
 [gd_scene format=3 uid="uid://cq7uaiijddevi"]
 
-[ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="4_g02x1"]
 [ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="5_5amv0"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="6_wj3rv"]
-[ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="7_lp2do"]
-[ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="8_ahvsm"]
-[ext_resource type="PackedScene" uid="uid://50a5u2opqyr" path="res://scenes/prototyping/proto_cylinder.tscn" id="9_1gqfv"]
 [ext_resource type="PackedScene" path="res://assets/models/obstacles/blender/blender_model.tscn" id="10_lp2do"]
-[ext_resource type="Material" uid="uid://cy7bbnc744y84" path="res://materials/level_prototyping/MI_NEUT_world_grid_prototype.tres" id="11_wall_material"]
+[ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
+[ext_resource type="PackedScene" uid="uid://c8m6nxngnnw1g" path="res://assets/models/props/table.glb" id="14_vk1ru"]
+[ext_resource type="PackedScene" uid="uid://byub54rxkinip" path="res://assets/models/props/chair.glb" id="20_nm6sv"]
+
+[ext_resource type="Material" path="res://materials/menu_kitchen/walls.tres" id="mat_walls"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/floor.tres" id="mat_floor"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/ceiling.tres" id="mat_ceiling"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/cabinetry.tres" id="mat_cabinetry"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/countertops.tres" id="mat_countertops"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/range_hood.tres" id="mat_range_hood"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/sink.tres" id="mat_sink"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/fridge.tres" id="mat_fridge"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/rug.tres" id="mat_rug"]
+[ext_resource type="Material" path="res://materials/menu_kitchen/pendant.tres" id="mat_pendant"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wall_a"]
-material = ExtResource("11_wall_material")
+material = ExtResource("mat_walls")
 size = Vector3(1000, 300, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_a"]
 size = Vector3(1000, 300, 4)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_5yy73"]
+top_radius = 0.0
+bottom_radius = 34.429
+height = 36.487
+
+[sub_resource type="BoxMesh" id="Mesh_Room_Ceiling_Mesh"]
+material = ExtResource("mat_ceiling")
+size = Vector3(1300, 0.5, 1300)
+
+[sub_resource type="BoxShape3D" id="Shape_Room_Ceiling"]
+size = Vector3(1300, 0.5, 1300)
+
+[sub_resource type="BoxMesh" id="Mesh_Room_Floor_Mesh"]
+material = ExtResource("mat_floor")
+size = Vector3(1500, 0.5, 1500)
+
+[sub_resource type="BoxShape3D" id="Shape_Room_Floor"]
+size = Vector3(1500, 0.5, 1500)
+
+[sub_resource type="BoxMesh" id="Mesh_Room_FrontWall_Mesh"]
+material = ExtResource("mat_walls")
+size = Vector3(1000, 300, 4)
+
+[sub_resource type="BoxShape3D" id="Shape_Room_FrontWall"]
+size = Vector3(1000, 300, 4)
+
+[sub_resource type="BoxMesh" id="Mesh_Room_PantrySideWall_Mesh"]
+material = ExtResource("mat_walls")
+size = Vector3(4, 300, 900)
+
+[sub_resource type="BoxShape3D" id="Shape_Room_PantrySideWall"]
+size = Vector3(4, 300, 900)
+
+[sub_resource type="BoxMesh" id="Mesh_Room_PantryReturnWall_Mesh"]
+material = ExtResource("mat_walls")
+size = Vector3(4, 300, 450)
+
+[sub_resource type="BoxShape3D" id="Shape_Room_PantryReturnWall"]
+size = Vector3(4, 300, 450)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_Island_Cabinet_CabinetBody"]
+material = ExtResource("mat_cabinetry")
+size = Vector3(240, 96, 120)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_Island_Cabinet_Countertop"]
+material = ExtResource("mat_countertops")
+size = Vector3(240, 4, 120)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_Island_Cabinet"]
+size = Vector3(240, 100, 120)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_RangeWall_CookingRange_RangeHood_Chimney_Mesh"]
+material = ExtResource("mat_range_hood")
+size = Vector3(35, 80, 100)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_RangeWall_CookingRange_RangeHood_Chimney"]
+size = Vector3(35, 80, 100)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_RangeWall_CookingRange_RangeHood_Canopy_Mesh"]
+material = ExtResource("mat_range_hood")
+size = Vector3(160, 30, 100)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_RangeWall_CookingRange_RangeHood_Canopy"]
+size = Vector3(160, 30, 100)
+
+[sub_resource type="PrismMesh" id="Mesh_Fixtures_RangeWall_CookingRange_RangeHood_LeftSlope_Mesh"]
+material = ExtResource("mat_range_hood")
+size = Vector3(20, 30, 80)
+left_to_right = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="Shape_Fixtures_RangeWall_CookingRange_RangeHood_LeftSlope"]
+points = PackedVector3Array(-10, -15, -40, 10, -15, -40, 10, 15, -40, -10, -15, 40, 10, -15, 40, 10, 15, 40)
+
+[sub_resource type="PrismMesh" id="Mesh_Fixtures_RangeWall_CookingRange_RangeHood_RightSlope_Mesh"]
+material = ExtResource("mat_range_hood")
+size = Vector3(20, 30, 80)
+left_to_right = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="Shape_Fixtures_RangeWall_CookingRange_RangeHood_RightSlope"]
+points = PackedVector3Array(-10, -15, -40, 10, -15, -40, 10, 15, -40, -10, -15, 40, 10, -15, 40, 10, 15, 40)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_RangeWall_RightCounter_CabinetBody"]
+material = ExtResource("mat_cabinetry")
+size = Vector3(300, 96, 80)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_RangeWall_RightCounter_Countertop"]
+material = ExtResource("mat_countertops")
+size = Vector3(300, 4, 80)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_RangeWall_RightCounter"]
+size = Vector3(300, 100, 80)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_RangeWall_LeftCounter_CabinetBody"]
+material = ExtResource("mat_cabinetry")
+size = Vector3(300, 96, 80)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_RangeWall_LeftCounter_Countertop"]
+material = ExtResource("mat_countertops")
+size = Vector3(300, 4, 80)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_RangeWall_LeftCounter"]
+size = Vector3(300, 100, 80)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_SinkWall_ServingShelf_Mesh"]
+material = ExtResource("mat_countertops")
+size = Vector3(60, 0.5, 350)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_SinkWall_ServingShelf"]
+size = Vector3(60, 0.5, 350)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_SinkWall_SinkCounter_CabinetBody"]
+material = ExtResource("mat_cabinetry")
+size = Vector3(300, 96, 80)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_SinkWall_SinkCounter_Countertop"]
+material = ExtResource("mat_countertops")
+size = Vector3(300, 4, 80)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_SinkWall_SinkCounter"]
+size = Vector3(300, 100, 80)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_SinkWall_Sink_Mesh"]
+material = ExtResource("mat_sink")
+size = Vector3(55, 60, 100)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_SinkWall_Sink"]
+size = Vector3(55, 60, 100)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_Pantry_PantryWallA_Mesh"]
+material = ExtResource("mat_walls")
+size = Vector3(4, 300, 400)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_Pantry_PantryWallA"]
+size = Vector3(4, 300, 400)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_Pantry_PantryWallB_Mesh"]
+material = ExtResource("mat_walls")
+size = Vector3(300, 300, 4)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_Pantry_PantryWallB"]
+size = Vector3(300, 300, 4)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_Pantry_PantryWallD_Mesh"]
+material = ExtResource("mat_walls")
+size = Vector3(300, 300, 4)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_Pantry_PantryWallD"]
+size = Vector3(300, 300, 4)
+
+[sub_resource type="BoxMesh" id="Mesh_Fixtures_Pantry_Fridge_Mesh"]
+material = ExtResource("mat_fridge")
+size = Vector3(70, 213, 121)
+
+[sub_resource type="BoxShape3D" id="Shape_Fixtures_Pantry_Fridge"]
+size = Vector3(70, 213, 121)
+
+[sub_resource type="BoxMesh" id="Mesh_Dressing_Props_Rug_Mesh"]
+material = ExtResource("mat_rug")
+size = Vector3(200, 0.5, 300)
+
+[sub_resource type="BoxShape3D" id="Shape_Dressing_Props_Rug"]
+size = Vector3(200, 0.5, 300)
+
 [node name="KitchenSet" type="Node3D" unique_id=895408248]
 
-[node name="_Shell" type="Node3D" parent="." unique_id=331730971]
+[node name="Room" type="Node3D" parent="." unique_id=331730971]
 
-[node name="Ceiling" type="StaticBody3D" parent="_Shell" unique_id=1980312559]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -424.9923)
-script = ExtResource("4_g02x1")
-size = Vector3(1300, 0.5, 1300)
-fn = 10
-metadata/_custom_type_script = "uid://bdadou88ia27u"
+[node name="Ceiling" type="StaticBody3D" parent="Room" unique_id=1980312559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 201, -424.9923)
 
-[node name="Floor" type="StaticBody3D" parent="_Shell" unique_id=425517740]
+[node name="Mesh" type="MeshInstance3D" parent="Room/Ceiling"]
+position = Vector3(0, 0.25, 0)
+mesh = SubResource("Mesh_Room_Ceiling_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Room/Ceiling"]
+position = Vector3(0, 0.25, 0)
+shape = SubResource("Shape_Room_Ceiling")
+
+[node name="Floor" type="StaticBody3D" parent="Room" unique_id=425517740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -336.14948)
-script = ExtResource("4_g02x1")
-size = Vector3(1500, 0.5, 1500)
-fn = 10
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="WallA_Range" type="StaticBody3D" parent="_Shell" unique_id=1392113805]
+[node name="Mesh" type="MeshInstance3D" parent="Room/Floor"]
+position = Vector3(0, 0.25, 0)
+mesh = SubResource("Mesh_Room_Floor_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Room/Floor"]
+position = Vector3(0, 0.25, 0)
+shape = SubResource("Shape_Room_Floor")
+
+[node name="RangeWall" type="StaticBody3D" parent="Room" unique_id=1392113805]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97, -100, -810.4344)
 
-[node name="Mesh" type="MeshInstance3D" parent="_Shell/WallA_Range" unique_id=174053732]
+[node name="Mesh" type="MeshInstance3D" parent="Room/RangeWall" unique_id=174053732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
 mesh = SubResource("BoxMesh_wall_a")
 
-[node name="Collision" type="CollisionShape3D" parent="_Shell/WallA_Range" unique_id=1061477671]
+[node name="Collision" type="CollisionShape3D" parent="Room/RangeWall" unique_id=1061477671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
 shape = SubResource("BoxShape3D_wall_a")
 
-[node name="WallB_Sink" type="StaticBody3D" parent="_Shell" unique_id=667853887]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.132, -100, -363.57587)
-visible = false
-script = ExtResource("4_g02x1")
-size = Vector3(4, 300, 900)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
+[node name="FrontWall" type="StaticBody3D" parent="Room" unique_id=1554466654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.32605, -100, 180.12231)
 
-[node name="WallC_Open" type="StaticBody3D" parent="_Shell" unique_id=1554466654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.32605, -100, 744.1223)
-script = ExtResource("4_g02x1")
-size = Vector3(1000, 300, 4)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
+[node name="Mesh" type="MeshInstance3D" parent="Room/FrontWall"]
+position = Vector3(0, 150, 0)
+mesh = SubResource("Mesh_Room_FrontWall_Mesh")
 
-[node name="WallD_Tall" type="StaticBody3D" parent="_Shell" unique_id=1664346964]
+[node name="Collision" type="CollisionShape3D" parent="Room/FrontWall"]
+position = Vector3(0, 150, 0)
+shape = SubResource("Shape_Room_FrontWall")
+
+[node name="PantrySideWall" type="StaticBody3D" parent="Room" unique_id=1664346964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -399.5967, -100, -1179.5208)
-script = ExtResource("4_g02x1")
-size = Vector3(4, 300, 900)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="WallD_Tall2" type="StaticBody3D" parent="_Shell" unique_id=1766030448]
+[node name="Mesh" type="MeshInstance3D" parent="Room/PantrySideWall"]
+position = Vector3(0, 150, 0)
+mesh = SubResource("Mesh_Room_PantrySideWall_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Room/PantrySideWall"]
+position = Vector3(0, 150, 0)
+shape = SubResource("Shape_Room_PantrySideWall")
+
+[node name="PantryReturnWall" type="StaticBody3D" parent="Room" unique_id=1766030448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -399.5967, -100, -272.3091)
-script = ExtResource("4_g02x1")
-size = Vector3(4, 300, 450)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="_Fitout" type="Node3D" parent="." unique_id=720298826]
+[node name="Mesh" type="MeshInstance3D" parent="Room/PantryReturnWall"]
+position = Vector3(0, 150, 0)
+mesh = SubResource("Mesh_Room_PantryReturnWall_Mesh")
 
-[node name="_Island" type="Node3D" parent="_Fitout" unique_id=579726993]
+[node name="Collision" type="CollisionShape3D" parent="Room/PantryReturnWall"]
+position = Vector3(0, 150, 0)
+shape = SubResource("Shape_Room_PantryReturnWall")
 
-[node name="Island" type="StaticBody3D" parent="_Fitout/_Island" unique_id=726270753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -455.96198)
-script = ExtResource("4_g02x1")
-size = Vector3(240, 100, 120)
-fn = 11
-pivot = 2
-metadata/_custom_type_script = "uid://bdadou88ia27u"
+[node name="Fixtures" type="Node3D" parent="." unique_id=720298826]
 
-[node name="_ElevationA_Range" type="Node3D" parent="_Fitout" unique_id=846560408]
+[node name="Island" type="Node3D" parent="Fixtures" unique_id=579726993]
 
-[node name="_PianoDeCuisson" type="Node3D" parent="_Fitout/_ElevationA_Range" unique_id=1401073423]
+[node name="Cabinet" type="StaticBody3D" parent="Fixtures/Island" unique_id=726270753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -498.96198)
 
-[node name="_Rangehood" type="Node3D" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=829433422]
+[node name="CabinetBody" type="MeshInstance3D" parent="Fixtures/Island/Cabinet"]
+position = Vector3(0, -52, 0)
+mesh = SubResource("Mesh_Fixtures_Island_Cabinet_CabinetBody")
 
-[node name="ProtoBox" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=801422939 instance=ExtResource("7_lp2do")]
+[node name="Countertop" type="MeshInstance3D" parent="Fixtures/Island/Cabinet"]
+position = Vector3(0, -2, 0)
+mesh = SubResource("Mesh_Fixtures_Island_Cabinet_Countertop")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/Island/Cabinet"]
+position = Vector3(0, -50, 0)
+shape = SubResource("Shape_Fixtures_Island_Cabinet")
+
+[node name="RangeWall" type="Node3D" parent="Fixtures" unique_id=846560408]
+
+[node name="CookingRange" type="Node3D" parent="Fixtures/RangeWall" unique_id=1401073423]
+
+[node name="RangeHood" type="Node3D" parent="Fixtures/RangeWall/CookingRange" unique_id=829433422]
+
+[node name="Chimney" type="StaticBody3D" parent="Fixtures/RangeWall/CookingRange/RangeHood" unique_id=801422939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 133, -783)
-size = Vector3(35, 60, 100)
-fn = 11
 
-[node name="ProtoBox2" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=1909754302 instance=ExtResource("7_lp2do")]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/Chimney"]
+position = Vector3(0, 40, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_CookingRange_RangeHood_Chimney_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/Chimney"]
+position = Vector3(0, 40, 0)
+shape = SubResource("Shape_Fixtures_RangeWall_CookingRange_RangeHood_Chimney")
+
+[node name="Canopy" type="StaticBody3D" parent="Fixtures/RangeWall/CookingRange/RangeHood" unique_id=1909754302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 127, -783)
-size = Vector3(160, 30, 100)
-fn = 11
 
-[node name="ProtoRamp" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=1791653073 instance=ExtResource("8_ahvsm")]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/Canopy"]
+position = Vector3(0, 15, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_CookingRange_RangeHood_Canopy_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/Canopy"]
+position = Vector3(0, 15, 0)
+shape = SubResource("Shape_Fixtures_RangeWall_CookingRange_RangeHood_Canopy")
+
+[node name="LeftSlope" type="StaticBody3D" parent="Fixtures/RangeWall/CookingRange/RangeHood" unique_id=1791653073]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 127, -773)
-run = 20.0
-rise = 30.0
-width = 80.0
-fn = 11
 
-[node name="ProtoRamp2" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_Rangehood" unique_id=458276386 instance=ExtResource("8_ahvsm")]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/LeftSlope"]
+position = Vector3(0, 15, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_CookingRange_RangeHood_LeftSlope_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/LeftSlope"]
+position = Vector3(0, 15, 0)
+shape = SubResource("Shape_Fixtures_RangeWall_CookingRange_RangeHood_LeftSlope")
+
+[node name="RightSlope" type="StaticBody3D" parent="Fixtures/RangeWall/CookingRange/RangeHood" unique_id=458276386]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 90, 127, -773)
-run = 20.0
-rise = 30.0
-width = 80.0
-fn = 11
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=439307957]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/RightSlope"]
+position = Vector3(0, 15, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_CookingRange_RangeHood_RightSlope_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/RangeWall/CookingRange/RangeHood/RightSlope"]
+position = Vector3(0, 15, 0)
+shape = SubResource("Shape_Fixtures_RangeWall_CookingRange_RangeHood_RightSlope")
+
+[node name="HoodLight" type="SpotLight3D" parent="Fixtures/RangeWall/CookingRange" unique_id=439307957]
 transform = Transform3D(1, 0, 0, 0, 0.10034721, 0.9949525, 0, -0.9949525, 0.10034721, 7.2403316, 185.36374, -767.8521)
 spot_range = 370.438
 spot_attenuation = 0.01
 spot_angle = 52.2
 
-[node name="DistinctOven" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=1845032690 instance=ExtResource("5_5amv0")]
+[node name="Oven" parent="Fixtures/RangeWall/CookingRange" unique_id=1845032690 instance=ExtResource("5_5amv0")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
 start_burners_on = true
 flame_speed = 3.8
 
-[node name="Pot" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=1184813120 instance=ExtResource("6_wj3rv")]
+[node name="Pot" parent="Fixtures/RangeWall/CookingRange" unique_id=1184813120 instance=ExtResource("6_wj3rv")]
 transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 2.9536114, 20.43175, -748.3513)
 
-[node name="_OvenCheckpoint" type="Node3D" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson" unique_id=865906226]
-
-[node name="Rest" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_OvenCheckpoint" unique_id=1324294659 instance=ExtResource("7_lp2do")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.453926, 15.757149, -746.95966)
-size = Vector3(20, 20, 20)
-
-[node name="Ramp" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_OvenCheckpoint" unique_id=2022363337 instance=ExtResource("8_ahvsm")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 47.297535, 15.7571335, -746.936)
-run = 20.0
-rise = 20.0
-width = 20.0
-
-[node name="Potcheckpoint" parent="_Fitout/_ElevationA_Range/_PianoDeCuisson/_OvenCheckpoint" unique_id=767664669 instance=ExtResource("9_1gqfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041222, 35.4818, -746.84467)
-fn = 9
-
-[node name="BenchA_LandingR" type="StaticBody3D" parent="_Fitout/_ElevationA_Range" unique_id=273185192]
+[node name="RightCounter" type="StaticBody3D" parent="Fixtures/RangeWall" unique_id=273185192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252.90303, 0, -769.723)
-script = ExtResource("4_g02x1")
-size = Vector3(300, 100, 80)
-fn = 11
-pivot = 2
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="BenchA_LandingR2" type="StaticBody3D" parent="_Fitout/_ElevationA_Range" unique_id=1251511175]
+[node name="CabinetBody" type="MeshInstance3D" parent="Fixtures/RangeWall/RightCounter"]
+position = Vector3(0, -52, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_RightCounter_CabinetBody")
+
+[node name="Countertop" type="MeshInstance3D" parent="Fixtures/RangeWall/RightCounter"]
+position = Vector3(0, -2, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_RightCounter_Countertop")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/RangeWall/RightCounter"]
+position = Vector3(0, -50, 0)
+shape = SubResource("Shape_Fixtures_RangeWall_RightCounter")
+
+[node name="LeftCounter" type="StaticBody3D" parent="Fixtures/RangeWall" unique_id=1251511175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.28746, 0, -769.723)
-script = ExtResource("4_g02x1")
-size = Vector3(300, 100, 80)
-fn = 11
-pivot = 2
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="_ElevationB_SinkWall" type="Node3D" parent="_Fitout" unique_id=2003959935]
+[node name="CabinetBody" type="MeshInstance3D" parent="Fixtures/RangeWall/LeftCounter"]
+position = Vector3(0, -52, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_LeftCounter_CabinetBody")
 
-[node name="ServingWindowTable" parent="_Fitout/_ElevationB_SinkWall" unique_id=2124700358 instance=ExtResource("7_lp2do")]
+[node name="Countertop" type="MeshInstance3D" parent="Fixtures/RangeWall/LeftCounter"]
+position = Vector3(0, -2, 0)
+mesh = SubResource("Mesh_Fixtures_RangeWall_LeftCounter_Countertop")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/RangeWall/LeftCounter"]
+position = Vector3(0, -50, 0)
+shape = SubResource("Shape_Fixtures_RangeWall_LeftCounter")
+
+[node name="SinkWall" type="Node3D" parent="Fixtures" unique_id=2003959935]
+
+[node name="ServingShelf" type="StaticBody3D" parent="Fixtures/SinkWall" unique_id=2124700358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 438, 0, -602)
-size = Vector3(60, 0.5, 350)
 
-[node name="SinkBench" type="StaticBody3D" parent="_Fitout/_ElevationB_SinkWall" unique_id=1201772810]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/SinkWall/ServingShelf"]
+position = Vector3(0, 0.25, 0)
+mesh = SubResource("Mesh_Fixtures_SinkWall_ServingShelf_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/SinkWall/ServingShelf"]
+position = Vector3(0, 0.25, 0)
+shape = SubResource("Shape_Fixtures_SinkWall_ServingShelf")
+
+[node name="SinkCounter" type="StaticBody3D" parent="Fixtures/SinkWall" unique_id=1201772810]
 transform = Transform3D(-0.0024435932, 0, -0.999997, 0, 1, 0, 0.999997, 0, -0.0024435932, 362.4358, 0, -584.2418)
-script = ExtResource("4_g02x1")
-size = Vector3(300, 100, 80)
-fn = 11
-pivot = 2
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="ActualSink" parent="_Fitout/_ElevationB_SinkWall" unique_id=869975511 instance=ExtResource("7_lp2do")]
+[node name="CabinetBody" type="MeshInstance3D" parent="Fixtures/SinkWall/SinkCounter"]
+position = Vector3(0, -52, 0)
+mesh = SubResource("Mesh_Fixtures_SinkWall_SinkCounter_CabinetBody")
+
+[node name="Countertop" type="MeshInstance3D" parent="Fixtures/SinkWall/SinkCounter"]
+position = Vector3(0, -2, 0)
+mesh = SubResource("Mesh_Fixtures_SinkWall_SinkCounter_Countertop")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/SinkWall/SinkCounter"]
+position = Vector3(0, -50, 0)
+shape = SubResource("Shape_Fixtures_SinkWall_SinkCounter")
+
+[node name="Sink" type="StaticBody3D" parent="Fixtures/SinkWall" unique_id=869975511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 364.3402, -58.345505, -624.91565)
-size = Vector3(55, 60, 100)
 
-[node name="SinkWall" type="CSGCombiner3D" parent="_Fitout/_ElevationB_SinkWall" unique_id=1581961109]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/SinkWall/Sink"]
+position = Vector3(0, 30, 0)
+mesh = SubResource("Mesh_Fixtures_SinkWall_Sink_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/SinkWall/Sink"]
+position = Vector3(0, 30, 0)
+shape = SubResource("Shape_Fixtures_SinkWall_Sink")
+
+[node name="WindowWall" type="CSGCombiner3D" parent="Fixtures/SinkWall" unique_id=1581961109]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 299.38358, 94.7811, -601.3451)
 use_collision = true
 
-[node name="CSGBox3D_Union" type="CSGBox3D" parent="_Fitout/_ElevationB_SinkWall/SinkWall" unique_id=711154177]
+[node name="Wall" type="CSGBox3D" parent="Fixtures/SinkWall/WindowWall" unique_id=711154177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.59387, -44.281097, -63.81311)
 size = Vector3(4, 300, 800)
+material = ExtResource("mat_walls")
 
-[node name="CSGBox3D_Subtraction_Window" type="CSGBox3D" parent="_Fitout/_ElevationB_SinkWall/SinkWall" unique_id=1744873712]
+[node name="WindowOpening" type="CSGBox3D" parent="Fixtures/SinkWall/WindowWall" unique_id=1744873712]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.951294, -16.218475, 0.54608154)
 operation = 2
 size = Vector3(11, 159, 300)
 
-[node name="BlenderModel" parent="_Fitout/_ElevationB_SinkWall" unique_id=310644801 instance=ExtResource("10_lp2do")]
+[node name="BlenderModel" parent="Fixtures/SinkWall" unique_id=310644801 instance=ExtResource("10_lp2do")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 288.80304, 1.5258789e-05, -780.01385)
 
-[node name="_ElevationD_Tall" type="Node3D" parent="_Fitout" unique_id=237766516]
+[node name="Pantry" type="Node3D" parent="Fixtures" unique_id=237766516]
 
-[node name="PantryWallA" type="StaticBody3D" parent="_Fitout/_ElevationD_Tall" unique_id=614508104]
+[node name="PantryWallA" type="StaticBody3D" parent="Fixtures/Pantry" unique_id=614508104]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -680.5967, -100, -622.52075)
-script = ExtResource("4_g02x1")
-size = Vector3(4, 300, 400)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="PantryWallB" type="StaticBody3D" parent="_Fitout/_ElevationD_Tall" unique_id=1261945058]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/Pantry/PantryWallA"]
+position = Vector3(0, 150, 0)
+mesh = SubResource("Mesh_Fixtures_Pantry_PantryWallA_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/Pantry/PantryWallA"]
+position = Vector3(0, 150, 0)
+shape = SubResource("Shape_Fixtures_Pantry_PantryWallA")
+
+[node name="PantryWallB" type="StaticBody3D" parent="Fixtures/Pantry" unique_id=1261945058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -533.5967, -100, -801.52075)
-script = ExtResource("4_g02x1")
-size = Vector3(300, 300, 4)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="PantryWallD" type="StaticBody3D" parent="_Fitout/_ElevationD_Tall" unique_id=372687611]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/Pantry/PantryWallB"]
+position = Vector3(0, 150, 0)
+mesh = SubResource("Mesh_Fixtures_Pantry_PantryWallB_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/Pantry/PantryWallB"]
+position = Vector3(0, 150, 0)
+shape = SubResource("Shape_Fixtures_Pantry_PantryWallB")
+
+[node name="PantryWallD" type="StaticBody3D" parent="Fixtures/Pantry" unique_id=372687611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -548.5967, -100, -426.52075)
-script = ExtResource("4_g02x1")
-size = Vector3(300, 300, 4)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="Fridge" parent="_Fitout/_ElevationD_Tall" unique_id=1068473685 instance=ExtResource("7_lp2do")]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/Pantry/PantryWallD"]
+position = Vector3(0, 150, 0)
+mesh = SubResource("Mesh_Fixtures_Pantry_PantryWallD_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/Pantry/PantryWallD"]
+position = Vector3(0, 150, 0)
+shape = SubResource("Shape_Fixtures_Pantry_PantryWallD")
+
+[node name="Fridge" type="StaticBody3D" parent="Fixtures/Pantry" unique_id=1068473685]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -423.38528, -99.50001, -362.07465)
-size = Vector3(70, 213, 121)
-fn = 3
 
-[node name="_Dressing" type="Node3D" parent="." unique_id=1332525405]
+[node name="Mesh" type="MeshInstance3D" parent="Fixtures/Pantry/Fridge"]
+position = Vector3(0, 106.5, 0)
+mesh = SubResource("Mesh_Fixtures_Pantry_Fridge_Mesh")
 
-[node name="_Props" type="Node3D" parent="_Dressing" unique_id=1727572606]
+[node name="Collision" type="CollisionShape3D" parent="Fixtures/Pantry/Fridge"]
+position = Vector3(0, 106.5, 0)
+shape = SubResource("Shape_Fixtures_Pantry_Fridge")
+
+[node name="Furniture" type="Node3D" parent="."]
+
+[node name="Table" parent="Furniture" unique_id=397417103 instance=ExtResource("14_vk1ru")]
+transform = Transform3D(-3.715468e-06, 0, 85, 0, 85, 0, -85, 0, -3.715468e-06, 5, -99.933655, -113)
+
+[node name="Chair" parent="Furniture" unique_id=904532963 instance=ExtResource("20_nm6sv")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -47, -100.14258, -151)
+
+[node name="Props" type="Node3D" parent="." unique_id=1727572606]
+
+[node name="Rug" type="StaticBody3D" parent="Props" unique_id=1957787597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -99.5, -126)
+
+[node name="Mesh" type="MeshInstance3D" parent="Props/Rug"]
+position = Vector3(0, 0.25, 0)
+mesh = SubResource("Mesh_Dressing_Props_Rug_Mesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Props/Rug"]
+position = Vector3(0, 0.25, 0)
+shape = SubResource("Shape_Dressing_Props_Rug")
+
+[node name="PendantLight" type="MeshInstance3D" parent="Props" unique_id=471774795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 183, -121)
+mesh = SubResource("CylinderMesh_5yy73")
+material_override = ExtResource("mat_pendant")
+
+[node name="PowerOutlet" parent="Props" unique_id=313599797 instance=ExtResource("12_ahvsm")]
+transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
+
+[editable path="Furniture/Table"]
+
+[editable path="Fixtures/RangeWall/CookingRange/Oven"]
+
+[editable path="Fixtures/RangeWall/CookingRange/Pot"]
+
+[editable path="Fixtures/SinkWall/BlenderModel"]
+
+[editable path="Props/PowerOutlet"]
+
+[editable path="Furniture/Chair"]
+[editable path="Fixtures/RangeWall/CookingRange/Oven/Model"]
+[editable path="Fixtures/RangeWall/CookingRange/Pot/Model"]
