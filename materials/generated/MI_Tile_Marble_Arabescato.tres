@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://co8h5r4q7450p"]
+
+[ext_resource type="Texture2D" uid="uid://bvuly0mbsfpw1" path="res://assets/textures/T_Tile_Marble_Arabescato_1K_BC.jpg" id="1_uhpxm"]
+[ext_resource type="Texture2D" uid="uid://cyctj1i1vk6o4" path="res://assets/textures/T_Tile_Marble_Arabescato_1K_N.jpg" id="2_eu4v5"]
+[ext_resource type="Texture2D" uid="uid://broj54d14fou0" path="res://assets/textures/T_Tile_Marble_Arabescato_1K_R.jpg" id="3_i87wc"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_uhpxm")
+roughness_texture = ExtResource("3_i87wc")
+normal_enabled = true
+normal_texture = ExtResource("2_eu4v5")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://boqojjhh1yium"]
+
+[ext_resource type="Texture2D" uid="uid://dcv36yv3biw2" path="res://assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_BC.jpg" id="1_6vg3s"]
+[ext_resource type="Texture2D" uid="uid://dtbfrkaeoecvs" path="res://assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_N.jpg" id="2_qlh6p"]
+[ext_resource type="Texture2D" uid="uid://byp1civdcfkkp" path="res://assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_R.jpg" id="3_l6igb"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_6vg3s")
+roughness_texture = ExtResource("3_l6igb")
+normal_enabled = true
+normal_texture = ExtResource("2_qlh6p")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

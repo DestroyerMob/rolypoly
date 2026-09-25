@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dejf357bdhkcm"]
+
+[ext_resource type="Texture2D" uid="uid://ccki461kfy0wh" path="res://assets/textures/T_Tile_Marble_Brick_Verde_Alpi_1K_BC.jpg" id="1_7kmfg"]
+[ext_resource type="Texture2D" uid="uid://pxitvdhlkplx" path="res://assets/textures/T_Tile_Marble_Brick_Verde_Alpi_1K_N.jpg" id="2_psk11"]
+[ext_resource type="Texture2D" uid="uid://cms63wdvhp0jx" path="res://assets/textures/T_Tile_Marble_Brick_Verde_Alpi_1K_R.jpg" id="3_vc417"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_7kmfg")
+roughness_texture = ExtResource("3_vc417")
+normal_enabled = true
+normal_texture = ExtResource("2_psk11")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

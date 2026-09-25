@@ -57,6 +57,15 @@ uniform vec4 albedo_tint : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 // The cheapest art-direction knob you will ever build: one texture plus three
 // tints gives oak, walnut and painted timber at zero extra memory.
 
+uniform float albedo_brightness : hint_range(0.0, 2.0) = 1.0;
+// Multiplies the sampled colour. 1.0 is the texture untouched.
+// Tint can only ever REMOVE colour, because white x anything = that thing and
+// every channel of a tint is at most 1.0. This is the knob that adds.
+// Range capped at 2.0 deliberately. ALBEDO is reflectance, not light output,
+// so real surfaces live under 0.9. Past about 1.3 you are lying to the
+// renderer and global illumination will bounce the lie around the room.
+// If you need more than that, the room is underlit, not the timber.
+
 ///// GROUP ROUGHNESS /////
 group_uniforms Roughness;
 uniform float roughness_value : hint_range(0.0, 1.0) = 0.5;
@@ -126,9 +135,23 @@ uniform vec3 world_offset = vec3(0.0);
 uniform float uv_rotation_degrees : hint_range(-360.0, 360.0) = 0.0;
 // Rotates the texture within each plane. 90 turns horizontal grain vertical.
 
+uniform bool world_space = true;
+// ON  - the projection is nailed to the WORLD. Rotating or moving the node
+//       slides the mesh underneath a stationary texture. Two pieces meeting at
+//       a corner share one continuous grain, which is the whole point of the
+//       master material. Cost: a face rotated off a world axis sits between two
+//       planes, both contribute, and the grain crosses itself.
+// OFF - the projection is nailed to the OBJECT. The texture rotates WITH the
+//       node, so an off-axis piece is axis-aligned again as far as the maths
+//       cares and the crossing disappears. Cost: that piece no longer agrees
+//       with its neighbours.
+
 ///// VARYINGS /////
-varying vec3 world_pos;
-varying vec3 world_nrm;
+varying vec3 proj_pos;
+varying vec3 proj_nrm;
+// Named "proj" not "world" because world_space decides which space these hold.
+// Everything downstream is space-agnostic: the blend weights and the three
+// plane lookups only care that position and normal agree with each other.
 /*
 A varying is written by vertex() and read by fragment(), and the rasteriser
 INTERPOLATES it across the triangle in hardware, for free.
@@ -148,27 +171,21 @@ swim as you orbit). World-aligned needs world space, so we build it ourselves.
 
 ///// VERTEX: runs per corner. Model space to world space. /////
 void vertex() {
-    world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz + world_offset;
-    // MODEL_MATRIX is 4x4: inner 3x3 holds ROTATION AND SCALE, the fourth
-    // column holds TRANSLATION, bottom row is 0,0,0,1.
-    // The 1.0 is the w component and it means "this is a position", so the
-    // translation column applies. A 0.0 would mean "this is a direction" and
-    // translation would be ignored. That single number is why 3D uses 4x4.
-    // .xyz throws w away once the multiply is done.
-
-    world_nrm = normalize(mat3(MODEL_MATRIX) * NORMAL);
-    // mat3() slices off the translation entirely, which is the same statement
-    // made the other way: a direction must not translate. Move the counter
-    // 1200 units and its top face still points up.
-    // normalize() because scale changes length and the maths assumes length 1.
-    // (Strictly, non-uniform scale needs NORMAL_MATRIX. Identical under
-    //  uniform scale, which is all we use.)
+    if (world_space) {
+        proj_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz + world_offset;
+        proj_nrm = normalize(mat3(MODEL_MATRIX) * NORMAL);
+    } else {
+        // No MODEL_MATRIX, so we never leave model space. VERTEX and NORMAL are
+        // already model space, which is exactly the space that rotates with the
+        // node. Doing nothing IS the fix.
+        proj_pos = VERTEX + world_offset;
+        proj_nrm = normalize(NORMAL);
+    }
 }
-
 
 ///// FRAGMENT: runs per pixel. /////
 void fragment() {
-    vec3 n = normalize(world_nrm);
+    vec3 n = normalize(proj_nrm);
     // Re-normalised because interpolating two unit vectors does not give a unit
     // vector. Halfway between (1,0,0) and (0,1,0) is (0.5,0.5,0), length 0.707.
     // The weights below would be wrong before the division.
@@ -183,7 +200,7 @@ void fragment() {
     // max() guards a divide by zero on a degenerate normal.
 
     // --- Coordinate space --------------------------------------------------
-    vec3 p = world_pos / max(world_scale, 0.0001);
+    vec3 p = proj_pos / max(world_scale, 0.0001);
 
     // --- The three plane lookups -------------------------------------------
     vec2 uv_x = vec2(p.z * -sign(n.x), -p.y);
@@ -205,7 +222,7 @@ void fragment() {
     vec3 col = texture(albedo_texture, uv_x).rgb * w.x
              + texture(albedo_texture, uv_y).rgb * w.y
              + texture(albedo_texture, uv_z).rgb * w.z;
-    ALBEDO = col * albedo_tint.rgb;
+   ALBEDO = col * albedo_tint.rgb * albedo_brightness;
 
     // --- Roughness ---------------------------------------------------------
     float rough = roughness_value;

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://brboybkh6qf5w"]
+
+[resource]
+resource_name = "Oven_Deep_Shadow"
+cull_mode = 2
+albedo_color = Color(0.3780584, 0.15356472, 0.05631885, 1)
+metallic = 0.5
+roughness = 0.3

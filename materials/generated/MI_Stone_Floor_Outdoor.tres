@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://f4ewq4qhjvto"]
+
+[ext_resource type="Texture2D" uid="uid://oiw26y55q8am" path="res://assets/textures/T_Stone_Floor_Outdoor_1K_BC.jpg" id="1_mr88u"]
+[ext_resource type="Texture2D" uid="uid://d2cyjuuj2nnnm" path="res://assets/textures/T_Stone_Floor_Outdoor_1K_N.jpg" id="2_g8vb7"]
+[ext_resource type="Texture2D" uid="uid://ckonmub3yqagd" path="res://assets/textures/T_Stone_Floor_Outdoor_1K_R.jpg" id="3_0vjnn"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_mr88u")
+roughness_texture = ExtResource("3_0vjnn")
+normal_enabled = true
+normal_texture = ExtResource("2_g8vb7")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

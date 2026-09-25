@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://3ru5nj880ida"]
 
-[ext_resource type="Texture2D" uid="uid://c6it6brblrj3o" path="res://assets/textures/T_Tile_Pattern_Star_1K_BC.jpg" id="1_dlskr"]
+[ext_resource type="Texture2D" uid="uid://btep3p3okw1mj" path="res://assets/textures/T_Tile_Pattern_Star_2x2_1K_BC.jpg" id="1_dlskr"]
 [ext_resource type="Texture2D" uid="uid://d1dbm6wpqgntu" path="res://assets/textures/T_Tile_Pattern_Star_1K_N.jpg" id="2_ccmen"]
 [ext_resource type="Texture2D" uid="uid://c0su2nabigq5l" path="res://assets/textures/T_Tile_Pattern_Star_1K_R.jpg" id="3_sk278"]
 

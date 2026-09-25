@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bq48rynroqtma"]
+
+[ext_resource type="Texture2D" uid="uid://cefhx335xkpug" path="res://assets/textures/T_Stone_Wall_River_BC.jpg" id="1_75mhe"]
+[ext_resource type="Texture2D" uid="uid://cxtr1quldbaw1" path="res://assets/textures/T_Stone_Wall_River_N.jpg" id="2_yj1dl"]
+[ext_resource type="Texture2D" uid="uid://ctlmupnsml0up" path="res://assets/textures/T_Stone_Wall_River_R.jpg" id="3_i0h8u"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_75mhe")
+roughness_texture = ExtResource("3_i0h8u")
+normal_enabled = true
+normal_texture = ExtResource("2_yj1dl")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

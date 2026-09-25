@@ -12,5 +12,6 @@ roughness_texture = ExtResource("3_pg4l3")
 normal_enabled = true
 normal_texture = ExtResource("2_d307m")
 uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_offset = Vector3(2, 5, 0)
 uv1_triplanar = true
 uv1_world_triplanar = true

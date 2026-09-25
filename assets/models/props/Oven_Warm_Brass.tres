@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bgl3wixnw8b35"]
+
+[ext_resource type="Texture2D" uid="uid://dnb0k184jeg2n" path="res://assets/textures/T_Wood_Floor_1K_N.jpg" id="1_d8ih3"]
+
+[resource]
+resource_name = "Oven_Warm_Brass"
+cull_mode = 2
+albedo_color = Color(0.6276436, 0.47891134, 0.18198773, 1)
+metallic = 0.5
+metallic_specular = 0.2
+roughness = 0.2
+normal_enabled = true
+normal_scale = 5.3
+normal_texture = ExtResource("1_d8ih3")

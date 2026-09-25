@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dj4ny4m7pq5no"]
+
+[ext_resource type="Texture2D" uid="uid://khckaflwhh7w" path="res://assets/textures/T_Metal_Scratched_1K_MR.png" id="1_g1q6y"]
+
+[resource]
+resource_name = "Oven_Deep_Teal_Enamel"
+cull_mode = 2
+albedo_color = Color(0.50597626, 0.21455133, 0.08878986, 1)
+metallic = 0.5
+roughness = 0.24
+normal_texture = ExtResource("1_g1q6y")

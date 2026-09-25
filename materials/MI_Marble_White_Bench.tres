@@ -9,7 +9,8 @@
 render_priority = 0
 shader = ExtResource("1_gt4g1")
 shader_parameter/albedo_texture = ExtResource("2_rxi5b")
-shader_parameter/albedo_tint = Color(0.8877086, 0.9210283, 0.961698, 1)
+shader_parameter/albedo_tint = Color(0.9377859, 0.89470685, 0.8690442, 1)
+shader_parameter/albedo_brightness = 1.0
 shader_parameter/roughness_value = 1.0
 shader_parameter/use_roughness_map = false
 shader_parameter/roughness_map = ExtResource("4_ih4f2")
@@ -23,3 +24,5 @@ shader_parameter/normal_strength = 1.0
 shader_parameter/world_scale = 100.0
 shader_parameter/triplanar_sharpness = 4.0
 shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 0.0
+shader_parameter/world_space = true
