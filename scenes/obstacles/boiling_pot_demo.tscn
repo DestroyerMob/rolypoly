@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bls5we8m15el5"]
+
+[ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="1_ndvxp"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="3_sf0jj"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/boiling_pot.tscn" id="4_exmux"]
+[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="4_h4s4i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(22, 1, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.78, 0.6, 0.42, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(22, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ramp"]
+size = Vector3(5.44, 0.2, 4.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ramp"]
+size = Vector3(5.44, 0.2, 4.8)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.45, 0.6, 0.85, 1)
+sky_horizon_color = Color(0.85, 0.82, 0.78, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.8
+
+[node name="PotDemo" type="Node3D" unique_id=1666722523]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=800754915]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1216433298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=2028497897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_floor")
+
+[node name="Ramp" type="StaticBody3D" parent="." unique_id=1839295219]
+transform = Transform3D(0.9063, -0.4226, 0, 0.4226, 0.9063, 0, 0, 0, 1, 2.577, 1.06, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp" unique_id=548375603]
+shape = SubResource("BoxShape3D_ramp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp" unique_id=1808327240]
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_ramp")
+
+[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("1_ndvxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.468353, 0.8844094, 0)
+
+[node name="DeathZone" parent="." unique_id=998967361 instance=ExtResource("3_sf0jj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Camera3D" parent="." unique_id=649855209 instance=ExtResource("4_h4s4i")]
+transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 2, 9, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2073995444]
+transform = Transform3D(0.81915206, 0.46984634, -0.32898995, 0, 0.57357645, 0.81915206, 0.57357645, -0.6710101, 0.46984634, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2072587084]
+environment = SubResource("Environment_demo")
+
+[node name="BoilingPot" parent="." unique_id=1865162066 instance=ExtResource("4_exmux")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.1966863, 0, 0.24005318)
+overcook_time = 15.0
