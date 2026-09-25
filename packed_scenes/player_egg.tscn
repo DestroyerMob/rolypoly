@@ -10,6 +10,7 @@ height = 1.6
 mass = 0.6
 health = 1
 bounciness = 0.08
+vegetable_type = 2
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21113563, 0)

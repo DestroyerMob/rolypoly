@@ -9,6 +9,9 @@ enum Condition {NORMAL,DIZZY,HURT,DEAD,WIN}
 const PRIORITY := [Condition.WIN, Condition.DEAD, Condition.HURT, Condition.DIZZY, Condition.NORMAL]
 signal condition_changed(new_condition: Condition)
 
+## Which vegetable this character is.
+enum VegetableType { ONION, TOMATO, EGG }
+
 ## Character stats — overridden per vegetable in each player_*.tscn.
 ## To change player size edit the transform scale for it's CollisionShape3D property
 @export_group("Character Stats")
@@ -16,6 +19,7 @@ signal condition_changed(new_condition: Condition)
 @export var jump_impulse := 9.5
 @export var health := 3
 @export_range(0.0, 1.0) var bounciness := 0.3
+@export var vegetable_type: VegetableType = VegetableType.ONION
 
 @onready var collider := $CollisionShape3D
 @onready var visual := $CollisionShape3D/MeshInstance3D
