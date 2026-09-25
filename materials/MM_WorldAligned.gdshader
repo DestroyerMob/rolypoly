@@ -7,7 +7,7 @@ shader_type spatial; // Declare what rendering pipeline this shader goes into
 // 1. Spatial 3D  2. Canvas_item 2D/UI  3. Particles  4. Sky  5. Fog
 // The type decides which built-ins exist. ALBEDO only exists in spatial.
 
-render_mode blend_mix, cull_back, diffuse_toon, specular_toon; //specular_schlick_ggx;
+render_mode blend_mix, cull_back, diffuse_lambert, specular_schlick_ggx; //specular_schlick_ggx;
 // Sets flags on the pipeline surrounding the shader
 // Blend_mix   - solid surfaces replace what is behind them
 // Blend_add   - colours sum, for fire and glows

@@ -75,7 +75,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		reset_to_spawn()
 	#elif event.is_action_pressed(&"restart_level"):
 		#restart_level()
-
+	if event.is_action_pressed(&"debug_probe"):
+		_probe_colliders()
+		
 ## Soft reset. Back to the spawn, level untouched.
 func reset_to_spawn() -> void:
 	var start := _find_spawn()
@@ -178,3 +180,28 @@ func squish_and_respawn(squish_duration := 0.18, respawn_delay := 0.55) -> void:
 	squish_tween.tween_interval(respawn_delay)
 	squish_tween.tween_callback(respawn.bind(spawn_position))
 	squished.emit()
+	
+## Dev tool. Asks the physics server what overlaps the marble right now and
+## prints each hit's full node path. The blue debug outlines tell you a shape
+## exists. This tells you which node owns it.
+func _probe_colliders() -> void:
+	#Job 1: Build a sphere a bit larger than the marble, as the thing trapping
+	#       you is something you are INSIDE, and a touch test would miss it.
+	var shape := SphereShape3D.new()
+	shape.radius = 8.0
+
+	#Job 2: Describe the query. Areas included, as a stray Area3D can block
+	#       nothing and still be the thing you are trying to identify.
+	var params := PhysicsShapeQueryParameters3D.new()
+	params.shape = shape
+	params.transform = global_transform
+	params.collide_with_bodies = true
+	params.collide_with_areas = true
+	#Job 3: Exclude ourselves, or the marble is always the first result.
+	params.exclude = [get_rid()]
+
+	var hits := get_world_3d().direct_space_state.intersect_shape(params, 32)
+	print("--- overlapping at %s ---" % global_position)
+	for hit in hits:
+		var node := hit.collider as Node
+		print("  %s  [%s]" % [node.get_path(), node.get_class()])

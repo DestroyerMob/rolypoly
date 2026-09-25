@@ -5,11 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cgaat0nggdjkj" path="res://assets/textures/T_Flagstone_Floor_1K_R.jpg" id="3_7xoeb"]
 
 [resource]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.9704482, 0.9206004, 0.8769454, 1)
+diffuse_mode = 1
+albedo_color = Color(0.8704439, 0.83669853, 0.81169444, 1)
 albedo_texture = ExtResource("1_80t7r")
-roughness = 0.77
+roughness = 0.76
 roughness_texture = ExtResource("3_7xoeb")
 normal_enabled = true
 normal_scale = 8.19
