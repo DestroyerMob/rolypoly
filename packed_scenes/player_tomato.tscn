@@ -4,9 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://c1wj4ry2r1mat" path="res://models/vegetables/tomato/Tomato.glb" id="2_jed1l"]
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_l7lwj")]
+mass = 1.2
+health = 2
+bounciness = 0.4
 
-[node name="MeshInstance3D" parent="CollisionShape3D" parent_id_path=PackedInt32Array(181200873) index="0" unique_id=1398664333]
+[node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="CollisionShape3D" index="0" unique_id=1398664333]
 visible = false
 
-[node name="Tomato" parent="CollisionShape3D" parent_id_path=PackedInt32Array(181200873) index="1" unique_id=334535423 instance=ExtResource("2_jed1l")]
+[node name="Tomato" parent="CollisionShape3D" index="1" unique_id=334535423 instance=ExtResource("2_jed1l")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)

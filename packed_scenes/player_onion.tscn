@@ -4,15 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://cuhcrlgs2ujyx" path="res://models/vegetables/onion/Onion.glb" id="2_onion"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7pbxu"]
-radius = 2.1
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_inbge")]
+mass = 1.3
+bounciness = 0.12
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_7pbxu")
 
 [node name="MeshInstance3D" parent="CollisionShape3D" index="0" unique_id=1398664333]
 visible = false
 
 [node name="Onion" parent="CollisionShape3D" index="1" unique_id=1261362989 instance=ExtResource("2_onion")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13761103, -2.0020318, 0)
+transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, -0.042975947, -0.5168917, 0)

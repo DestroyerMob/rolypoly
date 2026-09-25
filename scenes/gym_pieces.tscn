@@ -20,12 +20,12 @@
 [ext_resource type="PackedScene" uid="uid://50a5u2opqyr" path="res://scenes/prototyping/proto_cylinder.tscn" id="17_xjhk5"]
 [ext_resource type="PackedScene" uid="uid://c4ujhjjhr4jdl" path="res://scenes/prototyping/proto_ramp.tscn" id="18_qxyph"]
 [ext_resource type="PackedScene" uid="uid://bwghfcy21irpb" path="res://scenes/prototyping/proto_half_pipe.tscn" id="19_xjhk5"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles/blender.tscn" id="20_qxyph"]
+[ext_resource type="PackedScene" uid="uid://bcglepmuufbpx" path="res://scenes/obstacles/blender.tscn" id="20_qxyph"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/cheese_grater.tscn" id="21_6mmbi"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/corkscrew.tscn" id="22_jrmgl"]
 [ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="23_2tvl1"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="25_4v77p"]
-[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="26_ricwt"]
+[ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="26_ricwt"]
 [ext_resource type="PackedScene" path="res://scenes/obstacles/funnel_long.tscn" id="27_mvr0u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmhqh"]
@@ -61,16 +61,15 @@ tonemap_mode = 2
 script = ExtResource("1_jrvun")
 
 [node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("1_0rc31")]
-transform = Transform3D(-0.9929082, 0, -0.118883915, 0, 1, 0, 0.118883915, 0, -0.9929082, 0, 0.5025821, 0)
-jump_impulse = 6.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0162196, 0)
 
-[node name="Camera3D" type="Camera3D" parent="PlayerRig" unique_id=1887820177 node_paths=PackedStringArray("player_rig")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 8.838481)
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/Player" unique_id=1887820177 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.9918902, 4.4192405)
 fov = 80.0
 script = ExtResource("3_s4hep")
-player_rig = NodePath("..")
+player_rig = NodePath("../..")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="PlayerRig/Camera3D" unique_id=1645231805]
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerRig/Player/Camera3D" unique_id=1645231805]
 transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.9988193, 0, 0, 7.6655684)
 spot_range = 97.89
 spot_attenuation = 0.22
