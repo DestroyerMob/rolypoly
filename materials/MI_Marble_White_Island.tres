@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cboc570gxubxh"]
 
 [ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_r378s"]
-[ext_resource type="Texture2D" uid="uid://bixik65bmxmps" path="res://assets/textures/T_Veneer_Rosewood_North_1K_BC.jpg" id="2_r378s"]
+[ext_resource type="Texture2D" uid="uid://gqa7n7ij6ofb" path="res://assets/textures/T_Marble_White_1K_BC.jpg" id="2_r378s"]
 [ext_resource type="Texture2D" uid="uid://cgka6vkk3qtdf" path="res://assets/textures/T_Veneer_Rosewood_North_1K_N.jpg" id="3_r378s"]
 [ext_resource type="Texture2D" uid="uid://cm58cel4y7q5x" path="res://assets/textures/T_Veneer_Rosewood_North_1K_R.jpg" id="4_r378s"]
 
@@ -9,18 +9,18 @@
 render_priority = 0
 shader = ExtResource("1_r378s")
 shader_parameter/albedo_texture = ExtResource("2_r378s")
-shader_parameter/albedo_tint = Color(0.7448842, 0.98494595, 0.9697638, 1)
-shader_parameter/albedo_brightness = 2.0
-shader_parameter/roughness_value = 1.0
+shader_parameter/albedo_tint = Color(0.9944374, 0.92942584, 0.8879093, 1)
+shader_parameter/albedo_brightness = 1.0
+shader_parameter/roughness_value = 0.0
 shader_parameter/use_roughness_map = false
 shader_parameter/roughness_map = ExtResource("4_r378s")
 shader_parameter/metallic_value = 0.0
 shader_parameter/use_metallic_map = false
 shader_parameter/use_ao_map = false
 shader_parameter/ao_strength = 1.0
-shader_parameter/use_normal_map = true
+shader_parameter/use_normal_map = false
 shader_parameter/normal_map = ExtResource("3_r378s")
-shader_parameter/normal_strength = 1.0
+shader_parameter/normal_strength = 0.47000011732500013
 shader_parameter/world_scale = 100.0
 shader_parameter/triplanar_sharpness = 4.0
 shader_parameter/world_offset = Vector3(0, 0, 0)

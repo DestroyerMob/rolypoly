@@ -7,7 +7,6 @@
 [resource]
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.74626344, 0.8097547, 0.87260556, 1)
 albedo_texture = ExtResource("1_qvjrt")
 roughness_texture = ExtResource("3_allqr")
 normal_enabled = true

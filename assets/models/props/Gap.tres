@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://chilh12ms7d1m"]
+
+[resource]
+resource_name = "Gap"
+cull_mode = 2
+albedo_color = Color(0.26006746, 0.26006746, 0.26006746, 1)
+roughness = 0.52

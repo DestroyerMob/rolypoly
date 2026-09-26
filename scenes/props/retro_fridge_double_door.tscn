@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ba84gvwit658c"]
+
+[ext_resource type="PackedScene" uid="uid://duj7ukyyhno8d" path="res://assets/models/props/retro_fridge_double_doors.glb" id="1_hndnh"]
+
+[node name="RetroFridgeDoubleDoor" type="StaticBody3D" unique_id=756755263]
+
+[node name="retro_fridge_double_doors" parent="." unique_id=263573461 instance=ExtResource("1_hndnh")]

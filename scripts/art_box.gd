@@ -8,7 +8,11 @@ extends StaticBody3D #Not to be moved by anything
 const GENERATED := &"art_box_generated" #Stamp node  & is a StringName
 
 enum Pivot { BASE, CENTER, TOP }
-
+enum Plan {
+	CENTER,
+	LEFT, RIGHT, FRONT, BACK,
+	FRONT_LEFT, FRONT_RIGHT, BACK_LEFT, BACK_RIGHT,
+}
 @export var size := Vector3(100.0, 4.0, 60.0):
 	set(value):
 		size = Vector3(maxf(value.x, 0.01), maxf(value.y, 0.01), maxf(value.z, 0.01))
@@ -24,6 +28,13 @@ enum Pivot { BASE, CENTER, TOP }
 	set(value):
 		pivot = value
 		_rebuild()
+## Moves the pivot horizontally. Use an edge value for a hinge line, so the
+## piece swings about that edge instead of orbiting its own centre.
+@export var plan_pivot: Plan = Plan.CENTER:
+	set(value):
+		plan_pivot = value
+		_rebuild()
+		
 
 ## Turn off for decorative panels stuck to a face that already has collision,
 ## so the marble does not hit two colliders in the same place.
@@ -105,11 +116,51 @@ func _ensure_nodes() -> void:
 		add_child(_col_node)
 
 
+## Works out how far to push the mesh and collider off the node origin, so that
+## the origin lands where the designer asked. Height and plan are worked out
+## separately, as they are independent choices that combine freely.
 func _pivot_offset() -> Vector3:
+	var half := size * 0.5
+	var offset := Vector3.ZERO
+
+	#Job 1: Height. Push up by half so the box stands ON the node, or down by
+	#       half so it hangs FROM the node. CENTER and anything added later
+	#       leave it alone.
 	match pivot:
 		Pivot.BASE:
-			return Vector3(0.0, size.y * 0.5, 0.0)
+			offset.y = half.y
 		Pivot.TOP:
-			return Vector3(0.0, -size.y * 0.5, 0.0)
-		_:
-			return Vector3.ZERO
+			offset.y = -half.y
+
+	#Job 2: Plan. Collect a direction per axis rather than a finished offset,
+	#       as the corner cases are just two edge cases at once and this way
+	#       they need no extra arithmetic.
+	var x_dir := 0.0
+	var z_dir := 0.0
+	match plan_pivot:
+		Plan.LEFT:
+			x_dir = 1.0
+		Plan.RIGHT:
+			x_dir = -1.0
+		Plan.FRONT:
+			z_dir = -1.0
+		Plan.BACK:
+			z_dir = 1.0
+		Plan.FRONT_LEFT:
+			x_dir = 1.0
+			z_dir = -1.0
+		Plan.FRONT_RIGHT:
+			x_dir = -1.0
+			z_dir = -1.0
+		Plan.BACK_LEFT:
+			x_dir = 1.0
+			z_dir = 1.0
+		Plan.BACK_RIGHT:
+			x_dir = -1.0
+			z_dir = 1.0
+
+	#Job 3: Push the box away from the pivot, as the pivot staying put is the
+	#       whole point. Hinge on the left edge and the door must extend right.
+	offset.x = half.x * x_dir
+	offset.z = half.z * z_dir
+	return offset
