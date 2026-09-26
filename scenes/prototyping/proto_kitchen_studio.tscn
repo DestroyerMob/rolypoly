@@ -1215,10 +1215,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1391917, -45.599407, -261.
 
 [node name="_Props" type="Node" parent="_Set/_Dressing" unique_id=1727572606]
 
-[node name="Table_Runner" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1789653187]
-transform = Transform3D(-0.034899462, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, -0.034899462, -7.139196, -10.031, -159.1803)
+[node name="PotPlant_Shelf" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1381410645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 162.5, -111)
 script = ExtResource("13_c1nrq")
-size = Vector3(25, 0.1, 250)
+size = Vector3(20, 20, 20)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Table_Runner" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1789653187]
+transform = Transform3D(-0.05233594, 0, -0.9986295, 0, 1, 0, 0.9986295, 0, -0.05233594, -7.139196, -10.031, -159.1803)
+script = ExtResource("13_c1nrq")
+size = Vector3(35, 0.1, 250)
 material = ExtResource("30_04wg3")
 pivot = 2
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
@@ -1380,6 +1386,18 @@ material = ExtResource("27_val1g")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="PotPlantTree" type="StaticBody3D" parent="_Set/_Dressing/_Props/Pot Plant" unique_id=36101489]
+script = ExtResource("13_c1nrq")
+size = Vector3(15, 220, 15)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Pot Plant2" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1243386183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -749, -99.50001, 326)
+script = ExtResource("13_c1nrq")
+size = Vector3(60, 60, 60)
+material = ExtResource("27_val1g")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="PotPlantTree" type="StaticBody3D" parent="_Set/_Dressing/_Props/Pot Plant2" unique_id=1491987497]
 script = ExtResource("13_c1nrq")
 size = Vector3(15, 220, 15)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"

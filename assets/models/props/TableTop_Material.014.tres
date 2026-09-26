@@ -6,12 +6,12 @@
 [resource]
 resource_name = "TableTop_Material.014"
 cull_mode = 2
-albedo_color = Color(0.68533194, 0.6139306, 0.52327734, 1)
+albedo_color = Color(5.7756904e-07, 0.45352036, 0.75568235, 1)
 albedo_texture = ExtResource("1_pencc")
 metallic = 0.03
 metallic_specular = 0.18
-roughness = 0.18
+roughness = 0.23
 normal_enabled = true
 normal_scale = -11.53
 normal_texture = ExtResource("2_hj0r2")
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(20, 20, 20)
