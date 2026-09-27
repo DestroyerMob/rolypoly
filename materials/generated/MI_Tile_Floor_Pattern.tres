@@ -7,11 +7,12 @@
 [resource]
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.737193, 0.7371929, 0.7371929, 1)
+albedo_color = Color(0.96725196, 0.8124501, 0.7716031, 1)
 albedo_texture = ExtResource("1_q351w")
+roughness = 0.63
 roughness_texture = ExtResource("3_tnq8k")
 normal_enabled = true
-normal_scale = 16.0
+normal_scale = 8.8
 normal_texture = ExtResource("2_egb0g")
 uv1_scale = Vector3(0.01, 0.01, 0.01)
 uv1_triplanar = true

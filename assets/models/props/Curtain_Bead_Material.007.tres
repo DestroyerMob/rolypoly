@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://daugcru6vy6lg"]
+
+[ext_resource type="Texture2D" uid="uid://hfg5dwa80nwm" path="res://assets/textures/sun_with_ray_low_opacity.png" id="1_i4ska"]
+
+[resource]
+resource_name = "Curtain_Bead_Material.007"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.80049086, 0.80049074, 0.80049074, 1)
+emission_energy_multiplier = 0.75
+emission_operator = 1
+emission_texture = ExtResource("1_i4ska")

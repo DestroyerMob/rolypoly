@@ -6,7 +6,6 @@
 [resource]
 resource_name = "TableTop_Material.014"
 cull_mode = 2
-albedo_color = Color(5.7756904e-07, 0.45352036, 0.75568235, 1)
 albedo_texture = ExtResource("1_pencc")
 metallic = 0.03
 metallic_specular = 0.18
