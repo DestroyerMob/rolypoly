@@ -675,6 +675,27 @@ size = Vector2(230, 90)
 material = SubResource("ShaderMaterial_ku4q0")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
+[node name="Island_Shaker_A2" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=97764833]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -44.5, -55)
+script = ExtResource("17_0j8r1")
+size = Vector2(230, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Island_Shaker_A3" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=548063190]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -115, -44.5, 1)
+script = ExtResource("17_0j8r1")
+size = Vector2(116, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Island_Shaker_A4" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=1463208327]
+transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, 114, -44.5, 1)
+script = ExtResource("17_0j8r1")
+size = Vector2(116, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
 [node name="Island_CounterTop_SB3D" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1785844764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -498.96198)
 
@@ -1042,13 +1063,6 @@ size = Vector3(300, 15, 1)
 material = SubResource("ShaderMaterial_ku4q0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="Kickboard_3000mmx150mm2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_3_KickBoard" unique_id=184507412]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 53, -15, 195)
-script = ExtResource("13_c1nrq")
-size = Vector3(300, 15, 1)
-material = SubResource("ShaderMaterial_ku4q0")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
 [node name="_Window_L" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1473713922]
 
 [node name="TimberCorbel_R2" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=464223844 instance=ExtResource("20_vdiw0")]
@@ -1152,25 +1166,30 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="_ElevationB_SinkWall" type="Node" parent="_Set/_Fitout" unique_id=2003959935]
 
-[node name="Sink_Carcass" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1417026101]
-transform = Transform3D(0, -6.181724e-08, -0.9999999, 8.742276e-08, 0.9999999, -6.181726e-08, 0.9999999, -8.7422755e-08, 0, 356, -98.7, -583)
-script = ExtResource("36_alunx")
-size = Vector3(303, 91.5, 97.5)
-material = SubResource("StandardMaterial3D_uajea")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_uajea")])
-flip_cuts = true
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+[node name="Kickboard_3000mmx150mm2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=184507412]
+transform = Transform3D(-4.371139e-08, 0, -1, -4.5334684e-14, 1, 0, 1, 4.2632564e-14, -4.371139e-08, 311.22302, -99.49999, -586.723)
+script = ExtResource("13_c1nrq")
+size = Vector3(309, 15, 1)
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_Carcass" unique_id=1435706153]
-transform = Transform3D(1, 1.2079227e-13, 0, -1.2079227e-13, 1, 0, -1.2705494e-21, -4.7245256e-22, 1, 5, 45.999996, 49)
+[node name="Kickboard_3000mmx150mm3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=2046116858]
+transform = Transform3D(1, 4.2632564e-14, 0, -4.5334684e-14, 1, 0, 0, -1.8635285e-21, 1, 355.22302, -99.49999, -431.72302)
+script = ExtResource("13_c1nrq")
+size = Vector3(90, 15, 1)
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Sink_ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1435706153]
+transform = Transform3D(9.600348e-21, -6.181724e-08, -0.9999999, 8.7422634e-08, 0.9999999, -6.181726e-08, 0.9999999, -8.742263e-08, 0, 307, -53.52152, -578)
 script = ExtResource("17_0j8r1")
-size = Vector2(94, 63)
+size = Vector2(94, 64)
 panel_depth = 1.0
 frame_depth = 1.5
 material = SubResource("ShaderMaterial_ku4q0")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
-[node name="ShakerFront_10x80x17" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_Carcass/ShakerFront_10x80x16" unique_id=1708637583]
+[node name="ShakerFront_10x80x17" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_ShakerFront_10x80x16" unique_id=1708637583]
 transform = Transform3D(1, 4.2632564e-14, 0, -4.2632564e-14, 1, 0, 8.4703295e-22, -4.724525e-22, 1, -19, 0, 0)
 script = ExtResource("17_0j8r1")
 size = Vector2(37.5, 45)
@@ -1179,7 +1198,7 @@ frame_depth = 1.5
 material = SubResource("ShaderMaterial_ku4q0")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
-[node name="ShakerFront_10x80x18" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_Carcass/ShakerFront_10x80x16" unique_id=965973156]
+[node name="ShakerFront_10x80x18" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_ShakerFront_10x80x16" unique_id=965973156]
 transform = Transform3D(1, 7.1054274e-14, 0, -7.1054274e-14, 1, 0, 2.5410988e-21, -4.7245236e-22, 1, 19.5, 0, 0)
 script = ExtResource("17_0j8r1")
 size = Vector2(37.5, 45)
@@ -1188,11 +1207,96 @@ frame_depth = 1.5
 material = SubResource("ShaderMaterial_ku4q0")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
-[node name="KnobRound" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_Carcass/ShakerFront_10x80x16" unique_id=870693412 instance=ExtResource("18_ium30")]
+[node name="KnobRound" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_ShakerFront_10x80x16" unique_id=870693412 instance=ExtResource("18_ium30")]
 transform = Transform3D(1, 7.1054274e-15, 0, -7.1054274e-15, 1, 0, 0, -4.7245266e-22, 1, -3, 18.000004, 0)
 
-[node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_Carcass/ShakerFront_10x80x16" unique_id=334736131 instance=ExtResource("18_ium30")]
+[node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/Sink_ShakerFront_10x80x16" unique_id=334736131 instance=ExtResource("18_ium30")]
 transform = Transform3D(1, 7.1054274e-15, 0, -7.1054274e-15, 1, 0, 0, -4.7245266e-22, 1, 3.2000122, 18.000004, 0)
+
+[node name="Bin_ShakerFront_10x80x17" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=2115668345]
+transform = Transform3D(1.4824038e-20, -6.181724e-08, -0.9999999, 8.742257e-08, 0.9999999, -6.181726e-08, 0.9999999, -8.742256e-08, 0, 307, -46.176674, -480.85846)
+script = ExtResource("17_0j8r1")
+size = Vector2(99, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="ShakerFront_10x80x17" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Bin_ShakerFront_10x80x17" unique_id=904089338]
+transform = Transform3D(1, 4.2632564e-14, 0, -4.2632564e-14, 1, 0, 8.4703295e-22, -4.724525e-22, 1, -19, 0, 0)
+script = ExtResource("17_0j8r1")
+size = Vector2(37.5, 45)
+panel_depth = 1.0
+frame_depth = 1.5
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="ShakerFront_10x80x18" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Bin_ShakerFront_10x80x17" unique_id=490762700]
+transform = Transform3D(1, 7.1054274e-14, 0, -7.1054274e-14, 1, 0, 2.5410988e-21, -4.7245236e-22, 1, 19.5, 0, 0)
+script = ExtResource("17_0j8r1")
+size = Vector2(37.5, 45)
+panel_depth = 1.0
+frame_depth = 1.5
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="KnobRound" parent="_Set/_Fitout/_ElevationB_SinkWall/Bin_ShakerFront_10x80x17" unique_id=183637317 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 7.1054274e-15, 0, -7.1054274e-15, 1, 0, 0, -4.7245266e-22, 1, -3, 18.000004, 0)
+
+[node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/Bin_ShakerFront_10x80x17" unique_id=938557394 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 7.1054274e-15, 0, -7.1054274e-15, 1, 0, 0, -4.7245266e-22, 1, 3.2000122, 18.000004, 0)
+
+[node name="Side" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1258219131]
+transform = Transform3D(0.9999999, -8.7422535e-08, 4.3711392e-08, 8.742255e-08, 0.9999999, -6.181726e-08, -4.371138e-08, 6.181727e-08, 0.9999999, 352, -46.176666, -431.10004)
+script = ExtResource("17_0j8r1")
+size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = SubResource("ShaderMaterial_ku4q0")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Drawer_875mmx200mm_D" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1566363059]
+transform = Transform3D(7.874839e-21, -6.181724e-08, -0.9999999, 8.742265e-08, 0.9999999, -6.181726e-08, 0.9999999, -8.742264e-08, 0, 306, -27.700012, -673.5)
+script = ExtResource("13_c1nrq")
+size = Vector3(93.5, 20, 2)
+material = ExtResource("16_nm6sv")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="HandleBar" parent="_Set/_Fitout/_ElevationB_SinkWall/Drawer_875mmx200mm_D" unique_id=1186813409 instance=ExtResource("16_kuif3")]
+transform = Transform3D(1, 0, -4.2351647e-22, 0, 1, 3.7024953e-29, 0, -4.724528e-22, 1, 1.000061, 10.000002, 1)
+
+[node name="ShakerFront_L" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Drawer_875mmx200mm_D" unique_id=1822969828]
+transform = Transform3D(1, -3.5527137e-14, -4.2351647e-22, 3.5527137e-14, 1, 3.7024938e-29, 1.2705494e-21, -4.724529e-22, 1, -23.876648, -28.999956, -1)
+script = ExtResource("17_0j8r1")
+size = Vector2(45.5, 57)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("16_nm6sv")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="KnobRound" parent="_Set/_Fitout/_ElevationB_SinkWall/Drawer_875mmx200mm_D/ShakerFront_L" unique_id=919424146 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 26, 0)
+
+[node name="ShakerFront_R" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Drawer_875mmx200mm_D" unique_id=1461299583]
+transform = Transform3D(1, -3.5527137e-14, -4.2351647e-22, 3.5527137e-14, 1, 3.7024938e-29, 1.2705494e-21, -4.724529e-22, 1, 23.297913, -28.99996, -1)
+script = ExtResource("17_0j8r1")
+size = Vector2(46.5, 57)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("16_nm6sv")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/Drawer_875mmx200mm_D/ShakerFront_R" unique_id=1236007851 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 26, 0)
+
+[node name="Sink_Carcass" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1417026101]
+transform = Transform3D(0, -4.9453792e-08, -0.9999999, 8.742276e-08, 0.7999999, -6.181726e-08, 0.9999999, -6.99382e-08, 0, 356, -81.7, -583)
+script = ExtResource("36_alunx")
+size = Vector3(303, 70, 97.5)
+material = SubResource("StandardMaterial3D_uajea")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_uajea")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="SinkBench" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=576990163]
 transform = Transform3D(-4.371139e-08, 1, 5.9604645e-08, 0, -5.9604645e-08, 1, 1, 4.371139e-08, 2.6054018e-15, 300, -2, -578)
