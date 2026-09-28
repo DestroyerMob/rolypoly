@@ -266,7 +266,7 @@ reflected_light_source = 2
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.50406, 41.899998, -499.24713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 355.49594, 41.899998, -499.24713)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -1300,6 +1300,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="SinkBench" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=576990163]
 transform = Transform3D(-4.371139e-08, 1, 5.9604645e-08, 0, -5.9604645e-08, 1, 1, 4.371139e-08, 2.6054018e-15, 300, -2, -578)
+use_collision = true
 script = ExtResource("36_alunx")
 size = Vector3(300, 100, 10)
 material = ExtResource("16_rndar")
