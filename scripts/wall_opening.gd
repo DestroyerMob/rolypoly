@@ -38,7 +38,7 @@ enum Kind {
 		crown_rise = maxf(value, 0.0)
 		emit_changed()
 
-@export_range(2, 48) var segments := 12:
+@export_range(2, 100) var segments := 12:
 	set(value):
 		segments = value
 		emit_changed()
