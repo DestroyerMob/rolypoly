@@ -55,6 +55,52 @@ radius = 0.93
 
 [node name="Model" parent="." unique_id=682238863 instance=ExtResource("1_sink")]
 
+[node name="Sink_BackCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="0" unique_id=483201240]
+visible = false
+
+[node name="Sink_FaucetBase" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="10" unique_id=659552437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2694192, -5.8599997)
+
+[node name="Sink_FaucetNozzle" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="11" unique_id=539312994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4294195, -2.55)
+
+[node name="Sink_FaucetPipe" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="12" unique_id=15653033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43058085, -2)
+
+[node name="Sink_FrontCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="13" unique_id=521343031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7494192, 3.94)
+visible = false
+
+[node name="Sink_FrontWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="14" unique_id=1211299830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67, 3.52)
+
+[node name="Sink_LeftCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="15" unique_id=2115636427]
+visible = false
+
+[node name="Sink_LeftWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="16" unique_id=398288629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.66, 0)
+
+[node name="Sink_RightCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="17" unique_id=1680581559]
+visible = false
+
+[node name="Sink_RimAccent_+4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="19" unique_id=71367671]
+visible = false
+
+[node name="Sink_RimAccent_-4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="20" unique_id=1736644570]
+visible = false
+
+[node name="Sink_TapBase_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="21" unique_id=527061624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.129419, -5.8599997)
+
+[node name="Sink_TapBase_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="22" unique_id=1256206181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.129419, -5.8599997)
+
+[node name="Sink_TapHandle_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="23" unique_id=1723194738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.5294192, -5.8599997)
+
+[node name="Sink_TapHandle_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="24" unique_id=1287111841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.5294192, -5.8599997)
+
 [node name="BasinCollision" type="StaticBody3D" parent="." unique_id=370516374]
 
 [node name="Bottom" type="CollisionShape3D" parent="BasinCollision" unique_id=343153929]
@@ -195,3 +241,5 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight/PlayerSensor" unique_id=1914905418]
 shape = SubResource("CylinderShape3D_plate_sensor")
+
+[editable path="Model"]

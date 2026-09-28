@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cvpdkx2gsw2ak"]
+
+[resource]
+resource_name = "Sink_Brushed_Steel"
+cull_mode = 2
+albedo_color = Color(0.64995646, 0.7014107, 0.7287319, 1)
+metallic = 0.82
+roughness = 0.23

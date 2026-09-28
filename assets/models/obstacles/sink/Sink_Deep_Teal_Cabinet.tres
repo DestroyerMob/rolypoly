@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d1p78uomgqjn4"]
+
+[ext_resource type="Texture2D" uid="uid://d0ar8ek613fhl" path="res://assets/textures/T_Marble_White_1K_N.jpg" id="2_qlxq3"]
+[ext_resource type="Texture2D" uid="uid://gqa7n7ij6ofb" path="res://assets/textures/T_Marble_White_1K_BC.jpg" id="2_uj14s"]
+[ext_resource type="Texture2D" uid="uid://76bmnqd87bpd" path="res://assets/textures/T_Marble_White_1K_R.jpg" id="3_qlxq3"]
+
+[resource]
+resource_name = "Sink_Deep_Teal_Cabinet"
+cull_mode = 2
+albedo_color = Color(0.18431373, 0.38039216, 0.53333336, 1)
+albedo_texture = ExtResource("2_uj14s")
+metallic = 0.12
+roughness = 0.1
+roughness_texture = ExtResource("3_qlxq3")
+normal_enabled = true
+normal_scale = 13.94
+normal_texture = ExtResource("2_qlxq3")
