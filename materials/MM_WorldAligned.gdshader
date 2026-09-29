@@ -168,6 +168,14 @@ uniform vec3 world_offset = vec3(0.0);
 uniform float uv_rotation_degrees : hint_range(-360.0, 360.0) = 0.0;
 // Rotates the texture within each plane. 90 turns horizontal grain vertical.
 
+uniform vec2 uv_tiling = vec2(1.0, 1.0);
+// Stretches the lookup per axis AFTER world_scale has done the uniform part.
+// world_scale answers "how big is one tile". This answers "what shape is it".
+// A border strip texture is wide and short, so forcing it into the square that
+// world_scale alone produces squashes it. Set y to 2 and the pattern is half
+// as tall in world units, which un-squashes a 2:1 strip.
+// (1, 1) is the neutral value, so every existing material is untouched.
+
 uniform bool world_space = true;
 // ON  - the projection is nailed to the WORLD. Rotating or moving the node
 //       slides the mesh underneath a stationary texture. Two pieces meeting at
@@ -178,6 +186,7 @@ uniform bool world_space = true;
 //       node, so an off-axis piece is axis-aligned again as far as the maths
 //       cares and the crossing disappears. Cost: that piece no longer agrees
 //       with its neighbours.
+
 
 ///// VARYINGS /////
 varying vec3 proj_pos;
@@ -248,6 +257,12 @@ void fragment() {
 		uv_y = rot * uv_y;
 		uv_z = rot * uv_z;
 	}
+	
+	uv_x *= uv_tiling;
+	uv_y *= uv_tiling;
+	uv_z *= uv_tiling;
+	// After the rotation, so the aspect correction is applied in the rotated
+	// frame and a rotated strip still reads as a strip.
 	
     // --- Albedo, always sampled --------------------------------------------
     vec3 col = texture(albedo_texture, uv_x).rgb * w.x

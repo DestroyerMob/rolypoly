@@ -5,3 +5,5 @@
 [node name="BenchTapered" type="StaticBody3D" unique_id=1162987810]
 
 [node name="bench_tapered_smooth" parent="." unique_id=1824487391 instance=ExtResource("1_xjnat")]
+
+[editable path="bench_tapered_smooth"]

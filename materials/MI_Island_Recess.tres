@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://qqeayef3pla0"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_yi6cp"]
+[ext_resource type="Texture2D" uid="uid://bmtiie2lv1ow4" path="res://assets/textures/T_Plaster_Cream_1K_R.jpg" id="2_jqwbi"]
+[ext_resource type="Texture2D" uid="uid://rt3cjjl3vlyd" path="res://assets/textures/T_Plaster_Cream_1K_N.jpg" id="3_fybaa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yi6cp")
+shader_parameter/albedo_texture = ExtResource("2_jqwbi")
+shader_parameter/albedo_tint = Color(0.2901961, 0.29803923, 0.24313726, 1)
+shader_parameter/albedo_brightness = 1.0000000475
+shader_parameter/roughness_value = 0.28400001349
+shader_parameter/use_roughness_map = false
+shader_parameter/metallic_value = 0.3270000155325
+shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.5
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("3_fybaa")
+shader_parameter/normal_strength = 0.10100047979750038
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = false
+shader_parameter/world_scale = 200.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 90.00002137500002
+shader_parameter/world_space = true

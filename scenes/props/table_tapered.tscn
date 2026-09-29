@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://1jv6g11k83jt"]
 
 [ext_resource type="PackedScene" uid="uid://t85l0iwj45k5" path="res://assets/models/props/table_tapered.glb" id="1_5etgs"]
+[ext_resource type="Material" uid="uid://cknvra70l5me2" path="res://materials/MI_Wood_Oak_Slab_Honey.tres" id="2_xg4m1"]
 
 [node name="TableTapered" type="StaticBody3D" unique_id=1415726556]
 
 [node name="table_tapered" parent="." unique_id=442862607 instance=ExtResource("1_5etgs")]
+
+[node name="TableTop" parent="table_tapered" index="0" unique_id=1842039403]
+material_override = ExtResource("2_xg4m1")
+
+[editable path="table_tapered"]

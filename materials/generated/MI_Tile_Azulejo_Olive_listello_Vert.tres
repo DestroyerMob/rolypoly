@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bicy4p1wijekq"]
+
+[ext_resource type="Texture2D" uid="uid://b2cxff3v7r4pc" path="res://assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_BC.png" id="1_04b6d"]
+[ext_resource type="Texture2D" uid="uid://bc8syire7myps" path="res://assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_N.png" id="2_xr8gh"]
+[ext_resource type="Texture2D" uid="uid://di4scmgta3u0w" path="res://assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_R.png" id="3_f1t7p"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_04b6d")
+roughness_texture = ExtResource("3_f1t7p")
+normal_enabled = true
+normal_texture = ExtResource("2_xr8gh")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
