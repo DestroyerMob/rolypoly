@@ -4,6 +4,10 @@ extends Node3D #Pure geometry, collision is optional and handled as one box
 
 ## Shaker cabinet front: a flat panel with a raised frame of two stiles and two
 ## rails. Faces +Z. Place it flat against a carcass face.
+##
+## The recessed centre is its own mesh, so it can take its own material. The
+## WALLS of that recess are the inner faces of the stiles and rails, and stay
+## with the frame, which is both simpler and correct joinery.
 
 const GENERATED := &"shaker_generated"
 
@@ -31,9 +35,19 @@ const GENERATED := &"shaker_generated"
 		frame_depth = maxf(value, 0.1)
 		_rebuild()
 
+## Material for the stiles, rails and the back panel.
 @export var material: Material:
 	set(value):
 		material = value
+		_rebuild()
+
+## Material for the recessed centre field only. Leave empty and it falls back
+## to `material`, so every door built before this option existed is unchanged.
+## Usually this should be the SAME material one value step darker, not a
+## different one. A recessed panel reads as shadow, not as another timber.
+@export var panel_material: Material:
+	set(value):
+		panel_material = value
 		_rebuild()
 
 ## Off by default, as the carcass behind usually already has collision.
@@ -56,7 +70,7 @@ func _rebuild() -> void:
 		return
 
 	#Job 2: Clear the previous build, as the part count is fixed but their sizes
-	#       all change together and rebuilding is simpler than mutating five boxes.
+	#       all change together and rebuilding is simpler than mutating six boxes.
 	_clear_generated()
 
 	var half_w := size.x * 0.5
@@ -65,30 +79,51 @@ func _rebuild() -> void:
 	var rail_len := size.x - frame_width * 2.0
 
 	#Job 3: Build the flat back panel, as everything else sits on top of it.
+	#       It stays frame material, because its only visible parts are the
+	#       edges of the door.
 	_add_part("Panel",
 		Vector3(size.x, size.y, panel_depth),
-		Vector3(0.0, 0.0, panel_depth * 0.5))
+		Vector3(0.0, 0.0, panel_depth * 0.5),
+		material)
+
+	#Job 3b: Lay a thin plate over the centre, inset by one frame width on all
+	#        four sides so it exactly fills the opening the frame leaves.
+	#        This is the only part that can carry its own material, because it
+	#        is the only part that is nothing but recess floor.
+	#        Sitting 0.15 proud of the panel avoids z-fighting with it.
+	var field_w := size.x - frame_width * 2.0
+	var field_h := size.y - frame_width * 2.0
+	if field_w > 0.01 and field_h > 0.01:
+		var field_mat: Material = panel_material if panel_material != null else material
+		_add_part("Field",
+			Vector3(field_w, field_h, 0.15),
+			Vector3(0.0, 0.0, panel_depth + 0.075),
+			field_mat)
 
 	#Job 4: Build the stiles at full height, as that is how a real shaker door
 	#       is assembled and it puts the joint lines where the eye expects them.
 	_add_part("Stile_L",
 		Vector3(frame_width, size.y, frame_depth),
-		Vector3(-half_w + frame_width * 0.5, 0.0, frame_z))
+		Vector3(-half_w + frame_width * 0.5, 0.0, frame_z),
+		material)
 	_add_part("Stile_R",
 		Vector3(frame_width, size.y, frame_depth),
-		Vector3(half_w - frame_width * 0.5, 0.0, frame_z))
+		Vector3(half_w - frame_width * 0.5, 0.0, frame_z),
+		material)
 
 	#Job 5: Build the rails between the stiles, as they are shorter by exactly
 	#       two stile widths and must not overlap them.
 	if rail_len > 0.01:
 		_add_part("Rail_Top",
 			Vector3(rail_len, frame_width, frame_depth),
-			Vector3(0.0, half_h - frame_width * 0.5, frame_z))
+			Vector3(0.0, half_h - frame_width * 0.5, frame_z),
+			material)
 		_add_part("Rail_Bottom",
 			Vector3(rail_len, frame_width, frame_depth),
-			Vector3(0.0, -half_h + frame_width * 0.5, frame_z))
+			Vector3(0.0, -half_h + frame_width * 0.5, frame_z),
+			material)
 
-	#Job 6: Add one collider for the whole door, as five separate ones would let
+	#Job 6: Add one collider for the whole door, as six separate ones would let
 	#       the marble catch on the seams between them.
 	if collision_enabled:
 		_add_body(Vector3(size.x, size.y, panel_depth + frame_depth),
@@ -96,13 +131,13 @@ func _rebuild() -> void:
 
 
 ## Builds one box and parents it. No set_owner, so it never serialises.
-func _add_part(part_name: String, box_size: Vector3, pos: Vector3) -> void:
+func _add_part(part_name: String, box_size: Vector3, pos: Vector3, mat: Material) -> void:
 	var node := MeshInstance3D.new()
 	node.name = part_name
 	var mesh := BoxMesh.new()
 	mesh.size = box_size
 	node.mesh = mesh
-	node.material_override = material
+	node.material_override = mat
 	node.position = pos
 	node.set_meta(GENERATED, true)
 	add_child(node)
@@ -122,7 +157,7 @@ func _add_body(box_size: Vector3, pos: Vector3) -> void:
 
 
 ## Removes everything the last rebuild made, as the parts are cheap to recreate
-## and tracking five boxes individually is more code than it saves.
+## and tracking six boxes individually is more code than it saves.
 func _clear_generated() -> void:
 	for child in get_children():
 		if child.has_meta(GENERATED):
