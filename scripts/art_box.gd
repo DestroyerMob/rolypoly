@@ -13,6 +13,12 @@ enum Plan {
 	LEFT, RIGHT, FRONT, BACK,
 	FRONT_LEFT, FRONT_RIGHT, BACK_LEFT, BACK_RIGHT,
 }
+# Used For Bevelling 
+const _AXES := [Vector3.RIGHT, Vector3.UP, Vector3.BACK]
+# Indexed 0,1,2 so the builder below walks X, Y, Z in one loop instead of three
+# copies of the same code. Order matters: X cross Y = Z, so
+# _AXES[a] cross _AXES[a+1] = _AXES[a+2] and the winding maths stays honest.
+
 @export var size := Vector3(100.0, 4.0, 60.0):
 	set(value):
 		size = Vector3(maxf(value.x, 0.01), maxf(value.y, 0.01), maxf(value.z, 0.01))
@@ -35,6 +41,13 @@ enum Plan {
 		plan_pivot = value
 		_rebuild()
 		
+## Chamfer on all twelve edges, in world units. 0 uses a plain BoxMesh.
+## The point is the highlight it catches, not the silhouette, so keep it small.
+## 0.6 on a benchtop, 1.5 on a beam. Auto-clamped so it can never eat the box.
+@export var bevel := 0.0:
+	set(value):
+		bevel = maxf(value, 0.0)
+		_rebuild()
 
 ## Turn off for decorative panels stuck to a face that already has collision,
 ## so the marble does not hit two colliders in the same place.
@@ -69,12 +82,18 @@ func _rebuild() -> void:
 #Job 2: Guarantee both children exist, so everything below needs no null checks.
 	_ensure_nodes()
 	
-#Job 3: Build the visual from size, as nothing connects the export to the mesh.
-	var mesh := BoxMesh.new()
-	mesh.size = size
-	_mesh_node.mesh = mesh
+#Job 3: Build the visual from size, as nothing connects the export to the
+#       mesh. Below the threshold we use BoxMesh, which is 12 triangles and
+#       free. Above it we generate a chamfered box, which is 44.
+	var limit := minf(minf(size.x, size.y), size.z) * 0.49
+	var b := clampf(bevel, 0.0, limit)
+	if b <= 0.001:
+		var mesh := BoxMesh.new()
+		mesh.size = size
+		_mesh_node.mesh = mesh
+	else:
+		_mesh_node.mesh = _build_beveled_box(size, b)
 	_mesh_node.material_override = material
-	
 #Job 4: Build the collider from the SAME size, as a mismatch here is an invisible wall or a floor that is not there.
 	var shape := BoxShape3D.new()
 	shape.size = size
@@ -164,3 +183,89 @@ func _pivot_offset() -> Vector3:
 	offset.x = half.x * x_dir
 	offset.z = half.z * z_dir
 	return offset
+
+## A chamfered box is three families of face: six inset rectangles where the
+## original faces were, twelve quads spanning the original edges, and eight
+## triangles at the original corners. No UVs are written, because every
+## material on this tool is triplanar and generates its own coordinates.
+func _build_beveled_box(dim: Vector3, b: float) -> ArrayMesh:
+	var half := dim * 0.5
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+
+	#Job 1: Six face rectangles, each pulled in by the bevel on all four sides.
+	for a in 3:
+		var e_a: Vector3 = _AXES[a]
+		var e_u: Vector3 = _AXES[(a + 1) % 3]
+		var e_v: Vector3 = _AXES[(a + 2) % 3]
+		var hu := half[(a + 1) % 3] - b
+		var hv := half[(a + 2) % 3] - b
+		for i in 2:
+			var s := -1.0 if i == 0 else 1.0
+			var c := e_a * (s * half[a])
+			_add_face(st, [
+				c - e_u * hu - e_v * hv,
+				c + e_u * hu - e_v * hv,
+				c + e_u * hu + e_v * hv,
+				c - e_u * hu + e_v * hv,
+			], e_a * s)
+
+	#Job 2: Twelve edge quads, each bridging the gap the inset just opened up
+	#       between two neighbouring faces.
+	for a in 3:
+		var e_a: Vector3 = _AXES[a]
+		var e_u: Vector3 = _AXES[(a + 1) % 3]
+		var e_v: Vector3 = _AXES[(a + 2) % 3]
+		var ha := half[a] - b
+		var hu := half[(a + 1) % 3]
+		var hv := half[(a + 2) % 3]
+		for iu in 2:
+			for iv in 2:
+				var su := -1.0 if iu == 0 else 1.0
+				var sv := -1.0 if iv == 0 else 1.0
+				var p_u := e_u * (su * hu) + e_v * (sv * (hv - b))
+				var p_v := e_u * (su * (hu - b)) + e_v * (sv * hv)
+				_add_face(st, [
+					p_u - e_a * ha,
+					p_u + e_a * ha,
+					p_v + e_a * ha,
+					p_v - e_a * ha,
+				], (e_u * su + e_v * sv).normalized())
+
+	#Job 3: Eight corner triangles, one per original corner, closing the three
+	#       edge quads that meet there.
+	for ix in 2:
+		for iy in 2:
+			for iz in 2:
+				var sx := -1.0 if ix == 0 else 1.0
+				var sy := -1.0 if iy == 0 else 1.0
+				var sz := -1.0 if iz == 0 else 1.0
+				_add_face(st, [
+					Vector3(sx * half.x, sy * (half.y - b), sz * (half.z - b)),
+					Vector3(sx * (half.x - b), sy * half.y, sz * (half.z - b)),
+					Vector3(sx * (half.x - b), sy * (half.y - b), sz * half.z),
+				], Vector3(sx, sy, sz).normalized())
+
+	#Job 4: Flat normals, as a chamfer reads through its hard edges.
+	st.generate_normals()
+	return st.commit()
+
+
+## Adds one convex polygon, facing outward, whatever order it arrived in.
+func _add_face(st: SurfaceTool, points: Array, outward: Vector3) -> void:
+	#Job 1: Pull the first three corners into typed locals, as indexing an
+	#       untyped Array yields Variant and := cannot infer from it.
+	var p0: Vector3 = points[0]
+	var p1: Vector3 = points[1]
+	var p2: Vector3 = points[2]
+	var facing := (p1 - p0).cross(p2 - p0)
+	#Job 2: Reverse if it comes out anticlockwise, as Godot's front faces are
+	#       CLOCKWISE seen from outside and cull_back would eat the wrong ones.
+	var p := points.duplicate()
+	if facing.dot(outward) > 0.0:
+		p.reverse()
+	#Job 3: Fan from the first point, safe because every face here is convex.
+	for i in range(1, p.size() - 1):
+		st.add_vertex(p[0])
+		st.add_vertex(p[i])
+		st.add_vertex(p[i + 1])
