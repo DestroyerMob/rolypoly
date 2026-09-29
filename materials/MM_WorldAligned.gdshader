@@ -91,6 +91,25 @@ uniform bool use_metallic_map = false;
 uniform sampler2D metallic_map : hint_default_white,
                                  filter_linear_mipmap, repeat_enable;
 
+///// GROUP SPECULAR /////
+group_uniforms Specular;
+uniform float specular_value : hint_range(0.0, 1.0) = 0.5;
+// How much light the surface bounces straight back WITHOUT entering it.
+// 0.5 is the physical default and means 4 percent reflectance, which is what
+// almost every non-metal actually does. The slider runs 0 to 8 percent.
+//
+// This is the SIZE of the highlight's energy. roughness_value is its SPREAD.
+// Two different questions:
+//   specular = "is there a highlight at all"
+//   roughness = "is it a dot or a wash"
+// Set this to 0.0 and roughness becomes a no-op on a non-metal, because there
+// is nothing left to spread.
+//
+// Deliberately NOT a metallic substitute. At metallic 1.0 the renderer ignores
+// this entirely and uses ALBEDO as the reflection tint instead.
+//
+// 0.2 plaster and raw terracotta | 0.5 timber | 0.8 glazed tile and marble
+///// VERTEX: runs per corner. Model space to world space. /////
 ///// GROUP OCCLUSION /////
 group_uniforms Occlusion;
 uniform bool use_ao_map = false;
@@ -107,10 +126,24 @@ uniform sampler2D normal_map : hint_normal,
                                filter_linear_mipmap, repeat_enable;
 // OpenGL convention only. Poly Haven's _nor_gl, NEVER _nor_dx.
 // DirectX flips the green channel, so bumps render as dents.
-uniform float normal_strength : hint_range(-2.0, 2.0) = 1.0;
+uniform float normal_strength : hint_range(-10.0, 10.0) = 1.0;
 // Negative inverts. That is the one-field fix if the detail reads inside out.
 // Avoid normal maps on play surfaces: fake shading competes with the player
 // reading where the real edges are.
+
+uniform bool normal_reconstruct_z = true;
+// Godot's VRAM Compressed import for normal maps is RGTC, which stores RED and
+// GREEN only and throws BLUE away. StandardMaterial3D rebuilds it internally.
+// A custom shader must do it itself or every normal comes out pointing sideways.
+// Check the texture preview: "RGTC RedGreen8" means leave this ON.
+// Safe to leave ON for uncompressed RGB maps as well, since the rebuilt Z is
+// mathematically the same value the file was storing anyway.
+// Turn it OFF only if you are deliberately authoring a non-unit normal map.
+
+uniform bool normal_flip_green = false;
+// The OTHER convention problem, and a separate one. OpenGL and DirectX disagree
+// on which way green points, so a _nor_dx file renders bumps as dents.
+// The right fix is to source the _nor_gl file. This is the fix when you cannot.
 
 ///// GROUP PROJECTION /////
 group_uniforms Projection;
@@ -168,8 +201,6 @@ fragment()'s NORMAL is VIEW space (rotates with the camera, so the texture would
 swim as you orbit). World-aligned needs world space, so we build it ourselves.
 */
 
-
-///// VERTEX: runs per corner. Model space to world space. /////
 void vertex() {
     if (world_space) {
         proj_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz + world_offset;
@@ -245,7 +276,9 @@ void fragment() {
         metal *= m;
     }
     METALLIC = clamp(metal, 0.0, 1.0);
-
+	// --- Specular ----------------------------------------------------------
+    SPECULAR = specular_value;
+    // No clamp needed, hint_range already bounds it at declaration.
     // --- Ambient occlusion -------------------------------------------------
     if (use_ao_map) {
         float a = texture(ao_map, uv_x).r * w.x
@@ -260,14 +293,33 @@ void fragment() {
         vec3 tx = texture(normal_map, uv_x).xyz * 2.0 - 1.0;
         vec3 ty = texture(normal_map, uv_y).xyz * 2.0 - 1.0;
         vec3 tz = texture(normal_map, uv_z).xyz * 2.0 - 1.0;
-        // Normal maps store directions in 0..1 because textures cannot hold
-        // negatives. x2-1 unpacks them back to -1..1.
+        // Sampled as .xyz unconditionally. If the file is RGTC the blue channel
+        // reads 0 and unpacks to -1, which is garbage, but the reconstruction
+        // below overwrites it entirely so it never reaches the lighting.
+
+        if (normal_flip_green) {
+            tx.y = -tx.y;
+            ty.y = -ty.y;
+            tz.y = -tz.y;
+        }
+        // Before strength, so the sign is corrected on the raw data.
 
         tx.xy *= normal_strength;
         ty.xy *= normal_strength;
         tz.xy *= normal_strength;
         // Only x and y scale. z is the "straight out" component and scaling it
         // would change the length rather than the tilt.
+
+        if (normal_reconstruct_z) {
+            tx.z = sqrt(max(1.0 - dot(tx.xy, tx.xy), 0.0));
+            ty.z = sqrt(max(1.0 - dot(ty.xy, ty.xy), 0.0));
+            tz.z = sqrt(max(1.0 - dot(tz.xy, tz.xy), 0.0));
+        }
+        // z = sqrt(1 - x^2 - y^2), because a tangent normal is a unit vector so
+        // two components force the third. Run AFTER strength so the rebuilt Z
+        // matches the tilt we actually asked for rather than the one on disk.
+        // max() guards strength > 1 pushing xy past unit length, where the root
+        // would go imaginary and the pixel would come out NaN.
 
         tx.z *= sign(n.x);
         ty.z *= sign(n.y);

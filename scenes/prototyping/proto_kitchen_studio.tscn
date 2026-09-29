@@ -15,18 +15,23 @@
 [ext_resource type="PackedScene" uid="uid://drax87vuwjdcf" path="res://assets/models/props/powerpoint.glb" id="12_ahvsm"]
 [ext_resource type="Script" uid="uid://c3d1xouymugbb" path="res://scripts/proto_cylinder.gd" id="12_xf8mf"]
 [ext_resource type="Script" uid="uid://cnqv1ieg4fx1y" path="res://scripts/art_box.gd" id="13_c1nrq"]
-[ext_resource type="Material" uid="uid://b8qt7hsc0r3lx" path="res://materials/MI_Wood_Veneer_Island.tres" id="13_wsxmo"]
+[ext_resource type="Material" uid="uid://b4wb4ribsi5xq" path="res://materials/generated/MI_Plaster_Orange.tres" id="14_f3x6y"]
 [ext_resource type="Material" uid="uid://dudg2wu4m1wq5" path="res://materials/generated/MI_Tile_Marble_Pattern_Fractal_Orange.tres" id="14_ns6yg"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="14_ybb3e"]
 [ext_resource type="Material" uid="uid://dhwccadf8h707" path="res://materials/generated/MI_Tile_Ceramic_Glazed_Green.tres" id="15_04wg3"]
 [ext_resource type="Script" uid="uid://bnsr3x720g76b" path="res://scripts/wall_opening.gd" id="15_cehu3"]
 [ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="15_vk1ru"]
+[ext_resource type="Texture2D" uid="uid://lix6rsehqbd1" path="res://assets/textures/T_Canvas_1K_N.jpg" id="16_dpamo"]
 [ext_resource type="PackedScene" uid="uid://cl16b4t6pnt8c" path="res://scenes/props/handle_bar.tscn" id="16_kuif3"]
 [ext_resource type="Material" uid="uid://di6vys64e5mws" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical.tres" id="16_nm6sv"]
 [ext_resource type="Material" uid="uid://cboc570gxubxh" path="res://materials/MI_Marble_White_Island.tres" id="16_rndar"]
 [ext_resource type="Script" uid="uid://cvm1bwyngmoo6" path="res://scripts/shaker_front.gd" id="17_0j8r1"]
 [ext_resource type="Material" uid="uid://dbfl4wt3owlqk" path="res://materials/generated/MI_Plaster_Cream_Dark.tres" id="17_dsqmi"]
+[ext_resource type="Texture2D" uid="uid://d4fqw4i08ttdq" path="res://assets/textures/T_Tile_Terracotta_Square_Neutral_2K_BC.png" id="17_ebl41"]
+[ext_resource type="Texture2D" uid="uid://bsfwf0ec5r3fg" path="res://assets/textures/T_Canvas_1K_R.jpg" id="17_oni1y"]
 [ext_resource type="PackedScene" uid="uid://cs8xeafo0dh74" path="res://scenes/props/Knob_Round.tscn" id="18_ium30"]
+[ext_resource type="Texture2D" uid="uid://dpag11rqy8gv6" path="res://assets/textures/T_Tile_Terracotta_Square_Neutral_2K_N.png" id="18_ym2or"]
+[ext_resource type="Texture2D" uid="uid://dod4slq0g3gd" path="res://assets/textures/T_Tile_Terracotta_Square_Neutral_2K_R.png" id="19_4r507"]
 [ext_resource type="Material" uid="uid://1i4mo8jhsmr4" path="res://materials/generated/MI_Tile_Floor_Pattern.tres" id="20_n2rxj"]
 [ext_resource type="PackedScene" uid="uid://bslui6kat6cd0" path="res://scenes/building/timber_corbel.tscn" id="20_vdiw0"]
 [ext_resource type="PackedScene" uid="uid://c1tv3el0xi06y" path="res://scenes/obstacles/sink.tscn" id="23_wsxmo"]
@@ -44,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://dkrfxknwlclfk" path="res://assets/textures/T_Timber_Log_2K_R.png" id="31_80g4l"]
 [ext_resource type="PackedScene" uid="uid://d36ht3s4se84j" path="res://scenes/props/bench_tapered.tscn" id="32_cehu3"]
 [ext_resource type="Material" uid="uid://xu5yn01xkkru" path="res://assets/models/props/Timber_Corbel_Material.tres" id="34_e6hn1"]
+[ext_resource type="Material" uid="uid://p6os8nxd31db" path="res://materials/generated/MI_Plaster_Cream_Dark_Island.tres" id="35_ebl41"]
 [ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="35_qk54t"]
 [ext_resource type="Script" uid="uid://dtpgesoo3m5gm" path="res://scripts/art_wall.gd" id="36_alunx"]
 [ext_resource type="PackedScene" uid="uid://1jv6g11k83jt" path="res://scenes/props/table_tapered.tscn" id="36_cehu3"]
@@ -82,6 +88,83 @@ segments = 20
 depth = 25.0
 material = ExtResource("17_dsqmi")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwrp8"]
+render_priority = 0
+shader = ExtResource("37_uajea")
+shader_parameter/albedo_texture = ExtResource("17_ebl41")
+shader_parameter/albedo_tint = Color(0.9938753, 0.9565851, 0.94006383, 1)
+shader_parameter/albedo_brightness = 0.5390000256025
+shader_parameter/roughness_value = 0.2730000129675
+shader_parameter/use_roughness_map = true
+shader_parameter/roughness_map = ExtResource("19_4r507")
+shader_parameter/metallic_value = 0.0
+shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.1310000062225
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("18_ym2or")
+shader_parameter/normal_strength = -0.29799953915500055
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = true
+shader_parameter/world_scale = 300.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 45.0000192375
+shader_parameter/world_space = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpamo"]
+albedo_color = Color(0.9490196, 0.92156863, 0.8627451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oni1y"]
+albedo_color = Color(0.8901961, 0.85882354, 0.7764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym2or"]
+albedo_color = Color(0.85882354, 0.7882353, 0.68235296, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r507"]
+albedo_color = Color(0.8980392, 0.77254903, 0.7411765, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwwv7"]
+albedo_color = Color(0.654902, 0.7254902, 0.7137255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tch4j"]
+albedo_color = Color(0.58431375, 0.6666667, 0.6039216, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwl01"]
+albedo_color = Color(0.2509804, 0.3254902, 0.40784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qopy"]
+albedo_color = Color(0.3529412, 0.38039216, 0.21960784, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g78nq"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.8862745, 0.64705884, 0.36862746, 1)
+roughness_texture = ExtResource("17_oni1y")
+normal_enabled = true
+normal_texture = ExtResource("16_dpamo")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ku4q0"]
+albedo_color = Color(0.8117647, 0.4392157, 0.25490198, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_215yb"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.827451, 0.6, 0.19607843, 1)
+roughness_texture = ExtResource("17_oni1y")
+normal_enabled = true
+normal_texture = ExtResource("16_dpamo")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebl41"]
+albedo_color = Color(0.68235296, 0.32156864, 0.23137255, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xdou"]
 diffuse_mode = 3
@@ -165,19 +248,55 @@ shader_parameter/roughness_value = 0.5
 shader_parameter/use_roughness_map = false
 shader_parameter/metallic_value = 0.22400001064
 shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.5
 shader_parameter/use_ao_map = false
 shader_parameter/ao_strength = 1.0
 shader_parameter/use_normal_map = true
 shader_parameter/normal_map = ExtResource("39_f3x6y")
 shader_parameter/normal_strength = 0.10100009979750002
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = false
 shader_parameter/world_scale = 200.0
 shader_parameter/triplanar_sharpness = 4.0
 shader_parameter/world_offset = Vector3(0, 0, 0)
 shader_parameter/uv_rotation_degrees = 90.00002137500002
 shader_parameter/world_space = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkp12"]
+albedo_color = Color(0.8980392, 0.77254903, 0.7411765, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybb3e"]
 size = Vector3(240, 10, 140)
+
+[sub_resource type="Resource" id="Resource_215yb"]
+script = ExtResource("15_cehu3")
+size = Vector2(45, 70)
+offset = Vector2(0, 15)
+crown_rise = 22.5
+segments = 40
+material = ExtResource("35_ebl41")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="Resource" id="Resource_ebl41"]
+script = ExtResource("15_cehu3")
+size = Vector2(40, 20)
+offset = Vector2(0, 65)
+material = ExtResource("17_dsqmi")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="Resource" id="Resource_ym2or"]
+script = ExtResource("15_cehu3")
+size = Vector2(40, 20)
+offset = Vector2(-50, 65)
+material = ExtResource("17_dsqmi")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="Resource" id="Resource_4r507"]
+script = ExtResource("15_cehu3")
+size = Vector2(40, 20)
+offset = Vector2(50, 65)
+material = ExtResource("17_dsqmi")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6hn1"]
 resource_name = "Timber_Corbel_Material"
@@ -210,6 +329,9 @@ uv1_world_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vk1ru"]
 size = Vector3(300, 10, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5st54"]
+albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdlht"]
 albedo_color = Color(0, 0, 0, 1)
@@ -259,7 +381,7 @@ reflected_light_source = 2
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.50406, 2.7000008, -486.24713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.504059, 2.7000008, -435.24713)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -439,7 +561,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
 visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(1100, 0.5, 1400)
-material = ExtResource("8_val1g")
+material = ExtResource("14_f3x6y")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Tiled_Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=1794126133]
@@ -448,6 +570,117 @@ visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(1100, 0.5, 1400)
 material = ExtResource("11_rndar")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Timber_Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=616622483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = ExtResource("27_wsxmo")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Terracotta_Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=921290164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, -100, -336.14948)
+script = ExtResource("13_c1nrq")
+size = Vector3(2000, 0.5, 2200)
+material = SubResource("ShaderMaterial_dwrp8")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Warm_Ivory_F2EBDC" type="StaticBody3D" parent="_Set/_Shell" unique_id=682995179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_dpamo")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Warm_Cream_E3DBC6" type="StaticBody3D" parent="_Set/_Shell" unique_id=329643278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_oni1y")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Natural_Wood_DBC9AE" type="StaticBody3D" parent="_Set/_Shell" unique_id=1065847717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_ym2or")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Pale_Pink_Blush_E5C5BD" type="StaticBody3D" parent="_Set/_Shell" unique_id=2035753175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_4r507")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Soft_Sage_Blue_A7B9B6" type="StaticBody3D" parent="_Set/_Shell" unique_id=48358567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Sage_Green_95AA9A" type="StaticBody3D" parent="_Set/_Shell" unique_id=463044853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_tch4j")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Slate_Blue_405368" type="StaticBody3D" parent="_Set/_Shell" unique_id=1066071997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_fwl01")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Olive_Green_5A6138" type="StaticBody3D" parent="_Set/_Shell" unique_id=2042542780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_7qopy")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="MutedMustard_E2A55E" type="StaticBody3D" parent="_Set/_Shell" unique_id=316984468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_g78nq")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Terracota_CF7041" type="StaticBody3D" parent="_Set/_Shell" unique_id=1226470330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_ku4q0")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="MustardYellow_D39932" type="StaticBody3D" parent="_Set/_Shell" unique_id=1119564623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_215yb")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="TerracottaRust_AE523B" type="StaticBody3D" parent="_Set/_Shell" unique_id=923100178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -100, -336.14948)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_ebl41")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_A_Range_ARTWALL" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=1031103964]
@@ -655,7 +888,8 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Island" type="Node" parent="_Set/_Fitout" unique_id=1555060836]
 
 [node name="Island" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=726270753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.5, -498.96198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.5, -1217.9619)
+visible = false
 script = ExtResource("4_g02x1")
 size = Vector3(230, 90, 110)
 fn = 11
@@ -695,10 +929,10 @@ panel_material = ExtResource("26_p24k2")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Island_Counter_Top" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1706996343]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36221313, -9.5, -498.8876)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.637787, -9.5, -498.8876)
 script = ExtResource("13_c1nrq")
 size = Vector3(240, 10, 140)
-material = ExtResource("13_wsxmo")
+material = SubResource("StandardMaterial3D_dkp12")
 bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -706,6 +940,55 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.000004, 0)
 visible = false
 shape = SubResource("BoxShape3D_ybb3e")
+
+[node name="Island_SideL" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=332390625]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -105, -99.5, -499.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(120, 90, 30)
+material = ExtResource("17_dsqmi")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_215yb")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_SideR" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1533624372]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 94, -99.5, -499.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(120, 90, 30)
+material = ExtResource("17_dsqmi")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_215yb")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_Gut" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=227967770]
+transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -470.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(170, 90, 30)
+material = ExtResource("17_dsqmi")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_ebl41"), SubResource("Resource_ym2or"), SubResource("Resource_4r507")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_Innard" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=149595675]
+transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -499.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(170, 65, 48)
+material = ExtResource("17_dsqmi")
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_Gut2" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=501830983]
+transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -528.962)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(170, 90, 30)
+material = ExtResource("17_dsqmi")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_ebl41"), SubResource("Resource_ym2or"), SubResource("Resource_4r507")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_ElevationA_Range" type="Node" parent="_Set/_Fitout" unique_id=846560408]
 
@@ -768,6 +1051,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.28746, 0, -769.723)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_1_Top" unique_id=262973603]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+visible = false
 shape = SubResource("BoxShape3D_vk1ru")
 debug_color = Color(2.0599962e-05, 0.8140603, 0.94934267, 0.41960785)
 
@@ -775,6 +1059,7 @@ debug_color = Color(2.0599962e-05, 0.8140603, 0.94934267, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5000005, 0)
 script = ExtResource("36_alunx")
 size = Vector3(300, 10, 80)
+material = SubResource("StandardMaterial3D_5st54")
 bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
@@ -1251,13 +1536,13 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/Bin_ShakerFront_10x80x17" unique_id=938557394 instance=ExtResource("18_ium30")]
 transform = Transform3D(1, 1.4210855e-14, 0, -1.4210855e-14, 1, 0, 0, -4.7245236e-22, 1, 3.2000122, 26.000004, 0)
 
-[node name="Side" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1258219131]
+[node name="Sink_Side" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1258219131]
 transform = Transform3D(0.9999999, -8.7422535e-08, 4.3711392e-08, 8.742255e-08, 0.9999999, -6.181726e-08, -4.371138e-08, 6.181727e-08, 0.9999999, 352, -46.176666, -431.10004)
 script = ExtResource("17_0j8r1")
 size = Vector2(92.5, 78)
 panel_depth = 1.0
 frame_depth = 1.5
-material = SubResource("ShaderMaterial_ku4q0")
+material = ExtResource("26_p24k2")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Sink_Drawer_875mmx200mm_D" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1566363059]
@@ -1320,7 +1605,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 transform = Transform3D(-0.02779704, 0, -7.999952, 0, 8, 0, 7.999952, 0, -0.02779704, 327.2869, -19.942417, -577.8458)
 
 [node name="BlenderModel" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=310644801 instance=ExtResource("10_lp2do")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 172.80304, 0.15324688, -790.01385)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 172.80304, 2.653246, -790.01385)
 
 [node name="Floating_Shelf_Top" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=802472565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.41138, 153.22371, -253.84032)
@@ -1634,13 +1919,25 @@ material = ExtResource("27_val1g")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarStool_1" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1357199593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77, -24, -382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81, -36, -385)
 script = ExtResource("13_c1nrq")
 size = Vector3(45, 4, 45)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarStool_2" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=505177102]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -24, -395)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -36, -438)
+script = ExtResource("13_c1nrq")
+size = Vector3(45, 4, 45)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="BarStool_3" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1747587248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, -36, -572)
+script = ExtResource("13_c1nrq")
+size = Vector3(45, 4, 45)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="BarStool_4" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=159579253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, -36, -573)
 script = ExtResource("13_c1nrq")
 size = Vector3(45, 4, 45)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
@@ -1805,6 +2102,32 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -401, 184, -564)
 
 [node name="_Lighting" type="Node" parent="." unique_id=971610010]
+
+[node name="_LightBlocker" type="Node" parent="_Lighting" unique_id=901479179]
+
+[node name="ProtoBox" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=989433804]
+transform = Transform3D(-2.9802322e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -2.9802322e-08, -168, -181, 773)
+script = ExtResource("4_g02x1")
+size = Vector3(10, 450, 1500)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="ProtoBox4" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=2088511340]
+transform = Transform3D(-0.9999999, 0, -7.3513704e-08, 0, 1, 0, 7.3513704e-08, 0, -0.9999999, -750, -181, -750)
+script = ExtResource("4_g02x1")
+size = Vector3(10, 450, 1500)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="ProtoBox3" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=564660136]
+transform = Transform3D(0.4999999, 0, 0.86602527, 0, 1, 0, -0.86602527, 0, 0.4999999, -589, -220, 1171)
+script = ExtResource("4_g02x1")
+size = Vector3(10, 450, 1500)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="ProtoBox2" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=1971700480]
+transform = Transform3D(0.9999999, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 0.9999999, -602, -181, 784)
+script = ExtResource("4_g02x1")
+size = Vector3(10, 450, 800)
+metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="_Lighting" unique_id=233787616]
 environment = SubResource("Environment_5yy73")
