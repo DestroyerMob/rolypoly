@@ -50,7 +50,6 @@
 [ext_resource type="Texture2D" uid="uid://dkrfxknwlclfk" path="res://assets/textures/T_Timber_Log_2K_R.png" id="31_80g4l"]
 [ext_resource type="Material" uid="uid://xu5yn01xkkru" path="res://assets/models/props/Timber_Corbel_Material.tres" id="34_e6hn1"]
 [ext_resource type="Material" uid="uid://bkxttg4a1tvgx" path="res://materials/MI_Island_Base.tres" id="34_ebl41"]
-[ext_resource type="Material" uid="uid://qqeayef3pla0" path="res://materials/MI_Island_Recess.tres" id="35_ebl41"]
 [ext_resource type="PackedScene" uid="uid://byl6bxh5nx6bb" path="res://scenes/props/winebottle.tscn" id="35_qk54t"]
 [ext_resource type="Script" uid="uid://dtpgesoo3m5gm" path="res://scripts/art_wall.gd" id="36_alunx"]
 [ext_resource type="PackedScene" uid="uid://1jv6g11k83jt" path="res://scenes/props/table_tapered.tscn" id="36_cehu3"]
@@ -66,6 +65,9 @@
 [ext_resource type="Script" uid="uid://dv61u3h65bqmd" path="res://scripts/taper_box.gd" id="44_maswr"]
 [ext_resource type="Material" uid="uid://bf2icfp3bktrj" path="res://materials/generated/MI_Veneer_Rosewood.tres" id="44_nqyh0"]
 [ext_resource type="Material" uid="uid://boqojjhh1yium" path="res://materials/generated/MI_Tile_Marble_Verde_Guatemala_Square.tres" id="45_uajea"]
+[ext_resource type="Material" uid="uid://d0pshqfi7kluu" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island.tres" id="55_fwl01"]
+[ext_resource type="Material" uid="uid://d0ajabx5lvt25" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island_Dark.tres" id="56_fwl01"]
+[ext_resource type="PackedScene" uid="uid://juv5fri8gvaf" path="res://scenes/props/log_pedestal.tscn" id="62_7qopy"]
 
 [sub_resource type="Resource" id="Resource_lan4w"]
 script = ExtResource("15_cehu3")
@@ -222,7 +224,7 @@ metadata/_custom_type_script = "uid://bnsr3x720g76b"
 [sub_resource type="Resource" id="Resource_e6hn1"]
 script = ExtResource("15_cehu3")
 size = Vector2(300, 150)
-offset = Vector2(-150, 130)
+offset = Vector2(-150, 137)
 crown_rise = 150.0
 segments = 100
 material = SubResource("StandardMaterial3D_4xdou")
@@ -282,8 +284,43 @@ shader_parameter/uv_rotation_degrees = 0.0
 shader_parameter/uv_tiling = Vector2(3, 1)
 shader_parameter/world_space = false
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5yy73"]
-size = Vector3(259, 8, 108)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6hn1"]
+resource_name = "Timber_Corbel_Material"
+cull_mode = 2
+albedo_texture = ExtResource("29_p12me")
+metallic_specular = 0.0
+roughness = 0.75
+roughness_texture = ExtResource("31_80g4l")
+normal_enabled = true
+normal_scale = 7.2
+normal_texture = ExtResource("30_maswr")
+uv1_scale = Vector3(0.012, 0.012, 0.012)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh0o4"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.99740034, 0.9194094, 0.90165555, 1)
+albedo_texture = ExtResource("25_80g4l")
+roughness = 0.28
+roughness_texture = ExtResource("27_qk54t")
+normal_enabled = true
+normal_scale = 0.33
+normal_texture = ExtResource("26_e6hn1")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_offset = Vector3(2, 5, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vk1ru"]
+size = Vector3(300, 10, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5st54"]
+albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdlht"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku4q0"]
 render_priority = 0
@@ -310,12 +347,42 @@ shader_parameter/uv_rotation_degrees = 90.00002137500002
 shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dniq"]
+albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
+
+[sub_resource type="Resource" id="Resource_qk54t"]
+script = ExtResource("15_cehu3")
+size = Vector2(65, 80)
+offset = Vector2(0, 5)
+crown_rise = 30.0
+segments = 30
+depth = 3.0
+material = ExtResource("34_e6hn1")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="Resource" id="Resource_uajea"]
+script = ExtResource("15_cehu3")
+kind = 2
+size = Vector2(0.02, 50)
+offset = Vector2(0, 0)
+material = ExtResource("34_e6hn1")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="Resource" id="Resource_dsqmi"]
+script = ExtResource("15_cehu3")
+size = Vector2(94, 59.5)
+offset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yy73"]
+size = Vector3(259, 8, 108)
+
 [sub_resource type="Resource" id="Resource_215yb"]
 script = ExtResource("15_cehu3")
 size = Vector2(80, 70)
 offset = Vector2(0, 15)
 segments = 40
-material = ExtResource("35_ebl41")
+material = ExtResource("56_fwl01")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0cav"]
@@ -352,21 +419,21 @@ metadata/_custom_type_script = "uid://bnsr3x720g76b"
 script = ExtResource("15_cehu3")
 size = Vector2(40, 20)
 offset = Vector2(0, 65)
-material = ExtResource("35_ebl41")
+material = ExtResource("56_fwl01")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="Resource" id="Resource_ym2or"]
 script = ExtResource("15_cehu3")
 size = Vector2(40, 20)
 offset = Vector2(-50, 65)
-material = ExtResource("35_ebl41")
+material = ExtResource("56_fwl01")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="Resource" id="Resource_4r507"]
 script = ExtResource("15_cehu3")
 size = Vector2(40, 20)
 offset = Vector2(50, 65)
-material = ExtResource("35_ebl41")
+material = ExtResource("56_fwl01")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tch4j"]
@@ -409,7 +476,7 @@ size = Vector2(20, 36)
 offset = Vector2(67, 15)
 segments = 2
 depth = 30.0
-material = ExtResource("41_tch4j")
+material = ExtResource("56_fwl01")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="Resource" id="Resource_4fcs4"]
@@ -420,76 +487,18 @@ depth = 0.2
 material = ExtResource("41_tch4j")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6hn1"]
-resource_name = "Timber_Corbel_Material"
-cull_mode = 2
-albedo_texture = ExtResource("29_p12me")
-metallic_specular = 0.0
-roughness = 0.75
-roughness_texture = ExtResource("31_80g4l")
-normal_enabled = true
-normal_scale = 7.2
-normal_texture = ExtResource("30_maswr")
-uv1_scale = Vector3(0.012, 0.012, 0.012)
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh0o4"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.99740034, 0.9194094, 0.90165555, 1)
-albedo_texture = ExtResource("25_80g4l")
-roughness = 0.28
-roughness_texture = ExtResource("27_qk54t")
-normal_enabled = true
-normal_scale = 0.33
-normal_texture = ExtResource("26_e6hn1")
-uv1_scale = Vector3(0.01, 0.01, 0.01)
-uv1_offset = Vector3(2, 5, 0)
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vk1ru"]
-size = Vector3(300, 10, 80)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5st54"]
-albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdlht"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dniq"]
-albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
-
-[sub_resource type="Resource" id="Resource_qk54t"]
-script = ExtResource("15_cehu3")
-size = Vector2(65, 80)
-offset = Vector2(0, 5)
-crown_rise = 30.0
-segments = 30
-depth = 3.0
-material = ExtResource("34_e6hn1")
-metadata/_custom_type_script = "uid://bnsr3x720g76b"
-
-[sub_resource type="Resource" id="Resource_uajea"]
-script = ExtResource("15_cehu3")
-kind = 2
-size = Vector2(0.02, 50)
-offset = Vector2(0, 0)
-material = ExtResource("34_e6hn1")
-metadata/_custom_type_script = "uid://bnsr3x720g76b"
-
-[sub_resource type="Resource" id="Resource_dsqmi"]
-script = ExtResource("15_cehu3")
-size = Vector2(94, 59.5)
-offset = Vector2(0, 0)
-metadata/_custom_type_script = "uid://bnsr3x720g76b"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkp12"]
-albedo_color = Color(0.78431374, 0.6901961, 0.5372549, 1)
+albedo_color = Color(0.73, 0.5852167, 0.4745, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybb3e"]
 size = Vector3(230, 10, 230)
+
+[sub_resource type="Resource" id="Resource_3dniq"]
+script = ExtResource("15_cehu3")
+size = Vector2(53, 300)
+offset = Vector2(0, 10)
+material = ExtResource("17_dsqmi")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qq2oe"]
 panorama = ExtResource("30_rndar")
@@ -512,7 +521,7 @@ reflected_light_source = 2
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.504059, 2.7000008, -526.24713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.504059, 2.7000008, -151.24713)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -911,6 +920,28 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_Fitout" type="Node" parent="_Set" unique_id=720298826]
 
+[node name="_BaseCornerFiller_A_B" type="Node" parent="_Set/_Fitout" unique_id=1987677410]
+
+[node name="Base_Cabinet_Full_Height_Door_790mmx285mm_Bench" type="Node3D" parent="_Set/_Fitout/_BaseCornerFiller_A_B" unique_id=840125357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309.22302, -45, -734.223)
+script = ExtResource("17_0j8r1")
+size = Vector2(28.5, 79)
+panel_depth = 0.1
+frame_width = 0.5
+frame_depth = 0.1
+material = ExtResource("16_nm6sv")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Base_Cabinet_Full_Height_Door_790mmx285mm_Sink2" type="Node3D" parent="_Set/_Fitout/_BaseCornerFiller_A_B" unique_id=839501218]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 306.22302, -45, -736.223)
+script = ExtResource("17_0j8r1")
+size = Vector2(28.5, 79)
+panel_depth = 0.1
+frame_width = 0.5
+frame_depth = 0.1
+material = ExtResource("16_nm6sv")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
 [node name="_Cupboard" type="Node" parent="_Set/_Fitout" unique_id=2104566045]
 
 [node name="Shelf1" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=967722155]
@@ -985,21 +1016,6 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="_Dado" type="Node" parent="_Set/_Fitout" unique_id=1460307338]
 
-[node name="Sink_Tiled_Dado" type="StaticBody3D" parent="_Set/_Fitout/_Dado" unique_id=651571720]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 402.41138, 25.5, -208.84032)
-script = ExtResource("13_c1nrq")
-size = Vector3(5, 125, 340)
-material = ExtResource("14_ns6yg")
-pivot = 2
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Sink_Tiled_Dado_Top" type="StaticBody3D" parent="_Set/_Fitout/_Dado" unique_id=1561016386]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 402.41138, 25.5, -208.84032)
-script = ExtResource("13_c1nrq")
-size = Vector3(5, 7, 340)
-material = ExtResource("15_04wg3")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
 [node name="Sink_Tiled_Dado2" type="StaticBody3D" parent="_Set/_Fitout/_Dado" unique_id=1833123115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -399.58862, 25.5, -196.84032)
 visible = false
@@ -1017,210 +1033,40 @@ size = Vector3(5, 7, 600)
 material = ExtResource("15_04wg3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="_Island" type="Node" parent="_Set/_Fitout" unique_id=1555060836]
-
-[node name="Band_1_Olive" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=398616130]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -37, -455)
+[node name="Dado_Band_1_Olive5" type="StaticBody3D" parent="_Set/_Fitout/_Dado" unique_id=1314798299]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 397, 30, -41)
 script = ExtResource("13_c1nrq")
-size = Vector3(6, 170, 2)
+size = Vector3(6, 800, 2)
 material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Band_1_Olive2" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1351100280]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -95, -455)
-script = ExtResource("13_c1nrq")
-size = Vector3(6, 170, 2)
-material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Band_1_Olive3" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=720200495]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -37, -546)
-script = ExtResource("13_c1nrq")
-size = Vector3(6, 170, 2)
-material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Band_1_Olive4" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1455200248]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -95, -546)
-script = ExtResource("13_c1nrq")
-size = Vector3(6, 170, 2)
-material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Band_8" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1643430008]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, -34, -455)
-visible = false
-script = ExtResource("13_c1nrq")
-size = Vector3(6, 18, 2)
-material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Band_5" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=162356346]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -13, -455)
-visible = false
-script = ExtResource("13_c1nrq")
-size = Vector3(6, 170, 2)
-material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Band_7" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1844622530]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, -34, -455)
-visible = false
-script = ExtResource("13_c1nrq")
-size = Vector3(6, 18, 2)
-material = SubResource("ShaderMaterial_hwwv7")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="TableTapered_#5A6138" parent="_Set/_Fitout/_Island" unique_id=1415726556 instance=ExtResource("36_cehu3")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -6.139196, -9.346153, -499.1803)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_Island/TableTapered_#5A6138" unique_id=808834668]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8461523, 0)
-visible = false
-shape = SubResource("BoxShape3D_5yy73")
-
-[node name="Island" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=726270753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.5, -1217.9619)
-visible = false
-script = ExtResource("4_g02x1")
-size = Vector3(230, 90, 110)
-fn = 11
-pivot = 2
-metadata/_custom_type_script = "uid://bdadou88ia27u"
-
-[node name="Island_Shaker_A" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=2074473374]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44.5, 55)
-script = ExtResource("17_0j8r1")
-size = Vector2(230, 90)
-material = SubResource("ShaderMaterial_ku4q0")
-panel_material = ExtResource("26_p24k2")
-metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
-
-[node name="Island_Shaker_A2" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=97764833]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -44.5, -55)
-script = ExtResource("17_0j8r1")
-size = Vector2(230, 90)
-material = SubResource("ShaderMaterial_ku4q0")
-panel_material = ExtResource("26_p24k2")
-metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
-
-[node name="Island_Shaker_A3" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=548063190]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -115, -44.5, 1)
-script = ExtResource("17_0j8r1")
-size = Vector2(116, 90)
-material = SubResource("ShaderMaterial_ku4q0")
-panel_material = ExtResource("26_p24k2")
-metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
-
-[node name="Island_Shaker_A4" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=1463208327]
-transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, 114, -44.5, 1)
-script = ExtResource("17_0j8r1")
-size = Vector2(116, 90)
-material = SubResource("ShaderMaterial_ku4q0")
-panel_material = ExtResource("26_p24k2")
-metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
-
-[node name="Island_SideL" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=332390625]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -105, -99.5, -499.96198)
-use_collision = true
-script = ExtResource("36_alunx")
-size = Vector3(120, 90, 30)
-material = ExtResource("34_ebl41")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_215yb"), SubResource("Resource_ebl41"), SubResource("Resource_tch4j")])
-flip_cuts = true
 bevel = 2.0
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="ArtBox" type="StaticBody3D" parent="_Set/_Fitout/_Island/Island_SideL" unique_id=1328499690]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(81, 10, 30)
-material = ExtResource("34_ebl41")
-bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Island_SideR" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1393507974]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 93, -99.5, -499.96198)
-use_collision = true
-script = ExtResource("36_alunx")
-size = Vector3(120, 90, 30)
-material = ExtResource("34_ebl41")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_215yb"), SubResource("Resource_ebl41"), SubResource("Resource_tch4j")])
-flip_cuts = true
-bevel = 2.0
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="Island_Shelf_R" type="StaticBody3D" parent="_Set/_Fitout/_Island/Island_SideR" unique_id=1268867997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(81, 10, 30)
-material = ExtResource("34_ebl41")
-bevel = 0.5
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Island_Gut" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=227967770]
-transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -470.96198)
-use_collision = true
-script = ExtResource("36_alunx")
-size = Vector3(170, 90, 30)
-material = ExtResource("34_ebl41")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_hwwv7"), SubResource("Resource_ym2or"), SubResource("Resource_4r507"), SubResource("Resource_fwl01"), SubResource("Resource_7qopy")])
-flip_cuts = true
-bevel = 0.5
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="ArtWall" type="CSGCombiner3D" parent="_Set/_Fitout/_Island/Island_Gut" unique_id=1674940679]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.000061, 14)
-script = ExtResource("36_alunx")
-size = Vector3(100, 51.5, 3)
-material = ExtResource("34_ebl41")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_4fcs4")])
-flip_cuts = true
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="ArtWall2" type="CSGCombiner3D" parent="_Set/_Fitout/_Island/Island_Gut" unique_id=145711414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -72.65)
-script = ExtResource("36_alunx")
-size = Vector3(100, 51.5, 3)
-material = ExtResource("34_ebl41")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_4fcs4")])
-flip_cuts = true
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="Island_Gut2" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1553196985]
-transform = Transform3D(-0.9999999, 0, -8.742278e-08, 0, 0.9999999, 0, 8.742277e-08, 0, -0.9999999, -6, -99.5, -529.962)
-use_collision = true
-script = ExtResource("36_alunx")
-size = Vector3(170, 90, 30)
-material = ExtResource("34_ebl41")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_hwwv7"), SubResource("Resource_ym2or"), SubResource("Resource_4r507"), SubResource("Resource_fwl01"), SubResource("Resource_7qopy")])
-flip_cuts = true
-bevel = 0.5
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="Island_Innard" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=149595675]
-transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -499.96198)
-use_collision = true
-script = ExtResource("36_alunx")
-size = Vector3(170, 63, 29)
-material = ExtResource("34_ebl41")
-flip_cuts = true
-bevel = 0.5
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
-
-[node name="Island_InnardTop" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=247532855]
-transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -37.5, -499.96198)
-use_collision = true
-script = ExtResource("36_alunx")
-size = Vector3(170, 2, 29)
-material = ExtResource("34_ebl41")
-flip_cuts = true
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_ElevationA_Range" type="Node" parent="_Set/_Fitout" unique_id=846560408]
 
+[node name="Range_Band_1_Olive5" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=2006080596]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 397, 35, -807)
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 800, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+bevel = 2.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
 [node name="WallSplash_" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=2075981807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
+script = ExtResource("13_c1nrq")
+size = Vector3(810, 37.5, 1)
+material = ExtResource("20_n2rxj")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="WallSplash_2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=491142336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
+script = ExtResource("13_c1nrq")
+size = Vector3(810, 37.5, 1)
+material = ExtResource("20_n2rxj")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="WallSplash_3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1553566826]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 397.71252, 0, -638.723)
 script = ExtResource("13_c1nrq")
 size = Vector3(810, 37.5, 1)
 material = ExtResource("20_n2rxj")
@@ -1670,28 +1516,6 @@ material = ExtResource("34_e6hn1")
 bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="_BaseCornerFiller_A_B" type="Node" parent="_Set/_Fitout" unique_id=1987677410]
-
-[node name="Base_Cabinet_Full_Height_Door_790mmx285mm_Bench" type="Node3D" parent="_Set/_Fitout/_BaseCornerFiller_A_B" unique_id=840125357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309.22302, -45, -734.223)
-script = ExtResource("17_0j8r1")
-size = Vector2(28.5, 79)
-panel_depth = 0.1
-frame_width = 0.5
-frame_depth = 0.1
-material = ExtResource("16_nm6sv")
-metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
-
-[node name="Base_Cabinet_Full_Height_Door_790mmx285mm_Sink2" type="Node3D" parent="_Set/_Fitout/_BaseCornerFiller_A_B" unique_id=839501218]
-transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 306.22302, -45, -736.223)
-script = ExtResource("17_0j8r1")
-size = Vector2(28.5, 79)
-panel_depth = 0.1
-frame_width = 0.5
-frame_depth = 0.1
-material = ExtResource("16_nm6sv")
-metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
-
 [node name="_ElevationB_SinkWall" type="Node" parent="_Set/_Fitout" unique_id=2003959935]
 
 [node name="Kickboard_3000mmx150mm2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=184507412]
@@ -1855,7 +1679,7 @@ pivot = 2
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Floating_Shelf_Bottom" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=593343629]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.72717, 38.91716, -254.89783)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.72717, 47.91716, -254.89783)
 script = ExtResource("13_c1nrq")
 size = Vector3(50, 8, 250)
 material = ExtResource("27_wsxmo")
@@ -1922,7 +1746,7 @@ material = ExtResource("44_nqyh0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sill_Cap_Tile_Terracota" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Window_SemiCircle" unique_id=511732200]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416, 29, -574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416, 37, -574)
 script = ExtResource("13_c1nrq")
 size = Vector3(35, 4, 300)
 material = ExtResource("20_n2rxj")
@@ -1930,7 +1754,7 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sill_Cap_Tile_Terracota2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Window_SemiCircle" unique_id=594708900]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 397, 23, -574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 397, 33, -574)
 script = ExtResource("13_c1nrq")
 size = Vector3(3, 10, 300)
 material = ExtResource("20_n2rxj")
@@ -2103,10 +1927,201 @@ size = Vector3(248, 10, 60)
 material = ExtResource("9_sdlht")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
+[node name="_Island" type="Node" parent="_Set/_Fitout" unique_id=1555060836]
+
+[node name="Band_1_Olive" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=398616130]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -37, -455)
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 170, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Band_1_Olive2" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1351100280]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -95, -455)
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 170, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Band_1_Olive3" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=720200495]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -37, -546)
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 170, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Band_1_Olive4" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1455200248]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -95, -546)
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 170, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Band_8" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1643430008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, -34, -455)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 18, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Band_5" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=162356346]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -13, -455)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 170, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Band_7" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1844622530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, -34, -455)
+visible = false
+script = ExtResource("13_c1nrq")
+size = Vector3(6, 18, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="TableTapered_#5A6138" parent="_Set/_Fitout/_Island" unique_id=1415726556 instance=ExtResource("36_cehu3")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -6.139196, -9.346153, -499.1803)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_Island/TableTapered_#5A6138" unique_id=808834668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8461523, 0)
+visible = false
+shape = SubResource("BoxShape3D_5yy73")
+
+[node name="Island" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=726270753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.5, -1217.9619)
+visible = false
+script = ExtResource("4_g02x1")
+size = Vector3(230, 90, 110)
+fn = 11
+pivot = 2
+metadata/_custom_type_script = "uid://bdadou88ia27u"
+
+[node name="Island_Shaker_A" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=2074473374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44.5, 55)
+script = ExtResource("17_0j8r1")
+size = Vector2(230, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+panel_material = ExtResource("26_p24k2")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Island_Shaker_A2" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=97764833]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -44.5, -55)
+script = ExtResource("17_0j8r1")
+size = Vector2(230, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+panel_material = ExtResource("26_p24k2")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Island_Shaker_A3" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=548063190]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -115, -44.5, 1)
+script = ExtResource("17_0j8r1")
+size = Vector2(116, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+panel_material = ExtResource("26_p24k2")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Island_Shaker_A4" type="Node3D" parent="_Set/_Fitout/_Island/Island" unique_id=1463208327]
+transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, 114, -44.5, 1)
+script = ExtResource("17_0j8r1")
+size = Vector2(116, 90)
+material = SubResource("ShaderMaterial_ku4q0")
+panel_material = ExtResource("26_p24k2")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Island_SideL" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=332390625]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -105, -99.5, -499.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(120, 90, 30)
+material = ExtResource("55_fwl01")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_215yb"), SubResource("Resource_ebl41"), SubResource("Resource_tch4j")])
+flip_cuts = true
+bevel = 2.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Shelf" type="StaticBody3D" parent="_Set/_Fitout/_Island/Island_SideL" unique_id=1328499690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
+script = ExtResource("13_c1nrq")
+size = Vector3(81, 10, 30)
+material = ExtResource("55_fwl01")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Island_SideR" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1393507974]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 93, -99.5, -499.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(120, 90, 30)
+material = ExtResource("55_fwl01")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_215yb"), SubResource("Resource_ebl41"), SubResource("Resource_tch4j")])
+flip_cuts = true
+bevel = 2.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_Shelf_R" type="StaticBody3D" parent="_Set/_Fitout/_Island/Island_SideR" unique_id=1268867997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
+script = ExtResource("13_c1nrq")
+size = Vector3(81, 10, 30)
+material = ExtResource("55_fwl01")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Island_Gut_A" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=227967770]
+transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -470.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(170, 90, 30)
+material = ExtResource("55_fwl01")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_hwwv7"), SubResource("Resource_ym2or"), SubResource("Resource_4r507"), SubResource("Resource_fwl01"), SubResource("Resource_7qopy")])
+flip_cuts = true
+bevel = 0.5
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="ArtWall" type="CSGCombiner3D" parent="_Set/_Fitout/_Island/Island_Gut_A" unique_id=1674940679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.000061, 14)
+script = ExtResource("36_alunx")
+size = Vector3(100, 51.5, 3)
+material = ExtResource("34_ebl41")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_4fcs4")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_Gut_B" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1553196985]
+transform = Transform3D(-0.9999999, 0, -8.742278e-08, 0, 0.9999999, 0, 8.742277e-08, 0, -0.9999999, -6, -99.5, -529.962)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(170, 90, 30)
+material = ExtResource("56_fwl01")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_hwwv7"), SubResource("Resource_ym2or"), SubResource("Resource_4r507"), SubResource("Resource_fwl01"), SubResource("Resource_7qopy")])
+flip_cuts = true
+bevel = 0.5
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="ArtWall2" type="CSGCombiner3D" parent="_Set/_Fitout/_Island/Island_Gut_B" unique_id=145711414]
+transform = Transform3D(-1, 0, 8.7422784e-08, 0, 1, 0, -8.7422784e-08, 0, -1, -1.4305115e-06, 8.000008, 13.649963)
+script = ExtResource("36_alunx")
+size = Vector3(100, 51.5, 3)
+material = ExtResource("34_ebl41")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_4fcs4")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Island_Innard" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=149595675]
+transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -499.96198)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(170, 65, 31)
+material = ExtResource("55_fwl01")
+flip_cuts = true
+bevel = 0.5
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
 [node name="_Table" type="Node" parent="_Set/_Fitout" unique_id=1934911465]
 
 [node name="Dining_Table_Counter_Top" type="StaticBody3D" parent="_Set/_Fitout/_Table" unique_id=1706996343]
-transform = Transform3D(0.99939084, 0, 0.034899496, 0, 1, 0, -0.034899496, 0, 0.99939084, -4.637787, -9.5, -105.8876)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.638, -27, -98.888)
 script = ExtResource("13_c1nrq")
 size = Vector3(230, 10, 230)
 material = SubResource("StandardMaterial3D_dkp12")
@@ -2117,9 +2132,24 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.000004, 0)
 shape = SubResource("BoxShape3D_ybb3e")
 
+[node name="LogPedestal" parent="_Set/_Fitout/_Table/Dining_Table_Counter_Top/Dining_Counter_CollisionShape3D" unique_id=1152601383 instance=ExtResource("62_7qopy")]
+transform = Transform3D(-0.95572233, 0.29237154, -0.033374224, 0.034899138, -3.89682e-08, -0.99939084, -0.29219344, -0.95630485, -0.010203477, 5.9999995, -7.000004, 27)
+
 [node name="_Dressing" type="Node" parent="_Set" unique_id=1332525405]
 
 [node name="_Props" type="Node" parent="_Set/_Dressing" unique_id=1727572606]
+
+[node name="Chilli" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1148309266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154, 106, -787)
+script = ExtResource("13_c1nrq")
+size = Vector3(15, 50, 15)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Garlic" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=769992696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 361, 106, -787)
+script = ExtResource("13_c1nrq")
+size = Vector3(15, 50, 15)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="PotPlant_Shelf" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1381410645]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 162.5, -111)
@@ -2155,7 +2185,6 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarStool_1" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1357199593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81, -36, -385)
-visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(45, 4, 45)
 material = ExtResource("27_val1g")
@@ -2204,7 +2233,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_2" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=681787191]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -36, -424)
-visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(45, 4, 45)
 material = ExtResource("27_val1g")
@@ -2253,7 +2281,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_3" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1204371876]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -36, -567)
-visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(45, 4, 45)
 material = ExtResource("27_val1g")
@@ -2302,7 +2329,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_4" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=737159064]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -65, -36, -593)
-visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(45, 4, 45)
 material = ExtResource("27_val1g")
@@ -2377,9 +2403,9 @@ text = "195cm - Ethan 42 yrs _______"
 font_size = 500
 
 [node name="Japanese_Divider" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=321611922]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -786, -99.5, 218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, -99.5, 192)
 script = ExtResource("13_c1nrq")
-size = Vector3(3, 500, 450)
+size = Vector3(3, 360, 350)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Toilet_Door_Blocker" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1739151482]
@@ -2390,18 +2416,6 @@ plan_pivot = 5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="_Recess" type="Node" parent="_Set/_Dressing/_Props" unique_id=827392162]
-
-[node name="Chilli" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1148309266]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154, 106, -787)
-script = ExtResource("13_c1nrq")
-size = Vector3(15, 50, 15)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Garlic" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=769992696]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 361, 106, -787)
-script = ExtResource("13_c1nrq")
-size = Vector3(15, 50, 15)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Storage" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1314004995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -368, -99.5, 325)
@@ -2469,6 +2483,15 @@ script = ExtResource("13_c1nrq")
 size = Vector3(48, 30, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
+[node name="ArtWall" type="CSGCombiner3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=2045138255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -669, -99.5, 367)
+script = ExtResource("36_alunx")
+size = Vector3(73, 320, 20)
+material = ExtResource("9_sdlht")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_3dniq")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
 [node name="ArtBox" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=279809609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171, 22, 497)
 script = ExtResource("13_c1nrq")
@@ -2524,12 +2547,6 @@ script = ExtResource("4_g02x1")
 size = Vector3(10, 450, 1500)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
-[node name="ProtoBox3" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=564660136]
-transform = Transform3D(0.4999999, 0, 0.86602527, 0, 1, 0, -0.86602527, 0, 0.4999999, -589, -220, 1171)
-script = ExtResource("4_g02x1")
-size = Vector3(10, 450, 1500)
-metadata/_custom_type_script = "uid://bdadou88ia27u"
-
 [node name="ProtoBox2" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=1971700480]
 transform = Transform3D(0.9999999, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 0.9999999, -602, -181, 784)
 script = ExtResource("4_g02x1")
@@ -2548,10 +2565,10 @@ spot_attenuation = -0.12
 
 [node name="_People" type="Node" parent="_ReferencePoints" unique_id=614854488]
 
-[node name="_SKM_Quinn_Simple" parent="_ReferencePoints/_People" unique_id=922609980 instance=ExtResource("10_wj3rv")]
-transform = Transform3D(1.1815854, 0, -104.993355, 0, 105, 0, 104.993355, 0, 1.1815854, -421.49213, -99.69594, 152.78198)
+[node name="_SKM_Quinn_Simple2" parent="_ReferencePoints/_People" unique_id=1470515323 instance=ExtResource("10_wj3rv")]
+transform = Transform3D(1.1815853, 0, -104.993355, 0, 105.00001, 0, 104.993355, 0, 1.1815853, -196.95486, -99.69594, 180.03503)
 
-[node name="ProtoBox_200mmx200mm" type="StaticBody3D" parent="_ReferencePoints/_People/_SKM_Quinn_Simple" unique_id=1320542154]
+[node name="ProtoBox_200mmx200mm" type="StaticBody3D" parent="_ReferencePoints/_People/_SKM_Quinn_Simple2" unique_id=351717901]
 transform = Transform3D(0.00952381, 0, 0, 0, 0.00952381, 0, 0, 0, 0.00952381, 0, 0, 0)
 script = ExtResource("4_g02x1")
 size = Vector3(4, 200, 4)
@@ -2562,8 +2579,9 @@ transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -80
 
 [node name="_Development" type="Node" parent="." unique_id=937245346]
 
-[node name="Measurement" type="StaticBody3D" parent="." unique_id=1170560538]
+[node name="Measurement_Tool" type="StaticBody3D" parent="." unique_id=1170560538]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -99.5, 135)
+visible = false
 script = ExtResource("13_c1nrq")
 size = Vector3(850, 4, 60)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"

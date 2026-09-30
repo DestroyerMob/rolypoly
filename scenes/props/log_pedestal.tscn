@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://juv5fri8gvaf"]
+
+[ext_resource type="PackedScene" uid="uid://mnp7p1wl7n42" path="res://assets/models/props/Tree_Log_Pedestal_H80.glb" id="1_qnlxj"]
+[ext_resource type="Material" uid="uid://kp1bh77dw8rv" path="res://assets/models/props/material_0.tres" id="2_jrphb"]
+
+[node name="LogPedestal" type="StaticBody3D" unique_id=1152601383]
+
+[node name="Tree_Log_Pedestal_H80" parent="." unique_id=427781695 instance=ExtResource("1_qnlxj")]
+
+[node name="Tree_Log_Pedestal_H80_OUTSIDE" parent="Tree_Log_Pedestal_H80/world" parent_id_path=PackedInt32Array(427781695, 1587692655) index="0" unique_id=1211117527]
+material_override = ExtResource("2_jrphb")
+
+[editable path="Tree_Log_Pedestal_H80"]
