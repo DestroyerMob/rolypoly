@@ -69,6 +69,7 @@
 [ext_resource type="Material" uid="uid://xfvywkdxte7l" path="res://assets/models/props/MI_Mural_Lemon.tres" id="54_fxkvl"]
 [ext_resource type="Material" uid="uid://d0pshqfi7kluu" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island.tres" id="55_fwl01"]
 [ext_resource type="Material" uid="uid://d0ajabx5lvt25" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island_Dark.tres" id="56_fwl01"]
+[ext_resource type="Material" uid="uid://bn8usbsdl0dpf" path="res://materials/MI_Limestone.tres" id="62_fxkvl"]
 [ext_resource type="PackedScene" uid="uid://c3r7gkh44stwn" path="res://assets/models/props/Pot_01_Classic_Herb.glb" id="71_h0cav"]
 [ext_resource type="PackedScene" uid="uid://b122w7nmn8gad" path="res://assets/models/props/Pot_02_Bulbous_Olive.glb" id="72_v1y8m"]
 [ext_resource type="PackedScene" uid="uid://d3fgrcpdjyel3" path="res://assets/models/props/Pot_03_Tall_Utensil_Crock.glb" id="73_0hpxb"]
@@ -501,9 +502,6 @@ depth = 0.2
 material = ExtResource("41_tch4j")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkp12"]
-albedo_color = Color(0.73, 0.5852167, 0.4745, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybb3e"]
 size = Vector3(230, 10, 230)
 
@@ -540,7 +538,7 @@ reflected_light_source = 2
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 405.49594, 181.7, 0.75286865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8102264, -14.800003, -93.28348)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -2136,14 +2134,60 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -4.638, -27, -98.888)
 script = ExtResource("13_c1nrq")
 size = Vector3(230, 10, 230)
-material = SubResource("StandardMaterial3D_dkp12")
+material = ExtResource("62_fxkvl")
 bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Platform" type="CSGCombiner3D" parent="_Set/_Fitout/_Table/Dining_Table_Counter_Top" unique_id=1063795125]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -70.5, 0)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(100, 70, 100)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Dining_Counter_CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_Table/Dining_Table_Counter_Top" unique_id=2050164920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.000004, 0)
 visible = false
 shape = SubResource("BoxShape3D_ybb3e")
+
+[node name="Bench_Bar" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=939118901]
+transform = Transform3D(-0.6941955, 0, -0.71978635, 0, 1, 0, 0.71978635, 0, -0.6941955, 105.45226, -95.5, 12.6697645)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(200, 50, 45)
+material = ExtResource("62_fxkvl")
+flip_cuts = true
+bevel = 1.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Bench_Fridge" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=588938007]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -113.04588, -95.5, -205.70349)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(200, 50, 45)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Bench_Recess" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=882510338]
+transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, -121.11402, -95.5, 23.229465)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(200, 50, 45)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="Bench_Sink" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=203775677]
+transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 114.80787, -95.5, -212.69244)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(200, 50, 45)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_Dressing" type="Node" parent="_Set" unique_id=1332525405]
 
