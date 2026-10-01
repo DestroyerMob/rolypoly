@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bqvuoe63umldv"]
+
+[ext_resource type="Texture2D" uid="uid://b7o6g2mlwxr7y" path="res://assets/textures/lemon_tree.png" id="1_y3kk7"]
+[ext_resource type="Texture2D" uid="uid://rt3cjjl3vlyd" path="res://assets/textures/T_Plaster_Cream_1K_N.jpg" id="2_uf03e"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_y3kk7")
+normal_enabled = true
+normal_texture = ExtResource("2_uf03e")
