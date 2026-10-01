@@ -507,6 +507,11 @@ albedo_color = Color(0.73, 0.5852167, 0.4745, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybb3e"]
 size = Vector3(230, 10, 230)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_5yy73"]
+top_radius = 20.0
+bottom_radius = 20.0
+height = 320.0
+
 [sub_resource type="Resource" id="Resource_3dniq"]
 script = ExtResource("15_cehu3")
 size = Vector2(53, 300)
@@ -535,7 +540,7 @@ reflected_light_source = 2
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 392.49594, 52.7, -151.24713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 405.49594, 181.7, 0.75286865)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -878,7 +883,7 @@ material = ExtResource("9_sdlht")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallC_ArtBox_Draft6" type="StaticBody3D" parent="_Set/_Shell" unique_id=1730132422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 519.32605, -100, -49.877686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 518.326, -100, -55.5)
 script = ExtResource("13_c1nrq")
 size = Vector3(170, 320, 30)
 material = ExtResource("9_sdlht")
@@ -1724,7 +1729,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Bar" type="Node" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1919608886]
 
 [node name="Bin" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Bar" unique_id=111488362]
-transform = Transform3D(-0.034899462, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, -0.034899462, 364.8608, -99.5, -20.180298)
+transform = Transform3D(-0.034899462, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, -0.034899462, 364.8608, -99.5, 22.819702)
 script = ExtResource("13_c1nrq")
 size = Vector3(40, 80, 40)
 plan_pivot = 3
@@ -1763,7 +1768,7 @@ size = Vector3(150, 104, 80)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Lemon_Mural" type="MeshInstance3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1960306613]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 398.45, 50, -234)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 398.45, 50, -241)
 material_override = ExtResource("54_fxkvl")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_5yy73")
@@ -2171,8 +2176,76 @@ script = ExtResource("13_c1nrq")
 size = Vector3(15, 50, 15)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
+[node name="Plaster_Column_Shelf_Shelving_Unit" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=1286371727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 402, 60.5, -31)
+material_override = ExtResource("34_e6hn1")
+material_overlay = ExtResource("9_sdlht")
+mesh = SubResource("CylinderMesh_5yy73")
+
+[node name="Cove_Left_Sink_Concave_Fillet" type="CSGCombiner3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=254079293]
+transform = Transform3D(0.79335344, 0, -0.6087614, 0, 1, 0, 0.6087614, 0, 0.79335344, -5.5, -0.5, -18)
+material_override = ExtResource("9_sdlht")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Left_Sink_Concave_Fillet" unique_id=527626273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8284302, 0, -2.8284302)
+size = Vector3(20, 320, 15)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Left_Sink_Concave_Fillet" unique_id=1576671700]
+transform = Transform3D(1.0000002, 0, 3.2782555e-07, 0, 1, 0, -3.2782555e-07, 0, 1.0000002, -13.345795, -7, -1.6981506)
+operation = 2
+radius = 12.0
+height = 340.0
+sides = 40
+
+[node name="Cove_Right_Bar_Concave_Fillet2" type="CSGCombiner3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=11026486]
+transform = Transform3D(-0.6087615, 0, 0.7933534, 0, 1, 0, -0.7933534, 0, -0.6087615, 24.5, -0.5, -9.5)
+material_override = ExtResource("9_sdlht")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Right_Bar_Concave_Fillet2" unique_id=974654985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8284302, 0, -2.8284302)
+size = Vector3(20, 320, 15)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Right_Bar_Concave_Fillet2" unique_id=225144199]
+transform = Transform3D(1.0000002, 0, 3.2782555e-07, 0, 1, 0, -3.2782555e-07, 0, 1.0000002, -13.345795, -7, -1.6981506)
+operation = 2
+radius = 12.0
+height = 340.0
+sides = 40
+
+[node name="CSGCylinder3D_Shelf_Column_Top" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=1336757295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 111, 1)
+use_collision = true
+radius = 55.0
+height = 5.0
+sides = 24
+material = ExtResource("27_wsxmo")
+
+[node name="CSGCylinder3D2_Shelf_Column_Middle" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=1667930487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 61, 1)
+use_collision = true
+radius = 55.0
+height = 5.0
+sides = 24
+material = ExtResource("27_wsxmo")
+
+[node name="CSGCylinder3D2_Shelf_Column_Middle2" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=1766110956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 11, 1)
+use_collision = true
+radius = 55.0
+height = 5.0
+sides = 24
+material = ExtResource("27_wsxmo")
+
+[node name="CylinderShelf" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1999938305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 401, -100.5, -30)
+visible = false
+script = ExtResource("12_xf8mf")
+radius = 20.0
+height = 320.0
+metadata/_custom_type_script = "uid://c3d1xouymugbb"
+
 [node name="PotPlant_Shelf" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1381410645]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 162.5, -111)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 175.5, -61)
 script = ExtResource("13_c1nrq")
 size = Vector3(20, 20, 20)
 material = ExtResource("27_wsxmo")
