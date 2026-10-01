@@ -104,27 +104,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.5294192, -5.8599997)
 [node name="BasinCollision" type="StaticBody3D" parent="." unique_id=370516374]
 
 [node name="Bottom" type="CollisionShape3D" parent="BasinCollision" unique_id=343153929]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036563575, 0)
 shape = SubResource("BoxShape3D_bottom")
 
 [node name="LeftWall" type="CollisionShape3D" parent="BasinCollision" unique_id=2129654235]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 1.65, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 1.2934364, 0)
 shape = SubResource("BoxShape3D_side")
 
 [node name="RightWall" type="CollisionShape3D" parent="BasinCollision" unique_id=1084803471]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 1.65, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 1.2934364, 0)
 shape = SubResource("BoxShape3D_side")
 
 [node name="FrontWall" type="CollisionShape3D" parent="BasinCollision" unique_id=1129155267]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 3.53)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2934364, 3.53)
 shape = SubResource("BoxShape3D_end")
 
 [node name="BackWall" type="CollisionShape3D" parent="BasinCollision" unique_id=545235820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, -3.53)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2934364, -3.53)
 shape = SubResource("BoxShape3D_end")
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=102910603]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7634363, 0)
 mesh = SubResource("PlaneMesh_water")
 
 [node name="Dishes" type="Node3D" parent="." unique_id=1378981031]
@@ -138,7 +138,7 @@ phase_degrees = 15.0
 [node name="Model" parent="Dishes/PlateFrontLeft" unique_id=61042359 instance=ExtResource("2_plate")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateFrontLeft" unique_id=884657370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.039937496, 0)
 shape = SubResource("CylinderShape3D_plate")
 
 [node name="PlayerSensor" type="Area3D" parent="Dishes/PlateFrontLeft" unique_id=138512443]
@@ -147,6 +147,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateFrontLeft/PlayerSensor" unique_id=1586598941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.60042286, 0)
 shape = SubResource("CylinderShape3D_plate_sensor")
 
 [node name="BowlFrontRight" type="AnimatableBody3D" parent="Dishes" unique_id=1732697533]
@@ -161,7 +162,7 @@ phase_degrees = 105.0
 [node name="Model" parent="Dishes/BowlFrontRight" unique_id=300477018 instance=ExtResource("3_bowl")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlFrontRight" unique_id=851287011]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30684114, 0)
 shape = SubResource("CylinderShape3D_bowl")
 
 [node name="PlayerSensor" type="Area3D" parent="Dishes/BowlFrontRight" unique_id=1036402311]
@@ -170,6 +171,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlFrontRight/PlayerSensor" unique_id=1061378736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5085497, 0)
 shape = SubResource("CylinderShape3D_bowl_sensor")
 
 [node name="PlateMiddle" type="AnimatableBody3D" parent="Dishes" unique_id=1671691288]
@@ -184,7 +186,7 @@ phase_degrees = 210.0
 [node name="Model" parent="Dishes/PlateMiddle" unique_id=1928293125 instance=ExtResource("2_plate")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateMiddle" unique_id=1257520336]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56354666, 0)
 shape = SubResource("CylinderShape3D_plate")
 
 [node name="PlayerSensor" type="Area3D" parent="Dishes/PlateMiddle" unique_id=109701028]
@@ -193,6 +195,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateMiddle/PlayerSensor" unique_id=2111886100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6035466, 0)
 shape = SubResource("CylinderShape3D_plate_sensor")
 
 [node name="BowlBackLeft" type="AnimatableBody3D" parent="Dishes" unique_id=1673590017]
@@ -207,7 +210,7 @@ phase_degrees = -70.0
 [node name="Model" parent="Dishes/BowlBackLeft" unique_id=938436121 instance=ExtResource("3_bowl")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlBackLeft" unique_id=1032381808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42354655, 0)
 shape = SubResource("CylinderShape3D_bowl")
 
 [node name="PlayerSensor" type="Area3D" parent="Dishes/BowlBackLeft" unique_id=1028870787]
@@ -216,6 +219,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlBackLeft/PlayerSensor" unique_id=51320946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6035466, 0)
 shape = SubResource("CylinderShape3D_bowl_sensor")
 
 [node name="PlateBackRight" type="AnimatableBody3D" parent="Dishes" unique_id=850184414]
@@ -231,7 +235,7 @@ phase_degrees = 55.0
 [node name="Model" parent="Dishes/PlateBackRight" unique_id=730423574 instance=ExtResource("2_plate")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight" unique_id=1252264800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, -0.56354666, 0)
 shape = SubResource("CylinderShape3D_plate")
 
 [node name="PlayerSensor" type="Area3D" parent="Dishes/PlateBackRight" unique_id=1792733371]
@@ -240,6 +244,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight/PlayerSensor" unique_id=1914905418]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, -0.6035466, 0)
 shape = SubResource("CylinderShape3D_plate_sensor")
 
 [editable path="Model"]
