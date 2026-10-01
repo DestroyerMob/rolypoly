@@ -2133,7 +2133,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="_Table" type="Node" parent="_Set/_Fitout" unique_id=1934911465]
 
 [node name="Dining_Table_Counter_Top" type="StaticBody3D" parent="_Set/_Fitout/_Table" unique_id=1706996343]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.638, -27, -98.888)
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -4.638, -27, -98.888)
 script = ExtResource("13_c1nrq")
 size = Vector3(230, 10, 230)
 material = SubResource("StandardMaterial3D_dkp12")
@@ -2364,6 +2364,54 @@ material = ExtResource("34_e6hn1")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_2" unique_id=642714899]
+transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
+script = ExtResource("44_maswr")
+bottom_size = Vector2(7, 7)
+top_size = Vector2(4, 4)
+height = 67.0
+bevel = 1.0
+material = ExtResource("34_e6hn1")
+metadata/_custom_type_script = "uid://dv61u3h65bqmd"
+
+[node name="BarStool_5" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=2094794452]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 65, -36, -334)
+script = ExtResource("13_c1nrq")
+size = Vector3(45, 4, 45)
+material = ExtResource("27_val1g")
+bevel = 3.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=922199062]
+transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
+script = ExtResource("44_maswr")
+bottom_size = Vector2(7, 7)
+top_size = Vector2(4, 4)
+height = 67.0
+bevel = 1.0
+material = ExtResource("34_e6hn1")
+metadata/_custom_type_script = "uid://dv61u3h65bqmd"
+
+[node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=691575961]
+transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
+script = ExtResource("44_maswr")
+bottom_size = Vector2(7, 7)
+top_size = Vector2(4, 4)
+height = 67.0
+bevel = 1.0
+material = ExtResource("34_e6hn1")
+metadata/_custom_type_script = "uid://dv61u3h65bqmd"
+
+[node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=76229106]
+transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
+script = ExtResource("44_maswr")
+bottom_size = Vector2(7, 7)
+top_size = Vector2(4, 4)
+height = 67.0
+bevel = 1.0
+material = ExtResource("34_e6hn1")
+metadata/_custom_type_script = "uid://dv61u3h65bqmd"
+
+[node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=1212656227]
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
 script = ExtResource("44_maswr")
 bottom_size = Vector2(7, 7)
