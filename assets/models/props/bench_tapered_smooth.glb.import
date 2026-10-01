@@ -43,7 +43,7 @@ _subresources={
 "materials": {
 "TableTop_Material.018": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/props/TableTop_Material.018.tres",
+"use_external/fallback_path": "res://assets/models/props/BenchTop_Material.tres",
 "use_external/path": "uid://s4jnsx1kx5if"
 }
 }
