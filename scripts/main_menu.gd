@@ -30,6 +30,7 @@ var _final_menu_pos: Vector2
 var _final_grid_pos: Vector2
 
 func _ready() -> void:
+	preload("res://scripts/level_editor/level_browser.gd").install(self, $MenuButtonsCenter/MenuButtons)
 	play_button.pressed.connect(_on_play_pressed)
 	achievements_button.pressed.connect(_on_achievements_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)

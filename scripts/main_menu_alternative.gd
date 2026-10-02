@@ -11,6 +11,7 @@ var _transitioning := false
 
 
 func _ready() -> void:
+	preload("res://scripts/level_editor/level_browser.gd").install(self, $MenuButtonsCenter/MenuButtons)
 	_main_camera_transform = $Camera3D.global_transform
 	for control in _settings_controls:
 		control.hide()

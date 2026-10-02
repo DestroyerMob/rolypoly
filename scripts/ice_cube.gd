@@ -4,6 +4,11 @@ extends Node3D
 ## Lifetime away from hot surfaces; contact heat can melt the cube faster.
 @export_range(1.0, 300.0, 1.0) var ambient_melt_seconds := 60.0
 
+@onready var _droplets: GPUParticles3D = $MeltParticles/Droplets
+@onready var _mist: GPUParticles3D = $MeltParticles/Mist
+@onready var _droplet_material := _droplets.process_material as ParticleProcessMaterial
+@onready var _mist_material := _mist.process_material as ParticleProcessMaterial
+
 var _player: Player
 var _shape: Shape3D
 var _material: PhysicsMaterial
@@ -66,6 +71,7 @@ func _physics_process(delta: float) -> void:
 			surface = surface.get_parent()
 	_melt_progress = minf(1.0, _melt_progress + melt_rate * delta)
 	_update_ice_geometry()
+	_update_melt_particles(melt_rate)
 	if _melt_progress >= 1.0:
 		_melted = true
 		visible = false
@@ -79,6 +85,7 @@ func refresh_equipment() -> void:
 	_melt_progress = 0.0
 	_melted = false
 	_update_ice_geometry()
+	_clear_particle_trail()
 	# Growing the box again must lift it clear of the floor on the next physics step.
 	_lift += maxf(0.0, (_ice_shape.size.y - old_side) * 0.5)
 	_player.sleeping = false
@@ -88,7 +95,36 @@ func refresh_equipment() -> void:
 func _finish_melting() -> void:
 	# A pickup can refresh the cube before this deferred removal runs.
 	if _melted and is_instance_valid(_mount):
+		# Let already emitted water and mist fade out after the ice is removed.
+		var particles := $MeltParticles as Node3D
+		_droplets.emitting = false
+		_mist.emitting = false
+		particles.reparent(get_tree().current_scene)
+		get_tree().create_timer(1.6).timeout.connect(particles.queue_free)
 		_mount.unequip(self)
+
+
+func reset_equipment() -> void:
+	_clear_particle_trail()
+
+
+func _clear_particle_trail() -> void:
+	_droplets.restart()
+	_mist.restart()
+	_droplets.emitting = false
+	_mist.emitting = false
+
+
+func _update_melt_particles(melt_rate: float) -> void:
+	var ambient_rate := 1.0 / maxf(ambient_melt_seconds, 1.0)
+	var heat := clampf(1.0 - ambient_rate / melt_rate, 0.0, 1.0)
+	var remaining := 1.0 - _melt_progress
+	var intensity := lerpf(0.2, 1.0, remaining)
+	_droplets.amount_ratio = lerpf(0.2, 1.0, heat) * intensity
+	_mist.amount_ratio = lerpf(0.08, 1.0, heat) * intensity
+	var active := remaining > 0.0 and _player.visible and not _player.is_squished
+	_droplets.emitting = active
+	_mist.emitting = active
 
 
 func _update_ice_geometry() -> void:
@@ -103,6 +139,12 @@ func _update_ice_geometry() -> void:
 	# Keep the melting cube's base at the contact surface as its top recedes.
 	$Model.position = Vector3(0, -collision_side * 0.5, 0)
 	$Model.material_override.set_shader_parameter("melt_progress", _melt_progress)
+	# Emission follows the shrinking block; existing particles stay in world space.
+	var half_width := maxf(0.025, visual_side * 0.5)
+	_droplet_material.emission_box_extents = Vector3(half_width, visual_side * 0.15, half_width)
+	_mist_material.emission_box_extents = Vector3(half_width, 0.05, half_width)
+	_droplets.position.y = -collision_side * 0.5 + visual_side * 0.2
+	_mist.position.y = -collision_side * 0.5 + visual_side * 0.65
 
 
 func integrate_equipment_forces(_body: Player, state: PhysicsDirectBodyState3D) -> void:
