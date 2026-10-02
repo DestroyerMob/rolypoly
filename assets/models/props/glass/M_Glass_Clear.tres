@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1kqmdw0q1ffy"]
+
+[resource]
+resource_name = "M_Glass_Clear"
+metallic = 0.16
+metallic_specular = 0.9
+roughness = 0.05
+rim_enabled = true
+rim_tint = 0.0

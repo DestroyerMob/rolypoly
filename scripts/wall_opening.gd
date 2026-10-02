@@ -64,3 +64,12 @@ enum Kind {
 	set(value):
 		material = value
 		emit_changed()
+
+## Keep depth_offset + depth under the wall thickness or you have made a
+## THROUGH opening the slow way.
+@export var depth_offset := 0.0:
+	set(value):
+		depth_offset = value
+		emit_changed()
+		
+		

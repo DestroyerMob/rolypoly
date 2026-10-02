@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://kuruu0yotrr6"]
+
+[ext_resource type="Texture2D" uid="uid://khckaflwhh7w" path="res://assets/textures/T_Metal_Scratched_1K_MR.png" id="1_ww2i3"]
+
+[resource]
+albedo_color = Color(0.5487361, 0.5595431, 0.5609945, 1)
+metallic = 0.55
+metallic_texture = ExtResource("1_ww2i3")
+roughness = 0.0
+normal_enabled = true
+normal_texture = ExtResource("1_ww2i3")

@@ -137,6 +137,14 @@ func _rebuild() -> void:
 			cut_depth = op.depth + 0.5
 			z0 = (t * 0.5 + 0.5) if flip_cuts else (t * 0.5 - op.depth)
 
+		#Job 5a: Sink the cavity into the thickness. RECESS only, because a
+		#        NICHE's liner is positioned separately in Job 8 and would stay
+		#        at the face while the cut moved, leaving a lining floating in
+		#        front of its own hole. Guarding here is cheaper than keeping
+		#        two positions in sync.
+		if op.kind == WallOpening.Kind.RECESS:
+			z0 += op.depth_offset
+
 		#Job 5b: Apply the numbers and put the cut in the tree. Nothing above
 		#        this line has any effect until the node joins the scene.
 		poly.depth = cut_depth

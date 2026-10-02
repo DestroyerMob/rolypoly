@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cts3uc4t4uds5"]
+[gd_scene format=4 uid="uid://cts3uc4t4uds5"]
 
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_lp2do"]
@@ -14,19 +14,23 @@
 [ext_resource type="Script" uid="uid://cnqv1ieg4fx1y" path="res://scripts/art_box.gd" id="13_c1nrq"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="14_ybb3e"]
 [ext_resource type="Script" uid="uid://bnsr3x720g76b" path="res://scripts/wall_opening.gd" id="15_cehu3"]
+[ext_resource type="Texture2D" uid="uid://dm8hx3l7f5icp" path="res://assets/textures/T_Tile_Marble_White_Square_BC.jpg" id="15_giwe5"]
 [ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="15_vk1ru"]
+[ext_resource type="Texture2D" uid="uid://tdihhh0x4uy5" path="res://assets/textures/T_Tile_Marble_White_Square_N.jpg" id="16_d22am"]
 [ext_resource type="Texture2D" uid="uid://lix6rsehqbd1" path="res://assets/textures/T_Canvas_1K_N.jpg" id="16_dpamo"]
 [ext_resource type="PackedScene" uid="uid://cl16b4t6pnt8c" path="res://scenes/props/handle_bar.tscn" id="16_kuif3"]
 [ext_resource type="Material" uid="uid://di6vys64e5mws" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical.tres" id="16_nm6sv"]
 [ext_resource type="Script" uid="uid://cvm1bwyngmoo6" path="res://scripts/shaker_front.gd" id="17_0j8r1"]
 [ext_resource type="Material" uid="uid://dbfl4wt3owlqk" path="res://materials/generated/MI_Plaster_Cream_Dark.tres" id="17_dsqmi"]
 [ext_resource type="Texture2D" uid="uid://d4fqw4i08ttdq" path="res://assets/textures/T_Tile_Terracotta_Square_Neutral_2K_BC.png" id="17_ebl41"]
+[ext_resource type="Texture2D" uid="uid://b1t1bv6y2fxpr" path="res://assets/textures/T_Tile_Marble_White_Square_R.jpg" id="17_nbjd4"]
 [ext_resource type="Texture2D" uid="uid://bsfwf0ec5r3fg" path="res://assets/textures/T_Canvas_1K_R.jpg" id="17_oni1y"]
 [ext_resource type="PackedScene" uid="uid://cs8xeafo0dh74" path="res://scenes/props/Knob_Round.tscn" id="18_ium30"]
 [ext_resource type="Texture2D" uid="uid://dpag11rqy8gv6" path="res://assets/textures/T_Tile_Terracotta_Square_Neutral_2K_N.png" id="18_ym2or"]
 [ext_resource type="Texture2D" uid="uid://dod4slq0g3gd" path="res://assets/textures/T_Tile_Terracotta_Square_Neutral_2K_R.png" id="19_4r507"]
 [ext_resource type="Material" uid="uid://1i4mo8jhsmr4" path="res://materials/generated/MI_Tile_Floor_Pattern.tres" id="20_n2rxj"]
 [ext_resource type="PackedScene" uid="uid://bslui6kat6cd0" path="res://scenes/building/timber_corbel.tscn" id="20_vdiw0"]
+[ext_resource type="Material" uid="uid://73oilnhtlhuw" path="res://materials/generated/MI_Tile_Marble_White_Square.tres" id="22_giwe5"]
 [ext_resource type="PackedScene" uid="uid://c1tv3el0xi06y" path="res://scenes/obstacles/sink.tscn" id="23_wsxmo"]
 [ext_resource type="Texture2D" uid="uid://d0mandarnla3j" path="res://assets/textures/T_Plaster_Cream_1K_BC.jpg" id="25_80g4l"]
 [ext_resource type="Texture2D" uid="uid://rt3cjjl3vlyd" path="res://assets/textures/T_Plaster_Cream_1K_N.jpg" id="26_e6hn1"]
@@ -57,16 +61,69 @@
 [ext_resource type="Script" uid="uid://dv61u3h65bqmd" path="res://scripts/taper_box.gd" id="44_maswr"]
 [ext_resource type="Material" uid="uid://bf2icfp3bktrj" path="res://materials/generated/MI_Veneer_Rosewood.tres" id="44_nqyh0"]
 [ext_resource type="Material" uid="uid://boqojjhh1yium" path="res://materials/generated/MI_Tile_Marble_Verde_Guatemala_Square.tres" id="45_uajea"]
-[ext_resource type="Material" uid="uid://bsqptsdkti1xd" path="res://materials/MI_Tile_Star_Octagon.tres" id="46_fwl01"]
-[ext_resource type="Material" uid="uid://c2n6n7clota4q" path="res://materials/generated/MI_Wood_oak_Slab_Honey.tres" id="47_tch4j"]
+[ext_resource type="Material" uid="uid://kuruu0yotrr6" path="res://materials/MI_Metal_Standard.tres" id="47_7qopy"]
+[ext_resource type="Material" uid="uid://dh873wv8ijx5e" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Bar.tres" id="48_1mlcx"]
 [ext_resource type="Texture2D" uid="uid://b8vuvmqysrqpl" path="res://assets/textures/T_Limestone_TypeA_2K_BC.png" id="49_7qopy"]
+[ext_resource type="Material" uid="uid://dpjjol0b2j8tu" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Bar_Dark.tres" id="49_f5ptj"]
 [ext_resource type="Texture2D" uid="uid://2wgwhu4l7s8q" path="res://assets/textures/T_Limestone_TypeA_2K_N.png" id="50_4fcs4"]
 [ext_resource type="Texture2D" uid="uid://c2vtwdwvdy41p" path="res://assets/textures/T_Limestone_TypeA_2K_R.png" id="51_3dniq"]
+[ext_resource type="Texture2D" uid="uid://basgyk1fmie3k" path="res://assets/textures/T_Cork_1K_BC.jpg" id="51_koo4o"]
 [ext_resource type="Material" uid="uid://c7y45t8ycsuei" path="res://materials/MI_Tile_Terracotta_Square.tres" id="52_4fcs4"]
 [ext_resource type="Material" uid="uid://xfvywkdxte7l" path="res://assets/models/props/MI_Mural_Lemon.tres" id="54_fxkvl"]
 [ext_resource type="Material" uid="uid://d0pshqfi7kluu" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island.tres" id="55_fwl01"]
 [ext_resource type="Material" uid="uid://d0ajabx5lvt25" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island_Dark.tres" id="56_fwl01"]
 [ext_resource type="Material" uid="uid://bn8usbsdl0dpf" path="res://materials/MI_Limestone.tres" id="62_fxkvl"]
+[ext_resource type="PackedScene" uid="uid://dmup2oajg2jk6" path="res://assets/models/props/pots/Pot_02_Bulbous_Olive.glb" id="66_4y7vo"]
+[ext_resource type="PackedScene" uid="uid://b4r6hlqex1xca" path="res://assets/models/props/pots/Pot_03_Tall_Utensil_Crock.glb" id="67_io3ko"]
+[ext_resource type="PackedScene" uid="uid://dwf5p76o47nal" path="res://assets/models/props/pots/Pot_01_Classic_Herb.glb" id="68_7qopy"]
+[ext_resource type="PackedScene" uid="uid://dmjpm5uu4k6to" path="res://assets/models/props/pots/Pot_04_Low_Wide_Planter.glb" id="68_v8u1v"]
+[ext_resource type="PackedScene" uid="uid://dh7dd8cci6650" path="res://assets/models/props/pots/Pot_05_Spanish_Bell.glb" id="69_fxkvl"]
+[ext_resource type="PackedScene" uid="uid://0q7wg5d887ao" path="res://assets/models/props/pots/Pot_06_Rustic_Jar.glb" id="70_h4caw"]
+[ext_resource type="PackedScene" uid="uid://dgob41j1qbt20" path="res://assets/models/props/pots/Pot_07_Etched_Chevron.glb" id="71_hn66s"]
+[ext_resource type="PackedScene" uid="uid://cenm8dirp755q" path="res://assets/models/props/pots/Pot_08_Etched_Diamond.glb" id="72_v4t4p"]
+[ext_resource type="PackedScene" uid="uid://cerlukg1roqkf" path="res://assets/models/props/pots/Pot_09_Etched_Wave.glb" id="73_bm72v"]
+[ext_resource type="PackedScene" uid="uid://ylf5i2psf32h" path="res://assets/models/props/pots/Pot_10_Etched_Dot_Band.glb" id="74_rdchi"]
+[ext_resource type="PackedScene" uid="uid://ccwx7l8lkxnn" path="res://assets/models/props/glass/Bottle_Beer_Bottle.glb" id="75_trva3"]
+[ext_resource type="PackedScene" uid="uid://cuw46iayofgki" path="res://assets/models/props/glass/Bottle_Brandy.glb" id="77_6kfus"]
+[ext_resource type="PackedScene" uid="uid://d2pep7d3jbc2v" path="res://assets/models/props/glass/Bottle_Beer_Tallie.glb" id="78_io3ko"]
+[ext_resource type="PackedScene" uid="uid://cnlt7dq8t38o6" path="res://assets/models/props/glass/Bottle_Cognac.glb" id="78_ji5kw"]
+[ext_resource type="PackedScene" uid="uid://dmwemh6gww06x" path="res://assets/models/props/glass/Bottle_Cooking_Wine.glb" id="79_x065l"]
+[ext_resource type="PackedScene" uid="uid://qkqa76qc573k" path="res://assets/models/props/glass/Bottle_Gin.glb" id="80_mqg6e"]
+[ext_resource type="Material" uid="uid://khfcwa1fyo47" path="res://assets/models/props/glass/MI_Metal_Maroon.tres" id="81_aaqfp"]
+[ext_resource type="PackedScene" uid="uid://ck5fyg504e70f" path="res://assets/models/props/glass/Bottle_Medicine.glb" id="81_ycsto"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Amber.tres" id="82_2ojb8"]
+[ext_resource type="PackedScene" uid="uid://bcryjcag34rx3" path="res://assets/models/props/glass/Bottle_Mix.glb" id="82_wn2jg"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Brown_Dark.tres" id="82_ya2v5"]
+[ext_resource type="PackedScene" uid="uid://05cx3h4nc2h6" path="res://assets/models/props/glass/Bottle_Moonshine.glb" id="83_3e1mq"]
+[ext_resource type="PackedScene" uid="uid://4xdwe1kx8hlq" path="res://assets/models/props/glass/Bottle_Oil.glb" id="84_gasym"]
+[ext_resource type="PackedScene" uid="uid://c3nlffnu06w3n" path="res://assets/models/props/glass/Bottle_Oil_2.glb" id="85_un4n3"]
+[ext_resource type="PackedScene" uid="uid://bdinpa3his2j3" path="res://assets/models/props/glass/Bottle_Rum.glb" id="86_jtbq4"]
+[ext_resource type="PackedScene" uid="uid://dvtg67jwrhyp" path="res://assets/models/props/glass/Bottle_Sparkling.glb" id="87_ojblr"]
+[ext_resource type="PackedScene" uid="uid://dso0y73cy3syn" path="res://assets/models/props/glass/Bottle_Sphere.glb" id="88_ultfi"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Aqua.tres" id="89_57rwb"]
+[ext_resource type="PackedScene" uid="uid://drb837g5d5bwj" path="res://assets/models/props/glass/Bottle_Spirit.glb" id="89_koo4o"]
+[ext_resource type="PackedScene" uid="uid://bysgyl7fsdphn" path="res://assets/models/props/glass/Bottle_Tanqueray.glb" id="90_gcn05"]
+[ext_resource type="PackedScene" uid="uid://hes8xfiaa523" path="res://assets/models/props/glass/Bottle_Vodka.glb" id="91_cf5ub"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Ink.tres" id="92_1mlcx"]
+[ext_resource type="PackedScene" uid="uid://c360ryvgw4gfo" path="res://assets/models/props/glass/Bottle_Whiskey.glb" id="92_aaqfp"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Cobalt.tres" id="92_ya2v5"]
+[ext_resource type="PackedScene" uid="uid://bsvsf1q4epvj2" path="res://assets/models/props/glass/glass_champagne_flute.glb" id="93_ultfi"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Green_Antique.tres" id="94_f5ptj"]
+[ext_resource type="Material" uid="uid://c66qa2sy73pnd" path="res://assets/models/props/glass/MI_Glass_Flint.tres" id="94_gcn05"]
+[ext_resource type="PackedScene" uid="uid://6q3ejl2ng41g" path="res://assets/models/props/glass/glass_collin.glb" id="94_koo4o"]
+[ext_resource type="PackedScene" uid="uid://buvopcehwi8ka" path="res://assets/models/props/glass/glass_flute.glb" id="95_gcn05"]
+[ext_resource type="PackedScene" uid="uid://bpumurdeie7ym" path="res://assets/models/props/glass/glass_martini.glb" id="96_cf5ub"]
+[ext_resource type="PackedScene" uid="uid://bick6fw4hl0q" path="res://assets/models/props/glass/glass_old_fashion.glb" id="97_aaqfp"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Frost.tres" id="97_qnvih"]
+[ext_resource type="PackedScene" uid="uid://csspyr2liip6n" path="res://assets/models/props/glass/glass_pint.glb" id="98_ya2v5"]
+[ext_resource type="PackedScene" uid="uid://ck4q5j1guf7o0" path="res://assets/models/props/glass/glass_port.glb" id="99_uenx3"]
+[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Green_Georgia.tres" id="99_wg0ch"]
+[ext_resource type="PackedScene" uid="uid://b1txfwh5qmmm" path="res://assets/models/props/glass/glass_red_wine.glb" id="100_31wi4"]
+[ext_resource type="PackedScene" uid="uid://21iblwyuwq73" path="res://assets/models/props/glass/glass_red_wine_2.glb" id="101_1vqu7"]
+[ext_resource type="PackedScene" uid="uid://b5pppdoxvwjyx" path="res://assets/models/props/glass/glass_white_wine.glb" id="102_01td5"]
+[ext_resource type="PackedScene" uid="uid://drgeyxwnndyp7" path="res://assets/models/props/glass/glass_white_wine_2.glb" id="103_2ojb8"]
+[ext_resource type="PackedScene" uid="uid://8nc6ied3s0ev" path="res://assets/models/props/glass/glass_white_wine_3.glb" id="104_57rwb"]
+[ext_resource type="Material" uid="uid://c1swqfwc6yxdh" path="res://assets/models/props/glass/MI_Ice_Azure.tres" id="121_qnvih"]
 
 [sub_resource type="Resource" id="Resource_lan4w"]
 script = ExtResource("15_cehu3")
@@ -119,16 +176,18 @@ uv1_scale = Vector3(0.008, 0.008, 0.008)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="Resource" id="Resource_7qopy"]
-script = ExtResource("15_cehu3")
-kind = 2
-size = Vector2(300, 180)
-offset = Vector2(0, 130)
-crown_rise = 150.0
-segments = 45
-depth = 25.0
-material = ExtResource("17_dsqmi")
-metadata/_custom_type_script = "uid://bnsr3x720g76b"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d22am"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.22745098, 0.14901961, 0.1254902, 1)
+albedo_texture = ExtResource("15_giwe5")
+roughness_texture = ExtResource("17_nbjd4")
+normal_enabled = true
+normal_scale = 3.59
+normal_texture = ExtResource("16_d22am")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fcs4"]
 diffuse_mode = 3
@@ -225,6 +284,17 @@ offset = Vector2(-155, 147.5)
 crown_rise = 150.0
 segments = 100
 material = SubResource("StandardMaterial3D_4xdou")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
+[sub_resource type="Resource" id="Resource_7qopy"]
+script = ExtResource("15_cehu3")
+kind = 2
+size = Vector2(300, 190)
+offset = Vector2(0, 120)
+crown_rise = 30.0
+segments = 45
+depth = 30.0
+material = ExtResource("22_giwe5")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="Resource" id="Resource_04wg3"]
@@ -370,10 +440,10 @@ size = Vector2(380, 310)
 
 [sub_resource type="Resource" id="Resource_iv2nl"]
 script = ExtResource("15_cehu3")
-kind = 2
-size = Vector2(30, 20)
-offset = Vector2(0, 100)
+size = Vector2(35, 35)
+offset = Vector2(0, 30)
 depth = 30.0
+material = ExtResource("62_fxkvl")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h0cav"]
@@ -401,6 +471,45 @@ shader_parameter/world_offset = Vector3(0, 0, 0)
 shader_parameter/uv_rotation_degrees = 0.0
 shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcn05"]
+render_priority = 0
+shader = ExtResource("37_uajea")
+shader_parameter/albedo_texture = ExtResource("51_koo4o")
+shader_parameter/albedo_tint = Color(0.8039216, 0.8039216, 0.8039216, 1)
+shader_parameter/albedo_brightness = 1.0
+shader_parameter/roughness_value = 0.5
+shader_parameter/use_roughness_map = false
+shader_parameter/metallic_value = 0.670000031825
+shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.5150000244625
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = false
+shader_parameter/normal_strength = 1.0
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = false
+shader_parameter/world_scale = 100.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 0.0
+shader_parameter/uv_tiling = Vector2(1, 1)
+shader_parameter/world_space = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ultfi"]
+albedo_color = Color(0.8047426, 0.80474263, 0.8047426, 1)
+albedo_texture = ExtResource("51_koo4o")
+metallic = 1.0
+metallic_specular = 0.26
+
+[sub_resource type="Resource" id="Resource_5st54"]
+script = ExtResource("15_cehu3")
+kind = 2
+size = Vector2(112, 50)
+offset = Vector2(0, 4)
+depth = 14.0
+material = ExtResource("49_f5ptj")
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yy73"]
 size = Vector3(259, 8, 108)
@@ -530,6 +639,49 @@ offset = Vector2(0, 10)
 material = ExtResource("17_dsqmi")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnvih"]
+albedo_color = Color(0.42352942, 0.28235295, 0.20784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8o3u7"]
+resource_name = "glassmaterial"
+cull_mode = 2
+albedo_color = Color(0.735357, 0.735357, 0.735357, 1)
+roughness = 0.5527864
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7j4jk"]
+_surfaces = [{
+"aabb": AABB(-4.622748, 0, -4.6227484, 9.245496, 11.532417, 9.245497),
+"format": 34896613377,
+"index_count": 2292,
+"index_data": PackedByteArray("MgAxAGEAMQAyAMEAMwAxAMEAMgA0AMEANAAzAMEAMwA0AKoANAAyAKwANADCAKoAMgAaAKwAwwA0AKwAGgDDAKwAwgA0AMQANADDAMQAwgACAKoAAgAzAKoArgDCAMQAwwCuAMQAAgDCAMUArgDDABwAwgCuAAMArgAcAAMAwgCtAMUArQDCAAMArQDGAMUAxgACAMUAAwAdAK0AAwAcAB0AxgCtAB0AMwACAMcAAgDGAKsAAgA2AMcANgACAKsAxgA4AKsAOAA2AKsAwADGAB0AxgDAAMgAOADGAMgAwADJAMgAyQA4AMgAHQAEAMAAyQDAAAQAHQAeAAQAHQAcAB4AvwDJAAQABAAeAL8AOADJAL4AyQC/AMoAyQAGAL4ABgDJAMoAvwDLAMoAywAGAMoAywC/AB4AOQA4AL4ABgA5AL4AOAA5AMwANgA4AMwAOQAGAM0ANwA2AMwAOQA3AMwANgA3AM4AOwA5AM0ABgA6AM0AOgA7AM0AOgAGAL0ABgDLAL0ANwA5AM8AOQA7AM8AzwCPADcAjwDOADcAywA8AL0APAA6AL0AjADPADsAzwCMACoAjwDPACoAOwA6ANAA0ACMADsAOgA8ANEAOgA9ANAAPQA6ANEAPgA9ANEAPAA+ANEAhwDQAD0AjADQABAA0ACHABAA0gCMABAAhwDSABAAjADTACoA0wCPACoAjADSANQA0wCMANQA0gCLANQAiwDTANQA0gCHANUAjwDTANYAiwDSANcAhgDSANUA0gCGANcAhwDYANUA2ACGANUA0wCLANkA2ACHACQAVwDTANkA0wBXANYAiwCNANkAjQBXANkAhwDaACQA2gCHAD0APQA+ANoA2gCDACQAgwDYACQAPgBDANoAgwDaAEMAQwA+ANsA2ACDANwAQQBDANsAPgAOANsADgBBANsADgA+ALsAPgA8ALsA3QCDAEMAQwBBAN0AgwDdAA8APADeALsA3gAOALsA3gA8AN8APADLAN8AywC8AN8AvADeAN8AvADLAB4ADgDeAOAA3gC8AAcAHgAHALwA3gC6AOAAugDeAAcAHgAfAAcABwAfALoAugDhAOAA4QAOAOAA4QC6AB8ADgDhALkAQQAOALkA4QBAALkAQABBALkAHgA/AB8AQADhAOIAHgAcAD8AuADhAB8A4QC4AOIAHwAKALgAHwA/AAoAuADjAOIA4wC4AAoA4wBAAOIAQQBAAOQARABBAOQAQQBEAN0AQABCAOQAQgBEAOQAQADjALYAQgBAALYAfgDdAEQA3QB+AA8A4wAMALYADABCALYARABCAOUA5QB+AEQAQgAMAOYAQgBGAOUARgBCAOYARQBGAOYADABFAOYADADjAOcA4wC3AOcAtwDjAAoA6AAMAOcAtwDoAOcACgA/ALcA6AC3AD8ARQAMALUADADoALUA6ABHALUARwBFALUAtADoAD8A6AC0AOkARwDoAOkAtADqAOkA6gBHAOkAPwAIALQA6gC0AAgAPwAFAAgAPwAcAAUARQBHAOsARwDqALMAsgDqAAgACAAFALIA6gCyAOwA6gBIALMASADqAOwASQBHALMARwBJAOsASABJALMAsgDtAOwA7QCyAAUA7QBIAOwASgBFAOsASQBKAOsARQBKAO4ARgBFAO4ASQBIAO8A7gB6AEYAegDlAEYAdQDuAEoA5QB6ACEA7gB1AA0AegDuAA0AfgDlACEASgBJAPAA8AB1AEoASQBvAPAAbwBJAO8AdQDwACAAbgDwAG8A8ABuACAAcQBvAO8ASABxAO8A8QB1ACAAbgDxACAAcQBIAAkASADtAAkA7QBMAAkATABxAAkATADtAPIA7QCxAPIAsQDtAAUAsQDzAPIA8wBMAPIABQABALEA8wCxAAEABQAcAAEAAQAcALAAsADzAAEAwwCwABwAsADDAPQA8wCwAPQAwwAaAPQAGgDzAPQATADzAK8A8wAaAK8ATQBMAK8AGgBNAK8ATABNAPUAcQBMAPUATQAaAPYAGgAyAPYAMgAZAPYAGQBNAPYAGQAyAGEATQBwAPUAcABxAPUATQAZAPcAcABNAPcAYQBPABkATwD3ABkAcQBwAEsAbwBxAEsASwBuAG8AagBLAHAA9wBqAHAAbgBLAAsASwBqAAsAagD3AE4A9wBPAE4AagD4AAsA+ABuAAsA+QBqAE4ATwD5AE4A+ABqAPoAagD5APoAbgD4APsA8QBuAPsAUAD4APoA+QBQAPoA+ABsAPsAbADxAPsA+ABQAPwAbAD4APwA+QBPAP0A8QBsAP4AawBsAPwAUABrAPwAUAD5AP8AYwD5AP0A+QBjAP8AZgBQAP8AYwBmAP8AawBQAAABUABmAAABbABrAAEBcgBsAAEBbAByAP4AawBTAAEBUwByAAEBaQBrAAABZgBpAAABUwBrAFIAawBpAFIAaQBmAGgAaQAUAFIAFABTAFIAAgFpAGgAFABpAAMBaQACAQMBZgBRAGgAUQACAWgAUQBmAAQBZgBjAAQBYwBlAAQBZQBRAAQBZQBjAAUBYwAGAQUBBgFjAP0ATwAGAf0ABgFPABsATwBhABsAYQBiABsAYgAGARsAYgBhADEABgFZAAUBWQBlAAUBBgFiAAcBWQAGAQcBCAFiADEAMQAzAAgBYgAIAWQAYgAJAQcBCQFiAGQACQFZAAcBCAEAAGQAAAAJAWQAMwA1AAgBAAAIATUANQAzAMcANgA1AMcANQA2AM4AzgAAADUAAADOAJEAzgCPAJEACQEAAAoBjwALAZEACwEAAJEAAAALAQoBCwGPANYAVwALAdYACwFXAAwBCwGTAAoBkwAJAQoBkwALAQwBCQGTAA0BWQAJAQ0BkACTAAwBVwCQAAwBkwCUAA0BlABZAA0BkwCQAA4BlACTAA4BkABXAA8BVwCNAA8BkAATAA4BEwCUAA4BWQCUABABZQBZABABlABaABABWgBlABABWgCUAJUAlAATAJUAZQBaAGcAUQBlAGcAEQFaAJUAEwARAZUAWgASAWcAEgFRAGcAWgARASsAEgFaACsAUQASASwAAgFRACwAEwESASsAEQETASsAEgEUASwAFAECASwAEgETARUBFAESARUBEwERARYBAgEUARcBEwEYARUBGAEUARUBGQETARYBGgECARcBAgEaAQMBFAEbARcBGwEaARcBEwEZARwBGAETARwBGwEUAR0BFAEYAR0BGAEeAR0BHgEbAR0BHwEYARwBGQEfARwBHgEYAZgAGAEfAZgAGwEeAVwAqAAeAZgAHwGoAJgAHgGpAFwAqQAeASABHgGoACABIQEbAVwAqQAhAVwAGwEhASIBGgEbASIBIwEaASIBIQEjASIBGgEjASQBFAAaASQBGgEUAAMBJQEUACQBIwElASQBFAAlAW0AUwAUAG0AIwEhAZoAJgFTAG0AJQEmAW0AJQEjAScBUwAmAXMAcgBTAHMAJgElASgBIwEpAScBKQEjAZoAKgElAScBJQEqASgBKQEqAScBKwEmASgBKgErASgBJgERAHMAEQByAHMAJgErAXgAEQAmAXgAKwEqASwBcgARAC0BKwEuAXgALgERAHgALwErASwBdAByAC0BcgB0AP4AEQB2AC0BdgB0AC0BdADxAP4A8QB0ADABdQDxADABMQF1ADABdAAxATABdQAxAQ0AMQF6AA0AMQF0ADIBdAB2ADIBegAxATMBeQAxATIBMQF5ADMBdgB5ADIBNAF6ADMBeQA0ATMBegA0ASEANAF+ACEANAF5ADUBfgA0ATYBeQB2ADcBOAF+ADYBfgA4AQ8ANAF9ADYBfQA0ATUBfQA4ATYBOAGDAA8AgwA4AdwAeQB7ADUBewB5ADcBewB9ADUBOAGCANwAggDYANwAOAF9ADkBggA4ATkBfQB/ADkBfwCCADkBfQB7ADoBfwB9ADoB2ACCADsBhgDYADsBggCEADsBhACGADsBggB/ADwBhACCADwBIwB/ADoBewAjADoBfwBVADwBVQCEADwBfwAjAIAAVQB/AIAAhgCEAD0BiACGAD0BhgCIANcAhAAmAD0BJgCIAD0BiACLANcAiwCIAD4BjQCLAD4BiAAnAD4BJwCNAD4BiAAmAIkAJwCIAIkAJgCEAIUAhABVAIUAJgA/AYkAPwEnAIkAQAEmAIUAVQBAAYUAPwEmAIoAJgBAAYoAjQAnAI4AWACNAI4AjQBYAA8BJwBBAY4AQQFYAI4AWACQAA8BkABYAJIAEwCQAJIAWABCAZIAQgETAJIAWABBASkAQgFYACkAQQEnAFYAJwA/AVYAQQFDASkAQwFCASkAEwBCAZYAEQETAJYARAERAZYAQgFEAZYAEQFEARYBQgFDAUUBRAFCAUUBRAEZARYBGQFEAUYBRwFEAUUBRAFHAUYBQwFHAUUBSAEZAUYBRwFIAUYBRwFDAUkBGQFIAVsAHwEZAVsASAFHAZcALQAfAVsASAEtAFsAHwEtAEoBqAAfAUoBRwFLAZcASwFHAUkBpwBIAZcASwGnAJcALQBIAUwBSAGnAEwBFQAtAEwBpwAVAEwBLQClAEoBpQCoAEoBLQAVAE0BpQAtAE0BFQCnAE4BTgFNARUAqAClAE8BpQBNAU8BLgCoAE8BqAAuACABLgCpACABTwFQAS4AqQAuAFABTwFNAVABUQGpAFABqQBRAVIBIQGpAFIBJQAhAVIBUQElAFIBIQElAJoAUAEXAFEBJQBRARcAJQApAZoAUAFTARcAUAFNAVMBVAElABcAFwBTAVQBKQElAFUBJQBUAVUBVAGeAFUBngApAVUBngBUAVMBKQGeAF0AKgEpAV0AVgEqAV0AngBWAV0AKgFWASwBVgEvASwBVgGeAFcBngAWAFcBFgCeAFMBnwBWAVcBFgCfAFcBLwFWAZwAVgGfAJwAUwFYARYAnwAWAFgBUwFZAVgBnwBaAZwAWgEvAZwAoQCfAFgBWAFZAaEAnwChAFsBWgGfAFsBoQAoAFsBKABaAVsBKAChAFkBLwFaAVwBWgEoAJ0AWgFdAVwBXQFaAZ0AKABeAZ0AXgFdAZ0AYAAoAFkBKABgAF8BXgEoAF8BYACgAF8BoABeAV8BWQFgAWAAoABgAGABWQFhAWABUwFhAVkBUwFNAWEBYQFNAWIBYgFNAU4BYAFhAaIAogCgAGABoACiAGMBMACiAGEBogAwAGMBZAGgAGMBMABkAWMBXgGgAF4AoABkAV4AZQFeAV4AZAFlAV4AXgFlAWYBXQFeAWYBZQFkAWcBaAFdAWYBZQFoAWYBXQFoAWkBagFdAWkBXQFqAVwBagEvAVwBLwFqAWsBKwEvAWsBLgErAWsBagEuAWsBbAFqAWkBaAFsAWkBLgFqASIAagFsASIAVAAuASIAbAFUACIALgFUAHcAEQAuAXcAdgARAHcAVAB2AHcAdgBUADcBVAB7ADcBewBUAHwAVABsAXwAIwB7AHwAbAEjAHwAIwBsAYEAbAFoAYEAbQEjAIEAaAFtAYEAIwBtAYAAbQFVAIAAbQFoAW4BaAFlAW4BVQBtARIAQAFVABIAbwFtAW4BZQFvAW4BbQFvARIAbwFAARIAbwFlAWcBQAFvAXABcQFvAWcBbwFxAXABZAFxAWcBcgFAAXABcQFyAXABQAFyAYoAcQFkAZsAcgE/AYoAZAEwAJsAcgFxAXMBdAFxAZsAcQF0AXMBMAB0AZsAPwFyAXUBdgFyAXMBcgF2AXUBdAF2AXMBdwE/AXUBdgF3AXUBPwF3AVYAdwFBAVYAQQF3AXgBQwFBAXgBdwF2AXkBegFDAXgBdwF6AXgBegF3AXkBQwF6AUkBegFLAUkBSwF6AZkAewF6AXkBdgF7AXkBegF7AZkAewF2AV8AdgF0AV8AewEvAJkALwBLAZkAowB7AV8AdAGjAF8ALwB7AXwBewGjAHwBSwEvAH0BpwBLAX0BpgCnAH0BLwCmAH0BpwCmAE4BYgFOAaYApgAvAGIBpAAvAHwBLwCkAGIBowCkAHwBfgFiAaQApACjAH4BYQFiAX4BYQF+ARgAowAYAH4BGAAwAGEBGACjAH8BMAAYAH8BowB0AX8BdAEwAH8B"),
+"lods": [0.30856168, PackedByteArray("MgAxAGEAGQAyAGEAYgBhADEAYQBiABsAYQBPABkATwBhABsAGwBiAFkATwAbAGMAYgAxAGQAYgBkAFkAGwBZAGUAYwAbAGUATgBPAGMAGQBPAE4AYwBlAFEAZQBZAFoATgBjAGYAZgBjAFEAUQBlAGcAZQBaAGcAZgBRAGgAKwBRAGcAWgArAGcAUQAsAGgAUQArACwAaQBmAGgALABpAGgAUABOAGYAUABmAGkAagBOAFAAagAZAE4AawBQAGkACwBqAFAACwBQAGsAawBpAFIAaQAsABQAaQAUAFIAUwBrAFIAFABTAFIAbAALAGsAbABrAFMAUwAUAG0AbgALAGwAbgBLAAsASwBqAAsAIABuAGwASwBuAG8AbwBuACAAagBLAHAAGQBqAHAAcQBwAEsAbwBxAEsAcABNABkAcABxAE0AGQBNADIAIABsAHIAcgBsAFMAcgBTAHMAUwBtAHMAEQByAHMAbQARAHMAdAAgAHIAdAByABEAdQAgAHQAdQBvACAAdgB0ABEADQB1AHQADQB0AHYASgB1AA0AbwB1AEoAdgARAHcAEQB4AHcAEQBtAHgAVAB2AHcAeABUAHcAeQANAHYAeQB2AFQAegANAHkAegBKAA0ASgBJAG8AIQB6AHkASgB6AEYARgB6ACEAewB5AFQAIQB5AHsAewBUAHwAVAAiAHwAVAB4ACIAIwB7AHwAIgAjAHwAfQAhAHsAfQB7ACMAfgAhAH0AfgBGACEAfwB9ACMADwB+AH0ADwB9AH8ARAB+AA8ARgB+AEQAfwAjAIAAIwCBAIAAIwAiAIEAVQB/AIAAgQBVAIAAggAPAH8AggB/AFUAgwAPAIIAgwBEAA8AhACCAFUAJACDAIIAJACCAIQAQwCDACQARACDAEMAhABVAIUAVQASAIUAVQCBABIAJgCEAIUAEgAmAIUAhgAkAIQAhgCEACYAhwAkAIYAhwBDACQAiACGACYAEACHAIYAEACGAIgAPQCHABAAQwCHAD0AiAAmAIkAJgCKAIkAJgASAIoAJwCIAIkAigAnAIkAiwAQAIgAiwCIACcAjAAQAIsAjAA9ABAAjQCLACcAKgCMAIsAKgCLAI0AOwCMACoAPQCMADsAjQAnAI4AJwBWAI4AJwCKAFYAWACNAI4AVgBYAI4AVwAqAI0AVwCNAFgAjwAqAFcAjwA7ACoAkABXAFgAkQCPAFcAkQBXAJAANwCPAJEAOwCPADcAkABYAJIAWAApAJIAWABWACkAEwCQAJIAKQATAJIAkwCRAJAAkwCQABMAAACRAJMAAAA3AJEAZAAAAJMAMQAAAGQAZACTAJQAlACTABMAWQBkAJQAWQCUAFoAlAATAJUAWgCUAJUAEwCWAJUAlgBaAJUAEwApAJYAWgCWACsAlwCWACkAWwArAJYAlgCXAFsAKwBbAJgAmAAsACsAKQCZAJcAmQApAFYALACYAFwAXAAUACwAVgBfAJkAXwBWAIoAFABcAJoAmgBtABQAigCbAF8AmwCKABIAbQCaAF0AXQB4AG0AEgBeAJsAXgASAIEAeABdAJwAnAAiAHgAnQCBACIAIgCcAJ0AgQCdAF4AngCcAF0AnwCdAJwAnACeAJ8AKABeAJ0AnQCfACgAXgAoAKAAoACbAF4AKABgAKAAngAWAJ8AnwChACgAYAAoAKEAoQCfABYAogCgAGAAoQCiAGAAmwCgADAAoACiADAAMABfAJsAFwChABYAFgCeABcAFwCiAKEAGAAwAKIAXwAwAKMAMAAYAKMAowCZAF8AogCkABgApACjABgAmQCjAC8AowCkAC8ALwCXAJkAogClAKQAFwClAKIApgAvAKQApAClAKYAlwAvAKcALwCmAKcApwBbAJcAFQCnAKYApgClABUAWwCnAC0ApwAVAC0ALQAVAKUALQCYAFsAmAAtAKgALQClAKgAqABcAJgALgCoAKUALgClABcAXACoAKkAqAAuAKkAFwCpAC4AqQCaAFwAqQAXACUAmgCpACUAJQAXAJ4AJQBdAJoAXQAlAJ4AMQAyADMAMwA1ADEAAAAxADUANwAAADUANQA2ADcANQAzADYANwA2ADkANwA5ADsAMwACADYAMgA0ADMAAgAzAKoAMwA0AKoAAwACAKoANAADAKoANgACAKsANAAyAKwAOAA2AKsANgA4ADkAAgAdAKsAHQA4AKsAHQACAK0AAgADAK0AAwAdAK0AAwA0AK4ANAAcAK4ArgAcAAMAHAA0AKwAAwAcAB0AMgAaAKwAGgAcAKwATQAaADIAGgBNAK8ATQBMAK8AAQAaAK8ATAABAK8AHAAaALAAGgABALAAAQAcALAAcQBMAE0AAQBMALEATABxAAkABQABALEATAAFALEABQAcAAEABQBMAAkAcQBIAAkASAAFAAkAbwBJAHEASQBIAHEABQBIALIASABJALMASAAIALIACAAFALIACABIALMASQBHALMARwAIALMAPwAFAAgAPwAcAAUACABHALQAPwAIALQARwA/ALQARQBHAEkASgBFAEkAPwBHALUARwBFALUARgBFAEoARQAMALUADAA/ALUARgBCAEUAQgAMAEUARABCAEYADABCALYARABBAEIAQwBBAEQAQgBAALYAQQBAAEIACgAMALYAQAAKALYADAAKALcAPwAMALcACgA/ALcAQwA+AEEACgBAALgAPQA+AEMAHwAKALgAHwA/AAoAQAAfALgAQABBALkAHwBAALkAQQAOALkADgAfALkAPgAOAEEAHwAOALoAPQA6AD4AOwA6AD0ADgA+ALsAOwA5ADoADgAHALoABwAfALoABwAOALsAPgA8ALsAPAAHALsAOgA8AD4ABwA8ALwAHgAfAAcAHgAHALwAPAAeALwAHgA/AB8AHgAcAD8APAA6AL0AHgA8AL0AOgAGAL0ABgAeAL0AOQAGADoAHQAcAB4ABgA5AL4AOQA4AL4AHgAGAL8ABAAGAL4ABgAEAL8ABAAeAL8AOAAEAL4AHQAeAAQABAA4AMAAOAAdAMAAHQAEAMAA"), 1.2307098, PackedByteArray("MQAyADMAMgA0ADMAMwA1ADEANQAzADYAGQAyADEAAAAxADUANwAAADUANQA2ADcAMwACADYAAgAzADQAAwACADQANgACADgAAgADAB0AAgAdADgAAwAcAB0ANAAcAAMAOAAdAAQANgA4ADkANwA2ADkAOAAEAAYAOQA4AAYAHQAeAAQABgAEAB4AHQAcAB4AOQAGADoANwA5ADsAOwA5ADoAOgAGADwABgAeADwAOwA6AD0APAAeAAcAOwAqADcAOgA8AD4APQA6AD4APAAHAA4APgA8AA4AHgAfAAcADgAHAB8AHgA/AB8AHgAcAD8ADgAfAEAAPgAOAEEAQQAOAEAAQAAfAAoAHwA/AAoAQAAKAAwADAAKAD8AQgBAAAwAQQBAAEIAQwA+AEEAPQA+AEMARABBAEIAQwBBAEQAQgAMAEUAQwAkAD0ARABCAEYARgBCAEUARAAPAEMAQwAPACQARgAhAEQARAAhAA8ARQAMAEcADAA/AEcARwA/AAgAPwAFAAgARwAIAEgASAAIAAUAPwAcAAUASQBHAEgARQBHAEkASAAFAAkASQBIAAkABQAcAAEASgBFAEkARgBFAEoASwBJAAkASgBJAEsABQBMAAkATAAFAAEAGgABABwAAQAaAEwAHAA0ABoANAAyABoAGgBNAEwACQBMAE0ATQAaADIASwAJAE0AGQBNADIASwBNABkAGQBOAEsAGQBPAE4AMQBPABkASwBOAAsATwAxABsATgBPAFAACwBOAFAAUABPAFEATwAbAFEACwBQAFIAUgBQAFEASwALACAAGwAxAAAASwAgAEoAUwALAFIAIAALAFMAFABTAFIASgAgAA0ASgANAEYARgANACEAEQAgAFMADQAgABEAFAARAFMAIQANAFQAVAANABEAIwAhAFQAIgBUABEAIgAjAFQAEQAUACIADwAhACMAVQAPACMAJAAPAFUAIwAiABIAEgBVACMAJgAkAFUAEgAmAFUAEAAkACYAPQAkABAAPQAQADsAOwAQACoAJwAQACYAKgAQACcAVgAnACYAJgASAFYAVwAqACcAAAAqAFcANwAqAAAAVwAnAFgAVgBYACcAAABXABMAEwBXAFgAWQAAABMAGwAAAFkAGwBZAFoAWgBZABMAUQAbAFoAKQATAFgAWABWACkAKwBaABMAKwBRAFoAEwApACsAUQArACwALABSAFEAUgAsABQAWwAsACsAWwArACkAXAAUACwALABbAFwAKQAvAFsALwApAFYALQBcAFsAWwAvAC0AFABcACUAXAAtACUAFAAlAF0AXQAiABQAIgBdACgAXQAlACgAKAASACIALQAuACUAEgAoAF4AEgBeADAAXgAoADAAMABWABIAJQAWACgAVgAwAF8AVgBfAC8AXwAwAC8AMAAYAC8AKABgADAAGAAwAGAAYAAoABYAFQAvABgAYAAVABgALwAVAC0ALgAtABUAFwAVAGAALgAVABcAFwBgABYAFwAlAC4AFgAlABcA"), 3.0690928, PackedByteArray("GQAaAAIAAgAAABkACwAaABkAGQAbAAsAGwAZAAAACwAJABoAAQAaAAkAGgABABwAGgAcAAIACQAFAAEABQAcAAEACQAIAAUACAAcAAUAAwACABwAAwAcAB0AAgADAB0AHQAcAB4AHgAcAAgAAgAdAAQAHQAeAAQAAgAEAAYABgAEAB4AAAACAAYABgAeAAcAHgAIAB8AHgAfAAcABgAHAA4ADgAHAB8AHwAIAAoADgAfAAoADAAKAAgADgAKAAwADAAIAAkAEAAGAA4AAAAGABAADwAOAAwAEAAOAA8ADQAMAAkADwAMAA0ADQAJAAsACwAgAA0ADQAhAA8ADQAgABEAIQANABEAEQAgABQAIAALABQAIgAhABEAEQAUACIADwAhACMAIgAjACEAJAAPACMADwAkABAAIwAiABIAEgAkACMAJQAiABQAEAAkACYAEgAmACQAJwAQACYAKAASACIAIgAlACgAJgASACkAKQAnACYAKgAQACcAKgAnACkAEAAqAAAAAAAqABMAEwAqACkAGwAAABMAKwAbABMAEwApACsALAAbACsACwAbACwAFAALACwAJQAUACwALQAsACsALQArACkALAAtACUALQAuACUAKQAvAC0ALgAtABUALwAVAC0ALgAVABcAFwAlAC4AFgAlABcAJQAWACgAFwAVABgAFwAYABYAFQAvABgAGAAoABYAKQAwAC8AMAAYAC8AKAAYADAAMAApABIAEgAoADAA"), 9.682653, PackedByteArray("AAABAAIAAQADAAIAAgADAAQABQADAAEAAgAEAAYAAAACAAYABAADAAcABgAEAAcACAADAAUABwADAAgACQAFAAEACQAIAAUABwAIAAoACwAJAAEACwABAAAADAAIAAkADAAKAAgADQAJAAsADQAMAAkADgAHAAoADgAKAAwABgAHAA4ADwAMAA0ADwAOAAwAEAAGAA4AEAAOAA8AAAAGABAADwANABEACwARAA0AEgAQAA8ADwARABIAAAAQABMAEwAQABIACwAAABQAFAAAABMAEQALABQAFQAUABMAFgASABEAFwARABQAEQAXABYAFAAVABcAEgAWABgAGAATABIAFwAYABYAEwAYABUAFwAVABgA")],
+"name": "glassmaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 384,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ycnrp"]
+resource_name = "glass_old_fashion_Mesh_014"
+_surfaces = [{
+"aabb": AABB(-4.622748, 0, -4.6227484, 9.245496, 11.532417, 9.245497),
+"attribute_data": PackedByteArray("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"),
+"format": 34896613399,
+"index_count": 2292,
+"index_data": PackedByteArray("SABHAHsARwBIAO8ASQBHAO8ASABKAO8ASgBJAO8ASQBKAI0ASgBIAIsASgDwAI0ASAAqAIsA8QBKAIsAKgDxAIsA8ABKAPIASgDxAPIAjADwAPIA8QCMAPIAjADxACwA8ACMAAMA8QCKACwAjgDwAAMAigDxAPMA8QAqAPMA9ACKAPMAKgD0APMAigD0AAEA9ACIAAEA8ACOAPUAiAD0APYA9wCIAPYAiAD3AAYATwD3APYA9ABPAPYA9wBPAAUA9AAqAIkATwD0AIkATwCHAAUAKgBQAIkAUABPAIkAhwBPAPgATwBQAPgAhgCHAPgAUACGAPgAhwCGAFEAUAAqAPkAKgBIAPkASAApAPkAKQBQAPkAKQBIAHsAhgBQAPoAUAApAPoAhQBRAIYA+gCFAIYAUQCFAAcAhQD7AAcAhQD6AFIAUwD6ACkA+gBTAFIAewBTACkA+wCFAPwA/QCFAFIAhQD9APwAUwD9AFIAVAD7APwA/QBUAPwA+wBUAP4AVACEAP4AUwB7AEEAhABUAP8A/QBTAAABgwCEAP8AhACDAFUAVACAAP8AgACDAP8AVAD9AAEBgABUAAEB/QB9AAEBfQD9AAABfQCAAAEBgwAIAFUAUwACAQABAgF9AAABAgFTAEEAgAB9AAMBCACDAAQBgwCAAIIABQEIAAQBCAAFAQYBgwAHAQQBBwGDAIIABwEFAQQBgABWAIIAVgCAAAMBVgAHAYIABQEIAQYBBQEHAQkBCAEFAQoBCwEFAQkBBQELAQoBDAEIAQoBCwEMAQoBCAEMAc4ADAE+AM4ABwENAQkBDQELAQkBDAELAVkADQEHAT8ABwFWAD8APgAMAQ4BDwE+AA4BPgAPAQwADAHPAA4BzwAPAQ4BzwAMAVkADwHPABABzwA9ABABPQDPABEBEgHPAFkAzwASAREBCwESAVkA0AA9ABEBEgHQABEBPQDQABMBEgELARQB0ADRABMBCwENARQB0AASAc0AFQESARQBEgEVAc0ADQEVARQB0QDQABYBFwHQAM0A0AAXARYBFQEXAc0APADRABYBFwE8ABYB0QA8ABgBPAALABgBFQENARkBCwA8ABoBFwEVARsB0gALABoBCwDSABwBPAAdARoBHQHSABoBPAAXAVoAHQE8AFoAFwEeAVoAHgEXARsBHgEdAVoA0gDTABwBFQEfARsBHwEeARsBHwEVARkBHQEeASAB0wDSACEB0gAdAcwAOwDTACEB0wA7ACIB0gAjASEBIwHSAMwAIwE7ACEBHQEkAcwAJAEdASABJAEjAcwAOwDUACIBOwAjAcsA1AA7ACUBJgE7AMsAOwAmASUB1QDUACUBJgHVACUB1ADVACcB1QAOACcBIwEoAcsAKAEmAcsA1QAmAV0AKAEjASkBIwEkASkBDgDVACoBKwHVAF0A1QArASoBOAAOACoBKwE4ACoBDgA4ACwBOADWACwB1gA4AC0B2ADWAC0B1gDYAC4BOAAvAS0BLwHYAC0BOAArAdcALwE4ANcA2ABbAC4BKwEwAdcAMAEvAdcA2AAvAV8AWwDYADEBLwEwATIBNQBbADEBWwA1ADMB2AA0ATEBNAHYAF8ANAE1ADEBLwE1AV8ANQEvATIBNQE0AV8ANQDZADMBNQA0AdoA2QA1ADYBNwE1ANoANQA3ATYB2wDZADYBNwHbADYB2QDbADgB2wATADgBNAE5AdoAOQE3AdoA2wA3AdwAOQE0AToBNAE1AToBEwDbADsBPAHbANwA2wA8ATsB3QATADsBPAHdADsBEwDdAD0B3QA+AT0BPgHdAD8BMgA+AT8BPgEyABUAQAEyAD8B3QBAAT8BMgBAAagAQAFBAagAQAHdAF4A3QA8AV4AQQFAAUIBQwFAAV4AQAFDAUIBPAFDAV4ARAFBAUIBQwFEAUIBQQFEAUUBQwE8AUYBRAEWAEUBRAFDAUcBFgBEAaYASAFDAUYBQwFIAUcBPAFJAUYBSQFIAUYBSQE8AdwASgFEAUcBRAFKAaYASAFKAUcBNwFJAdwASQE3AUsBNwE5AUsBSAFJAUwBTQFJAUsBSQFNAUwBOQFNAUsBTgFIAUwBTQFOAUwBTQE5AU8BSAFOAa4ASgFIAa4ATgFNATEAOQFQAU8BUAE5AToBUQFNAU8BTQFRATEAUAFRAU8BNQFQAToBYwBOATEAUQFjADEAUAE1AVIBUQFQAbcANQFTAVIBUwE1ATIBVAFQAVIBUAFUAbcAUwFUAVIBMwBRAbcAVAEzALcAYwBRAbAAUQEzALAAMwBUAbQAMwCvALAArwBjALAAswAzALQArwAzAFUBMwCzAFUBVAFkALQAZACzALQAZABUARIAVAFTARIAUwFWARIAVgFkABIAVgFTAVcBUwEwAVcBMAFTATIBMAFYAVcBWAFWAVcBWAEwAVkBMAErAVkBKwFaAVkBWgFYAVkBWgErAV0AJgFaAV0AWgEmAVsBJgEoAVsBWAFaAVwBXQFaAVsBWgFdAVwBKAFdAVsBXgFYAVwBXQFeAVwBVgFYAcAAWAFeAcAAXQEoAV8BNgBWAcAAXgE2AMAAXgFdAVwAVgE2ALkAZABWAbkAKAFgAV8BYAEoASkBYQFdAV8BXQFhAVwAYAFhAV8BJAFgASkBuABkALkANgC4ALkAYAEkAWIBZAC4AGMBswBkAGMBJAFkAWIBZAEkASABZQFgAWIBZAFlAWIBHgFkASABZAEeAWYBHgEfAWYBZwFkAWYBHwFnAWYBZQFkAcoAZAFnAcoAYAFlATkAYQFgATkADQBlAcoAZwENAMoAZQF4ADkAeABhATkAZQENAMcAeABlAccAZwEfAUAAYQF4AMIAHwFoAUAAaAEfARkBDQFoARkBaAENAT8AVgBoAT8ANwBhAcIAYQE3AFwANwBeAVwAaAFWAIEAXgE3AL0ANgBeAb0AwQA3AMIAeADBAMIANwC8AL0AvAA2AL0ANwDBAGkBvAA3AGkBNgC8AGoBuAA2AGoBvwC8AGkBwQC/AGkBvAC7AGoBuwC4AGoBvAC/AGsBuwC8AGsBwQB4AGwBuAC7AG0BeADFAGwBxQB4AMcAdwDBAGwBxQB3AGwBwQB3AG4BvwDBAG4BDQDFAMcAbwG/AG4BdwBvAW4BxQANAHABdwDFAHEBxgDFAHABxQDGAHEBcgF3AHEBxgByAXEBbwF3AHMBdwByAXMBDQDIAHAByADGAHAByAANAMkADQBnAckAZwFXAMkAVwDIAMkAVwBnAUAAaAFXAEAAVwBoAYEAyABXAHQBfwBXAIEAVwB/AHQBVgB/AIEAfwBWAAMBfQB/AAMBfwB9AHUBfwBYAHQBWADIAHQBWAB/AHUBfQACAXUBAgFYAHUByABYAHYBxgDIAHYBWAACAXcBWAB4AXYBeAHGAHYBeAFYAHcBAgF8AHcBfAB4AXcBfAACAUEAxgB4AXkBewB8AEEAfAB7AEcAcgHGAHkBeAF8AH4AegF8AEcAfAB6AX4ARwBJAHoBAAB4AX4AeAEAAHkBegEAAH4AAAByAXkBSQBLAHoBAAB6AUsASwBJAHsBcgEAAMQAfAEAAEsAAAB8AcQAwwByAcQAfAHDAMQAcgHDAHMBSwBMAHwBTABLAHsBSQACAHsBAgBMAHsBAgBJAI0A8AACAI0AAgDwAPUAfQECAPUAjgB9AfUAfQGOACsAkAB9ASsAAgB9AY8ATAACAI8AfQGQAH4BfQFOAI8ATgBMAI8ATgB9AX4BkAB/AX4BfwFOAH4BfwGQAAQATABOAIABkgB/AQQATQBMAIABTABNAHwBwwB8AU0ATgB/AZEATgB1AIABdQBNAIABdQBOAJEAgQHDAE0ATQB1AIEBwwCBAToAfwEJAJEACQB1AJEAfwGSAIIBCQB/AYIBkgCDAYIBgwEJAIIBgwGSAC0AdQAJAIQBlACDAS0AdgB1AIQBdQB2AIEBCQB0AIQBdAB2AIQBCQCDAZMAdAAJAJMAgwGUAIUBgwFyAJMAcgCDAYUBcgB0AJMAlACGAYUBhgFyAIUBhgGUAAoAdAByAIcBlgCGAQoAcgCGAZUAhgGWAIgBcgBvAIcBbwByAJUAhgEPAJUADwCGAYgBDwBvAJUAlgCJAYgBiQEPAIgBiQGWAC4AmACJAS4ADwCJAZcAiQGYAIoBiQFuAJcAbgCJAYoBmACLAYoBiwFuAIoBiwGYABEAmgCLAREAbAAPAJcAbgBsAJcAiwGaAIwBbgCLAZkAmgCNAYwBjQGaAHAAGwCLAYwBiwEbAJkAjQEbAIwBnACNAXAAagBuAJkAGwBqAJkAjQGcAI4BGwCNAZsAnACPAY4BjwGcABwAcQCNAY4BjQFxAJsAjwFxAI4BngCPARwAaAAbAJsAcQBoAJsAjwGeAJABngCRAZABkQGeAB0AkQFzAJABcwCPAZABcwCRARoAcQCPAZ0AjwFzAJ0AnwBzABoAZwBxAJ0AcwBnAJ0AcwCfAJIBZwBzAJIBnwCgAJIBoABnAJIBoACfAGIAcQBnAJMBaABxAJMBZwBlAJMBZQBoAJMBZQBnAJQBZwCgAJQBYgChAKAAoQCUAaAAoQBiABcAlQGhABcAlAGhAC8AoQCVAZYBlAGiAGUAogCUAS8AoQCXAS8AlwGhAJYBlwGiAC8AlQGjAJYBowCXAZYBowCVAZgBpACjAJgBlwGjAJkBowCkAJoBowClAJkBpQCjAJoBpABgAJoBYAClAJoBYACkAGEAFgBgAGEAYAAWAKYASgFgAKYAYABKAacApQBgAKcASgEUAKcAFAClAKcAFABKAa4ATgEUAK4AFABOAasATgFjAKsApQAUAJsBqgAUAKsAYwCqAKsAFACqAJsBqQClAJsBqgCpAJsBpQCpAJkBqgBjAJwBqQCXAZkBYwCvAJwBlwGpAJ0BogCXAZ0BqQCqAJ4BrQCqAJwBqgCtAJ4BrwCtAJwBnwGpAJ4BqQCfAZ0BnwGiAJ0BrQCfAZ4BogCfARkArQCvAKABoQGiABkAogChAWUAaABlAKEBrAChARkAnwGsABkAnwGtAKIBrACfAaIBrQCjAaIBowGtAKABowGsAKIBZgBoAKEBoQGsAGYAaABmAKQBGwBoAKQBagAbAKQBZgBqAKQBrAClAWYAagBmAKUBpQGsADAArACjATAAsQClATAAowGxADAAaQBqAKUBpQGxAGkAagBpAKYBbgBqAKYBbABuAKYBaQBsAKYBbABpAKcBsQCnAWkAsQCjAagBpwGxABgAowGyAKgBsgCjAaABrwCyAKABsgCvAFUBswCyAFUBqQGxAKgBsgCpAagBsQCpARgAsgCzAKoBqQGyAKoBswC2AKoBtgCpAaoBtgCzAGMBuAC2AGMBtgC4AG0BqQG2AKsBrAG2AG0BtgCsAasBtQCpAasBqQG1ABgArAG1AKsBtQCnARgAuwCsAW0BtQCsATQArAG7AK0BpwG1AGsAawBsAKcBbABrAK4BDwBsAK4BbwAPAK4BawBvAK4BtQCvAWsAbwBrAK8BrwG1ADQArAG6ADQAugCvATQAugCsAa0BbQBvAK8BrwG6AG0AbwBtAIcBbQB0AIcBdABtALABugCwAW0AdgB0ALABsAG6ABAAsAG+AHYAvgCwARAAvgCBAXYAugCxARAAsQG6AK0BsQG+ABAAuwCxAa0BsQG7AGsBgQG+ADoAvwCxAWsBsQG/ALIBvgCxAbIBvwBvAbIBbwG+ALIBvgBvAToAbwHDADoAwwBvAXMBswG0AUIAswG1AbQB4AC1AbMBtAEeALYBtAG3AR4AHgC3AbgBtAG1AbcBuQG1ASEAugG1AbkBugG5AeIAtwG1AbsBuwG1AboBvAG6AeEAuwG6AbwBuwG8AR8AtwG9ASAAtwG+Ab0BtwG7Ab4BvQG+Ad4AvgG7Ab8BvwG7Ad8AvgG/AXkAJQBDAOMAJQBFAEMA5ABFACUAQwAmAOUAQwBEACYAJgBEAOYAQwBFAEQAKABFAOcAJwBFACgAJwAoAOgARABFAHoAegBFACcAIwAnAOkAegAnACMAegAjAOoARAAiAOsARABGACIARAB6AEYAIgBGAOwARgB6ACQAJAB6AO0ARgAkAO4A"),
+"lods": [0.30856168, PackedByteArray("SABHAHsAKQBIAHsAfAB7AEcAewB8AEEAewBTACkAUwB7AEEAQQB8AFgAUwBBAH0AfABHAH4AfAB+AFgAQQBYAH8AfQBBAH8AUgBTAH0AKQBTAFIAfQB/AFYAfwBYAFcAUgB9AIAAgAB9AFYAVgB/AIEAfwBXAIEAgABWAIIAQABWAIEAVwBAAIEAVgA/AIIAVgBAAD8AgwCAAIIAPwCDAIIAVABSAIAAVACAAIMAgwA/AAgAgwAIAFUAhACDAFUAhABUAIMABwBUAIQAhQBSAFQABwCFAFQAhQApAFIAUQCFAAcAhQBRAIYAKQCFAIYAhwCGAFEAhgBQACkAhgCHAFAAKQBQAEgAhwBPAFAATwCHAAUABgBPAAUATwAGAIgAAQBPAIgAUABPAIkATwABAIkAKgBQAIkAAQAqAIkAUAAqAEgAKgABAIoALAAqAIoASAAqAIsAKgAsAIsALABKAIsASgBIAIsASgAsAIwAAwBKAIwASABKAEkASgADAI0ASQBKAI0AAwACAI0AAgBJAI0AAgADAI4ARwBIAEkAKwACAI4AAgArAI8ASQACAEwATAACAI8AKwBOAI8ATgBMAI8ATgArAJAABABOAJAASQBLAEcASwBJAEwATgAEAJEAAABHAEsATABOAHUAdQBOAJEASwBMAE0ATQBMAHUATQAAAEsARwAAAH4ABAAJAJEACQB1AJEACQAEAJIALQAJAJIACQAtAJMAdQAJAHQAdAAJAJMALQByAJMAcgB0AJMAcgAtAJQACgByAJQAdgB1AHQATQB1AHYAcgAKAJUAdAByAG8AbwByAJUACgAPAJUADwBvAJUADwAKAJYALgAPAJYAbQB0AG8AdgB0AG0ADwAuAJcAbwAPAGwAbAAPAJcALgBuAJcAbgBsAJcAbgAuAJgAEQBuAJgAawBvAGwAbQBvAGsAbgARAJkAbABuAGoAagBuAJkAEQAbAJkAGwBqAJkAGwARAJoAcAAbAJoAaQBsAGoAawBsAGkAGwBwAJsAagAbAGgAaAAbAJsAcABxAJsAcQBoAJsAcQBwAJwAHABxAJwAZgBqAGgAaQBqAGYAcQAcAJ0AaABxAGcAZwBxAJ0AHABzAJ0AcwBnAJ0AcwAcAJ4AHQBzAJ4AcwAdABoAnwBzABoAZwBzAJ8AZQBoAGcAZgBoAGUAoABnAJ8AZQBnAKAAoACfAGIAYgChAKAAoQBiABcAoACiAGUAoQAXAKMAoAChAC8AogCgAC8ALwChAKMAowAXAKQAowCkAGAAYACkAGEAFgBgAGEApQCjAGAALwCjAKUAYAAWAKYApQBgAKcAYACmAKcAqACmABYAFAClAKcApgAUAKcAqQAvAKUAogAvAKkAqQClABQAGQCiAKkAZQCiABkAqgCpABQAGQCpAKoAqgAUAKsArABlABkAZQCsAGYArQAZAKoArAAZAK0AYwCqAKsArQCqAGMAFACuAKsAFACmAK4ArgBjAKsAMACsAK0AZgCsADAArwCtAGMAMACtAK8ArwBjALAAsQBmADAAZgCxAGkAsgAwAK8AsQAwALIAMwCvALAAsgCvADMAYwAxALAAYwCuADEAMQAzALAAGACxALIAaQCxABgAswCyADMAGACyALMAswAzALQAtQBpABgAaQC1AGsAtgAYALMAtQAYALYAZACzALQAtgCzAGQAMwC3ALQAMwAxALcAtwBkALQANAC1ALYAawC1ADQAuAC2AGQANAC2ALgAuABkALkAugBrADQAawC6AG0AuwA0ALgAugA0ALsANgC4ALkAuwC4ADYAZAASALkAZAC3ABIAEgA2ALkAEAC6ALsAbQC6ABAAvAC7ADYAEAC7ALwAvAA2AL0AvgBtABAAbQC+AHYAvwAQALwAvgAQAL8ANwC8AL0AvwC8ADcANgDAAL0ANgASAMAAwAA3AL0AOgC+AL8AdgC+ADoAwQC/ADcAOgC/AMEAwQA3AMIAwwB2ADoAdgDDAE0AdwA6AMEAwwA6AHcAeADBAMIAdwDBAHgANwBcAMIANwDAAFwAXAB4AMIATQDDAMQAxADDAHcAAABNAMQAxQB3AHgAxAB3AMUAAADEAMYAxgDEAMUAfgAAAMYAxQB4AMcAfgDGAMgAxgDFAA0ADQDFAMcAyADGAA0AWAB+AMgAWADIAFcAeAA5AMcAOQANAMcAeABcADkAyAANAMkAVwDIAMkADQDKAMkAygBXAMkADQA5AMoAVwDKAEAAywA5AFwAzADKADkAOQDLAMwAWgBAAMoAygDMAFoAQABaAM0AzQA/AEAAXABdAMsAXQBcAMAAPwDNAFkAWQAIAD8ACABZAM4AzwDOAFkAzgDPAD4AzwAMAD4ADADPAD0AWQDQAM8A0AA9AM8A0ABZAM0APQDQANEAzQA8ANAAPADRANAAPADNAFoAPAALANEAWgDSADwA0gALADwA0gBaAMwACwDSANMAzAA7ANIAOwDTANIAOwDMAMsA0wA7ANQAywDVADsA1QDUADsA1QDLAF0A1ADVAA4AOAAOANUAXQA4ANUADgA4ANYAOABdANcAwADXAF0A1wDAABIA2ADWADgA1wDYADgA1gDYAFsAEgBfANcA2ADXAF8AXwASALcANQBbANgAXwA1ANgAWwA1ANkAtwDaAF8ANQBfANoA2gC3ADEA2wDZADUA2gDbADUA2QDbABMAMQDcANoA2wDaANwA3AAxAK4A3QATANsA3ADdANsAEwDdABUAMgAVAN0A3QDcAF4AXgAyAN0ArgBeANwAMgBeAKgAXgCuAKYApgCoAF4AHgDeACAAHgDfAN4A3gDfAHkAHgDgAN8AQgDgAB4A3wDgAOEA3wDhAB8A4QDgAOIA4gDgACEAJQBDAOMAJQBFAEMA5ABFACUAQwAmAOUAQwBEACYAJgBEAOYAQwBFAEQAKABFAOcAJwBFACgAJwAoAOgARABFAHoAegBFACcAIwAnAOkAegAnACMAegAjAOoARAAiAOsARABGACIARAB6AEYAIgBGAOwARgB6ACQAJAB6AO0ARgAkAO4A"), 1.2307098, PackedByteArray("RwBIAEkASABKAEkASQBLAEcASwBJAEwAKQBIAEcAAABHAEsATQAAAEsASwBMAE0ASQACAEwAAgBJAEoAAwACAEoAAgADACsASgAsAAMAAgArAE4ATAACAE4ATgArAAQALABKACoASgBIACoAKgABACwAAQAqAE8ATwAGAAEABgBPAAUAKgBQAE8AUAAqAEgABQBPAFAAUQAFAFAAKQBQAEgAUQBQACkAKQBSAFEAUQBSAAcAKQBTAFIABwBSAFQAUgBTAFQARwBTACkABwBUAFUAUwBHAEEAVABTAFYAVQBUAFYAUwBBAFYAQQBHAAAAPwBVAFYAVQA/AAgAVgBBAFcAQQBYAFcAQQAAAFgAQABWAFcAVgBAAD8AVwBYAA0AWAAAAA0AQABXAA0AWQAIAD8ACABZAD4AWgA/AEAAPwBaAFkADQA5AEAAWgBAADkADAA+AD0AWQA8AD4APAA9AD4APABZAFoAPQA8AAsAWgA7ADwAOwALADwAOQA7AFoACwA7AA4AOAAOADsADgA4AFsAOwA5AFwAXABdADsAXQA4ADsAXAA4AF0ANQBbADgAWwA1ABMAEwAyABUAMgATADUAXgAyADUAFgAyAF4AXwA1ADgAXgAxABYAMQBeADUAEgA1AF8AEgBfADgANQASADEAOABcABIAFAAWADEANgASAFwAFgAUAGAAFgBgAGEAYAAXAGEALwAXAGAAFAAvAGAAYgAXAC8AMQBjABQAMwAxABIAMQAzAGMAEgBkADMAEgA2AGQAGQAvABQAYwAZABQAYgAvAGUAZQAvABkAMAAZAGMAMwAwAGMAZQAZAGYAZgAZADAAZQBnAGIAYgBnABoAZgBoAGUAZQBoAGcAGAAwADMAZAAYADMAZgAwAGkAaQAwABgAZgBqAGgAaQBqAGYANAAYAGQANgA0AGQAaQAYAGsAawAYADQAaQBsAGoAawBsAGkAagAbAGgAawA0AG0AbABuAGoAagBuABsAawBvAGwAbQBvAGsAbAAPAG4AbwAPAGwAbgARABsAbgAuABEADwAuAG4AGwARAHAADwAKAC4AGwBwAHEAaAAbAHEAcQBwABwAaABxAGcAcgAKAA8AbwByAA8AcgAtAAoAZwBxAHMAcQAcAHMAZwBzABoAcwAcAB0AcwAdABoACQAtAHIACQAEAC0ATgAEAAkAdAAJAHIAdAByAG8AdQBOAAkAdQAJAHQATABOAHUAbQB0AG8ATQBMAHUAdgB1AHQATQB1AHYAdgB0AG0AdgA6AE0ATQA6AAAAbQAQAHYAdgAQADoAbQA0ABAAEAA0ADYANwAQADYAOgAQADcAXAA3ADYAAAA6AHcAdwA6ADcAAAB3AA0AXAB4ADcAdwA3AHgADQB3AHgAeABcADkAOQANAHgAHgB5ACAAHgAhAHkAeQAhAB8AQgAhAB4AQwBEACYAQwBFAEQAJQBFAEMARABGACIARAB6AEYARABFAHoARgB6ACQAegBFACcAJwBFACgAegAnACMA"), 3.0690928, PackedByteArray("KQAqAAIAAgADACsAAwACACwAAgArAAQAKgAsAAIAKgABACwAAQAqAAUABQAGAAEABwAFACoABwAqACkAAgAEAAkACQAEAC0AAgAAACkAAAACAAkACQAtAAoACQAKAA8ADwAKAC4ADwAuABEAEAAJAA8AAAAJABAADwARABsAGwARABwAGwAcABoAGgAcAB0AGAAPABsAEAAPABgAGQAbABoAGAAbABkAGQAaABcAFwAvABkALwAXABYAGQAvABQAFAAvABYAGQAwABgAMAAZABQAFAAWADEAMQAwABQAMgAxABYAGAAwADMAMQAzADAANAAYADMAGAA0ABAAMwAxABIAEgA0ADMAMQAyADUANQASADEAMgATADUAEwAyABUADgA1ABMAEAA0ADYAEgA2ADQANwAQADYAEgA1ADgANQAOADgANgASADkAOQA3ADYAOAA5ABIAOgAQADcAOgA3ADkAEAA6AAAAOAAOADsAOQA4ADsACwA7AA4AOwALADwAOQA7ADwAPQA8AAsAPAA9AD4ADAA+AD0APwA8AD4APgAIAD8ACAAHAD8APAA/AEAAPABAADkABwBBAD8APwBBAEAAKQBBAAcAQQApAAAAQABBAA0ADQA5AEAAQQAAAA0ADQA6ADkAAAA6AA0AHgAfACAAHgAhAB8AQgAhAB4AQwBEACYAQwBFAEQAJQBFAEMARABFACMAIwBFACcAJwBFACgARAAjAEYARgAjACQARABGACIA"), 9.682653, PackedByteArray("AAABAAIAAQADAAIAAgADAAQABQAGAAEABwAFAAEABwABAAAABwAAAAgAAgAEAAkAAAACAAkACQAEAAoACAALAAwACwAIAA0ACAAAAA0ADQAOAAsACQAKAA8AAAAJABAAAAAQAA0AEAAJAA8ADwAKABEADgANABIADQAQABIAEgATAA4AEwASABQAFAAVABMAFQAUABYAFAAXABYAEgAQABgAGAAUABIAEAAPABgAFwAUABkAGAAZABQAGQAaABcAGAAPABsAGAAbABkAGQAbABoADwARABsAGwARABwAGwAcABoAGgAcAB0AHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAlACIAIwAlACcAJwAlACgA")],
+"material": SubResource("StandardMaterial3D_8o3u7"),
+"name": "glassmaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 448,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7j4jk")
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qq2oe"]
 panorama = ExtResource("30_rndar")
 
@@ -596,6 +748,7 @@ uv1_world_triplanar = true
 albedo_color = Color(0.68235296, 0.32156864, 0.23137255, 1)
 
 [node name="ProtoKitchenStudio" type="Node3D" unique_id=321876781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76)
 
 [node name="_Systems" type="Node" parent="." unique_id=1408849608]
 
@@ -603,7 +756,7 @@ albedo_color = Color(0.68235296, 0.32156864, 0.23137255, 1)
 script = ExtResource("1_tdenf")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("14_ybb3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 411.99875, 73.19998, -465.97318)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9987793, -14.800003, -60.973145)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_lp2do")
@@ -652,7 +805,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Vestibule" type="Node" parent="_Set/_Shell" unique_id=532113705]
 
 [node name="Vestibule_Wall_L" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=1183502673]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -199, -151.5, 558)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -199, -151.5, 586)
 use_collision = true
 script = ExtResource("36_alunx")
 size = Vector3(400, 380, 50)
@@ -780,27 +933,27 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallC_Bar_B_Vestibule" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1204439611]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 435.32605, -101.5, 372.1223)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 333.32605, -112.5, 372.1223)
 script = ExtResource("13_c1nrq")
-size = Vector3(400, 320, 30)
-material = ExtResource("9_sdlht")
+size = Vector3(300, 330, 30)
+material = SubResource("StandardMaterial3D_d22am")
+plan_pivot = 1
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="WallC_Bar_B_Vestibule2" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1552704716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 243.32605, -112.5, 372.1223)
+script = ExtResource("13_c1nrq")
+size = Vector3(90, 330, 30)
+material = SubResource("StandardMaterial3D_d22am")
+plan_pivot = 1
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallC_Bar_C_Opposite" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1730132422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 518.326, -100, -55.5)
 script = ExtResource("13_c1nrq")
 size = Vector3(170, 320, 30)
-material = ExtResource("9_sdlht")
+material = SubResource("StandardMaterial3D_d22am")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="WallC_Bar_A_Fronton" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=694309896]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
-script = ExtResource("36_alunx")
-size = Vector3(420, 320, 35)
-material = ExtResource("9_sdlht")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_7qopy")])
-flip_cuts = true
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_Ceiling" type="Node" parent="_Set/_Shell" unique_id=363451312]
 
@@ -849,6 +1002,38 @@ openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_e6hn1")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
+[node name="WallC_Bar_A_Fronton" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=694309896]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
+visible = false
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(420, 320, 35)
+material = ExtResource("9_sdlht")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_7qopy")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="WallC_Bar_A_Fronton2" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=933222157]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
+visible = false
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(420, 330, 35)
+material = ExtResource("48_1mlcx")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_7qopy")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
+[node name="WallC_Bar_A_Fronton3" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=1200364042]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(420, 330, 35)
+material = SubResource("StandardMaterial3D_d22am")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_7qopy")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+
 [node name="Wall_C_Recess" type="StaticBody3D" parent="_Set/_Shell" unique_id=755808313]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -432.67395, -101.5, 372.1223)
 script = ExtResource("13_c1nrq")
@@ -872,6 +1057,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_D_1_Cupboard" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=158284952]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -96)
+use_collision = true
 script = ExtResource("36_alunx")
 size = Vector3(400, 320, 55)
 material = ExtResource("9_sdlht")
@@ -881,6 +1067,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Wall_D_2_Pantry" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=963470495]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -564)
+use_collision = true
 script = ExtResource("36_alunx")
 size = Vector3(580, 320, 55)
 material = ExtResource("9_sdlht")
@@ -923,24 +1110,6 @@ size = Vector3(200, 4, 50)
 material = ExtResource("12_1f5h4")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="Dishes" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=109008673]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 4, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(30, 4, 30)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Dishes2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=893038637]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 77, 8, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(30, 4, 30)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Dishes3" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=2104189637]
-transform = Transform3D(1.0000001, 0, -1.39090695e-08, 0, 1, 0, 1.39090695e-08, 0, 1.0000001, 77, 12, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(30, 4, 30)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
 [node name="Shelf2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=784379161]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 26.5, -96)
 script = ExtResource("13_c1nrq")
@@ -948,29 +1117,7 @@ size = Vector3(200, 4, 50)
 material = ExtResource("12_1f5h4")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="Cups" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=606082632]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 4, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(10, 10, 10)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Cups2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=258011418]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 4, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(10, 10, 10)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Cups3" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=383905763]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 4, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(10, 10, 10)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Cups4" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=2000002360]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 4, 0)
-script = ExtResource("13_c1nrq")
-size = Vector3(10, 10, 10)
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+[node name="MeshInstance3D" type="MeshInstance3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=668396590]
 
 [node name="Shelf3" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=557144465]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 76.5, -96)
@@ -1418,7 +1565,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 84, -826)
 script = ExtResource("13_c1nrq")
 size = Vector3(120, 4, 35)
-material = ExtResource("55_fwl01")
+material = ExtResource("34_e6hn1")
 bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1426,7 +1573,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 119, -826)
 script = ExtResource("13_c1nrq")
 size = Vector3(120, 4, 35)
-material = ExtResource("55_fwl01")
+material = ExtResource("34_e6hn1")
 bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1434,7 +1581,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 159, -815)
 script = ExtResource("13_c1nrq")
 size = Vector3(120, 4, 80)
-material = ExtResource("55_fwl01")
+material = ExtResource("34_e6hn1")
 bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1442,7 +1589,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 257.27985, 159, -779)
 script = ExtResource("13_c1nrq")
 size = Vector3(284, 4, 8)
-material = ExtResource("16_nm6sv")
+material = ExtResource("34_e6hn1")
 bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1676,70 +1823,327 @@ mesh = SubResource("QuadMesh_5yy73")
 
 [node name="_Bar" type="Node" parent="_Set/_Fitout" unique_id=1919608886]
 
-[node name="ArtBox" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1059601656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 20.5, 158)
+[node name="Listello_Dado_Band_1_Olive6" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1293011813]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 596, 12.500013, 359)
 script = ExtResource("13_c1nrq")
-size = Vector3(30, 4, 400)
-material = ExtResource("46_fwl01")
-bevel = 0.5
+size = Vector3(6, 400, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="ArtBox2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=677921720]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 73.5, 158)
+[node name="Listello_Dado_Band_1_Olive7" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1719056946]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 333, 12.500013, 357)
 script = ExtResource("13_c1nrq")
-size = Vector3(30, 4, 400)
-material = ExtResource("46_fwl01")
-bevel = 0.5
+size = Vector3(6, 300, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="ArtBox3" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1386877061]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 136.5, 158)
+[node name="Listello_Dado_Band_1_Olive8" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=59141697]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 399, 12.500013, -40)
 script = ExtResource("13_c1nrq")
-size = Vector3(30, 4, 400)
-material = ExtResource("46_fwl01")
-bevel = 0.5
+size = Vector3(6, 200, 2)
+material = SubResource("ShaderMaterial_hwwv7")
+bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="Bar_Area_IceBench2" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=228508493]
-transform = Transform3D(8.940697e-08, -1.0000001, 4.3711385e-08, 4.371139e-08, 4.3711392e-08, 1, -1.0000001, -8.940697e-08, 4.37114e-08, 55, -32.5, 158)
-script = ExtResource("36_alunx")
-size = Vector3(400, 104, 50)
-material = ExtResource("62_fxkvl")
-openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_iv2nl")])
-flip_cuts = true
-bevel = 0.5
-metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
+[node name="Bar_Shelf_Bottom" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1059601656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 612, 12.499992, 158)
+script = ExtResource("13_c1nrq")
+size = Vector3(31, 4, 400)
+material = ExtResource("22_giwe5")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Bar_Shelf_Middle" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=677921720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 76.5, 158)
+script = ExtResource("13_c1nrq")
+size = Vector3(30, 4, 400)
+material = ExtResource("22_giwe5")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Bar_Shelf_Top" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1386877061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 139.5, 158)
+script = ExtResource("13_c1nrq")
+size = Vector3(30, 4, 400)
+material = ExtResource("22_giwe5")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Area_IceBench" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=1450698449]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 544, -99.5, 158)
+transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 0, 599, -99.5, 160)
+use_collision = true
 script = ExtResource("36_alunx")
-size = Vector3(400, 104, 50)
-material = ExtResource("62_fxkvl")
+size = Vector3(400, 90, 208)
+material = ExtResource("48_1mlcx")
 openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_iv2nl")])
 flip_cuts = true
 bevel = 0.5
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
-[node name="Bar_Area2" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=830689089]
+[node name="IceBox_Floor" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench" unique_id=1501534072]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 48, 87)
+script = ExtResource("13_c1nrq")
+size = Vector3(36, 4, 36)
+material = ExtResource("62_fxkvl")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Iceboxwall" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=574798626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, 0)
+script = ExtResource("13_c1nrq")
+size = Vector3(0.5, 18.5, 36)
+material = ExtResource("47_7qopy")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Iceboxwall4" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1268079131]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5527137e-15, 1.6420284e-15, 3.5527137e-15, 1, 18, 4, 0)
+script = ExtResource("13_c1nrq")
+size = Vector3(0.5, 35, 36)
+material = ExtResource("47_7qopy")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Iceboxwall2" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=507146415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 4, 0)
+script = ExtResource("13_c1nrq")
+size = Vector3(0.5, 18.5, 36)
+material = ExtResource("47_7qopy")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Iceboxwall3" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1085771270]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, -1.9106855e-15, -1, -3.5527137e-15, -4.3711392e-08, 0, 4, 17)
+script = ExtResource("13_c1nrq")
+size = Vector3(0.5, 18.5, 36)
+material = ExtResource("47_7qopy")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Iceboxwall5" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=283179918]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, -1.9106855e-15, -1, -3.5527137e-15, -4.3711392e-08, 0, 4, -17)
+script = ExtResource("13_c1nrq")
+size = Vector3(0.5, 18.5, 36)
+material = ExtResource("47_7qopy")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1339119166]
+transform = Transform3D(1, -4.371139e-08, -4.371139e-08, 4.3711392e-08, 1, 0, 4.3711385e-08, -1.9106853e-15, 1, 2, 13.932015, -2.909912)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube2" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1879980376]
+transform = Transform3D(1, -5.3535306e-08, -3.090862e-08, 4.37114e-08, 0.96592593, -0.25881907, 4.3711392e-08, 0.25881907, 0.96592593, 6, 13.932015, 1.0900879)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube3" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=218078475]
+transform = Transform3D(1, -1.5999476e-08, -5.9710864e-08, 4.371139e-08, 0.8660253, 0.49999997, 4.371139e-08, -0.49999997, 0.8660253, 0, 12.200021, 2.090088)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube7" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1306883264]
+transform = Transform3D(0, -4.371139e-08, 1, -3.5527137e-15, 1, 4.3711392e-08, -1, -5.463399e-15, -3.5527137e-15, -8, 11.932016, -8.909912)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube8" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1982210536]
+transform = Transform3D(-1.2802769e-08, -8.3337625e-08, 1, 0.25881907, 0.96592593, 4.371139e-08, -0.9659259, 0.25881907, 1.3909059e-08, -1, 13.553109, -5.2231445)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube9" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=674539474]
+transform = Transform3D(1.5999476e-08, -1.5999476e-08, 0.9999999, -0.5, 0.8660253, 4.3711392e-08, -0.8660254, -0.49999997, 1.3909066e-08, -8, 12.700021, 2.9561157)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube4" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1155585279]
+transform = Transform3D(0.35355338, 0.61237246, -0.7071067, -0.8660254, 0.5, -5.7048005e-08, 0.35355335, 0.6123724, 0.7071067, -5.071106, 13.932015, 4.161133)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube16" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1328464371]
+transform = Transform3D(1, -1.5999476e-08, -5.9710864e-08, 4.371139e-08, 0.8660253, 0.49999997, 4.371139e-08, -0.49999997, 0.8660253, -13, 15.700021, 2.616333)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube17" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1127657897]
+transform = Transform3D(0, -4.371139e-08, 1, -3.5527137e-15, 1, 4.3711392e-08, -1, -5.463399e-15, -3.5527137e-15, 3, 11.932016, -8.909912)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube18" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=754875292]
+transform = Transform3D(-1.2802769e-08, -8.3337625e-08, 1, 0.25881907, 0.96592593, 4.371139e-08, -0.9659259, 0.25881907, 1.3909059e-08, 10, 13.553109, -5.2231445)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube21" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1865494344]
+transform = Transform3D(0.25881913, -1.6858657e-08, 0.9659257, -0.48296288, 0.8660254, 0.1294096, -0.83651626, -0.49999997, 0.2241439, -15.454834, 10.129464, -1.4962158)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube22" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1226825434]
+transform = Transform3D(-0.96592593, -4.371139e-08, 0.2588191, -4.2221956e-08, 1.0000001, 1.1313343e-08, -0.25881907, -5.463399e-15, -0.9659258, -12.141113, 11.932015, 6.544861)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube23" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1954409601]
+transform = Transform3D(-0.9659259, -1.2900836e-07, 0.2588191, 0.06698725, 0.9659259, 0.25000003, -0.25000006, 0.25881907, -0.93301266, -5.1411133, 9.553108, 9.705078)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube24" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=51583631]
+transform = Transform3D(0.77451897, 0.6123726, 0.15849355, -0.22414389, 0.49999997, -0.8365164, -0.5915065, 0.6123726, 0.5245191, -11.606995, 14.316293, -4.23114)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube25" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1631668725]
+transform = Transform3D(-0.9659259, -1.2900836e-07, 0.2588191, 0.06698725, 0.9659259, 0.25000003, -0.25000006, 0.25881907, -0.93301266, 5.8588867, 9.553108, 9.705078)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube19" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=215697625]
+transform = Transform3D(1.5999476e-08, -1.5999476e-08, 0.9999999, -0.5, 0.8660253, 4.3711392e-08, -0.8660254, -0.49999997, 1.3909066e-08, 3, 12.700021, 2.9561157)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube20" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=569122811]
+transform = Transform3D(0.35355338, 0.61237246, -0.7071067, -0.8660254, 0.5, -5.7048005e-08, 0.35355335, 0.6123724, 0.7071067, -12.849243, 13.932014, 11.939331)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube10" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=532880513]
+transform = Transform3D(1, 1.5999468e-08, 5.9710864e-08, 4.371139e-08, -0.86602527, -0.50000006, 4.371139e-08, 0.50000006, -0.86602527, 0, 23.49421, 3.6522827)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube11" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=329276391]
+transform = Transform3D(0, 1.3113416e-07, -1, -3.5527137e-15, -1, -1.3113417e-07, -1, 5.7320558e-15, 0, -2, 18.932016, -8.909912)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube14" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=129436107]
+transform = Transform3D(-9.2725855e-08, 9.2725855e-08, -1, 0.70710677, -0.70710677, -1.3113416e-07, -0.70710677, -0.70710677, 3.5527137e-15, -12, 18.932016, -8.909912)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube15" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=493468398]
+transform = Transform3D(-9.2725855e-08, 9.2725855e-08, -1, 0.70710677, -0.70710677, -1.3113416e-07, -0.70710677, -0.70710677, 3.5527137e-15, 4, 18.932016, -8.909912)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube12" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=2116264688]
+transform = Transform3D(1.599947e-08, 1.0342226e-07, -0.99999994, -0.50000006, -0.8660253, -1.015199e-07, -0.8660254, 0.5, 6.0809185e-08, -4, 16.762156, -4.0079956)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube13" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1613729517]
+transform = Transform3D(0.35355353, -0.61237264, 0.70710677, -0.86602587, -0.50000006, -1.7457829e-08, 0.35355347, -0.6123724, -0.7071068, -1.4915771, 17.432014, 9.154846)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube5" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=593350639]
+transform = Transform3D(0.35355332, 0.61237246, -0.7071068, -0.92802274, 0.3244692, -0.18301266, 0.11736239, 0.7209159, 0.68301266, 2.050232, 12.650949, 5.871155)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Ice_Cube6" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1824294746]
+transform = Transform3D(0.35355332, 0.6123723, -0.7071067, -0.5732232, 0.7391989, 0.35355327, 0.73919886, 0.28033012, 0.6123722, -4.949768, 17.906929, 7.9747314)
+script = ExtResource("13_c1nrq")
+size = Vector3(5, 5, 5)
+material = ExtResource("121_qnvih")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Bar_Area_Side_B" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=830689089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 482, -99.5, 343)
+use_collision = true
 script = ExtResource("36_alunx")
 size = Vector3(200, 104, 30)
-material = ExtResource("62_fxkvl")
+material = ExtResource("48_1mlcx")
 bevel = 0.5
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
-[node name="BarTable_1040mmx50mm3" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=232270685]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 675, -99.5, 158)
-script = ExtResource("13_c1nrq")
-size = Vector3(5, 300, 400)
-material = ExtResource("47_tch4j")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
 [node name="Coffee_Area" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=1550683031]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 479, -99.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 460, -99.5, 0)
+use_collision = true
 script = ExtResource("36_alunx")
-size = Vector3(150, 104, 80)
-material = ExtResource("62_fxkvl")
+size = Vector3(120, 104, 80)
+material = ExtResource("48_1mlcx")
 bevel = 0.5
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
@@ -1747,7 +2151,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 360, -101.5, 257)
 script = ExtResource("13_c1nrq")
 size = Vector3(50, 108, 200)
-material = ExtResource("62_fxkvl")
+material = ExtResource("48_1mlcx")
 bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1755,7 +2159,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 404, -101.5, 257)
 script = ExtResource("13_c1nrq")
 size = Vector3(50, 85, 200)
-material = ExtResource("62_fxkvl")
+material = ExtResource("48_1mlcx")
 bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1763,6 +2167,54 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 360, 4.5, 257)
 script = ExtResource("13_c1nrq")
 size = Vector3(53, 5, 203)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="BarBench_Right" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=879412806]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 553, 4.5, 279)
+script = ExtResource("13_c1nrq")
+size = Vector3(93, 5, 203)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="BarBench_Right2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=2009716970]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 446, 4.5, 343)
+script = ExtResource("13_c1nrq")
+size = Vector3(125, 5, 30)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="BarBench_Ice_Top" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=680732155]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 584, 4.5, 160)
+script = ExtResource("13_c1nrq")
+size = Vector3(32, 5, 40)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="BarBench_Ice_Top2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1447818278]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 520, 4.5, 160)
+script = ExtResource("13_c1nrq")
+size = Vector3(27, 5, 40)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Bar_Bench_Left" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=902706492]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 553, 4.5, 88)
+script = ExtResource("13_c1nrq")
+size = Vector3(93, 5, 110)
+material = ExtResource("62_fxkvl")
+bevel = 1.0
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Coffee_Benchtop" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1562337773]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 501, 4.5, -2)
+script = ExtResource("13_c1nrq")
+size = Vector3(85, 5, 204)
 material = ExtResource("62_fxkvl")
 bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
@@ -1803,6 +2255,80 @@ frame_depth = 2.0
 material = ExtResource("62_fxkvl")
 panel_material = ExtResource("62_fxkvl")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Drawer_875mmx200mm_A3" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=285292965]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 508.5125, -25.5, 117.000015)
+script = ExtResource("13_c1nrq")
+size = Vector3(142, 20, 2)
+material = ExtResource("49_f5ptj")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="KnobRound2" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A3" unique_id=1708912310 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.487488, -4, 0)
+
+[node name="KnobRound3" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A3" unique_id=2135075925 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.712509, -4, 0)
+
+[node name="HandleBar" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A3" unique_id=1697879443 instance=ExtResource("16_kuif3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 10, 0)
+
+[node name="ShakerFront_10x80x15" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A3" unique_id=1117452867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.999985, -30, -1)
+script = ExtResource("17_0j8r1")
+size = Vector2(70, 58)
+panel_depth = 1.0
+frame_depth = 2.0
+material = ExtResource("49_f5ptj")
+panel_material = ExtResource("49_f5ptj")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A3" unique_id=1763721516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.75, -30, -1)
+script = ExtResource("17_0j8r1")
+size = Vector2(70, 58)
+panel_depth = 1.0
+frame_depth = 2.0
+material = ExtResource("49_f5ptj")
+panel_material = ExtResource("49_f5ptj")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Drawer_875mmx200mm_A2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=19170867]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 463.5125, -25.5, 258)
+script = ExtResource("13_c1nrq")
+size = Vector3(120, 20, 2)
+material = ExtResource("48_1mlcx")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="KnobRound2" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=1722448041 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4874573, -4, -45)
+
+[node name="KnobRound3" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=1556762014 instance=ExtResource("18_ium30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7125244, -4, -45)
+
+[node name="ShakerFront_10x80x15" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=1487175325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.999954, -30, -46)
+script = ExtResource("17_0j8r1")
+size = Vector2(60, 58)
+panel_depth = 1.0
+frame_depth = 2.0
+material = ExtResource("48_1mlcx")
+panel_material = ExtResource("48_1mlcx")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=621328792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.75, -30, -46)
+script = ExtResource("17_0j8r1")
+size = Vector2(60, 58)
+panel_depth = 1.0
+frame_depth = 2.0
+material = ExtResource("48_1mlcx")
+panel_material = ExtResource("48_1mlcx")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="HandleBar" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=1601350867 instance=ExtResource("16_kuif3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10, 0)
 
 [node name="HighBar_FootRest" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar" unique_id=2125297964]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 323, -78.5, 257)
@@ -1864,28 +2390,20 @@ sides = 24
 material = SubResource("ShaderMaterial_h0cav")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar" unique_id=1870178525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599, 135, 357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599, 142, 371)
 use_collision = true
 radius = 55.0
 height = 5.0
 sides = 27
-material = ExtResource("46_fwl01")
+material = ExtResource("49_f5ptj")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D2" unique_id=1969309954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -58, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -63, -21)
 use_collision = true
 radius = 35.0
 height = 5.0
 sides = 27
-material = ExtResource("46_fwl01")
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D2" unique_id=271353624]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -113, 1)
-use_collision = true
-radius = 25.0
-height = 5.0
-sides = 27
-material = ExtResource("46_fwl01")
+material = ExtResource("49_f5ptj")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar" unique_id=262254156]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599, 135, -41)
@@ -1893,7 +2411,7 @@ use_collision = true
 radius = 55.0
 height = 5.0
 sides = 28
-material = ExtResource("46_fwl01")
+material = ExtResource("49_f5ptj")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D3" unique_id=1308797796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -58, 1)
@@ -1901,7 +2419,7 @@ use_collision = true
 radius = 35.0
 height = 5.0
 sides = 28
-material = ExtResource("46_fwl01")
+material = ExtResource("49_f5ptj")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D3" unique_id=1134330191]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -113, 1)
@@ -1909,7 +2427,97 @@ use_collision = true
 radius = 25.0
 height = 5.0
 sides = 28
-material = ExtResource("46_fwl01")
+material = ExtResource("49_f5ptj")
+
+[node name="Bar_Glass_Stemware_Rack" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1864293851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 455, 140, 345)
+script = ExtResource("13_c1nrq")
+size = Vector3(100, 4, 30)
+material = SubResource("ShaderMaterial_gcn05")
+bevel = 0.5
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="CSGCylinder3D_Glass_Rail" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=100717933]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 44, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=279618376]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 39, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail3" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1672783523]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 29, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail4" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=575463464]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 24, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail5" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1457629531]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 12, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail6" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=509411260]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 7, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail7" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=2051759651]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -5, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail8" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=26603018]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -10, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail9" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1335916852]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail10" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1684918305]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -27, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail11" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=861769516]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -36, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="CSGCylinder3D_Glass_Rail12" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1368026825]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -41, -7.000001, 0)
+radius = 1.0
+height = 35.0
+material = SubResource("StandardMaterial3D_ultfi")
+
+[node name="Bar_Drawer" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=1865924119]
+transform = Transform3D(-4.371139e-08, 1, 0, 4.371139e-08, 0, 1, 1, 4.371139e-08, -4.3711385e-08, 463, -13.999994, 258)
+use_collision = true
+script = ExtResource("36_alunx")
+size = Vector3(116, 50, 15)
+material = ExtResource("49_f5ptj")
+openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_5st54")])
+flip_cuts = true
+metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_ElevationD_Tall" type="Node" parent="_Set/_Fitout" unique_id=237766516]
 
@@ -2243,17 +2851,20 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="Blender_Model" parent="_Set/_Dressing/_Props" unique_id=310644801 instance=ExtResource("10_lp2do")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 172.80304, 2.653246, -790.01385)
 
+[node name="Blender_Model2" parent="_Set/_Dressing/_Props" unique_id=551619675 instance=ExtResource("10_lp2do")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 542.80304, 2.653246, 279.98615)
+
 [node name="Winebottle" parent="_Set/_Dressing/_Props" unique_id=1584647438 instance=ExtResource("35_qk54t")]
-transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -145, 2.371749, -792)
+transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, 359, 8.37175, 216)
 
 [node name="Winebottle4" parent="_Set/_Dressing/_Props" unique_id=422805796 instance=ExtResource("35_qk54t")]
 transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, 61, -84.62825, -461)
 
 [node name="Winebottle2" parent="_Set/_Dressing/_Props" unique_id=338190042 instance=ExtResource("35_qk54t")]
-transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -154, 2.371749, -792)
+transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -144, 2.371749, -792)
 
 [node name="Winebottle3" parent="_Set/_Dressing/_Props" unique_id=594710184 instance=ExtResource("35_qk54t")]
-transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -163, 2.371749, -792)
+transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -153, 2.371749, -792)
 
 [node name="Chilli" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1148309266]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154, 106, -787)
@@ -2327,15 +2938,8 @@ height = 5.0
 sides = 24
 material = ExtResource("27_wsxmo")
 
-[node name="PotPlant_Shelf" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1381410645]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 175.5, -61)
-script = ExtResource("13_c1nrq")
-size = Vector3(20, 20, 20)
-material = ExtResource("27_wsxmo")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
 [node name="powerpoint" parent="_Set/_Dressing/_Props" unique_id=313599797 instance=ExtResource("12_ahvsm")]
-transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
+transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -806.08417)
 
 [node name="Rug_1_Kitchen_Rattan" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=383566539]
 transform = Transform3D(0.9986295, 0, -0.05233596, 0, 1, 0, 0.05233596, 0, 0.9986295, 3, -99.5, -100)
@@ -2708,7 +3312,7 @@ openings = Array[ExtResource("15_cehu3")]([SubResource("Resource_3dniq")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
-[node name="ArtBox" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=279809609]
+[node name="Vestibule_Painting" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=279809609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171, 22, 497)
 script = ExtResource("13_c1nrq")
 size = Vector3(3, 100, 150)
@@ -2765,6 +3369,446 @@ script = ExtResource("12_xf8mf")
 radius = 30.0
 metadata/_custom_type_script = "uid://c3d1xouymugbb"
 
+[node name="Bottle_Oil" parent="_Set/_Dressing/_Props" unique_id=1903508368 instance=ExtResource("84_gasym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -208, 12.999998, -795)
+
+[node name="Bottle_Oil_2" parent="_Set/_Dressing/_Props" unique_id=573271887 instance=ExtResource("85_un4n3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -192, 13.0023575, -794)
+
+[node name="Bottle_Cooking_Wine" parent="_Set/_Dressing/_Props" unique_id=67509646 instance=ExtResource("79_x065l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -222, 12.999998, -795)
+
+[node name="Bottle_Medicine" parent="_Set/_Dressing/_Props" unique_id=1388085544 instance=ExtResource("81_ycsto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 376, 74.00176, -40)
+
+[node name="_Pots" type="Node" parent="_Set/_Dressing/_Props" unique_id=1122719437]
+
+[node name="Pot_01_Classic_Herb2" parent="_Set/_Dressing/_Props/_Pots" unique_id=75814398 instance=ExtResource("68_7qopy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -20)
+
+[node name="Pot_02_Bulbous_Olive2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1443765216 instance=ExtResource("66_4y7vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -51)
+
+[node name="Pot_02_Bulbous_Olive4" parent="_Set/_Dressing/_Props/_Pots" unique_id=441753900 instance=ExtResource("66_4y7vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 174, -68)
+
+[node name="Pot_02_Bulbous_Olive3" parent="_Set/_Dressing/_Props/_Pots" unique_id=1206196881 instance=ExtResource("66_4y7vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110, -84.50001, -476)
+
+[node name="Pot_03_Tall_Utensil_Crock2" parent="_Set/_Dressing/_Props/_Pots" unique_id=741253545 instance=ExtResource("67_io3ko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -83)
+
+[node name="Pot_04_Low_Wide_Planter2" parent="_Set/_Dressing/_Props/_Pots" unique_id=622945479 instance=ExtResource("68_v8u1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -122)
+
+[node name="Pot_04_Low_Wide_Planter3" parent="_Set/_Dressing/_Props/_Pots" unique_id=1134117617 instance=ExtResource("68_v8u1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108, -84.50001, -519)
+
+[node name="Pot_05_Spanish_Bell2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1256161998 instance=ExtResource("69_fxkvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -18)
+
+[node name="Pot_05_Spanish_Bell4" parent="_Set/_Dressing/_Props/_Pots" unique_id=223601276 instance=ExtResource("69_fxkvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209, -67.499985, 346)
+
+[node name="Pot_05_Spanish_Bell5" parent="_Set/_Dressing/_Props/_Pots" unique_id=484228214 instance=ExtResource("69_fxkvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206, -67.499985, 346)
+
+[node name="Pot_05_Spanish_Bell3" parent="_Set/_Dressing/_Props/_Pots" unique_id=537511431 instance=ExtResource("69_fxkvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 83, -792)
+
+[node name="Pot_05_Spanish_Bell6" parent="_Set/_Dressing/_Props/_Pots" unique_id=1442830565 instance=ExtResource("69_fxkvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -373, 3, -785)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/_Pots/Pot_05_Spanish_Bell6" unique_id=660500313]
+radius = 13.0
+sides = 28
+material = SubResource("StandardMaterial3D_qnvih")
+
+[node name="Pot_06_Rustic_Jar2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1432886493 instance=ExtResource("70_h4caw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -17.5, -174)
+
+[node name="Pot_05_Spanish_Bell_Fusion Pot" parent="_Set/_Dressing/_Props/_Pots" unique_id=1163047140 instance=ExtResource("69_fxkvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -173)
+
+[node name="Pot_06_Rustic_Jar3" parent="_Set/_Dressing/_Props/_Pots/Pot_05_Spanish_Bell_Fusion Pot" unique_id=542043848 instance=ExtResource("70_h4caw")]
+
+[node name="Pot_07_Etched_Chevron2" parent="_Set/_Dressing/_Props/_Pots" unique_id=413527041 instance=ExtResource("71_hn66s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -49)
+
+[node name="Pot_08_Etched_Diamond2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1438498134 instance=ExtResource("72_v4t4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -77)
+
+[node name="Pot_09_Etched_Wave2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1815998939 instance=ExtResource("73_bm72v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -109)
+
+[node name="Pot_10_Etched_Dot_Band2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1833529766 instance=ExtResource("74_rdchi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -141)
+
+[node name="_Bar_Bottles" type="Node" parent="_Set/_Dressing/_Props" unique_id=999626372]
+
+[node name="_Top_Shelf" type="Node" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=668312757]
+
+[node name="_Mid_Shelf" type="Node" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1606709377]
+
+[node name="_Bottom_Shelf" type="Node" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=645235732]
+
+[node name="Bottle_Beer_Tallie" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1213488054 instance=ExtResource("78_io3ko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 549, 16.499992, 29)
+
+[node name="Cork_41_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie" index="0" unique_id=805580368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.9999943, 0)
+cast_shadow = 0
+surface_material_override/0 = ExtResource("81_aaqfp")
+surface_material_override/1 = ExtResource("82_2ojb8")
+
+[node name="Bottle_Brandy" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1410180870 instance=ExtResource("77_6kfus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.496046, 37)
+
+[node name="Cork_35_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy" index="0" unique_id=611845711]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("82_ya2v5")
+
+[node name="Bottle_Cognac" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=928830328 instance=ExtResource("78_ji5kw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.49701, 156)
+
+[node name="Cork_28_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac" index="0" unique_id=333828398]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("82_2ojb8")
+
+[node name="Bottle_Gin" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1228544802 instance=ExtResource("80_mqg6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.50073, 109)
+
+[node name="Cork_04_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Gin" index="0" unique_id=165612601]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("94_gcn05")
+
+[node name="Bottle_Mix" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1611469794 instance=ExtResource("82_wn2jg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.499992, 181)
+
+[node name="Cork_01_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Mix" index="0" unique_id=1913193329]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("89_57rwb")
+
+[node name="Bottle_Moonshine" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=923030127 instance=ExtResource("83_3e1mq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.498005, 299)
+
+[node name="Cork_21_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine" index="0" unique_id=1899742190]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("94_gcn05")
+
+[node name="Bottle_Rum" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1240850222 instance=ExtResource("86_jtbq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.495989, 222)
+
+[node name="Cork_30_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum" index="0" unique_id=430706074]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("92_1mlcx")
+
+[node name="Bottle_Sparkling" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1893778026 instance=ExtResource("87_ojblr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.5, 137)
+
+[node name="Cork_26_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling" index="0" unique_id=1792930178]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("94_f5ptj")
+
+[node name="Bottle_Sphere" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=270123262 instance=ExtResource("88_ultfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.5, 115)
+
+[node name="Cork_15_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere" index="0" unique_id=510371891]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("92_ya2v5")
+
+[node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("89_koo4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)
+
+[node name="Cork_03_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit" index="0" unique_id=1572537878]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("97_qnvih")
+
+[node name="Bottle_Tanqueray" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=129072707 instance=ExtResource("90_gcn05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.30527, 193)
+
+[node name="Cork_32_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray" index="0" unique_id=1329934690]
+cast_shadow = 0
+surface_material_override/1 = ExtResource("99_wg0ch")
+
+[node name="Bottle_Vodka" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=824450135 instance=ExtResource("91_cf5ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.499992, 109)
+
+[node name="Cork_17_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka" index="0" unique_id=822769810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27)
+cast_shadow = 0
+surface_material_override/1 = ExtResource("94_gcn05")
+
+[node name="Bottle_Whiskey" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=673109816 instance=ExtResource("92_aaqfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500008, 109)
+
+[node name="Cork_08_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey" index="0" unique_id=2004589926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+cast_shadow = 0
+surface_material_override/1 = ExtResource("82_2ojb8")
+
+[node name="_Glasses" type="Node" parent="_Set/_Dressing/_Props" unique_id=1246869311]
+
+[node name="glass_champagne_flute" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1744711000 instance=ExtResource("93_ultfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -15)
+
+[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_Glasses/glass_champagne_flute" index="0" unique_id=2107941512]
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_collin" parent="_Set/_Dressing/_Props/_Glasses" unique_id=806423909 instance=ExtResource("94_koo4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -33)
+
+[node name="glass_collin_001" parent="_Set/_Dressing/_Props/_Glasses/glass_collin" index="0" unique_id=1815279021]
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_flute" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1754049589 instance=ExtResource("95_gcn05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -50)
+
+[node name="glass_flute_001" parent="_Set/_Dressing/_Props/_Glasses/glass_flute" index="0" unique_id=874109838]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_martini" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1953578326 instance=ExtResource("96_cf5ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -65)
+
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_Glasses/glass_martini" index="0" unique_id=602528907]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion" parent="_Set/_Dressing/_Props/_Glasses" unique_id=2115099948 instance=ExtResource("97_aaqfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -85)
+
+[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_Glasses/glass_old_fashion" index="0" unique_id=298271082]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_pint" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1850974338 instance=ExtResource("98_ya2v5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -103)
+
+[node name="glass_pint_001" parent="_Set/_Dressing/_Props/_Glasses/glass_pint" index="0" unique_id=733274860]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_port" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1056192440 instance=ExtResource("99_uenx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -121)
+
+[node name="glass_port_001" parent="_Set/_Dressing/_Props/_Glasses/glass_port" index="0" unique_id=1156964256]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_red_wine" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1469127483 instance=ExtResource("100_31wi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -139)
+
+[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_Glasses/glass_red_wine" index="0" unique_id=1555438072]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_red_wine_2" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1621698887 instance=ExtResource("101_1vqu7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -157)
+
+[node name="glass_red_wine_2_001" parent="_Set/_Dressing/_Props/_Glasses/glass_red_wine_2" index="0" unique_id=822420788]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1903468633 instance=ExtResource("102_01td5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -177)
+
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine" index="0" unique_id=1973976248]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine_2" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1988383186 instance=ExtResource("103_2ojb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 129.5, -112)
+
+[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine_2" index="0" unique_id=1246793934]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine_3" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1457941741 instance=ExtResource("104_57rwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 129.5, -94)
+
+[node name="glass_white_wine_3_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine_3" index="0" unique_id=1323973741]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="_HighBar_Bench" type="Node" parent="_Set/_Dressing/_Props" unique_id=465079741]
+
+[node name="glass_collin2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1240983464 instance=ExtResource("94_koo4o")]
+transform = Transform3D(-1, 8.742278e-08, 0, 8.742278e-08, 1, -8.742278e-08, -7.642742e-15, -8.742278e-08, -1, 396, -16.5, 282)
+
+[node name="glass_collin_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2" index="0" unique_id=1815279021]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1505683664 instance=ExtResource("97_aaqfp")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 397, 18.032417, 339)
+
+[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" index="0" unique_id=298271082]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_002" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=27330995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 31)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_003" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=981352560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 31)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_004" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1959790510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 31)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_005" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=2002599247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 44)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_006" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1340067564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 44)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_007" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1858565617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 44)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_008" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=686972242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 57)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_009" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1909207788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 57)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion_010" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1513907771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 57)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_ycnrp")
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_old_fashion3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1755733577 instance=ExtResource("97_aaqfp")]
+transform = Transform3D(-1, 8.940697e-08, 0, 8.940697e-08, 1, -8.742277e-08, -8.881784e-15, -8.742277e-08, -1, 353, 9.5, 328)
+
+[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3" index="0" unique_id=298271082]
+transform = Transform3D(1, 6.833143e-22, 0, 7.7647016e-22, 1, 0, 0, 0, 1, 0, -9.536743e-07, 0)
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="Bottle_Beer_Bottle" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1417089650 instance=ExtResource("75_trva3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349, 9.499996, 310)
+
+[node name="Cork_37_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/Bottle_Beer_Bottle" index="0" unique_id=593645136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9073486e-06, 0)
+cast_shadow = 0
+surface_material_override/1 = ExtResource("82_2ojb8")
+
+[node name="glass_champagne_flute2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1000762205 instance=ExtResource("93_ultfi")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 464, 136.49998, 337)
+
+[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute2" index="0" unique_id=2107941512]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_red_wine2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1137280624 instance=ExtResource("100_31wi4")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 448, 136.49998, 337)
+
+[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine2" index="0" unique_id=1555438072]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine_4" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1135216626 instance=ExtResource("103_2ojb8")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 417, 136.49998, 337)
+
+[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_4" index="0" unique_id=1246793934]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=944328278 instance=ExtResource("102_01td5")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 431, 136.49998, 337)
+
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine2" index="0" unique_id=1973976248]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine4" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1950636899 instance=ExtResource("102_01td5")]
+transform = Transform3D(1, 0, 0, 0, 1, 1.7484555e-07, 0, -1.7484555e-07, 1, 352, 9.499994, 190)
+
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine4" index="0" unique_id=1973976248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.67572e-06, 0)
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_champagne_flute3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=2034225413 instance=ExtResource("93_ultfi")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 464, 136.49998, 352)
+
+[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute3" index="0" unique_id=2107941512]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_red_wine3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1640380413 instance=ExtResource("100_31wi4")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 448, 136.49998, 352)
+
+[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine3" index="0" unique_id=1555438072]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine_5" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1609121430 instance=ExtResource("103_2ojb8")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 417, 136.49998, 352)
+
+[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_5" index="0" unique_id=1246793934]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_white_wine3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=966220653 instance=ExtResource("102_01td5")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 431, 136.49998, 352)
+
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine3" index="0" unique_id=1973976248]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_martini_shelf" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1981918274 instance=ExtResource("96_cf5ub")]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 497, 136.49998, 337)
+
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf" index="0" unique_id=602528907]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_martini_shelf2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1575420853 instance=ExtResource("96_cf5ub")]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 497, 136.49998, 351)
+
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf2" index="0" unique_id=602528907]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_martini_shelf3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=101580635 instance=ExtResource("96_cf5ub")]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 482, 136.49998, 337)
+
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf3" index="0" unique_id=602528907]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
+[node name="glass_martini_shelf4" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1681313675 instance=ExtResource("96_cf5ub")]
+transform = Transform3D(-1, 8.742278e-08, -7.642742e-15, 8.742278e-08, 1, -8.742278e-08, 0, -8.742278e-08, -1, 360, 9.5, 264)
+
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf4" index="0" unique_id=602528907]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("94_gcn05")
+
 [node name="_Lighting" type="Node" parent="." unique_id=971610010]
 
 [node name="_LightBlocker" type="Node" parent="_Lighting" unique_id=901479179]
@@ -2794,9 +3838,6 @@ environment = SubResource("Environment_5yy73")
 transform = Transform3D(-7.1054274e-15, -1, 1.5529406e-22, -4.3711385e-08, 4.6588217e-22, 1, -1, 7.105428e-15, -4.3711385e-08, -427, 185.5, -96.000015)
 spot_range = 228.273
 spot_attenuation = -0.12
-
-[node name="powerpoint" parent="." unique_id=1367596226 instance=ExtResource("12_ahvsm")]
-transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -809.08417)
 
 [node name="_Development" type="Node" parent="." unique_id=937245346]
 
@@ -2968,3 +4009,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, 0)
 radius = 3.0
 height = 74.0
 sides = 28
+
+[node name="TaperBox" type="StaticBody3D" parent="." unique_id=899963751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -230, 3, -870)
+script = ExtResource("44_maswr")
+bottom_size = Vector2(80, 15)
+top_size = Vector2(100, 15)
+height = 10.0
+bevel = 0.5
+material = ExtResource("49_f5ptj")
+metadata/_custom_type_script = "uid://dv61u3h65bqmd"
+
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Gin"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Mix"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_champagne_flute"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_collin"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_flute"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_martini"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_old_fashion"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_pint"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_port"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_red_wine"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_red_wine_2"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine_2"]
+[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine_3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/Bottle_Beer_Bottle"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_4"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine4"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_5"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf4"]

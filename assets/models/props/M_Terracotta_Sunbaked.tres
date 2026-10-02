@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://d3iv30apca0ls"]
-
-[resource]
-resource_name = "M_Terracotta_Sunbaked"
-albedo_color = Color(0.8864085, 0.66223466, 0.5017734, 1)
-roughness = 0.84
