@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cts3uc4t4uds5"]
+[gd_scene format=3 uid="uid://u2dhu05rqoj3"]
 
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_tdenf"]
 [ext_resource type="PackedScene" uid="uid://dkmlansq43ews" path="res://packed_scenes/player_egg.tscn" id="2_ahvsm"]
@@ -20,8 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://c8m6nxngnnw1g" path="res://assets/models/props/table.glb" id="14_vk1ru"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="14_ybb3e"]
 [ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="15_vk1ru"]
-[ext_resource type="PackedScene" uid="uid://d082epsq48fks" path="res://scenes/obstacles/funnel.tscn" id="16_twewy"]
-[ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="17_2j0ga"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/funnel.tscn" id="16_twewy"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/rolling_pin.tscn" id="17_2j0ga"]
 [ext_resource type="PackedScene" uid="uid://dim3tp33qahpt" path="res://packed_scenes/not_a_player_egg.tscn" id="19_5nqe5"]
 [ext_resource type="PackedScene" uid="uid://1wtqcea6r5i0" path="res://scenes/obstacles/scale.tscn" id="19_nm6sv"]
 [ext_resource type="PackedScene" uid="uid://byub54rxkinip" path="res://assets/models/props/chair.glb" id="20_nm6sv"]
@@ -363,7 +363,7 @@ fn = 3
 [node name="_Props" type="Node" parent="_Set/_Dressing" unique_id=1727572606]
 
 [node name="CardboardBox" parent="_Set/_Dressing/_Props" unique_id=2087972040 instance=ExtResource("4_c7xwi")]
-transform = Transform3D(-0.1252915, 3.4172328, 1.4390694, -3.7075086, -0.13593435, 0, 0.0527275, -1.4381034, 3.4195292, -98.67215, 4.5077605, -410.7317)
+transform = Transform3D(-0.07884066, 2.1503208, 3.0222511, -3.7075086, -0.13593435, 0, 0.11073527, -3.0202222, 2.1517663, -90.84995, 30.259897, -432.2201)
 
 [node name="Rug" parent="_Set/_Dressing/_Props" unique_id=1957787597 instance=ExtResource("7_lp2do")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -99.5, -126)

@@ -1,0 +1,178 @@
+[gd_scene load_steps=19 format=3]
+
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/corexy.tscn" id="2_corexy"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death"]
+
+[ext_resource type="PackedScene" path="res://scenes/player_start.tscn" id="5_start"]
+[ext_resource type="Script" path="res://scripts/props/corexy_demo.gd" id="6_demo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(22, 1, 22)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(22, 1, 22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.12, 0.18, 0.22, 1)
+roughness = 0.84
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.025, 0.06, 0.09, 1)
+sky_horizon_color = Color(0.55, 0.39, 0.24, 1)
+ground_bottom_color = Color(0.02, 0.018, 0.016, 1)
+ground_horizon_color = Color(0.30, 0.21, 0.16, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_color = Color(0.72, 0.82, 1, 1)
+ambient_light_energy = 0.58
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 1.25
+
+[sub_resource type="StandardMaterial3D" id="Material_tray"]
+albedo_color = Color(0.12, 0.48, 0.4, 1)
+metallic = 0.4
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="Mesh_tray_base"]
+size = Vector3(7.6, 0.12, 7.6)
+material = SubResource("Material_tray")
+
+[sub_resource type="BoxShape3D" id="Shape_tray_base"]
+size = Vector3(7.6, 0.12, 7.6)
+
+[sub_resource type="BoxMesh" id="Mesh_tray_side"]
+size = Vector3(0.16, 0.52, 7.6)
+material = SubResource("Material_tray")
+
+[sub_resource type="BoxShape3D" id="Shape_tray_side"]
+size = Vector3(0.16, 0.52, 7.6)
+
+[sub_resource type="BoxMesh" id="Mesh_tray_end"]
+size = Vector3(7.6, 0.52, 0.16)
+material = SubResource("Material_tray")
+
+[sub_resource type="BoxShape3D" id="Shape_tray_end"]
+size = Vector3(7.6, 0.52, 0.16)
+
+[node name="CoreXYDemo" type="Node3D"]
+script = ExtResource("6_demo")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CoreXY" parent="." instance=ExtResource("2_corexy")]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 0.75, 6.5)
+
+[node name="PlayerStart" parent="." instance=ExtResource("5_start")]
+position = Vector3(0, 0.75, 6.5)
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death")]
+position = Vector3(0, -5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(12, 13, 19)
+current = true
+fov = 50.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-52, -36, 0)
+light_color = Color(1, 0.84, 0.68, 1)
+light_energy = 1.25
+shadow_enabled = true
+
+[node name="FillLight" type="OmniLight3D" parent="."]
+position = Vector3(-5, 6, 5)
+light_color = Color(0.38, 0.60, 1, 1)
+light_energy = 8.0
+omni_range = 18.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_demo")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="Label" parent="HUD"]
+offset_left = 28.0
+offset_top = 24.0
+offset_right = 700.0
+offset_bottom = 112.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "CoreXY Dicer Demo — P: pause / resume   F: drop into dicer
+WASD / arrows: move   Space: jump   R: reset
+Right drag: orbit camera   Mouse wheel: zoom"
+
+[node name="PassageStatus" type="Label" parent="HUD"]
+offset_left = 28.0
+offset_top = 140.0
+offset_right = 1000.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0.5, 1, 0.76, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Blade passages: 0"
+
+[node name="CatchTray" type="StaticBody3D" parent="."]
+
+[node name="Base" type="MeshInstance3D" parent="CatchTray"]
+position = Vector3(0, 0.06, 0)
+mesh = SubResource("Mesh_tray_base")
+
+[node name="BaseCollision" type="CollisionShape3D" parent="CatchTray"]
+position = Vector3(0, 0.06, 0)
+shape = SubResource("Shape_tray_base")
+
+[node name="Left" type="MeshInstance3D" parent="CatchTray"]
+position = Vector3(-3.72, 0.32, 0)
+mesh = SubResource("Mesh_tray_side")
+
+[node name="LeftCollision" type="CollisionShape3D" parent="CatchTray"]
+position = Vector3(-3.72, 0.32, 0)
+shape = SubResource("Shape_tray_side")
+
+[node name="Right" type="MeshInstance3D" parent="CatchTray"]
+position = Vector3(3.72, 0.32, 0)
+mesh = SubResource("Mesh_tray_side")
+
+[node name="RightCollision" type="CollisionShape3D" parent="CatchTray"]
+position = Vector3(3.72, 0.32, 0)
+shape = SubResource("Shape_tray_side")
+
+[node name="Front" type="MeshInstance3D" parent="CatchTray"]
+position = Vector3(0, 0.32, 3.72)
+mesh = SubResource("Mesh_tray_end")
+
+[node name="FrontCollision" type="CollisionShape3D" parent="CatchTray"]
+position = Vector3(0, 0.32, 3.72)
+shape = SubResource("Shape_tray_end")
+
+[node name="Back" type="MeshInstance3D" parent="CatchTray"]
+position = Vector3(0, 0.32, -3.72)
+mesh = SubResource("Mesh_tray_end")
+
+[node name="BackCollision" type="CollisionShape3D" parent="CatchTray"]
+position = Vector3(0, 0.32, -3.72)
+shape = SubResource("Shape_tray_end")

@@ -17,6 +17,7 @@ signal condition_changed(new_condition: Condition)
 
 var on_ground := false
 var _teleport_target: Transform3D
+var _teleport_velocity := Vector3.ZERO
 var _teleport_queued := false
 var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness ourselves
 ## Distance from this character's origin down to its lowest point.
@@ -33,6 +34,15 @@ func _ready() -> void:
 	max_contacts_reported = 8
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if _teleport_queued:
+		state.transform = _teleport_target
+		state.linear_velocity = _teleport_velocity
+		state.angular_velocity = Vector3.ZERO
+		state.sleeping = false
+		_teleport_queued = false
+		on_ground = false
+		reset_physics_interpolation()
+		return
 	on_ground = has_ground_contact(state)
 	if is_instance_valid(gadget) and gadget.has_method("integrate_equipment_forces"):
 		gadget.integrate_equipment_forces(self, state)
@@ -100,8 +110,9 @@ func restart_level() -> void:
 
 ## The only safe way to move a rigid body. Records the request;
 ## the physics step fulfils it.
-func teleport_to(target: Transform3D) -> void:
+func teleport_to(target: Transform3D, velocity := Vector3.ZERO) -> void:
 	_teleport_target = target
+	_teleport_velocity = velocity
 	_teleport_queued = true
 	sleeping = false   # a resting body stops receiving _integrate_forces
 func set_active(active: bool) -> void:

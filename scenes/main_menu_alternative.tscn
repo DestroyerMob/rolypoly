@@ -346,10 +346,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.5, 0)
 [node name="Collision" parent="KitchenStudio/Fixtures/Pantry/Fridge" parent_id_path=PackedInt32Array(2096602144, 1068473685) index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.5, 0)
 
-[node name="Mesh" parent="KitchenStudio/Dressing/Props/Rug" parent_id_path=PackedInt32Array(2096602144, 1957787597) index="0"]
+[node name="Mesh" parent="KitchenStudio/Props/Rug" parent_id_path=PackedInt32Array(2096602144, 1957787597) index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
-[node name="Collision" parent="KitchenStudio/Dressing/Props/Rug" parent_id_path=PackedInt32Array(2096602144, 1957787597) index="1"]
+[node name="Collision" parent="KitchenStudio/Props/Rug" parent_id_path=PackedInt32Array(2096602144, 1957787597) index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
 [node name="KitchenLight" type="DirectionalLight3D" parent="." unique_id=632802514]
@@ -775,8 +775,10 @@ alignment = 0
 
 [editable path="KitchenStudio"]
 [editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Oven"]
+[editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Oven/Model"]
 [editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Pot"]
+[editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Pot/Model"]
 [editable path="KitchenStudio/Fixtures/SinkWall/BlenderModel"]
 [editable path="KitchenStudio/Furniture/Table"]
 [editable path="KitchenStudio/Furniture/Chair"]
-[editable path="KitchenStudio/Dressing/Props/PowerOutlet"]
+[editable path="KitchenStudio/Props/PowerOutlet"]
