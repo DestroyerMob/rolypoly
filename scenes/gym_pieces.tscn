@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_jrvun"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="1_meaft"]
 [ext_resource type="Script" uid="uid://c7557x0xku2rq" path="res://scripts/proto_ramp.gd" id="2_1yo35"]
-[ext_resource type="Script" uid="uid://djp4yg53u5qk6" path="res://scripts/camera.gd" id="3_s4hep"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_mvr0u"]
 [ext_resource type="PackedScene" uid="uid://d082epsq48fks" path="res://scenes/obstacles/funnel.tscn" id="4_wt0ny"]
 [ext_resource type="PackedScene" uid="uid://bg0dphpqhwup" path="res://scenes/obstacles/ladle.tscn" id="5_42agb"]
 [ext_resource type="Script" uid="uid://cd4rb6ctxth5d" path="res://scripts/player_start.gd" id="5_a6ejg"]
@@ -61,15 +61,20 @@ tonemap_mode = 2
 script = ExtResource("1_jrvun")
 
 [node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("1_0rc31")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0162196, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2964125, 0, -7.8495407)
 
-[node name="Camera3D" type="Camera3D" parent="PlayerRig/Player" unique_id=1887820177 node_paths=PackedStringArray("player_rig")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.9918902, 4.4192405)
+[node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=1903409864 node_paths=PackedStringArray("player_rig")]
+script = ExtResource("3_mvr0u")
+player_rig = NodePath("..")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerRig/CameraPivot" unique_id=415434617]
+spring_length = 17.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/CameraPivot/SpringArm3D" unique_id=1676424679]
 fov = 80.0
-script = ExtResource("3_s4hep")
-player_rig = NodePath("../..")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="PlayerRig/Player/Camera3D" unique_id=1645231805]
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerRig/CameraPivot/SpringArm3D/Camera3D" unique_id=1033057195]
 transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.9988193, 0, 0, 7.6655684)
 spot_range = 97.89
 spot_attenuation = 0.22

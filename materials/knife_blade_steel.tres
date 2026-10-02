@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://jhxeitcov2hc"]
+
+[ext_resource type="Texture2D" uid="uid://khckaflwhh7w" path="res://assets/textures/T_Metal_Scratched_1K_MR.png" id="1_d434s"]
+
+[resource]
+resource_name = "knife_blade"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.7750634, 0.7750634, 0.7750633, 1)
+metallic = 1.0
+metallic_texture = ExtResource("1_d434s")
+roughness_texture = ExtResource("1_d434s")

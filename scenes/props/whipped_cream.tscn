@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/whipped_cream.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/models/props/whipped_cream/whipped_cream_uncapped.glb" id="2_model"]
+[ext_resource type="PackedScene" path="res://packed_scenes/whipped_cream_particles.tscn" id="3_spray"]
+
+[node name="WhippedCream" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+position = Vector3(0, 1.7, 0)
+rotation = Vector3(3.1415927, 0, 0)
+scale = Vector3(3.4, 3.4, 3.4)
+
+[node name="CreamSpray" parent="." instance=ExtResource("3_spray")]
+position = Vector3(0, -1.4, 0)

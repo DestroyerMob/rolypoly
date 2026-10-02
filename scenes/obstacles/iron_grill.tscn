@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/obstacles/iron_grill/iron_grill.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/obstacles/iron_grill.gd" id="2_heat"]
+
+[node name="IronGrill" type="Node3D"]
+script = ExtResource("2_heat")
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
