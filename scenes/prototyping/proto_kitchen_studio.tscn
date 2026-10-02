@@ -108,7 +108,6 @@
 [ext_resource type="PackedScene" uid="uid://hes8xfiaa523" path="res://assets/models/props/glass/Bottle_Vodka.glb" id="91_cf5ub"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Ink.tres" id="92_1mlcx"]
 [ext_resource type="PackedScene" uid="uid://c360ryvgw4gfo" path="res://assets/models/props/glass/Bottle_Whiskey.glb" id="92_aaqfp"]
-[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Cobalt.tres" id="92_ya2v5"]
 [ext_resource type="PackedScene" uid="uid://bsvsf1q4epvj2" path="res://assets/models/props/glass/glass_champagne_flute.glb" id="93_ultfi"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Green_Antique.tres" id="94_f5ptj"]
 [ext_resource type="Material" uid="uid://c66qa2sy73pnd" path="res://assets/models/props/glass/MI_Glass_Flint.tres" id="94_gcn05"]
@@ -3564,7 +3563,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.5, 115)
 
 [node name="Cork_15_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere" index="0" unique_id=510371891]
 cast_shadow = 0
-surface_material_override/1 = ExtResource("92_ya2v5")
 
 [node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("89_koo4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)

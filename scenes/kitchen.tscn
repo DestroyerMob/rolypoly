@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="2_stcn7"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_ofdgt"]
 [ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="4_gvbnr"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="4_ncilh"]
 [ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="5_1h32m"]
 [ext_resource type="Script" uid="uid://cnqv1ieg4fx1y" path="res://scripts/art_box.gd" id="6_4b3au"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="6_7yasx"]
 [ext_resource type="Script" uid="uid://dtpgesoo3m5gm" path="res://scripts/art_wall.gd" id="7_3hd6r"]
 [ext_resource type="Material" uid="uid://d4mlgixw5duf" path="res://materials/generated/MI_Plaster_Cream.tres" id="8_bktm0"]
 [ext_resource type="Script" uid="uid://bnsr3x720g76b" path="res://scripts/wall_opening.gd" id="9_2kmqn"]
@@ -103,7 +105,6 @@
 [ext_resource type="PackedScene" uid="uid://dvtg67jwrhyp" path="res://assets/models/props/glass/Bottle_Sparkling.glb" id="96_xtg7j"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Green_Antique.tres" id="97_rdvj3"]
 [ext_resource type="PackedScene" uid="uid://dso0y73cy3syn" path="res://assets/models/props/glass/Bottle_Sphere.glb" id="98_jeutv"]
-[ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Cobalt.tres" id="99_vuts3"]
 [ext_resource type="PackedScene" uid="uid://drb837g5d5bwj" path="res://assets/models/props/glass/Bottle_Spirit.glb" id="100_jq6bm"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Frost.tres" id="101_ptfts"]
 [ext_resource type="PackedScene" uid="uid://bysgyl7fsdphn" path="res://assets/models/props/glass/Bottle_Tanqueray.glb" id="102_ja27d"]
@@ -784,7 +785,7 @@ uv1_world_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebl41"]
 albedo_color = Color(0.68235296, 0.32156864, 0.23137255, 1)
 
-[node name="ProtoKitchenStudio" type="Node3D" unique_id=321876781]
+[node name="kitchen" type="Node3D" unique_id=321876781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76)
 
 [node name="_Systems" type="Node" parent="." unique_id=1408849608]
@@ -793,7 +794,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76)
 script = ExtResource("1_7omol")
 
 [node name="Player" parent="_Systems/PlayerRig" unique_id=1887833892 instance=ExtResource("2_stcn7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9987793, -14.800003, -60.973145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9987793, -8.149996, -100.973145)
 
 [node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
 script = ExtResource("3_ofdgt")
@@ -811,8 +812,14 @@ fov = 80.0
 
 [node name="_Course" type="Node" parent="." unique_id=1919119446]
 
+[node name="PlayerStart2" parent="_Course" unique_id=1221152246 instance=ExtResource("4_ncilh")]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, -92, 12, -471)
+
 [node name="BoxStart" parent="_Course" unique_id=953123952 instance=ExtResource("4_gvbnr")]
 transform = Transform3D(25.98076, 0, 14.999999, 0, 29.999998, 0, -14.999999, 0, 25.98076, -92, 7.3499975, -471)
+
+[node name="FinishArea" parent="_Course" unique_id=1707823974 instance=ExtResource("6_7yasx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, -1, -526)
 
 [node name="_Pieces" type="Node" parent="_Course" unique_id=1211791188]
 
@@ -1242,7 +1249,7 @@ spot_range = 370.438
 spot_attenuation = -0.09
 spot_angle = 52.2
 
-[node name="DistinctOven" parent="_Set/_Fitout/_ElevationA_Range/_Oven" unique_id=1845032690 instance=ExtResource("31_lhsis")]
+[node name="Oven" parent="_Set/_Fitout/_ElevationA_Range/_Oven" unique_id=1845032690 instance=ExtResource("31_lhsis")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.6408405, -92.742874, -768.08246)
 start_burners_on = true
 flame_speed = 3.8
@@ -3564,7 +3571,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.5, 115)
 
 [node name="Cork_15_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere" index="0" unique_id=510371891]
 cast_shadow = 0
-surface_material_override/1 = ExtResource("99_vuts3")
 
 [node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("100_jq6bm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)

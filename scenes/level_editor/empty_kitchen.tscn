@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3]
-[ext_resource type="Script" path="res://scripts/level_editor/kitchen_base.gd" id="1"]
-[node name="EmptyKitchen" type="Node3D"]
+[gd_scene format=3 uid="uid://dgx21qto44btu"]
+
+[ext_resource type="Script" uid="uid://b7biw5qrnf000" path="res://scripts/level_editor/kitchen_base.gd" id="1"]
+
+[node name="EmptyKitchen" type="Node3D" unique_id=1547140200]
 script = ExtResource("1")
