@@ -315,6 +315,7 @@ func _create_ui() -> void:
 	add_child(browser)
 	browser.hide()
 	browser.chosen.connect(_load_document)
+	browser.deleted.connect(_saved_level_deleted)
 	confirm = ConfirmationDialog.new()
 	confirm.theme = theme
 	confirm.title = "Unsaved changes"
@@ -937,6 +938,12 @@ func _load_document(next: Dictionary, next_filename: String, editing: bool) -> v
 	_make_ghost()
 	ghost.visible = false
 	_refresh_inspector()
+
+func _saved_level_deleted(deleted_filename: String) -> void:
+	if filename == deleted_filename:
+		filename = ""
+		dirty = true
+		_status("The saved level was deleted. This open layout is now unsaved.")
 	_status("Loaded “%s”." % document.name)
 
 func _play() -> void:

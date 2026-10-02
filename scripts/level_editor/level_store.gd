@@ -116,6 +116,14 @@ static func list_levels() -> Array:
 	levels.sort_custom(func(a: Dictionary, b: Dictionary): return a.name.naturalnocasecmp_to(b.name) < 0)
 	return levels
 
+static func delete_level(filename: String) -> Dictionary:
+	if not valid_filename(filename):
+		return {"error": "Invalid level filename."}
+	var result := DirAccess.remove_absolute(DIRECTORY.path_join(filename))
+	if result != OK:
+		return {"error": "Could not delete the saved level: %s" % error_string(result)}
+	return {"filename": filename}
+
 static func launch(tree: SceneTree, document: Dictionary, filename: String, editing: bool) -> Error:
 	tree.set_meta("custom_level_launch", {"document": document.duplicate(true), "filename": filename, "editing": editing})
 	return tree.change_scene_to_file("res://scenes/level_builder.tscn" if editing else "res://scenes/custom_level.tscn")

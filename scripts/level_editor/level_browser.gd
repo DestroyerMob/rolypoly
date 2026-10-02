@@ -1,10 +1,12 @@
 extends Window
 signal chosen(document: Dictionary, filename: String, editing: bool)
+signal deleted(filename: String)
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 var _list: ItemList
 var _message: Label
 var _entries: Array = []
+var _delete_button: Button
 
 func _ready() -> void:
 	theme = EditorTheme.create()
@@ -33,7 +35,7 @@ func _ready() -> void:
 	_list.item_activated.connect(func(_index: int): _open(false))
 	var row := HBoxContainer.new()
 	column.add_child(row)
-	for action in ["Play", "Edit", "New level", "Close"]:
+	for action in ["Play", "Edit", "Delete", "New level", "Close"]:
 		var button := Button.new()
 		button.text = action
 		button.custom_minimum_size.y = 46
@@ -44,19 +46,46 @@ func _ready() -> void:
 		match action:
 			"Play": button.pressed.connect(_open.bind(false))
 			"Edit": button.pressed.connect(_open.bind(true))
+			"Delete":
+				_delete_button = button
+				button.disabled = true
+				button.tooltip_text = "Delete the selected saved level."
+				button.pressed.connect(_delete)
 			"New level": button.pressed.connect(func(): chosen.emit.call_deferred(Store.new_level(), "", true))
 			"Close": button.pressed.connect(hide)
 
 func show_levels() -> void:
+	_refresh_levels()
+	popup_centered()
+
+func _refresh_levels() -> void:
 	_entries = Store.list_levels()
 	_list.clear()
+	_delete_button.disabled = true
 	for entry in _entries:
 		_list.add_item(entry.name + (" — draft / unavailable" if not entry.error.is_empty() else ""))
 	_message.text = "Choose a saved level to play or edit." if not _entries.is_empty() else "No saved levels yet. Create a new level to get started."
-	popup_centered()
 
 func _select(index: int) -> void:
+	_delete_button.disabled = false
 	_message.text = _entries[index].error if not _entries[index].error.is_empty() else "Ready to play."
+
+func _delete() -> void:
+	if _list.get_selected_items().is_empty():
+		return
+	var index: int = _list.get_selected_items()[0]
+	var entry: Dictionary = _entries[index]
+	var result := Store.delete_level(entry.filename)
+	if result.has("error"):
+		_message.text = result.error
+		return
+	_refresh_levels()
+	if not _entries.is_empty():
+		index = mini(index, _entries.size() - 1)
+		_list.select(index)
+		_select(index)
+	_message.text = "Deleted “%s”." % entry.name
+	deleted.emit(entry.filename)
 
 func _open(editing: bool) -> void:
 	if _list.get_selected_items().is_empty():

@@ -13,6 +13,7 @@ playground; **Settings** controls menu music.
 
 Run the game and choose **Level editor / My levels** from the main menu.
 Choose **New level**, or select a saved course and choose **Edit** or **Play**.
+To remove a saved course, select it in **My levels** and click **Delete**.
 
 Every custom level uses the same empty kitchen as its fixed base. New courses
 start on the kitchen island with a player start and a finish area. The room and

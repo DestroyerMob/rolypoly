@@ -13,6 +13,49 @@ func check(condition: bool, message: String) -> void:
 		failures.append(message)
 		push_error(message)
 
+func check_level_deletion() -> void:
+	# Run the real store implementation against disposable workspace fixtures.
+	# Leave the player's user:// saves untouched.
+	var directory := "res://.godot/test_level_deletion_%d" % Time.get_ticks_usec()
+	var test_store := GDScript.new()
+	test_store.source_code = FileAccess.get_file_as_string("res://scripts/level_editor/level_store.gd").replace('const DIRECTORY := "user://levels"', 'const DIRECTORY := "%s"' % directory)
+	check(test_store.reload() == OK, "The isolated level store must compile.")
+	var saved: Dictionary = test_store.save_level(Store.new_level(), "delete.json")
+	check(not saved.has("error"), "The deletion fixture must save successfully.")
+	var kept: Dictionary = test_store.save_level(Store.new_level(), "keep.json")
+	check(not kept.has("error"), "The neighboring level must save successfully.")
+	var invalid: Dictionary = test_store.delete_level("../keep.json")
+	check(invalid.has("error") and FileAccess.file_exists(directory.path_join("keep.json")), "Deletion must reject filenames outside the save folder.")
+	var removed: Dictionary = test_store.delete_level("delete.json")
+	check(not removed.has("error") and not FileAccess.file_exists(directory.path_join("delete.json")), "Deletion must remove the saved file from disk.")
+	check(FileAccess.file_exists(directory.path_join("keep.json")) and test_store.list_levels().size() == 1, "Deleting one level must preserve neighboring levels and update the listing.")
+	var missing: Dictionary = test_store.delete_level("delete.json")
+	check(missing.has("error"), "A failed deletion must report an error.")
+	var malformed := FileAccess.open(directory.path_join("broken.json"), FileAccess.WRITE)
+	malformed.store_string("invalid JSON")
+	malformed.close()
+	var broken: Dictionary = test_store.delete_level("broken.json")
+	check(not broken.has("error"), "Unavailable or malformed saved levels must also be deletable.")
+	test_store.delete_level("keep.json")
+	DirAccess.remove_absolute(directory)
+	check(editor.browser._delete_button.disabled, "Delete must start disabled without a selected level.")
+	editor.browser._entries = [{"filename": "../outside.json", "name": "Invalid", "error": "Invalid level filename."}]
+	editor.browser._list.add_item("Invalid")
+	editor.browser._list.select(0)
+	editor.browser._select(0)
+	check(not editor.browser._delete_button.disabled, "Selecting a saved level must enable Delete, including unavailable levels.")
+	editor.browser._delete()
+	check(editor.browser._entries.size() == 1 and editor.browser._message.text == "Invalid level filename.", "The browser must retain the selected level and show the error when deletion fails.")
+	editor.browser._entries.clear()
+	editor.browser._list.clear()
+	editor.browser._delete_button.disabled = true
+	editor.filename = "open.json"
+	editor.dirty = false
+	editor._saved_level_deleted("other.json")
+	check(editor.filename == "open.json" and not editor.dirty, "Deleting another save must not alter the current layout's save state.")
+	editor._saved_level_deleted("open.json")
+	check(editor.filename.is_empty() and editor.dirty, "Deleting the current save must mark the open layout as unsaved.")
+
 func drag_handle(axis: int, cancel := false, full_turns := false) -> void:
 	editor._update_transform_gizmo()
 	var handle: Button = editor.transform_gizmo._handles[axis]
@@ -57,6 +100,7 @@ func _run() -> void:
 	root.size = Vector2i(1920, 1080)
 	editor = preload("res://scenes/level_builder.tscn").instantiate()
 	root.add_child(editor)
+	check_level_deletion()
 	editor.document = Store.new_level()
 	editor.document.objects = [Catalog.record("counter", Vector3(0, 80, 0)), Catalog.record("ramp", Vector3(16, 80, 0))]
 	editor._rebuild_world()
