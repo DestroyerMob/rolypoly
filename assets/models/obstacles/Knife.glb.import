@@ -39,7 +39,20 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"knife_blade": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/knife_blade_steel.tres",
+"use_external/path": "uid://jhxeitcov2hc"
+},
+"knife_handle": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/knife_handle_wood.tres",
+"use_external/path": "uid://coi6tl1ee0r25"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1

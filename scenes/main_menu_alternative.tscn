@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="3_onion"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="4_tomato"]
 [ext_resource type="PackedScene" uid="uid://bw0rr7rnpumuh" path="res://packed_scenes/player_naked_onion.tscn" id="5_onion"]
-[ext_resource type="PackedScene" path="res://scenes/prototyping/kitchen_set.tscn" id="6_kitchen"]
+[ext_resource type="PackedScene" uid="uid://cq7uaiijddevi" path="res://scenes/prototyping/kitchen_set.tscn" id="6_kitchen"]
 [ext_resource type="Texture2D" uid="uid://ck250854bpuud" path="res://textures/GameTitle.png" id="7_3m32m"]
 [ext_resource type="Texture2D" uid="uid://dl1vprd31rfpw" path="res://textures/icons/play.svg" id="8_tcdr2"]
 [ext_resource type="Texture2D" uid="uid://ckiybmp0rb74e" path="res://textures/icons/trophy.svg" id="9_nql72"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://bwvg3nhl2uo20" path="res://scripts/main_menu_alternative.gd" id="27_menu"]
 [ext_resource type="Texture2D" uid="uid://dqi1v6tqo7fl7" path="res://textures/icons/volume_grabber.svg" id="28_volume"]
 [ext_resource type="Texture2D" uid="uid://y518k0he5cxl" path="res://textures/icons/volume_grabber_active.svg" id="29_volume_active"]
+[ext_resource type="Material" uid="uid://bdw4vygcfdsow" path="res://materials/RedMarbleTiles.tres" id="30_marble"]
 
 [sub_resource type="ShaderMaterial" id="Material_ramp_wood"]
 render_priority = 0
@@ -206,18 +207,150 @@ script = ExtResource("27_menu")
 [node name="KitchenStudio" parent="." unique_id=2096602144 instance=ExtResource("6_kitchen")]
 transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, -4.5, 0)
 
-[node name="SpotLight3D2" parent="KitchenStudio/_Fitout/_ElevationA_Range/_PianoDeCuisson" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="1" unique_id=439307957]
+[node name="Mesh" parent="KitchenStudio/Room/Ceiling" parent_id_path=PackedInt32Array(2096602144, 1980312559) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Collision" parent="KitchenStudio/Room/Ceiling" parent_id_path=PackedInt32Array(2096602144, 1980312559) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Mesh" parent="KitchenStudio/Room/Floor" parent_id_path=PackedInt32Array(2096602144, 425517740) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Collision" parent="KitchenStudio/Room/Floor" parent_id_path=PackedInt32Array(2096602144, 425517740) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Mesh" parent="KitchenStudio/Room/RangeWall" parent_id_path=PackedInt32Array(2096602144, 1392113805) index="0" unique_id=174053732]
+surface_material_override/0 = ExtResource("30_marble")
+
+[node name="Mesh" parent="KitchenStudio/Room/FrontWall" parent_id_path=PackedInt32Array(2096602144, 1554466654) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Collision" parent="KitchenStudio/Room/FrontWall" parent_id_path=PackedInt32Array(2096602144, 1554466654) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Mesh" parent="KitchenStudio/Room/PantrySideWall" parent_id_path=PackedInt32Array(2096602144, 1664346964) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Collision" parent="KitchenStudio/Room/PantrySideWall" parent_id_path=PackedInt32Array(2096602144, 1664346964) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Mesh" parent="KitchenStudio/Room/PantryReturnWall" parent_id_path=PackedInt32Array(2096602144, 1766030448) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Collision" parent="KitchenStudio/Room/PantryReturnWall" parent_id_path=PackedInt32Array(2096602144, 1766030448) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="CabinetBody" parent="KitchenStudio/Fixtures/Island/Cabinet" parent_id_path=PackedInt32Array(2096602144, 726270753) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52, 0)
+
+[node name="Countertop" parent="KitchenStudio/Fixtures/Island/Cabinet" parent_id_path=PackedInt32Array(2096602144, 726270753) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/Island/Cabinet" parent_id_path=PackedInt32Array(2096602144, 726270753) index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/Chimney" parent_id_path=PackedInt32Array(2096602144, 801422939) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/Chimney" parent_id_path=PackedInt32Array(2096602144, 801422939) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/Canopy" parent_id_path=PackedInt32Array(2096602144, 1909754302) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/Canopy" parent_id_path=PackedInt32Array(2096602144, 1909754302) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/LeftSlope" parent_id_path=PackedInt32Array(2096602144, 1791653073) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/LeftSlope" parent_id_path=PackedInt32Array(2096602144, 1791653073) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/RightSlope" parent_id_path=PackedInt32Array(2096602144, 458276386) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/RangeWall/CookingRange/RangeHood/RightSlope" parent_id_path=PackedInt32Array(2096602144, 458276386) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="HoodLight" parent="KitchenStudio/Fixtures/RangeWall/CookingRange" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="1" unique_id=439307957]
 light_energy = 0.8
 spot_range = 15.0
 
-[node name="DistinctOven" parent="KitchenStudio/_Fitout/_ElevationA_Range/_PianoDeCuisson" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="2" unique_id=1845032690]
+[node name="Oven" parent="KitchenStudio/Fixtures/RangeWall/CookingRange" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="2" unique_id=1845032690]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 2.4181128, -92.54431, -768.15845)
 
-[node name="_OvenCheckpoint" parent="KitchenStudio/_Fitout/_ElevationA_Range/_PianoDeCuisson" parent_id_path=PackedInt32Array(2096602144, 1401073423) index="4" unique_id=865906226]
+[node name="CabinetBody" parent="KitchenStudio/Fixtures/RangeWall/RightCounter" parent_id_path=PackedInt32Array(2096602144, 273185192) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52, 0)
+
+[node name="Countertop" parent="KitchenStudio/Fixtures/RangeWall/RightCounter" parent_id_path=PackedInt32Array(2096602144, 273185192) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/RangeWall/RightCounter" parent_id_path=PackedInt32Array(2096602144, 273185192) index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="CabinetBody" parent="KitchenStudio/Fixtures/RangeWall/LeftCounter" parent_id_path=PackedInt32Array(2096602144, 1251511175) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52, 0)
+
+[node name="Countertop" parent="KitchenStudio/Fixtures/RangeWall/LeftCounter" parent_id_path=PackedInt32Array(2096602144, 1251511175) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/RangeWall/LeftCounter" parent_id_path=PackedInt32Array(2096602144, 1251511175) index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/SinkWall/ServingShelf" parent_id_path=PackedInt32Array(2096602144, 2124700358) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/SinkWall/ServingShelf" parent_id_path=PackedInt32Array(2096602144, 2124700358) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CabinetBody" parent="KitchenStudio/Fixtures/SinkWall/SinkCounter" parent_id_path=PackedInt32Array(2096602144, 1201772810) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52, 0)
+
+[node name="Countertop" parent="KitchenStudio/Fixtures/SinkWall/SinkCounter" parent_id_path=PackedInt32Array(2096602144, 1201772810) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/SinkWall/SinkCounter" parent_id_path=PackedInt32Array(2096602144, 1201772810) index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/SinkWall/Sink" parent_id_path=PackedInt32Array(2096602144, 869975511) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/SinkWall/Sink" parent_id_path=PackedInt32Array(2096602144, 869975511) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="BlenderModel" parent="KitchenStudio/Fixtures/SinkWall" parent_id_path=PackedInt32Array(2096602144, 2003959935) index="4" unique_id=310644801]
 visible = false
 
-[node name="BlenderModel" parent="KitchenStudio/_Fitout/_ElevationB_SinkWall" parent_id_path=PackedInt32Array(2096602144, 2003959935) index="4" unique_id=310644801]
-visible = false
+[node name="Mesh" parent="KitchenStudio/Fixtures/Pantry/PantryWallA" parent_id_path=PackedInt32Array(2096602144, 614508104) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/Pantry/PantryWallA" parent_id_path=PackedInt32Array(2096602144, 614508104) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/Pantry/PantryWallB" parent_id_path=PackedInt32Array(2096602144, 1261945058) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/Pantry/PantryWallB" parent_id_path=PackedInt32Array(2096602144, 1261945058) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/Pantry/PantryWallD" parent_id_path=PackedInt32Array(2096602144, 372687611) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/Pantry/PantryWallD" parent_id_path=PackedInt32Array(2096602144, 372687611) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Mesh" parent="KitchenStudio/Fixtures/Pantry/Fridge" parent_id_path=PackedInt32Array(2096602144, 1068473685) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.5, 0)
+
+[node name="Collision" parent="KitchenStudio/Fixtures/Pantry/Fridge" parent_id_path=PackedInt32Array(2096602144, 1068473685) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.5, 0)
+
+[node name="Mesh" parent="KitchenStudio/Props/Rug" parent_id_path=PackedInt32Array(2096602144, 1957787597) index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="Collision" parent="KitchenStudio/Props/Rug" parent_id_path=PackedInt32Array(2096602144, 1957787597) index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
 [node name="KitchenLight" type="DirectionalLight3D" parent="." unique_id=632802514]
 transform = Transform3D(0.22875278, 0.48370513, -0.8448086, 0, 0.8678192, 0.4968801, 0.9734846, -0.113662705, 0.19851606, 0, 0, 0)
@@ -239,13 +372,13 @@ light_energy = 0.65
 omni_range = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1710163703]
-transform = Transform3D(-4.0707555e-08, 0.36430335, -0.9312804, 1.5924206e-08, 0.9312803, 0.36430338, 1, -1.7763568e-15, -4.371139e-08, 10.342412, 0.58994627, -21.577171)
+transform = Transform3D(-4.0707555e-08, 0.36430335, -0.9312804, 1.5924206e-08, 0.9312803, 0.36430338, 1, -1.7763568e-15, -4.371139e-08, 10.342412, 0.58994627, -19.6088)
 
 [node name="SettingsAnchor" type="Node3D" parent="." unique_id=16036813]
 transform = Transform3D(1, 0, 0, 0, 0.8961892, 0.4436721, 0, -0.4436721, 0.8961892, 0.22451544, -1.0525551, -25.4)
 
 [node name="Ramp" type="StaticBody3D" parent="." unique_id=2145052810]
-transform = Transform3D(-0.0068029165, -0.0012379438, 0.9999761, -0.1790296, 0.9838437, -8.297294e-09, -0.9838202, -0.17902532, -0.0069147646, 14.516287, 0.8360428, -21.016296)
+transform = Transform3D(-0.0068029165, -0.0012379438, 0.9999761, -0.1790296, 0.9838437, -8.297294e-09, -0.9838202, -0.17902532, -0.0069147646, 14.516287, 0.8360428, -19.047926)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp" unique_id=296932879]
 mesh = SubResource("BoxMesh_gj10c")
@@ -257,12 +390,12 @@ shape = SubResource("Shape_ramp")
 size = Vector3(2.4, 0.16, 0.8)
 
 [node name="Spawner" type="Marker3D" parent="." unique_id=2061564881]
-transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, 14.522164, 1.542637, -20.166315)
+transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, 14.522164, 1.542637, -18.197945)
 script = ExtResource("2_spawner")
 models = Array[PackedScene]([ExtResource("3_onion"), ExtResource("4_tomato"), ExtResource("5_onion")])
 
 [node name="Blender" parent="." unique_id=925147632 instance=ExtResource("1_60nkq")]
-transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, 14.5, -4.5, -22.8)
+transform = Transform3D(-0.0069146752, 0, 0.9999761, 0, 1, 0, -0.9999761, 0, -0.0069146752, 14.5, -4.5, -20.831629)
 force_strength = 0.0
 blend_sound = ExtResource("24_blender_audio")
 blend_volume_db = -6.0
@@ -641,3 +774,11 @@ icon = ExtResource("11_ahe7m")
 alignment = 0
 
 [editable path="KitchenStudio"]
+[editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Oven"]
+[editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Oven/Model"]
+[editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Pot"]
+[editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Pot/Model"]
+[editable path="KitchenStudio/Fixtures/SinkWall/BlenderModel"]
+[editable path="KitchenStudio/Furniture/Table"]
+[editable path="KitchenStudio/Furniture/Chair"]
+[editable path="KitchenStudio/Props/PowerOutlet"]

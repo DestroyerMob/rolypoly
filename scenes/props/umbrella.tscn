@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/umbrella.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://packed_scenes/umbrella_closed.tscn" id="2_closed"]
+[ext_resource type="PackedScene" path="res://packed_scenes/umbrella_open.tscn" id="3_open"]
+
+[node name="Umbrella" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Closed" parent="." instance=ExtResource("2_closed")]
+position = Vector3(0, 0.75, 0)
+scale = Vector3(1.5, 1.2, 1.5)
+
+[node name="Open" parent="." instance=ExtResource("3_open")]
+visible = false
