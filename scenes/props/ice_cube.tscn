@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" path="res://assets/models/props/ice_cube/normal.png" id="6_normal"]
 
 [sub_resource type="ShaderMaterial" id="Material_ice"]
+resource_local_to_scene = true
 shader = ExtResource("3_shader")
 shader_parameter/ice_color = ExtResource("4_color")
 shader_parameter/ice_opacity = ExtResource("5_opacity")

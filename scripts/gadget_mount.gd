@@ -16,15 +16,31 @@ func _ready() -> void:
 
 
 func equip(scene: PackedScene) -> void:
-	if scene == null or scene == _equipped_scene:
+	if scene == null:
 		return
-	if is_instance_valid(_gadget):
-		remove_child(_gadget)
-		_gadget.queue_free()
+	if scene == _equipped_scene and is_instance_valid(_gadget):
+		if _gadget.has_method("refresh_equipment"):
+			_gadget.refresh_equipment()
+		return
+	unequip()
 	_gadget = scene.instantiate() as Node3D
 	add_child(_gadget)
 	_equipped_scene = scene
 	_update_attachment()
+
+
+func unequip(expected_gadget: Node3D = null) -> void:
+	# A deferred melt must not remove a replacement collected in the same frame.
+	if expected_gadget != null and expected_gadget != _gadget:
+		return
+	if is_instance_valid(_gadget):
+		if is_instance_valid(player_rig) and is_instance_valid(player_rig.current_player):
+			if player_rig.current_player.gadget == _gadget:
+				player_rig.current_player.gadget = null
+		remove_child(_gadget)
+		_gadget.queue_free()
+	_gadget = null
+	_equipped_scene = null
 
 
 func _process(_delta: float) -> void:

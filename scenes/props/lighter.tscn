@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/lighter/lighter.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/props/lighter.gd" id="2_script"]
+[ext_resource type="Shader" path="res://shaders/lighter_flame.gdshader" id="3_flame"]
+
+[sub_resource type="BoxShape3D" id="Shape_body"]
+size = Vector3(1.95, 6, 1.13)
+
+[sub_resource type="SphereMesh" id="Mesh_flame"]
+radius = 0.5
+height = 1.0
+radial_segments = 24
+rings = 24
+
+[sub_resource type="ShaderMaterial" id="Material_flame"]
+shader = ExtResource("3_flame")
+shader_parameter/flame_height = 3.0
+shader_parameter/flame_width = 1.0
+shader_parameter/energy = 1.7
+
+[sub_resource type="ShaderMaterial" id="Material_core"]
+shader = ExtResource("3_flame")
+shader_parameter/base_color = Color(0.06, 0.18, 1, 1)
+shader_parameter/middle_color = Color(1, 0.96, 0.67, 1)
+shader_parameter/tip_color = Color(1, 0.68, 0.08, 1)
+shader_parameter/flame_height = 1.9
+shader_parameter/flame_width = 0.5
+shader_parameter/energy = 2.5
+shader_parameter/phase = 0.7
+
+[node name="Lighter" type="StaticBody3D"]
+script = ExtResource("2_script")
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 3, 0)
+shape = SubResource("Shape_body")
+
+[node name="Burner" type="Node3D" parent="."]
+position = Vector3(-0.45, 5.85, 0)
+
+[node name="OuterFlame" type="MeshInstance3D" parent="Burner"]
+cast_shadow = 0
+extra_cull_margin = 4.0
+mesh = SubResource("Mesh_flame")
+material_override = SubResource("Material_flame")
+
+[node name="FlameCore" type="MeshInstance3D" parent="Burner"]
+cast_shadow = 0
+extra_cull_margin = 4.0
+mesh = SubResource("Mesh_flame")
+material_override = SubResource("Material_core")
+
+[node name="FireLight" type="OmniLight3D" parent="Burner"]
+position = Vector3(0, 1.2, 0)
+light_color = Color(1, 0.43, 0.12, 1)
+light_energy = 2.3
+omni_range = 12.0
+omni_attenuation = 1.5
+shadow_enabled = true
