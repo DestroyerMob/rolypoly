@@ -119,6 +119,8 @@ static func add_pick_body(root: Node3D) -> void:
 	var bounds := bounds_of(root)
 	var body := StaticBody3D.new()
 	body.name = "EditorPickBody"
+	# Authored scenes are disabled to stop gameplay, but picking must stay active.
+	body.process_mode = Node.PROCESS_MODE_ALWAYS
 	body.collision_layer = PICK_LAYER
 	body.collision_mask = 0
 	var collision := CollisionShape3D.new()

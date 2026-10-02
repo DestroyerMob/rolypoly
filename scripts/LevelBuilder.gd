@@ -6,6 +6,9 @@ const Store = preload("res://scripts/level_editor/level_store.gd")
 const World = preload("res://scripts/level_editor/level_world.gd")
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
 const Browser = preload("res://scripts/level_editor/level_browser.gd")
+const Previews = preload("res://scripts/level_editor/palette_previews.gd")
+const TransformGizmo = preload("res://scripts/level_editor/transform_gizmo.gd")
+const GizmoMode = TransformGizmo.Mode
 
 @export var start_in_editor := true
 
@@ -16,7 +19,7 @@ var build_mode := true
 var dirty := false
 var world: Node3D
 var selected := -1
-var placing := true
+var placing := false
 var moving := false
 var palette_id := "counter"
 var placement: Dictionary = Catalog.record("counter")
@@ -58,6 +61,15 @@ var browser: Window
 var confirm: ConfirmationDialog
 var pause_panel: PanelContainer
 var pause_title: Label
+var previews: Node
+var transform_gizmo: Control
+var move_handle_button: Button
+var scale_handle_button: Button
+var rotate_handle_button: Button
+var _transform_before: Dictionary = {}
+var _scale_start := Vector3.ONE
+var _position_start := Vector3.ZERO
+var _rotation_start := Vector3.ZERO
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -80,14 +92,18 @@ func _ready() -> void:
 	filename = launch.get("filename", "")
 	build_mode = launch.get("editing", start_in_editor)
 	dirty = filename.is_empty()
+	previews = Previews.new()
+	add_child(previews)
 	_create_ui()
+	previews.preview_ready.connect(_preview_ready)
 	_create_grid()
 	_editor_camera_transform = camera.transform
 	_rebuild_world()
 	_update_mode_ui()
 	if build_mode:
+		previews.generate.call_deferred()
 		_make_ghost()
-		_status(_load_error if not _load_error.is_empty() else "Choose an object, then click the world to place it. Right mouse + WASD to fly.")
+		_status(_load_error if not _load_error.is_empty() else "Click an object to select it. Choose Move, Rotate or Scale and drag its handles. Delete removes it.")
 
 func _create_ui() -> void:
 	hud = CanvasLayer.new()
@@ -149,6 +165,13 @@ func _create_ui() -> void:
 	column.add_child(category)
 	category.item_selected.connect(func(_index: int): _fill_palette())
 	palette = ItemList.new()
+	palette.name = "ModelPalette"
+	palette.max_columns = 3
+	palette.fixed_column_width = 80
+	palette.fixed_icon_size = Vector2i(72, 72)
+	palette.icon_mode = ItemList.ICON_MODE_TOP
+	palette.add_theme_constant_override("h_separation", 4)
+	palette.add_theme_constant_override("v_separation", 8)
 	palette.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	palette.custom_minimum_size.y = 100
 	column.add_child(palette)
@@ -171,7 +194,7 @@ func _create_ui() -> void:
 	surface_toggle.button_pressed = true
 	column.add_child(surface_toggle)
 	surface_toggle.toggled.connect(func(enabled: bool): grid.visible = build_mode and not enabled)
-	_muted(column, "Turn off to place at a fixed height.\nR / Shift+R rotates by 15°.")
+	_muted(column, "Click a placed object to select it.\nShift+click to place on an object.\n[ / ] rotates by 15°.")
 
 	var right := _panel(editor_ui, Control.PRESET_RIGHT_WIDE, Vector4(-388, 134, -16, -114))
 	var scroll := ScrollContainer.new()
@@ -190,6 +213,23 @@ func _create_ui() -> void:
 	selection_label = _label(inspector, "", 21)
 	selection_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	selection_hint = _muted(inspector, "")
+	var handle_tools := HBoxContainer.new()
+	inspector.add_child(handle_tools)
+	move_handle_button = _button(handle_tools, "Move  G", _set_transform_tool.bind(GizmoMode.MOVE))
+	rotate_handle_button = _button(handle_tools, "Rotate  R", _set_transform_tool.bind(GizmoMode.ROTATE))
+	scale_handle_button = _button(handle_tools, "Scale  T", _set_transform_tool.bind(GizmoMode.SCALE))
+	for button in [move_handle_button, rotate_handle_button, scale_handle_button]:
+		button.toggle_mode = true
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var object_actions := HBoxContainer.new()
+	inspector.add_child(object_actions)
+	var delete_action := _button(object_actions, "Delete", _delete_selected)
+	delete_action.tooltip_text = "Delete / Backspace removes the selection. Ctrl / Cmd + Z restores it."
+	delete_action.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	selection_actions.append(delete_action)
+	var duplicate_action := _button(object_actions, "Duplicate", _duplicate_selected)
+	duplicate_action.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	selection_actions.append(duplicate_action)
 	_separator(inspector)
 	for section in ["Position", "Rotation · degrees", "Scale"]:
 		var group := VBoxContainer.new()
@@ -219,12 +259,12 @@ func _create_ui() -> void:
 			transform_fields.append(field)
 			field.value_changed.connect(_transform_changed.bind(index))
 	_separator(inspector)
-	for pair in [["Focus  F", "Move  M"], ["Duplicate", "Delete"], ["Undo", "Redo"]]:
+	for pair in [["Focus  F", "Reposition  M"], ["Undo", "Redo"]]:
 		var row := HBoxContainer.new()
 		inspector.add_child(row)
 		for title in pair:
-			var actions := {"Focus  F": _focus_selected, "Move  M": _move_selected,
-				"Duplicate": _duplicate_selected, "Delete": _delete_selected, "Undo": _undo, "Redo": _redo}
+			var actions := {"Focus  F": _focus_selected, "Reposition  M": _move_selected,
+				"Duplicate": _duplicate_selected, "Undo": _undo, "Redo": _redo}
 			var button := _button(row, title, actions[title])
 			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			if title in ["Undo", "Redo"]:
@@ -241,6 +281,14 @@ func _create_ui() -> void:
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var shortcuts := _muted(footer, "RMB + WASD  Fly    Q / E  Height    ⇥  Play\nCtrl / Cmd + S  Save    Ctrl / Cmd + Z  Undo")
 	shortcuts.custom_minimum_size.x = 480
+	transform_gizmo = TransformGizmo.new()
+	transform_gizmo.name = "TransformHandles"
+	editor_ui.add_child(transform_gizmo)
+	transform_gizmo.drag_started.connect(_transform_drag_started)
+	transform_gizmo.scale_changed.connect(_scale_changed)
+	transform_gizmo.position_changed.connect(_position_drag_changed)
+	transform_gizmo.rotation_changed.connect(_rotation_drag_changed)
+	transform_gizmo.drag_finished.connect(_transform_drag_finished)
 
 	play_ui = Control.new()
 	play_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -340,9 +388,16 @@ func _fill_palette() -> void:
 		if not search.text.is_empty() and not item.label.to_lower().contains(search.text.to_lower()):
 			continue
 		palette_ids.append(id)
-		palette.add_item(item.label)
+		var index := palette.add_icon_item(previews.textures.get(id))
+		palette.set_item_tooltip(index, item.label)
+		palette.set_item_metadata(index, id)
 		if id == palette_id:
 			palette.select(palette_ids.size() - 1)
+
+func _preview_ready(id: String, texture: Texture2D) -> void:
+	var index := palette_ids.find(id)
+	if index >= 0:
+		palette.set_item_icon(index, texture)
 
 func _choose_palette(index: int) -> void:
 	palette_id = palette_ids[index]
@@ -353,7 +408,8 @@ func _choose_palette(index: int) -> void:
 	snap_field.value = 8.0 if palette_id == "counter" else 1.0
 	_make_ghost()
 	_refresh_inspector()
-	_status("Placing %s. Click the world to place; V to select existing objects." % Catalog.ITEMS[palette_id].label)
+	_update_selection_box()
+	_status("Placing %s. Click to add; click an existing object to select it. Shift+click to stack." % Catalog.ITEMS[palette_id].label)
 
 func _set_tool(place: bool) -> void:
 	placing = place
@@ -361,6 +417,7 @@ func _set_tool(place: bool) -> void:
 	selected = -1
 	_make_ghost()
 	_refresh_inspector()
+	_update_selection_box()
 	_status("Click to place %s." % Catalog.ITEMS[palette_id].label if placing else "Click an object to select it.")
 
 func _rebuild_world() -> void:
@@ -443,12 +500,87 @@ func _update_selection_box() -> void:
 		return
 	selection_box.hide()
 	if not build_mode or selected < 0 or selected >= world.objects.size():
+		transform_gizmo.hide()
 		return
 	var node: Node3D = world.objects[selected]
 	var bounds := World.bounds_of(node)
 	(selection_box.mesh as BoxMesh).size = bounds.size.max(Vector3.ONE * 0.2) + Vector3.ONE * 0.06
 	selection_box.transform = node.transform * Transform3D(Basis.IDENTITY, bounds.get_center())
 	selection_box.show()
+	_update_transform_gizmo()
+
+func _update_transform_gizmo() -> void:
+	if not build_mode or selected < 0 or moving or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		transform_gizmo.hide()
+		return
+	var node: Node3D = world.objects[selected]
+	var size := get_viewport().get_visible_rect().size
+	var canvas_rect := Rect2(Vector2(366, 134), Vector2(maxf(size.x - 770, 0), maxf(size.y - 248, 0)))
+	transform_gizmo.update_target(camera, node, World.bounds_of(node), canvas_rect)
+
+func _transform_drag_started() -> void:
+	_transform_before = document.duplicate(true)
+	_scale_start = Catalog.vector(document.objects[selected].scale)
+	_position_start = Catalog.vector(document.objects[selected].position)
+	_rotation_start = Catalog.vector(document.objects[selected].rotation)
+
+func _set_transform_tool(tool: int) -> void:
+	transform_gizmo.set_mode(tool)
+	if selected >= 0:
+		moving = false
+		placing = false
+		_make_ghost()
+	_refresh_inspector()
+	_update_selection_box()
+	_status(["Drag X / Y / Z to move along an axis, or XZ to move across the ground plane.", "Drag X / Y / Z around its ring to rotate. Angles snap by 15°; hold Shift for precision.", "Drag X / Y / Z to scale an axis, or ↗ to scale all axes."][tool])
+
+func _rotation_drag_changed(degrees: float, axis: int) -> void:
+	var amount := degrees if Input.is_physical_key_pressed(KEY_SHIFT) else snappedf(degrees, 15.0)
+	var value := _rotation_start
+	if not is_zero_approx(amount):
+		value[axis] = wrapf(value[axis] + amount, -180.0, 180.0)
+	document.objects[selected].rotation = [value.x, value.y, value.z]
+	Catalog.apply_transform(world.objects[selected], document.objects[selected])
+	_update_selection_box()
+	for index in 3:
+		transform_fields[index + 3].set_value_no_signal(value[index])
+
+func _position_drag_changed(offset: Vector3) -> void:
+	var value := _position_start
+	for axis in 3:
+		# Snap the displacement, so clicking or dragging another axis never jumps
+		# an object's existing off-grid coordinates.
+		if not is_zero_approx(offset[axis]):
+			var amount := offset[axis] if Input.is_physical_key_pressed(KEY_SHIFT) else snappedf(offset[axis], snap_field.value)
+			value[axis] = clampf(_position_start[axis] + amount, -10000, 10000)
+	document.objects[selected].position = [value.x, value.y, value.z]
+	Catalog.apply_transform(world.objects[selected], document.objects[selected])
+	_update_selection_box()
+	for axis in 3:
+		transform_fields[axis].set_value_no_signal(value[axis])
+
+func _scale_changed(factor: float, axis: int) -> void:
+	var value := _scale_start
+	if axis == 3:
+		factor = clampf(factor, 0.05 / minf(value.x, minf(value.y, value.z)), 100.0 / maxf(value.x, maxf(value.y, value.z)))
+		value *= factor
+	else:
+		value[axis] = clampf(value[axis] * factor, 0.05, 100.0)
+	document.objects[selected].scale = [value.x, value.y, value.z]
+	Catalog.apply_transform(world.objects[selected], document.objects[selected])
+	_update_selection_box()
+	for index in 3:
+		transform_fields[index + 6].set_value_no_signal(value[index])
+
+func _transform_drag_finished(cancelled: bool) -> void:
+	if cancelled:
+		document = _transform_before
+		Catalog.apply_transform(world.objects[selected], document.objects[selected])
+	elif not Catalog.vector(document.objects[selected].scale).is_equal_approx(_scale_start) or not Catalog.vector(document.objects[selected].position).is_equal_approx(_position_start) or not Catalog.vector(document.objects[selected].rotation).is_equal_approx(_rotation_start):
+		_remember(_transform_before)
+	_transform_before = {}
+	_refresh_inspector()
+	_update_selection_box()
 
 func _process(delta: float) -> void:
 	history_actions[0].disabled = undo_stack.is_empty()
@@ -456,6 +588,7 @@ func _process(delta: float) -> void:
 	save_state.text = ("Unsaved changes" if dirty else "All changes saved") + "  ·  %d objects" % document.objects.size()
 	if not build_mode:
 		return
+	_update_transform_gizmo()
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var movement := Input.get_vector("left", "right", "forward", "backward")
 		var vertical := float(Input.is_physical_key_pressed(KEY_E)) - float(Input.is_physical_key_pressed(KEY_Q))
@@ -468,6 +601,8 @@ func _physics_process(_delta: float) -> void:
 		return
 	ghost.hide()
 	if (not placing and not moving) or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or _over_ui():
+		return
+	if placing and not Input.is_physical_key_pressed(KEY_SHIFT) and _pick_index() >= 0:
 		return
 	var point: Variant = _placement_point()
 	if point == null:
@@ -495,7 +630,7 @@ func _ray(mask: int) -> Dictionary:
 func _placement_point() -> Variant:
 	var point: Variant = null
 	if surface_toggle.button_pressed:
-		var hit := _ray(World.PICK_LAYER - 1)
+		var hit := _ray(0xfffff)
 		if not hit.is_empty() and hit.normal.y > 0.1:
 			point = hit.position + Vector3.UP * height_field.value
 	if point == null:
@@ -511,6 +646,9 @@ func _placement_point() -> Variant:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		_mouse_position = event.position
+	if transform_gizmo.dragging:
+		transform_gizmo.handle_drag_input(event)
+		return
 	if event is InputEventKey and event.pressed and not event.echo and not browser.visible and not confirm.visible:
 		var typing := get_viewport().gui_get_focus_owner() is LineEdit
 		if event.physical_keycode == KEY_TAB and not typing:
@@ -552,7 +690,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if event.pressed else Input.MOUSE_MODE_VISIBLE
 		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			_world_click()
+			_world_click(event.shift_pressed)
 		elif event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
 			camera.position += camera.basis.z * (-3 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 3)
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -572,15 +710,36 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			match event.physical_keycode:
 				KEY_V: _set_tool(false)
+				KEY_G: _set_transform_tool(GizmoMode.MOVE)
+				KEY_R: _set_transform_tool(GizmoMode.ROTATE)
+				KEY_T: _set_transform_tool(GizmoMode.SCALE)
 				KEY_M: _move_selected()
 				KEY_F: _focus_selected()
 				KEY_DELETE, KEY_BACKSPACE: _delete_selected()
-				KEY_R: _rotate(-15 if event.shift_pressed else 15)
+				KEY_BRACKETLEFT: _rotate(-15)
+				KEY_BRACKETRIGHT: _rotate(15)
 	get_viewport().set_input_as_handled()
 
-func _world_click() -> void:
+func _pick_index() -> int:
+	var hit := _ray(0xfffff)
+	if not hit.is_empty():
+		var node: Node = hit.collider
+		while node != null and node != world:
+			if node.has_meta("level_index"):
+				return node.get_meta("level_index")
+			node = node.get_parent()
+	return -1
+
+func _world_click(force_place := false) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
+	if not moving and not (placing and force_place):
+		var index := _pick_index()
+		if index >= 0 or not placing:
+			_select_existing(index + 1)
+			if index >= 0:
+				_status("Selected %s. Choose Move, Rotate or Scale and drag its handles. Delete removes it." % Catalog.ITEMS[document.objects[index].id].label)
+			return
 	if placing or moving:
 		var point: Variant = _placement_point()
 		if point == null:
@@ -602,29 +761,23 @@ func _world_click() -> void:
 					if document.objects[i].id == "spawn":
 						document.objects.remove_at(i)
 			document.objects.append(data)
+			selected = document.objects.size() - 1
+			placing = false
+			_make_ghost()
 		else:
 			moving = false
 			_make_ghost()
 		_rebuild_world()
 		_refresh_inspector()
-		_status("Placed %s at (%.2f, %.2f, %.2f)." % [Catalog.ITEMS[data.id].label, point.x, point.y, point.z])
-	else:
-		var hit := _ray(0xfffff)
-		selected = -1
-		if not hit.is_empty():
-			var node: Node = hit.collider
-			while node != null and node != world:
-				if node.has_meta("level_index"):
-					selected = node.get_meta("level_index")
-					break
-				node = node.get_parent()
-		_refresh_inspector()
-		_update_selection_box()
+		_status("Placed %s. Drag its handles to move, rotate or scale; Delete to remove. Choose a model or Place to add another." % Catalog.ITEMS[data.id].label)
 
 func _refresh_inspector() -> void:
 	_rebuilding_ui = true
 	place_button.set_pressed_no_signal(placing)
 	select_button.set_pressed_no_signal(not placing)
+	move_handle_button.set_pressed_no_signal(transform_gizmo.mode == GizmoMode.MOVE)
+	rotate_handle_button.set_pressed_no_signal(transform_gizmo.mode == GizmoMode.ROTATE)
+	scale_handle_button.set_pressed_no_signal(transform_gizmo.mode == GizmoMode.SCALE)
 	for button in selection_actions:
 		button.disabled = selected < 0
 	object_list.clear()
@@ -634,7 +787,7 @@ func _refresh_inspector() -> void:
 	object_list.select(selected + 1)
 	var data: Dictionary = document.objects[selected] if selected >= 0 else placement
 	selection_label.text = Catalog.ITEMS[data.id].label
-	selection_hint.text = "Editing placed object" if selected >= 0 else "Placement preview · click to add"
+	selection_hint.text = ["Drag X / Y / Z to move, XZ for the ground plane.\nShift disables grid snap.", "Drag X / Y / Z around its ring to rotate.\n15° snap; Shift for precise angles.", "Drag X / Y / Z or ↗ handles to scale."][transform_gizmo.mode] if selected >= 0 else ("Placement preview · click to add" if placing else "Click a placed object to select it.")
 	if data.id == "goal":
 		selection_hint.text += "\nScale X, Y and Z to resize the trigger box. Hidden during play."
 	elif data.id == "spawn":
@@ -691,6 +844,7 @@ func _move_selected() -> void:
 		return
 	moving = true
 	placing = false
+	transform_gizmo.hide()
 	_make_ghost()
 	_status("Click to move the selected object. Escape cancels.")
 
@@ -714,15 +868,17 @@ func _delete_selected() -> void:
 	if selected < 0:
 		return
 	_remember()
+	var label: String = Catalog.ITEMS[document.objects[selected].id].label
 	document.objects.remove_at(selected)
 	selected = -1
 	moving = false
 	_make_ghost()
 	_rebuild_world()
 	_refresh_inspector()
+	_status("Deleted %s. Ctrl / Cmd + Z to undo." % label)
 
-func _remember() -> void:
-	undo_stack.append(document.duplicate(true))
+func _remember(before: Dictionary = {}) -> void:
+	undo_stack.append((document if before.is_empty() else before).duplicate(true))
 	if undo_stack.size() > 100:
 		undo_stack.pop_front()
 	redo_stack.clear()
@@ -799,6 +955,7 @@ func _play() -> void:
 
 func _edit() -> void:
 	build_mode = true
+	previews.generate.call_deferred()
 	_paused = false
 	_completed = false
 	camera.transform = _editor_camera_transform

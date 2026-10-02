@@ -23,7 +23,9 @@ umbrella, whipped cream, ice cube, and gravity gun.
 
 ### Editor controls
 
-- Select an object in the palette, then click in the world to place it.
+- The object library is a grid of model previews. Hover a tile to see its name;
+  click it, then click in the world to place it. New objects stay selected so
+  you can immediately resize or delete them. Choose **Place** to add another.
 - Counter tiles join on an **8-unit grid**. Equipment defaults to **1-unit**
   snapping; reduce Grid snap for smaller adjustments.
 - **Place on surfaces + lift** places the object's origin on the surface under
@@ -32,12 +34,24 @@ umbrella, whipped cream, ice cube, and gravity gun.
   the inspector when a model needs a different height.
 - Hold **right mouse** to look around, **WASD** to fly, **Q/E** to descend/ascend,
   and **Shift** to fly faster. The mouse wheel moves the camera forward/backward.
-- **V / Select** selects existing objects. You can also use the list of placed
-  objects at the top of the inspector. **F** focuses the camera on the selection.
-- Edit position, rotation, and scale in the inspector. **R / Shift+R** rotates
+- Click a placed object to select it, including while placing a new model.
+  **Shift+click** places on an existing object instead. **V / Select** leaves
+  placement mode. You can also use the list at the top of the inspector.
+  **F** focuses the camera on the selection.
+- Select **Move / G** to drag the selection along world **X / Y / Z**, or drag
+  **XZ** to move across the ground plane while preserving height. Movement uses
+  Grid snap; hold **Shift** while dragging for precise movement without snapping.
+- Select **Rotate / R** and drag the **X / Y / Z** ring handles around the object's
+  pivot to change its rotation angles. Angles snap in **15-degree** increments;
+  hold **Shift** for precise rotation without snapping.
+- Select **Scale / T** to drag **X / Y / Z** and scale one axis, or **↗** to scale
+  all axes together. **Escape** cancels a move, rotation, or scale drag.
+  Each drag is one undo step.
+- Edit position, rotation, and scale in the inspector. **] / [** rotates
   the selected object or placement preview by 15 degrees.
 - **M** moves a selected object to the next world click. **Escape** cancels.
-  Duplicate and Delete are available in the inspector.
+  Duplicate and Delete are available in the inspector. **Delete / Backspace**
+  removes the selected object; undo restores it.
 - **Ctrl/Cmd+Z** undoes a layout change; **Ctrl/Cmd+Shift+Z** redoes it.
 - **Save / Ctrl/Cmd+S** updates the current save. **Save copy** creates a separate
   course. Renaming the title and saving updates the existing course.
