@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://k0u2fmb18dl3"]
+
+[resource]
+resource_name = "Curtain_Thread_Material.007"
+cull_mode = 2
+albedo_color = Color(0.48452926, 0.2716998, 0.18974829, 1)
+roughness = 0.65

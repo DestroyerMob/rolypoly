@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d36ht3s4se84j"]
+
+[ext_resource type="PackedScene" uid="uid://dq1v4splr5muu" path="res://assets/models/props/bench_tapered_smooth.glb" id="1_xjnat"]
+
+[node name="BenchTapered" type="StaticBody3D" unique_id=1162987810]
+
+[node name="bench_tapered_smooth" parent="." unique_id=1824487391 instance=ExtResource("1_xjnat")]
+
+[editable path="bench_tapered_smooth"]

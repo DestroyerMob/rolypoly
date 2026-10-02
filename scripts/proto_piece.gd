@@ -15,6 +15,8 @@ extends StaticBody3D
 enum Fn { NEUT, ACC, RDIR, GATE, REST, HAZA, SURF, MOVE, GOAL, CHEC,DEAD,FURN }
 enum Pivot { BASE, CENTER, TOP }
 
+## MOVE_ffe84e / fff993 / e0e3eb / 85878f
+
 const MATERIALS := {
 	Fn.NEUT: preload("res://materials/level_prototyping/MI_NEUT_world_grid_prototype.tres"),
 	Fn.ACC:  preload("res://materials/level_prototyping/MI_ACC_world_grid_prototype.tres"),

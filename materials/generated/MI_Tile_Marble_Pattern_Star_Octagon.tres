@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjsys1hpmyge6"]
+
+[ext_resource type="Texture2D" uid="uid://tsq0hfiydq5d" path="res://assets/textures/T_Tile_Marble_Pattern_Star_Octagon_BC.jpg" id="1_ul27b"]
+[ext_resource type="Texture2D" uid="uid://orcttsfuqrhi" path="res://assets/textures/T_Tile_Marble_Pattern_Star_Octagon_N.jpg" id="2_5u7mx"]
+[ext_resource type="Texture2D" uid="uid://hcow200yyrwo" path="res://assets/textures/T_Tile_Marble_Pattern_Star_Octagon_R.jpg" id="3_aobu5"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_ul27b")
+roughness_texture = ExtResource("3_aobu5")
+normal_enabled = true
+normal_texture = ExtResource("2_5u7mx")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

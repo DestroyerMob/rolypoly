@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cknvra70l5me2"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_8b4i5"]
+[ext_resource type="Texture2D" uid="uid://bml1w4uyg6r4n" path="res://assets/textures/T_Wood_oak_Slab_Honey_2K_BC.png" id="2_y05ho"]
+[ext_resource type="Texture2D" uid="uid://d0mep12uwpqeu" path="res://assets/textures/T_Wood_Oak_Slab_Honey_2K_N.png" id="3_51oqn"]
+[ext_resource type="Texture2D" uid="uid://c5oatolo3me4n" path="res://assets/textures/T_Wood_Oak_Slab_Honey_2K_R.png" id="4_51oqn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8b4i5")
+shader_parameter/albedo_texture = ExtResource("2_y05ho")
+shader_parameter/albedo_tint = Color(0.68397206, 0.7496685, 1, 1)
+shader_parameter/albedo_brightness = 1.0000000475
+shader_parameter/roughness_value = 1.0
+shader_parameter/use_roughness_map = true
+shader_parameter/roughness_map = ExtResource("4_51oqn")
+shader_parameter/metallic_value = 0.0
+shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.0
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("3_51oqn")
+shader_parameter/normal_strength = -0.09499952951249924
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = true
+shader_parameter/world_scale = 260.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(145, 0, 0)
+shader_parameter/uv_rotation_degrees = -21.2399839089
+shader_parameter/world_space = false

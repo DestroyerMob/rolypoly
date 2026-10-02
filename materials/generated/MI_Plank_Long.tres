@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bqqjitwxbl7c"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_v3kso"]
+[ext_resource type="Texture2D" uid="uid://c71yu0a2smttu" path="res://assets/textures/T_Wood_Planks_1K_BC.jpg" id="2_t3iav"]
+[ext_resource type="Texture2D" uid="uid://dy6vtyo0aj66d" path="res://assets/textures/T_Wood_Planks_1K_N.jpg" id="3_pga6b"]
+[ext_resource type="Texture2D" uid="uid://brf32jlitwjq5" path="res://assets/textures/T_Wood_Planks_1K_R.jpg" id="4_o5q16"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v3kso")
+shader_parameter/albedo_texture = ExtResource("2_t3iav")
+shader_parameter/albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/roughness_value = 1.0
+shader_parameter/use_roughness_map = true
+shader_parameter/roughness_map = ExtResource("4_o5q16")
+shader_parameter/metallic_value = 0.0
+shader_parameter/use_metallic_map = false
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = false
+shader_parameter/normal_map = ExtResource("3_pga6b")
+shader_parameter/normal_strength = 1.902000185345
+shader_parameter/world_scale = 200.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = -179.99999145

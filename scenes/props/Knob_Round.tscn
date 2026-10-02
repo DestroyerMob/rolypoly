@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cs8xeafo0dh74"]
+
+[ext_resource type="Material" uid="uid://b6x5gidt3y2c0" path="res://materials/MI_Metal_Cabinets_Handle.tres" id="1_17rdg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m4wkx"]
+top_radius = 2.0
+bottom_radius = 1.5
+height = 1.5
+radial_segments = 20
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_17rdg"]
+top_radius = 0.75
+bottom_radius = 0.75
+radial_segments = 8
+
+[node name="KnobRound" type="Node3D" unique_id=1437985579]
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1211991738]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 3)
+mesh = SubResource("CylinderMesh_m4wkx")
+surface_material_override/0 = ExtResource("1_17rdg")
+
+[node name="Stem" type="MeshInstance3D" parent="." unique_id=453142045]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_17rdg")
+surface_material_override/0 = ExtResource("1_17rdg")

@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dhwccadf8h707"]
+
+[ext_resource type="Texture2D" uid="uid://dycqvvkpl2d06" path="res://assets/textures/T_Tile_Ceramic_Glazed_Green_1K_BC.jpg" id="1_2f4sb"]
+[ext_resource type="Texture2D" uid="uid://cp6fmix5sjtvo" path="res://assets/textures/T_Tile_Ceramic_Glazed_Green_1K_N.jpg" id="2_ks5w3"]
+[ext_resource type="Texture2D" uid="uid://2rju8jaiqmf4" path="res://assets/textures/T_Tile_Ceramic_Glazed_Green_1K_R.jpg" id="3_wdbbh"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_2f4sb")
+roughness_texture = ExtResource("3_wdbbh")
+normal_enabled = true
+normal_texture = ExtResource("2_ks5w3")
+uv1_scale = Vector3(0.008, 0.008, 0.008)
+uv1_triplanar = true

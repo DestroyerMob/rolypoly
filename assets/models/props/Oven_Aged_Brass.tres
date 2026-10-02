@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://j20m7bvong5w"]
+
+[ext_resource type="Texture2D" uid="uid://c7lgi1woabb3g" path="res://assets/textures/T_Tile_Concrete_Floor_1K_R.jpg" id="1_7bsfs"]
+[ext_resource type="Texture2D" uid="uid://dnb0k184jeg2n" path="res://assets/textures/T_Wood_Floor_1K_N.jpg" id="1_71mft"]
+
+[resource]
+resource_name = "Oven_Aged_Brass"
+cull_mode = 2
+albedo_color = Color(0.6421665, 0.47312066, 0.20598418, 1)
+metallic = 0.4
+metallic_specular = 0.2
+roughness = 0.29
+roughness_texture = ExtResource("1_7bsfs")
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = ExtResource("1_71mft")

@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dxbp1xqoibgpi"]
+
+[ext_resource type="Texture2D" uid="uid://beo027kihrj00" path="res://assets/textures/T_Tile_Floor_Viriah_Square_1K_BC.jpg" id="1_u2w87"]
+[ext_resource type="Texture2D" uid="uid://cu0yev7bjxxju" path="res://assets/textures/T_Tile_Floor_Viriah_Square_1K_N.jpg" id="2_xxg8p"]
+[ext_resource type="Texture2D" uid="uid://bmg75cilw36da" path="res://assets/textures/T_Tile_Floor_Viriah_Square_1K_R.jpg" id="3_v777p"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_u2w87")
+roughness_texture = ExtResource("3_v777p")
+normal_enabled = true
+normal_texture = ExtResource("2_xxg8p")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://o78quicdmoxk"]
+
+[resource]
+resource_name = "Oven_Heat_Red"
+cull_mode = 2
+albedo_color = Color(0.76737565, 0.20598418, 0.1428257, 1)
+metallic = 0.1
+roughness = 0.28

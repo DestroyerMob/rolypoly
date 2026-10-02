@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cfcmmxwaphdxt"]
+
+[ext_resource type="Texture2D" uid="uid://bm5qgjp3bnjt" path="res://assets/textures/T_Wood_Veneer_Smoke_1K_BC.jpg" id="1_ayvcc"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_ayvcc")
+roughness = 0.6
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

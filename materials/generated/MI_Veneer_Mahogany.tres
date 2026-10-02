@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b5bawy3fo61sf"]
+
+[ext_resource type="Texture2D" uid="uid://je8jjpc4xpmc" path="res://assets/textures/T_Veneer_Mahogany_1K_BC.jpg" id="1_7uly4"]
+[ext_resource type="Texture2D" uid="uid://lqbe5or6b6ie" path="res://assets/textures/T_Veneer_Mahogany_1K_N.jpg" id="2_r7c48"]
+[ext_resource type="Texture2D" uid="uid://ru6t0skygcwa" path="res://assets/textures/T_Veneer_Mahogany_1K_R.jpg" id="3_0x6ws"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_7uly4")
+roughness_texture = ExtResource("3_0x6ws")
+normal_enabled = true
+normal_texture = ExtResource("2_r7c48")
+uv1_scale = Vector3(0.008, 0.008, 0.008)
+uv1_triplanar = true
+uv1_world_triplanar = true

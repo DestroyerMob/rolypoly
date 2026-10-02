@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://yknpw461u0cy"]
 
+[ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="1_fili6"]
 [ext_resource type="PackedScene" uid="uid://441h24eqo2yc" path="res://assets/models/props/box_closed.glb" id="1_iob1o"]
 [ext_resource type="Texture2D" uid="uid://ck250854bpuud" path="res://textures/GameTitle.png" id="2_3jev0"]
 
@@ -7,6 +8,10 @@
 size = Vector3(0.9, 0.49, 0.65)
 
 [node name="BoxStart" type="StaticBody3D" unique_id=953123952]
+
+[node name="PlayerStart" parent="." unique_id=2025540899 instance=ExtResource("1_fili6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2698849, 0)
+preview_radius = 0.05
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1459404708]
 shape = SubResource("BoxShape3D_5yy73")

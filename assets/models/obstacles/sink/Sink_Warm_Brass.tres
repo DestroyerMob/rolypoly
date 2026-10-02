@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://gi6itkdntqrg"]
+
+[resource]
+resource_name = "Sink_Warm_Brass"
+cull_mode = 2
+albedo_color = Color(0.86504203, 0.6872172, 0.3491902, 1)
+metallic = 0.82
+roughness = 0.22

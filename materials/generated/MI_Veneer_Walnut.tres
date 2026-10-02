@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://brrbd4hsb4wwc"]
+
+[ext_resource type="Texture2D" uid="uid://dcxajnqhnn2kt" path="res://assets/textures/T_Veneer_Walnut_1K_BC.jpg" id="1_kgunt"]
+[ext_resource type="Texture2D" uid="uid://cx1y6eco6l8tc" path="res://assets/textures/T_Veneer_Walnut_1K_N.jpg" id="2_xy8vw"]
+[ext_resource type="Texture2D" uid="uid://bqe7i7vi253cs" path="res://assets/textures/T_Veneer_Walnut_1K_R.jpg" id="3_g8kcf"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_kgunt")
+roughness_texture = ExtResource("3_g8kcf")
+normal_enabled = true
+normal_texture = ExtResource("2_xy8vw")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

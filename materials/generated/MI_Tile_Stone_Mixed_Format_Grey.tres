@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dd2xhka7l08rh"]
+
+[ext_resource type="Texture2D" uid="uid://5j8il5n8q74d" path="res://assets/textures/T_Tile_Stone_Mixed_Format_Grey_1K_BC.jpg" id="1_nhmv5"]
+[ext_resource type="Texture2D" uid="uid://dt4gn37bs0yry" path="res://assets/textures/T_Tile_Stone_Mixed_Format_Grey_1K_N.jpg" id="2_bc3dw"]
+[ext_resource type="Texture2D" uid="uid://cfkuiustvgsbg" path="res://assets/textures/T_Tile_Stone_Mixed_Format_Grey_1K_R.jpg" id="3_m47v2"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_nhmv5")
+roughness_texture = ExtResource("3_m47v2")
+normal_enabled = true
+normal_texture = ExtResource("2_bc3dw")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

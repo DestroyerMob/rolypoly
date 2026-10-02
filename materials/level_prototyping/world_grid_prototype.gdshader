@@ -7,10 +7,10 @@ shader_type spatial;
 render_mode blend_mix, cull_back, diffuse_burley, specular_schlick_ggx;
 
 group_uniforms Grid;
-uniform float cell_size = 1.0;            // metres per major cell
-uniform float subdivisions = 10.0;        // minor lines per major cell
-uniform float major_line_width = 0.025;   // metres
-uniform float minor_line_width = 0.008;   // metres
+uniform float cell_size = 100.0;            // metres per major cell
+uniform float subdivisions = 5.0;        // minor lines per major cell
+uniform float major_line_width = 1.0;   // metres
+uniform float minor_line_width = 0.25;   // metres
 uniform vec3 world_offset = vec3(0.0);    // shift the grid origin
 
 group_uniforms Colors;

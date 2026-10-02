@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dir3c3sf2una4"]
+
+[resource]
+resource_name = "M_Glass_Clear"
+albedo_color = Color(0.724306, 0.573296, 0.34831688, 1)
+metallic_specular = 0.9
+roughness = 0.05
+rim_enabled = true
+rim_tint = 0.0

@@ -1,0 +1,33 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b8qt7hsc0r3lx"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_vvxfc"]
+[ext_resource type="Texture2D" uid="uid://cq1we7yg0vukb" path="res://assets/textures/T_Tile_Marble_Nero_Marquina_1K_BC.jpg" id="2_dkp12"]
+[ext_resource type="Texture2D" uid="uid://bb2vcfs5grugu" path="res://assets/textures/T_Wood_Veneer_Smoke_1K_AO.jpg" id="3_xibcy"]
+[ext_resource type="Texture2D" uid="uid://ru6t0skygcwa" path="res://assets/textures/T_Veneer_Mahogany_1K_R.jpg" id="4_wqxpd"]
+[ext_resource type="Texture2D" uid="uid://duyorf3i4ad8" path="res://assets/textures/T_Tile_Marble_Nero_Marquina_1K_N.jpg" id="4_xibcy"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vvxfc")
+shader_parameter/albedo_texture = ExtResource("2_dkp12")
+shader_parameter/albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/albedo_brightness = 1.298000061655
+shader_parameter/roughness_value = 0.1770000084075
+shader_parameter/use_roughness_map = false
+shader_parameter/roughness_map = ExtResource("4_wqxpd")
+shader_parameter/metallic_value = 0.0
+shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.5
+shader_parameter/use_ao_map = false
+shader_parameter/ao_map = ExtResource("3_xibcy")
+shader_parameter/ao_strength = 0.5650000268375
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("4_xibcy")
+shader_parameter/normal_strength = -3.889999709775
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = true
+shader_parameter/world_scale = 150.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 1.7099999979564018e-05
+shader_parameter/world_space = true

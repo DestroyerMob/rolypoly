@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bttll5yhvp3o0"]
+
+[ext_resource type="Texture2D" uid="uid://5i0li5rab4x4" path="res://assets/textures/T_Veneer_Varnish_Elm_Burl_1K_BC.jpg" id="1_boa2l"]
+[ext_resource type="Texture2D" uid="uid://dtyrqy1w0hoec" path="res://assets/textures/T_Veneer_Varnish_Elm_Burl_1K_R.jpg" id="2_1h16i"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_boa2l")
+roughness_texture = ExtResource("2_1h16i")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

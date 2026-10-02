@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6h54yb3nem3b"]
+
+[ext_resource type="Texture2D" uid="uid://bml1w4uyg6r4n" path="res://assets/textures/T_Wood_oak_Slab_Honey_2K_BC.png" id="1_hj0r2"]
+[ext_resource type="Texture2D" uid="uid://d0mep12uwpqeu" path="res://assets/textures/T_Wood_Oak_Slab_Honey_2K_N.png" id="2_ny0ov"]
+[ext_resource type="Texture2D" uid="uid://c5oatolo3me4n" path="res://assets/textures/T_Wood_Oak_Slab_Honey_2K_R.png" id="3_al2bw"]
+
+[resource]
+resource_name = "TableTop_Material.014"
+cull_mode = 2
+albedo_texture = ExtResource("1_hj0r2")
+metallic_specular = 0.07
+roughness = 0.47
+roughness_texture = ExtResource("3_al2bw")
+normal_enabled = true
+normal_scale = 0.6
+normal_texture = ExtResource("2_ny0ov")
+uv1_scale = Vector3(0.01, 0.01, 0.01)

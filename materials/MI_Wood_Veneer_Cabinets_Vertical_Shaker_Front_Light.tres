@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cheb2pxngb7md"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_wtnd5"]
+[ext_resource type="Texture2D" uid="uid://bxdfpmjq0rdjg" path="res://assets/textures/T_Wood_Green_1K_BCpng.png" id="2_06yhm"]
+[ext_resource type="Texture2D" uid="uid://d4bdroacn0uf0" path="res://assets/textures/T_Wood_1K_N.png" id="3_lknud"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wtnd5")
+shader_parameter/albedo_texture = ExtResource("2_06yhm")
+shader_parameter/albedo_tint = Color(0.40978417, 0.4406772, 0.26067483, 1)
+shader_parameter/albedo_brightness = 0.9890000469775
+shader_parameter/roughness_value = 0.5
+shader_parameter/use_roughness_map = false
+shader_parameter/metallic_value = 0.3250000154375
+shader_parameter/use_metallic_map = false
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("3_lknud")
+shader_parameter/normal_strength = -0.05999990784999998
+shader_parameter/world_scale = 200.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 90.00002137500002
+shader_parameter/world_space = true

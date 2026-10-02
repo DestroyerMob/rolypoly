@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://pqb8qububasr"]
+
+[ext_resource type="Texture2D" uid="uid://cdmxsk5q6t2ge" path="res://assets/textures/T_Wood_Floor_1K_BC.jpg" id="1_jilks"]
+[ext_resource type="Texture2D" uid="uid://dnb0k184jeg2n" path="res://assets/textures/T_Wood_Floor_1K_N.jpg" id="2_4cvv1"]
+[ext_resource type="Texture2D" uid="uid://bbet72blnlhva" path="res://assets/textures/T_Wood_Floor_1K_R.jpg" id="3_ev2ys"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_jilks")
+roughness_texture = ExtResource("3_ev2ys")
+normal_enabled = true
+normal_texture = ExtResource("2_4cvv1")
+uv1_scale = Vector3(0.009, 0.009, 0.009)
+uv1_triplanar = true
+uv1_world_triplanar = true

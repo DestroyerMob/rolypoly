@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://s4jnsx1kx5if"]
+
+[ext_resource type="Texture2D" uid="uid://d1dbm6wpqgntu" path="res://assets/textures/T_Tile_Pattern_Star_1K_N.jpg" id="1_uiwcf"]
+
+[resource]
+resource_name = "TableTop_Material.018"
+cull_mode = 2
+albedo_color = Color(0.95330805, 0.803683, 0.5351244, 1)
+metallic_specular = 0.0
+roughness = 0.33
+normal_enabled = true
+normal_scale = 5.68
+normal_texture = ExtResource("1_uiwcf")
+uv1_scale = Vector3(0.63, 0.63, 0.63)
+uv1_offset = Vector3(6.615, 0, 0)
