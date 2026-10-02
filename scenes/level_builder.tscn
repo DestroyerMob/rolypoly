@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://dohfdsgyakvk0"]
 
-[ext_resource type="PackedScene" uid="uid://doto3ydjf6imw" path="res://packed_scenes/default_camera.tscn" id="1_6artv"]
-[ext_resource type="PackedScene" uid="uid://cqio8226fip5l" path="res://packed_scenes/cube_tile.tscn" id="1_77rll"]
-[ext_resource type="Script" uid="uid://btmyyfjadhpbe" path="res://scripts/LevelBuilder.gd" id="1_kkt7t"]
-[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="2_diroj"]
-[ext_resource type="Resource" uid="uid://cwpf5s3yvr55o" path="res://data/StandardSurface.tres" id="2_yyvap"]
-[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="6_death"]
+[ext_resource type="Script" path="res://scripts/LevelBuilder.gd" id="1_kkt7t"]
+
+[ext_resource type="PackedScene" path="res://scenes/level_editor/empty_kitchen.tscn" id="2_kitchen"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_diroj"]
 
@@ -19,7 +16,7 @@ sky = SubResource("Sky_nd71p")
 ambient_light_source = 2
 ambient_light_color = Color(0.75, 0.85, 1, 1)
 ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.22
+ambient_light_energy = 0.8
 tonemap_mode = 2
 ssao_enabled = true
 ssao_radius = 1.5
@@ -27,19 +24,14 @@ ssao_intensity = 1.0
 
 [node name="LevelBuilder" type="Node3D" unique_id=1059189124]
 script = ExtResource("1_kkt7t")
-Tile = ExtResource("1_77rll")
-SurfaceMaterial = ExtResource("2_yyvap")
 
-[node name="Camera3D" parent="." unique_id=280752300 instance=ExtResource("1_6artv")]
-transform = Transform3D(1, 0, 0, 0, 0.7867442, 0.6172792, 0, -0.6172792, 0.7867442, 0, 3.3262951, 5.343068)
+[node name="KitchenBase" parent="." instance=ExtResource("2_kitchen")]
 
-[node name="Player" parent="." unique_id=1887833892 instance=ExtResource("2_diroj")]
-
-[node name="DeathZone" parent="." instance=ExtResource("6_death")]
-position = Vector3(0, -16, 0)
-
-[node name="Tile" parent="." unique_id=236246291 instance=ExtResource("1_77rll")]
-surface = ExtResource("2_yyvap")
+[node name="EditorCamera" type="Camera3D" parent="."]
+position = Vector3(180, 165, -270)
+rotation_degrees = Vector3(-29, 38, 0)
+far = 3000.0
+current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=7238165]
 environment = SubResource("Environment_kkt7t")
@@ -50,3 +42,9 @@ light_color = Color(1, 0.95, 0.88, 1)
 light_energy = 1.2
 shadow_enabled = true
 directional_shadow_max_distance = 160.0
+
+[node name="KitchenFill" type="OmniLight3D" parent="."]
+position = Vector3(0, 155, -500)
+light_color = Color(1, 0.9, 0.78, 1)
+light_energy = 2.0
+omni_range = 850.0

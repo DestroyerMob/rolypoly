@@ -7,6 +7,7 @@ extends Node3D
 @export var stick_sensitivity := 3.0
 @export var mouse_sensitivity := 0.003
 @export var follow_speed := 10.0
+@export var follow_offset := Vector3.ZERO
 @export var min_pitch_degrees := -50.0
 @export var max_pitch_degrees := -5.0
 @export var capture_mouse := true 
@@ -75,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	# Follow the marble's POSITION only, never its rotation
 	if player != null:
 		var t := clampf(follow_speed * delta, 0.0, 1.0)
-		global_position = global_position.lerp(player.global_position, t)
+		global_position = global_position.lerp(player.global_position + follow_offset, t)
 
 	# Yaw on the pivot, pitch on the arm. Never both on one node.
 	rotation = Vector3(0.0, _yaw, 0.0)

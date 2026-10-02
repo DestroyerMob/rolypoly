@@ -1,0 +1,199 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/props/corexy.gd" id="1_xmsis"]
+[ext_resource type="PackedScene" path="res://assets/models/props/corexy/corexy_frame.glb" id="2_31dsf"]
+[ext_resource type="PackedScene" path="res://assets/models/props/corexy/corexy_gantry.glb" id="3_3oaf5"]
+[ext_resource type="Shape3D" path="res://assets/models/props/corexy/corexy_gantry_collision.res" id="4_3hmny"]
+[ext_resource type="PackedScene" path="res://scenes/props/razor_dicer.tscn" id="5_itkv1"]
+[ext_resource type="Script" path="res://scripts/props/razor_dicer.gd" id="6_xo5xn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6p3s"]
+albedo_color = Color(0.65, 0.72, 0.78, 1)
+metallic = 0.8
+roughness = 0.22
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bqbsa"]
+top_radius = 0.078
+bottom_radius = 0.078
+height = 1.0
+radial_segments = 24
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l3qwa"]
+resource_local_to_scene = true
+margin = 0.002
+size = Vector3(2.478287, 0.156, 0.156)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xt3gw"]
+top_radius = 0.078
+bottom_radius = 0.078
+height = 1.0
+radial_segments = 24
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmk7q"]
+resource_local_to_scene = true
+margin = 0.002
+size = Vector3(2.478287, 0.156, 0.156)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sx7n1"]
+top_radius = 0.078
+bottom_radius = 0.078
+height = 1.0
+radial_segments = 24
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8khjy"]
+resource_local_to_scene = true
+margin = 0.002
+size = Vector3(3.281713, 0.156, 0.156)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_84xq8"]
+top_radius = 0.078
+bottom_radius = 0.078
+height = 1.0
+radial_segments = 24
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rcc6n"]
+resource_local_to_scene = true
+margin = 0.002
+size = Vector3(3.281713, 0.156, 0.156)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um711"]
+albedo_color = Color(0.18, 0.23, 0.27, 1)
+metallic = 0.7
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_oquc4"]
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8pyx3"]
+margin = 0.002
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m5c7o"]
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0w5jl"]
+margin = 0.002
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8or5u"]
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exuri"]
+margin = 0.002
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2w5b0"]
+size = Vector3(0.25, 0.23, 0.28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_80xhn"]
+margin = 0.002
+size = Vector3(0.25, 0.23, 0.28)
+
+[node name="CoreXY" type="Node3D" unique_id=1773979546]
+script = ExtResource("1_xmsis")
+
+[node name="Frame" type="Node3D" parent="." unique_id=727709763 instance=ExtResource("2_31dsf")]
+
+[node name="Gantry" type="AnimatableBody3D" parent="." unique_id=963109387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.002853)
+sync_to_physics = false
+
+[node name="Model" type="Node3D" parent="Gantry" unique_id=1343090260 instance=ExtResource("3_3oaf5")]
+
+[node name="MechanicalCollision" type="CollisionShape3D" parent="Gantry" unique_id=721672257]
+shape = ExtResource("4_3hmny")
+
+[node name="LeftLowerRod" type="AnimatableBody3D" parent="Gantry" unique_id=1872716652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5808566, 1.731, 0)
+sync_to_physics = false
+
+[node name="Mesh" type="MeshInstance3D" parent="Gantry/LeftLowerRod" unique_id=51649519]
+transform = Transform3D(-4.371139e-08, -2.478287, 0, 1, -1.0832937e-07, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_b6p3s")
+mesh = SubResource("CylinderMesh_bqbsa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gantry/LeftLowerRod" unique_id=1098527586]
+shape = SubResource("BoxShape3D_l3qwa")
+
+[node name="LeftUpperRod" type="AnimatableBody3D" parent="Gantry" unique_id=594968988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5808566, 2.122, 0)
+sync_to_physics = false
+
+[node name="Mesh" type="MeshInstance3D" parent="Gantry/LeftUpperRod" unique_id=2118123073]
+transform = Transform3D(-4.371139e-08, -2.478287, 0, 1, -1.0832937e-07, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_b6p3s")
+mesh = SubResource("CylinderMesh_xt3gw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gantry/LeftUpperRod" unique_id=856980983]
+shape = SubResource("BoxShape3D_vmk7q")
+
+[node name="RightLowerRod" type="AnimatableBody3D" parent="Gantry" unique_id=1142302460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1791434, 1.731, 0)
+sync_to_physics = false
+
+[node name="Mesh" type="MeshInstance3D" parent="Gantry/RightLowerRod" unique_id=49205903]
+transform = Transform3D(-4.371139e-08, -3.281713, 0, 1, -1.4344823e-07, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_b6p3s")
+mesh = SubResource("CylinderMesh_sx7n1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gantry/RightLowerRod" unique_id=1071166793]
+shape = SubResource("BoxShape3D_8khjy")
+
+[node name="RightUpperRod" type="AnimatableBody3D" parent="Gantry" unique_id=2091738795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1791434, 2.122, 0)
+sync_to_physics = false
+
+[node name="Mesh" type="MeshInstance3D" parent="Gantry/RightUpperRod" unique_id=2001263413]
+transform = Transform3D(-4.371139e-08, -3.281713, 0, 1, -1.4344823e-07, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_b6p3s")
+mesh = SubResource("CylinderMesh_84xq8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gantry/RightUpperRod" unique_id=2122357036]
+shape = SubResource("BoxShape3D_rcc6n")
+
+[node name="Carriage" type="AnimatableBody3D" parent="." unique_id=1567383908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.401713, 0, -1.002853)
+sync_to_physics = false
+
+[node name="LeftLowerBearing" type="MeshInstance3D" parent="Carriage" unique_id=674298235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94, 1.731, 0)
+material_override = SubResource("StandardMaterial3D_um711")
+mesh = SubResource("BoxMesh_oquc4")
+
+[node name="LeftLowerBearingCollision" type="CollisionShape3D" parent="Carriage" unique_id=213930212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94, 1.731, 0)
+shape = SubResource("BoxShape3D_8pyx3")
+
+[node name="LeftUpperBearing" type="MeshInstance3D" parent="Carriage" unique_id=1187248315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94, 2.122, 0)
+material_override = SubResource("StandardMaterial3D_um711")
+mesh = SubResource("BoxMesh_m5c7o")
+
+[node name="LeftUpperBearingCollision" type="CollisionShape3D" parent="Carriage" unique_id=875790685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94, 2.122, 0)
+shape = SubResource("BoxShape3D_0w5jl")
+
+[node name="RightLowerBearing" type="MeshInstance3D" parent="Carriage" unique_id=1075984708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, 1.731, 0)
+material_override = SubResource("StandardMaterial3D_um711")
+mesh = SubResource("BoxMesh_8or5u")
+
+[node name="RightLowerBearingCollision" type="CollisionShape3D" parent="Carriage" unique_id=977312064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, 1.731, 0)
+shape = SubResource("BoxShape3D_exuri")
+
+[node name="RightUpperBearing" type="MeshInstance3D" parent="Carriage" unique_id=650557816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, 2.122, 0)
+material_override = SubResource("StandardMaterial3D_um711")
+mesh = SubResource("BoxMesh_2w5b0")
+
+[node name="RightUpperBearingCollision" type="CollisionShape3D" parent="Carriage" unique_id=335336084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, 2.122, 0)
+shape = SubResource("BoxShape3D_80xhn")
+
+[node name="AttachmentSocket" type="Marker3D" parent="Carriage" unique_id=1166132317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+
+[node name="RazorDicer" type="AnimatableBody3D" parent="Carriage/AttachmentSocket" unique_id=533371473 instance=ExtResource("5_itkv1")]
+sync_to_physics = false
+script = ExtResource("6_xo5xn")
