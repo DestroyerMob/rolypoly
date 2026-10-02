@@ -65,6 +65,7 @@
 [ext_resource type="Material" uid="uid://dh873wv8ijx5e" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Bar.tres" id="48_1mlcx"]
 [ext_resource type="Texture2D" uid="uid://b8vuvmqysrqpl" path="res://assets/textures/T_Limestone_TypeA_2K_BC.png" id="49_7qopy"]
 [ext_resource type="Material" uid="uid://dpjjol0b2j8tu" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Bar_Dark.tres" id="49_f5ptj"]
+[ext_resource type="Texture2D" uid="uid://b7o6g2mlwxr7y" path="res://assets/textures/lemon_tree.png" id="49_nbjd4"]
 [ext_resource type="Texture2D" uid="uid://2wgwhu4l7s8q" path="res://assets/textures/T_Limestone_TypeA_2K_N.png" id="50_4fcs4"]
 [ext_resource type="Texture2D" uid="uid://c2vtwdwvdy41p" path="res://assets/textures/T_Limestone_TypeA_2K_R.png" id="51_3dniq"]
 [ext_resource type="Texture2D" uid="uid://basgyk1fmie3k" path="res://assets/textures/T_Cork_1K_BC.jpg" id="51_koo4o"]
@@ -75,6 +76,7 @@
 [ext_resource type="Material" uid="uid://bn8usbsdl0dpf" path="res://materials/MI_Limestone.tres" id="62_fxkvl"]
 [ext_resource type="PackedScene" uid="uid://dmup2oajg2jk6" path="res://assets/models/props/pots/Pot_02_Bulbous_Olive.glb" id="66_4y7vo"]
 [ext_resource type="PackedScene" uid="uid://b4r6hlqex1xca" path="res://assets/models/props/pots/Pot_03_Tall_Utensil_Crock.glb" id="67_io3ko"]
+[ext_resource type="Texture2D" uid="uid://748k5g6kftts" path="res://assets/textures/claude_monet_bordighiera.jpg" id="67_nbjd4"]
 [ext_resource type="PackedScene" uid="uid://dwf5p76o47nal" path="res://assets/models/props/pots/Pot_01_Classic_Herb.glb" id="68_7qopy"]
 [ext_resource type="PackedScene" uid="uid://dmjpm5uu4k6to" path="res://assets/models/props/pots/Pot_04_Low_Wide_Planter.glb" id="68_v8u1v"]
 [ext_resource type="PackedScene" uid="uid://dh7dd8cci6650" path="res://assets/models/props/pots/Pot_05_Spanish_Bell.glb" id="69_fxkvl"]
@@ -173,6 +175,19 @@ normal_enabled = true
 normal_scale = 1.26
 normal_texture = ExtResource("18_ym2or")
 uv1_scale = Vector3(0.008, 0.008, 0.008)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giwe5"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.8846817, 0.7847011, 0.7546468, 1)
+albedo_texture = ExtResource("15_giwe5")
+roughness_texture = ExtResource("17_nbjd4")
+normal_enabled = true
+normal_scale = 3.59
+normal_texture = ExtResource("16_d22am")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
@@ -435,6 +450,14 @@ size = Vector2(92, 59.5)
 offset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id1ax"]
+transparency = 1
+albedo_texture = ExtResource("49_nbjd4")
+roughness = 0.47
+normal_enabled = true
+normal_scale = 1.5
+normal_texture = ExtResource("26_e6hn1")
+
 [sub_resource type="QuadMesh" id="QuadMesh_5yy73"]
 size = Vector2(380, 310)
 
@@ -626,6 +649,20 @@ metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybb3e"]
 size = Vector3(230, 10, 230)
+
+[sub_resource type="QuadMesh" id="QuadMesh_giwe5"]
+size = Vector2(80, 85)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq0fq"]
+transparency = 1
+albedo_texture = ExtResource("67_nbjd4")
+roughness = 0.47
+normal_enabled = true
+normal_scale = 1.5
+normal_texture = ExtResource("16_dpamo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cb686"]
+size = Vector2(150, 100)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5yy73"]
 top_radius = 20.0
@@ -936,7 +973,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 333.32605, -112.5, 372.1223)
 script = ExtResource("13_c1nrq")
 size = Vector3(300, 330, 30)
-material = SubResource("StandardMaterial3D_d22am")
+material = SubResource("StandardMaterial3D_giwe5")
 plan_pivot = 1
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -944,7 +981,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 243.32605, -112.5, 372.1223)
 script = ExtResource("13_c1nrq")
 size = Vector3(90, 330, 30)
-material = SubResource("StandardMaterial3D_d22am")
+material = SubResource("StandardMaterial3D_giwe5")
 plan_pivot = 1
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -1817,7 +1854,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Lemon_Mural" type="MeshInstance3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1960306613]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 398.45, 50, -241)
-material_override = ExtResource("54_fxkvl")
+material_override = SubResource("StandardMaterial3D_id1ax")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_5yy73")
 
@@ -2847,6 +2884,18 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="_Dressing" type="Node" parent="_Set" unique_id=1332525405]
 
 [node name="_Props" type="Node" parent="_Set/_Dressing" unique_id=1727572606]
+
+[node name="Monet_WallSplash" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=992036118]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -367.55, 74, 351)
+material_override = ExtResource("54_fxkvl")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_giwe5")
+
+[node name="Monet_WallSplash2" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=1547499664]
+transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, -169, 71, 497)
+material_override = SubResource("StandardMaterial3D_fq0fq")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_cb686")
 
 [node name="Blender_Model" parent="_Set/_Dressing/_Props" unique_id=310644801 instance=ExtResource("10_lp2do")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 172.80304, 2.653246, -790.01385)
