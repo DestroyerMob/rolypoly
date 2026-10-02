@@ -5,8 +5,8 @@ const CHARACTERS := {
 	"swap_character_1": preload("res://packed_scenes/player_onion.tscn"),#Onion
 	"swap_character_2": preload("res://packed_scenes/player_egg.tscn"),#Egg
 	"swap_character_3": preload("res://packed_scenes/player_tomato.tscn"),#Tomato
-	"swap_character_4": preload("res://packed_scenes/player_boiled_egg.tscn"),#Boiled Egg
-	#"swap_character_4": "res://packed_scenes/player_boiled_egg.tscn",#Boiled Egg
+	"swap_character_4": preload("res://packed_scenes/player_ice_cream.tscn"),#Vanilla Ice Cream
+	"swap_character_5": preload("res://packed_scenes/player_lollypop.tscn"),#Lollypop
 }
 
 ## Fire after pressing swap so the camera and other things can retarget 

@@ -9,20 +9,22 @@ enum Condition {NORMAL,DIZZY,HURT,DEAD,WIN}
 const PRIORITY := [Condition.WIN, Condition.DEAD, Condition.HURT, Condition.DIZZY, Condition.NORMAL]
 signal condition_changed(new_condition: Condition)
 
-@export var speed_force := 20.0
-@export var jump_impulse := 9.5
+@export var speed_force := 20.0  #  
+@export var jump_impulse := 9.5 # Instantaneous velocity in upwards direction
 @onready var collider := $CollisionShape3D
 @onready var visual := $CollisionShape3D/MeshInstance3D
 @onready var original_visual_scale: Vector3 = visual.scale
 
 var on_ground := false
 var _teleport_target: Transform3D
+var _teleport_velocity := Vector3.ZERO
 var _teleport_queued := false
 var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness ourselves
 ## Distance from this character's origin down to its lowest point.
 ## Ball 0.25, egg and corn will be different. Each character scene sets its own.
 @export var spawn_clearance := 0.25
 var spawn_position: Vector3
+var gadget: Node3D
 var is_squished := false
 var squish_tween: Tween
 
@@ -32,13 +34,26 @@ func _ready() -> void:
 	max_contacts_reported = 8
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if _teleport_queued:
+		state.transform = _teleport_target
+		state.linear_velocity = _teleport_velocity
+		state.angular_velocity = Vector3.ZERO
+		state.sleeping = false
+		_teleport_queued = false
+		on_ground = false
+		reset_physics_interpolation()
+		return
 	on_ground = has_ground_contact(state)
+	if is_instance_valid(gadget) and gadget.has_method("integrate_equipment_forces"):
+		gadget.integrate_equipment_forces(self, state)
 
 func _physics_process(_delta: float) -> void:
 	if is_squished:
 		return
 	if Input.is_action_just_pressed("jump"):
 		jump()
+	if Input.is_action_just_pressed("activate_equipment") and is_instance_valid(gadget) and gadget.has_method("activate"):
+		gadget.activate(self)
 	move(Input.get_vector("left", "right", "forward", "backward"))
 
 #VFX
@@ -95,8 +110,9 @@ func restart_level() -> void:
 
 ## The only safe way to move a rigid body. Records the request;
 ## the physics step fulfils it.
-func teleport_to(target: Transform3D) -> void:
+func teleport_to(target: Transform3D, velocity := Vector3.ZERO) -> void:
 	_teleport_target = target
+	_teleport_velocity = velocity
 	_teleport_queued = true
 	sleeping = false   # a resting body stops receiving _integrate_forces
 func set_active(active: bool) -> void:
@@ -123,6 +139,12 @@ func respawn(world_position: Vector3) -> void:
 	on_ground = false
 	freeze = was_frozen
 	sleeping = false
+	_reset_equipment()
+
+
+func _reset_equipment() -> void:
+	if is_instance_valid(gadget) and gadget.has_method("reset_equipment"):
+		gadget.reset_equipment()
 
 #Iroh Temporarily Supersede to test Orbital Camera with Slight Movement
 
@@ -145,6 +167,8 @@ func move(input: Vector2) -> void:
 	
 func jump() -> void:
 	if not on_ground:
+		if is_instance_valid(gadget) and gadget.has_method("air_jump"):
+			gadget.air_jump(self)
 		return
 	apply_central_impulse(Vector3.UP * jump_impulse)
 	on_ground = false

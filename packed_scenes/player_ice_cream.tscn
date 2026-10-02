@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://models/desserts/ice_cream/vanilla_ice_cream.glb" id="2_model"]
+
+[sub_resource type="SphereShape3D" id="Shape_scoop"]
+radius = 2.2
+
+[node name="Player" instance=ExtResource("1_player")]
+continuous_cd = true
+spawn_clearance = 2.2
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("Shape_scoop")
+
+[node name="MeshInstance3D" parent="CollisionShape3D" index="0"]
+mesh = null
+material_override = null
+
+[node name="VanillaIceCream" parent="CollisionShape3D/MeshInstance3D" instance=ExtResource("2_model")]
