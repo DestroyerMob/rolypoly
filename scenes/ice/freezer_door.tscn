@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ice/ice_motion.gd" id="1_pbw55"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5vgv"]
+albedo_color = Color(0.09019608, 0.28627452, 0.29411766, 1)
+metallic = 0.15
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_f662i"]
+size = Vector3(3.6, 2.5, 0.26)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cdrx4"]
+size = Vector3(3.6, 2.5, 0.26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftgl3"]
+albedo_color = Color(0.73333335, 0.5294118, 0.28235295, 1)
+metallic = 0.75
+roughness = 0.28
+
+[sub_resource type="BoxMesh" id="BoxMesh_1jyyt"]
+size = Vector3(0.12, 1, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_005x8"]
+albedo_color = Color(0.8745098, 0.84313726, 0.74509805, 1)
+roughness = 0.32
+
+[sub_resource type="BoxMesh" id="BoxMesh_vspny"]
+size = Vector3(0.28, 5.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cu5ku"]
+size = Vector3(0.28, 5.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nqmen"]
+size = Vector3(4.3, 0.3, 0.5)
+
+[node name="FreezerDoor" type="Node3D" unique_id=818886041]
+
+[node name="SlidingDoor" type="AnimatableBody3D" parent="." unique_id=1978486830]
+script = ExtResource("1_pbw55")
+mode = 1
+speed = 0.7
+travel = 3.2
+
+[node name="Enamel" type="MeshInstance3D" parent="SlidingDoor" unique_id=1122483000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+material_override = SubResource("StandardMaterial3D_h5vgv")
+mesh = SubResource("BoxMesh_f662i")
+
+[node name="@CollisionShape3D@9" type="CollisionShape3D" parent="SlidingDoor" unique_id=1444295111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("BoxShape3D_cdrx4")
+
+[node name="Handle" type="MeshInstance3D" parent="SlidingDoor" unique_id=460863793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.2, 0.24)
+material_override = SubResource("StandardMaterial3D_ftgl3")
+mesh = SubResource("BoxMesh_1jyyt")
+
+[node name="Frame" type="MeshInstance3D" parent="." unique_id=464687959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.75, 0)
+material_override = SubResource("StandardMaterial3D_005x8")
+mesh = SubResource("BoxMesh_vspny")
+
+[node name="Frame2" type="MeshInstance3D" parent="." unique_id=792652630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.75, 0)
+material_override = SubResource("StandardMaterial3D_005x8")
+mesh = SubResource("BoxMesh_cu5ku")
+
+[node name="FrameTop" type="MeshInstance3D" parent="." unique_id=1714062811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+material_override = SubResource("StandardMaterial3D_005x8")
+mesh = SubResource("BoxMesh_nqmen")
