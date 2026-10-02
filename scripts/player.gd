@@ -9,8 +9,18 @@ enum Condition {NORMAL,DIZZY,HURT,DEAD,WIN}
 const PRIORITY := [Condition.WIN, Condition.DEAD, Condition.HURT, Condition.DIZZY, Condition.NORMAL]
 signal condition_changed(new_condition: Condition)
 
-@export var speed_force := 20.0  #  
-@export var jump_impulse := 9.5 # Instantaneous velocity in upwards direction
+## Which vegetable this character is.
+enum VegetableType { ONION, TOMATO, EGG }
+
+## Character stats — overridden per vegetable in each player_*.tscn.
+## To change player size edit the transform scale for it's CollisionShape3D property
+@export_group("Character Stats")
+@export var speed_force := 20.0
+@export var jump_impulse := 9.5
+@export var health := 3
+@export_range(0.0, 1.0) var bounciness := 0.3
+@export var vegetable_type: VegetableType = VegetableType.ONION
+
 @onready var collider := $CollisionShape3D
 @onready var visual := $CollisionShape3D/MeshInstance3D
 @onready var original_visual_scale: Vector3 = visual.scale
@@ -21,7 +31,6 @@ var _teleport_velocity := Vector3.ZERO
 var _teleport_queued := false
 var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness ourselves
 ## Distance from this character's origin down to its lowest point.
-## Ball 0.25, egg and corn will be different. Each character scene sets its own.
 @export var spawn_clearance := 0.25
 var spawn_position: Vector3
 var gadget: Node3D
@@ -32,6 +41,9 @@ func _ready() -> void:
 	spawn_position = global_position
 	contact_monitor = true
 	max_contacts_reported = 8
+	var material := physics_material_override if physics_material_override else PhysicsMaterial.new()
+	material.bounce = bounciness
+	physics_material_override = material
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if _teleport_queued:

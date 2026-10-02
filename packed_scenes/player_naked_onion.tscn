@@ -4,9 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://clifvs04c7bec" path="res://models/vegetables/onion/OnionNaked.glb" id="2_qinr3"]
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_24lx0")]
+mass = 1.1
+bounciness = 0.18
+vegetable_type = 0
 
-[node name="MeshInstance3D" parent="CollisionShape3D" parent_id_path=PackedInt32Array(181200873) index="0" unique_id=1398664333]
+[node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="CollisionShape3D" index="0" unique_id=1398664333]
 visible = false
 
-[node name="OnionNaked" parent="CollisionShape3D" parent_id_path=PackedInt32Array(181200873) index="1" unique_id=832956872 instance=ExtResource("2_qinr3")]
+[node name="OnionNaked" parent="CollisionShape3D" index="1" unique_id=832956872 instance=ExtResource("2_qinr3")]
 transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, -0.55858964, 0)
