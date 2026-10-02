@@ -4,6 +4,7 @@ extends Node3D
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 const World = preload("res://scripts/level_editor/level_world.gd")
+const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
 const Browser = preload("res://scripts/level_editor/level_browser.gd")
 
 @export var start_in_editor := true
@@ -44,6 +45,12 @@ var snap_field: SpinBox
 var height_field: SpinBox
 var surface_toggle: CheckBox
 var object_list: OptionButton
+var save_state: Label
+var place_button: Button
+var select_button: Button
+var selection_actions: Array[Button] = []
+var history_actions: Array[Button] = []
+var selection_hint: Label
 var selection_label: Label
 var transform_fields: Array[SpinBox] = []
 var play_title: Label
@@ -69,7 +76,7 @@ func _ready() -> void:
 					launch = {"document": loaded.document, "filename": requested, "editing": start_in_editor or not _load_error.is_empty()}
 				else:
 					launch = {"editing": true}
-	document = launch.get("document", Store.new_level()).duplicate(true)
+	document = Store.normalize(launch.get("document", Store.new_level()))
 	filename = launch.get("filename", "")
 	build_mode = launch.get("editing", start_in_editor)
 	dirty = filename.is_empty()
@@ -85,151 +92,172 @@ func _ready() -> void:
 func _create_ui() -> void:
 	hud = CanvasLayer.new()
 	add_child(hud)
+	var theme := EditorTheme.create()
 	editor_ui = Control.new()
 	editor_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var editor_theme := Theme.new()
-	var panel_style := StyleBoxFlat.new()
-	panel_style.bg_color = Color(0.075, 0.09, 0.11, 0.98)
-	panel_style.content_margin_left = 10
-	panel_style.content_margin_right = 10
-	panel_style.content_margin_top = 8
-	panel_style.content_margin_bottom = 8
-	editor_theme.set_stylebox("panel", "PanelContainer", panel_style)
-	editor_ui.theme = editor_theme
+	editor_ui.theme = theme
 	editor_ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hud.add_child(editor_ui)
-	var top := PanelContainer.new()
-	top.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	top.offset_bottom = 58
-	editor_ui.add_child(top)
+
+	var top := _panel(editor_ui, Control.PRESET_TOP_WIDE, Vector4(16, 16, -16, 120))
 	var toolbar := HBoxContainer.new()
-	toolbar.add_theme_constant_override("separation", 8)
+	toolbar.alignment = BoxContainer.ALIGNMENT_CENTER
+	toolbar.add_theme_constant_override("separation", 16)
 	top.add_child(toolbar)
+	var branding := VBoxContainer.new()
+	branding.custom_minimum_size.x = 185
+	branding.add_theme_constant_override("separation", 2)
+	toolbar.add_child(branding)
+	_label(branding, "LEVEL EDITOR", 23)
+	_muted(branding, "Kitchen workshop")
+	var title_group := VBoxContainer.new()
+	title_group.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title_group.custom_minimum_size.x = 220
+	title_group.add_theme_constant_override("separation", 3)
+	toolbar.add_child(title_group)
 	name_field = LineEdit.new()
 	name_field.text = document.name
-	name_field.placeholder_text = "Level name"
+	name_field.placeholder_text = "Name your level"
 	name_field.max_length = 80
-	name_field.custom_minimum_size.x = 270
-	name_field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_field.name = "LevelName"
 	name_field.text_changed.connect(func(value: String):
 		document.name = value
 		dirty = true
 	)
-	toolbar.add_child(name_field)
-	_button(toolbar, "Save", _save.bind(false))
-	_button(toolbar, "Save copy", _save.bind(true))
+	title_group.add_child(name_field)
+	save_state = _muted(title_group, "Unsaved changes")
 	_button(toolbar, "My levels", func(): _guard_unsaved(browser.show_levels))
-	_button(toolbar, "Play  [Tab]", _play)
+	_button(toolbar, "Save copy", _save.bind(true))
+	_button(toolbar, "Save", _save.bind(false))
+	EditorTheme.primary(_button(toolbar, "Play level  ⇥", _play))
 	_button(toolbar, "Menu", _menu)
 
-	var left := PanelContainer.new()
-	left.set_anchors_and_offsets_preset(Control.PRESET_LEFT_WIDE)
-	left.offset_top = 68
-	left.offset_bottom = -90
-	left.offset_left = 12
-	left.offset_right = 300
-	editor_ui.add_child(left)
+	var left := _panel(editor_ui, Control.PRESET_LEFT_WIDE, Vector4(16, 134, 350, -114))
 	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation", 8)
 	left.add_child(column)
-	_label(column, "OBJECTS", 22)
+	_label(column, "Object library", 24)
+	_muted(column, "Add pieces to the shared kitchen.")
 	search = LineEdit.new()
 	search.placeholder_text = "Search objects…"
+	search.clear_button_enabled = true
 	column.add_child(search)
 	search.text_changed.connect(func(_value: String): _fill_palette())
 	category = OptionButton.new()
+	category.custom_minimum_size.y = 42
 	for title in ["All", "Surfaces", "Kitchen", "Obstacles", "Powerups", "Level"]:
 		category.add_item(title)
 	column.add_child(category)
 	category.item_selected.connect(func(_index: int): _fill_palette())
 	palette = ItemList.new()
 	palette.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	palette.custom_minimum_size.y = 100
 	column.add_child(palette)
 	palette.item_selected.connect(_choose_palette)
 	var modes := HBoxContainer.new()
 	column.add_child(modes)
-	_button(modes, "Place", _set_tool.bind(true))
-	_button(modes, "Select  [V]", _set_tool.bind(false))
-	_label(column, "Placement", 18)
+	place_button = _button(modes, "Place", _set_tool.bind(true))
+	select_button = _button(modes, "Select  V", _set_tool.bind(false))
+	for button in [place_button, select_button]:
+		button.toggle_mode = true
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_separator(column)
+	_label(column, "Placement", 21)
 	snap_field = _number(column, "Grid snap", 0.25, 32, 0.25, 8)
-	snap_field.tooltip_text = "Use 8 for counter tiles; 0.25 or 1 for precise equipment placement."
-	height_field = _number(column, "Plane / lift Y", -1000, 1000, 0.25, 0)
+	snap_field.tooltip_text = "8 units for counter tiles; 1 or less for equipment."
+	height_field = _number(column, "Height / offset", -1000, 1000, 0.25, 0)
 	height_field.value_changed.connect(func(_value: float): grid.position.y = height_field.value)
 	surface_toggle = CheckBox.new()
-	surface_toggle.text = "Place on surfaces + lift"
+	surface_toggle.text = "Snap to kitchen surfaces"
 	surface_toggle.button_pressed = true
 	column.add_child(surface_toggle)
-	_label(column, "Unchecked: place on the height plane.\nR / Shift+R: rotate by 15°", 15)
+	surface_toggle.toggled.connect(func(enabled: bool): grid.visible = build_mode and not enabled)
+	_muted(column, "Turn off to place at a fixed height.\nR / Shift+R rotates by 15°.")
 
-	var right := PanelContainer.new()
-	right.set_anchors_and_offsets_preset(Control.PRESET_RIGHT_WIDE)
-	right.offset_top = 68
-	right.offset_bottom = -90
-	right.offset_left = -295
-	right.offset_right = -12
-	editor_ui.add_child(right)
+	var right := _panel(editor_ui, Control.PRESET_RIGHT_WIDE, Vector4(-388, 134, -16, -114))
 	var scroll := ScrollContainer.new()
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	right.add_child(scroll)
 	var inspector := VBoxContainer.new()
 	inspector.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	inspector.add_theme_constant_override("separation", 8)
+	inspector.add_theme_constant_override("separation", 16)
 	scroll.add_child(inspector)
+	_label(inspector, "Inspector", 24)
 	object_list = OptionButton.new()
 	object_list.fit_to_longest_item = false
+	object_list.custom_minimum_size.y = 42
 	inspector.add_child(object_list)
 	object_list.item_selected.connect(_select_existing)
-	selection_label = _label(inspector, "Placing: Counter tile", 18)
+	selection_label = _label(inspector, "", 21)
 	selection_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	for section in ["Position", "Rotation (degrees)", "Scale"]:
-		_label(inspector, section, 18)
+	selection_hint = _muted(inspector, "")
+	_separator(inspector)
+	for section in ["Position", "Rotation · degrees", "Scale"]:
+		var group := VBoxContainer.new()
+		group.add_theme_constant_override("separation", 8)
+		inspector.add_child(group)
+		_label(group, section, 18)
+		var axes := HBoxContainer.new()
+		axes.add_theme_constant_override("separation", 8)
+		group.add_child(axes)
 		for axis in ["X", "Y", "Z"]:
 			var index := transform_fields.size()
-			var field := _number(inspector, axis, 0.05 if index >= 6 else -10000.0,
-				100.0 if index >= 6 else 10000.0, 0.05 if index >= 6 else 0.25, 1 if index >= 6 else 0)
+			var axis_group := VBoxContainer.new()
+			axis_group.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			axis_group.add_theme_constant_override("separation", 4)
+			axes.add_child(axis_group)
+			var label := _label(axis_group, axis, 16)
+			label.add_theme_color_override("font_color", [Color("f69fa4"), Color("91e5c1"), Color("9abcf4")][index % 3])
+			var field := SpinBox.new()
+			field.min_value = 0.05 if index >= 6 else -10000
+			field.max_value = 100 if index >= 6 else 10000
+			field.step = 0.05 if index >= 6 else 0.25
+			field.value = 1 if index >= 6 else 0
+			field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			field.custom_minimum_size = Vector2(96, 42)
+			field.get_line_edit().add_theme_font_size_override("font_size", 16)
+			axis_group.add_child(field)
 			transform_fields.append(field)
 			field.value_changed.connect(_transform_changed.bind(index))
-	_button(inspector, "Focus selected  [F]", _focus_selected)
-	_button(inspector, "Move with mouse  [M]", _move_selected)
-	_button(inspector, "Duplicate", _duplicate_selected)
-	_button(inspector, "Delete  [Delete]", _delete_selected)
-	var history_row := HBoxContainer.new()
-	inspector.add_child(history_row)
-	_button(history_row, "Undo", _undo)
-	_button(history_row, "Redo", _redo)
-	_label(inspector, "Select an object to edit its transform.\nStart and finish are in Level.\nSaves without them remain drafts.", 15)
+	_separator(inspector)
+	for pair in [["Focus  F", "Move  M"], ["Duplicate", "Delete"], ["Undo", "Redo"]]:
+		var row := HBoxContainer.new()
+		inspector.add_child(row)
+		for title in pair:
+			var actions := {"Focus  F": _focus_selected, "Move  M": _move_selected,
+				"Duplicate": _duplicate_selected, "Delete": _delete_selected, "Undo": _undo, "Redo": _redo}
+			var button := _button(row, title, actions[title])
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			if title in ["Undo", "Redo"]:
+				history_actions.append(button)
+			else:
+				selection_actions.append(button)
+	_muted(inspector, "Start and finish markers are only\nvisible while editing.")
 
-	var bottom := PanelContainer.new()
-	bottom.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	bottom.offset_top = -78
-	editor_ui.add_child(bottom)
-	var footer := VBoxContainer.new()
+	var bottom := _panel(editor_ui, Control.PRESET_BOTTOM_WIDE, Vector4(16, -100, -16, -16))
+	var footer := HBoxContainer.new()
 	bottom.add_child(footer)
 	status = _label(footer, "", 18)
+	status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_label(footer, "Right mouse: look • WASD: fly • Q/E: down/up • Shift: faster • Wheel: zoom • Ctrl/Cmd+S: save • Ctrl/Cmd+Z: undo", 16)
+	var shortcuts := _muted(footer, "RMB + WASD  Fly    Q / E  Height    ⇥  Play\nCtrl / Cmd + S  Save    Ctrl / Cmd + Z  Undo")
+	shortcuts.custom_minimum_size.x = 480
 
 	play_ui = Control.new()
 	play_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	play_ui.theme = editor_theme
+	play_ui.theme = theme
 	play_ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hud.add_child(play_ui)
-	play_title = _label(play_ui, "", 24)
-	play_title.position = Vector2(24, 18)
+	play_title = _label(play_ui, "", 22)
+	play_title.position = Vector2(24, 20)
 	var crosshair := _label(play_ui, "+", 22)
 	crosshair.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	crosshair.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	pause_panel = PanelContainer.new()
-	pause_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	pause_panel.offset_left = -210
-	pause_panel.offset_right = 210
-	pause_panel.offset_top = -190
-	pause_panel.offset_bottom = 190
-	play_ui.add_child(pause_panel)
+	pause_panel = _panel(play_ui, Control.PRESET_CENTER, Vector4(-230, -240, 230, 240))
 	var pause_buttons := VBoxContainer.new()
-	pause_buttons.add_theme_constant_override("separation", 12)
+	pause_buttons.add_theme_constant_override("separation", 14)
 	pause_panel.add_child(pause_buttons)
-	pause_title = _label(pause_buttons, "Paused", 28)
-	_button(pause_buttons, "Resume", _resume)
+	pause_title = _label(pause_buttons, "Paused", 30)
+	_muted(pause_buttons, "Return to editing or try the course again.")
+	EditorTheme.primary(_button(pause_buttons, "Resume", _resume))
 	_button(pause_buttons, "Restart level", _restart)
 	_button(pause_buttons, "Edit this level", _edit)
 	_button(pause_buttons, "My levels", func(): _guard_unsaved(browser.show_levels))
@@ -240,6 +268,7 @@ func _create_ui() -> void:
 	browser.hide()
 	browser.chosen.connect(_load_document)
 	confirm = ConfirmationDialog.new()
+	confirm.theme = theme
 	confirm.title = "Unsaved changes"
 	confirm.dialog_text = "Leave this layout without saving your changes?"
 	confirm.ok_button_text = "Discard changes"
@@ -247,11 +276,30 @@ func _create_ui() -> void:
 	_fill_palette()
 	_refresh_inspector()
 
+func _panel(parent: Node, preset: int, offsets: Vector4) -> PanelContainer:
+	var panel := PanelContainer.new()
+	parent.add_child(panel)
+	panel.set_anchors_and_offsets_preset(preset)
+	panel.offset_left = offsets.x
+	panel.offset_top = offsets.y
+	panel.offset_right = offsets.z
+	panel.offset_bottom = offsets.w
+	return panel
+
+func _muted(parent: Node, text: String) -> Label:
+	var label := _label(parent, text, 16)
+	label.add_theme_color_override("font_color", EditorTheme.MUTED)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	return label
+
+func _separator(parent: Node) -> void:
+	parent.add_child(HSeparator.new())
+
 func _button(parent: Node, text: String, action: Callable) -> Button:
 	var button := Button.new()
 	button.text = text
-	button.custom_minimum_size.y = 40
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.custom_minimum_size.y = 44
+	button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	button.focus_mode = Control.FOCUS_NONE
 	button.pressed.connect(func(): action.call_deferred())
 	parent.add_child(button)
@@ -285,6 +333,8 @@ func _fill_palette() -> void:
 	var filter := category.get_item_text(category.selected)
 	for id in Catalog.ITEMS:
 		var item: Dictionary = Catalog.ITEMS[id]
+		if item.get("legacy", false):
+			continue
 		if filter != "All" and item.category != filter:
 			continue
 		if not search.text.is_empty() and not item.label.to_lower().contains(search.text.to_lower()):
@@ -337,6 +387,9 @@ func _make_ghost() -> void:
 	var data: Dictionary = document.objects[selected] if moving and selected >= 0 else placement
 	var source := Catalog.instantiate(Catalog.record(data.id))
 	source.process_mode = Node.PROCESS_MODE_DISABLED
+	var marker_preview := source.get_node_or_null("EditorPreview") as Node3D
+	if marker_preview != null:
+		marker_preview.show()
 	add_child(source)
 	World.freeze_for_edit(source)
 	var tint := StandardMaterial3D.new()
@@ -365,11 +418,11 @@ func _create_grid() -> void:
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.albedo_color = Color(0.7, 0.8, 0.9, 0.25)
 	lines.surface_begin(Mesh.PRIMITIVE_LINES, material)
-	for coordinate in range(-160, 161, 8):
-		lines.surface_add_vertex(Vector3(coordinate, 0.03, -160))
-		lines.surface_add_vertex(Vector3(coordinate, 0.03, 160))
-		lines.surface_add_vertex(Vector3(-160, 0.03, coordinate))
-		lines.surface_add_vertex(Vector3(160, 0.03, coordinate))
+	for coordinate in range(-640, 641, 8):
+		lines.surface_add_vertex(Vector3(coordinate, 0.03, -1140))
+		lines.surface_add_vertex(Vector3(coordinate, 0.03, 140))
+		lines.surface_add_vertex(Vector3(-640, 0.03, coordinate - 500))
+		lines.surface_add_vertex(Vector3(640, 0.03, coordinate - 500))
 	lines.surface_end()
 	grid.mesh = lines
 	add_child(grid)
@@ -398,13 +451,16 @@ func _update_selection_box() -> void:
 	selection_box.show()
 
 func _process(delta: float) -> void:
+	history_actions[0].disabled = undo_stack.is_empty()
+	history_actions[1].disabled = redo_stack.is_empty()
+	save_state.text = ("Unsaved changes" if dirty else "All changes saved") + "  ·  %d objects" % document.objects.size()
 	if not build_mode:
 		return
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var movement := Input.get_vector("left", "right", "forward", "backward")
 		var vertical := float(Input.is_physical_key_pressed(KEY_E)) - float(Input.is_physical_key_pressed(KEY_Q))
 		var direction := camera.basis * Vector3(movement.x, 0, movement.y) + Vector3.UP * vertical
-		var speed := 65.0 if Input.is_physical_key_pressed(KEY_SHIFT) else 25.0
+		var speed := 280.0 if Input.is_physical_key_pressed(KEY_SHIFT) else 80.0
 		camera.position += direction.limit_length() * speed * delta
 
 func _physics_process(_delta: float) -> void:
@@ -567,13 +623,22 @@ func _world_click() -> void:
 
 func _refresh_inspector() -> void:
 	_rebuilding_ui = true
+	place_button.set_pressed_no_signal(placing)
+	select_button.set_pressed_no_signal(not placing)
+	for button in selection_actions:
+		button.disabled = selected < 0
 	object_list.clear()
 	object_list.add_item("Choose a placed object…")
 	for i in document.objects.size():
 		object_list.add_item("%d · %s" % [i + 1, Catalog.ITEMS[document.objects[i].id].label])
 	object_list.select(selected + 1)
 	var data: Dictionary = document.objects[selected] if selected >= 0 else placement
-	selection_label.text = ("Selected: " if selected >= 0 else "Placing: ") + Catalog.ITEMS[data.id].label
+	selection_label.text = Catalog.ITEMS[data.id].label
+	selection_hint.text = "Editing placed object" if selected >= 0 else "Placement preview · click to add"
+	if data.id == "goal":
+		selection_hint.text += "\nScale X, Y and Z to resize the trigger box. Hidden during play."
+	elif data.id == "spawn":
+		selection_hint.text += "\nThe player starts here. Hidden during play."
 	for index in transform_fields.size():
 		var key: String = ["position", "rotation", "scale"][index / 3]
 		transform_fields[index].set_value_no_signal(data[key][index % 3])
@@ -698,7 +763,7 @@ func _save(copy: bool) -> void:
 
 func _load_document(next: Dictionary, next_filename: String, editing: bool) -> void:
 	browser.hide()
-	document = next.duplicate(true)
+	document = Store.normalize(next)
 	filename = next_filename
 	dirty = filename.is_empty()
 	undo_stack.clear()
@@ -710,6 +775,7 @@ func _load_document(next: Dictionary, next_filename: String, editing: bool) -> v
 	_completed = false
 	build_mode = editing
 	name_field.text = document.name
+	$KitchenBase.reset()
 	_rebuild_world()
 	_update_mode_ui()
 	_make_ghost()
@@ -727,6 +793,7 @@ func _play() -> void:
 	selected = -1
 	_paused = false
 	_completed = false
+	$KitchenBase.reset()
 	_rebuild_world()
 	_update_mode_ui()
 
@@ -735,6 +802,7 @@ func _edit() -> void:
 	_paused = false
 	_completed = false
 	camera.transform = _editor_camera_transform
+	$KitchenBase.reset()
 	_rebuild_world()
 	_update_mode_ui()
 	_make_ghost()
@@ -744,14 +812,16 @@ func _edit() -> void:
 func _restart() -> void:
 	_paused = false
 	_completed = false
+	$KitchenBase.reset()
 	_rebuild_world()
 	_update_mode_ui()
 
 func _update_mode_ui() -> void:
+	$KitchenBase.process_mode = Node.PROCESS_MODE_DISABLED if build_mode else Node.PROCESS_MODE_PAUSABLE
 	editor_ui.visible = build_mode
 	play_ui.visible = not build_mode
 	pause_panel.hide()
-	grid.visible = build_mode
+	grid.visible = build_mode and not surface_toggle.button_pressed
 	if is_instance_valid(ghost):
 		ghost.hide()
 	play_title.text = "%s\nWASD: roll · Space: jump · 1–5: character · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % document.name
@@ -792,7 +862,7 @@ func _guard_unsaved(action: Callable) -> void:
 func _menu() -> void:
 	_guard_unsaved(func():
 		get_tree().paused = false
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/main_menu_alternative.tscn")
 	)
 
 func _status(message: String) -> void:

@@ -5,13 +5,16 @@ const VERSION := 1
 const MAX_OBJECTS := 1000
 
 static func new_level() -> Dictionary:
-	var objects: Array = []
-	for x in range(-1, 2):
-		for z in range(-1, 2):
-			objects.append(Catalog.record("counter", Vector3(x * 8, 0, z * 8)))
-	objects.append(Catalog.record("spawn", Vector3(0, 0, 8)))
-	objects.append(Catalog.record("goal", Vector3(0, 0, -8)))
-	return {"version": VERSION, "name": "My kitchen course", "objects": objects}
+	return {"version": VERSION, "name": "My kitchen course", "objects": [
+		Catalog.record("spawn", Vector3(-45, 0, -475)),
+		Catalog.record("goal", Vector3(45, 0, -525)),
+	]}
+
+static func normalize(document: Dictionary) -> Dictionary:
+	var result := document.duplicate(true)
+	# Kitchens in older saves become the single fixed base, never stacked rooms.
+	result.objects = result.objects.filter(func(entry: Dictionary): return entry.id != "kitchen")
+	return result
 
 static func validate(value: Variant) -> String:
 	if not value is Dictionary:
@@ -43,11 +46,11 @@ static func playable_error(document: Dictionary) -> String:
 	var finishes := 0
 	for entry in document.objects:
 		starts += int(entry.id == "spawn")
-		finishes += int(entry.id in ["goal", "pot"])
+		finishes += int(entry.id == "goal")
 	if starts != 1:
 		return "Place exactly one Player start before playing."
 	if finishes == 0:
-		return "Place a Finish flag or Finish pot before playing."
+		return "Place a Finish area before playing."
 	return ""
 
 static func valid_filename(filename: String) -> bool:
@@ -67,7 +70,7 @@ static func read_level(filename: String) -> Dictionary:
 	var problem := validate(parser.data)
 	if not problem.is_empty():
 		return {"error": problem}
-	return {"document": parser.data}
+	return {"document": normalize(parser.data)}
 
 static func save_level(document: Dictionary, filename: String = "") -> Dictionary:
 	var problem := validate(document)
@@ -85,7 +88,7 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 	var file := FileAccess.open(temporary, FileAccess.WRITE)
 	if file == null:
 		return {"error": "Could not write the save: %s" % error_string(FileAccess.get_open_error())}
-	file.store_string(JSON.stringify(document, "\t"))
+	file.store_string(JSON.stringify(normalize(document), "\t"))
 	file.flush()
 	result = file.get_error()
 	file.close()

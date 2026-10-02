@@ -2,13 +2,22 @@
 
 A physics rolling game built in Godot 4.7.
 
+## Main menu
+
+The game starts in `scenes/main_menu_alternative.tscn`. **Play** opens the level
+selector: levels 1 and 2 are available, with the remaining slots locked.
+Use **Back** or **Escape** to close the selector. **Kitchen Gym** opens the equipment
+playground; **Settings** controls menu music.
+
 ## Build and play your own levels
 
 Run the game and choose **Level editor / My levels** from the main menu.
 Choose **New level**, or select a saved course and choose **Edit** or **Play**.
 
-The editor starts with a small platform, a player start, and a finish flag.
-The object palette includes the kitchen interior, counter tiles, platforms,
+Every custom level uses the same empty kitchen as its fixed base. New courses
+start on the kitchen island with a player start and a finish area. The room and
+fixtures stay in place while you arrange the course. The object palette includes
+counter tiles, platforms,
 ramps, utensils, moving obstacles, loose produce, and all four equipment pickups:
 umbrella, whipped cream, ice cube, and gravity gun.
 
@@ -36,7 +45,10 @@ umbrella, whipped cream, ice cube, and gravity gun.
   Shortcuts do not override text entry in focused fields.
 
 A playable course needs exactly one **Player start** and at least one
-**Finish flag** or **Finish pot**, available under the Level category. Placing a
+**Finish area**, available under the Level category. The finish is a box trigger:
+change its X/Y/Z scale to fit the intended destination. Start and finish previews
+are only visible in the editor; both are invisible during gameplay. A pot is a
+normal kitchen object, so put a finish area inside it if it should end the level. Placing a
 new start moves the single starting point. Incomplete layouts can be saved as
 **drafts**, then reopened with Edit.
 

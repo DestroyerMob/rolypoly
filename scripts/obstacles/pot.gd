@@ -5,7 +5,7 @@ extends Node3D
 signal level_completed(player: Player)
 
 ## Scene loaded after the win. Leave empty to only emit the signal.
-@export_file("*.tscn") var return_scene := "res://scenes/main_menu.tscn"
+@export_file("*.tscn") var return_scene := "res://scenes/main_menu_alternative.tscn"
 @export var finish_delay := 1
 @export var lid_visible := false
 

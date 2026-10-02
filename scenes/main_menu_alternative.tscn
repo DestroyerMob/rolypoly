@@ -424,15 +424,14 @@ anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.4
 anchor_right = 0.3
-anchor_bottom = 0.84
-offset_bottom = 80.80005
+anchor_bottom = 0.94
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuButtonsCenter" unique_id=1711719891]
 layout_mode = 2
 theme_override_constants/separation = 14
 
 [node name="PlayButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=894619530]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(400, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
@@ -440,7 +439,7 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 22
 theme_override_constants/icon_max_width = 26
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_nl6e4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ummh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bldjp")
@@ -449,8 +448,24 @@ text = "Play"
 icon = ExtResource("8_tcdr2")
 alignment = 0
 
+[node name="LevelEditorButton" type="Button" parent="MenuButtonsCenter/MenuButtons"]
+custom_minimum_size = Vector2(400, 76)
+layout_mode = 2
+tooltip_text = "Create, edit, and play your saved levels."
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Level editor / My levels"
+alignment = 0
+
 [node name="Kitchen Gym" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1788298352]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(400, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
@@ -458,7 +473,7 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 22
 theme_override_constants/icon_max_width = 26
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_2qeeg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ummh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bldjp")
@@ -468,7 +483,7 @@ icon = ExtResource("8_tcdr2")
 alignment = 0
 
 [node name="AchievementsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1952813082]
-custom_minimum_size = Vector2(250, 100)
+custom_minimum_size = Vector2(400, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
@@ -476,7 +491,7 @@ theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_constants/h_separation = 22
 theme_override_constants/icon_max_width = 26
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
@@ -486,7 +501,7 @@ icon = ExtResource("9_nql72")
 alignment = 0
 
 [node name="SettingsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1400543893]
-custom_minimum_size = Vector2(250, 100)
+custom_minimum_size = Vector2(400, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
@@ -494,7 +509,7 @@ theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_constants/h_separation = 22
 theme_override_constants/icon_max_width = 26
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
@@ -504,7 +519,7 @@ icon = ExtResource("10_qrv2f")
 alignment = 0
 
 [node name="QuitButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=209480952]
-custom_minimum_size = Vector2(250, 100)
+custom_minimum_size = Vector2(400, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
@@ -512,7 +527,7 @@ theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
 theme_override_constants/h_separation = 22
 theme_override_constants/icon_max_width = 26
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
@@ -584,6 +599,7 @@ phase = 4.0
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.042, 0)
 
 [node name="LevelGridCenter" type="CenterContainer" parent="." unique_id=547660974]
+visible = false
 anchors_preset = -1
 anchor_left = 0.34
 anchor_top = 0.04
@@ -697,6 +713,20 @@ layout_mode = 2
 level_number = 16
 unlocked = false
 
+[node name="BackButton" type="Button" parent="LevelGridCenter/LevelVBox"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_focus_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_pressed_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_colors/font_hover_color = Color(0.23, 0.2, 0.27, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
+text = "Back"
+
 [node name="SettingsTitle" type="TextureRect" parent="." unique_id=425740056]
 offset_left = 50.0
 offset_top = 100.0
@@ -768,10 +798,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7w4ni")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
-text = "Back
-"
+text = "Back"
 icon = ExtResource("11_ahe7m")
 alignment = 0
+
+[node name="MenuMessage" type="AcceptDialog" parent="."]
+size = Vector2i(480, 180)
 
 [editable path="KitchenStudio"]
 [editable path="KitchenStudio/Fixtures/RangeWall/CookingRange/Oven"]

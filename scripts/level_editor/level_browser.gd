@@ -1,13 +1,15 @@
 extends Window
 signal chosen(document: Dictionary, filename: String, editing: bool)
+const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 var _list: ItemList
 var _message: Label
 var _entries: Array = []
 
 func _ready() -> void:
-	title = "Your levels"
-	size = Vector2i(700, 520)
+	theme = EditorTheme.create()
+	title = "My levels"
+	size = Vector2i(820, 580)
 	min_size = Vector2i(550, 420)
 	transient = true
 	exclusive = true
@@ -22,6 +24,7 @@ func _ready() -> void:
 	margin.add_child(column)
 	_message = Label.new()
 	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_message.custom_minimum_size.y = 56
 	column.add_child(_message)
 	_list = ItemList.new()
 	_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -33,7 +36,9 @@ func _ready() -> void:
 	for action in ["Play", "Edit", "New level", "Close"]:
 		var button := Button.new()
 		button.text = action
-		button.custom_minimum_size.y = 42
+		button.custom_minimum_size.y = 46
+		if action == "Play":
+			EditorTheme.primary(button)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(button)
 		match action:
@@ -77,7 +82,12 @@ static func install(menu: Node, container: Node) -> void:
 		if result != OK:
 			browser._message.text = "Could not open the level: %s" % error_string(result)
 	)
-	var button := Button.new()
+	var button := container.get_node_or_null("LevelEditorButton") as Button
+	if button != null:
+		button.pressed.connect(browser.show_levels)
+		return
+	button = Button.new()
+	button.name = "LevelEditorButton"
 	button.text = "Level editor / My levels"
 	button.custom_minimum_size = Vector2(400, 60)
 	button.add_theme_font_size_override("font_size", 26)

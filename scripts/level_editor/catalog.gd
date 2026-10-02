@@ -7,7 +7,7 @@ const ITEMS := {
 	"ramp": {"label": "Ramp", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_ramp.tscn")},
 	"half_pipe": {"label": "Half pipe", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_half_pipe.tscn")},
 	"cylinder": {"label": "Round platform", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_cylinder.tscn")},
-	"kitchen": {"label": "Kitchen interior", "category": "Kitchen", "scene": preload("res://scenes/prototyping/kitchen_set.tscn")},
+	"kitchen": {"label": "Kitchen interior", "category": "Kitchen", "legacy": true, "scene": preload("res://scenes/prototyping/kitchen_set.tscn")},
 	"oven": {"label": "Oven", "category": "Kitchen", "scene": preload("res://scenes/props/distinct_oven.tscn")},
 	"grill": {"label": "Hot iron grill", "category": "Kitchen", "scene": preload("res://scenes/obstacles/iron_grill.tscn")},
 	"lighter": {"label": "Lighter", "category": "Kitchen", "scene": preload("res://scenes/props/lighter.tscn")},
@@ -34,8 +34,8 @@ const ITEMS := {
 	"gravity": {"label": "Gravity gun pickup", "category": "Powerups", "scene": preload("res://scenes/props/upgrade_plate.tscn")},
 	"produce": {"label": "Loose egg (gravity gun)", "category": "Kitchen", "scene": preload("res://packed_scenes/not_a_player_egg.tscn")},
 	"spawn": {"label": "Player start", "category": "Level", "scene": preload("res://scenes/level_editor/start.tscn")},
-	"goal": {"label": "Finish flag", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
-	"pot": {"label": "Finish pot", "category": "Level", "scene": preload("res://scenes/obstacles/pot.tscn")},
+	"goal": {"label": "Finish area", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
+	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
 }
 
 static func record(id: String, position := Vector3.ZERO) -> Dictionary:
@@ -60,4 +60,5 @@ static func instantiate(data: Dictionary, mount: GadgetMount = null) -> Node3D:
 		node.set("preview_scale", 1.0)
 	if data.id == "pot":
 		node.set("return_scene", "")
+		node.get_node("GoalArea").monitoring = false
 	return node

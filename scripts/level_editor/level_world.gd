@@ -7,7 +7,7 @@ var rig: PlayerRig
 var mount: GadgetMount
 var play_camera: Camera3D
 var start_position := Vector3.ZERO
-var fall_height := -30.0
+var fall_height := -140.0
 var _finished := false
 
 func build(document: Dictionary, editing: bool) -> void:
@@ -23,13 +23,16 @@ func build(document: Dictionary, editing: bool) -> void:
 		var entry: Dictionary = document.objects[index]
 		var node := Catalog.instantiate(entry, mount)
 		node.set_meta("level_index", index)
+		var preview := node.get_node_or_null("EditorPreview") as Node3D
+		if preview != null:
+			preview.visible = editing
 		add_child(node)
 		objects.append(node)
 		fall_height = minf(fall_height, node.position.y - 30.0)
 		if editing:
 			freeze_for_edit(node)
 			add_pick_body(node)
-		elif node.has_signal("level_completed"):
+		elif entry.id == "goal":
 			node.connect("level_completed", _on_completed)
 	if not editing:
 		_update_spawn(rig.current_player)
