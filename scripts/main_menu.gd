@@ -1,9 +1,6 @@
 extends Control
 
-const LEVEL_SCENES := {
-	1: "res://scenes/hole_one.tscn",
-	2: "res://scenes/hole_two.tscn",
-}
+const LEVEL_SCENES: Dictionary = {}
 const SLIDE_TIME := 0.6
 const REVEAL_TIME := 0.5
 const REVEAL_DELAY := 0.25

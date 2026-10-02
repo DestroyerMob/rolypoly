@@ -343,10 +343,12 @@ columns = 4
 
 [node name="Level1" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=396333710 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
+unlocked = false
 
 [node name="Level2" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=5024333 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2
 level_number = 2
+unlocked = false
 
 [node name="Level3" parent="LevelGridCenter/LevelVBox/LevelGrid" unique_id=1085937846 instance=ExtResource("2_lvlbtn")]
 layout_mode = 2

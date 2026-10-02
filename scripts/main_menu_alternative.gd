@@ -1,9 +1,6 @@
 extends Node3D
 
-const LEVEL_SCENES := {
-	1: "res://scenes/hole_one.tscn",
-	2: "res://scenes/hole_two.tscn",
-}
+const LEVEL_SCENES: Dictionary = {}
 const KITCHEN_GYM := "res://scenes/gym_pieces.tscn"
 
 var _camera_tween: Tween
@@ -63,7 +60,11 @@ func _show_levels(show_levels: bool) -> void:
 	_levels_shown = show_levels
 	_level_grid.visible = show_levels
 	if show_levels:
-		$LevelGridCenter/LevelVBox/LevelGrid/Level1.grab_focus()
+		$LevelGridCenter/LevelVBox/BackButton.grab_focus()
+		for child in $LevelGridCenter/LevelVBox/LevelGrid.get_children():
+			if child is LevelButton and not child.disabled:
+				child.grab_focus()
+				break
 	else:
 		_play_button.grab_focus()
 

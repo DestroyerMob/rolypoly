@@ -5,7 +5,8 @@ A physics rolling game built in Godot 4.7.
 ## Main menu
 
 The game starts in `scenes/main_menu_alternative.tscn`. **Play** opens the level
-selector: levels 1 and 2 are available, with the remaining slots locked.
+selector: all numbered slots are currently empty and locked. Levels 1 and 2 have
+been cleared for new courses.
 Use **Back** or **Escape** to close the selector. **Kitchen Gym** opens the equipment
 playground; **Settings** controls menu music.
 
