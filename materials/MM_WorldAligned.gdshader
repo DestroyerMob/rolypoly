@@ -191,6 +191,7 @@ uniform bool world_space = true;
 ///// VARYINGS /////
 varying vec3 proj_pos;
 varying vec3 proj_nrm;
+varying mat3 proj_to_view;
 // Named "proj" not "world" because world_space decides which space these hold.
 // Everything downstream is space-agnostic: the blend weights and the three
 // plane lookups only care that position and normal agree with each other.
@@ -213,13 +214,15 @@ swim as you orbit). World-aligned needs world space, so we build it ourselves.
 void vertex() {
     if (world_space) {
         proj_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz + world_offset;
-        proj_nrm = normalize(mat3(MODEL_MATRIX) * NORMAL);
+        proj_nrm = normalize(MODEL_NORMAL_MATRIX * NORMAL);
+        proj_to_view = mat3(VIEW_MATRIX);
     } else {
         // No MODEL_MATRIX, so we never leave model space. VERTEX and NORMAL are
         // already model space, which is exactly the space that rotates with the
         // node. Doing nothing IS the fix.
         proj_pos = VERTEX + world_offset;
         proj_nrm = normalize(NORMAL);
+        proj_to_view = mat3(VIEW_MATRIX) * MODEL_NORMAL_MATRIX;
     }
 }
 
@@ -336,16 +339,23 @@ void fragment() {
         // max() guards strength > 1 pushing xy past unit length, where the root
         // would go imaginary and the pixel would come out NaN.
 
-        tx.z *= sign(n.x);
-        ty.z *= sign(n.y);
-        tz.z *= sign(n.z);
+        // Undo the UV rotation on the sampled slopes too. Rotating the texture
+        // alone leaves highlights and reflections pointing the wrong way.
+        float a = radians(uv_rotation_degrees);
+        mat2 undo_rotation = mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a)));
+        tx.xy = undo_rotation * (tx.xy * sign(uv_tiling));
+        ty.xy = undo_rotation * (ty.xy * sign(uv_tiling));
+        tz.xy = undo_rotation * (tz.xy * sign(uv_tiling));
 
-        vec3 world_n = normalize(tx.zyx * w.x + ty.xzy * w.y + tz.xyz * w.z);
-        // Each plane's tangent space points a different way in the world, so
-        // the components are REORDERED, not just blended. zyx / xzy / xyz.
+        // Match each projection's signed U/V axes and retain the geometric
+        // normal. A flat map must leave rounded edges and bevels unchanged.
+        vec3 nx = vec3(n.x * tx.z, n.y - tx.y, n.z - sign(n.x) * tx.x);
+        vec3 ny = vec3(n.x + ty.x, n.y * ty.z, n.z + sign(n.y) * ty.y);
+        vec3 nz = vec3(n.x + sign(n.z) * tz.x, n.y - tz.y, n.z * tz.z);
+        vec3 mapped_normal = normalize(nx * w.x + ny * w.y + nz * w.z);
 
-        NORMAL = normalize((VIEW_MATRIX * vec4(world_n, 0.0)).xyz);
-        // NORMAL is view space inside fragment(), so convert before writing.
-        // The 0.0 again: a normal is a direction, translation must not apply.
+        // Object-aligned maps need the model normal transform as well as the
+        // view transform, including inverse scale for stretched geometry.
+        NORMAL = normalize(proj_to_view * mapped_normal);
     }
 }
