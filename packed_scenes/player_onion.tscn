@@ -7,8 +7,8 @@
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_inbge")]
 mass = 1.3
+jump_impulse = 12.0
 bounciness = 0.12
-vegetable_type = 0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
