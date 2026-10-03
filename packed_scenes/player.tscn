@@ -9,6 +9,7 @@
 
 [node name="Player" type="RigidBody3D" unique_id=1887833892]
 gravity_scale = 2.0
+continuous_cd = true
 script = ExtResource("1_jbiuv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=181200873]
