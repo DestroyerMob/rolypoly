@@ -16,12 +16,41 @@ Run the game and choose **Level editor / My levels** from the main menu.
 Choose **New level**, or select a saved course and choose **Edit** or **Play**.
 To remove a saved course, select it in **My levels** and click **Delete**.
 
-Every custom level uses the same empty kitchen as its fixed base. New courses
+Every custom level uses the finished kitchen in
+`scenes/level_editor/kitchen_interior.tscn` as its fixed base, also shared by
+`scenes/kitchen.tscn`. The room, furnishings, and lighting are separate from
+the demo's player and course. New courses
 start on the kitchen island with a player start and a finish area. The room and
 fixtures stay in place while you arrange the course. The object palette includes
 counter tiles, platforms,
 ramps, utensils, moving obstacles, loose produce, and all four equipment pickups:
 umbrella, whipped cream, ice cube, and gravity gun.
+
+### Default level lighting
+
+The shared kitchen includes `scenes/lighting/kitchen_lighting.tscn` in both the
+editor and gameplay, including saved courses, restarts, and the kitchen demo.
+It combines low afternoon sun through the sink window, cool range-window fill,
+soft shadows, subtle volumetric light shafts, and
+practical lights over the island, range, bar, dining area, and vestibule.
+Positional light energies account for the kitchen's 100 world units per metre.
+A subdued diffuse room fill keeps shaded cabinet fronts and course edges readable
+while leaving corners and the ceiling quieter than the playable surfaces.
+The environment in `materials/lighting/kitchen_daylight.tres` controls ambient
+light, tone mapping, contact shading, indirect light, haze, and restrained glow.
+Fog distances and density also account for the room's world scale. Lighting uses
+the existing renderer settings without switching viewport antialiasing at runtime.
+These two resources are the places to tune the default look for every course.
+
+Three room-sized reflection probes use box projection to keep reflections
+aligned with the kitchen, bar, and vestibule. They capture the fixed room and
+furnishings. The room and its captures stay loaded through edit/play switches
+and restarts, so changing a course does not rebuild the room or recapture probes.
+Players, moving obstacles, placement ghosts, and editor overlays stay out of
+the captures. Screen-space reflections add visible course and moving details, with the
+room probes providing the off-screen fallback. Probes use one-shot updates,
+so the room is not rendered six extra times on every gameplay frame.
+The full post-processing setup uses the project's Forward+ renderer.
 
 ### Editor controls
 

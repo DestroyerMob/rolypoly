@@ -67,6 +67,13 @@ func toggle_burners() -> void:
 	set_burners_enabled(not burners_on)
 
 
+func reset_immediately() -> void:
+	_players_in_range.clear()
+	set_burners_enabled(start_burners_on)
+	set_doors_open(start_doors_open, true)
+	interaction_prompt.hide()
+
+
 func set_burners_enabled(enabled: bool) -> void:
 	burners_on = enabled
 	flames.visible = enabled

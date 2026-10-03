@@ -69,11 +69,6 @@ func _create_player() -> void:
 	play_camera.make_current()
 
 func _update_spawn(player: Player) -> void:
-	# Older character scenes still use the marble's default clearance.
-	var shape := player.get_node("CollisionShape3D") as CollisionShape3D
-	if shape != null and shape.shape != null:
-		var bounds: AABB = shape.transform * shape.shape.get_debug_mesh().get_aabb()
-		player.spawn_clearance = maxf(0.1, -bounds.position.y) + 0.05
 	player.spawn_position = start_position + Vector3.UP * player.spawn_clearance
 
 func _physics_process(_delta: float) -> void:

@@ -30,10 +30,33 @@ func _unhandled_input(event):
 				return
 					
 func swap_to(scene: PackedScene) -> void:
+	if not is_instance_valid(current_player):
+		return
+	var player_to_load: Player = scene.instantiate()
 	#Job 1 :Store Old Physics 
 	var old_player_global_transform : Transform3D = current_player.global_transform
 	var old_player_linear_velocity : Vector3 = current_player.linear_velocity
 	var old_player_angular_velocity : Vector3 = current_player.angular_velocity
+	var target := old_player_global_transform
+	if current_player.on_ground:
+		var old_clearance := current_player.get_collision_clearance(target.basis)
+		var new_clearance := player_to_load.get_collision_clearance(target.basis)
+		target.origin.y += maxf(0.0, new_clearance - old_clearance) + 0.05
+	# A larger character must also fit beside walls and underneath furniture.
+	# Keep the current character when there is no room to change here.
+	var collision := player_to_load.get_node("CollisionShape3D") as CollisionShape3D
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = collision.shape
+	query.transform = target * collision.transform
+	query.collision_mask = player_to_load.collision_mask
+	query.exclude = [current_player.get_rid()]
+	if not current_player.get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty():
+		player_to_load.free()
+		return
+	# Set the local transform before entering the tree so physics starts in place.
+	player_to_load.transform = current_player.transform * old_player_global_transform.affine_inverse() * target
+	var old_spawn_position := current_player.spawn_position
+	var old_spawn_clearance := current_player.spawn_clearance
 	
 	#Job 2 : Destroy current player right now not at the end of current frame
 	var old_player: Player = current_player
@@ -44,13 +67,12 @@ func swap_to(scene: PackedScene) -> void:
 	old_player.queue_free()
 	
 	#Job 3: Instantiate the new player
-	var player_to_load: Player = scene.instantiate()
 	add_child(player_to_load)
 	
 	#Job 4: Put the old_state into the state of the new player 
 	player_to_load.angular_velocity = old_player_angular_velocity
 	player_to_load.linear_velocity = old_player_linear_velocity
-	player_to_load.global_transform = old_player_global_transform
+	player_to_load.spawn_position = old_spawn_position + Vector3.UP * (player_to_load.spawn_clearance - old_spawn_clearance)
 	
 	#Job 4.5: Assign player_to_load to current_player
 	current_player = player_to_load

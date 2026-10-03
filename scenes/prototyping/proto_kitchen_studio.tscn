@@ -532,9 +532,6 @@ depth = 14.0
 material = ExtResource("49_f5ptj")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5yy73"]
-size = Vector3(259, 8, 108)
-
 [sub_resource type="Resource" id="Resource_215yb"]
 script = ExtResource("15_cehu3")
 size = Vector2(80, 70)
@@ -2726,10 +2723,6 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="TableTapered_#5A6138" parent="_Set/_Fitout/_Island" unique_id=1415726556 instance=ExtResource("36_cehu3")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -6.139196, -9.346153, -499.1803)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_Island/TableTapered_#5A6138" unique_id=808834668]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8461523, 0)
-shape = SubResource("BoxShape3D_5yy73")
 
 [node name="Island_SideL" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=332390625]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -105, -99.5, -499.96198)

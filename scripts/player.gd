@@ -39,11 +39,32 @@ var squish_tween: Tween
 
 func _ready() -> void:
 	spawn_position = global_position
+	spawn_clearance = maxf(spawn_clearance, get_collision_clearance() + 0.05)
 	contact_monitor = true
 	max_contacts_reported = 8
 	var material := physics_material_override if physics_material_override else PhysicsMaterial.new()
 	material.bounce = bounciness
 	physics_material_override = material
+
+## Support distance below the origin, including collider offsets and body rotation.
+## Analytic rounded shapes avoid the oversized bounds of a rotated debug AABB.
+func get_collision_clearance(body_basis := Basis.IDENTITY) -> float:
+	var collision := get_node("CollisionShape3D") as CollisionShape3D
+	var shape := collision.shape
+	var shape_transform := Transform3D(body_basis, Vector3.ZERO) * collision.transform
+	var bottom := shape_transform.origin.y
+	var vertical_scale := (shape_transform.basis.transposed() * Vector3.UP).length()
+	if shape is SphereShape3D:
+		bottom -= shape.radius * vertical_scale
+	elif shape is CapsuleShape3D:
+		bottom -= (shape.height * 0.5 - shape.radius) * absf(shape_transform.basis.y.y)
+		bottom -= shape.radius * vertical_scale
+	elif shape is ConvexPolygonShape3D:
+		for point in shape.points:
+			bottom = minf(bottom, (shape_transform * point).y)
+	else:
+		bottom = (shape_transform * shape.get_debug_mesh().get_aabb()).position.y
+	return maxf(0.0, -bottom)
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if _teleport_queued:

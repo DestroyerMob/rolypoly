@@ -7,7 +7,7 @@ const ITEMS := {
 	"ramp": {"label": "Ramp", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_ramp.tscn")},
 	"half_pipe": {"label": "Half pipe", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_half_pipe.tscn")},
 	"cylinder": {"label": "Round platform", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_cylinder.tscn")},
-	"kitchen": {"label": "Kitchen interior", "category": "Kitchen", "legacy": true, "scene": preload("res://scenes/prototyping/kitchen_set.tscn")},
+	"kitchen": {"label": "Kitchen interior", "category": "Kitchen", "legacy": true, "scene": preload("res://scenes/level_editor/kitchen_interior.tscn")},
 	"oven": {"label": "Oven", "category": "Kitchen", "scene": preload("res://scenes/props/distinct_oven.tscn")},
 	"grill": {"label": "Hot iron grill", "category": "Kitchen", "scene": preload("res://scenes/obstacles/iron_grill.tscn")},
 	"lighter": {"label": "Lighter", "category": "Kitchen", "scene": preload("res://scenes/props/lighter.tscn")},
