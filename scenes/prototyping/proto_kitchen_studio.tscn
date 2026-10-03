@@ -101,7 +101,6 @@
 [ext_resource type="PackedScene" uid="uid://c3nlffnu06w3n" path="res://assets/models/props/glass/Bottle_Oil_2.glb" id="85_un4n3"]
 [ext_resource type="PackedScene" uid="uid://bdinpa3his2j3" path="res://assets/models/props/glass/Bottle_Rum.glb" id="86_jtbq4"]
 [ext_resource type="PackedScene" uid="uid://dvtg67jwrhyp" path="res://assets/models/props/glass/Bottle_Sparkling.glb" id="87_ojblr"]
-[ext_resource type="PackedScene" uid="uid://dso0y73cy3syn" path="res://assets/models/props/glass/Bottle_Sphere.glb" id="88_ultfi"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Aqua.tres" id="89_57rwb"]
 [ext_resource type="PackedScene" uid="uid://drb837g5d5bwj" path="res://assets/models/props/glass/Bottle_Spirit.glb" id="89_koo4o"]
 [ext_resource type="PackedScene" uid="uid://bysgyl7fsdphn" path="res://assets/models/props/glass/Bottle_Tanqueray.glb" id="90_gcn05"]
@@ -3558,12 +3557,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.5, 137)
 cast_shadow = 0
 surface_material_override/1 = ExtResource("94_f5ptj")
 
-[node name="Bottle_Sphere" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=270123262 instance=ExtResource("88_ultfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.5, 115)
-
-[node name="Cork_15_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere" index="0" unique_id=510371891]
-cast_shadow = 0
-
 [node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("89_koo4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)
 
@@ -4075,7 +4068,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling"]
-[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]
