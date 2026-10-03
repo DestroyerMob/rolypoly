@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://dgx21qto44btu"]
 
 [ext_resource type="Script" uid="uid://b7biw5qrnf000" path="res://scripts/level_editor/kitchen_base.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/kitchen_interior.tscn" id="2"]
 
 [node name="EmptyKitchen" type="Node3D" unique_id=1547140200]
 script = ExtResource("1")
+
+[node name="KitchenInterior" parent="." instance=ExtResource("2")]
+
+[node name="Oven" parent="KitchenInterior/_Set/_Fitout/_ElevationA_Range/_Oven" index="0"]
+start_burners_on = false
+
+[editable path="KitchenInterior"]

@@ -144,6 +144,10 @@ debug_probe={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_18="Static reflection capture"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

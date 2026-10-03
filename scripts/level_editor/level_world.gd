@@ -69,6 +69,7 @@ func _create_player() -> void:
 	play_camera.make_current()
 
 func _update_spawn(player: Player) -> void:
+	player.continuous_cd = true
 	# Older character scenes still use the marble's default clearance.
 	var shape := player.get_node("CollisionShape3D") as CollisionShape3D
 	if shape != null and shape.shape != null:

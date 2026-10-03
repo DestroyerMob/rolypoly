@@ -1,0 +1,238 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_editor/level_lighting.gd" id="1_rig"]
+[ext_resource type="Environment" path="res://materials/lighting/kitchen_daylight.tres" id="2_environment"]
+
+[sub_resource type="StandardMaterial3D" id="Diffuser"]
+albedo_color = Color(1, 0.88, 0.68, 1)
+emission_enabled = true
+emission = Color(1, 0.78, 0.48, 1)
+emission_energy_multiplier = 2.8
+
+[sub_resource type="StandardMaterial3D" id="Housing"]
+albedo_color = Color(0.19, 0.16, 0.12, 1)
+metallic = 0.7
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="DownlightHousing"]
+material = SubResource("Housing")
+top_radius = 11.0
+bottom_radius = 11.0
+height = 2.0
+
+[sub_resource type="CylinderMesh" id="DownlightDiffuser"]
+material = SubResource("Diffuser")
+top_radius = 9.0
+bottom_radius = 9.0
+height = 0.7
+
+[sub_resource type="BoxMesh" id="HoodStrip"]
+material = SubResource("Diffuser")
+size = Vector3(90, 0.8, 2)
+
+[node name="KitchenLighting" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_rig")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_environment")
+
+[node name="Daylight" type="Node3D" parent="."]
+
+[node name="RoomBounce" type="DirectionalLight3D" parent="Daylight"]
+transform = Transform3D(0.8660254, 0.21130913, -0.4531539, 0, 0.90630779, 0.42261826, 0.5, -0.36599815, 0.78488557, 0, 0, 0)
+light_color = Color(0.8, 0.88, 1, 1)
+light_energy = 0.4
+light_specular = 0.0
+light_volumetric_fog_energy = 0.0
+
+[node name="Sun" type="DirectionalLight3D" parent="Daylight"]
+transform = Transform3D(-0.17364818, -0.30432233, 0.93660783, 0, 0.95105652, 0.30901699, -0.98480775, 0.05366024, -0.16514923, 0, 0, 0)
+light_color = Color(1, 0.84, 0.62, 1)
+light_energy = 2.8
+light_volumetric_fog_energy = 2.0
+light_angular_distance = 1.2
+shadow_enabled = true
+shadow_bias = 0.1
+shadow_normal_bias = 2.0
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.08
+directional_shadow_split_2 = 0.25
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 1400.0
+
+[node name="SinkWindow" type="SpotLight3D" parent="Daylight"]
+transform = Transform3D(0, -0.30901699, 0.95105652, 0, 0.95105652, 0.30901699, -1, 0, 0, 392, 130, -565)
+light_color = Color(1, 0.88, 0.72, 1)
+light_energy = 800.0
+light_size = 30.0
+light_specular = 0.25
+light_volumetric_fog_energy = 0.7
+shadow_enabled = true
+shadow_bias = 0.08
+shadow_normal_bias = 2.0
+spot_range = 650.0
+spot_attenuation = 1.1
+spot_angle = 65.0
+spot_angle_attenuation = 0.6
+
+[node name="RangeWindow" type="SpotLight3D" parent="Daylight"]
+transform = Transform3D(-1, 0, 0, 0, 0.95105652, 0.30901699, 0, 0.30901699, -0.95105652, -250, 112, -789)
+light_color = Color(0.65, 0.77, 1, 1)
+light_energy = 600.0
+light_size = 30.0
+light_volumetric_fog_energy = 0.35
+shadow_enabled = true
+shadow_bias = 0.08
+shadow_normal_bias = 2.0
+spot_range = 500.0
+spot_attenuation = 1.2
+spot_angle = 65.0
+spot_angle_attenuation = 0.6
+
+[node name="PracticalLights" type="Node3D" parent="."]
+
+[node name="Island" type="SpotLight3D" parent="PracticalLights"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -6, 211, -500)
+light_color = Color(1, 0.88, 0.73, 1)
+light_energy = 800.0
+light_size = 10.0
+light_volumetric_fog_energy = 0.15
+shadow_enabled = true
+shadow_bias = 0.08
+shadow_normal_bias = 1.5
+spot_range = 370.0
+spot_attenuation = 1.1
+spot_angle = 52.0
+spot_angle_attenuation = 0.7
+
+[node name="RangeHood" type="SpotLight3D" parent="PracticalLights"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1, 118, -764)
+light_color = Color(1, 0.86, 0.68, 1)
+light_energy = 350.0
+light_size = 8.0
+light_volumetric_fog_energy = 0.1
+shadow_enabled = true
+shadow_bias = 0.08
+shadow_normal_bias = 1.5
+spot_range = 240.0
+spot_attenuation = 1.1
+spot_angle = 60.0
+spot_angle_attenuation = 0.6
+
+[node name="Bar" type="SpotLight3D" parent="PracticalLights"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 490, 202, 155)
+light_color = Color(1, 0.8, 0.56, 1)
+light_energy = 700.0
+light_size = 12.0
+light_volumetric_fog_energy = 0.15
+shadow_enabled = true
+shadow_bias = 0.08
+shadow_normal_bias = 1.5
+spot_range = 340.0
+spot_attenuation = 1.2
+spot_angle = 58.0
+spot_angle_attenuation = 0.7
+
+[node name="Dining" type="SpotLight3D" parent="PracticalLights"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -35, 211, -85)
+light_color = Color(1, 0.86, 0.7, 1)
+light_energy = 650.0
+light_size = 18.0
+light_volumetric_fog_energy = 0.15
+shadow_enabled = true
+shadow_bias = 0.08
+shadow_normal_bias = 1.5
+spot_range = 410.0
+spot_attenuation = 1.25
+spot_angle = 58.0
+spot_angle_attenuation = 0.7
+
+[node name="Vestibule" type="OmniLight3D" parent="PracticalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 165, 555)
+light_color = Color(1, 0.83, 0.63, 1)
+light_energy = 3000.0
+light_specular = 0.35
+light_volumetric_fog_energy = 0.1
+omni_range = 370.0
+omni_attenuation = 1.5
+
+[node name="Fixtures" type="Node3D" parent="."]
+
+[node name="IslandHousing" type="MeshInstance3D" parent="Fixtures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 217, -500)
+layers = 131073
+cast_shadow = 0
+mesh = SubResource("DownlightHousing")
+
+[node name="IslandDiffuser" type="MeshInstance3D" parent="Fixtures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 215.6, -500)
+layers = 131073
+cast_shadow = 0
+mesh = SubResource("DownlightDiffuser")
+
+[node name="DiningHousing" type="MeshInstance3D" parent="Fixtures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 217, -85)
+layers = 131073
+cast_shadow = 0
+mesh = SubResource("DownlightHousing")
+
+[node name="DiningDiffuser" type="MeshInstance3D" parent="Fixtures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 215.6, -85)
+layers = 131073
+cast_shadow = 0
+mesh = SubResource("DownlightDiffuser")
+
+[node name="HoodStrip" type="MeshInstance3D" parent="Fixtures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 123.5, -764)
+layers = 131073
+cast_shadow = 0
+mesh = SubResource("HoodStrip")
+
+[node name="Reflections" type="Node3D" parent="."]
+
+[node name="Kitchen" type="ReflectionProbe" parent="Reflections"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59, -235)
+size = Vector3(830, 320, 1170)
+origin_offset = Vector3(0, 60, -100)
+blend_distance = 40.0
+intensity = 0.9
+max_distance = 1500.0
+box_projection = true
+interior = true
+enable_shadows = true
+cull_mask = 131072
+ambient_mode = 2
+ambient_color = Color(0.57, 0.68, 0.85, 1)
+ambient_color_energy = 0.32
+
+[node name="Bar" type="ReflectionProbe" parent="Reflections"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 506, 59, 165)
+size = Vector3(220, 330, 410)
+origin_offset = Vector3(0, 45, 0)
+blend_distance = 30.0
+intensity = 0.9
+max_distance = 1000.0
+box_projection = true
+interior = true
+enable_shadows = true
+cull_mask = 131072
+ambient_mode = 2
+ambient_color = Color(0.86, 0.8, 0.7, 1)
+ambient_color_energy = 0.28
+
+[node name="Vestibule" type="ReflectionProbe" parent="Reflections"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 578)
+size = Vector3(350, 380, 405)
+origin_offset = Vector3(0, 45, 0)
+blend_distance = 35.0
+intensity = 0.85
+max_distance = 1000.0
+box_projection = true
+interior = true
+enable_shadows = true
+cull_mask = 131072
+ambient_mode = 2
+ambient_color = Color(0.86, 0.8, 0.72, 1)
+ambient_color_energy = 0.28
