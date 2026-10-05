@@ -101,7 +101,6 @@
 [ext_resource type="PackedScene" uid="uid://c3nlffnu06w3n" path="res://assets/models/props/glass/Bottle_Oil_2.glb" id="85_un4n3"]
 [ext_resource type="PackedScene" uid="uid://bdinpa3his2j3" path="res://assets/models/props/glass/Bottle_Rum.glb" id="86_jtbq4"]
 [ext_resource type="PackedScene" uid="uid://dvtg67jwrhyp" path="res://assets/models/props/glass/Bottle_Sparkling.glb" id="87_ojblr"]
-[ext_resource type="PackedScene" uid="uid://dso0y73cy3syn" path="res://assets/models/props/glass/Bottle_Sphere.glb" id="88_ultfi"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Aqua.tres" id="89_57rwb"]
 [ext_resource type="PackedScene" uid="uid://drb837g5d5bwj" path="res://assets/models/props/glass/Bottle_Spirit.glb" id="89_koo4o"]
 [ext_resource type="PackedScene" uid="uid://bysgyl7fsdphn" path="res://assets/models/props/glass/Bottle_Tanqueray.glb" id="90_gcn05"]
@@ -125,6 +124,8 @@
 [ext_resource type="PackedScene" uid="uid://drgeyxwnndyp7" path="res://assets/models/props/glass/glass_white_wine_2.glb" id="103_2ojb8"]
 [ext_resource type="PackedScene" uid="uid://8nc6ied3s0ev" path="res://assets/models/props/glass/glass_white_wine_3.glb" id="104_57rwb"]
 [ext_resource type="Material" uid="uid://c1swqfwc6yxdh" path="res://assets/models/props/glass/MI_Ice_Azure.tres" id="121_qnvih"]
+[ext_resource type="Script" uid="uid://cniuqsauwxbyo" path="res://scripts/proto_book.gd" id="125_d22am"]
+[ext_resource type="Script" uid="uid://c5ybj4qkebrpb" path="res://scripts/proto_cereal_box.gd" id="126_nbjd4"]
 
 [sub_resource type="Resource" id="Resource_lan4w"]
 script = ExtResource("15_cehu3")
@@ -3551,12 +3552,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.5, 137)
 cast_shadow = 0
 surface_material_override/1 = ExtResource("94_f5ptj")
 
-[node name="Bottle_Sphere" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=270123262 instance=ExtResource("88_ultfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.5, 115)
-
-[node name="Cork_15_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere" index="0" unique_id=510371891]
-cast_shadow = 0
-
 [node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("89_koo4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)
 
@@ -4060,6 +4055,195 @@ bevel = 0.5
 material = ExtResource("49_f5ptj")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
+[node name="ProtoBook" type="Node3D" parent="." unique_id=599534660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.999996, -73)
+script = ExtResource("125_d22am")
+title = 1
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook2" type="Node3D" parent="." unique_id=18307308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.999996, -108)
+script = ExtResource("125_d22am")
+title = 2
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook3" type="Node3D" parent="." unique_id=1136295563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -16.999996, -108)
+script = ExtResource("125_d22am")
+title = 3
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook4" type="Node3D" parent="." unique_id=1675821501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -16.999996, -75)
+script = ExtResource("125_d22am")
+title = 4
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook5" type="Node3D" parent="." unique_id=1578831361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -16.999996, -142)
+script = ExtResource("125_d22am")
+title = 5
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook6" type="Node3D" parent="." unique_id=667293454]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.999996, -142)
+script = ExtResource("125_d22am")
+title = 6
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook7" type="Node3D" parent="." unique_id=1030847097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -16.999996, -73)
+script = ExtResource("125_d22am")
+title = 7
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook8" type="Node3D" parent="." unique_id=925477327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -16.999996, -108)
+script = ExtResource("125_d22am")
+title = 8
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook9" type="Node3D" parent="." unique_id=1570335412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -16.999996, -142)
+script = ExtResource("125_d22am")
+title = 9
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook18" type="Node3D" parent="." unique_id=1173281244]
+transform = Transform3D(0, -4.371139e-08, -1.0000001, -1.0000001, -8.881784e-16, 3.8823512e-23, 0, 1, -4.371139e-08, 7, -15.977514, -187)
+script = ExtResource("125_d22am")
+width = 32.0
+height = 40.0
+front_open_degrees = 60.0
+back_open_degrees = 60.0
+title = 2
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook10" type="Node3D" parent="." unique_id=1304825528]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 87, -4.999996, -150)
+script = ExtResource("125_d22am")
+front_open_degrees = 43.5
+title = 1
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook11" type="Node3D" parent="." unique_id=1573302142]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 87, -4.999996, -185)
+script = ExtResource("125_d22am")
+front_open_degrees = 43.5
+title = 2
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook12" type="Node3D" parent="." unique_id=1673621022]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 58, -4.999996, -185)
+script = ExtResource("125_d22am")
+front_open_degrees = 43.5
+title = 3
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook13" type="Node3D" parent="." unique_id=1452652349]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 58, -4.999996, -152)
+script = ExtResource("125_d22am")
+front_open_degrees = 43.5
+title = 4
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook14" type="Node3D" parent="." unique_id=1411578357]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 58, -4.999996, -219)
+script = ExtResource("125_d22am")
+width = 20.0
+front_open_degrees = 43.5
+title = 5
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook15" type="Node3D" parent="." unique_id=1470334829]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 87, -4.999996, -219)
+script = ExtResource("125_d22am")
+front_open_degrees = 43.5
+title = 6
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="ProtoBook16" type="Node3D" parent="." unique_id=1229499573]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 112, -4.999996, -150)
+script = ExtResource("125_d22am")
+front_open_degrees = 43.5
+title = 7
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="WheresTheLambSauce" type="Node3D" parent="." unique_id=442403644]
+transform = Transform3D(0.25881904, 0.9659258, -4.222196e-08, 0, -4.371139e-08, -1, -0.9659258, 0.25881904, -1.131334e-08, -327, 19, -856)
+script = ExtResource("125_d22am")
+width = 24.0
+height = 32.0
+front_open_degrees = 43.5
+title = 9
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="Locochoco" type="Node3D" parent="." unique_id=265959130]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -16.799408, 0, -258.67316)
+script = ExtResource("126_nbjd4")
+flap_side = 0
+top_flap_length = null
+bottom_flap_length = null
+title = 1
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
+[node name="BoringCereal" type="Node3D" parent="." unique_id=752978138]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 2.098076, 0, -249.56218)
+script = ExtResource("126_nbjd4")
+flap_side = 0
+top_flap_length = null
+bottom_flap_length = null
+title = 2
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
+[node name="Loopies" type="Node3D" parent="." unique_id=921264189]
+transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, 18.944862, 0, -236.84679)
+script = ExtResource("126_nbjd4")
+flap_side = 0
+top_flap_length = null
+bottom_flap_length = null
+title = 3
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
+[node name="Locochoco2" type="Node3D" parent="." unique_id=268788663]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -116, 0, -180)
+script = ExtResource("126_nbjd4")
+top_flap_length = null
+bottom_flap_length = null
+top_open_degrees = 45.5
+title = 1
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
+[node name="BoringCereal2" type="Node3D" parent="." unique_id=1417498560]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -88, -13.249997, -184)
+script = ExtResource("126_nbjd4")
+top_flap_length = 19.0
+bottom_flap_length = 19.0
+top_open_degrees = 67.0
+bottom_open_degrees = 67.0
+title = 2
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
+[node name="Loopies2" type="Node3D" parent="." unique_id=1609767119]
+transform = Transform3D(0.8660254, 0.4330127, -0.24999999, 0, 0.5, 0.8660253, 0.5, -0.75, 0.43301263, -58, -5.196152, -161.73206)
+script = ExtResource("126_nbjd4")
+top_flap_length = 10.0
+bottom_flap_length = 15.0
+top_open_degrees = 56.5
+bottom_open_degrees = 90.5
+title = 3
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
+[node name="Loopies3" type="Node3D" parent="." unique_id=1305928392]
+transform = Transform3D(-0.8660253, -0.43301275, 0.25000003, 0, 0.5, 0.8660253, -0.50000006, 0.75, -0.4330126, -38.081417, -5.196152, -196.23206)
+script = ExtResource("126_nbjd4")
+top_flap_length = 10.0
+bottom_flap_length = 15.0
+top_open_degrees = 56.5
+bottom_open_degrees = 90.5
+title = 3
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
+
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac"]
@@ -4068,7 +4252,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling"]
-[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]
