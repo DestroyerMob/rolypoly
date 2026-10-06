@@ -132,3 +132,22 @@ godot --path /path/to/roly-poly res://scenes/custom_level.tscn -- --custom-level
 The filename is relative to `user://levels/`. Without that argument, running the
 player scene directly uses the starter layout. Normal players can use My levels
 from the game's main menu.
+
+## Gun pickups
+
+Three guns are available as powerups, both in the level editor palette (**M4A1**,
+**Shotgun**, **Walther P88**) and in `scenes/prototyping/gun_powerups_demo.tscn`, which
+has a pickup plate for each and a few eggs to shoot. Walk onto a plate to equip a gun,
+then fire with the equipment button (left click). Shots are hitscan from the crosshair,
+with a tracer from the gun's muzzle, and push any rigid body they hit.
+
+| Gun | Style |
+| --- | --- |
+| M4A1 | Automatic: hold to fire about 11 shots a second, with a slight spread |
+| Shotgun | One blast a second, 10 pellets scattered in a 5-degree cone |
+| Walther P88 | Semi-automatic, about 2 shots a second, very accurate, hits harder |
+
+All three share `scripts/gun.gd`; each `scenes/props/<gun>.tscn` just sets its numbers
+(`fire_interval`, `automatic`, `pellets`, `spread_degrees`, `impulse`, and the kick and
+flash effects) and a `Muzzle` marker. Connect to the `hit` signal to add damage later.
+The models live under `assets/models/props/<gun>/`, muzzle facing -Z.
