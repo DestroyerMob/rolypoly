@@ -46,12 +46,14 @@
 [ext_resource type="Texture2D" uid="uid://d4bdroacn0uf0" path="res://assets/textures/T_Wood_1K_N.png" id="37_bc8r4"]
 [ext_resource type="Material" uid="uid://xu5yn01xkkru" path="res://assets/models/props/Timber_Corbel_Material.tres" id="38_bwkn4"]
 [ext_resource type="PackedScene" uid="uid://c1tv3el0xi06y" path="res://scenes/obstacles/sink.tscn" id="39_8lgrn"]
+[ext_resource type="Material" uid="uid://ch26n4c5y1vjd" path="res://materials/generated/MI_Marble_White.tres" id="39_g1h74"]
 [ext_resource type="Material" uid="uid://eomjoxv35qcd" path="res://assets/models/props/Oven_Cooktop_Steel.tres" id="40_wmuup"]
 [ext_resource type="Material" uid="uid://cwemm6ktomkjx" path="res://materials/generated/MI_Wood_Planks_Scratched.tres" id="41_276e3"]
 [ext_resource type="Material" uid="uid://bf2icfp3bktrj" path="res://materials/generated/MI_Veneer_Rosewood.tres" id="42_o5p46"]
 [ext_resource type="Material" uid="uid://c7y45t8ycsuei" path="res://materials/MI_Tile_Terracotta_Square.tres" id="43_t6fey"]
 [ext_resource type="Material" uid="uid://xfvywkdxte7l" path="res://assets/models/props/MI_Mural_Lemon.tres" id="44_eb7p5"]
 [ext_resource type="Material" uid="uid://dh873wv8ijx5e" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Bar.tres" id="46_2unik"]
+[ext_resource type="PackedScene" uid="uid://806o8n01qvy3" path="res://assets/models/props/curtain.glb" id="46_oihd8"]
 [ext_resource type="Material" uid="uid://kuruu0yotrr6" path="res://materials/MI_Metal_Standard.tres" id="47_38r2j"]
 [ext_resource type="Material" uid="uid://c1swqfwc6yxdh" path="res://assets/models/props/glass/MI_Ice_Azure.tres" id="48_ra4mq"]
 [ext_resource type="Texture2D" uid="uid://b7o6g2mlwxr7y" path="res://assets/textures/lemon_tree.png" id="49_4b3au"]
@@ -268,27 +270,14 @@ uv1_world_triplanar = true
 script = ExtResource("9_2kmqn")
 size = Vector2(80, 90)
 offset = Vector2(-250, 180)
-crown_rise = 40.0
 segments = 30
-material = SubResource("StandardMaterial3D_4xdou")
-metadata/_custom_type_script = "uid://bnsr3x720g76b"
-
-[sub_resource type="Resource" id="Resource_n2rxj"]
-script = ExtResource("9_2kmqn")
-kind = 2
-size = Vector2(5, 175)
-offset = Vector2(260, 135)
-crown_rise = 190.0
-segments = 100
-depth = 29.0
 material = SubResource("StandardMaterial3D_4xdou")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="Resource" id="Resource_e6hn1"]
 script = ExtResource("9_2kmqn")
-size = Vector2(300, 150)
-offset = Vector2(-155, 147.5)
-crown_rise = 150.0
+size = Vector2(250, 75)
+offset = Vector2(-155, 189.5)
 segments = 100
 material = SubResource("StandardMaterial3D_4xdou")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
@@ -387,9 +376,6 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_vk1ru"]
 size = Vector3(300, 10, 80)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5st54"]
-albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdlht"]
 albedo_color = Color(0, 0, 0, 1)
 
@@ -418,9 +404,6 @@ shader_parameter/uv_rotation_degrees = 90.00002137500002
 shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dniq"]
-albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_5st54"]
 size = Vector3(400, 400, 3)
 
@@ -428,7 +411,6 @@ size = Vector3(400, 400, 3)
 script = ExtResource("9_2kmqn")
 size = Vector2(65, 80)
 offset = Vector2(0, 5)
-crown_rise = 30.0
 segments = 30
 depth = 3.0
 material = ExtResource("38_bwkn4")
@@ -932,7 +914,7 @@ use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(810, 320, 30)
 material = ExtResource("8_bktm0")
-openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_5yy73"), SubResource("Resource_n2rxj")])
+openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_5yy73")])
 flip_cuts = true
 bevel = 1.0
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
@@ -1160,6 +1142,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Mantel_Timber" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=1012760400]
 transform = Transform3D(1, 0, 0, 0, 8.742279e-08, 1.0000001, 0, -1.0000001, 8.742279e-08, 1, 157, -744)
+visible = false
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(228, 65, 12)
@@ -1168,19 +1151,22 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Rangehood" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=683913649]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 158, -789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 137.91315, -789)
 disable_mode = 2
 script = ExtResource("29_gwba6")
-bottom_size = Vector2(120, 40)
+bottom_size = Vector2(138, 40)
+top_size = Vector2(68, 30)
 height = 90.0
 material = SubResource("StandardMaterial3D_qh0o4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="TimberCorbel_R" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=2035662424 instance=ExtResource("30_fobt1")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 109, 111, -808)
+visible = false
 
 [node name="TimberCorbel_R2" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=1481601336 instance=ExtResource("30_fobt1")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, -105, 111, -808)
+visible = false
 
 [node name="_Oven" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1401073423]
 
@@ -1205,7 +1191,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5000005, 0)
 layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(300, 10, 80)
-material = SubResource("StandardMaterial3D_5st54")
+material = ExtResource("39_g1h74")
 bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
@@ -1385,7 +1371,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 2)
 layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(300, 10.6, 80)
-material = SubResource("StandardMaterial3D_3dniq")
+material = ExtResource("39_g1h74")
 bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
@@ -1559,10 +1545,13 @@ openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_qk54t")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
+[node name="Curtain" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=547980619 instance=ExtResource("46_oihd8")]
+transform = Transform3D(40, 0, 0, 0, 35, 0, 0, 0, 30, -282.55414, 82.0325, -814.2002)
+
 [node name="_Window_R" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=854169831]
 
 [node name="FloatingShelfBottom" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=743821738]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 84, -826)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 84, -792.5667)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 35)
@@ -1571,7 +1560,7 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="FloatingShelfMiddle2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=1658573217]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 119, -826)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 119, -792.5667)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 35)
@@ -1580,7 +1569,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="FloatingShelfTop" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=413284655]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 159, -815)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 159, -781.5667)
+visible = false
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 80)
@@ -1640,7 +1630,7 @@ layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(302, 100, 10)
-material = ExtResource("15_rjymo")
+material = ExtResource("39_g1h74")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_dsqmi")])
 flip_cuts = true
 bevel = 0.8
@@ -1725,6 +1715,33 @@ transform = Transform3D(1, 1.4210855e-14, 0, -1.4210855e-14, 1, 0, 0, -4.7245236
 transform = Transform3D(0.9999999, -8.7422535e-08, 4.3711392e-08, 8.742255e-08, 0.9999999, -6.181726e-08, -4.371138e-08, 6.181727e-08, 0.9999999, 352, -46.176666, -431.10004)
 script = ExtResource("20_41g6l")
 size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("33_ybtow")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Shelf" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1151166852]
+transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -1, 0, 0.5, -4.371139e-08, 353.14133, -88.34923, -422.61496)
+script = ExtResource("20_41g6l")
+size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("33_ybtow")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Shelf2" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=2022497730]
+transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 354.61548, -37.789528, -418.0792)
+script = ExtResource("20_41g6l")
+size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("33_ybtow")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Sink_End" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=588492882]
+transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, 311.64255, -57.3244, -433.73697)
+script = ExtResource("20_41g6l")
+size = Vector2(70, 100)
 panel_depth = 1.0
 frame_depth = 1.5
 material = ExtResource("33_ybtow")

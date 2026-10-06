@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1tv3el0xi06y"]
 
 [ext_resource type="PackedScene" uid="uid://bf5d2atf7gkle" path="res://assets/models/obstacles/sink/SinkBasin.glb" id="1_sink"]
+[ext_resource type="Material" uid="uid://be7rsk3bhv14k" path="res://assets/models/props/Oven_Cream_Detail.tres" id="2_ori06"]
 [ext_resource type="PackedScene" uid="uid://bfks1yo7744k2" path="res://assets/models/obstacles/sink/SinkPlate.glb" id="2_plate"]
 [ext_resource type="PackedScene" uid="uid://cq1oc8jf7ou8p" path="res://assets/models/obstacles/sink/SinkBowl.glb" id="3_bowl"]
 [ext_resource type="Shader" uid="uid://bilhhkms18i3g" path="res://assets/shaders/sink_water.gdshader" id="4_water"]
@@ -55,50 +56,65 @@ radius = 0.93
 
 [node name="Model" parent="." unique_id=682238863 instance=ExtResource("1_sink")]
 
-[node name="Sink_BackCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="0" unique_id=483201240]
+[node name="Sink_BackCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="0" unique_id=712943277]
 visible = false
 
-[node name="Sink_FaucetBase" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="10" unique_id=659552437]
+[node name="Sink_CabinetBase" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="3" unique_id=933634403]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetEnd_1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="4" unique_id=864577673]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetEnd_-1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="5" unique_id=957682340]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetSide_1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="6" unique_id=73409168]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetSide_-1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="7" unique_id=1518058117]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_FaucetBase" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="10" unique_id=768647294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2694192, -5.8599997)
 
-[node name="Sink_FaucetNozzle" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="11" unique_id=539312994]
+[node name="Sink_FaucetNozzle" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="11" unique_id=686547495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4294195, -2.55)
 
-[node name="Sink_FaucetPipe" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="12" unique_id=15653033]
+[node name="Sink_FaucetPipe" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="12" unique_id=1857637007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43058085, -2)
 
-[node name="Sink_FrontCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="13" unique_id=521343031]
+[node name="Sink_FrontCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="13" unique_id=250304589]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7494192, 3.94)
 visible = false
 
-[node name="Sink_FrontWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="14" unique_id=1211299830]
+[node name="Sink_FrontWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="14" unique_id=241594928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67, 3.52)
 
-[node name="Sink_LeftCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="15" unique_id=2115636427]
+[node name="Sink_LeftCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="15" unique_id=616489324]
 visible = false
 
-[node name="Sink_LeftWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="16" unique_id=398288629]
+[node name="Sink_LeftWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="16" unique_id=529786297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.66, 0)
 
-[node name="Sink_RightCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="17" unique_id=1680581559]
+[node name="Sink_RightCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="17" unique_id=538294613]
 visible = false
 
-[node name="Sink_RimAccent_+4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="19" unique_id=71367671]
+[node name="Sink_RimAccent_+4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="19" unique_id=1479571169]
 visible = false
 
-[node name="Sink_RimAccent_-4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="20" unique_id=1736644570]
+[node name="Sink_RimAccent_-4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="20" unique_id=1654470406]
 visible = false
 
-[node name="Sink_TapBase_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="21" unique_id=527061624]
+[node name="Sink_TapBase_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="21" unique_id=731415586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.129419, -5.8599997)
 
-[node name="Sink_TapBase_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="22" unique_id=1256206181]
+[node name="Sink_TapBase_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="22" unique_id=815363283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.129419, -5.8599997)
 
-[node name="Sink_TapHandle_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="23" unique_id=1723194738]
+[node name="Sink_TapHandle_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="23" unique_id=1885401220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.5294192, -5.8599997)
 
-[node name="Sink_TapHandle_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 1020603308) index="24" unique_id=1287111841]
+[node name="Sink_TapHandle_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="24" unique_id=583000703]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.5294192, -5.8599997)
 
 [node name="BasinCollision" type="StaticBody3D" parent="." unique_id=370516374]
