@@ -28,4 +28,5 @@ shader_parameter/world_scale = 260.0
 shader_parameter/triplanar_sharpness = 4.0
 shader_parameter/world_offset = Vector3(145, 0, 0)
 shader_parameter/uv_rotation_degrees = -21.2399839089
+shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = false

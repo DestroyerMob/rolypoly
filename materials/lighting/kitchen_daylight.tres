@@ -1,9 +1,6 @@
 [gd_resource type="Environment" format=3 uid="uid://d4emjr5g8apg1"]
 
-[ext_resource type="Texture2D" uid="uid://c1x4q4cpkh48m" path="res://assets/hdr/belfast_farmhouse_4k.hdr" id="1_sky"]
-
 [sub_resource type="PanoramaSkyMaterial" id="Panorama"]
-panorama = ExtResource("1_sky")
 
 [sub_resource type="Sky" id="Sky"]
 sky_material = SubResource("Panorama")
