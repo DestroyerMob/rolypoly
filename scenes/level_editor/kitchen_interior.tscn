@@ -31,8 +31,11 @@
 [ext_resource type="PackedScene" uid="uid://du4u4iq2al7oa" path="res://scenes/props/Mugs/Kettle.tscn" id="26_07215"]
 [ext_resource type="Texture2D" uid="uid://bec7yg1mgwc7p" path="res://assets/textures/T_Timber_Log_2K_BC.png" id="26_p8vsx"]
 [ext_resource type="Texture2D" uid="uid://dtwpmsjl2r5va" path="res://assets/textures/T_Timber_Log_2K_N.png" id="27_fco7q"]
+[ext_resource type="PackedScene" uid="uid://oxmiguobmlpr" path="res://scenes/props/Mugs/Mug1.tscn" id="27_sqbpb"]
 [ext_resource type="Texture2D" uid="uid://dkrfxknwlclfk" path="res://assets/textures/T_Timber_Log_2K_R.png" id="28_6uptr"]
+[ext_resource type="PackedScene" uid="uid://licxy534r86i" path="res://assets/models/props/mugs/mug3.glb" id="28_kmeif"]
 [ext_resource type="Script" uid="uid://dv61u3h65bqmd" path="res://scripts/taper_box.gd" id="29_gwba6"]
+[ext_resource type="PackedScene" uid="uid://ju8ullskhbno" path="res://assets/models/props/mugs/mug4.glb" id="29_oihd8"]
 [ext_resource type="PackedScene" uid="uid://bslui6kat6cd0" path="res://scenes/building/timber_corbel.tscn" id="30_fobt1"]
 [ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="31_lhsis"]
 [ext_resource type="PackedScene" uid="uid://cl16b4t6pnt8c" path="res://scenes/props/handle_bar.tscn" id="32_f6kcy"]
@@ -304,19 +307,25 @@ metadata/_custom_type_script = "uid://bnsr3x720g76b"
 [sub_resource type="Resource" id="Resource_04wg3"]
 script = ExtResource("9_2kmqn")
 kind = 2
-size = Vector2(200, 200)
-offset = Vector2(0, 80)
-crown_rise = 50.0
+size = Vector2(200, 140)
+offset = Vector2(-111, 94)
 segments = 48
 depth = 50.0
 material = ExtResource("10_p78e4")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
+[sub_resource type="Resource" id="Resource_sqbpb"]
+script = ExtResource("9_2kmqn")
+kind = 2
+size = Vector2(200, 220)
+offset = Vector2(107, 0)
+depth = 47.0
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
 [sub_resource type="Resource" id="Resource_rni1u"]
 script = ExtResource("9_2kmqn")
-size = Vector2(200, 280)
-offset = Vector2(0, 0)
-crown_rise = 100.0
+size = Vector2(200, 240)
+offset = Vector2(-29, 0)
 segments = 48
 depth = 50.0
 material = ExtResource("10_p78e4")
@@ -999,22 +1008,22 @@ material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_D_1_Cupboard" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=158284952]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -85.02843, -96)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.05809, -171.66449)
 layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
-size = Vector3(400, 320, 55)
+size = Vector3(550, 320, 55)
 material = ExtResource("8_bktm0")
-openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_04wg3")])
+openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_04wg3"), SubResource("Resource_sqbpb")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Wall_D_2_Pantry" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=963470495]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -564)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -617.14435)
 layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
-size = Vector3(580, 320, 55)
+size = Vector3(400, 320, 55)
 material = ExtResource("8_bktm0")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_rni1u")])
 flip_cuts = true
@@ -1049,29 +1058,59 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 [node name="_Cupboard" type="Node" parent="_Set/_Fitout" unique_id=2104566045]
 
 [node name="Shelf1" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=967722155]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, -6.6303368, -96)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, -6.6303368, -59.1975)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="CoffeeMachine" parent="_Set/_Fitout/_Cupboard" unique_id=2048380305 instance=ExtResource("25_cl14r")]
-transform = Transform3D(0.96944535, 0, -0.24530739, 0, 1, 0, 0.24530739, 0, 0.96944535, -417.06186, -3.3883667, -169.52948)
+[node name="CoffeeMachine" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=2048380305 instance=ExtResource("25_cl14r")]
+transform = Transform3D(-0.24530743, 0, -0.96944535, 0, 1, 0, 0.96944535, 0, -0.24530743, 57.84028, 3.24197, -2.0618591)
 
-[node name="Kettle" parent="_Set/_Fitout/_Cupboard" unique_id=1596907989 instance=ExtResource("26_07215")]
-transform = Transform3D(-0.94608533, 0, -0.32391745, 0, 1, 0, 0.32391745, 0, -0.94608533, -420.48718, -2.3853874, -20.055435)
+[node name="Kettle" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=1596907989 instance=ExtResource("26_07215")]
+transform = Transform3D(-0.32391742, 0, 0.94608533, 0, 1, 0, -0.94608533, 0, -0.32391742, -61.27815, 4.2449493, -5.4871826)
 
-[node name="Shelf2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=784379161]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 81.81239, -96)
+[node name="Mug1" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=511841776 instance=ExtResource("27_sqbpb")]
+transform = Transform3D(0.47715876, 0, -0.8788171, 0, 1, 0, 0.8788171, 0, 0.47715876, 46.75286, 11.297783, 0.21270752)
+
+[node name="Shelf2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=2024639761]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 81.480545, -59.1975)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=668396590]
-layers = 131073
+[node name="Mug3" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1920621503 instance=ExtResource("28_kmeif")]
+transform = Transform3D(3.1601465, 0, 3.8747225, 0, 5, 0, -3.8747225, 0, 3.1601465, -79.2214, 2.1328125, 0)
+
+[node name="Mug4" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1827225859 instance=ExtResource("28_kmeif")]
+transform = Transform3D(2.961699, -1.5759505, 3.7073872, 0.6988711, 4.732746, 1.453511, -3.9673564, -0.34277523, 3.023671, -77.03606, 13.1634445, 0)
+
+[node name="Mug5" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1592355797 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-3.566252, 0, 3.5045466, 0, 5, 0, -3.5045466, 0, -3.566252, -54.49256, 2.1328125, 0)
+
+[node name="Mug6" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=409056691 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-3.6768208, -0.4868813, 3.3531978, 0.6988711, 4.732746, 1.4535108, -3.315504, 1.5375504, -3.4122384, -53.368584, 13.1634445, -2.0806274)
+
+[node name="Mug11" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=234736889 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-1.7182983, 0, -4.6954713, 0, 5, 0, 4.6954713, 0, -1.7182983, -30.13808, 2.1328125, 6.42099)
+
+[node name="Mug12" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1661844081 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-1.5004641, 1.6013548, -4.4926906, 0.6988711, 4.732746, 1.4535108, 4.7180705, -0.19177425, -1.6440911, -32.343468, 13.1634445, 4.3403625)
+
+[node name="Mug7" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1310285378 instance=ExtResource("29_oihd8")]
+transform = Transform3D(225.83382, 0, -107.233795, 0, 250, 0, 107.233795, 0, 225.83382, 81.219154, 3.8577576, -6.684387)
+
+[node name="Mug8" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=258291184 instance=ExtResource("29_oihd8")]
+transform = Transform3D(246.78912, -16.108479, -36.546463, 21.5496, 246.3131, 36.952354, 33.6265, -39.628006, 244.5381, 82.8487, 13.964493, -6.684387)
+
+[node name="Mug9" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1084624503 instance=ExtResource("29_oihd8")]
+transform = Transform3D(127.63572, 0, -214.96307, 0, 250, 0, 214.96307, 0, 127.63572, 59.571877, 3.9114914, -2.877777)
+
+[node name="Mug10" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=2089655207 instance=ExtResource("29_oihd8")]
+transform = Transform3D(129.91928, 20.528477, -212.6019, 21.549597, 246.3131, 36.952354, 212.50082, -37.52923, 126.23376, 59.571884, 13.749275, -2.877777)
 
 [node name="_ElevationA_Range" type="Node" parent="_Set/_Fitout" unique_id=846560408]
 
@@ -2582,10 +2621,10 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="_ElevationD_Tall" type="Node" parent="_Set/_Fitout" unique_id=237766516]
 
 [node name="WineFridge" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=122692770 instance=ExtResource("55_bbx8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -408.75677, -97.85873, -258.41425)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412.1446, -97.85873, -219.78716)
 
 [node name="RetroFridgeDoubleDoor" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=756755263 instance=ExtResource("54_m1nqg")]
-transform = Transform3D(-5.2453657e-08, 0, 1.1999999, 0, 1.1999999, 0, -1.1999999, 0, -5.2453657e-08, -431.96683, -98.92675, -359.11432)
+transform = Transform3D(-5.2453657e-08, 0, 1.1999999, 0, 1.1999999, 0, -1.1999999, 0, -5.2453657e-08, -435.6, -98.92675, -315.2521)
 
 [node name="_Pantry" type="Node" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=1127434783]
 
