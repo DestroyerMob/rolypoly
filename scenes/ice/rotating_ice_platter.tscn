@@ -1,0 +1,116 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ice/ice_motion.gd" id="1_6kq8y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_005x8"]
+albedo_color = Color(0.8745098, 0.84313726, 0.74509805, 1)
+roughness = 0.32
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n7ubp"]
+top_radius = 3.4
+bottom_radius = 3.4
+height = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e3cvi"]
+height = 0.3
+radius = 3.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvw80"]
+albedo_color = Color(0.4745098, 0.87058824, 0.92941177, 1)
+metallic = 0.2
+roughness = 0.18
+emission_enabled = true
+emission = Color(0.4745098, 0.87058824, 0.92941177, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_3hsu1"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iavcy"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_klthe"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rvalj"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ei5o"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vtyb2"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgn18"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="BoxMesh" id="BoxMesh_51sfc"]
+size = Vector3(0.55, 0.025, 0.55)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftgl3"]
+albedo_color = Color(0.73333335, 0.5294118, 0.28235295, 1)
+metallic = 0.75
+roughness = 0.28
+
+[sub_resource type="TorusMesh" id="TorusMesh_t35ao"]
+inner_radius = 3.115
+outer_radius = 3.185
+rings = 48
+
+[node name="RotatingIcePlatter" type="Node3D" unique_id=1967943389]
+
+[node name="RotatingPlatform" type="AnimatableBody3D" parent="." unique_id=80117784]
+script = ExtResource("1_6kq8y")
+speed = 0.3
+
+[node name="Porcelain" type="MeshInstance3D" parent="RotatingPlatform" unique_id=1330974595]
+material_override = SubResource("StandardMaterial3D_005x8")
+mesh = SubResource("CylinderMesh_n7ubp")
+
+[node name="@CollisionShape3D@7" type="CollisionShape3D" parent="RotatingPlatform" unique_id=127756151]
+shape = SubResource("CylinderShape3D_e3cvi")
+
+[node name="BlueInlay" type="MeshInstance3D" parent="RotatingPlatform" unique_id=1383848439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 2.4)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_3hsu1")
+
+[node name="BlueInlay2" type="MeshInstance3D" parent="RotatingPlatform" unique_id=356082045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6970563, 0.17, 1.6970563)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_iavcy")
+
+[node name="BlueInlay3" type="MeshInstance3D" parent="RotatingPlatform" unique_id=810768111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.17, 1.4695762e-16)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_klthe")
+
+[node name="BlueInlay4" type="MeshInstance3D" parent="RotatingPlatform" unique_id=1083376527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6970563, 0.17, -1.6970563)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_rvalj")
+
+[node name="BlueInlay5" type="MeshInstance3D" parent="RotatingPlatform" unique_id=622101629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9391524e-16, 0.17, -2.4)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_0ei5o")
+
+[node name="BlueInlay6" type="MeshInstance3D" parent="RotatingPlatform" unique_id=779253992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6970563, 0.17, -1.6970563)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_vtyb2")
+
+[node name="BlueInlay7" type="MeshInstance3D" parent="RotatingPlatform" unique_id=2033713125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 0.17, -4.4087284e-16)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_dgn18")
+
+[node name="BlueInlay8" type="MeshInstance3D" parent="RotatingPlatform" unique_id=1643980279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6970563, 0.17, 1.6970563)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_51sfc")
+
+[node name="Ring" type="MeshInstance3D" parent="RotatingPlatform" unique_id=1930515662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+material_override = SubResource("StandardMaterial3D_ftgl3")
+mesh = SubResource("TorusMesh_t35ao")

@@ -1,0 +1,119 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/ice_kitchen/FanHousing.glb" id="1_aiwaa"]
+[ext_resource type="Script" path="res://scripts/ice/ice_motion.gd" id="2_1kvns"]
+[ext_resource type="PackedScene" path="res://assets/models/ice_kitchen/FanBlades.glb" id="3_l7fya"]
+[ext_resource type="Script" path="res://scripts/ice/ice_zone.gd" id="4_e7qon"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c6nda"]
+size = Vector3(3.5, 3.2, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvw80"]
+albedo_color = Color(0.4745098, 0.87058824, 0.92941177, 1)
+metallic = 0.2
+roughness = 0.18
+emission_enabled = true
+emission = Color(0.4745098, 0.87058824, 0.92941177, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_o1eg0"]
+size = Vector3(0.035, 0.035, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ppd5l"]
+size = Vector3(0.035, 0.035, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7tdy1"]
+size = Vector3(0.035, 0.035, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6rhl"]
+size = Vector3(0.035, 0.035, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4uelp"]
+size = Vector3(0.035, 0.035, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xq28d"]
+size = Vector3(0.035, 0.035, 4)
+
+[node name="CrosswindFan" type="Node3D" unique_id=1623161893]
+
+[node name="FanHousing" type="Node3D" parent="." unique_id=395895452 instance=ExtResource("1_aiwaa")]
+
+[node name="SpinningBlades" type="Node3D" parent="." unique_id=1345808674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15, 0)
+script = ExtResource("2_1kvns")
+speed = 12.0
+axis = Vector3(0, 0, 1)
+
+[node name="FanBlades" type="Node3D" parent="SpinningBlades" unique_id=173381063 instance=ExtResource("3_l7fya")]
+
+[node name="EffectZone" type="Area3D" parent="." unique_id=440813166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 4.7)
+collision_layer = 0
+script = ExtResource("4_e7qon")
+kind = 2
+strength = 11.0
+direction = Vector3(0, 0, 1)
+pulse_period = 5.0
+
+[node name="@CollisionShape3D@6" type="CollisionShape3D" parent="EffectZone" unique_id=1597186541]
+shape = SubResource("BoxShape3D_c6nda")
+
+[node name="AirRibbon" type="MeshInstance3D" parent="." unique_id=706525374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.8, 3.7)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_o1eg0")
+script = ExtResource("2_1kvns")
+mode = 2
+speed = 2.0
+axis = Vector3(0, 0, 1)
+travel = 0.7
+
+[node name="AirRibbon2" type="MeshInstance3D" parent="." unique_id=473967599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 3.7)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_ppd5l")
+script = ExtResource("2_1kvns")
+mode = 2
+speed = 2.1
+axis = Vector3(0, 0, 1)
+travel = 0.7
+
+[node name="AirRibbon3" type="MeshInstance3D" parent="." unique_id=117662788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.8, 3.7)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_7tdy1")
+script = ExtResource("2_1kvns")
+mode = 2
+speed = 2.2
+axis = Vector3(0, 0, 1)
+travel = 0.7
+
+[node name="AirRibbon4" type="MeshInstance3D" parent="." unique_id=1657777109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.6, 3.7)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_p6rhl")
+script = ExtResource("2_1kvns")
+mode = 2
+speed = 2.3
+axis = Vector3(0, 0, 1)
+travel = 0.7
+
+[node name="AirRibbon5" type="MeshInstance3D" parent="." unique_id=155665215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 3.7)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_4uelp")
+script = ExtResource("2_1kvns")
+mode = 2
+speed = 2.4
+axis = Vector3(0, 0, 1)
+travel = 0.7
+
+[node name="AirRibbon6" type="MeshInstance3D" parent="." unique_id=1736188370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.6, 3.7)
+material_override = SubResource("StandardMaterial3D_vvw80")
+mesh = SubResource("BoxMesh_xq28d")
+script = ExtResource("2_1kvns")
+mode = 2
+speed = 2.5
+axis = Vector3(0, 0, 1)
+travel = 0.7
