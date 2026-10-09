@@ -8,9 +8,10 @@ radius = 2.2
 
 [node name="Player" instance=ExtResource("1_player")]
 continuous_cd = true
-spawn_clearance = 2.2
+spawn_clearance = 1.0
 
 [node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(0.4545, 0, 0, 0, 0.4545, 0, 0, 0, 0.4545, 0, 0, 0)
 shape = SubResource("Shape_candy")
 
 [node name="MeshInstance3D" parent="CollisionShape3D" index="0"]

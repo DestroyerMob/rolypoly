@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cevfqf7pjrc1a"
-path="res://.godot/imported/walther_p88_walther_p88_albedo.jpg-31bbeb8280a56133dc790090228a7fdd.ctex"
+path.s3tc="res://.godot/imported/walther_p88_walther_p88_albedo.jpg-31bbeb8280a56133dc790090228a7fdd.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "4c04d0dc60a75fb27fe3000b240433a4"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/props/walther_p88/walther_p88_walther_p88_albedo.jpg"
-dest_files=["res://.godot/imported/walther_p88_walther_p88_albedo.jpg-31bbeb8280a56133dc790090228a7fdd.ctex"]
+dest_files=["res://.godot/imported/walther_p88_walther_p88_albedo.jpg-31bbeb8280a56133dc790090228a7fdd.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

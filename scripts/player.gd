@@ -192,9 +192,11 @@ func move(input: Vector2) -> void:
 		apply_central_force(wish * speed_force)
 		return
 
-	var direction := camera.global_basis * wish
-	direction.y = 0.0
-	direction = direction.normalized() * wish.length()
+	var right := camera.global_basis.x
+	right.y = 0.0
+	var back := camera.global_basis.z
+	back.y = 0.0
+	var direction := right.normalized() * input.x + back.normalized() * input.y
 
 	apply_central_force(direction * speed_force)
 	

@@ -8,9 +8,10 @@
 radius = 2.2
 
 [node name="Player" unique_id=706891313 instance=ExtResource("1_player")]
-spawn_clearance = 2.2
+spawn_clearance = 1.0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
+transform = Transform3D(0.4545, 0, 0, 0, 0.4545, 0, 0, 0, 0.4545, 0, 0, 0)
 shape = SubResource("Shape_scoop")
 
 [node name="MeshInstance3D" parent="CollisionShape3D" index="0" unique_id=1398664333]
@@ -21,3 +22,6 @@ mesh = null
 
 [node name="Trail" type="Node3D" parent="." index="1" unique_id=1293000586]
 script = ExtResource("3_trail")
+stamp_size = 1.4
+spacing = 0.55
+ground_reach = 0.3

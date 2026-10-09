@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmljthbnsjtd4"
-path="res://.godot/imported/m4a1_m4a1_albedo.jpg-a30097a2a44b7686b71fd251c01e536d.ctex"
+path.s3tc="res://.godot/imported/m4a1_m4a1_albedo.jpg-a30097a2a44b7686b71fd251c01e536d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "cb9a516b696988056d7b170f1fccf37f"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/props/m4a1/m4a1_m4a1_albedo.jpg"
-dest_files=["res://.godot/imported/m4a1_m4a1_albedo.jpg-a30097a2a44b7686b71fd251c01e536d.ctex"]
+dest_files=["res://.godot/imported/m4a1_m4a1_albedo.jpg-a30097a2a44b7686b71fd251c01e536d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

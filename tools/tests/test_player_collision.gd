@@ -106,11 +106,11 @@ func test_swaps() -> void:
 	rig.current_player.on_ground = false
 	rig.swap_to(PlayerRig.CHARACTERS.swap_character_1)
 	rig.current_player.set_physics_process(false)
-	var ceiling := make_box(fixture, Vector3(0, 3, 0), Vector3(20, 0.1, 20))
+	var ceiling := make_box(fixture, Vector3(0, 2.05, 0), Vector3(20, 0.1, 20))
 	await wait_physics(60)
 	var before := rig.current_player
 	rig.swap_to(PlayerRig.CHARACTERS.swap_character_4)
-	check(rig.current_player == before and is_instance_valid(before), "A swap underneath furniture must keep the original player if the larger character does not fit.")
+	check(rig.current_player == before and is_instance_valid(before), "A swap underneath furniture must keep the original player if the new character does not fit.")
 	ceiling.free()
 	fixture.free()
 	await wait_physics(2)
