@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dohfdsgyakvk0"]
 
 [ext_resource type="Script" uid="uid://btmyyfjadhpbe" path="res://scripts/LevelBuilder.gd" id="1_kkt7t"]
-[ext_resource type="PackedScene" path="res://scenes/level_editor/empty_kitchen.tscn" id="2_kitchen"]
+[ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="2_kitchen"]
 
 [node name="LevelBuilder" type="Node3D" unique_id=1059189124]
 script = ExtResource("1_kkt7t")

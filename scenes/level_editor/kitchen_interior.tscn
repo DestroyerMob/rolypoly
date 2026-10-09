@@ -1,4 +1,4 @@
-[gd_scene format=4]
+[gd_scene format=4 uid="uid://jmnrx0iw1wfc"]
 
 [ext_resource type="Script" uid="uid://cnqv1ieg4fx1y" path="res://scripts/art_box.gd" id="6_4b3au"]
 [ext_resource type="Script" uid="uid://dtpgesoo3m5gm" path="res://scripts/art_wall.gd" id="7_3hd6r"]
@@ -97,7 +97,6 @@
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Ink.tres" id="95_58atg"]
 [ext_resource type="PackedScene" uid="uid://dvtg67jwrhyp" path="res://assets/models/props/glass/Bottle_Sparkling.glb" id="96_xtg7j"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Green_Antique.tres" id="97_rdvj3"]
-[ext_resource type="PackedScene" uid="uid://dso0y73cy3syn" path="res://assets/models/props/glass/Bottle_Sphere.glb" id="98_jeutv"]
 [ext_resource type="PackedScene" uid="uid://drb837g5d5bwj" path="res://assets/models/props/glass/Bottle_Spirit.glb" id="100_jq6bm"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Frost.tres" id="101_ptfts"]
 [ext_resource type="PackedScene" uid="uid://bysgyl7fsdphn" path="res://assets/models/props/glass/Bottle_Tanqueray.glb" id="102_ja27d"]
@@ -117,8 +116,9 @@
 [ext_resource type="PackedScene" uid="uid://drgeyxwnndyp7" path="res://assets/models/props/glass/glass_white_wine_2.glb" id="116_8bp7n"]
 [ext_resource type="PackedScene" uid="uid://8nc6ied3s0ev" path="res://assets/models/props/glass/glass_white_wine_3.glb" id="117_h4yth"]
 [ext_resource type="PackedScene" uid="uid://ccwx7l8lkxnn" path="res://assets/models/props/glass/Bottle_Beer_Bottle.glb" id="118_urqcs"]
-[ext_resource type="PackedScene" path="res://scenes/lighting/kitchen_lighting.tscn" id="119_lighting"]
+[ext_resource type="PackedScene" uid="uid://cxqpi5qktlbcp" path="res://scenes/lighting/kitchen_lighting.tscn" id="119_lighting"]
 [ext_resource type="Texture2D" uid="uid://lix6rsehqbd1" path="res://assets/textures/T_Canvas_1K_N.jpg" id="120_k07j7"]
+
 [sub_resource type="Resource" id="Resource_lan4w"]
 script = ExtResource("9_2kmqn")
 size = Vector2(0.02, 0.02)
@@ -250,6 +250,9 @@ shader_parameter/world_offset = Vector3(0, 0, 0)
 shader_parameter/uv_rotation_degrees = 45.0000192375
 shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = false
+
+[sub_resource type="BoxShape3D" id="KitchenFloorCollision"]
+size = Vector3(2000, 8, 1358)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xdou"]
 diffuse_mode = 3
@@ -708,10 +711,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7j4jk")
 
-[sub_resource type="BoxShape3D" id="KitchenFloorCollision"]
-size = Vector3(2000, 8, 1358)
-
-[node name="KitchenInterior" type="Node3D"]
+[node name="KitchenInterior" type="Node3D" unique_id=1043944562]
 
 [node name="_Set" type="Node" parent="." unique_id=1760075188]
 
@@ -721,6 +721,7 @@ size = Vector3(2000, 8, 1358)
 
 [node name="Vestibule_Wall_L" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=1183502673]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -199, -151.5, 586)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(400, 380, 50)
@@ -731,6 +732,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Vestibule_Wall_R" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=1227488780]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 197, -151.5, 582)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(400, 380, 50)
@@ -741,6 +743,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Vestibule_Column_L" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=507863221]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -208, -117.5, 362)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(70, 360, 50)
@@ -751,6 +754,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Vestibule_Column_R" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=849146382]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 207, -117.5, 362)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(70, 360, 50)
@@ -761,6 +765,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="WallC_Vestibule" type="CSGCombiner3D" parent="_Set/_Shell/_Vestibule" unique_id=2086071980]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -153.5, 771)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(346, 380, 30)
@@ -770,50 +775,50 @@ flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Bench" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1481849821]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147, -101, 545)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(48, 4, 153)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="ArtBox2" type="StaticBody3D" parent="_Set/_Shell/_Vestibule/Bench" unique_id=167789178]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 50, 150)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Storage" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=809917659]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154, -151.5, 538)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(48, 100, 153)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="KeyBowl" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=992906102]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154, -51.5, 593)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(20, 20, 20)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="UmbrellaBox" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1862984535]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156, -151.5, 688)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(30, 60, 30)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Hanger" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=368816962]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -156, -151.5, 688)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(30, 180, 30)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Door" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=474568909]
-disable_mode = 2
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 99, -171.50003, 762)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(150, 300, 60)
 material = ExtResource("11_bxekb")
@@ -821,8 +826,8 @@ plan_pivot = 8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Door2" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=56781685]
-disable_mode = 2
 transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, -99, -171.50003, 761)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(100, 300, 30)
 material = ExtResource("11_bxekb")
@@ -830,8 +835,8 @@ plan_pivot = 7
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Vestibule_Steps" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1942725926]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -115, 353.85052)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(350, 16, 23)
 material = SubResource("StandardMaterial3D_0hpxb")
@@ -839,8 +844,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Step2" type="StaticBody3D" parent="_Set/_Shell/_Vestibule/Vestibule_Steps" unique_id=1065149266]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(350, 16, 25)
 material = SubResource("StandardMaterial3D_0hpxb")
@@ -849,8 +854,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Step3" type="StaticBody3D" parent="_Set/_Shell/_Vestibule/Vestibule_Steps/Step2" unique_id=541125289]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 25)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(350, 16, 25)
 material = SubResource("StandardMaterial3D_0hpxb")
@@ -859,8 +864,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallC_Bar_B_Vestibule" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1204439611]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 333.32605, -112.5, 372.1223)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 330, 30)
 material = SubResource("StandardMaterial3D_giwe5")
@@ -868,8 +873,8 @@ plan_pivot = 1
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallC_Bar_B_Vestibule2" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1552704716]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 243.32605, -112.5, 372.1223)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(90, 330, 30)
 material = SubResource("StandardMaterial3D_giwe5")
@@ -877,8 +882,8 @@ plan_pivot = 1
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallC_Bar_C_Opposite" type="StaticBody3D" parent="_Set/_Shell/_Vestibule" unique_id=1730132422]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 518.326, -100, -55.5)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(170, 320, 30)
 material = SubResource("StandardMaterial3D_d22am")
@@ -887,8 +892,8 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Ceiling" type="Node" parent="_Set/_Shell" unique_id=363451312]
 
 [node name="Ceiling" type="StaticBody3D" parent="_Set/_Shell/_Ceiling" unique_id=2074593302]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 219, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(1500, 3, 1900)
 material = SubResource("StandardMaterial3D_4fcs4")
@@ -897,28 +902,29 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Outdoor" type="Node" parent="_Set/_Shell" unique_id=946082302]
 
 [node name="Ground" type="StaticBody3D" parent="_Set/_Shell/_Outdoor" unique_id=1711875078]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, -147.5, -336.149)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(2000, 0.5, 2250)
 material = SubResource("StandardMaterial3D_v1y8m")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Terracotta_Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=921290164]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, -100, -336.14948)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(2000, 0.5, 1358)
-collision_enabled = false
 material = SubResource("ShaderMaterial_dwrp8")
+collision_enabled = false
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="FloorCollision" type="CollisionShape3D" parent="_Set/_Shell/Terracotta_Floor"]
-position = Vector3(0, -3.5, 0)
+[node name="FloorCollision" type="CollisionShape3D" parent="_Set/_Shell/Terracotta_Floor" unique_id=1490684881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
 shape = SubResource("KitchenFloorCollision")
 
 [node name="Wall_A_Range_ARTWALL" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=1031103964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -96.5, -823.4344)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(810, 320, 30)
@@ -930,6 +936,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Wall_B_Sink_ART_Wall" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=347360063]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 416, -99.5, -424)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(767, 320, 35)
@@ -941,6 +948,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="WallC_Bar_A_Fronton" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=694309896]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
 visible = false
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(420, 320, 35)
@@ -952,6 +960,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="WallC_Bar_A_Fronton2" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=933222157]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
 visible = false
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(420, 330, 35)
@@ -962,6 +971,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="WallC_Bar_A_Fronton3" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=1200364042]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 616, -106.5, 166)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(420, 330, 35)
@@ -971,24 +981,24 @@ flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Wall_C_Recess" type="StaticBody3D" parent="_Set/_Shell" unique_id=755808313]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -432.67395, -101.5, 372.1223)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(400, 320, 30)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_C_Recess2" type="StaticBody3D" parent="_Set/_Shell/Wall_C_Recess" unique_id=2086382943]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -423, 1.5, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 320, 30)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_C_Bathroom" type="StaticBody3D" parent="_Set/_Shell/Wall_C_Recess" unique_id=156332955]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -224, 1.5, -284)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(450, 320, 30)
 material = ExtResource("8_bktm0")
@@ -996,6 +1006,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_D_1_Cupboard" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=158284952]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -96)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(400, 320, 55)
@@ -1006,6 +1017,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Wall_D_2_Pantry" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=963470495]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -564)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(580, 320, 55)
@@ -1043,34 +1055,35 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 [node name="_Cupboard" type="Node" parent="_Set/_Fitout" unique_id=2104566045]
 
 [node name="Shelf1" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=967722155]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, -19.5, -96)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Shelf2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=784379161]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 26.5, -96)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=668396590]
+layers = 131073
 
 [node name="Shelf3" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=557144465]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 76.5, -96)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Shelf4" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=1823904548]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 125.5, -96)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
@@ -1079,8 +1092,8 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_ElevationA_Range" type="Node" parent="_Set/_Fitout" unique_id=846560408]
 
 [node name="Range_Band_1_Olive5" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=2006080596]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 397, 35, -807)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 800, 2)
 material = SubResource("ShaderMaterial_hwwv7")
@@ -1088,24 +1101,24 @@ bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallSplash_" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=2075981807]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(810, 37.5, 1)
 material = ExtResource("24_ra1ik")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallSplash_2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=491142336]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(810, 37.5, 1)
 material = ExtResource("24_ra1ik")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallSplash_3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1553566826]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 397.71252, 0, -428.72302)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(810, 37.5, 1)
 material = ExtResource("24_ra1ik")
@@ -1113,8 +1126,8 @@ plan_pivot = 2
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallSplash_RangeHood" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=342200873]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(205, 155, 1)
 material = ExtResource("25_xsoyv")
@@ -1123,8 +1136,8 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Rangehood" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=829433422]
 
 [node name="Mantel_Timber" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=1012760400]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 8.742279e-08, 1.0000001, 0, -1.0000001, 8.742279e-08, 1, 157, -744)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(228, 65, 12)
 material = SubResource("StandardMaterial3D_e6hn1")
@@ -1132,8 +1145,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Rangehood" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=683913649]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 158, -789)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(120, 40)
 height = 90.0
@@ -1156,8 +1169,8 @@ flame_speed = 3.8
 [node name="_BenchA_Landing_L" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1440488049]
 
 [node name="BenchA_L_1_Top" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L" unique_id=997697108]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.28746, 0, -769.723)
+disable_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_1_Top" unique_id=262973603]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
@@ -1166,6 +1179,7 @@ debug_color = Color(2.0599962e-05, 0.8140603, 0.94934267, 0.41960785)
 
 [node name="Bench_Counter_Top_L" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_1_Top" unique_id=87048914]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5000005, 0)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(300, 10, 80)
 material = SubResource("StandardMaterial3D_5st54")
@@ -1173,8 +1187,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="BenchA_L_2_Carcass" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L" unique_id=861901569]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.28746, -4.5, -771.723)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 80, 75)
 material = SubResource("StandardMaterial3D_sdlht")
@@ -1182,8 +1196,8 @@ pivot = 2
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Drawer_875mmx200mm_A" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass" unique_id=1158915670]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.51253, -21, 38)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(77, 20, 2)
 material = ExtResource("21_dkj30")
@@ -1206,8 +1220,8 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 0)
 
 [node name="Drawer_575mmx200mm_B" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass" unique_id=223870091]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.000015, -21, 38)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(59, 20, 1)
 material = ExtResource("21_dkj30")
@@ -1245,8 +1259,8 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 26, 1)
 
 [node name="Drawer_575mmx200mm_C" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass" unique_id=1304781859]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -21, 38)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(59, 20, 1)
 material = ExtResource("21_dkj30")
@@ -1284,8 +1298,8 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 26, 1)
 
 [node name="Drawer_875mmx200mm_D" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass" unique_id=420888256]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -21, 38)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(89, 20, 1)
 material = ExtResource("21_dkj30")
@@ -1321,8 +1335,8 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 26, 0)
 
 [node name="BenchA_L_3_KickBoard" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L" unique_id=710058908]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.28746, -84.5, -775.723)
+disable_mode = 2
 script = ExtResource("35_jvjdc")
 size = Vector3(300, 15, 65)
 fn = 6
@@ -1330,8 +1344,8 @@ pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="Kickboard_3000mmx150mm" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_3_KickBoard" unique_id=1883677098]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5258789e-05, -15, 33)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 15, 1)
 material = SubResource("ShaderMaterial_ku4q0")
@@ -1340,11 +1354,12 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_BenchA_Landing_R" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=154278778]
 
 [node name="BenchA_R_1_Top" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R" unique_id=103137848]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.22302, 0, -769.723)
+disable_mode = 2
 
 [node name="Bench_Counter_Top_R" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_1_Top" unique_id=1032096824]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 2)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(300, 10.6, 80)
 material = SubResource("StandardMaterial3D_3dniq")
@@ -1357,8 +1372,8 @@ shape = SubResource("BoxShape3D_vk1ru")
 debug_color = Color(2.0599962e-05, 0.8140603, 0.94934267, 0.41960785)
 
 [node name="BenchA_R_2_Carcass" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R" unique_id=1480248163]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.22302, -4.5, -771.723)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 80, 75)
 material = SubResource("StandardMaterial3D_sdlht")
@@ -1366,8 +1381,8 @@ pivot = 2
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Drawer_875mmx200mm_A" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass" unique_id=403617430]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.51253, -21, 38)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(102, 20, 2)
 material = ExtResource("21_dkj30")
@@ -1405,8 +1420,8 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 [node name="_ToDelete_WorkingFolder" type="Node" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass" unique_id=1705145352]
 
 [node name="Drawer_575mmx200mm_B" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass" unique_id=1675843717]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.000015, -21, 38)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(52, 20, 1)
 material = ExtResource("21_dkj30")
@@ -1454,8 +1469,8 @@ material = ExtResource("21_dkj30")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="BenchA_R_3_KickBoard" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R" unique_id=720077111]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.22302, -84.5, -775.723)
+disable_mode = 2
 script = ExtResource("35_jvjdc")
 size = Vector3(300, 15, 65)
 fn = 6
@@ -1463,8 +1478,8 @@ pivot = 2
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="Kickboard_3000mmx150mm" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_3_KickBoard" unique_id=608607004]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5258789e-05, -15, 33)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 15, 1)
 material = SubResource("ShaderMaterial_ku4q0")
@@ -1473,16 +1488,16 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Window_L" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1473713922]
 
 [node name="WindowFrame" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=1492637088]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 83, -827)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 92, 2)
 material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WindowFrame2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=1041847897]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 136, -827)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(80, 5, 2)
 material = ExtResource("38_bwkn4")
@@ -1495,16 +1510,16 @@ transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-
 transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -284.99988, 59, -809)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=1191849919]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246, 124, -827)
+disable_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_L/StaticBody3D" unique_id=469209966]
 shape = SubResource("BoxShape3D_5st54")
 debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="SillL" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=2112576792]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -247, 79, -795)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(150, 4, 30)
 material = ExtResource("38_bwkn4")
@@ -1513,6 +1528,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Window_Sill_Frame" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=800879906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 83.5, -826.4344)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(100, 100, 2)
 material = ExtResource("38_bwkn4")
@@ -1523,8 +1539,8 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="_Window_R" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=854169831]
 
 [node name="FloatingShelfBottom" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=743821738]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 84, -826)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 35)
 material = ExtResource("38_bwkn4")
@@ -1532,8 +1548,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="FloatingShelfMiddle2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=1658573217]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 119, -826)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 35)
 material = ExtResource("38_bwkn4")
@@ -1541,8 +1557,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="FloatingShelfTop" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=413284655]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 159, -815)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 80)
 material = ExtResource("38_bwkn4")
@@ -1550,8 +1566,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarHolder" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=1926953800]
-disable_mode = 2
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 257.27985, 159, -779)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(284, 4, 8)
 material = ExtResource("38_bwkn4")
@@ -1561,8 +1577,8 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_ElevationB_SinkWall" type="Node" parent="_Set/_Fitout" unique_id=2003959935]
 
 [node name="Maybe_Use_SinkWindow_Collision" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1702897398]
-disable_mode = 2
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 482, 106, -566)
+disable_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="_Set/_Fitout/_ElevationB_SinkWall/Maybe_Use_SinkWindow_Collision" unique_id=1883943120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18)
@@ -1572,8 +1588,8 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 [node name="_Dado" type="Node" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1460307338]
 
 [node name="Listello_Dado_Band_1_Olive5" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Dado" unique_id=1314798299]
-disable_mode = 2
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 397, 35, -429)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 380, 2)
 material = SubResource("ShaderMaterial_hwwv7")
@@ -1587,6 +1603,7 @@ transform = Transform3D(-0.02779704, 0, -7.999952, 0, 8, 0, 7.999952, 0, -0.0277
 
 [node name="Sink_Carcass" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1417026101]
 transform = Transform3D(1.192488e-08, 0, -0.9999998, 0, 0.8, 0, 1, 0, 1.1924879e-08, 353, -94.7, -583)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(303, 90, 80)
 material = ExtResource("40_wmuup")
@@ -1596,6 +1613,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Sink_Counter_Top" type="CSGCombiner3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=576990163]
 transform = Transform3D(-4.371139e-08, 1, 5.960464e-08, 8.940697e-08, 5.960466e-08, -1, -1, -4.371138e-08, -8.940697e-08, 299, -2, -579)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(302, 100, 10)
@@ -1606,16 +1624,16 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Kickboard_3000mmx150mm2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=184507412]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, -1, -4.5334684e-14, 1, 0, 1, 4.2632564e-14, -4.371139e-08, 311.22302, -99.49999, -586.723)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(309, 15, 1)
 material = SubResource("ShaderMaterial_ku4q0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Kickboard_3000mmx150mm3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=2046116858]
-disable_mode = 2
 transform = Transform3D(1, 4.2632564e-14, 0, -4.5334684e-14, 1, 0, 0, -1.8635285e-21, 1, 355.22302, -99.49999, -431.72302)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(90, 15, 1)
 material = SubResource("ShaderMaterial_ku4q0")
@@ -1690,8 +1708,8 @@ material = ExtResource("33_ybtow")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Sink_Drawer_875mmx200mm_D" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1566363059]
-disable_mode = 2
 transform = Transform3D(7.874839e-21, -6.181724e-08, -0.9999999, 8.742265e-08, 0.9999999, -6.181726e-08, 0.9999999, -8.742264e-08, 0, 306, -27.700012, -673.5)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(94.5, 20, 2)
 material = ExtResource("21_dkj30")
@@ -1727,8 +1745,8 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 26, 0)
 
 [node name="Sink_Floating_Shelf_Top" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=802472565]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.41138, 153.22371, -248.84032)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(40, 8, 240)
 material = ExtResource("41_276e3")
@@ -1737,8 +1755,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sink_Floating_Shelf_Middle" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=92306327]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 381.60205, 100.355484, -254.89783)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 8, 250)
 material = ExtResource("41_276e3")
@@ -1747,8 +1765,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sink_Floating_Shelf_Bottom" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=593343629]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.72717, 47.91716, -267.89783)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(50, 8, 270)
 material = ExtResource("41_276e3")
@@ -1757,26 +1775,26 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sill_Cap_Timber" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=269080660]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416, 29, -574)
 visible = false
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(35, 4, 300)
 material = ExtResource("42_o5p46")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sill_Cap_Timber2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1325845174]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 397, 23, -574)
 visible = false
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(3, 10, 300)
 material = ExtResource("42_o5p46")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sill_Cap_Tile_Terracota" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=511732200]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 414, 48.000076, -579)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(35, 4, 300)
 material = ExtResource("43_t6fey")
@@ -1784,8 +1802,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sill_Cap_Tile_Terracota2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=594708900]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 397, 38, -579)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(3, 13, 300)
 material = ExtResource("43_t6fey")
@@ -1794,6 +1812,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Lemon_Mural" type="MeshInstance3D" parent="_Set/_Fitout/_ElevationB_SinkWall" unique_id=1960306613]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 398.45, 50, -241)
+layers = 131073
 material_override = SubResource("StandardMaterial3D_id1ax")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_5yy73")
@@ -1801,8 +1820,8 @@ mesh = SubResource("QuadMesh_5yy73")
 [node name="_Bar" type="Node" parent="_Set/_Fitout" unique_id=1919608886]
 
 [node name="Listello_Dado_Band_1_Olive6" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1293011813]
-disable_mode = 2
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 596, 12.500013, 359)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 400, 2)
 material = SubResource("ShaderMaterial_hwwv7")
@@ -1810,8 +1829,8 @@ bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Listello_Dado_Band_1_Olive7" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1719056946]
-disable_mode = 2
 transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 333, 12.500013, 357)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 300, 2)
 material = SubResource("ShaderMaterial_hwwv7")
@@ -1819,8 +1838,8 @@ bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Listello_Dado_Band_1_Olive8" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=59141697]
-disable_mode = 2
 transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, 399, 12.500013, -40)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 200, 2)
 material = SubResource("ShaderMaterial_hwwv7")
@@ -1828,8 +1847,8 @@ bevel = 2.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Shelf_Bottom" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1059601656]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 612, 12.499992, 158)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(31, 4, 400)
 material = ExtResource("22_3hd6r")
@@ -1837,8 +1856,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Shelf_Middle" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=677921720]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 76.5, 158)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(30, 4, 400)
 material = ExtResource("22_3hd6r")
@@ -1846,8 +1865,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Shelf_Top" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1386877061]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 614, 139.5, 158)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(30, 4, 400)
 material = ExtResource("22_3hd6r")
@@ -1856,6 +1875,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Area_IceBench" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=1450698449]
 transform = Transform3D(-4.3711385e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 0, 599, -99.5, 160)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(400, 90, 208)
@@ -1866,16 +1886,16 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="IceBox_Floor" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench" unique_id=1501534072]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 48, 87)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(36, 4, 36)
 material = ExtResource("15_rjymo")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Iceboxwall" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=574798626]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 4, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(0.5, 18.5, 36)
 material = ExtResource("47_38r2j")
@@ -1883,8 +1903,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Iceboxwall4" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1268079131]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5527137e-15, 1.6420284e-15, 3.5527137e-15, 1, 18, 4, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(0.5, 35, 36)
 material = ExtResource("47_38r2j")
@@ -1892,8 +1912,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Iceboxwall2" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=507146415]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 4, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(0.5, 18.5, 36)
 material = ExtResource("47_38r2j")
@@ -1901,8 +1921,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Iceboxwall3" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1085771270]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, -1.9106855e-15, -1, -3.5527137e-15, -4.3711392e-08, 0, 4, 17)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(0.5, 18.5, 36)
 material = ExtResource("47_38r2j")
@@ -1910,8 +1930,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Iceboxwall5" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=283179918]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, -1.9106855e-15, -1, -3.5527137e-15, -4.3711392e-08, 0, 4, -17)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(0.5, 18.5, 36)
 material = ExtResource("47_38r2j")
@@ -1919,8 +1939,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1339119166]
-disable_mode = 2
 transform = Transform3D(1, -4.371139e-08, -4.371139e-08, 4.3711392e-08, 1, 0, 4.3711385e-08, -1.9106853e-15, 1, 2, 13.932015, -2.909912)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1928,8 +1948,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube2" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1879980376]
-disable_mode = 2
 transform = Transform3D(1, -5.3535306e-08, -3.090862e-08, 4.37114e-08, 0.96592593, -0.25881907, 4.3711392e-08, 0.25881907, 0.96592593, 6, 13.932015, 1.0900879)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1937,8 +1957,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube3" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=218078475]
-disable_mode = 2
 transform = Transform3D(1, -1.5999476e-08, -5.9710864e-08, 4.371139e-08, 0.8660253, 0.49999997, 4.371139e-08, -0.49999997, 0.8660253, 0, 12.200021, 2.090088)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1946,8 +1966,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube7" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1306883264]
-disable_mode = 2
 transform = Transform3D(0, -4.371139e-08, 1, -3.5527137e-15, 1, 4.3711392e-08, -1, -5.463399e-15, -3.5527137e-15, -8, 11.932016, -8.909912)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1955,8 +1975,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube8" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1982210536]
-disable_mode = 2
 transform = Transform3D(-1.2802769e-08, -8.3337625e-08, 1, 0.25881907, 0.96592593, 4.371139e-08, -0.9659259, 0.25881907, 1.3909059e-08, -1, 13.553109, -5.2231445)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1964,8 +1984,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube9" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=674539474]
-disable_mode = 2
 transform = Transform3D(1.5999476e-08, -1.5999476e-08, 0.9999999, -0.5, 0.8660253, 4.3711392e-08, -0.8660254, -0.49999997, 1.3909066e-08, -8, 12.700021, 2.9561157)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1973,8 +1993,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube4" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1155585279]
-disable_mode = 2
 transform = Transform3D(0.35355338, 0.61237246, -0.7071067, -0.8660254, 0.5, -5.7048005e-08, 0.35355335, 0.6123724, 0.7071067, -5.071106, 13.932015, 4.161133)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1982,8 +2002,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube16" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1328464371]
-disable_mode = 2
 transform = Transform3D(1, -1.5999476e-08, -5.9710864e-08, 4.371139e-08, 0.8660253, 0.49999997, 4.371139e-08, -0.49999997, 0.8660253, -13, 15.700021, 2.616333)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -1991,8 +2011,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube17" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1127657897]
-disable_mode = 2
 transform = Transform3D(0, -4.371139e-08, 1, -3.5527137e-15, 1, 4.3711392e-08, -1, -5.463399e-15, -3.5527137e-15, 3, 11.932016, -8.909912)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2000,8 +2020,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube18" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=754875292]
-disable_mode = 2
 transform = Transform3D(-1.2802769e-08, -8.3337625e-08, 1, 0.25881907, 0.96592593, 4.371139e-08, -0.9659259, 0.25881907, 1.3909059e-08, 10, 13.553109, -5.2231445)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2009,8 +2029,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube21" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1865494344]
-disable_mode = 2
 transform = Transform3D(0.25881913, -1.6858657e-08, 0.9659257, -0.48296288, 0.8660254, 0.1294096, -0.83651626, -0.49999997, 0.2241439, -15.454834, 10.129464, -1.4962158)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2018,8 +2038,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube22" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1226825434]
-disable_mode = 2
 transform = Transform3D(-0.96592593, -4.371139e-08, 0.2588191, -4.2221956e-08, 1.0000001, 1.1313343e-08, -0.25881907, -5.463399e-15, -0.9659258, -12.141113, 11.932015, 6.544861)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2027,8 +2047,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube23" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1954409601]
-disable_mode = 2
 transform = Transform3D(-0.9659259, -1.2900836e-07, 0.2588191, 0.06698725, 0.9659259, 0.25000003, -0.25000006, 0.25881907, -0.93301266, -5.1411133, 9.553108, 9.705078)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2036,8 +2056,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube24" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=51583631]
-disable_mode = 2
 transform = Transform3D(0.77451897, 0.6123726, 0.15849355, -0.22414389, 0.49999997, -0.8365164, -0.5915065, 0.6123726, 0.5245191, -11.606995, 14.316293, -4.23114)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2045,8 +2065,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube25" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1631668725]
-disable_mode = 2
 transform = Transform3D(-0.9659259, -1.2900836e-07, 0.2588191, 0.06698725, 0.9659259, 0.25000003, -0.25000006, 0.25881907, -0.93301266, 5.8588867, 9.553108, 9.705078)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2054,8 +2074,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube19" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=215697625]
-disable_mode = 2
 transform = Transform3D(1.5999476e-08, -1.5999476e-08, 0.9999999, -0.5, 0.8660253, 4.3711392e-08, -0.8660254, -0.49999997, 1.3909066e-08, 3, 12.700021, 2.9561157)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2063,8 +2083,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube20" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=569122811]
-disable_mode = 2
 transform = Transform3D(0.35355338, 0.61237246, -0.7071067, -0.8660254, 0.5, -5.7048005e-08, 0.35355335, 0.6123724, 0.7071067, -12.849243, 13.932014, 11.939331)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2072,8 +2092,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube10" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=532880513]
-disable_mode = 2
 transform = Transform3D(1, 1.5999468e-08, 5.9710864e-08, 4.371139e-08, -0.86602527, -0.50000006, 4.371139e-08, 0.50000006, -0.86602527, 0, 23.49421, 3.6522827)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2081,8 +2101,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube11" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=329276391]
-disable_mode = 2
 transform = Transform3D(0, 1.3113416e-07, -1, -3.5527137e-15, -1, -1.3113417e-07, -1, 5.7320558e-15, 0, -2, 18.932016, -8.909912)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2090,8 +2110,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube14" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=129436107]
-disable_mode = 2
 transform = Transform3D(-9.2725855e-08, 9.2725855e-08, -1, 0.70710677, -0.70710677, -1.3113416e-07, -0.70710677, -0.70710677, 3.5527137e-15, -12, 18.932016, -8.909912)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2099,8 +2119,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube15" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=493468398]
-disable_mode = 2
 transform = Transform3D(-9.2725855e-08, 9.2725855e-08, -1, 0.70710677, -0.70710677, -1.3113416e-07, -0.70710677, -0.70710677, 3.5527137e-15, 4, 18.932016, -8.909912)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2108,8 +2128,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube12" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=2116264688]
-disable_mode = 2
 transform = Transform3D(1.599947e-08, 1.0342226e-07, -0.99999994, -0.50000006, -0.8660253, -1.015199e-07, -0.8660254, 0.5, 6.0809185e-08, -4, 16.762156, -4.0079956)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2117,8 +2137,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube13" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1613729517]
-disable_mode = 2
 transform = Transform3D(0.35355353, -0.61237264, 0.70710677, -0.86602587, -0.50000006, -1.7457829e-08, 0.35355347, -0.6123724, -0.7071068, -1.4915771, 17.432014, 9.154846)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2126,8 +2146,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube5" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=593350639]
-disable_mode = 2
 transform = Transform3D(0.35355332, 0.61237246, -0.7071068, -0.92802274, 0.3244692, -0.18301266, 0.11736239, 0.7209159, 0.68301266, 2.050232, 12.650949, 5.871155)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2135,8 +2155,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Ice_Cube6" type="StaticBody3D" parent="_Set/_Fitout/_Bar/Bar_Area_IceBench/IceBox_Floor" unique_id=1824294746]
-disable_mode = 2
 transform = Transform3D(0.35355332, 0.6123723, -0.7071067, -0.5732232, 0.7391989, 0.35355327, 0.73919886, 0.28033012, 0.6123722, -4.949768, 17.906929, 7.9747314)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(5, 5, 5)
 material = ExtResource("48_ra4mq")
@@ -2145,6 +2165,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Area_Side_B" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=830689089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 482, -99.5, 343)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(200, 104, 30)
@@ -2154,6 +2175,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Coffee_Area" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=1550683031]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 460, -99.5, 0)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(120, 104, 80)
@@ -2162,8 +2184,8 @@ bevel = 0.5
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="HighBar_Table_1040mmx50mm" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=461167842]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 360, -101.5, 257)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(50, 108, 200)
 material = ExtResource("46_2unik")
@@ -2171,8 +2193,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HighBar_Table_1040mmx50mm2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=858322504]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 404, -101.5, 257)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(50, 85, 200)
 material = ExtResource("46_2unik")
@@ -2180,8 +2202,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HighBar_BenchTop" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=142390694]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 360, 4.5, 257)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(53, 5, 203)
 material = ExtResource("15_rjymo")
@@ -2189,8 +2211,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarBench_Right" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=879412806]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 553, 4.5, 279)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(93, 5, 203)
 material = ExtResource("15_rjymo")
@@ -2198,8 +2220,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarBench_Right2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=2009716970]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 446, 4.5, 343)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(125, 5, 30)
 material = ExtResource("15_rjymo")
@@ -2207,8 +2229,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarBench_Ice_Top" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=680732155]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 584, 4.5, 160)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(32, 5, 40)
 material = ExtResource("15_rjymo")
@@ -2216,8 +2238,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarBench_Ice_Top2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1447818278]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 520, 4.5, 160)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(27, 5, 40)
 material = ExtResource("15_rjymo")
@@ -2225,8 +2247,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bar_Bench_Left" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=902706492]
-disable_mode = 2
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 553, 4.5, 88)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(93, 5, 110)
 material = ExtResource("15_rjymo")
@@ -2234,8 +2256,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Coffee_Benchtop" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1562337773]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 501, 4.5, -2)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(85, 5, 204)
 material = ExtResource("15_rjymo")
@@ -2243,8 +2265,8 @@ bevel = 1.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Drawer_875mmx200mm_A" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=546759860]
-disable_mode = 2
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 430.5125, -37.5, 244)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(142, 20, 2)
 material = ExtResource("15_rjymo")
@@ -2281,8 +2303,8 @@ panel_material = ExtResource("15_rjymo")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Drawer_875mmx200mm_A3" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=285292965]
-disable_mode = 2
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 508.5125, -25.5, 117.000015)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(142, 20, 2)
 material = ExtResource("49_deogc")
@@ -2319,8 +2341,8 @@ panel_material = ExtResource("49_deogc")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Drawer_875mmx200mm_A2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=19170867]
-disable_mode = 2
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 463.5125, -25.5, 258)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 20, 2)
 material = ExtResource("46_2unik")
@@ -2358,6 +2380,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10, 0)
 
 [node name="HighBar_FootRest" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar" unique_id=2125297964]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 323, -78.5, 257)
+layers = 131073
 radius = 3.0
 height = 200.0
 sides = 24
@@ -2365,6 +2388,7 @@ material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=1810221204]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, -1, -4.3711385e-08, 4.3711392e-08, 4.371139e-08, 4.3711392e-08, 1, 10, -89, 0)
+layers = 131073
 radius = 3.0
 height = 20.0
 sides = 24
@@ -2372,30 +2396,35 @@ material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest3" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=1006846764]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 12, -89, -1.5258789e-05)
+layers = 131073
 radius = 5.0
 sides = 24
 material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest5" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=633993878]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 12, -30, -2.2888184e-05)
+layers = 131073
 radius = 5.0
 sides = 24
 material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest8" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=1961210316]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 12, 38, -3.8146973e-05)
+layers = 131073
 radius = 5.0
 sides = 24
 material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest9" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=494769829]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 12, 90, -3.0517578e-05)
+layers = 131073
 radius = 5.0
 sides = 24
 material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest4" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=628299633]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, -1, -4.3711385e-08, 4.3711392e-08, 4.371139e-08, 4.3711392e-08, 1, 10, -30, 0)
+layers = 131073
 radius = 3.0
 height = 20.0
 sides = 24
@@ -2403,6 +2432,7 @@ material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest6" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=1041391743]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, -1, -4.3711385e-08, 4.3711392e-08, 4.371139e-08, 4.3711392e-08, 1, 10, 38, -7.6293945e-06)
+layers = 131073
 radius = 3.0
 height = 20.0
 sides = 24
@@ -2410,6 +2440,7 @@ material = SubResource("ShaderMaterial_h0cav")
 
 [node name="HighBar_FootRest7" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/HighBar_FootRest" unique_id=857315507]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, -1, -4.3711385e-08, 4.3711392e-08, 4.371139e-08, 4.3711392e-08, 1, 10, 90, -7.6293945e-06)
+layers = 131073
 radius = 3.0
 height = 20.0
 sides = 24
@@ -2417,6 +2448,7 @@ material = SubResource("ShaderMaterial_h0cav")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar" unique_id=1870178525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599, 142, 371)
+layers = 131073
 use_collision = true
 radius = 55.0
 height = 5.0
@@ -2425,6 +2457,7 @@ material = ExtResource("49_deogc")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D2" unique_id=1969309954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -63, -21)
+layers = 131073
 use_collision = true
 radius = 35.0
 height = 5.0
@@ -2433,6 +2466,7 @@ material = ExtResource("49_deogc")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar" unique_id=262254156]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599, 135, -41)
+layers = 131073
 use_collision = true
 radius = 55.0
 height = 5.0
@@ -2441,6 +2475,7 @@ material = ExtResource("49_deogc")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D3" unique_id=1308797796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -58, 1)
+layers = 131073
 use_collision = true
 radius = 35.0
 height = 5.0
@@ -2449,6 +2484,7 @@ material = ExtResource("49_deogc")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/CSGCylinder3D3" unique_id=1134330191]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -113, 1)
+layers = 131073
 use_collision = true
 radius = 25.0
 height = 5.0
@@ -2456,8 +2492,8 @@ sides = 28
 material = ExtResource("49_deogc")
 
 [node name="Bar_Glass_Stemware_Rack" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=1864293851]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 455, 140, 345)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(100, 4, 30)
 material = SubResource("ShaderMaterial_gcn05")
@@ -2466,78 +2502,91 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="CSGCylinder3D_Glass_Rail" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=100717933]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 44, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail2" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=279618376]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 39, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail3" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1672783523]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 29, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail4" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=575463464]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 24, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail5" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1457629531]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 12, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail6" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=509411260]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 7, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail7" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=2051759651]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -5, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail8" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=26603018]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -10, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail9" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1335916852]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail10" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1684918305]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -27, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail11" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=861769516]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -36, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="CSGCylinder3D_Glass_Rail12" type="CSGCylinder3D" parent="_Set/_Fitout/_Bar/Bar_Glass_Stemware_Rack" unique_id=1368026825]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -41, -7.000001, 0)
+layers = 131073
 radius = 1.0
 height = 35.0
 material = SubResource("StandardMaterial3D_ultfi")
 
 [node name="Bar_Drawer" type="CSGCombiner3D" parent="_Set/_Fitout/_Bar" unique_id=1865924119]
 transform = Transform3D(-4.371139e-08, 1, 0, 4.371139e-08, 0, 1, 1, 4.371139e-08, -4.3711385e-08, 463, -13.999994, 258)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(116, 50, 15)
@@ -2554,152 +2603,152 @@ transform = Transform3D(-5.2453657e-08, 0, 1.1999999, 0, 1.1999999, 0, -1.199999
 [node name="_Pantry" type="Node" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=1127434783]
 
 [node name="WallD_Tall_A_Pantry" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=926941726]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -680.5967, -100, -569.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(4, 300, 400)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallD_Tall_B_Pantry" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1342719404]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.5967, -100, -758.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 300, 4)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallD_Tall_C_Pantry" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1561049175]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -573.926, -100, -373.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 300, 4)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="KickboardA_Pantry" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=796487529]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -653.926, -100, -565.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(50, 12, 342)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="KickboardB_Pantry" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1043055022]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, -100, -731.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 12, 50)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="test kickboard" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=996075131]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, -100, -400.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 12, 50)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="PantryCeiling" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1238794352]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -551.72, 190, -569.521)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 10, 400)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_A" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1271932267]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -648.926, -90, -565.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(60, 10, 342)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_B" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1365696862]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, -90, -726.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_C" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1979181732]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, -90, -405.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_A2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1474191066]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -648.926, -10, -565.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(60, 10, 342)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_B2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=177599164]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, -10, -726.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_C2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1457352000]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, -10, -405.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_A3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=552812809]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -648.926, 55, -565.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(60, 10, 342)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_B3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1507532184]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, 55, -726.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_C3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1427685823]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, 55, -405.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_A4" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=1391580079]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -648.926, 115, -565.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(60, 10, 342)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_B4" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=960490482]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, 115, -726.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pantry_Shelf_C4" type="StaticBody3D" parent="_Set/_Fitout/_ElevationD_Tall/_Pantry" unique_id=913463445]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -554.926, 115, -405.52075)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(248, 10, 60)
 material = ExtResource("8_bktm0")
@@ -2708,32 +2757,32 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Island" type="Node" parent="_Set/_Fitout" unique_id=1555060836]
 
 [node name="Band_1_Olive" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=398616130]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -37, -455)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 170, 2)
 material = SubResource("ShaderMaterial_hwwv7")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Band_1_Olive2" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1351100280]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -95, -455)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 170, 2)
 material = SubResource("ShaderMaterial_hwwv7")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Band_1_Olive3" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=720200495]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -37, -546)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 170, 2)
 material = SubResource("ShaderMaterial_hwwv7")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Band_1_Olive4" type="StaticBody3D" parent="_Set/_Fitout/_Island" unique_id=1455200248]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 79, -95, -546)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(6, 170, 2)
 material = SubResource("ShaderMaterial_hwwv7")
@@ -2744,6 +2793,7 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -6.139196, -9.346153, -
 
 [node name="Island_SideL" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=332390625]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -105, -99.5, -499.96198)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(120, 90, 30)
@@ -2754,8 +2804,8 @@ bevel = 2.0
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Shelf" type="StaticBody3D" parent="_Set/_Fitout/_Island/Island_SideL" unique_id=1328499690]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(81, 10, 30)
 material = ExtResource("56_bdv6g")
@@ -2764,6 +2814,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Island_SideR" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1393507974]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 93, -99.5, -499.96198)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(120, 90, 30)
@@ -2774,8 +2825,8 @@ bevel = 2.0
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Island_Shelf_R" type="StaticBody3D" parent="_Set/_Fitout/_Island/Island_SideR" unique_id=1268867997]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(81, 10, 30)
 material = ExtResource("56_bdv6g")
@@ -2784,6 +2835,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Island_Gut_A" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=227967770]
 transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -470.96198)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(170, 90, 30)
@@ -2795,6 +2847,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="ArtWall" type="CSGCombiner3D" parent="_Set/_Fitout/_Island/Island_Gut_A" unique_id=1674940679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.000061, 14)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(100, 51.5, 3)
 material = ExtResource("61_o7aku")
@@ -2804,6 +2857,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Island_Gut_B" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=1553196985]
 transform = Transform3D(-0.9999999, 0, -8.742278e-08, 0, 0.9999999, 0, 8.742277e-08, 0, -0.9999999, -6, -99.5, -529.962)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(170, 90, 30)
@@ -2815,6 +2869,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="ArtWall2" type="CSGCombiner3D" parent="_Set/_Fitout/_Island/Island_Gut_B" unique_id=145711414]
 transform = Transform3D(-1, 0, 8.7422784e-08, 0, 1, 0, -8.7422784e-08, 0, -1, -1.4305115e-06, 8.000008, 13.649963)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(100, 51.5, 3)
 material = ExtResource("61_o7aku")
@@ -2824,6 +2879,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Island_Innard" type="CSGCombiner3D" parent="_Set/_Fitout/_Island" unique_id=149595675]
 transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 0.9999999, 0, 0, 0, 0.9999999, -6, -99.5, -499.96198)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(170, 65, 31)
@@ -2835,8 +2891,8 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 [node name="_Table" type="Node" parent="_Set/_Fitout" unique_id=1934911465]
 
 [node name="Dining_Table_Counter_Top" type="StaticBody3D" parent="_Set/_Fitout/_Table" unique_id=1706996343]
-disable_mode = 2
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -4.638, -27, -98.888)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(230, 10, 230)
 material = ExtResource("15_rjymo")
@@ -2845,6 +2901,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Platform" type="CSGCombiner3D" parent="_Set/_Fitout/_Table/Dining_Table_Counter_Top" unique_id=1063795125]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -70.5, 0)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(100, 70, 100)
@@ -2858,6 +2915,7 @@ shape = SubResource("BoxShape3D_ybb3e")
 
 [node name="Bench_Bar" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=939118901]
 transform = Transform3D(-0.6941955, 0, -0.71978635, 0, 1, 0, 0.71978635, 0, -0.6941955, 105.45226, -95.5, 12.6697645)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(200, 50, 45)
@@ -2868,6 +2926,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Bench_Fridge" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=588938007]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -113.04588, -95.5, -205.70349)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(200, 50, 45)
@@ -2877,6 +2936,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Bench_Recess" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=882510338]
 transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, -121.11402, -95.5, 23.229465)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(200, 50, 45)
@@ -2886,6 +2946,7 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Bench_Sink" type="CSGCombiner3D" parent="_Set/_Fitout/_Table" unique_id=203775677]
 transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 114.80787, -95.5, -212.69244)
+layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(200, 50, 45)
@@ -2899,12 +2960,14 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Monet_WallSplash" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=992036118]
 transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -367.55, 74, 351)
+layers = 131073
 material_override = ExtResource("44_eb7p5")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_giwe5")
 
 [node name="Monet_WallSplash2" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=1547499664]
 transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, -169, 71, 497)
+layers = 131073
 material_override = SubResource("StandardMaterial3D_fq0fq")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_cb686")
@@ -2928,35 +2991,39 @@ transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -144, 2.371749, -792)
 transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, -153, 2.371749, -792)
 
 [node name="Chilli" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1148309266]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154, 106, -787)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(15, 50, 15)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Garlic" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=769992696]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 361, 106, -787)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(15, 50, 15)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Plaster_Column_Shelf_Shelving_Unit" type="MeshInstance3D" parent="_Set/_Dressing/_Props" unique_id=1286371727]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 402, 60.5, -31)
+layers = 131073
 material_override = ExtResource("38_bwkn4")
 material_overlay = ExtResource("8_bktm0")
 mesh = SubResource("CylinderMesh_5yy73")
 
 [node name="Cove_Left_Sink_Concave_Fillet" type="CSGCombiner3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=254079293]
 transform = Transform3D(0.79335344, 0, -0.6087614, 0, 1, 0, 0.6087614, 0, 0.79335344, -5.5, -0.5, -18)
+layers = 131073
 material_override = ExtResource("8_bktm0")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Left_Sink_Concave_Fillet" unique_id=527626273]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8284302, 0, -2.8284302)
+layers = 131073
 size = Vector3(20, 320, 15)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Left_Sink_Concave_Fillet" unique_id=1576671700]
 transform = Transform3D(1.0000002, 0, 3.2782555e-07, 0, 1, 0, -3.2782555e-07, 0, 1.0000002, -13.345795, -7, -1.6981506)
+layers = 131073
 operation = 2
 radius = 12.0
 height = 340.0
@@ -2964,14 +3031,17 @@ sides = 40
 
 [node name="Cove_Right_Bar_Concave_Fillet2" type="CSGCombiner3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=11026486]
 transform = Transform3D(-0.6087615, 0, 0.7933534, 0, 1, 0, -0.7933534, 0, -0.6087615, 24.5, -0.5, -9.5)
+layers = 131073
 material_override = ExtResource("8_bktm0")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Right_Bar_Concave_Fillet2" unique_id=974654985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8284302, 0, -2.8284302)
+layers = 131073
 size = Vector3(20, 320, 15)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit/Cove_Right_Bar_Concave_Fillet2" unique_id=225144199]
 transform = Transform3D(1.0000002, 0, 3.2782555e-07, 0, 1, 0, -3.2782555e-07, 0, 1.0000002, -13.345795, -7, -1.6981506)
+layers = 131073
 operation = 2
 radius = 12.0
 height = 340.0
@@ -2979,6 +3049,7 @@ sides = 40
 
 [node name="CSGCylinder3D_Shelf_Column_Top" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=1336757295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 111, 1)
+layers = 131073
 use_collision = true
 radius = 55.0
 height = 5.0
@@ -2987,6 +3058,7 @@ material = ExtResource("41_276e3")
 
 [node name="CSGCylinder3D2_Shelf_Column_Middle" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=1667930487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 61, 1)
+layers = 131073
 use_collision = true
 radius = 55.0
 height = 5.0
@@ -2995,6 +3067,7 @@ material = ExtResource("41_276e3")
 
 [node name="CSGCylinder3D2_Shelf_Column_Middle2" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/Plaster_Column_Shelf_Shelving_Unit" unique_id=1766110956]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 11, 1)
+layers = 131073
 use_collision = true
 radius = 55.0
 height = 5.0
@@ -3005,24 +3078,24 @@ material = ExtResource("41_276e3")
 transform = Transform3D(85, 0, 0, 0, 85, 0, 0, 0, 85, 328.80444, 11.4368515, -806.08417)
 
 [node name="Rug_1_Kitchen_Rattan" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=383566539]
-disable_mode = 2
 transform = Transform3D(0.9986295, 0, -0.05233596, 0, 1, 0, 0.05233596, 0, 0.9986295, 3, -99.5, -100)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(450, 2, 450)
 material = ExtResource("66_joulq")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Rug_2_Pantry_Rattan" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=909187628]
-disable_mode = 2
 transform = Transform3D(0.99939084, 0, 0.034899496, 0, 1, 0, -0.034899496, 0, 0.99939084, -532, -99.5, -576)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(150, 2, 200)
 material = ExtResource("66_joulq")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="BarStool_1" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1357199593]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81, -36, -385)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 4, 45)
 material = ExtResource("66_joulq")
@@ -3030,8 +3103,8 @@ bevel = 3.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_1" unique_id=1794948195]
-disable_mode = 2
 transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3041,8 +3114,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_1" unique_id=1441654634]
-disable_mode = 2
 transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3052,8 +3125,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_1" unique_id=1718344049]
-disable_mode = 2
 transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3063,8 +3136,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_1" unique_id=1652251539]
-disable_mode = 2
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3074,8 +3147,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_2" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=681787191]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -36, -424)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 4, 45)
 material = ExtResource("66_joulq")
@@ -3083,8 +3156,8 @@ bevel = 3.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_2" unique_id=1721385628]
-disable_mode = 2
 transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3094,8 +3167,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_2" unique_id=684875433]
-disable_mode = 2
 transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3105,8 +3178,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_2" unique_id=1402761337]
-disable_mode = 2
 transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3116,8 +3189,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_2" unique_id=642714899]
-disable_mode = 2
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3127,8 +3200,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_5" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=2094794452]
-disable_mode = 2
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 65, -36, -334)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 4, 45)
 material = ExtResource("66_joulq")
@@ -3136,8 +3209,8 @@ bevel = 3.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=922199062]
-disable_mode = 2
 transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3147,8 +3220,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=691575961]
-disable_mode = 2
 transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3158,8 +3231,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=76229106]
-disable_mode = 2
 transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3169,8 +3242,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=1212656227]
-disable_mode = 2
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3180,8 +3253,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_3" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1204371876]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -36, -567)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 4, 45)
 material = ExtResource("66_joulq")
@@ -3189,8 +3262,8 @@ bevel = 3.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=887193756]
-disable_mode = 2
 transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3200,8 +3273,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=2120082214]
-disable_mode = 2
 transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3211,8 +3284,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=526358747]
-disable_mode = 2
 transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3222,8 +3295,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=307937443]
-disable_mode = 2
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3233,8 +3306,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="BarStool_4" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=737159064]
-disable_mode = 2
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -65, -36, -593)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 4, 45)
 material = ExtResource("66_joulq")
@@ -3242,8 +3315,8 @@ bevel = 3.0
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=2141088312]
-disable_mode = 2
 transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3253,8 +3326,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=411218761]
-disable_mode = 2
 transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3264,8 +3337,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=1699883236]
-disable_mode = 2
 transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3275,8 +3348,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=1036871883]
-disable_mode = 2
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(7, 7)
 top_size = Vector2(4, 4)
@@ -3286,8 +3359,8 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="HeightChart_MarkingOnly" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1162888236]
-disable_mode = 2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -578, -99.5, 358)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(1, 220, 60)
 material = ExtResource("8_bktm0")
@@ -3295,34 +3368,38 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Iroh" type="Label3D" parent="_Set/_Dressing/_Props/HeightChart_MarkingOnly" unique_id=272101602]
 transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1.0000001, 0, -1.0000001, 0, -4.371139e-08, 1, 118, -3)
+layers = 131073
 text = "148cm - iroh 11yrs _______"
 font_size = 500
 
 [node name="Vika" type="Label3D" parent="_Set/_Dressing/_Props/HeightChart_MarkingOnly" unique_id=1231281788]
 transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1.0000001, 0, -1.0000001, 0, -4.371139e-08, 1, 140, -3)
+layers = 131073
 text = "171cm - vika 15 yrs _______"
 font_size = 500
 
 [node name="Zhe" type="Label3D" parent="_Set/_Dressing/_Props/HeightChart_MarkingOnly" unique_id=711479676]
 transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1.0000001, 0, -1.0000001, 0, -4.371139e-08, 1, 158, -3)
+layers = 131073
 text = "184cm - zhe 43 yrs _______"
 font_size = 500
 
 [node name="Ethan" type="Label3D" parent="_Set/_Dressing/_Props/HeightChart_MarkingOnly" unique_id=334641644]
 transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1.0000001, 0, -1.0000001, 0, -4.371139e-08, 1, 172, -3)
+layers = 131073
 text = "195cm - Ethan 42 yrs _______"
 font_size = 500
 
 [node name="Japanese_Divider" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=321611922]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, -99.5, 192)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(3, 360, 350)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Bathroom_Door_HallBlocker" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1739151482]
-disable_mode = 2
 transform = Transform3D(-0.86602527, 0, 0.49999997, 0, 1, 0, -0.49999997, 0, -0.86602527, -641, -99.5, 102)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(3, 240, 150)
 plan_pivot = 5
@@ -3331,84 +3408,85 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [node name="_Recess" type="Node" parent="_Set/_Dressing/_Props" unique_id=827392162]
 
 [node name="Storage" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1314004995]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -368, -99.5, 325)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(250, 85, 60)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Plant" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=2076113945]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -279, -14.5, 325)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(30, 20, 30)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Book" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=2144056328]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, -15.5, 325)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(50, 4, 40)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Book2" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1732582214]
-disable_mode = 2
 transform = Transform3D(0.9935718, 0, -0.113203205, 0, 1, 0, 0.113203205, 0, 0.9935718, -400, -11.5, 325)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(45, 2.5, 35)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=814727991]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -288, 31.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(50, 85, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting2" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1705853075]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -367, 31.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(80, 85, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting3" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1976347989]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -428, 31.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(20, 20, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting4" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=619035294]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -428, 55.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(20, 20, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting5" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1140758032]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -456, 55.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(20, 20, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting6" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=1267293400]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -456, 32.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(20, 20, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Painting7" type="StaticBody3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=831528763]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -442, 85.5, 354)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(48, 30, 5)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="ArtWall" type="CSGCombiner3D" parent="_Set/_Dressing/_Props/_Recess" unique_id=2045138255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -669, -99.5, 367)
+layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(73, 320, 20)
 material = ExtResource("8_bktm0")
@@ -3417,22 +3495,22 @@ flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Vestibule_Painting" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=279809609]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171, 22, 497)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(3, 100, 150)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Chalkboard" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1448287981]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -389, 16, -421)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(3, 60, 50)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pot Plant" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=828929871]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -360, -99.50001, 66)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(60, 60, 60)
 material = ExtResource("66_joulq")
@@ -3445,8 +3523,8 @@ size = Vector3(15, 220, 15)
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Pot Plant2" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1243386183]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -749, -99.50001, 326)
+disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(60, 60, 60)
 material = ExtResource("66_joulq")
@@ -3462,22 +3540,22 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -401, 184, -564)
 
 [node name="Table" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1636449396]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 611, -12, -549)
+disable_mode = 2
 script = ExtResource("68_688s6")
 radius = 60.0
 metadata/_custom_type_script = "uid://c3d1xouymugbb"
 
 [node name="Chair" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=846872751]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 655, -45, -611)
+disable_mode = 2
 script = ExtResource("68_688s6")
 radius = 30.0
 metadata/_custom_type_script = "uid://c3d1xouymugbb"
 
 [node name="Chair2" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1693513571]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 655, -45, -429)
+disable_mode = 2
 script = ExtResource("68_688s6")
 radius = 30.0
 metadata/_custom_type_script = "uid://c3d1xouymugbb"
@@ -3533,6 +3611,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -306, 83, -792)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -373, 3, -785)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="_Set/_Dressing/_Props/_Pots/Pot_05_Spanish_Bell6" unique_id=660500313]
+layers = 131073
 radius = 13.0
 sides = 28
 material = SubResource("StandardMaterial3D_qnvih")
@@ -3570,6 +3649,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 549, 16.499992, 29)
 
 [node name="Cork_41_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie" index="0" unique_id=805580368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.9999943, 0)
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("84_hoftm")
 surface_material_override/1 = ExtResource("85_e81kt")
@@ -3578,6 +3658,7 @@ surface_material_override/1 = ExtResource("85_e81kt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.496046, 37)
 
 [node name="Cork_35_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy" index="0" unique_id=611845711]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("87_kxeyo")
 
@@ -3585,6 +3666,7 @@ surface_material_override/1 = ExtResource("87_kxeyo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.49701, 156)
 
 [node name="Cork_28_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac" index="0" unique_id=333828398]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("85_e81kt")
 
@@ -3592,6 +3674,7 @@ surface_material_override/1 = ExtResource("85_e81kt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.50073, 109)
 
 [node name="Cork_04_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Gin" index="0" unique_id=165612601]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("90_mmmu2")
 
@@ -3599,6 +3682,7 @@ surface_material_override/1 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.499992, 181)
 
 [node name="Cork_01_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Mix" index="0" unique_id=1913193329]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("92_xl0ee")
 
@@ -3606,6 +3690,7 @@ surface_material_override/1 = ExtResource("92_xl0ee")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.498005, 299)
 
 [node name="Cork_21_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine" index="0" unique_id=1899742190]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("90_mmmu2")
 
@@ -3613,6 +3698,7 @@ surface_material_override/1 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.495989, 222)
 
 [node name="Cork_30_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum" index="0" unique_id=430706074]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("95_58atg")
 
@@ -3620,19 +3706,15 @@ surface_material_override/1 = ExtResource("95_58atg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.5, 137)
 
 [node name="Cork_26_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling" index="0" unique_id=1792930178]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("97_rdvj3")
-
-[node name="Bottle_Sphere" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=270123262 instance=ExtResource("98_jeutv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.5, 115)
-
-[node name="Cork_15_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere" index="0" unique_id=510371891]
-cast_shadow = 0
 
 [node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("100_jq6bm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)
 
 [node name="Cork_03_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit" index="0" unique_id=1572537878]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("101_ptfts")
 
@@ -3640,6 +3722,7 @@ surface_material_override/1 = ExtResource("101_ptfts")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.30527, 193)
 
 [node name="Cork_32_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray" index="0" unique_id=1329934690]
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("103_icpwo")
 
@@ -3648,6 +3731,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.499992, 109)
 
 [node name="Cork_17_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka" index="0" unique_id=822769810]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27)
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("90_mmmu2")
 
@@ -3656,6 +3740,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500008, 109)
 
 [node name="Cork_08_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey" index="0" unique_id=2004589926]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("85_e81kt")
 
@@ -3665,18 +3750,21 @@ surface_material_override/1 = ExtResource("85_e81kt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -15)
 
 [node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_Glasses/glass_champagne_flute" index="0" unique_id=2107941512]
+layers = 131073
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_collin" parent="_Set/_Dressing/_Props/_Glasses" unique_id=806423909 instance=ExtResource("107_b1rvt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -33)
 
 [node name="glass_collin_001" parent="_Set/_Dressing/_Props/_Glasses/glass_collin" index="0" unique_id=1815279021]
+layers = 131073
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_flute" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1754049589 instance=ExtResource("108_gpmgc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -50)
 
 [node name="glass_flute_001" parent="_Set/_Dressing/_Props/_Glasses/glass_flute" index="0" unique_id=874109838]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3684,6 +3772,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -65)
 
 [node name="glass_martini_001" parent="_Set/_Dressing/_Props/_Glasses/glass_martini" index="0" unique_id=602528907]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3691,6 +3780,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -85)
 
 [node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_Glasses/glass_old_fashion" index="0" unique_id=298271082]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3698,6 +3788,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -103)
 
 [node name="glass_pint_001" parent="_Set/_Dressing/_Props/_Glasses/glass_pint" index="0" unique_id=733274860]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3705,6 +3796,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -121)
 
 [node name="glass_port_001" parent="_Set/_Dressing/_Props/_Glasses/glass_port" index="0" unique_id=1156964256]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3712,6 +3804,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -139)
 
 [node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_Glasses/glass_red_wine" index="0" unique_id=1555438072]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3719,6 +3812,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -157)
 
 [node name="glass_red_wine_2_001" parent="_Set/_Dressing/_Props/_Glasses/glass_red_wine_2" index="0" unique_id=822420788]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3726,6 +3820,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -177)
 
 [node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine" index="0" unique_id=1973976248]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3733,6 +3828,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 129.5, -112)
 
 [node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine_2" index="0" unique_id=1246793934]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3740,6 +3836,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 129.5, -94)
 
 [node name="glass_white_wine_3_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine_3" index="0" unique_id=1323973741]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3749,6 +3846,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(-1, 8.742278e-08, 0, 8.742278e-08, 1, -8.742278e-08, -7.642742e-15, -8.742278e-08, -1, 396, -16.5, 282)
 
 [node name="glass_collin_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2" index="0" unique_id=1815279021]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3756,59 +3854,69 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 397, 18.032417, 339)
 
 [node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" index="0" unique_id=298271082]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_002" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=27330995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 31)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_003" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=981352560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 31)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_004" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1959790510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 31)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_005" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=2002599247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 44)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_006" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1340067564]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 44)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_007" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1858565617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 44)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_008" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=686972242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 57)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_009" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1909207788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 57)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_010" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1513907771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 57)
+layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3818,6 +3926,7 @@ transform = Transform3D(-1, 8.940697e-08, 0, 8.940697e-08, 1, -8.742277e-08, -8.
 
 [node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3" index="0" unique_id=298271082]
 transform = Transform3D(1, 6.833143e-22, 0, 7.7647016e-22, 1, 0, 0, 0, 1, 0, -9.536743e-07, 0)
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3826,6 +3935,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349, 9.499996, 310)
 
 [node name="Cork_37_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/Bottle_Beer_Bottle" index="0" unique_id=593645136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9073486e-06, 0)
+layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("85_e81kt")
 
@@ -3833,6 +3943,7 @@ surface_material_override/1 = ExtResource("85_e81kt")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 464, 136.49998, 337)
 
 [node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute2" index="0" unique_id=2107941512]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3840,6 +3951,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 448, 136.49998, 337)
 
 [node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine2" index="0" unique_id=1555438072]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3847,6 +3959,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 417, 136.49998, 337)
 
 [node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_4" index="0" unique_id=1246793934]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3854,6 +3967,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 431, 136.49998, 337)
 
 [node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine2" index="0" unique_id=1973976248]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3862,6 +3976,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.7484555e-07, 0, -1.7484555e-07, 1, 352,
 
 [node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine4" index="0" unique_id=1973976248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.67572e-06, 0)
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3869,6 +3984,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 464, 136.49998, 352)
 
 [node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute3" index="0" unique_id=2107941512]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3876,6 +3992,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 448, 136.49998, 352)
 
 [node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine3" index="0" unique_id=1555438072]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3883,6 +4000,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 417, 136.49998, 352)
 
 [node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_5" index="0" unique_id=1246793934]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3890,6 +4008,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 431, 136.49998, 352)
 
 [node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine3" index="0" unique_id=1973976248]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3897,6 +4016,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 497, 136.49998, 337)
 
 [node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf" index="0" unique_id=602528907]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3904,6 +4024,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 497, 136.49998, 351)
 
 [node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf2" index="0" unique_id=602528907]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3911,6 +4032,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 482, 136.49998, 337)
 
 [node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf3" index="0" unique_id=602528907]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3918,6 +4040,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 transform = Transform3D(-1, 8.742278e-08, -7.642742e-15, 8.742278e-08, 1, -8.742278e-08, 0, -8.742278e-08, -1, 360, 9.5, 264)
 
 [node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf4" index="0" unique_id=602528907]
+layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
 
@@ -3926,22 +4049,22 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="_LightBlocker" type="Node" parent="_Lighting" unique_id=901479179]
 
 [node name="LightBlocker" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=989433804]
-disable_mode = 2
 transform = Transform3D(-2.9802322e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -2.9802322e-08, -168, -181, 941)
+disable_mode = 2
 script = ExtResource("35_jvjdc")
 size = Vector3(10, 450, 1500)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="LightBlocker2" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=2088511340]
-disable_mode = 2
 transform = Transform3D(-0.9999999, 0, -7.3513704e-08, 0, 1, 0, 7.3513704e-08, 0, -0.9999999, -750, -181, -750)
+disable_mode = 2
 script = ExtResource("35_jvjdc")
 size = Vector3(10, 450, 1500)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
 
 [node name="LightBlocker3" type="StaticBody3D" parent="_Lighting/_LightBlocker" unique_id=1971700480]
-disable_mode = 2
 transform = Transform3D(0.9999999, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 0.9999999, -602, -181, 784)
+disable_mode = 2
 script = ExtResource("35_jvjdc")
 size = Vector3(10, 450, 800)
 metadata/_custom_type_script = "uid://bdadou88ia27u"
@@ -4018,8 +4141,8 @@ height = 74.0
 sides = 28
 
 [node name="TaperBox" type="StaticBody3D" parent="." unique_id=899963751]
-disable_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -230, 3, -870)
+disable_mode = 2
 script = ExtResource("29_gwba6")
 bottom_size = Vector2(80, 15)
 top_size = Vector2(100, 15)
@@ -4036,7 +4159,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling"]
-[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sphere"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]

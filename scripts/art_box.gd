@@ -85,14 +85,7 @@ func _rebuild() -> void:
 #Job 3: Build the visual from size, as nothing connects the export to the
 #       mesh. Below the threshold we use BoxMesh, which is 12 triangles and
 #       free. Above it we generate a chamfered box, which is 44.
-	var limit := minf(minf(size.x, size.y), size.z) * 0.49
-	var b := clampf(bevel, 0.0, limit)
-	if b <= 0.001:
-		var mesh := BoxMesh.new()
-		mesh.size = size
-		_mesh_node.mesh = mesh
-	else:
-		_mesh_node.mesh = _build_beveled_box(size, b)
+	_mesh_node.mesh = BoxBuilder.box_mesh(size, bevel)
 	_mesh_node.material_override = material
 #Job 4: Build the collider from the SAME size, as a mismatch here is an invisible wall or a floor that is not there.
 	var shape := BoxShape3D.new()
