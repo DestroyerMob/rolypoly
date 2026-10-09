@@ -78,6 +78,20 @@ The full post-processing setup uses the project's Forward+ renderer.
 - Select **Scale / T** to drag **X / Y / Z** and scale one axis, or **↗** to scale
   all axes together. **Escape** cancels a move, rotation, or scale drag.
   Each drag is one undo step.
+- Many objects have a **Properties** section in the inspector once selected: the
+  blender's force, range and spin time, rolling pin and ladle speeds, masher and knife
+  timings, grill and ice settings, and each gun's fire rate, pellets and spread. Changed
+  values are saved with the level, show a **↺** button to restore the default, and can
+  be undone. To expose another setting, add it to `scripts/level_editor/item_properties.gd`.
+- Most objects also have a **Primary colour** at the top of Properties, such as the
+  blender's red, the oven's enamel, a platform's grid or a funnel's body. Pick any
+  colour; related shades on the same object follow it, and on textured models only
+  the colourful part changes. **↺** restores the original colour. To make another
+  object recolourable, list its material, mesh or shader colour in
+  `scripts/level_editor/item_colours.gd`.
+- **Player character** in the toolbar chooses who the level is played as (Onion, Egg,
+  Tomato, Ice cream or Lollipop). The character stands on the start marker while you
+  edit, and players can't swap characters during the level.
 - Edit position, rotation, and scale in the inspector. **] / [** rotates
   the selected object or placement preview by 15 degrees.
 - **M** moves a selected object to the next world click. **Escape** cancels.
@@ -99,9 +113,10 @@ new start moves the single starting point. Incomplete layouts can be saved as
 
 ### Playing a custom level
 
-Custom levels use the same character rig and equipment as the rest of the game:
-**WASD** to roll, **Space** to jump, **1–5** to change character, **left click** to
-activate equipment, and **R** to respawn. Pickups automatically connect to the
+Custom levels use the same character rig and equipment as the rest of the game, but
+always play as the level's chosen character; the **1–5** character keys are turned
+off. **WASD** to roll, **Space** to jump, **left click** to activate equipment, and
+**R** to respawn. Pickups automatically connect to the
 active character's equipment mount. Falling below the course respawns the player.
 
 **Escape** pauses physics and opens Resume, Restart, Edit, My levels, and Main

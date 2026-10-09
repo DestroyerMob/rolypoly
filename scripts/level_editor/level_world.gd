@@ -18,7 +18,7 @@ func build(document: Dictionary, editing: bool) -> void:
 		for entry in document.objects:
 			if entry.id == "spawn":
 				start_position = Catalog.vector(entry.position)
-		_create_player()
+		_create_player(Catalog.player_of(document))
 	for index in document.objects.size():
 		var entry: Dictionary = document.objects[index]
 		var node := Catalog.instantiate(entry, mount)
@@ -26,6 +26,8 @@ func build(document: Dictionary, editing: bool) -> void:
 		var preview := node.get_node_or_null("EditorPreview") as Node3D
 		if preview != null:
 			preview.visible = editing
+			if editing and entry.id == "spawn":
+				preview.add_child(character_preview(Catalog.player_of(document)))
 		add_child(node)
 		objects.append(node)
 		fall_height = minf(fall_height, node.position.y - 30.0)
@@ -38,10 +40,11 @@ func build(document: Dictionary, editing: bool) -> void:
 		_update_spawn(rig.current_player)
 		rig.current_player.respawn(rig.current_player.spawn_position)
 
-func _create_player() -> void:
+func _create_player(character: String) -> void:
 	rig = PlayerRig.new()
 	rig.name = "PlayerRig"
-	var player: Player = preload("res://packed_scenes/player_onion.tscn").instantiate()
+	rig.allow_character_swap = false
+	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
 	player.position = start_position + Vector3.UP * 2.2
 	rig.add_child(player)
 	var pivot := CameraPivot.new()
@@ -80,6 +83,33 @@ func _on_completed(_player: Player) -> void:
 	if not _finished:
 		_finished = true
 		completed.emit.call_deferred()
+
+## The level's character standing on the start marker, as meshes only.
+static func character_preview(character: String) -> Node3D:
+	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
+	var model := Node3D.new()
+	model.name = "Character"
+	model.position = Vector3.UP * maxf(player.spawn_clearance, player.get_collision_clearance() + 0.05)
+	for node in player.find_children("*", "MeshInstance3D", true, false):
+		var source := node as MeshInstance3D
+		var relative := Transform3D.IDENTITY
+		var shown := source.mesh != null
+		var current: Node3D = source
+		while current != player:
+			shown = shown and current.visible
+			relative = current.transform * relative
+			current = current.get_parent_node_3d()
+		if not shown:
+			continue
+		var visual := MeshInstance3D.new()
+		visual.mesh = source.mesh
+		visual.transform = relative
+		visual.material_override = source.material_override
+		for surface in source.get_surface_override_material_count():
+			visual.set_surface_override_material(surface, source.get_surface_override_material(surface))
+		model.add_child(visual)
+	player.free()
+	return model
 
 static func freeze_for_edit(node: Node) -> void:
 	node.process_mode = Node.PROCESS_MODE_DISABLED

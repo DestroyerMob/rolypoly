@@ -8,6 +8,7 @@ extends Node3D
 @export var model_offset := Vector3(0, -0.55, 0)
 
 var _equipped_scene: PackedScene
+var _equipped_overrides: Dictionary = {}
 var _gadget: Node3D
 
 
@@ -15,17 +16,20 @@ func _ready() -> void:
 	player_rig.player_swapped.connect(func(_player: Player): _update_attachment())
 
 
-func equip(scene: PackedScene) -> void:
+func equip(scene: PackedScene, overrides: Dictionary = {}) -> void:
 	if scene == null:
 		return
-	if scene == _equipped_scene and is_instance_valid(_gadget):
+	if scene == _equipped_scene and overrides == _equipped_overrides and is_instance_valid(_gadget):
 		if _gadget.has_method("refresh_equipment"):
 			_gadget.refresh_equipment()
 		return
 	unequip()
 	_gadget = scene.instantiate() as Node3D
+	for property_name in overrides:
+		_gadget.set(property_name, overrides[property_name])
 	add_child(_gadget)
 	_equipped_scene = scene
+	_equipped_overrides = overrides.duplicate()
 	_update_attachment()
 
 
@@ -40,6 +44,7 @@ func unequip(expected_gadget: Node3D = null) -> void:
 		_gadget.queue_free()
 	_gadget = null
 	_equipped_scene = null
+	_equipped_overrides = {}
 
 
 func _process(_delta: float) -> void:

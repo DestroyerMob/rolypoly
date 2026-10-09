@@ -2,6 +2,8 @@ class_name LevelBuilder
 extends Node3D
 
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
+const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
+const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 const World = preload("res://scripts/level_editor/level_world.gd")
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
@@ -40,6 +42,7 @@ var editor_ui: Control
 var play_ui: Control
 var status: Label
 var name_field: LineEdit
+var player_choice: OptionButton
 var category: OptionButton
 var search: LineEdit
 var palette: ItemList
@@ -56,6 +59,11 @@ var history_actions: Array[Button] = []
 var selection_hint: Label
 var selection_label: Label
 var transform_fields: Array[SpinBox] = []
+var property_section: VBoxContainer
+var _property_resets: Dictionary = {}
+var _property_defaults: Dictionary = {}
+var _colour_reset: Button
+var _colour_before: Dictionary = {}
 var play_title: Label
 var browser: Window
 var confirm: ConfirmationDialog
@@ -141,6 +149,20 @@ func _create_ui() -> void:
 	)
 	title_group.add_child(name_field)
 	save_state = _muted(title_group, "Unsaved changes")
+	var player_group := VBoxContainer.new()
+	player_group.add_theme_constant_override("separation", 3)
+	toolbar.add_child(player_group)
+	player_choice = OptionButton.new()
+	player_choice.name = "PlayerCharacter"
+	player_choice.custom_minimum_size = Vector2(170, 42)
+	player_choice.focus_mode = Control.FOCUS_NONE
+	player_choice.tooltip_text = "The character this level is played as. It can't be swapped during the level."
+	for id in Catalog.PLAYERS:
+		player_choice.add_item(Catalog.PLAYERS[id].label)
+		player_choice.set_item_metadata(player_choice.item_count - 1, id)
+	player_choice.item_selected.connect(_player_chosen)
+	player_group.add_child(player_choice)
+	_muted(player_group, "Player character")
 	_button(toolbar, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(toolbar, "Save copy", _save.bind(true))
 	_button(toolbar, "Save", _save.bind(false))
@@ -257,6 +279,9 @@ func _create_ui() -> void:
 			axis_group.add_child(field)
 			transform_fields.append(field)
 			field.value_changed.connect(_transform_changed.bind(index))
+	property_section = VBoxContainer.new()
+	property_section.add_theme_constant_override("separation", 10)
+	inspector.add_child(property_section)
 	_separator(inspector)
 	for pair in [["Focus  F", "Reposition  M"], ["Undo", "Redo"]]:
 		var row := HBoxContainer.new()
@@ -322,6 +347,7 @@ func _create_ui() -> void:
 	confirm.ok_button_text = "Discard changes"
 	add_child(confirm)
 	_fill_palette()
+	_sync_player_choice()
 	_refresh_inspector()
 
 func _panel(parent: Node, preset: int, offsets: Vector4) -> PanelContainer:
@@ -794,7 +820,193 @@ func _refresh_inspector() -> void:
 		var key: String = ["position", "rotation", "scale"][index / 3]
 		transform_fields[index].set_value_no_signal(data[key][index % 3])
 		transform_fields[index].editable = selected >= 0 or index >= 3
+	_refresh_properties()
 	_rebuilding_ui = false
+
+func _defaults_for(id: String) -> Dictionary:
+	if not _property_defaults.has(id):
+		var fresh := Catalog.instantiate(Catalog.record(id))
+		_property_defaults[id] = ItemProperties.read_defaults(id, fresh)
+		fresh.free()
+	return _property_defaults[id]
+
+func _refresh_properties() -> void:
+	for child in property_section.get_children():
+		property_section.remove_child(child)
+		child.queue_free()
+	_property_resets.clear()
+	if selected < 0:
+		property_section.hide()
+		return
+	var data: Dictionary = document.objects[selected]
+	var specs := ItemProperties.specs(data.id)
+	var reference: Variant = ItemColours.own_colour(world.objects[selected], data.id)
+	if specs.is_empty() and reference == null:
+		property_section.hide()
+		return
+	property_section.show()
+	_separator(property_section)
+	_label(property_section, "Properties", 18)
+	if reference != null:
+		_add_colour_row(data, reference)
+	var defaults := _defaults_for(data.id)
+	var values: Dictionary = data.get("properties", {})
+	for spec in specs:
+		var current: Variant = values.get(spec.name, defaults.get(spec.name))
+		var group := VBoxContainer.new()
+		group.add_theme_constant_override("separation", 4)
+		property_section.add_child(group)
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 8)
+		var control: Control
+		match spec.type:
+			"bool":
+				var toggle := CheckButton.new()
+				toggle.text = spec.label
+				toggle.button_pressed = bool(current)
+				toggle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				toggle.toggled.connect(_property_changed.bind(spec))
+				control = toggle
+			"enum":
+				_label(group, spec.label, 16)
+				var choice := OptionButton.new()
+				for option in spec.options:
+					choice.add_item(option[0])
+				for index in spec.options.size():
+					if spec.options[index][1] == int(current):
+						choice.select(index)
+				choice.custom_minimum_size.y = 42
+				choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				choice.item_selected.connect(_property_choice_changed.bind(spec))
+				control = choice
+			_:
+				_label(group, spec.label, 16)
+				var field := SpinBox.new()
+				field.min_value = spec.min
+				field.max_value = spec.max
+				field.step = spec.step if spec.type == "float" else 1
+				field.set_value_no_signal(float(current))
+				field.custom_minimum_size = Vector2(96, 42)
+				field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				field.get_line_edit().add_theme_font_size_override("font_size", 16)
+				field.value_changed.connect(_property_changed.bind(spec))
+				control = field
+		row.add_child(control)
+		var reset := _button(row, "↺", _reset_property.bind(spec))
+		reset.tooltip_text = "Restore the default for this property."
+		reset.custom_minimum_size.x = 44
+		reset.visible = values.has(spec.name)
+		_property_resets[spec.name] = reset
+		group.add_child(row)
+
+func _add_colour_row(data: Dictionary, reference: Color) -> void:
+	var group := VBoxContainer.new()
+	group.add_theme_constant_override("separation", 4)
+	property_section.add_child(group)
+	_label(group, "Primary colour", 16)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 8)
+	group.add_child(row)
+	var picker := ColorPickerButton.new()
+	picker.name = "PrimaryColour"
+	picker.edit_alpha = false
+	picker.color = ItemColours.parse(data.colour) if data.has("colour") else reference
+	picker.custom_minimum_size = Vector2(96, 42)
+	picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	picker.focus_mode = Control.FOCUS_NONE
+	picker.tooltip_text = "Recolour this object's main colour."
+	picker.pressed.connect(_colour_started)
+	picker.color_changed.connect(_colour_changed)
+	picker.popup_closed.connect(_colour_committed)
+	row.add_child(picker)
+	_colour_reset = _button(row, "↺", _reset_colour)
+	_colour_reset.tooltip_text = "Restore this object's own colour."
+	_colour_reset.custom_minimum_size.x = 44
+	_colour_reset.visible = data.has("colour")
+
+func _colour_started() -> void:
+	_colour_before = document.duplicate(true)
+
+func _colour_changed(colour: Color) -> void:
+	if _rebuilding_ui or selected < 0:
+		return
+	var data: Dictionary = document.objects[selected]
+	var node: Node3D = world.objects[selected]
+	var reference: Variant = ItemColours.own_colour(node, data.id)
+	if reference != null and ItemColours.to_text(colour) == ItemColours.to_text(reference):
+		data.erase("colour")
+	else:
+		data.colour = ItemColours.to_text(colour)
+	ItemColours.apply(node, data.id, ItemColours.parse(data.get("colour")))
+	dirty = true
+	if is_instance_valid(_colour_reset):
+		_colour_reset.visible = data.has("colour")
+
+func _colour_committed() -> void:
+	if not _colour_before.is_empty() and _colour_before != document:
+		_remember(_colour_before)
+	_colour_before = {}
+
+func _reset_colour() -> void:
+	if selected < 0 or not document.objects[selected].has("colour"):
+		return
+	_remember()
+	var data: Dictionary = document.objects[selected]
+	data.erase("colour")
+	ItemColours.apply(world.objects[selected], data.id, null)
+	_refresh_inspector()
+
+func _player_chosen(index: int) -> void:
+	var id: String = player_choice.get_item_metadata(index)
+	if id == Catalog.player_of(document):
+		return
+	_remember()
+	document.player = id
+	_rebuild_world()
+	_status("This level is now played as the %s. Players can't swap characters during it." % Catalog.PLAYERS[id].label.to_lower())
+
+func _sync_player_choice() -> void:
+	var current := Catalog.player_of(document)
+	for index in player_choice.item_count:
+		if player_choice.get_item_metadata(index) == current:
+			player_choice.select(index)
+
+func _property_choice_changed(index: int, spec: Dictionary) -> void:
+	_property_changed(spec.options[index][1], spec)
+
+func _property_changed(value: Variant, spec: Dictionary) -> void:
+	if _rebuilding_ui or selected < 0:
+		return
+	var data: Dictionary = document.objects[selected]
+	_remember()
+	var values: Dictionary = data.get("properties", {})
+	var coerced: Variant = ItemProperties.coerce(spec, value)
+	var default: Variant = _defaults_for(data.id).get(spec.name)
+	if typeof(default) != TYPE_NIL and is_equal_approx(float(coerced), float(default)):
+		values.erase(spec.name)
+	else:
+		values[spec.name] = coerced
+	_store_properties(data, values)
+	if _property_resets.has(spec.name):
+		_property_resets[spec.name].visible = values.has(spec.name)
+
+func _reset_property(spec: Dictionary) -> void:
+	if selected < 0:
+		return
+	var data: Dictionary = document.objects[selected]
+	var values: Dictionary = data.get("properties", {})
+	if not values.has(spec.name):
+		return
+	_remember()
+	values.erase(spec.name)
+	_store_properties(data, values)
+	_refresh_inspector()
+
+func _store_properties(data: Dictionary, values: Dictionary) -> void:
+	if values.is_empty():
+		data.erase("properties")
+	else:
+		data.properties = values
 
 func _transform_changed(value: float, index: int) -> void:
 	if _rebuilding_ui:
@@ -901,6 +1113,7 @@ func _after_history() -> void:
 	selected = -1
 	moving = false
 	name_field.text = document.name
+	_sync_player_choice()
 	_rebuild_world()
 	_make_ghost()
 	_refresh_inspector()
@@ -929,6 +1142,7 @@ func _load_document(next: Dictionary, next_filename: String, editing: bool) -> v
 	_completed = false
 	build_mode = editing
 	name_field.text = document.name
+	_sync_player_choice()
 	$KitchenBase.reset()
 	_rebuild_world()
 	_update_mode_ui()
@@ -985,7 +1199,7 @@ func _update_mode_ui() -> void:
 	grid.visible = build_mode and not surface_toggle.button_pressed
 	if is_instance_valid(ghost):
 		ghost.hide()
-	play_title.text = "%s\nWASD: roll · Space: jump · 1–5: character · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % document.name
+	play_title.text = "%s · playing as the %s\nWASD: roll · Space: jump · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower()]
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if build_mode else Input.MOUSE_MODE_CAPTURED
 
 func _finish() -> void:

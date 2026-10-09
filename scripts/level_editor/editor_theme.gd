@@ -26,6 +26,7 @@ static func create() -> Theme:
 	panel.content_margin_top = 18
 	panel.content_margin_bottom = 18
 	theme.set_stylebox("panel", "PanelContainer", panel)
+	theme.set_stylebox("panel", "PopupPanel", box(Color("171e29"), 12))
 	for type in ["Button", "OptionButton"]:
 		theme.set_stylebox("normal", type, box(Color("293446")))
 		theme.set_stylebox("hover", type, box(Color("35445b")))

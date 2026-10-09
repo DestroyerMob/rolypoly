@@ -121,14 +121,6 @@ corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qeeg"]
-content_margin_left = 34.0
-bg_color = Color(0.64, 0.45, 0.24, 1)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w4ni"]
 content_margin_left = 34.0
 bg_color = Color(0.98, 0.95, 0.9, 1)
@@ -161,6 +153,14 @@ corner_radius_bottom_left = 28
 shadow_color = Color(0, 0, 0, 0.2)
 shadow_size = 4
 shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qeeg"]
+content_margin_left = 34.0
+bg_color = Color(0.64, 0.45, 0.24, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
 
 [sub_resource type="Environment" id="Environment_hfrvr"]
 ambient_light_source = 2
@@ -448,7 +448,7 @@ text = "Play"
 icon = ExtResource("8_tcdr2")
 alignment = 0
 
-[node name="LevelEditorButton" type="Button" parent="MenuButtonsCenter/MenuButtons"]
+[node name="LevelEditorButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1353731887]
 custom_minimum_size = Vector2(400, 76)
 layout_mode = 2
 tooltip_text = "Create, edit, and play your saved levels."
@@ -715,7 +715,7 @@ layout_mode = 2
 level_number = 16
 unlocked = false
 
-[node name="BackButton" type="Button" parent="LevelGridCenter/LevelVBox"]
+[node name="BackButton" type="Button" parent="LevelGridCenter/LevelVBox" unique_id=911055480]
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23, 0.2, 0.27, 1)
@@ -804,7 +804,7 @@ text = "Back"
 icon = ExtResource("11_ahe7m")
 alignment = 0
 
-[node name="MenuMessage" type="AcceptDialog" parent="."]
+[node name="MenuMessage" type="AcceptDialog" parent="." unique_id=123138622]
 size = Vector2i(480, 180)
 
 [editable path="KitchenStudio"]
