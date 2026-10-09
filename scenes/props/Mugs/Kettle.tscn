@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://du4u4iq2al7oa"]
+
+[ext_resource type="PackedScene" uid="uid://dj23losexbfkv" path="res://assets/models/props/mugs/glass_kettle.glb" id="1_cvmhj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_be312"]
+height = 8.731447
+radius = 0.30615234
+
+[node name="CoffeeMachine" type="StaticBody3D" unique_id=2048380305]
+
+[node name="Sketchfab_Scene" parent="." unique_id=1205831735 instance=ExtResource("1_cvmhj")]
+transform = Transform3D(120, 0, 0, 0, 120, 0, 0, 0, 120, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=695774836]
+transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 50, 0.14675903, 22.457695, -0.9153061)
+shape = SubResource("CylinderShape3D_be312")

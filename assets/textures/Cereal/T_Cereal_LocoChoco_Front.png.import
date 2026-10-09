@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3mwrhs7w541r"
-path.s3tc="res://.godot/imported/T_Cereal_LocoChoco_Front.png-900acf99f240ca4e5d4fd5dbdae0cb83.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_Cereal_Locochoco_Front.png-c8efad4c8e8f5016ac5b973df76d358d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/Cereal/T_Cereal_LocoChoco_Front.png"
-dest_files=["res://.godot/imported/T_Cereal_LocoChoco_Front.png-900acf99f240ca4e5d4fd5dbdae0cb83.s3tc.ctex"]
+source_file="res://assets/textures/Cereal/T_Cereal_Locochoco_Front.png"
+dest_files=["res://.godot/imported/T_Cereal_Locochoco_Front.png-c8efad4c8e8f5016ac5b973df76d358d.s3tc.ctex"]
 
 [params]
 

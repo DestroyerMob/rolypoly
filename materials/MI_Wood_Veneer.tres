@@ -1,28 +1,3 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dvo03fubf0pyh"]
 
-[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_ombwv"]
-[ext_resource type="Texture2D" uid="uid://cb8dqdsimxxts" path="res://assets/textures/T_Veneer_Oak_1K_BC.jpg" id="2_hhfkv"]
-[ext_resource type="Texture2D" uid="uid://bb2vcfs5grugu" path="res://assets/textures/T_Wood_Veneer_Smoke_1K_AO.jpg" id="3_31n1l"]
-[ext_resource type="Texture2D" uid="uid://ru6t0skygcwa" path="res://assets/textures/T_Veneer_Mahogany_1K_R.jpg" id="4_hhfkv"]
-
 [resource]
-render_priority = 0
-shader = ExtResource("1_ombwv")
-shader_parameter/albedo_texture = ExtResource("2_hhfkv")
-shader_parameter/albedo_tint = Color(0.9902747, 0.9214176, 0.8588549, 1)
-shader_parameter/albedo_brightness = 1.0
-shader_parameter/roughness_value = 0.5
-shader_parameter/use_roughness_map = false
-shader_parameter/roughness_map = ExtResource("4_hhfkv")
-shader_parameter/metallic_value = 0.0
-shader_parameter/use_metallic_map = false
-shader_parameter/use_ao_map = false
-shader_parameter/ao_map = ExtResource("3_31n1l")
-shader_parameter/ao_strength = 0.5650000268375
-shader_parameter/use_normal_map = false
-shader_parameter/normal_strength = 1.0
-shader_parameter/world_scale = 100.0
-shader_parameter/triplanar_sharpness = 4.0
-shader_parameter/world_offset = Vector3(0, 0, 0)
-shader_parameter/uv_rotation_degrees = 90.00002137500002
-shader_parameter/world_space = true

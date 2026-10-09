@@ -14,20 +14,28 @@
 [ext_resource type="Texture2D" uid="uid://tdihhh0x4uy5" path="res://assets/textures/T_Tile_Marble_White_Square_N.jpg" id="16_1h32m"]
 [ext_resource type="Texture2D" uid="uid://d0mandarnla3j" path="res://assets/textures/T_Plaster_Cream_1K_BC.jpg" id="16_k87re"]
 [ext_resource type="Texture2D" uid="uid://b1t1bv6y2fxpr" path="res://assets/textures/T_Tile_Marble_White_Square_R.jpg" id="17_4b3au"]
+[ext_resource type="Texture2D" uid="uid://ko8ldgtv7gaf" path="res://assets/textures/T_Parquet_Herringbone_2K_BC.png" id="17_5kits"]
 [ext_resource type="Texture2D" uid="uid://rt3cjjl3vlyd" path="res://assets/textures/T_Plaster_Cream_1K_N.jpg" id="17_5unwe"]
 [ext_resource type="Texture2D" uid="uid://bmtiie2lv1ow4" path="res://assets/textures/T_Plaster_Cream_1K_R.jpg" id="18_5l36o"]
+[ext_resource type="Texture2D" uid="uid://nwmbiia5m8w6" path="res://assets/textures/T_Parquet_Herringbone_2K_N.png" id="18_bbx8u"]
 [ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="19_2x6kh"]
+[ext_resource type="Texture2D" uid="uid://7ukuie0sh0ac" path="res://assets/textures/T_Parquet_Herringbone_2K_R.png" id="19_034a4"]
 [ext_resource type="Script" uid="uid://cvm1bwyngmoo6" path="res://scripts/shaker_front.gd" id="20_41g6l"]
 [ext_resource type="Material" uid="uid://di6vys64e5mws" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical.tres" id="21_dkj30"]
 [ext_resource type="Material" uid="uid://73oilnhtlhuw" path="res://materials/generated/MI_Tile_Marble_White_Square.tres" id="22_3hd6r"]
 [ext_resource type="Material" uid="uid://l64gnvxuxvnn" path="res://materials/generated/MI_Tile_Pattern_Star_2x2.tres" id="22_c7xed"]
 [ext_resource type="Texture2D" uid="uid://b2cxff3v7r4pc" path="res://assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_BC.png" id="23_h73ud"]
 [ext_resource type="Material" uid="uid://1i4mo8jhsmr4" path="res://materials/generated/MI_Tile_Floor_Pattern.tres" id="24_ra1ik"]
+[ext_resource type="PackedScene" uid="uid://cqeksmyrsuffi" path="res://scenes/props/Mugs/CoffeeMachine.tscn" id="25_cl14r"]
 [ext_resource type="Material" uid="uid://boqojjhh1yium" path="res://materials/generated/MI_Tile_Marble_Verde_Guatemala_Square.tres" id="25_xsoyv"]
+[ext_resource type="PackedScene" uid="uid://du4u4iq2al7oa" path="res://scenes/props/Mugs/Kettle.tscn" id="26_07215"]
 [ext_resource type="Texture2D" uid="uid://bec7yg1mgwc7p" path="res://assets/textures/T_Timber_Log_2K_BC.png" id="26_p8vsx"]
 [ext_resource type="Texture2D" uid="uid://dtwpmsjl2r5va" path="res://assets/textures/T_Timber_Log_2K_N.png" id="27_fco7q"]
+[ext_resource type="PackedScene" uid="uid://oxmiguobmlpr" path="res://scenes/props/Mugs/Mug1.tscn" id="27_sqbpb"]
 [ext_resource type="Texture2D" uid="uid://dkrfxknwlclfk" path="res://assets/textures/T_Timber_Log_2K_R.png" id="28_6uptr"]
+[ext_resource type="PackedScene" uid="uid://licxy534r86i" path="res://assets/models/props/mugs/mug3.glb" id="28_kmeif"]
 [ext_resource type="Script" uid="uid://dv61u3h65bqmd" path="res://scripts/taper_box.gd" id="29_gwba6"]
+[ext_resource type="PackedScene" uid="uid://ju8ullskhbno" path="res://assets/models/props/mugs/mug4.glb" id="29_oihd8"]
 [ext_resource type="PackedScene" uid="uid://bslui6kat6cd0" path="res://scenes/building/timber_corbel.tscn" id="30_fobt1"]
 [ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="31_lhsis"]
 [ext_resource type="PackedScene" uid="uid://cl16b4t6pnt8c" path="res://scenes/props/handle_bar.tscn" id="32_f6kcy"]
@@ -38,12 +46,14 @@
 [ext_resource type="Texture2D" uid="uid://d4bdroacn0uf0" path="res://assets/textures/T_Wood_1K_N.png" id="37_bc8r4"]
 [ext_resource type="Material" uid="uid://xu5yn01xkkru" path="res://assets/models/props/Timber_Corbel_Material.tres" id="38_bwkn4"]
 [ext_resource type="PackedScene" uid="uid://c1tv3el0xi06y" path="res://scenes/obstacles/sink.tscn" id="39_8lgrn"]
+[ext_resource type="Material" uid="uid://ch26n4c5y1vjd" path="res://materials/generated/MI_Marble_White.tres" id="39_g1h74"]
 [ext_resource type="Material" uid="uid://eomjoxv35qcd" path="res://assets/models/props/Oven_Cooktop_Steel.tres" id="40_wmuup"]
 [ext_resource type="Material" uid="uid://cwemm6ktomkjx" path="res://materials/generated/MI_Wood_Planks_Scratched.tres" id="41_276e3"]
 [ext_resource type="Material" uid="uid://bf2icfp3bktrj" path="res://materials/generated/MI_Veneer_Rosewood.tres" id="42_o5p46"]
 [ext_resource type="Material" uid="uid://c7y45t8ycsuei" path="res://materials/MI_Tile_Terracotta_Square.tres" id="43_t6fey"]
 [ext_resource type="Material" uid="uid://xfvywkdxte7l" path="res://assets/models/props/MI_Mural_Lemon.tres" id="44_eb7p5"]
 [ext_resource type="Material" uid="uid://dh873wv8ijx5e" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Bar.tres" id="46_2unik"]
+[ext_resource type="PackedScene" uid="uid://806o8n01qvy3" path="res://assets/models/props/curtain.glb" id="46_oihd8"]
 [ext_resource type="Material" uid="uid://kuruu0yotrr6" path="res://materials/MI_Metal_Standard.tres" id="47_38r2j"]
 [ext_resource type="Material" uid="uid://c1swqfwc6yxdh" path="res://assets/models/props/glass/MI_Ice_Azure.tres" id="48_ra4mq"]
 [ext_resource type="Texture2D" uid="uid://b7o6g2mlwxr7y" path="res://assets/textures/lemon_tree.png" id="49_4b3au"]
@@ -53,6 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://c2vtwdwvdy41p" path="res://assets/textures/T_Limestone_TypeA_2K_R.png" id="52_5d2yu"]
 [ext_resource type="Texture2D" uid="uid://basgyk1fmie3k" path="res://assets/textures/T_Cork_1K_BC.jpg" id="53_cum8l"]
 [ext_resource type="PackedScene" uid="uid://ba84gvwit658c" path="res://scenes/props/retro_fridge_double_door.tscn" id="54_m1nqg"]
+[ext_resource type="PackedScene" uid="uid://bpflum6p7h0n4" path="res://scenes/props/wine_fridge.tscn" id="55_bbx8u"]
 [ext_resource type="PackedScene" uid="uid://1jv6g11k83jt" path="res://scenes/props/table_tapered.tscn" id="55_j7fjx"]
 [ext_resource type="Material" uid="uid://d0pshqfi7kluu" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island.tres" id="56_bdv6g"]
 [ext_resource type="Material" uid="uid://d0ajabx5lvt25" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Island_Dark.tres" id="57_5ck58"]
@@ -72,16 +83,9 @@
 [ext_resource type="PackedScene" uid="uid://c3nlffnu06w3n" path="res://assets/models/props/glass/Bottle_Oil_2.glb" id="70_oxe1n"]
 [ext_resource type="PackedScene" uid="uid://dmwemh6gww06x" path="res://assets/models/props/glass/Bottle_Cooking_Wine.glb" id="71_s6fia"]
 [ext_resource type="PackedScene" uid="uid://ck5fyg504e70f" path="res://assets/models/props/glass/Bottle_Medicine.glb" id="72_rxx31"]
-[ext_resource type="PackedScene" uid="uid://dwf5p76o47nal" path="res://assets/models/props/pots/Pot_01_Classic_Herb.glb" id="73_ik2h7"]
 [ext_resource type="PackedScene" uid="uid://dmup2oajg2jk6" path="res://assets/models/props/pots/Pot_02_Bulbous_Olive.glb" id="74_op5wv"]
-[ext_resource type="PackedScene" uid="uid://b4r6hlqex1xca" path="res://assets/models/props/pots/Pot_03_Tall_Utensil_Crock.glb" id="75_wl7a0"]
 [ext_resource type="PackedScene" uid="uid://dmjpm5uu4k6to" path="res://assets/models/props/pots/Pot_04_Low_Wide_Planter.glb" id="76_l8c56"]
 [ext_resource type="PackedScene" uid="uid://dh7dd8cci6650" path="res://assets/models/props/pots/Pot_05_Spanish_Bell.glb" id="77_pnl7f"]
-[ext_resource type="PackedScene" uid="uid://0q7wg5d887ao" path="res://assets/models/props/pots/Pot_06_Rustic_Jar.glb" id="78_ecwyj"]
-[ext_resource type="PackedScene" uid="uid://dgob41j1qbt20" path="res://assets/models/props/pots/Pot_07_Etched_Chevron.glb" id="79_m0lv4"]
-[ext_resource type="PackedScene" uid="uid://cenm8dirp755q" path="res://assets/models/props/pots/Pot_08_Etched_Diamond.glb" id="80_dgsq4"]
-[ext_resource type="PackedScene" uid="uid://cerlukg1roqkf" path="res://assets/models/props/pots/Pot_09_Etched_Wave.glb" id="81_pf3nb"]
-[ext_resource type="PackedScene" uid="uid://ylf5i2psf32h" path="res://assets/models/props/pots/Pot_10_Etched_Dot_Band.glb" id="82_xtq6i"]
 [ext_resource type="PackedScene" uid="uid://d2pep7d3jbc2v" path="res://assets/models/props/glass/Bottle_Beer_Tallie.glb" id="83_d2rd8"]
 [ext_resource type="Material" uid="uid://khfcwa1fyo47" path="res://assets/models/props/glass/MI_Metal_Maroon.tres" id="84_hoftm"]
 [ext_resource type="Material" path="res://assets/models/props/glass/MI_Glass_Amber.tres" id="85_e81kt"]
@@ -105,16 +109,11 @@
 [ext_resource type="PackedScene" uid="uid://c360ryvgw4gfo" path="res://assets/models/props/glass/Bottle_Whiskey.glb" id="105_cedu7"]
 [ext_resource type="PackedScene" uid="uid://bsvsf1q4epvj2" path="res://assets/models/props/glass/glass_champagne_flute.glb" id="106_kd3s3"]
 [ext_resource type="PackedScene" uid="uid://6q3ejl2ng41g" path="res://assets/models/props/glass/glass_collin.glb" id="107_b1rvt"]
-[ext_resource type="PackedScene" uid="uid://buvopcehwi8ka" path="res://assets/models/props/glass/glass_flute.glb" id="108_gpmgc"]
 [ext_resource type="PackedScene" uid="uid://bpumurdeie7ym" path="res://assets/models/props/glass/glass_martini.glb" id="109_a23ag"]
 [ext_resource type="PackedScene" uid="uid://bick6fw4hl0q" path="res://assets/models/props/glass/glass_old_fashion.glb" id="110_yfw85"]
-[ext_resource type="PackedScene" uid="uid://csspyr2liip6n" path="res://assets/models/props/glass/glass_pint.glb" id="111_rbyxq"]
-[ext_resource type="PackedScene" uid="uid://ck4q5j1guf7o0" path="res://assets/models/props/glass/glass_port.glb" id="112_iah2l"]
 [ext_resource type="PackedScene" uid="uid://b1txfwh5qmmm" path="res://assets/models/props/glass/glass_red_wine.glb" id="113_d6mwj"]
-[ext_resource type="PackedScene" uid="uid://21iblwyuwq73" path="res://assets/models/props/glass/glass_red_wine_2.glb" id="114_0an3k"]
 [ext_resource type="PackedScene" uid="uid://b5pppdoxvwjyx" path="res://assets/models/props/glass/glass_white_wine.glb" id="115_lt244"]
 [ext_resource type="PackedScene" uid="uid://drgeyxwnndyp7" path="res://assets/models/props/glass/glass_white_wine_2.glb" id="116_8bp7n"]
-[ext_resource type="PackedScene" uid="uid://8nc6ied3s0ev" path="res://assets/models/props/glass/glass_white_wine_3.glb" id="117_h4yth"]
 [ext_resource type="PackedScene" uid="uid://ccwx7l8lkxnn" path="res://assets/models/props/glass/Bottle_Beer_Bottle.glb" id="118_urqcs"]
 [ext_resource type="PackedScene" uid="uid://cxqpi5qktlbcp" path="res://scenes/lighting/kitchen_lighting.tscn" id="119_lighting"]
 [ext_resource type="Texture2D" uid="uid://lix6rsehqbd1" path="res://assets/textures/T_Canvas_1K_N.jpg" id="120_k07j7"]
@@ -228,26 +227,26 @@ uv1_world_triplanar = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwrp8"]
 render_priority = 0
 shader = ExtResource("19_2x6kh")
-shader_parameter/albedo_texture = ExtResource("12_mo01y")
+shader_parameter/albedo_texture = ExtResource("17_5kits")
 shader_parameter/albedo_tint = Color(0.9938753, 0.9565851, 0.94006383, 1)
-shader_parameter/albedo_brightness = 0.5390000256025
-shader_parameter/roughness_value = 0.2730000129675
+shader_parameter/albedo_brightness = 0.7490000355775
+shader_parameter/roughness_value = 0.5
 shader_parameter/use_roughness_map = true
-shader_parameter/roughness_map = ExtResource("14_qhyy3")
+shader_parameter/roughness_map = ExtResource("19_034a4")
 shader_parameter/metallic_value = 0.0
 shader_parameter/use_metallic_map = false
 shader_parameter/specular_value = 0.1310000062225
 shader_parameter/use_ao_map = false
 shader_parameter/ao_strength = 1.0
 shader_parameter/use_normal_map = true
-shader_parameter/normal_map = ExtResource("13_agtip")
-shader_parameter/normal_strength = -0.29799953915500055
+shader_parameter/normal_map = ExtResource("18_bbx8u")
+shader_parameter/normal_strength = 0.5000004987499995
 shader_parameter/normal_reconstruct_z = true
-shader_parameter/normal_flip_green = true
+shader_parameter/normal_flip_green = false
 shader_parameter/world_scale = 300.0
 shader_parameter/triplanar_sharpness = 4.0
 shader_parameter/world_offset = Vector3(0, 0, 0)
-shader_parameter/uv_rotation_degrees = 45.0000192375
+shader_parameter/uv_rotation_degrees = 0.0
 shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = false
 
@@ -271,27 +270,14 @@ uv1_world_triplanar = true
 script = ExtResource("9_2kmqn")
 size = Vector2(80, 90)
 offset = Vector2(-250, 180)
-crown_rise = 40.0
 segments = 30
-material = SubResource("StandardMaterial3D_4xdou")
-metadata/_custom_type_script = "uid://bnsr3x720g76b"
-
-[sub_resource type="Resource" id="Resource_n2rxj"]
-script = ExtResource("9_2kmqn")
-kind = 2
-size = Vector2(5, 175)
-offset = Vector2(260, 135)
-crown_rise = 190.0
-segments = 100
-depth = 29.0
 material = SubResource("StandardMaterial3D_4xdou")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
 [sub_resource type="Resource" id="Resource_e6hn1"]
 script = ExtResource("9_2kmqn")
-size = Vector2(300, 150)
-offset = Vector2(-155, 147.5)
-crown_rise = 150.0
+size = Vector2(250, 75)
+offset = Vector2(-155, 189.5)
 segments = 100
 material = SubResource("StandardMaterial3D_4xdou")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
@@ -310,19 +296,25 @@ metadata/_custom_type_script = "uid://bnsr3x720g76b"
 [sub_resource type="Resource" id="Resource_04wg3"]
 script = ExtResource("9_2kmqn")
 kind = 2
-size = Vector2(200, 200)
-offset = Vector2(0, 80)
-crown_rise = 50.0
+size = Vector2(200, 140)
+offset = Vector2(-111, 94)
 segments = 48
 depth = 50.0
 material = ExtResource("10_p78e4")
 metadata/_custom_type_script = "uid://bnsr3x720g76b"
 
+[sub_resource type="Resource" id="Resource_sqbpb"]
+script = ExtResource("9_2kmqn")
+kind = 2
+size = Vector2(200, 220)
+offset = Vector2(107, 0)
+depth = 47.0
+metadata/_custom_type_script = "uid://bnsr3x720g76b"
+
 [sub_resource type="Resource" id="Resource_rni1u"]
 script = ExtResource("9_2kmqn")
-size = Vector2(200, 280)
-offset = Vector2(0, 0)
-crown_rise = 100.0
+size = Vector2(200, 240)
+offset = Vector2(-29, 0)
 segments = 48
 depth = 50.0
 material = ExtResource("10_p78e4")
@@ -384,9 +376,6 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_vk1ru"]
 size = Vector3(300, 10, 80)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5st54"]
-albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdlht"]
 albedo_color = Color(0, 0, 0, 1)
 
@@ -415,9 +404,6 @@ shader_parameter/uv_rotation_degrees = 90.00002137500002
 shader_parameter/uv_tiling = Vector2(1, 1)
 shader_parameter/world_space = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dniq"]
-albedo_color = Color(0.7137255, 0.38039216, 0.21960784, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_5st54"]
 size = Vector3(400, 400, 3)
 
@@ -425,7 +411,6 @@ size = Vector3(400, 400, 3)
 script = ExtResource("9_2kmqn")
 size = Vector2(65, 80)
 offset = Vector2(0, 5)
-crown_rise = 30.0
 segments = 30
 depth = 3.0
 material = ExtResource("38_bwkn4")
@@ -909,7 +894,7 @@ size = Vector3(2000, 0.5, 2250)
 material = SubResource("StandardMaterial3D_v1y8m")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="Terracotta_Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=921290164]
+[node name="Main_Floor" type="StaticBody3D" parent="_Set/_Shell" unique_id=921290164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, -100, -336.14948)
 disable_mode = 2
 script = ExtResource("6_4b3au")
@@ -918,7 +903,7 @@ material = SubResource("ShaderMaterial_dwrp8")
 collision_enabled = false
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="FloorCollision" type="CollisionShape3D" parent="_Set/_Shell/Terracotta_Floor" unique_id=1490684881]
+[node name="FloorCollision" type="CollisionShape3D" parent="_Set/_Shell/Main_Floor" unique_id=1490684881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
 shape = SubResource("KitchenFloorCollision")
 
@@ -929,7 +914,7 @@ use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(810, 320, 30)
 material = ExtResource("8_bktm0")
-openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_5yy73"), SubResource("Resource_n2rxj")])
+openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_5yy73")])
 flip_cuts = true
 bevel = 1.0
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
@@ -1005,22 +990,22 @@ material = ExtResource("8_bktm0")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Wall_D_1_Cupboard" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=158284952]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -96)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.05809, -171.66449)
 layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
-size = Vector3(400, 320, 55)
+size = Vector3(550, 320, 55)
 material = ExtResource("8_bktm0")
-openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_04wg3")])
+openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_04wg3"), SubResource("Resource_sqbpb")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="Wall_D_2_Pantry" type="CSGCombiner3D" parent="_Set/_Shell" unique_id=963470495]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -564)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -417, -99.5, -617.14435)
 layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
-size = Vector3(580, 320, 55)
+size = Vector3(400, 320, 55)
 material = ExtResource("8_bktm0")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_rni1u")])
 flip_cuts = true
@@ -1055,39 +1040,59 @@ metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 [node name="_Cupboard" type="Node" parent="_Set/_Fitout" unique_id=2104566045]
 
 [node name="Shelf1" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=967722155]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, -19.5, -96)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, -6.6303368, -59.1975)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="Shelf2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=784379161]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 26.5, -96)
+[node name="CoffeeMachine" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=2048380305 instance=ExtResource("25_cl14r")]
+transform = Transform3D(-0.24530743, 0, -0.96944535, 0, 1, 0, 0.96944535, 0, -0.24530743, 57.84028, 3.24197, -2.0618591)
+
+[node name="Kettle" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=1596907989 instance=ExtResource("26_07215")]
+transform = Transform3D(-0.32391742, 0, 0.94608533, 0, 1, 0, -0.94608533, 0, -0.32391742, -61.27815, 4.2449493, -5.4871826)
+
+[node name="Mug1" parent="_Set/_Fitout/_Cupboard/Shelf1" unique_id=511841776 instance=ExtResource("27_sqbpb")]
+transform = Transform3D(0.47715876, 0, -0.8788171, 0, 1, 0, 0.8788171, 0, 0.47715876, 46.75286, 11.297783, 0.21270752)
+
+[node name="Shelf2" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=2024639761]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 81.480545, -59.1975)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(200, 4, 50)
 material = ExtResource("22_c7xed")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=668396590]
-layers = 131073
+[node name="Mug3" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1920621503 instance=ExtResource("28_kmeif")]
+transform = Transform3D(3.1601465, 0, 3.8747225, 0, 5, 0, -3.8747225, 0, 3.1601465, -79.2214, 2.1328125, 0)
 
-[node name="Shelf3" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=557144465]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 76.5, -96)
-disable_mode = 2
-script = ExtResource("6_4b3au")
-size = Vector3(200, 4, 50)
-material = ExtResource("22_c7xed")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+[node name="Mug4" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1827225859 instance=ExtResource("28_kmeif")]
+transform = Transform3D(2.961699, -1.5759505, 3.7073872, 0.6988711, 4.732746, 1.453511, -3.9673564, -0.34277523, 3.023671, -77.03606, 13.1634445, 0)
 
-[node name="Shelf4" type="StaticBody3D" parent="_Set/_Fitout/_Cupboard" unique_id=1823904548]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -415, 125.5, -96)
-disable_mode = 2
-script = ExtResource("6_4b3au")
-size = Vector3(200, 4, 50)
-material = ExtResource("22_c7xed")
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+[node name="Mug5" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1592355797 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-3.566252, 0, 3.5045466, 0, 5, 0, -3.5045466, 0, -3.566252, -54.49256, 2.1328125, 0)
+
+[node name="Mug6" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=409056691 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-3.6768208, -0.4868813, 3.3531978, 0.6988711, 4.732746, 1.4535108, -3.315504, 1.5375504, -3.4122384, -53.368584, 13.1634445, -2.0806274)
+
+[node name="Mug11" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=234736889 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-1.7182983, 0, -4.6954713, 0, 5, 0, 4.6954713, 0, -1.7182983, -30.13808, 2.1328125, 6.42099)
+
+[node name="Mug12" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1661844081 instance=ExtResource("28_kmeif")]
+transform = Transform3D(-1.5004641, 1.6013548, -4.4926906, 0.6988711, 4.732746, 1.4535108, 4.7180705, -0.19177425, -1.6440911, -32.343468, 13.1634445, 4.3403625)
+
+[node name="Mug7" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1310285378 instance=ExtResource("29_oihd8")]
+transform = Transform3D(225.83382, 0, -107.233795, 0, 250, 0, 107.233795, 0, 225.83382, 81.219154, 3.8577576, -6.684387)
+
+[node name="Mug8" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=258291184 instance=ExtResource("29_oihd8")]
+transform = Transform3D(246.78912, -16.108479, -36.546463, 21.5496, 246.3131, 36.952354, 33.6265, -39.628006, 244.5381, 82.8487, 13.964493, -6.684387)
+
+[node name="Mug9" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=1084624503 instance=ExtResource("29_oihd8")]
+transform = Transform3D(127.63572, 0, -214.96307, 0, 250, 0, 214.96307, 0, 127.63572, 59.571877, 3.9114914, -2.877777)
+
+[node name="Mug10" parent="_Set/_Fitout/_Cupboard/Shelf2" unique_id=2089655207 instance=ExtResource("29_oihd8")]
+transform = Transform3D(129.91928, 20.528477, -212.6019, 21.549597, 246.3131, 36.952354, 212.50082, -37.52923, 126.23376, 59.571884, 13.749275, -2.877777)
 
 [node name="_ElevationA_Range" type="Node" parent="_Set/_Fitout" unique_id=846560408]
 
@@ -1137,6 +1142,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Mantel_Timber" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=1012760400]
 transform = Transform3D(1, 0, 0, 0, 8.742279e-08, 1.0000001, 0, -1.0000001, 8.742279e-08, 1, 157, -744)
+visible = false
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(228, 65, 12)
@@ -1145,19 +1151,22 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Rangehood" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=683913649]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 158, -789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 137.91315, -789)
 disable_mode = 2
 script = ExtResource("29_gwba6")
-bottom_size = Vector2(120, 40)
+bottom_size = Vector2(138, 40)
+top_size = Vector2(68, 30)
 height = 90.0
 material = SubResource("StandardMaterial3D_qh0o4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="TimberCorbel_R" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=2035662424 instance=ExtResource("30_fobt1")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 109, 111, -808)
+visible = false
 
 [node name="TimberCorbel_R2" parent="_Set/_Fitout/_ElevationA_Range/_Rangehood" unique_id=1481601336 instance=ExtResource("30_fobt1")]
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, -105, 111, -808)
+visible = false
 
 [node name="_Oven" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1401073423]
 
@@ -1182,7 +1191,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5000005, 0)
 layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(300, 10, 80)
-material = SubResource("StandardMaterial3D_5st54")
+material = ExtResource("39_g1h74")
 bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
@@ -1362,7 +1371,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 2)
 layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(300, 10.6, 80)
-material = SubResource("StandardMaterial3D_3dniq")
+material = ExtResource("39_g1h74")
 bevel = 0.8
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
@@ -1536,10 +1545,13 @@ openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_qk54t")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
+[node name="Curtain" parent="_Set/_Fitout/_ElevationA_Range/_Window_L" unique_id=547980619 instance=ExtResource("46_oihd8")]
+transform = Transform3D(40, 0, 0, 0, 35, 0, 0, 0, 30, -282.55414, 82.0325, -814.2002)
+
 [node name="_Window_R" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=854169831]
 
 [node name="FloatingShelfBottom" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=743821738]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 84, -826)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 84, -792.5667)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 35)
@@ -1548,7 +1560,7 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="FloatingShelfMiddle2" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=1658573217]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 119, -826)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 119, -792.5667)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 35)
@@ -1557,7 +1569,8 @@ bevel = 0.8
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="FloatingShelfTop" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_Window_R" unique_id=413284655]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 159, -815)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.27985, 159, -781.5667)
+visible = false
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 4, 80)
@@ -1617,7 +1630,7 @@ layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(302, 100, 10)
-material = ExtResource("15_rjymo")
+material = ExtResource("39_g1h74")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_dsqmi")])
 flip_cuts = true
 bevel = 0.8
@@ -1702,6 +1715,33 @@ transform = Transform3D(1, 1.4210855e-14, 0, -1.4210855e-14, 1, 0, 0, -4.7245236
 transform = Transform3D(0.9999999, -8.7422535e-08, 4.3711392e-08, 8.742255e-08, 0.9999999, -6.181726e-08, -4.371138e-08, 6.181727e-08, 0.9999999, 352, -46.176666, -431.10004)
 script = ExtResource("20_41g6l")
 size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("33_ybtow")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Shelf" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1151166852]
+transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -1, 0, 0.5, -4.371139e-08, 353.14133, -88.34923, -422.61496)
+script = ExtResource("20_41g6l")
+size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("33_ybtow")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Shelf2" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=2022497730]
+transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 354.61548, -37.789528, -418.0792)
+script = ExtResource("20_41g6l")
+size = Vector2(92.5, 78)
+panel_depth = 1.0
+frame_depth = 1.5
+material = ExtResource("33_ybtow")
+metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
+
+[node name="Sink_End" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=588492882]
+transform = Transform3D(-4.371139e-08, 0, 0.5, 0, 1, 0, -1, 0, -2.1855694e-08, 311.64255, -57.3244, -433.73697)
+script = ExtResource("20_41g6l")
+size = Vector2(70, 100)
 panel_depth = 1.0
 frame_depth = 1.5
 material = ExtResource("33_ybtow")
@@ -2597,8 +2637,11 @@ metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
 
 [node name="_ElevationD_Tall" type="Node" parent="_Set/_Fitout" unique_id=237766516]
 
+[node name="WineFridge" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=122692770 instance=ExtResource("55_bbx8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412.1446, -97.85873, -219.78716)
+
 [node name="RetroFridgeDoubleDoor" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=756755263 instance=ExtResource("54_m1nqg")]
-transform = Transform3D(-5.2453657e-08, 0, 1.1999999, 0, 1.1999999, 0, -1.1999999, 0, -5.2453657e-08, -424.38528, -95.439995, -323.07465)
+transform = Transform3D(-5.2453657e-08, 0, 1.1999999, 0, 1.1999999, 0, -1.1999999, 0, -5.2453657e-08, -435.6, -98.92675, -315.2521)
 
 [node name="_Pantry" type="Node" parent="_Set/_Fitout/_ElevationD_Tall" unique_id=1127434783]
 
@@ -3574,29 +3617,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 376, 74.00176, -40)
 
 [node name="_Pots" type="Node" parent="_Set/_Dressing/_Props" unique_id=1122719437]
 
-[node name="Pot_01_Classic_Herb2" parent="_Set/_Dressing/_Props/_Pots" unique_id=75814398 instance=ExtResource("73_ik2h7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -20)
-
-[node name="Pot_02_Bulbous_Olive2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1443765216 instance=ExtResource("74_op5wv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -51)
-
 [node name="Pot_02_Bulbous_Olive4" parent="_Set/_Dressing/_Props/_Pots" unique_id=441753900 instance=ExtResource("74_op5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 389, 174, -68)
 
 [node name="Pot_02_Bulbous_Olive3" parent="_Set/_Dressing/_Props/_Pots" unique_id=1206196881 instance=ExtResource("74_op5wv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110, -84.50001, -476)
 
-[node name="Pot_03_Tall_Utensil_Crock2" parent="_Set/_Dressing/_Props/_Pots" unique_id=741253545 instance=ExtResource("75_wl7a0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -83)
-
-[node name="Pot_04_Low_Wide_Planter2" parent="_Set/_Dressing/_Props/_Pots" unique_id=622945479 instance=ExtResource("76_l8c56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -15.5, -122)
-
 [node name="Pot_04_Low_Wide_Planter3" parent="_Set/_Dressing/_Props/_Pots" unique_id=1134117617 instance=ExtResource("76_l8c56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108, -84.50001, -519)
-
-[node name="Pot_05_Spanish_Bell2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1256161998 instance=ExtResource("77_pnl7f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -18)
 
 [node name="Pot_05_Spanish_Bell4" parent="_Set/_Dressing/_Props/_Pots" unique_id=223601276 instance=ExtResource("77_pnl7f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209, -67.499985, 346)
@@ -3616,26 +3644,6 @@ radius = 13.0
 sides = 28
 material = SubResource("StandardMaterial3D_qnvih")
 
-[node name="Pot_06_Rustic_Jar2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1432886493 instance=ExtResource("78_ecwyj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412, -17.5, -174)
-
-[node name="Pot_05_Spanish_Bell_Fusion Pot" parent="_Set/_Dressing/_Props/_Pots" unique_id=1163047140 instance=ExtResource("77_pnl7f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -173)
-
-[node name="Pot_06_Rustic_Jar3" parent="_Set/_Dressing/_Props/_Pots/Pot_05_Spanish_Bell_Fusion Pot" unique_id=542043848 instance=ExtResource("78_ecwyj")]
-
-[node name="Pot_07_Etched_Chevron2" parent="_Set/_Dressing/_Props/_Pots" unique_id=413527041 instance=ExtResource("79_m0lv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -49)
-
-[node name="Pot_08_Etched_Diamond2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1438498134 instance=ExtResource("80_dgsq4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -77)
-
-[node name="Pot_09_Etched_Wave2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1815998939 instance=ExtResource("81_pf3nb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -109)
-
-[node name="Pot_10_Etched_Dot_Band2" parent="_Set/_Dressing/_Props/_Pots" unique_id=1833529766 instance=ExtResource("82_xtq6i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -141)
-
 [node name="_Bar_Bottles" type="Node" parent="_Set/_Dressing/_Props" unique_id=999626372]
 
 [node name="_Top_Shelf" type="Node" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=668312757]
@@ -3647,7 +3655,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -416, 30.5, -141)
 [node name="Bottle_Beer_Tallie" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1213488054 instance=ExtResource("83_d2rd8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 549, 16.499992, 29)
 
-[node name="Cork_41_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie" index="0" unique_id=805580368]
+[node name="Cork_41_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie" index="0" unique_id=104477226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.9999943, 0)
 layers = 131073
 cast_shadow = 0
@@ -3657,7 +3665,7 @@ surface_material_override/1 = ExtResource("85_e81kt")
 [node name="Bottle_Brandy" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1410180870 instance=ExtResource("86_445kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.496046, 37)
 
-[node name="Cork_35_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy" index="0" unique_id=611845711]
+[node name="Cork_35_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy" index="0" unique_id=835442650]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("87_kxeyo")
@@ -3665,7 +3673,7 @@ surface_material_override/1 = ExtResource("87_kxeyo")
 [node name="Bottle_Cognac" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=928830328 instance=ExtResource("88_qig7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.49701, 156)
 
-[node name="Cork_28_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac" index="0" unique_id=333828398]
+[node name="Cork_28_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac" index="0" unique_id=96203909]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("85_e81kt")
@@ -3673,7 +3681,7 @@ surface_material_override/1 = ExtResource("85_e81kt")
 [node name="Bottle_Gin" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1228544802 instance=ExtResource("89_k683w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.50073, 109)
 
-[node name="Cork_04_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Gin" index="0" unique_id=165612601]
+[node name="Cork_04_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Gin" index="0" unique_id=512099332]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("90_mmmu2")
@@ -3681,7 +3689,7 @@ surface_material_override/1 = ExtResource("90_mmmu2")
 [node name="Bottle_Mix" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1611469794 instance=ExtResource("91_iw7mm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.499992, 181)
 
-[node name="Cork_01_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Mix" index="0" unique_id=1913193329]
+[node name="Cork_01_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Mix" index="0" unique_id=1244448177]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("92_xl0ee")
@@ -3689,7 +3697,7 @@ surface_material_override/1 = ExtResource("92_xl0ee")
 [node name="Bottle_Moonshine" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=923030127 instance=ExtResource("93_rvdgs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.498005, 299)
 
-[node name="Cork_21_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine" index="0" unique_id=1899742190]
+[node name="Cork_21_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine" index="0" unique_id=770397007]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("90_mmmu2")
@@ -3697,7 +3705,7 @@ surface_material_override/1 = ExtResource("90_mmmu2")
 [node name="Bottle_Rum" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1240850222 instance=ExtResource("94_unh3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.495989, 222)
 
-[node name="Cork_30_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum" index="0" unique_id=430706074]
+[node name="Cork_30_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum" index="0" unique_id=730936957]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("95_58atg")
@@ -3705,7 +3713,7 @@ surface_material_override/1 = ExtResource("95_58atg")
 [node name="Bottle_Sparkling" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1893778026 instance=ExtResource("96_xtg7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 80.5, 137)
 
-[node name="Cork_26_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling" index="0" unique_id=1792930178]
+[node name="Cork_26_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling" index="0" unique_id=2042123867]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("97_rdvj3")
@@ -3713,7 +3721,7 @@ surface_material_override/1 = ExtResource("97_rdvj3")
 [node name="Bottle_Spirit" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=1043490361 instance=ExtResource("100_jq6bm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500793, 144)
 
-[node name="Cork_03_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit" index="0" unique_id=1572537878]
+[node name="Cork_03_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit" index="0" unique_id=1142816709]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("101_ptfts")
@@ -3721,7 +3729,7 @@ surface_material_override/1 = ExtResource("101_ptfts")
 [node name="Bottle_Tanqueray" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=129072707 instance=ExtResource("102_ja27d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 143.30527, 193)
 
-[node name="Cork_32_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray" index="0" unique_id=1329934690]
+[node name="Cork_32_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray" index="0" unique_id=122853907]
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("103_icpwo")
@@ -3729,7 +3737,7 @@ surface_material_override/1 = ExtResource("103_icpwo")
 [node name="Bottle_Vodka" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=824450135 instance=ExtResource("104_my48h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.499992, 109)
 
-[node name="Cork_17_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka" index="0" unique_id=822769810]
+[node name="Cork_17_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka" index="0" unique_id=2030649832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27)
 layers = 131073
 cast_shadow = 0
@@ -3738,114 +3746,18 @@ surface_material_override/1 = ExtResource("90_mmmu2")
 [node name="Bottle_Whiskey" parent="_Set/_Dressing/_Props/_Bar_Bottles" unique_id=673109816 instance=ExtResource("105_cedu7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 617, 16.500008, 109)
 
-[node name="Cork_08_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey" index="0" unique_id=2004589926]
+[node name="Cork_08_001" parent="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey" index="0" unique_id=1137481583]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 layers = 131073
 cast_shadow = 0
 surface_material_override/1 = ExtResource("85_e81kt")
-
-[node name="_Glasses" type="Node" parent="_Set/_Dressing/_Props" unique_id=1246869311]
-
-[node name="glass_champagne_flute" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1744711000 instance=ExtResource("106_kd3s3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -15)
-
-[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_Glasses/glass_champagne_flute" index="0" unique_id=2107941512]
-layers = 131073
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_collin" parent="_Set/_Dressing/_Props/_Glasses" unique_id=806423909 instance=ExtResource("107_b1rvt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -33)
-
-[node name="glass_collin_001" parent="_Set/_Dressing/_Props/_Glasses/glass_collin" index="0" unique_id=1815279021]
-layers = 131073
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_flute" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1754049589 instance=ExtResource("108_gpmgc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -50)
-
-[node name="glass_flute_001" parent="_Set/_Dressing/_Props/_Glasses/glass_flute" index="0" unique_id=874109838]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_martini" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1953578326 instance=ExtResource("109_a23ag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -65)
-
-[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_Glasses/glass_martini" index="0" unique_id=602528907]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_old_fashion" parent="_Set/_Dressing/_Props/_Glasses" unique_id=2115099948 instance=ExtResource("110_yfw85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -85)
-
-[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_Glasses/glass_old_fashion" index="0" unique_id=298271082]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_pint" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1850974338 instance=ExtResource("111_rbyxq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -103)
-
-[node name="glass_pint_001" parent="_Set/_Dressing/_Props/_Glasses/glass_pint" index="0" unique_id=733274860]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_port" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1056192440 instance=ExtResource("112_iah2l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -121)
-
-[node name="glass_port_001" parent="_Set/_Dressing/_Props/_Glasses/glass_port" index="0" unique_id=1156964256]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_red_wine" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1469127483 instance=ExtResource("113_d6mwj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -139)
-
-[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_Glasses/glass_red_wine" index="0" unique_id=1555438072]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_red_wine_2" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1621698887 instance=ExtResource("114_0an3k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -157)
-
-[node name="glass_red_wine_2_001" parent="_Set/_Dressing/_Props/_Glasses/glass_red_wine_2" index="0" unique_id=822420788]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_white_wine" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1903468633 instance=ExtResource("115_lt244")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 80.5, -177)
-
-[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine" index="0" unique_id=1973976248]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_white_wine_2" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1988383186 instance=ExtResource("116_8bp7n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 129.5, -112)
-
-[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine_2" index="0" unique_id=1246793934]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
-
-[node name="glass_white_wine_3" parent="_Set/_Dressing/_Props/_Glasses" unique_id=1457941741 instance=ExtResource("117_h4yth")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415, 129.5, -94)
-
-[node name="glass_white_wine_3_001" parent="_Set/_Dressing/_Props/_Glasses/glass_white_wine_3" index="0" unique_id=1323973741]
-layers = 131073
-cast_shadow = 0
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="_HighBar_Bench" type="Node" parent="_Set/_Dressing/_Props" unique_id=465079741]
 
 [node name="glass_collin2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1240983464 instance=ExtResource("107_b1rvt")]
 transform = Transform3D(-1, 8.742278e-08, 0, 8.742278e-08, 1, -8.742278e-08, -7.642742e-15, -8.742278e-08, -1, 396, -16.5, 282)
 
-[node name="glass_collin_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2" index="0" unique_id=1815279021]
+[node name="glass_collin_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2" index="0" unique_id=891130245]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3853,7 +3765,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_old_fashion2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1505683664 instance=ExtResource("110_yfw85")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 397, 18.032417, 339)
 
-[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" index="0" unique_id=298271082]
+[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" index="0" unique_id=2097000853]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3863,68 +3775,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 31)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_003" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=981352560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 31)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_004" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1959790510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 31)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_005" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=2002599247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 44)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_006" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1340067564]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 44)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_007" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1858565617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 44)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_008" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=686972242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103, 27, 57)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_009" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1909207788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 27, 57)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion_010" type="MeshInstance3D" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" unique_id=1513907771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 27, 57)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_ycnrp")
-surface_material_override/0 = ExtResource("90_mmmu2")
 
 [node name="glass_old_fashion3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1755733577 instance=ExtResource("110_yfw85")]
 transform = Transform3D(-1, 8.940697e-08, 0, 8.940697e-08, 1, -8.742277e-08, -8.881784e-15, -8.742277e-08, -1, 353, 9.5, 328)
 
-[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3" index="0" unique_id=298271082]
+[node name="glass_old_fashion_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3" index="0" unique_id=2097000853]
 transform = Transform3D(1, 6.833143e-22, 0, 7.7647016e-22, 1, 0, 0, 0, 1, 0, -9.536743e-07, 0)
 layers = 131073
 cast_shadow = 0
@@ -3933,7 +3836,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="Bottle_Beer_Bottle" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1417089650 instance=ExtResource("118_urqcs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349, 9.499996, 310)
 
-[node name="Cork_37_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/Bottle_Beer_Bottle" index="0" unique_id=593645136]
+[node name="Cork_37_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/Bottle_Beer_Bottle" index="0" unique_id=1693482098]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9073486e-06, 0)
 layers = 131073
 cast_shadow = 0
@@ -3942,7 +3845,7 @@ surface_material_override/1 = ExtResource("85_e81kt")
 [node name="glass_champagne_flute2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1000762205 instance=ExtResource("106_kd3s3")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 464, 136.49998, 337)
 
-[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute2" index="0" unique_id=2107941512]
+[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute2" index="0" unique_id=909651177]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3950,7 +3853,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_red_wine2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1137280624 instance=ExtResource("113_d6mwj")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 448, 136.49998, 337)
 
-[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine2" index="0" unique_id=1555438072]
+[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine2" index="0" unique_id=791179770]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3958,7 +3861,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_white_wine_4" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1135216626 instance=ExtResource("116_8bp7n")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 417, 136.49998, 337)
 
-[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_4" index="0" unique_id=1246793934]
+[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_4" index="0" unique_id=383275307]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3966,7 +3869,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_white_wine2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=944328278 instance=ExtResource("115_lt244")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 431, 136.49998, 337)
 
-[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine2" index="0" unique_id=1973976248]
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine2" index="0" unique_id=2022896582]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3974,7 +3877,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_white_wine4" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1950636899 instance=ExtResource("115_lt244")]
 transform = Transform3D(1, 0, 0, 0, 1, 1.7484555e-07, 0, -1.7484555e-07, 1, 352, 9.499994, 190)
 
-[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine4" index="0" unique_id=1973976248]
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine4" index="0" unique_id=2022896582]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.67572e-06, 0)
 layers = 131073
 cast_shadow = 0
@@ -3983,7 +3886,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_champagne_flute3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=2034225413 instance=ExtResource("106_kd3s3")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 464, 136.49998, 352)
 
-[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute3" index="0" unique_id=2107941512]
+[node name="glass_champagne_flute_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute3" index="0" unique_id=909651177]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3991,7 +3894,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_red_wine3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1640380413 instance=ExtResource("113_d6mwj")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 448, 136.49998, 352)
 
-[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine3" index="0" unique_id=1555438072]
+[node name="glass_red_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine3" index="0" unique_id=791179770]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -3999,7 +3902,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_white_wine_5" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1609121430 instance=ExtResource("116_8bp7n")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 417, 136.49998, 352)
 
-[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_5" index="0" unique_id=1246793934]
+[node name="glass_white_wine_2_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_5" index="0" unique_id=383275307]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -4007,7 +3910,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_white_wine3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=966220653 instance=ExtResource("115_lt244")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 431, 136.49998, 352)
 
-[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine3" index="0" unique_id=1973976248]
+[node name="glass_white_wine_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine3" index="0" unique_id=2022896582]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -4015,7 +3918,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_martini_shelf" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1981918274 instance=ExtResource("109_a23ag")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 497, 136.49998, 337)
 
-[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf" index="0" unique_id=602528907]
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf" index="0" unique_id=655059394]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -4023,7 +3926,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_martini_shelf2" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1575420853 instance=ExtResource("109_a23ag")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 497, 136.49998, 351)
 
-[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf2" index="0" unique_id=602528907]
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf2" index="0" unique_id=655059394]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -4031,7 +3934,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_martini_shelf3" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=101580635 instance=ExtResource("109_a23ag")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 482, 136.49998, 337)
 
-[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf3" index="0" unique_id=602528907]
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf3" index="0" unique_id=655059394]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -4039,7 +3942,7 @@ surface_material_override/0 = ExtResource("90_mmmu2")
 [node name="glass_martini_shelf4" parent="_Set/_Dressing/_Props/_HighBar_Bench" unique_id=1681313675 instance=ExtResource("109_a23ag")]
 transform = Transform3D(-1, 8.742278e-08, -7.642742e-15, 8.742278e-08, 1, -8.742278e-08, 0, -8.742278e-08, -1, 360, 9.5, 264)
 
-[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf4" index="0" unique_id=602528907]
+[node name="glass_martini_001" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf4" index="0" unique_id=655059394]
 layers = 131073
 cast_shadow = 0
 surface_material_override/0 = ExtResource("90_mmmu2")
@@ -4163,18 +4066,6 @@ metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_champagne_flute"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_collin"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_flute"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_martini"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_old_fashion"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_pint"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_port"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_red_wine"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_red_wine_2"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine_2"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine_3"]
 [editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2"]
 [editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2"]
 [editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3"]
