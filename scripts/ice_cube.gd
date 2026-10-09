@@ -1,7 +1,6 @@
 extends Node3D
 
 @export_range(1.0, 2.0, 0.05) var size_multiplier := 1.1
-## Lifetime away from hot surfaces; contact heat can melt the cube faster.
 @export_range(1.0, 300.0, 1.0) var ambient_melt_seconds := 60.0
 
 @onready var _droplets: GPUParticles3D = $MeltParticles/Droplets
@@ -60,8 +59,6 @@ func _physics_process(delta: float) -> void:
 	if _melted or not is_instance_valid(_player):
 		return
 	var melt_rate := 1.0 / maxf(ambient_melt_seconds, 1.0)
-	# Only actual body contact accelerates the normal, continuous melting.
-	# Ancestors let imported mesh colliders share their packed scene's heat setting.
 	for body in _player.get_colliding_bodies():
 		var surface: Node = body
 		while surface != null:
@@ -86,16 +83,13 @@ func refresh_equipment() -> void:
 	_melted = false
 	_update_ice_geometry()
 	_clear_particle_trail()
-	# Growing the box again must lift it clear of the floor on the next physics step.
 	_lift += maxf(0.0, (_ice_shape.size.y - old_side) * 0.5)
 	_player.sleeping = false
 	visible = _player.visible and not _player.is_squished
 
 
 func _finish_melting() -> void:
-	# A pickup can refresh the cube before this deferred removal runs.
 	if _melted and is_instance_valid(_mount):
-		# Let already emitted water and mist fade out after the ice is removed.
 		var particles := $MeltParticles as Node3D
 		_droplets.emitting = false
 		_mist.emitting = false
@@ -129,17 +123,14 @@ func _update_melt_particles(melt_rate: float) -> void:
 
 func _update_ice_geometry() -> void:
 	var visual_side := _side * (1.0 - _melt_progress)
-	# The ice shrinks all the way down, while collision still protects the character.
 	var collision_side := maxf(visual_side, _side / size_multiplier)
 	var collision_size := Vector3.ONE * collision_side
 	if not _ice_shape.size.is_equal_approx(collision_size):
 		_ice_shape.size = collision_size
 	_player.spawn_clearance = collision_side * 0.5 - _player.collider.position.y
 	$Model.scale = Vector3.ONE * (maxf(visual_side, 0.001) / 64.0)
-	# Keep the melting cube's base at the contact surface as its top recedes.
 	$Model.position = Vector3(0, -collision_side * 0.5, 0)
 	$Model.material_override.set_shader_parameter("melt_progress", _melt_progress)
-	# Emission follows the shrinking block; existing particles stay in world space.
 	var half_width := maxf(0.025, visual_side * 0.5)
 	_droplet_material.emission_box_extents = Vector3(half_width, visual_side * 0.15, half_width)
 	_mist_material.emission_box_extents = Vector3(half_width, 0.05, half_width)
@@ -148,7 +139,6 @@ func _update_ice_geometry() -> void:
 
 
 func integrate_equipment_forces(_body: Player, state: PhysicsDirectBodyState3D) -> void:
-	# A real box collider stays upright, including after a launch or character swap.
 	var upright := state.transform
 	upright.basis = Basis.IDENTITY
 	upright.origin.y += _lift

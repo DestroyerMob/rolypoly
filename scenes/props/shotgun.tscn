@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/shotgun/shotgun.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="2_gun"]
+
+[node name="Shotgun" type="Node3D"]
+script = ExtResource("2_gun")
+fire_interval = 1.0
+pellets = 10
+spread_degrees = 5.0
+impulse = 12.0
+flash_energy = 10.0
+kick_distance = 0.5
+kick_degrees = 9.0
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06, -2.9)

@@ -1,7 +1,5 @@
 extends SceneTree
 
-# Regenerate mesh-matched collision resources after changing these models.
-# godot --headless --path . --script res://tools/godot/build_player_collision_shapes.gd
 const MODELS := [
 	["res://packed_scenes/player_tomato.tscn", "CollisionShape3D/Tomato", "CollisionShape3D", "res://models/vegetables/tomato/player_collision.tres"],
 	["res://scenes/props/table_tapered.tscn", "table_tapered", ".", "res://assets/models/props/table_tapered_collision.tres"],

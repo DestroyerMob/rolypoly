@@ -46,8 +46,6 @@ func _ready() -> void:
 	material.bounce = bounciness
 	physics_material_override = material
 
-## Support distance below the origin, including collider offsets and body rotation.
-## Analytic rounded shapes avoid the oversized bounds of a rotated debug AABB.
 func get_collision_clearance(body_basis := Basis.IDENTITY) -> float:
 	var collision := get_node("CollisionShape3D") as CollisionShape3D
 	var shape := collision.shape
@@ -194,9 +192,11 @@ func move(input: Vector2) -> void:
 		apply_central_force(wish * speed_force)
 		return
 
-	var direction := camera.global_basis * wish
-	direction.y = 0.0
-	direction = direction.normalized() * wish.length()
+	var right := camera.global_basis.x
+	right.y = 0.0
+	var back := camera.global_basis.z
+	back.y = 0.0
+	var direction := right.normalized() * input.x + back.normalized() * input.y
 
 	apply_central_force(direction * speed_force)
 	
@@ -233,7 +233,6 @@ func squish_and_respawn(squish_duration := 0.18, respawn_delay := 0.55) -> void:
 		squish_tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		squish_tween.tween_property(visual, "scale", squashed_scale, squish_duration)
 
-	# Reuse respawn so the builder keeps its placed tiles and spawn flag.
 	squish_tween.tween_interval(respawn_delay)
 	squish_tween.tween_callback(respawn.bind(spawn_position))
 	squished.emit()

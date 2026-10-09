@@ -23,7 +23,6 @@ func spawn() -> void:
 		return
 	var model_index := randi_range(0, models.size() - 1)
 	var body := models[model_index].instantiate() as RigidBody3D
-	# Reuse the player artwork as a prop, without input or respawning.
 	body.set_script(PRODUCE_BODY)
 	if model_index < particle_colors.size():
 		body.set("particle_color", particle_colors[model_index])
@@ -33,7 +32,13 @@ func spawn() -> void:
 	body.linear_damp = 0.05
 	body.angular_damp = 0.05
 	var collider := body.get_node("CollisionShape3D") as CollisionShape3D
-	var sphere := collider.shape.duplicate() as SphereShape3D
+	var sphere: SphereShape3D
+	if collider.shape is SphereShape3D:
+		sphere = collider.shape.duplicate()
+	else:
+		sphere = SphereShape3D.new()
+		var bounds := collider.shape.get_debug_mesh().get_aabb()
+		sphere.radius = minf(bounds.size.x, minf(bounds.size.y, bounds.size.z)) * 0.5
 	sphere.radius *= size_multiplier
 	collider.shape = sphere
 	collider.position *= size_multiplier

@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/upgrade_plate.tscn" id="1_plate"]
+[ext_resource type="PackedScene" path="res://scenes/props/shotgun.tscn" id="2_equipment"]
+
+[node name="ShotgunUpgrade" instance=ExtResource("1_plate")]
+gadget_scene = ExtResource("2_equipment")
+preview_scale = 1.0

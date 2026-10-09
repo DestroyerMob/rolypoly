@@ -30,7 +30,6 @@ for filename, socket, color_space in (
     texture.image.colorspace_settings.name = color_space
     material.node_tree.links.new(texture.outputs["Color"], surface.inputs[socket])
 
-# Bake the FBX transforms while preserving its authored dimensions and UVs.
 for model in models:
     model.data.transform(model.matrix_world)
     model.parent = None
@@ -48,7 +47,6 @@ for index, model in enumerate(models):
     model.data.materials.append(material)
     for polygon in model.data.polygons:
         polygon.material_index = 0
-    # Godot generates static collision matching the blade and its cutouts.
     model.name = "RazorBlade-col" if index == 0 else f"RazorBlade{index}-col"
     model.select_set(True)
 

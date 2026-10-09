@@ -1,0 +1,168 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/ice_kitchen/Hotplate.glb" id="1_ei4sa"]
+[ext_resource type="Script" path="res://scripts/ice/ice_zone.gd" id="2_wo7ic"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5w0k"]
+albedo_color = Color(0.09411765, 0.17254902, 0.19607843, 1)
+metallic = 0.3
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_xd41h"]
+size = Vector3(5.8, 0.28, 4.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkcmk"]
+size = Vector3(5.8, 0.28, 4.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vlghr"]
+size = Vector3(5.6, 0.9, 4.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2boxc"]
+albedo_color = Color(0.92941177, 0.39215687, 0.16862746, 1)
+metallic = 0.1
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.92941177, 0.39215687, 0.16862746, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_djqjb"]
+inner_radius = 0.265
+outer_radius = 0.335
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_1i11h"]
+inner_radius = 0.475
+outer_radius = 0.545
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_p8pyv"]
+inner_radius = 0.695
+outer_radius = 0.765
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_w7v32"]
+inner_radius = 0.265
+outer_radius = 0.335
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_vdk1c"]
+inner_radius = 0.475
+outer_radius = 0.545
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_amkur"]
+inner_radius = 0.695
+outer_radius = 0.765
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_118mo"]
+inner_radius = 0.265
+outer_radius = 0.335
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_incb6"]
+inner_radius = 0.475
+outer_radius = 0.545
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_7hvhd"]
+inner_radius = 0.695
+outer_radius = 0.765
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_k4u7u"]
+inner_radius = 0.265
+outer_radius = 0.335
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_it21g"]
+inner_radius = 0.475
+outer_radius = 0.545
+rings = 48
+
+[sub_resource type="TorusMesh" id="TorusMesh_tts5l"]
+inner_radius = 0.695
+outer_radius = 0.765
+rings = 48
+
+[node name="Hotplate" type="Node3D" unique_id=383253937]
+
+[node name="Hotplate" type="Node3D" parent="." unique_id=1887004206 instance=ExtResource("1_ei4sa")]
+
+[node name="ContactSurface" type="StaticBody3D" parent="." unique_id=1683810439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14, 0)
+
+[node name="Surface" type="MeshInstance3D" parent="ContactSurface" unique_id=1513242968]
+material_override = SubResource("StandardMaterial3D_h5w0k")
+mesh = SubResource("BoxMesh_xd41h")
+
+[node name="@CollisionShape3D@2" type="CollisionShape3D" parent="ContactSurface" unique_id=1582864925]
+shape = SubResource("BoxShape3D_pkcmk")
+
+[node name="EffectZone" type="Area3D" parent="." unique_id=1655387829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 0
+script = ExtResource("2_wo7ic")
+
+[node name="@CollisionShape3D@3" type="CollisionShape3D" parent="EffectZone" unique_id=717095588]
+shape = SubResource("BoxShape3D_vlghr")
+
+[node name="Ring" type="MeshInstance3D" parent="." unique_id=272422842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.09, -1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_djqjb")
+
+[node name="Ring2" type="MeshInstance3D" parent="." unique_id=1608642628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.09, -1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_1i11h")
+
+[node name="Ring3" type="MeshInstance3D" parent="." unique_id=1527238508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.09, -1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_p8pyv")
+
+[node name="Ring4" type="MeshInstance3D" parent="." unique_id=1485476050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.09, 1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_w7v32")
+
+[node name="Ring5" type="MeshInstance3D" parent="." unique_id=1968834800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.09, 1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_vdk1c")
+
+[node name="Ring6" type="MeshInstance3D" parent="." unique_id=2081056453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.09, 1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_amkur")
+
+[node name="Ring7" type="MeshInstance3D" parent="." unique_id=395615056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.09, -1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_118mo")
+
+[node name="Ring8" type="MeshInstance3D" parent="." unique_id=446928695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.09, -1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_incb6")
+
+[node name="Ring9" type="MeshInstance3D" parent="." unique_id=1918275000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.09, -1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_7hvhd")
+
+[node name="Ring10" type="MeshInstance3D" parent="." unique_id=1048568533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.09, 1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_k4u7u")
+
+[node name="Ring11" type="MeshInstance3D" parent="." unique_id=1165083855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.09, 1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_it21g")
+
+[node name="Ring12" type="MeshInstance3D" parent="." unique_id=2124457280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.09, 1.1)
+material_override = SubResource("StandardMaterial3D_2boxc")
+mesh = SubResource("TorusMesh_tts5l")

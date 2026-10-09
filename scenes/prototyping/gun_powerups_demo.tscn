@@ -1,0 +1,143 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_rig"]
+[ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_camera"]
+[ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="4_start"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="5_death"]
+[ext_resource type="PackedScene" uid="uid://8f31uiayst6r" path="res://scenes/prototyping/proto_box.tscn" id="6_platform"]
+[ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="7_mount"]
+[ext_resource type="PackedScene" uid="uid://dim3tp33qahpt" path="res://packed_scenes/not_a_player_egg.tscn" id="7_egg"]
+[ext_resource type="PackedScene" path="res://scenes/props/m4a1_upgrade.tscn" id="8_m4"]
+[ext_resource type="PackedScene" path="res://scenes/props/shotgun_upgrade.tscn" id="9_shotgun"]
+[ext_resource type="PackedScene" path="res://scenes/props/walther_p88_upgrade.tscn" id="10_pistol"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_demo"]
+sky_top_color = Color(0.3, 0.4, 0.55, 1)
+sky_horizon_color = Color(0.8, 0.85, 0.9, 1)
+ground_bottom_color = Color(0.16, 0.2, 0.24, 1)
+ground_horizon_color = Color(0.55, 0.6, 0.65, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("SkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_energy = 0.6
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.65
+glow_bloom = 0.08
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crosshair"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.8)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="GunPowerupsDemo" type="Node3D"]
+
+[node name="_Systems" type="Node" parent="."]
+
+[node name="PlayerRig" type="Node" parent="_Systems"]
+script = ExtResource("1_rig")
+
+[node name="Player" parent="_Systems/PlayerRig" instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 24)
+
+[node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.3, 24)
+script = ExtResource("3_camera")
+player_rig = NodePath("..")
+follow_offset = Vector3(0, 3.3, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)
+spring_length = 35.0
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="_Systems/PlayerRig/CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35)
+current = true
+fov = 80.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="_Systems/PlayerRig/CameraPivot/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9988193, -0.04858053, 0, 0.04858053, 0.9988193, 0, 0, 7.6655684)
+spot_range = 97.89
+spot_attenuation = 0.22
+spot_angle = 36.84
+
+[node name="GadgetMount" type="Node3D" parent="_Systems/PlayerRig" node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("7_mount")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="_Course" type="Node" parent="."]
+
+[node name="PlayerStart" parent="_Course" instance=ExtResource("4_start")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 24)
+preview_radius = 2.2
+
+[node name="Platform" parent="_Course" instance=ExtResource("6_platform")]
+size = Vector3(120, 4, 120)
+pivot = 2
+
+[node name="DeathZone" parent="_Course" instance=ExtResource("5_death")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
+
+[node name="TargetEgg1" parent="_Course" groups=["vegetable"] instance=ExtResource("7_egg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, -30)
+
+[node name="TargetEgg2" parent="_Course" groups=["vegetable"] instance=ExtResource("7_egg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -30)
+
+[node name="TargetEgg3" parent="_Course" groups=["vegetable"] instance=ExtResource("7_egg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, -30)
+
+[node name="_Lighting" type="Node" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="_Lighting"]
+transform = Transform3D(0.88294756, 0.36994863, -0.2890356, 0, 0.6156615, 0.7880107, 0.46947157, -0.6957722, 0.5435968, 0, 0, 0)
+light_energy = 1.25
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="_Lighting"]
+environment = SubResource("Environment_demo")
+
+[node name="M4A1Upgrade" parent="." node_paths=PackedStringArray("gadget_mount") instance=ExtResource("8_m4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.06, 0)
+gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
+
+[node name="ShotgunUpgrade" parent="." node_paths=PackedStringArray("gadget_mount") instance=ExtResource("9_shotgun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
+
+[node name="WaltherP88Upgrade" parent="." node_paths=PackedStringArray("gadget_mount") instance=ExtResource("10_pistol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.06, 0)
+gadget_mount = NodePath("../_Systems/PlayerRig/GadgetMount")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="Panel" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_crosshair")

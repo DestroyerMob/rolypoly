@@ -19,7 +19,6 @@ for source_name, output_name in (
     bounds = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
     bottom = min(point.z for point in bounds)
     height = max(point.z for point in bounds) - bottom
-    # Keep the shaft centered, including the closed umbrella's asymmetric hook.
     origin = Vector((obj.location.x, obj.location.y, bottom))
     obj.data.transform(Matrix.Scale(1.0 / height, 4)
                        @ Matrix.Translation(-origin) @ obj.matrix_world)

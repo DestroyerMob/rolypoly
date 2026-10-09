@@ -8,11 +8,11 @@ extends Node3D
 @export var mouse_sensitivity := 0.003
 @export var follow_speed := 10.0
 @export var follow_offset := Vector3.ZERO
-@export var min_pitch_degrees := -50.0
-@export var max_pitch_degrees := -5.0
+@export var min_pitch_degrees := -80.0
+@export var max_pitch_degrees := 60.0
+@export var orbit_max_pitch_degrees := -5.0
 @export var capture_mouse := true 
 @export var initial_yaw_degrees := 0.0
-## Zero uses the normal follow distance; a shorter distance blends out at startup.
 @export_range(0.0, 30.0, 0.1) var initial_follow_distance := 0.0
 
 @export_group("Camera_Survey")
@@ -22,6 +22,7 @@ extends Node3D
 @export var survey_blend_speed := 4.0
 
 @onready var spring_arm: SpringArm3D = $SpringArm3D
+@onready var _camera: Camera3D = $SpringArm3D/Camera3D
 
 var player: Player
 var _yaw := 0.0
@@ -39,7 +40,6 @@ func _ready() -> void:
 	_yaw = deg_to_rad(initial_yaw_degrees)
 	rotation.y = _yaw
 	spring_arm.rotation.x = _pitch
-	# Start at the intended distance before the spring arm's first physics tick.
 	$SpringArm3D/Camera3D.position.z = spring_arm.spring_length
 	player_rig.player_swapped.connect(_on_player_swapped)
 	player = player_rig.current_player
@@ -80,7 +80,9 @@ func _physics_process(delta: float) -> void:
 
 	# Yaw on the pivot, pitch on the arm. Never both on one node.
 	rotation = Vector3(0.0, _yaw, 0.0)
-	spring_arm.rotation = Vector3(_pitch, 0.0, 0.0)
+	var orbit_pitch := minf(_pitch, deg_to_rad(orbit_max_pitch_degrees))
+	spring_arm.rotation = Vector3(orbit_pitch, 0.0, 0.0)
+	_camera.rotation.x = _pitch - orbit_pitch
 
 
 func _on_player_swapped(new_player: Player) -> void:

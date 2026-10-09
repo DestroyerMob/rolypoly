@@ -1,7 +1,5 @@
 extends SceneTree
 
-# Rebuild the dynamic spoon and its hollow compound collision from the OBJ.
-# godot --headless --path . --script res://tools/godot/build_wooden_spoon.gd
 const ASSET_DIR := "res://assets/models/props/wooden_spoon/"
 const SCENE_PATH := "res://scenes/props/wooden_spoon.tscn"
 
@@ -26,7 +24,6 @@ func _initialize() -> void:
 	model.material_override = material
 	spoon.add_child(model)
 	model.owner = spoon
-	# Small solid sections preserve the shallow bowl; a single hull fills it in.
 	var faces := model.mesh.get_faces()
 	for vertex in range(faces.size()):
 		faces[vertex] *= 0.45

@@ -28,7 +28,6 @@ func _physics_process(_delta: float) -> void:
 		if state == null:
 			continue
 		for contact in range(state.get_contact_count()):
-			# Only support from the metal plate counts, once per body.
 			if state.get_contact_collider(contact) == get_rid() and state.get_contact_local_normal(contact).dot(global_basis.y.normalized()) > 0.5:
 				total_mass += body.mass
 				break

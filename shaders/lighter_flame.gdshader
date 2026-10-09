@@ -16,7 +16,6 @@ void vertex() {
 	float pulse = sin(TIME * 9.0 + phase) * 0.045 + sin(TIME * 15.3) * 0.025;
 	VERTEX.xz *= flame_width * (1.15 - height * 0.8);
 	VERTEX.y = height * flame_height * (1.0 + pulse);
-	// The nozzle stays fixed while the upper flame bends and flickers.
 	VERTEX.x += sin(TIME * 5.7 + height * 4.0 + phase) * height * height * 0.18;
 	VERTEX.z += cos(TIME * 7.1 + height * 3.0 + phase) * height * height * 0.12;
 }

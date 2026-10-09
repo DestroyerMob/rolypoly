@@ -35,8 +35,6 @@ def material(name, color, metallic, roughness):
 clear_scene()
 cream_dir = PROPS / "whipped_cream"
 bpy.ops.import_scene.fbx(filepath=str(cream_dir / "source/creamcan_rigged.fbx"))
-# The source also contains hidden, oversized modeling parts. Export only the
-# finished can, baking its rest pose so the loose animation rig is not required.
 armature = bpy.data.objects["Armature"]
 armature.data.pose_position = "REST"
 armature.animation_data_clear()
@@ -76,7 +74,6 @@ mesh.materials.clear()
 mesh.materials.append(mat)
 export(can, cream_dir / "whipped_cream.glb")
 
-# Keep the capped pickup model, and expose the nozzle on the equipped version.
 lid_group = source.vertex_groups["Lid"].index
 lid_vertices = {
     vertex.index for vertex in source.data.vertices

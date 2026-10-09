@@ -1,8 +1,6 @@
 extends Node3D
 
-## One short burst per airtime. Landing restores the charge.
 @export_range(0.05, 2.0, 0.05) var burst_duration := 0.45
-## Upward acceleration while firing, independent of character mass.
 @export_range(1.0, 100.0, 1.0) var thrust_acceleration := 48.0
 @export_range(1.0, 30.0, 0.5) var max_boost_rise_speed := 12.0
 
@@ -35,7 +33,6 @@ func integrate_equipment_forces(player: Player, state: PhysicsDirectBodyState3D)
 		return
 	var thrust_time := minf(state.step, _burst_remaining)
 	var velocity := state.linear_velocity
-	# Cap only the speed this equipment adds; preserve faster external launches.
 	if velocity.y < max_boost_rise_speed:
 		velocity.y = minf(velocity.y + thrust_acceleration * thrust_time, max_boost_rise_speed)
 		state.linear_velocity = velocity
@@ -50,7 +47,6 @@ func update_attachment(player: Player, mount: GadgetMount) -> void:
 		_player = player
 	if player.is_squished or player.freeze:
 		_stop_burst()
-	# Keep the nozzle pointing down even when the camera pitches or body rolls.
 	var right := Vector3(mount.global_basis.x.x, 0, mount.global_basis.x.z).normalized()
 	global_basis = Basis(right, Vector3.UP, right.cross(Vector3.UP))
 	global_position = mount.global_position + global_basis * mount.model_offset
@@ -59,7 +55,6 @@ func update_attachment(player: Player, mount: GadgetMount) -> void:
 func reset_equipment() -> void:
 	_charged = true
 	_stop_burst()
-	# Clear the old world-space spray when the player respawns or teleports.
 	spray.restart()
 	spray.emitting = false
 

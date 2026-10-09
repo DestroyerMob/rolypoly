@@ -1,6 +1,19 @@
 extends RefCounted
 
-# Stable IDs are stored in saves; only this catalog can resolve them to scenes.
+const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
+const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
+
+## The characters a level can be played as. A level plays as one of these for its
+## whole run; swapping characters is turned off in custom levels.
+const DEFAULT_PLAYER := "onion"
+const PLAYERS := {
+	"onion": {"label": "Onion", "scene": preload("res://packed_scenes/player_onion.tscn")},
+	"egg": {"label": "Egg", "scene": preload("res://packed_scenes/player_egg.tscn")},
+	"tomato": {"label": "Tomato", "scene": preload("res://packed_scenes/player_tomato.tscn")},
+	"ice_cream": {"label": "Ice cream", "scene": preload("res://packed_scenes/player_ice_cream.tscn")},
+	"lollipop": {"label": "Lollipop", "scene": preload("res://packed_scenes/player_lollypop.tscn")},
+}
+
 const ITEMS := {
 	"counter": {"label": "Counter tile (8 × 8)", "category": "Surfaces", "scene": preload("res://scenes/level_editor/counter_tile.tscn")},
 	"box": {"label": "Platform", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_box.tscn")},
@@ -32,11 +45,17 @@ const ITEMS := {
 	"cream": {"label": "Whipped cream pickup", "category": "Powerups", "scene": preload("res://scenes/props/whipped_cream_upgrade.tscn")},
 	"ice": {"label": "Ice cube pickup", "category": "Powerups", "scene": preload("res://scenes/props/ice_cube_upgrade.tscn")},
 	"gravity": {"label": "Gravity gun pickup", "category": "Powerups", "scene": preload("res://scenes/props/upgrade_plate.tscn")},
+	"m4a1": {"label": "M4A1 pickup", "category": "Powerups", "scene": preload("res://scenes/props/m4a1_upgrade.tscn")},
+	"shotgun": {"label": "Shotgun pickup", "category": "Powerups", "scene": preload("res://scenes/props/shotgun_upgrade.tscn")},
+	"pistol": {"label": "Walther P88 pickup", "category": "Powerups", "scene": preload("res://scenes/props/walther_p88_upgrade.tscn")},
 	"produce": {"label": "Loose egg (gravity gun)", "category": "Kitchen", "scene": preload("res://packed_scenes/not_a_player_egg.tscn")},
 	"spawn": {"label": "Player start", "category": "Level", "scene": preload("res://scenes/level_editor/start.tscn")},
 	"goal": {"label": "Finish area", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
 }
+
+static func player_of(document: Dictionary) -> String:
+	return document.get("player", DEFAULT_PLAYER)
 
 static func record(id: String, position := Vector3.ZERO) -> Dictionary:
 	return {"id": id, "position": [position.x, position.y, position.z],
@@ -61,4 +80,8 @@ static func instantiate(data: Dictionary, mount: GadgetMount = null) -> Node3D:
 	if data.id == "pot":
 		node.set("return_scene", "")
 		node.get_node("GoalArea").monitoring = false
+	if data.has("properties"):
+		ItemProperties.apply(node, data.id, data.properties)
+	if data.has("colour"):
+		ItemColours.apply(node, data.id, ItemColours.parse(data.colour))
 	return node

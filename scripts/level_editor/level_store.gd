@@ -1,18 +1,19 @@
 extends RefCounted
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
+const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
+const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 const DIRECTORY := "user://levels"
 const VERSION := 1
 const MAX_OBJECTS := 1000
 
 static func new_level() -> Dictionary:
-	return {"version": VERSION, "name": "My kitchen course", "objects": [
+	return {"version": VERSION, "name": "My kitchen course", "player": Catalog.DEFAULT_PLAYER, "objects": [
 		Catalog.record("spawn", Vector3(-45, 0, -475)),
 		Catalog.record("goal", Vector3(45, 0, -525)),
 	]}
 
 static func normalize(document: Dictionary) -> Dictionary:
 	var result := document.duplicate(true)
-	# Kitchens in older saves become the single fixed base, never stacked rooms.
 	result.objects = result.objects.filter(func(entry: Dictionary): return entry.id != "kitchen")
 	return result
 
@@ -23,6 +24,8 @@ static func validate(value: Variant) -> String:
 		return "This level uses an unsupported save version."
 	if not value.get("name") is String or value.name.strip_edges().is_empty() or value.name.length() > 80:
 		return "Give the level a name (1–80 characters)."
+	if value.has("player") and not (value.player is String and Catalog.PLAYERS.has(value.player)):
+		return "This level uses an unknown player character."
 	if not value.get("objects") is Array or value.objects.size() > MAX_OBJECTS:
 		return "A level can contain at most %d objects." % MAX_OBJECTS
 	for entry in value.objects:
@@ -39,6 +42,14 @@ static func validate(value: Variant) -> String:
 					return "An object is outside the supported world bounds."
 				if key == "scale" and (component < 0.05 or component > 100):
 					return "Object scale must be between 0.05 and 100."
+		if entry.has("properties"):
+			var problem := ItemProperties.validate(entry.id, entry.properties)
+			if not problem.is_empty():
+				return problem
+		if entry.has("colour"):
+			var problem := ItemColours.validate(entry.id, entry.colour)
+			if not problem.is_empty():
+				return problem
 	return ""
 
 static func playable_error(document: Dictionary) -> String:
@@ -94,7 +105,6 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 	file.close()
 	if result != OK:
 		return {"error": "Could not finish writing the save: %s" % error_string(result)}
-	# Rename only after the complete document is on disk, preserving the old save on write failure.
 	result = DirAccess.rename_absolute(temporary, destination)
 	if result != OK:
 		return {"error": "Could not replace the save: %s" % error_string(result)}

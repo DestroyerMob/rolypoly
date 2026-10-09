@@ -2,7 +2,6 @@ extends Node3D
 
 
 func _ready() -> void:
-	# Follow the actual walls and flaps so the opening stays clear.
 	for node in $Model.find_children("*", "MeshInstance3D"):
 		var mesh_instance := node as MeshInstance3D
 		if mesh_instance.mesh == null:

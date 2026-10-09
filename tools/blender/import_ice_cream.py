@@ -25,7 +25,6 @@ points = [model.matrix_world @ vertex.co for vertex in model.data.vertices]
 minimum = Vector(tuple(min(point[axis] for point in points) for axis in range(3)))
 maximum = Vector(tuple(max(point[axis] for point in points) for axis in range(3)))
 center = (minimum + maximum) / 2.0
-# Fit the entire uneven scoop inside the player's rolling sphere.
 scale = RADIUS / max((point - center).length for point in points)
 for vertex, point in zip(model.data.vertices, points):
     vertex.co = (point - center) * scale
@@ -38,7 +37,6 @@ for material in model.data.materials:
     material.diffuse_color = VANILLA
     for node in material.node_tree.nodes:
         if node.type == "BSDF_PRINCIPLED":
-            # Keep the original roughness map and sculpted scoop detail.
             for link in list(node.inputs["Base Color"].links):
                 material.node_tree.links.remove(link)
             node.inputs["Base Color"].default_value = VANILLA

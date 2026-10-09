@@ -36,7 +36,6 @@ while unseen:
                 pending.append(other)
     components.append(component)
 
-# The round candy is the broad component; the narrow cylinder is the stick.
 candy = max(components, key=lambda part: max(v.co.x for v in part) - min(v.co.x for v in part))
 discarded = [vertex for component in components if component is not candy for vertex in component]
 if not discarded:

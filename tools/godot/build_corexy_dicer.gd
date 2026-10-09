@@ -1,7 +1,5 @@
 extends SceneTree
 
-# Build the editable attachment and machine scenes from their imported models.
-# godot --headless --path . --script res://tools/godot/build_corexy_dicer.gd
 const COREXY := "res://assets/models/props/corexy/"
 const DICER_PATH := "res://scenes/props/razor_dicer.tscn"
 const MACHINE_PATH := "res://scenes/props/corexy.tscn"
@@ -64,7 +62,6 @@ func _build_dicer() -> void:
 	dicer.set_script(load("res://scripts/props/razor_dicer.gd"))
 	var steel := _material(Color(0.31, 0.38, 0.43), 0.75, 0.28)
 	var brass := _material(Color(0.95, 0.48, 0.09), 0.55, 0.3)
-	# Two open cylinders and annular rims form a hollow basket with no end caps.
 	for inner in [false, true]:
 		var wall := CylinderMesh.new()
 		wall.top_radius = 0.83 if inner else 0.93
@@ -82,7 +79,6 @@ func _build_dicer() -> void:
 		rim.rings = 64
 		rim.ring_segments = 12
 		_visual(dicer, "TopRim" if height > -0.5 else "BottomRim", rim, Vector3(0, height, 0), brass)
-	# Compound wall collision leaves the center and both ends open.
 	for index in range(32):
 		var angle := TAU * float(index) / 32.0
 		var center := Vector3(sin(angle) * 0.88, -0.3, cos(angle) * 0.88)
@@ -95,8 +91,6 @@ func _build_dicer() -> void:
 			var blade := razor.instantiate() as Node3D
 			blade.name = "Blade%s%d" % ["X" if axis == 0 else "Z", row + 1]
 			_strip_physics(blade)
-			# Turn each supplied flat razor on edge. Two perpendicular sets make
-			# the grid; the individual blade's UVs and lettering remain intact.
 			blade.transform = Transform3D(
 				Basis(Vector3.UP, axis * PI / 2.0) * Basis(Vector3.RIGHT, PI / 2.0) * Basis.from_scale(Vector3(length / 2.721743, 6.0, 0.24 / 1.4058)),
 				Vector3(0, -0.52, offset) if axis == 0 else Vector3(offset, -0.52, 0)
@@ -169,7 +163,6 @@ func _build_machine() -> void:
 			_add_mesh_collision(model, Transform3D.IDENTITY, body, machine)
 			_add_rods(body, machine)
 		else:
-			# Both rod levels terminate in collars attached to the basket wall.
 			var mount_material := _material(Color(0.18, 0.23, 0.27), 0.7, 0.3)
 			for side in [-1.0, 1.0]:
 				var prefix := "Left" if side < 0 else "Right"
@@ -210,7 +203,6 @@ func _add_rods(gantry: AnimatableBody3D, machine: Node3D) -> void:
 			visual.rotation.z = PI / 2.0
 			visual.scale.y = length
 			_box_collision(rod, "CollisionShape3D", Vector3(length, 0.156, 0.156), Transform3D.IDENTITY)
-			# Each machine instance resizes its own rods as the basket travels.
 			rod.get_node("CollisionShape3D").shape.resource_local_to_scene = true
 			for child in rod.get_children():
 				child.owner = machine

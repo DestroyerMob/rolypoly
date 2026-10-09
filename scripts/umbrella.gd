@@ -1,8 +1,6 @@
 extends Node3D
 
-## Maximum downward speed while airborne; upward jump velocity is unchanged.
 @export_range(0.1, 30.0, 0.1) var max_fall_speed := 5.0
-## Height of the open umbrella's handle above the player's center.
 @export var overhead_height := 2.5
 
 @onready var closed_model: Node3D = $Closed
@@ -13,7 +11,6 @@ func update_attachment(player: Player, mount: GadgetMount) -> void:
 	var airborne := not player.on_ground and not player.is_squished
 	closed_model.visible = not airborne
 	open_model.visible = airborne
-	# Stay upright as the camera pitches and the player rolls.
 	var right := Vector3(mount.global_basis.x.x, 0, mount.global_basis.x.z).normalized()
 	global_basis = Basis(right, Vector3.UP, right.cross(Vector3.UP))
 	if airborne:

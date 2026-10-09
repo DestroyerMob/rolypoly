@@ -5,7 +5,6 @@ signal player_passed_through(player: Player)
 @export_category("Dicer Motion")
 @export var active := true
 @export_range(0.0, 5.0, 0.1, "suffix:m/s") var travel_speed := 1.6
-## Machine X/Y travel maps to Godot's horizontal X/Z plane.
 @export var travel_half_extents := Vector2(2.5, 2.35)
 @export var initial_direction := Vector2(1.0, 0.73)
 
@@ -35,7 +34,6 @@ func _physics_process(delta: float) -> void:
 	)
 	var point := Vector2(carriage.position.x, carriage.position.z)
 	point += _direction * travel_speed * delta
-	# Reflect each axis independently: both motors run throughout the sweep.
 	for axis in range(2):
 		while point[axis] > extent[axis] or point[axis] < -extent[axis]:
 			if point[axis] > extent[axis]:

@@ -93,7 +93,6 @@ func test_swaps() -> void:
 	rig.current_player.set_physics_process(false)
 	await wait_physics(30)
 	check(visual_bottom(rig.current_player) >= -0.08, "The larger character must stay above the table after physics settles.")
-	# In open air, rotation and momentum should remain exactly as they were.
 	var rotation := Basis.from_euler(Vector3(0.4, 0.7, -0.3))
 	rig.current_player.global_transform = Transform3D(rotation, Vector3(50, 20, 0))
 	rig.current_player.on_ground = false
@@ -103,16 +102,15 @@ func test_swaps() -> void:
 	check(rig.current_player.global_transform.is_equal_approx(Transform3D(rotation, Vector3(50, 20, 0))), "An airborne swap must preserve the transform.")
 	check(rig.current_player.linear_velocity.is_equal_approx(Vector3(1, 2, 3)), "A swap must preserve linear velocity.")
 	check(rig.current_player.angular_velocity.is_equal_approx(Vector3(3, 2, 1)), "A swap must preserve angular velocity.")
-	# An onion fits under this shelf; ice cream does not.
 	rig.current_player.global_transform = Transform3D(Basis.IDENTITY, Vector3(0, 1.05, 0))
 	rig.current_player.on_ground = false
 	rig.swap_to(PlayerRig.CHARACTERS.swap_character_1)
 	rig.current_player.set_physics_process(false)
-	var ceiling := make_box(fixture, Vector3(0, 3, 0), Vector3(20, 0.1, 20))
+	var ceiling := make_box(fixture, Vector3(0, 2.05, 0), Vector3(20, 0.1, 20))
 	await wait_physics(60)
 	var before := rig.current_player
 	rig.swap_to(PlayerRig.CHARACTERS.swap_character_4)
-	check(rig.current_player == before and is_instance_valid(before), "A swap underneath furniture must keep the original player if the larger character does not fit.")
+	check(rig.current_player == before and is_instance_valid(before), "A swap underneath furniture must keep the original player if the new character does not fit.")
 	ceiling.free()
 	fixture.free()
 	await wait_physics(2)

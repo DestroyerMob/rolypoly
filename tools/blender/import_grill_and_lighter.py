@@ -47,7 +47,6 @@ def export_model(model, destination):
 
 bpy.ops.wm.open_mainfile(filepath=str(GRILL / "source/iron grill.blend.blend"))
 source = bpy.data.objects["grill"]
-# Preserve the authored proportions and subdivision, but lay the plate flat.
 evaluated = source.evaluated_get(bpy.context.evaluated_depsgraph_get())
 mesh = bpy.data.meshes.new_from_object(evaluated)
 model = bpy.data.objects.new("IronGrill-col", mesh)

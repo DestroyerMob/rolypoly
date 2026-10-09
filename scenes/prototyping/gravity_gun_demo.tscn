@@ -61,7 +61,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.3, 24)
 script = ExtResource("3_camera")
 player_rig = NodePath("..")
 follow_offset = Vector3(0, 3.3, 0)
-max_pitch_degrees = 50.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot" unique_id=2109718514]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)

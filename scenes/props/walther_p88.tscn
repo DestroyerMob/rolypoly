@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/walther_p88/walther_p88.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="2_gun"]
+
+[node name="WaltherP88" type="Node3D"]
+script = ExtResource("2_gun")
+fire_interval = 0.5
+spread_degrees = 0.2
+impulse = 30.0
+kick_distance = 0.25
+kick_degrees = 6.0
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, -1.35)

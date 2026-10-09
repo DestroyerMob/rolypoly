@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3]
-[ext_resource type="PackedScene" path="res://scenes/level_builder.tscn" id="1"]
-[node name="CustomLevel" instance=ExtResource("1")]
+[gd_scene format=3 uid="uid://djciktiexu5hr"]
+
+[ext_resource type="PackedScene" uid="uid://dohfdsgyakvk0" path="res://scenes/level_builder.tscn" id="1"]
+
+[node name="CustomLevel" unique_id=1442423451 instance=ExtResource("1")]
 start_in_editor = false
