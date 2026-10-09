@@ -135,7 +135,6 @@ func _handle_input(event: InputEvent, axis: int) -> void:
 				normal = view - world_axis * view.dot(world_axis)
 			_drag_plane = Plane(normal.normalized(), _world_center) if normal.length() > 0.1 else Plane()
 			_plane_origin = _plane_point(_origin)
-			# End-on axes have no useful ray/plane intersection; keep them draggable.
 			var pixels := _center.distance_to(_camera.unproject_position(_world_center + _camera.global_basis.x))
 			_units_per_pixel = 1.0 / maxf(pixels, 0.01)
 		drag_started.emit()
@@ -155,7 +154,6 @@ func handle_drag_input(event: InputEvent) -> void:
 		if mode == Mode.ROTATE:
 			var vector: Vector2 = event.position - _center
 			if vector.length() >= 12.0:
-				# Accumulate successive angles so crossing +/-180 degrees stays smooth.
 				_rotation_degrees += rad_to_deg(_rotation_vector.angle_to(vector))
 				_rotation_vector = vector
 				rotation_changed.emit(_rotation_degrees, _axis)
@@ -181,7 +179,6 @@ func handle_drag_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		dragging = false
 		drag_finished.emit(false)
-		# Let the button receive its release too, so its pressed state clears.
 		return
 	elif event is InputEventKey and event.pressed and event.physical_keycode == KEY_ESCAPE:
 		dragging = false

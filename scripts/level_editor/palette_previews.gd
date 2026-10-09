@@ -7,7 +7,6 @@ var textures: Dictionary = {}
 var _started := false
 
 func generate() -> void:
-	# The dummy renderer cannot produce thumbnails (e.g. command-line checks).
 	if _started or DisplayServer.get_name() == "headless":
 		return
 	_started = true

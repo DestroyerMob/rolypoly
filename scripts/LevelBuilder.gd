@@ -76,7 +76,6 @@ func _ready() -> void:
 	var launch: Dictionary = get_tree().get_meta("custom_level_launch", {})
 	if get_tree().has_meta("custom_level_launch"):
 		get_tree().remove_meta("custom_level_launch")
-	# The standalone player can also open a local course from a desktop shortcut.
 	if launch.is_empty():
 		for argument in OS.get_cmdline_user_args():
 			if argument.begins_with("--custom-level="):
@@ -549,8 +548,6 @@ func _rotation_drag_changed(degrees: float, axis: int) -> void:
 func _position_drag_changed(offset: Vector3) -> void:
 	var value := _position_start
 	for axis in 3:
-		# Snap the displacement, so clicking or dragging another axis never jumps
-		# an object's existing off-grid coordinates.
 		if not is_zero_approx(offset[axis]):
 			var amount := offset[axis] if Input.is_physical_key_pressed(KEY_SHIFT) else snappedf(offset[axis], snap_field.value)
 			value[axis] = clampf(_position_start[axis] + amount, -10000, 10000)

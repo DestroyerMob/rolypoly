@@ -12,7 +12,6 @@ static func new_level() -> Dictionary:
 
 static func normalize(document: Dictionary) -> Dictionary:
 	var result := document.duplicate(true)
-	# Kitchens in older saves become the single fixed base, never stacked rooms.
 	result.objects = result.objects.filter(func(entry: Dictionary): return entry.id != "kitchen")
 	return result
 
@@ -94,7 +93,6 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 	file.close()
 	if result != OK:
 		return {"error": "Could not finish writing the save: %s" % error_string(result)}
-	# Rename only after the complete document is on disk, preserving the old save on write failure.
 	result = DirAccess.rename_absolute(temporary, destination)
 	if result != OK:
 		return {"error": "Could not replace the save: %s" % error_string(result)}

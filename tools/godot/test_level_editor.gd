@@ -14,8 +14,6 @@ func check(condition: bool, message: String) -> void:
 		push_error(message)
 
 func check_level_deletion() -> void:
-	# Run the real store implementation against disposable workspace fixtures.
-	# Leave the player's user:// saves untouched.
 	var directory := "res://.godot/test_level_deletion_%d" % Time.get_ticks_usec()
 	var test_store := GDScript.new()
 	test_store.source_code = FileAccess.get_file_as_string("res://scripts/level_editor/level_store.gd").replace('const DIRECTORY := "user://levels"', 'const DIRECTORY := "%s"' % directory)
@@ -121,7 +119,6 @@ func _run() -> void:
 	check(editor.document.objects.size() == 2, "Selection must not place an extra object.")
 	check(not editor.selection_actions[0].disabled, "Delete must be enabled after world selection.")
 	check(editor.transform_gizmo.mode == editor.GizmoMode.MOVE, "A new selection must start with move handles.")
-	# Axis drags use world coordinates, even when the selected object is rotated.
 	editor.document.objects[0].rotation = [0.0, 45.0, 0.0]
 	Catalog.apply_transform(editor.world.objects[0], editor.document.objects[0])
 	for axis in 3:
@@ -153,7 +150,6 @@ func _run() -> void:
 	await drag_handle(1, true)
 	check(Catalog.vector(editor.document.objects[0].position).is_equal_approx(ground_before), "Escape must restore the position.")
 	check(editor.undo_stack.size() == cancel_steps and editor.selected == 0, "Cancelling movement must preserve history and selection.")
-	# Off-grid positions should not jump on untouched axes; snap the displacement.
 	editor.document.objects[0].position = [0.37, 80.2, 0.45]
 	Catalog.apply_transform(editor.world.objects[0], editor.document.objects[0])
 	editor.snap_field.value = 1.0
@@ -172,7 +168,6 @@ func _run() -> void:
 	editor._transform_drag_finished(true)
 	shift.pressed = false
 	Input.parse_input_event(shift)
-	# A handle viewed directly end-on must still allow movement via its fallback.
 	var center: Vector3 = editor.world.objects[0].global_transform * editor.World.bounds_of(editor.world.objects[0]).get_center()
 	editor.camera.position = center + Vector3(0, 0, 45)
 	editor.camera.look_at(center)
@@ -185,7 +180,6 @@ func _run() -> void:
 	editor.camera.look_at(Vector3(0, 80, 0))
 	editor._set_transform_tool(editor.GizmoMode.SCALE)
 	check(editor.selected == 0 and editor.transform_gizmo.mode == editor.GizmoMode.SCALE, "Switching to Scale must preserve selection.")
-	# Exercise the same GUI/input route as a mouse drag, including release outside.
 	editor._update_transform_gizmo()
 	check(editor.transform_gizmo.visible, "A visible selection must show scale handles.")
 	var handle: Button = editor.transform_gizmo._handles[0]
@@ -309,7 +303,6 @@ func _run() -> void:
 	check(not editor.selection_box.visible and not editor.transform_gizmo.visible, "Deletion must clear the selection visuals.")
 	editor._undo()
 	check(editor.document.objects.size() == 2, "Undo must restore deleted objects.")
-	# A render-enabled run also checks every generated thumbnail and saves the UI.
 	if DisplayServer.get_name() != "headless":
 		for frame in 300:
 			if editor.previews.textures.size() == editor.palette_ids.size():

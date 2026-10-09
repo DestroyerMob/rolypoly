@@ -1,10 +1,7 @@
 extends Node3D
 
-## Rotation around the corkscrew's vertical axis, per activation.
 @export var rotation_amount_degrees := 360.0
-## Vertical travel per activation: positive goes up, negative goes down.
 @export var height_change := -1.0
-## Time in seconds for both movements to finish together.
 @export_range(0.01, 60.0, 0.01, "or_greater") var duration := 1.5
 
 @onready var moving_part: AnimatableBody3D = $Body

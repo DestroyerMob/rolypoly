@@ -5,8 +5,8 @@ const CHARACTERS := {
 	"swap_character_1": preload("res://packed_scenes/player_onion.tscn"),#Onion
 	"swap_character_2": preload("res://packed_scenes/player_egg.tscn"),#Egg
 	"swap_character_3": preload("res://packed_scenes/player_tomato.tscn"),#Tomato
-	"swap_character_4": preload("res://packed_scenes/player_ice_cream.tscn"),#Vanilla Ice Cream
-	"swap_character_5": preload("res://packed_scenes/player_lollypop.tscn"),#Lollypop
+	"swap_character_4": preload("res://packed_scenes/player_ice_cream.tscn"),
+	"swap_character_5": preload("res://packed_scenes/player_lollypop.tscn"),
 }
 
 ## Fire after pressing swap so the camera and other things can retarget 
@@ -42,8 +42,6 @@ func swap_to(scene: PackedScene) -> void:
 		var old_clearance := current_player.get_collision_clearance(target.basis)
 		var new_clearance := player_to_load.get_collision_clearance(target.basis)
 		target.origin.y += maxf(0.0, new_clearance - old_clearance) + 0.05
-	# A larger character must also fit beside walls and underneath furniture.
-	# Keep the current character when there is no room to change here.
 	var collision := player_to_load.get_node("CollisionShape3D") as CollisionShape3D
 	var query := PhysicsShapeQueryParameters3D.new()
 	query.shape = collision.shape
@@ -53,7 +51,6 @@ func swap_to(scene: PackedScene) -> void:
 	if not current_player.get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty():
 		player_to_load.free()
 		return
-	# Set the local transform before entering the tree so physics starts in place.
 	player_to_load.transform = current_player.transform * old_player_global_transform.affine_inverse() * target
 	var old_spawn_position := current_player.spawn_position
 	var old_spawn_clearance := current_player.spawn_clearance

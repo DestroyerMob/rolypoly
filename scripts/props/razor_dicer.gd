@@ -1,6 +1,5 @@
 extends AnimatableBody3D
 
-## Emitted once on blade contact when the player is sent through the outlet.
 signal player_passed_through(player: Player)
 
 @export_range(0.1, 10.0, 0.1, "suffix:m/s") var minimum_exit_speed := 2.0
@@ -17,7 +16,6 @@ func _on_blades_entered(body: Node3D) -> void:
 	if not body is Player or _passing.has(body.get_instance_id()):
 		return
 	_passing[body.get_instance_id()] = true
-	# Area callbacks occur while physics queries are being flushed.
 	_transfer_player.call_deferred(body)
 
 
@@ -30,7 +28,6 @@ func _transfer_player(player: Player) -> void:
 		return
 	var up := global_basis.y.normalized()
 	var clearance := player.spawn_clearance
-	# Use the actual collider and rotation so the whole player clears the outlet.
 	var collider := player.collider as CollisionShape3D
 	if collider != null and collider.shape != null:
 		var bounds := collider.shape.get_debug_mesh().get_aabb()

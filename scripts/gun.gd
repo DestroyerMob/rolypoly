@@ -1,22 +1,15 @@
 class_name Gun
 extends Node3D
-## Hitscan gun gadget. Fires from the camera crosshair while equipped, so the
-## muzzle only decides where the tracer is drawn from.
 
 signal fired
-## Emitted once per pellet that hits something.
 signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vector3)
 
 @export_group("Firing")
-## Seconds between shots.
 @export var fire_interval := 0.1
-## Hold to keep firing; otherwise one shot per click.
 @export var automatic := false
 @export var pellets := 1
-## Half-angle of the cone pellets are scattered in.
 @export_range(0.0, 45.0, 0.1) var spread_degrees := 0.0
 @export var max_range := 300.0
-## Impulse each pellet applies to a rigid body it hits.
 @export var impulse := 10.0
 
 @export_group("Effects")
@@ -25,7 +18,6 @@ signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vect
 @export var tracer_seconds := 0.1
 @export var impact_radius := 0.8
 @export var flash_energy := 6.0
-## How far the model slides back when firing.
 @export var kick_distance := 0.2
 @export var kick_degrees := 4.0
 
@@ -56,7 +48,6 @@ func _ready() -> void:
 	_tracer_material.emission_energy_multiplier = 3.0
 
 
-# Only the gadget mount calls this, so a pickup's display copy never fires.
 func update_attachment(player: Player, mount: GadgetMount) -> void:
 	_player = player
 	_mount = mount
@@ -82,7 +73,6 @@ func _shoot() -> void:
 	_cooldown = fire_interval
 	var center := get_viewport().get_visible_rect().size * 0.5
 	var aim := camera.project_ray_normal(center)
-	# Start at the player's depth so scenery between the camera and player is ignored.
 	var origin := camera.project_ray_origin(center)
 	origin += aim * origin.distance_to(_player.global_position)
 	var space := get_world_3d().direct_space_state

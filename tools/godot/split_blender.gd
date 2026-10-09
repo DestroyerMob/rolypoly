@@ -1,10 +1,6 @@
 extends SceneTree
 
-# Rebuild the editable model from the original FBX:
-# godot --headless --path . --script res://tools/godot/split_blender.gd
 const ASSET_DIR := "res://assets/models/obstacles/blender/"
-# The blade, spindle, and cap are separate connected pieces inside this region
-# of the FBX mesh's local coordinates (before its scale and axis conversion).
 const BLADE_REGION := AABB(Vector3(-0.0042, -0.0042, 0.0042), Vector3(0.0084, 0.0084, 0.0011))
 
 var _parents: Dictionary[Vector3i, Vector3i] = {}
@@ -30,7 +26,6 @@ func _initialize() -> void:
 		for vertex in vertices:
 			var component := _root(_key(vertex))
 			is_blade[component] = is_blade.get(component, true) and BLADE_REGION.has_point(vertex)
-			# The lid and its center plug sit above the jar as whole components.
 			is_lid[component] = is_lid.get(component, true) and vertex.z > 0.0263
 
 	var housing_mesh := ArrayMesh.new()
@@ -132,7 +127,6 @@ func _append_surface(target: ArrayMesh, arrays: Array, indices: PackedInt32Array
 	var selected := arrays.duplicate()
 	selected[Mesh.ARRAY_INDEX] = indices
 	subset.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, selected)
-	# Discard unused vertices so each extracted mesh has accurate bounds.
 	var surface := SurfaceTool.new()
 	surface.create_from(subset, 0)
 	surface.deindex()

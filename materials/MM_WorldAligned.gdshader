@@ -339,23 +339,17 @@ void fragment() {
         // max() guards strength > 1 pushing xy past unit length, where the root
         // would go imaginary and the pixel would come out NaN.
 
-        // Undo the UV rotation on the sampled slopes too. Rotating the texture
-        // alone leaves highlights and reflections pointing the wrong way.
         float a = radians(uv_rotation_degrees);
         mat2 undo_rotation = mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a)));
         tx.xy = undo_rotation * (tx.xy * sign(uv_tiling));
         ty.xy = undo_rotation * (ty.xy * sign(uv_tiling));
         tz.xy = undo_rotation * (tz.xy * sign(uv_tiling));
 
-        // Match each projection's signed U/V axes and retain the geometric
-        // normal. A flat map must leave rounded edges and bevels unchanged.
         vec3 nx = vec3(n.x * tx.z, n.y - tx.y, n.z - sign(n.x) * tx.x);
         vec3 ny = vec3(n.x + ty.x, n.y * ty.z, n.z + sign(n.y) * ty.y);
         vec3 nz = vec3(n.x + sign(n.z) * tz.x, n.y - tz.y, n.z * tz.z);
         vec3 mapped_normal = normalize(nx * w.x + ny * w.y + nz * w.z);
 
-        // Object-aligned maps need the model normal transform as well as the
-        // view transform, including inverse scale for stretched geometry.
         NORMAL = normalize(proj_to_view * mapped_normal);
     }
 }

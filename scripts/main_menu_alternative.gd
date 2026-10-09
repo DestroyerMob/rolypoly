@@ -114,7 +114,6 @@ func _show_settings(show_settings: bool) -> void:
 		return
 	_transitioning = true
 	_settings_shown = show_settings
-	# Restore the selector only if it was open before entering settings.
 	var main_controls: Array[Control] = _main_controls.duplicate()
 	if _levels_shown:
 		main_controls.append(_level_grid)

@@ -12,7 +12,6 @@ void vertex() {
 void fragment() {
 	float height = clamp((local_height + 2.2) / 4.4, 0.0, 1.0);
 	float vertical_fade = pow(1.0 - height, 2.0) * smoothstep(0.0, 0.08, height);
-	// Fade the silhouette so the light reads as a haze rather than a solid tube.
 	float edge_fade = pow(abs(dot(normalize(NORMAL), normalize(VIEW))), 1.5);
 	ALBEDO = glow_color.rgb;
 	EMISSION = glow_color.rgb * 1.5;

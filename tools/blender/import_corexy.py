@@ -18,7 +18,6 @@ bpy.ops.object.delete(use_global=False)
 bpy.ops.wm.stl_import(filepath=str(ASSET / "source/CoreXY.stl"))
 model = bpy.context.object
 
-# STL is unitless. Center the footprint and put its lowest point on the floor.
 minimum = Vector(tuple(min(v.co[axis] for v in model.data.vertices) for axis in range(3)))
 maximum = Vector(tuple(max(v.co[axis] for v in model.data.vertices) for axis in range(3)))
 origin = Vector(((minimum.x + maximum.x) / 2, (minimum.y + maximum.y) / 2, minimum.z))
@@ -32,7 +31,6 @@ bmesh.ops.recalc_face_normals(mesh, faces=list(mesh.faces))
 mesh.to_mesh(model.data)
 mesh.free()
 
-# Godot's import suffix adds static triangle collision, preserving frame openings.
 model.name = "CoreXY-col"
 model.data.name = "CoreXYMesh"
 material = bpy.data.materials.new("CoreXYSilver")
@@ -52,8 +50,6 @@ bpy.ops.export_scene.gltf(
 )
 print(f"Exported CoreXY: {len(model.data.polygons)} triangles; dimensions {tuple(model.dimensions)}")
 
-# The STL contains disconnected mechanical parts. Separate them before export so
-# the original rails and tool head can move without leaving duplicate geometry.
 mesh = bmesh.new()
 mesh.from_mesh(model.data)
 unseen = set(mesh.verts)
@@ -76,7 +72,6 @@ while unseen:
     if low[0] > -60 and high[0] < 20 and low[1] > 20 and high[1] < 140:
         group = "carriage"
     elif low[1] > 70 and high[1] < 140:
-        # Godot builds rods ending at the dicer, leaving its bore clear.
         if high[0] - low[0] > 350 and high[1] - low[1] < 12:
             continue
         group = "gantry"

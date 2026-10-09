@@ -1,7 +1,6 @@
 extends Node3D
 
 @export var gadget_scene: PackedScene
-## Optional display model when the pickup differs from the equipped gadget.
 @export var preview_scene: PackedScene
 @export var gadget_mount: GadgetMount
 @export var preview_scale := 0.3

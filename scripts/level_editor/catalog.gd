@@ -1,6 +1,5 @@
 extends RefCounted
 
-# Stable IDs are stored in saves; only this catalog can resolve them to scenes.
 const ITEMS := {
 	"counter": {"label": "Counter tile (8 × 8)", "category": "Surfaces", "scene": preload("res://scenes/level_editor/counter_tile.tscn")},
 	"box": {"label": "Platform", "category": "Surfaces", "scene": preload("res://scenes/prototyping/proto_box.tscn")},

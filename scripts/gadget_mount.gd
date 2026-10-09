@@ -30,7 +30,6 @@ func equip(scene: PackedScene) -> void:
 
 
 func unequip(expected_gadget: Node3D = null) -> void:
-	# A deferred melt must not remove a replacement collected in the same frame.
 	if expected_gadget != null and expected_gadget != _gadget:
 		return
 	if is_instance_valid(_gadget):
@@ -61,7 +60,6 @@ func _update_attachment() -> void:
 	if not visible:
 		return
 	player_rig.current_player.gadget = _gadget
-	# Follow position and camera aim, never the rolling body's orientation.
 	var aim := camera.global_basis.orthonormalized()
 	var right := Vector3(aim.x.x, 0, aim.x.z).normalized()
 	global_transform = Transform3D(aim, player_rig.current_player.global_position

@@ -1,7 +1,6 @@
 @tool
 extends StaticBody3D
 
-## The reusable lighter is lit by default; switch it off in the Inspector.
 @export var lit := true:
 	set(value):
 		lit = value

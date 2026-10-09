@@ -9,7 +9,6 @@ const COMPANIONS := [
 	preload("res://packed_scenes/player_boiled_egg.tscn"),
 ]
 const COMPANION_NAMES := ["Onion", "Tomato", "NakedOnion", "BoiledEgg"]
-# Positions are in the box's model space; +Y points out of its opening.
 const COMPANION_POSITIONS := [
 	Vector3(-0.35, -0.35, -0.6),
 	Vector3(-0.65, 0.35, -0.65),
@@ -42,7 +41,6 @@ func _ready() -> void:
 
 	for index in COMPANIONS.size():
 		var body := COMPANIONS[index].instantiate() as RigidBody3D
-		# Keep the artwork and physics, but only the rig's player receives input.
 		body.set_script(null)
 		body.name = COMPANION_NAMES[index]
 		body.continuous_cd = true
@@ -63,7 +61,6 @@ func _normalize_produce(body: RigidBody3D) -> void:
 		bounds = bounds.merge(mesh_bounds[index])
 	var factor := produce_size / bounds.size[bounds.size.max_axis_index()]
 	var size := bounds.size * factor
-	# Normalize visible artwork rather than the differently sized source colliders.
 	for child in collider.get_children():
 		if child is Node3D:
 			child.position = (child.position - bounds.get_center()) * factor
@@ -98,7 +95,6 @@ func _collect_mesh_bounds(node: Node3D, relative: Transform3D, bounds: Array[AAB
 
 
 func _physics_process(_delta: float) -> void:
-	# A single impulse starts the spill; ordinary rigid-body physics takes over.
 	var outward := box_start.global_basis.y.normalized()
 	var sideways := box_start.global_basis.z.normalized()
 	for index in _bodies.size():
