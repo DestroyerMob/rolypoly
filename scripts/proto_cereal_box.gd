@@ -145,7 +145,13 @@ var _mat_cache := {}
 
 func _ready() -> void:
 	_rebuild()
-
+func _unhandled_input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
+	if event is InputEventKey and event.pressed and event.physical_keycode == KEY_Z:
+		var hinge := get_node_or_null("TopHinge") as Node3D
+		if hinge:
+			create_tween().tween_property(hinge, "rotation_degrees:x", 135.0, 0.2)
 
 func _rebuild() -> void:
 	#Job 1: Bail out early, as add_child() errors on a node not yet in the tree.
@@ -229,9 +235,26 @@ func _build_flap(is_top: bool) -> void:
 	#       edge lands on the pivot and rotation sweeps the free edge.
 	var pos := Vector3(0.0, 0.0, -side_sign * reach * 0.5)
 
-	_box(prefix + "Flap", size, pos, _body_material(), true,
+	var panel := _box(prefix + "Flap", size, pos, _body_material(), true,
 		carton_bevel * 0.5, hinge)
 
+	#Job 3: Loopies are launchers, so their top flap wears a loop as the
+	#       aim mark. Parented to the panel so it swings with the flap.
+	if is_top and title == Title.LOOPIES:
+		var ring := MeshInstance3D.new()
+		ring.name = "LoopMark"
+		var torus := TorusMesh.new()
+		var r := minf(size.x, size.z) * 0.3
+		torus.outer_radius = r
+		torus.inner_radius = r * 0.75
+		ring.mesh = torus
+		var mark := StandardMaterial3D.new()
+		mark.albedo_color = Color("ff6a3d")
+		ring.material_override = mark
+		ring.scale.y = 0.3
+		ring.position = Vector3(0.0, size.y * 0.5 + 0.05,
+			-side_sign * size.z * 0.1)
+		panel.add_child(ring)
 
 # --------------------------------------------------------------------------
 # Builders
@@ -261,7 +284,9 @@ func _box(p_name: String, size: Vector3, pos: Vector3, mat: Material,
 	#       lets the marble sink through the flap as it swings.
 	var body: PhysicsBody3D
 	if movable:
-		body = AnimatableBody3D.new()
+		var animatable := AnimatableBody3D.new()
+		animatable.sync_to_physics = false
+		body = animatable
 	else:
 		body = StaticBody3D.new()
 	body.name = p_name + "Body"

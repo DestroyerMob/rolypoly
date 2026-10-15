@@ -7,6 +7,8 @@ signal player_released(player: Player)
 @export_category("Destination")
 @export_node_path("Node3D") var drop_target_path: NodePath
 @export var release_velocity := Vector3(0.0, -1.5, 0.0)
+## Channel links funnel to funnel exit. 0 Uses drop_target_path or the built-in drop point. 1 ore more looks for a funnel exit with the same channel. Used in the level builder.
+@export_range(0,20) var channel := 0 
 
 @export_category("Transition")
 @export_range(0.0, 1.0, 0.01) var transition_delay := 0.08
@@ -79,11 +81,17 @@ func _create_physical_funnel_collision() -> void:
 
 
 func _get_drop_target() -> Node3D:
+	#Job 1: Use a channel, as it is the only link a builder level can save within the item properties.
+	if channel > 0:
+		for exit in get_tree().get_nodes_in_group(&"funnel_exit"):
+			if exit is FunnelExit and exit.channel == channel:
+				return exit
+		push_warning("Funnel channel %d has no matching FunnelExit." % channel)
+
+	#Job 2: Hand-built scenes can still use the NodePath.
 	if not drop_target_path.is_empty():
 		var target := get_node_or_null(drop_target_path) as Node3D
 		if target:
 			return target
 	return default_drop_point
-	
-
 	
