@@ -52,6 +52,9 @@ const ITEMS := {
 	"spawn": {"label": "Player start", "category": "Level", "scene": preload("res://scenes/level_editor/start.tscn")},
 	"goal": {"label": "Finish area", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
+	"book": {"label": "Book", "category": "Kitchen", "scene": preload("res://scenes/props/book.tscn")},
+	"cereal": {"label": "Cereal", "category": "Kitchen", "scene": preload("res://scenes/props/cereal.tscn")},
+	"funnel_exit": {"label": "Funnel exit", "category": "Level", "scene": preload("res://scenes/props/funnel_exit.tscn")},
 }
 
 static func player_of(document: Dictionary) -> String:

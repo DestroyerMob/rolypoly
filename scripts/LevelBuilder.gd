@@ -987,6 +987,8 @@ func _property_changed(value: Variant, spec: Dictionary) -> void:
 	else:
 		values[spec.name] = coerced
 	_store_properties(data, values)
+	if spec.on != "gadget": #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly 
+		world.objects[selected].set(spec.name, coerced) #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly 
 	if _property_resets.has(spec.name):
 		_property_resets[spec.name].visible = values.has(spec.name)
 

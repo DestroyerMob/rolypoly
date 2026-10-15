@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d0ovyswq3kl06"]
+
+[ext_resource type="Script" uid="uid://c5ybj4qkebrpb" path="res://scripts/proto_cereal_box.gd" id="1_javx8"]
+
+[node name="ProtoCerealBox" type="Node3D" unique_id=271924064]
+script = ExtResource("1_javx8")
+title = 1
+metadata/_custom_type_script = "uid://c5ybj4qkebrpb"
