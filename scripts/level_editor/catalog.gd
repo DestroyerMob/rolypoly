@@ -52,6 +52,7 @@ const ITEMS := {
 	"spawn": {"label": "Player start", "category": "Level", "scene": preload("res://scenes/level_editor/start.tscn")},
 	"goal": {"label": "Finish area", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
 	"watcher": {"label": "Event watcher", "category": "Logic", "scene": preload("res://scenes/level_editor/event_watcher.tscn")},
+	"npc": {"label": "NPC spawner", "category": "Level", "scene": preload("res://scenes/level_editor/npc_spawner.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
 }
 

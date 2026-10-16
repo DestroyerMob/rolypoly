@@ -209,7 +209,7 @@ func die() -> void:
 		return
 	is_eliminated = true
 	enter_condition(Condition.DEAD)
-	if is_instance_valid(gadget) and gadget.get_parent() is GadgetMount:
+	if is_instance_valid(gadget) and gadget.get_parent().has_method("unequip"):
 		gadget.get_parent().unequip(gadget)
 	set_active(false)
 	eliminated.emit()

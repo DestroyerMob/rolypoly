@@ -831,6 +831,8 @@ func _refresh_inspector() -> void:
 		selection_hint.text += "\nThe player starts here. Hidden during play."
 	elif data.id == "watcher":
 		selection_hint.text += "\nCounts events while playing and triggers its targets. Hidden during play."
+	elif data.id == "npc":
+		selection_hint.text += "\nAn NPC starts here. Hidden during play."
 	for index in transform_fields.size():
 		var key: String = ["position", "rotation", "scale"][index / 3]
 		transform_fields[index].set_value_no_signal(data[key][index % 3])
@@ -1145,6 +1147,8 @@ func _property_changed(value: Variant, spec: Dictionary) -> void:
 	else:
 		values[spec.name] = coerced
 	_store_properties(data, values)
+	if data.id == "npc" and spec.name == "character":
+		_rebuild_world()
 	if _property_resets.has(spec.name):
 		_property_resets[spec.name].visible = values.has(spec.name)
 	if data.id == "watcher" and spec.name == "event":

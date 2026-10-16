@@ -30,6 +30,8 @@ func build(document: Dictionary, editing: bool) -> void:
 			preview.visible = editing
 			if editing and entry.id == "spawn":
 				preview.add_child(character_preview(Catalog.player_of(document)))
+			elif editing and entry.id == "npc":
+				preview.add_child(character_preview(node.character_key()))
 		add_child(node)
 		objects.append(node)
 		fall_height = minf(fall_height, node.position.y - 30.0)
@@ -38,6 +40,8 @@ func build(document: Dictionary, editing: bool) -> void:
 			add_pick_body(node)
 		elif entry.id == "goal":
 			node.connect("level_completed", _on_completed)
+		elif entry.id == "npc":
+			node.spawn.call_deferred(Catalog.PLAYERS[node.character_key()].scene)
 	if editing:
 		draw_links(document)
 	else:
@@ -158,9 +162,11 @@ func _update_spawn(player: Player) -> void:
 	player.spawn_position = start_position + Vector3.UP * player.spawn_clearance
 
 func _physics_process(_delta: float) -> void:
-	if rig != null and is_instance_valid(rig.current_player) and not _finished:
-		if rig.current_player.global_position.y < fall_height:
-			rig.current_player.die()
+	if _finished:
+		return
+	for player: Player in get_tree().get_nodes_in_group(&"players"):
+		if player.global_position.y < fall_height:
+			player.die()
 
 func _on_completed(_player: Player) -> void:
 	if not _finished:
