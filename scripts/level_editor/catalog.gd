@@ -51,6 +51,7 @@ const ITEMS := {
 	"produce": {"label": "Loose egg (gravity gun)", "category": "Kitchen", "scene": preload("res://packed_scenes/not_a_player_egg.tscn")},
 	"spawn": {"label": "Player start", "category": "Level", "scene": preload("res://scenes/level_editor/start.tscn")},
 	"goal": {"label": "Finish area", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
+	"npc": {"label": "NPC spawner", "category": "Level", "scene": preload("res://scenes/level_editor/npc_spawner.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
 }
 

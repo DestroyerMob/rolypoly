@@ -5,6 +5,7 @@ signal npc_finished(npc: NPC)
 var _finished := false
 
 func _ready() -> void:
+	add_to_group(&"finish")
 	body_entered.connect(_on_body_entered)
 	_create_outline()
 
