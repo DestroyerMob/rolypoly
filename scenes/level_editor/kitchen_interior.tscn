@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dm8hx3l7f5icp" path="res://assets/textures/T_Tile_Marble_White_Square_BC.jpg" id="15_gvbnr"]
 [ext_resource type="Material" uid="uid://bn8usbsdl0dpf" path="res://materials/MI_Limestone.tres" id="15_rjymo"]
 [ext_resource type="Texture2D" uid="uid://tdihhh0x4uy5" path="res://assets/textures/T_Tile_Marble_White_Square_N.jpg" id="16_1h32m"]
+[ext_resource type="PackedScene" uid="uid://dq6gswh5ejm2w" path="res://scenes/props/KitchenLamp.tscn" id="16_3135d"]
 [ext_resource type="Texture2D" uid="uid://d0mandarnla3j" path="res://assets/textures/T_Plaster_Cream_1K_BC.jpg" id="16_k87re"]
 [ext_resource type="Texture2D" uid="uid://b1t1bv6y2fxpr" path="res://assets/textures/T_Tile_Marble_White_Square_R.jpg" id="17_4b3au"]
 [ext_resource type="Texture2D" uid="uid://ko8ldgtv7gaf" path="res://assets/textures/T_Parquet_Herringbone_2K_BC.png" id="17_5kits"]
@@ -21,7 +22,7 @@
 [ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="19_2x6kh"]
 [ext_resource type="Texture2D" uid="uid://7ukuie0sh0ac" path="res://assets/textures/T_Parquet_Herringbone_2K_R.png" id="19_034a4"]
 [ext_resource type="Script" uid="uid://cvm1bwyngmoo6" path="res://scripts/shaker_front.gd" id="20_41g6l"]
-[ext_resource type="Material" uid="uid://di6vys64e5mws" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical.tres" id="21_dkj30"]
+[ext_resource type="Material" uid="uid://cdvgqtpwlwcli" path="res://materials/generated/MI_Plaster_Rough_001.tres" id="20_g1h74"]
 [ext_resource type="Material" uid="uid://73oilnhtlhuw" path="res://materials/generated/MI_Tile_Marble_White_Square.tres" id="22_3hd6r"]
 [ext_resource type="Material" uid="uid://l64gnvxuxvnn" path="res://materials/generated/MI_Tile_Pattern_Star_2x2.tres" id="22_c7xed"]
 [ext_resource type="Texture2D" uid="uid://b2cxff3v7r4pc" path="res://assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_BC.png" id="23_h73ud"]
@@ -39,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://bslui6kat6cd0" path="res://scenes/building/timber_corbel.tscn" id="30_fobt1"]
 [ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="31_lhsis"]
 [ext_resource type="PackedScene" uid="uid://cl16b4t6pnt8c" path="res://scenes/props/handle_bar.tscn" id="32_f6kcy"]
+[ext_resource type="Material" uid="uid://ca1adxq2lcuae" path="res://materials/MM_Limestone.tres" id="33_3135d"]
 [ext_resource type="Material" uid="uid://cheb2pxngb7md" path="res://materials/MI_Wood_Veneer_Cabinets_Vertical_Shaker_Front_Light.tres" id="33_ybtow"]
 [ext_resource type="PackedScene" uid="uid://cs8xeafo0dh74" path="res://scenes/props/Knob_Round.tscn" id="34_vifhf"]
 [ext_resource type="Script" uid="uid://bdadou88ia27u" path="res://scripts/proto_box.gd" id="35_jvjdc"]
@@ -47,7 +49,6 @@
 [ext_resource type="Material" uid="uid://xu5yn01xkkru" path="res://assets/models/props/Timber_Corbel_Material.tres" id="38_bwkn4"]
 [ext_resource type="PackedScene" uid="uid://c1tv3el0xi06y" path="res://scenes/obstacles/sink.tscn" id="39_8lgrn"]
 [ext_resource type="Material" uid="uid://ch26n4c5y1vjd" path="res://materials/generated/MI_Marble_White.tres" id="39_g1h74"]
-[ext_resource type="Material" uid="uid://eomjoxv35qcd" path="res://assets/models/props/Oven_Cooktop_Steel.tres" id="40_wmuup"]
 [ext_resource type="Material" uid="uid://cwemm6ktomkjx" path="res://materials/generated/MI_Wood_Planks_Scratched.tres" id="41_276e3"]
 [ext_resource type="Material" uid="uid://bf2icfp3bktrj" path="res://materials/generated/MI_Veneer_Rosewood.tres" id="42_o5p46"]
 [ext_resource type="Material" uid="uid://c7y45t8ycsuei" path="res://materials/MI_Tile_Terracotta_Square.tres" id="43_t6fey"]
@@ -884,6 +885,15 @@ size = Vector3(1500, 3, 1900)
 material = SubResource("StandardMaterial3D_4fcs4")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
+[node name="KitchenLamp" parent="_Set/_Shell/_Ceiling" unique_id=1136259580 instance=ExtResource("16_3135d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.2504, 119.5, -506.71906)
+
+[node name="KitchenLamp2" parent="_Set/_Shell/_Ceiling" unique_id=1823283254 instance=ExtResource("16_3135d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5839386, 119.5, -506.71906)
+
+[node name="KitchenLamp3" parent="_Set/_Shell/_Ceiling" unique_id=93586830 instance=ExtResource("16_3135d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.18967, 119.5, -506.71906)
+
 [node name="_Outdoor" type="Node" parent="_Set/_Shell" unique_id=946082302]
 
 [node name="Ground" type="StaticBody3D" parent="_Set/_Shell/_Outdoor" unique_id=1711875078]
@@ -913,7 +923,7 @@ layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(810, 320, 30)
-material = ExtResource("8_bktm0")
+material = ExtResource("20_g1h74")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_5yy73")])
 flip_cuts = true
 bevel = 1.0
@@ -1024,7 +1034,7 @@ size = Vector2(28.5, 79)
 panel_depth = 0.1
 frame_width = 0.5
 frame_depth = 0.1
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Base_Cabinet_Full_Height_Door_790mmx285mm_Sink2" type="Node3D" parent="_Set/_Fitout/_BaseCornerFiller_A_B" unique_id=839501218]
@@ -1034,7 +1044,7 @@ size = Vector2(28.5, 79)
 panel_depth = 0.1
 frame_width = 0.5
 frame_depth = 0.1
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="_Cupboard" type="Node" parent="_Set/_Fitout" unique_id=2104566045]
@@ -1107,6 +1117,7 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallSplash_" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=2075981807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
+visible = false
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(810, 37.5, 1)
@@ -1118,7 +1129,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7125397, 0, -807.723)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(810, 37.5, 1)
-material = ExtResource("24_ra1ik")
+material = ExtResource("33_3135d")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="WallSplash_3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1553566826]
@@ -1209,7 +1220,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.51253, -21, 38)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(77, 20, 2)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HandleBar" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_875mmx200mm_A" unique_id=996808862 instance=ExtResource("32_f6kcy")]
@@ -1221,8 +1232,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(77, 58)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="HandleBar2" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_875mmx200mm_A/ShakerFront_10x80x15" unique_id=58122513 instance=ExtResource("32_f6kcy")]
@@ -1233,7 +1244,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.000015, -21, 38)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(59, 20, 1)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HandleBar" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_575mmx200mm_B" unique_id=165035733 instance=ExtResource("32_f6kcy")]
@@ -1246,8 +1257,8 @@ size = Vector2(28.5, 58)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_575mmx200mm_B/ShakerFront_L" unique_id=1437985579 instance=ExtResource("34_vifhf")]
@@ -1260,8 +1271,8 @@ size = Vector2(28.5, 58)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_575mmx200mm_B/ShakerFront_R" unique_id=978181464 instance=ExtResource("34_vifhf")]
@@ -1272,7 +1283,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -21, 38)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(59, 20, 1)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HandleBar" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_575mmx200mm_C" unique_id=1992738544 instance=ExtResource("32_f6kcy")]
@@ -1285,8 +1296,8 @@ size = Vector2(28.5, 58)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_575mmx200mm_C/ShakerFront_L" unique_id=2045440061 instance=ExtResource("34_vifhf")]
@@ -1299,8 +1310,8 @@ size = Vector2(28.5, 58)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_575mmx200mm_C/ShakerFront_R" unique_id=153325176 instance=ExtResource("34_vifhf")]
@@ -1311,7 +1322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -21, 38)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(89, 20, 1)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HandleBar" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_875mmx200mm_D" unique_id=1686794340 instance=ExtResource("32_f6kcy")]
@@ -1323,8 +1334,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(44, 58)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_875mmx200mm_D/ShakerFront_L" unique_id=1008538272 instance=ExtResource("34_vifhf")]
@@ -1336,8 +1347,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(44, 58)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_L/BenchA_L_2_Carcass/Drawer_875mmx200mm_D/ShakerFront_R" unique_id=604512141 instance=ExtResource("34_vifhf")]
@@ -1394,7 +1405,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.51253, -21, 38)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(102, 20, 2)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass/Drawer_875mmx200mm_A" unique_id=965581031 instance=ExtResource("34_vifhf")]
@@ -1412,8 +1423,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(50, 58)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass/Drawer_875mmx200mm_A" unique_id=1525306789]
@@ -1422,8 +1433,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(50.5, 58)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="_ToDelete_WorkingFolder" type="Node" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass" unique_id=1705145352]
@@ -1433,7 +1444,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.000015, -21, 38)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(52, 20, 1)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HandleBar" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass/Drawer_575mmx200mm_B" unique_id=2140804277 instance=ExtResource("32_f6kcy")]
@@ -1452,8 +1463,8 @@ size = Vector2(25.5, 58)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_R" type="Node3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R/BenchA_R_2_Carcass/Drawer_575mmx200mm_B" unique_id=1262585971]
@@ -1463,8 +1474,8 @@ size = Vector2(25.5, 58)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Base_Cabinet_Full_Height_Door_790mmx285mm" type="Node3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R" unique_id=409029440]
@@ -1474,7 +1485,7 @@ size = Vector2(28.5, 79)
 panel_depth = 1.0
 frame_width = 5.0
 frame_depth = 1.5
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="BenchA_R_3_KickBoard" type="StaticBody3D" parent="_Set/_Fitout/_ElevationA_Range/_BenchA_Landing_R" unique_id=720077111]
@@ -1491,7 +1502,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5258789e-05, -15, 33)
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(300, 15, 1)
-material = SubResource("ShaderMaterial_ku4q0")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="_Window_L" type="Node" parent="_Set/_Fitout/_ElevationA_Range" unique_id=1473713922]
@@ -1619,7 +1630,7 @@ transform = Transform3D(1.192488e-08, 0, -0.9999998, 0, 0.8, 0, 1, 0, 1.1924879e
 layers = 131073
 script = ExtResource("7_3hd6r")
 size = Vector3(303, 90, 80)
-material = ExtResource("40_wmuup")
+material = ExtResource("41_276e3")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_uajea")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
@@ -1641,7 +1652,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, -4.5334684e-14, 1, 0, 1, 4.2632564
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(309, 15, 1)
-material = SubResource("ShaderMaterial_ku4q0")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Kickboard_3000mmx150mm3" type="StaticBody3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=2046116858]
@@ -1649,7 +1660,7 @@ transform = Transform3D(1, 4.2632564e-14, 0, -4.5334684e-14, 1, 0, 0, -1.8635285
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(90, 15, 1)
-material = SubResource("ShaderMaterial_ku4q0")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="Sink_ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1435706153]
@@ -1658,8 +1669,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(94, 64)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x17" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/Sink_ShakerFront_10x80x16" unique_id=1708637583]
@@ -1668,8 +1679,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(37.5, 46)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x18" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/Sink_ShakerFront_10x80x16" unique_id=965973156]
@@ -1678,8 +1689,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(37.5, 46)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/Sink_ShakerFront_10x80x16" unique_id=870693412 instance=ExtResource("34_vifhf")]
@@ -1694,8 +1705,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(99, 78)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x17" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/Bin_ShakerFront_10x80x17" unique_id=904089338]
@@ -1704,8 +1715,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(80, 60)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/Bin_ShakerFront_10x80x17" unique_id=938557394 instance=ExtResource("34_vifhf")]
@@ -1717,25 +1728,25 @@ script = ExtResource("20_41g6l")
 size = Vector2(92.5, 78)
 panel_depth = 1.0
 frame_depth = 1.5
-material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Shelf" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1151166852]
-transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -1, 0, 0.5, -4.371139e-08, 353.14133, -88.34923, -422.61496)
+transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -1, 0, 0.5, -4.371139e-08, 360.12082, -88.34923, -422.61496)
 script = ExtResource("20_41g6l")
 size = Vector2(92.5, 78)
 panel_depth = 1.0
 frame_depth = 1.5
-material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Shelf2" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=2022497730]
-transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 354.61548, -37.789528, -418.0792)
+transform = Transform3D(1, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 361.59497, -37.789528, -418.0792)
 script = ExtResource("20_41g6l")
 size = Vector2(92.5, 78)
 panel_depth = 1.0
 frame_depth = 1.5
-material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Sink_End" type="Node3D" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=588492882]
@@ -1752,7 +1763,7 @@ transform = Transform3D(7.874839e-21, -6.181724e-08, -0.9999999, 8.742265e-08, 0
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(94.5, 20, 2)
-material = ExtResource("21_dkj30")
+material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
 [node name="HandleBar" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink" unique_id=1186813409 instance=ExtResource("32_f6kcy")]
@@ -1764,8 +1775,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(46, 57)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/ShakerFront_L" unique_id=919424146 instance=ExtResource("34_vifhf")]
@@ -1777,8 +1788,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(47.5, 57)
 panel_depth = 1.0
 frame_depth = 1.0
-material = ExtResource("21_dkj30")
-panel_material = ExtResource("33_ybtow")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="KnobRound2" parent="_Set/_Fitout/_ElevationB_SinkWall/_Sink/ShakerFront_R" unique_id=1236007851 instance=ExtResource("34_vifhf")]
@@ -2309,7 +2320,7 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 430.
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(142, 20, 2)
-material = ExtResource("15_rjymo")
+material = ExtResource("41_276e3")
 bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -2328,8 +2339,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(70, 58)
 panel_depth = 1.0
 frame_depth = 2.0
-material = ExtResource("15_rjymo")
-panel_material = ExtResource("15_rjymo")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A" unique_id=1062589604]
@@ -2338,8 +2349,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(70, 58)
 panel_depth = 1.0
 frame_depth = 2.0
-material = ExtResource("15_rjymo")
-panel_material = ExtResource("15_rjymo")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Drawer_875mmx200mm_A3" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=285292965]
@@ -2347,7 +2358,7 @@ transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 508.
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(142, 20, 2)
-material = ExtResource("49_deogc")
+material = ExtResource("41_276e3")
 bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -2366,8 +2377,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(70, 58)
 panel_depth = 1.0
 frame_depth = 2.0
-material = ExtResource("49_deogc")
-panel_material = ExtResource("49_deogc")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A3" unique_id=1763721516]
@@ -2376,8 +2387,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(70, 58)
 panel_depth = 1.0
 frame_depth = 2.0
-material = ExtResource("49_deogc")
-panel_material = ExtResource("49_deogc")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="Drawer_875mmx200mm_A2" type="StaticBody3D" parent="_Set/_Fitout/_Bar" unique_id=19170867]
@@ -2385,7 +2396,7 @@ transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 463.
 disable_mode = 2
 script = ExtResource("6_4b3au")
 size = Vector3(120, 20, 2)
-material = ExtResource("46_2unik")
+material = ExtResource("41_276e3")
 bevel = 0.5
 metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 
@@ -2401,8 +2412,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(60, 58)
 panel_depth = 1.0
 frame_depth = 2.0
-material = ExtResource("46_2unik")
-panel_material = ExtResource("46_2unik")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="ShakerFront_10x80x16" type="Node3D" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=621328792]
@@ -2411,8 +2422,8 @@ script = ExtResource("20_41g6l")
 size = Vector2(60, 58)
 panel_depth = 1.0
 frame_depth = 2.0
-material = ExtResource("46_2unik")
-panel_material = ExtResource("46_2unik")
+material = ExtResource("41_276e3")
+panel_material = ExtResource("41_276e3")
 metadata/_custom_type_script = "uid://cvm1bwyngmoo6"
 
 [node name="HandleBar" parent="_Set/_Fitout/_Bar/Drawer_875mmx200mm_A2" unique_id=1601350867 instance=ExtResource("32_f6kcy")]
@@ -2630,7 +2641,7 @@ layers = 131073
 use_collision = true
 script = ExtResource("7_3hd6r")
 size = Vector3(116, 50, 15)
-material = ExtResource("49_deogc")
+material = ExtResource("41_276e3")
 openings = Array[ExtResource("9_2kmqn")]([SubResource("Resource_5st54")])
 flip_cuts = true
 metadata/_custom_type_script = "uid://dtpgesoo3m5gm"
@@ -3285,112 +3296,6 @@ material = ExtResource("38_bwkn4")
 metadata/_custom_type_script = "uid://dv61u3h65bqmd"
 
 [node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_5" unique_id=1212656227]
-transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="BarStool_3" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=1204371876]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -36, -567)
-disable_mode = 2
-script = ExtResource("6_4b3au")
-size = Vector3(45, 4, 45)
-material = ExtResource("66_joulq")
-bevel = 3.0
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=887193756]
-transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=2120082214]
-transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=526358747]
-transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_3" unique_id=307937443]
-transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="BarStool_4" type="StaticBody3D" parent="_Set/_Dressing/_Props" unique_id=737159064]
-transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -65, -36, -593)
-disable_mode = 2
-script = ExtResource("6_4b3au")
-size = Vector3(45, 4, 45)
-material = ExtResource("66_joulq")
-bevel = 3.0
-metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
-
-[node name="Leg" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=2141088312]
-transform = Transform3D(0.99551195, -0.08929549, 0.031334236, 0.08694341, 0.99376804, 0.06975645, -0.037367903, -0.0667191, 0.99707144, 26, -63.500008, 25)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="Leg2" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=411218761]
-transform = Transform3D(0.9958939, -0.084929965, 0.031334236, 0.08694341, 0.9937681, -0.06975645, -0.025214553, 0.07219436, 0.99707144, 26, -63.500008, -24)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="Leg4" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=1699883236]
-transform = Transform3D(0.9958939, 0.084929965, 0.031334236, -0.08694341, 0.9937681, 0.06975645, -0.025214553, -0.07219436, 0.99707144, -26, -63.500008, 25)
-disable_mode = 2
-script = ExtResource("29_gwba6")
-bottom_size = Vector2(7, 7)
-top_size = Vector2(4, 4)
-height = 67.0
-bevel = 1.0
-material = ExtResource("38_bwkn4")
-metadata/_custom_type_script = "uid://dv61u3h65bqmd"
-
-[node name="Leg5" type="StaticBody3D" parent="_Set/_Dressing/_Props/BarStool_4" unique_id=1036871883]
 transform = Transform3D(0.995512, 0.08929551, 0.031334236, -0.08694342, 0.9937682, -0.06975645, -0.037367903, 0.066719115, 0.99707144, -26, -63.500008, -25)
 disable_mode = 2
 script = ExtResource("29_gwba6")
