@@ -1,5 +1,7 @@
 extends Node3D
 signal completed
+## Free for all only: the player was knocked out.
+signal lost
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const PICK_LAYER := 1 << 19
 var objects: Array[Node3D] = []
@@ -10,6 +12,7 @@ var mount: GadgetMount
 var play_camera: Camera3D
 var start_position := Vector3.ZERO
 var fall_height := -140.0
+var _lowest := INF
 var _finished := false
 
 func build(document: Dictionary, editing: bool) -> void:
@@ -35,6 +38,7 @@ func build(document: Dictionary, editing: bool) -> void:
 		add_child(node)
 		objects.append(node)
 		fall_height = minf(fall_height, node.position.y - 30.0)
+		_lowest = minf(_lowest, node.position.y)
 		if editing:
 			freeze_for_edit(node)
 			add_pick_body(node)
@@ -46,6 +50,8 @@ func build(document: Dictionary, editing: bool) -> void:
 		draw_links(document)
 	else:
 		_wire_watchers(document)
+		if Catalog.mode_of(document) == "ffa":
+			_start_match()
 		_update_spawn(rig.current_player)
 		rig.current_player.respawn(rig.current_player.spawn_position)
 
@@ -89,6 +95,25 @@ func _wire_watchers(document: Dictionary) -> void:
 				for watcher in watchers:
 					watcher.scale_weighed(weight, uid)
 			)
+
+## Everyone placed joins once spawned. Falling 30 below the lowest object is out.
+func _start_match() -> void:
+	var brawl := FreeForAll.new()
+	brawl.name = "FreeForAll"
+	brawl.kill_height = _lowest - 30.0
+	add_child(brawl)
+	brawl.match_won.connect(func(winner: Player):
+		if winner == rig.current_player:
+			_on_completed(winner)
+		else:
+			_on_lost()
+	)
+	rig.current_player.eliminated.connect(_on_lost)
+
+func _on_lost() -> void:
+	if not _finished:
+		_finished = true
+		lost.emit.call_deferred()
 
 ## Editor only: a line from each watcher to everything it targets or reads.
 func draw_links(document: Dictionary) -> void:

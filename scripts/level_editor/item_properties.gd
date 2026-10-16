@@ -147,6 +147,7 @@ static func _build() -> Dictionary:
 			_num("wander_radius", "Wander radius", 1.0, 200.0, 0.5),
 			_num("fight_range", "Fight · shooting range", 2.0, 300.0, 1.0),
 			_num("aim_error", "Fight · aim error", 0.0, 20.0, 0.1),
+			_choice("weapon", "Starts with", [["Nothing (rams)", 0], ["Walther P88", 1], ["M4A1", 2], ["Shotgun", 3]]),
 		],
 		"m4a1": _gun(),
 		"shotgun": _gun(),

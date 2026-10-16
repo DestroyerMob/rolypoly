@@ -37,6 +37,7 @@ var _mouse_position := Vector2.ZERO
 var _rebuilding_ui := false
 var _paused := false
 var _completed := false
+var _end_title := ""
 var _load_error := ""
 var _editor_camera_transform: Transform3D
 
@@ -46,6 +47,7 @@ var play_ui: Control
 var status: Label
 var name_field: LineEdit
 var player_choice: OptionButton
+var mode_choice: OptionButton
 var category: OptionButton
 var search: LineEdit
 var palette: ItemList
@@ -166,6 +168,20 @@ func _create_ui() -> void:
 	player_choice.item_selected.connect(_player_chosen)
 	player_group.add_child(player_choice)
 	_muted(player_group, "Player character")
+	var mode_group := VBoxContainer.new()
+	mode_group.add_theme_constant_override("separation", 3)
+	toolbar.add_child(mode_group)
+	mode_choice = OptionButton.new()
+	mode_choice.name = "GameMode"
+	mode_choice.custom_minimum_size = Vector2(190, 42)
+	mode_choice.focus_mode = Control.FOCUS_NONE
+	mode_choice.tooltip_text = "Race: reach a Finish area. Free for all: knock out every NPC; last one standing wins."
+	for id in Catalog.MODES:
+		mode_choice.add_item(Catalog.MODES[id])
+		mode_choice.set_item_metadata(mode_choice.item_count - 1, id)
+	mode_choice.item_selected.connect(_mode_chosen)
+	mode_group.add_child(mode_choice)
+	_muted(mode_group, "Game mode")
 	_button(toolbar, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(toolbar, "Save copy", _save.bind(true))
 	_button(toolbar, "Save", _save.bind(false))
@@ -460,6 +476,7 @@ func _rebuild_world() -> void:
 	add_child(world)
 	world.build(document, build_mode)
 	world.completed.connect(_finish)
+	world.lost.connect(_lose)
 	if build_mode:
 		camera.make_current()
 	_update_selection_box()
@@ -1125,11 +1142,22 @@ func _player_chosen(index: int) -> void:
 	_rebuild_world()
 	_status("This level is now played as the %s. Players can't swap characters during it." % Catalog.PLAYERS[id].label.to_lower())
 
+func _mode_chosen(index: int) -> void:
+	var id: String = mode_choice.get_item_metadata(index)
+	if id == Catalog.mode_of(document):
+		return
+	_remember()
+	document.mode = id
+	_status("Free for all: knock out every NPC. NPCs need a weapon set in their spawner to shoot back." if id == "ffa" else "Race: reach a Finish area to complete the level.")
+
 func _sync_player_choice() -> void:
 	var current := Catalog.player_of(document)
 	for index in player_choice.item_count:
 		if player_choice.get_item_metadata(index) == current:
 			player_choice.select(index)
+	for index in mode_choice.item_count:
+		if mode_choice.get_item_metadata(index) == Catalog.mode_of(document):
+			mode_choice.select(index)
 
 func _property_choice_changed(index: int, spec: Dictionary) -> void:
 	_property_changed(spec.options[index][1], spec)
@@ -1366,20 +1394,28 @@ func _update_mode_ui() -> void:
 	grid.visible = build_mode and not surface_toggle.button_pressed
 	if is_instance_valid(ghost):
 		ghost.hide()
-	play_title.text = "%s · playing as the %s\nWASD: roll · Space: jump · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower()]
+	var goal := "last one standing wins" if Catalog.mode_of(document) == "ffa" else "reach the finish"
+	play_title.text = "%s · playing as the %s · %s\nWASD: roll · Space: jump · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower(), goal]
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if build_mode else Input.MOUSE_MODE_CAPTURED
 
 func _finish() -> void:
+	_end("You win!" if Catalog.mode_of(document) == "ffa" else "Level complete!")
+
+func _lose() -> void:
+	_end("Knocked out!")
+
+func _end(title: String) -> void:
 	if build_mode:
 		return
 	_completed = true
+	_end_title = title
 	_pause(true)
 
-func _pause(won: bool) -> void:
+func _pause(_won: bool) -> void:
 	_paused = true
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	pause_title.text = "Level complete!" if won or _completed else "Paused"
+	pause_title.text = _end_title if _completed else "Paused"
 	pause_panel.show()
 
 func _resume() -> void:

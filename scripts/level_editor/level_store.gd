@@ -99,6 +99,8 @@ static func validate(value: Variant) -> String:
 		return "Give the level a name (1–80 characters)."
 	if value.has("player") and not (value.player is String and Catalog.PLAYERS.has(value.player)):
 		return "This level uses an unknown player character."
+	if value.has("mode") and not (value.mode is String and Catalog.MODES.has(value.mode)):
+		return "This level uses an unknown game mode."
 	if not value.get("objects") is Array or value.objects.size() > MAX_OBJECTS:
 		return "A level can contain at most %d objects." % MAX_OBJECTS
 	for entry in value.objects:
@@ -128,11 +130,15 @@ static func validate(value: Variant) -> String:
 static func playable_error(document: Dictionary) -> String:
 	var starts := 0
 	var finishes := 0
+	var npcs := 0
 	for entry in document.objects:
 		starts += int(entry.id == "spawn")
 		finishes += int(entry.id == "goal")
+		npcs += int(entry.id == "npc")
 	if starts != 1:
 		return "Place exactly one Player start before playing."
+	if Catalog.mode_of(document) == "ffa":
+		return "" if npcs > 0 else "Place at least one NPC spawner to fight in a free for all."
 	if finishes == 0:
 		return "Place a Finish area before playing."
 	if not _finish_can_open(document):

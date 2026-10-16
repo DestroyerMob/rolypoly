@@ -56,8 +56,15 @@ const ITEMS := {
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
 }
 
+## How a level is won. A race needs a Finish area; a free for all needs NPCs.
+const DEFAULT_MODE := "race"
+const MODES := {"race": "Race to the finish", "ffa": "Free for all"}
+
 static func player_of(document: Dictionary) -> String:
 	return document.get("player", DEFAULT_PLAYER)
+
+static func mode_of(document: Dictionary) -> String:
+	return document.get("mode", DEFAULT_MODE)
 
 static func record(id: String, position := Vector3.ZERO) -> Dictionary:
 	return {"id": id, "position": [position.x, position.y, position.z],

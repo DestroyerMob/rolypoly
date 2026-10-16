@@ -6,6 +6,8 @@ extends Marker3D
 
 ## Order matches the Character choice in item_properties.gd.
 const CHARACTERS := ["onion", "egg", "tomato", "ice_cream", "lollipop"]
+## Order matches the Starts with choice in item_properties.gd.
+const WEAPONS := ["", "res://scenes/props/walther_p88.tscn", "res://scenes/props/m4a1.tscn", "res://scenes/props/shotgun.tscn"]
 
 @export var character := 0
 @export var mode := NPC.Mode.WANDER
@@ -13,6 +15,8 @@ const CHARACTERS := ["onion", "egg", "tomato", "ice_cream", "lollipop"]
 @export var wander_radius := 6.0
 @export var fight_range := 30.0
 @export var aim_error := 1.0
+## Fighting NPCs don't look for pickups, so give them a gun here.
+@export var weapon := 0
 
 
 func character_key() -> String:
@@ -41,4 +45,6 @@ func spawn(scene: PackedScene) -> NPC:
 	npc.position = global_position + Vector3.UP * 2.2
 	add_sibling(npc)
 	npc.respawn(global_position + Vector3.UP * npc.spawn_clearance)
+	if weapon > 0 and weapon < WEAPONS.size():
+		npc.gadget_mount.equip(load(WEAPONS[weapon]))
 	return npc

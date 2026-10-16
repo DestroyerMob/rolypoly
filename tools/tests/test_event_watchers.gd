@@ -145,6 +145,50 @@ func test_play() -> void:
 	world.free()
 
 
+## spawn 1 and one armed, fighting NPC 2; no finish needed.
+func brawl_level() -> Dictionary:
+	var level := Store.new_level()
+	level.mode = "ffa"
+	level.objects = [record("spawn", 1, Vector3(0, 80, 0)), record("npc", 2, Vector3(30, 80, 0))]
+	level.objects[1].properties = {"mode": NPC.Mode.FIGHT, "weapon": 1}
+	return level
+
+
+func test_free_for_all() -> void:
+	check(Store.playable_error(brawl_level()).is_empty(), "A free for all must not need a finish: %s" % Store.playable_error(brawl_level()))
+	var empty := brawl_level()
+	empty.objects.pop_back()
+	check(not Store.playable_error(empty).is_empty(), "A free for all without NPCs must not be playable.")
+	var unknown := brawl_level()
+	unknown.mode = "golf"
+	check(not Store.validate(unknown).is_empty(), "Unknown game modes must be rejected.")
+	var world: Node3D = World.new()
+	root.add_child(world)
+	var outcome := []
+	world.lost.connect(func(): outcome.append("lost"))
+	world.completed.connect(func(): outcome.append("won"))
+	world.build(brawl_level(), false)
+	await physics_frame
+	await physics_frame
+	var npc: NPC = world.get_tree().get_nodes_in_group(&"players").filter(func(p): return p is NPC)[0]
+	check(world.rig.current_player.in_match and npc.in_match, "Everyone must join the match.")
+	check(npc.gadget is Gun, "An NPC spawner's weapon must be equipped.")
+	npc.die()
+	await process_frame
+	check(outcome == ["won"], "Knocking out every NPC must win the level.")
+	world.free()
+	world = World.new()
+	root.add_child(world)
+	world.lost.connect(func(): outcome.append("lost"))
+	world.build(brawl_level(), false)
+	await physics_frame
+	await physics_frame
+	world.rig.current_player.die()
+	await process_frame
+	check(outcome == ["won", "lost"], "Being knocked out must lose the level.")
+	world.free()
+
+
 func test_editor() -> void:
 	var editor := preload("res://scenes/level_builder.tscn").instantiate() as LevelBuilder
 	root.add_child(editor)
@@ -194,6 +238,7 @@ func _run() -> void:
 	test_store()
 	await test_watcher_logic()
 	await test_play()
+	await test_free_for_all()
 	await test_editor()
 	print("Event watcher tests: %d failure(s)." % failures)
 	quit(1 if failures > 0 else 0)
