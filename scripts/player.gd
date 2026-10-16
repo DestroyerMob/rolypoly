@@ -2,6 +2,8 @@ class_name Player
 extends RigidBody3D
 
 signal squished
+## Knocked out of a match. Outside a match, dying just respawns.
+signal eliminated
 
 #ENUMS FOR PLAYER STATE CONDITIONS
 ## Highest Priority first 
@@ -36,9 +38,15 @@ var spawn_position: Vector3
 var gadget: Node3D
 var is_squished := false
 var squish_tween: Tween
+## Set by a match (e.g. FreeForAll). Dying then eliminates instead of respawning.
+var in_match := false
+var is_eliminated := false
+var _max_health: int
 
 func _ready() -> void:
 	spawn_position = global_position
+	_max_health = health
+	add_to_group(&"players")
 	spawn_clearance = maxf(spawn_clearance, get_collision_clearance() + 0.05)
 	contact_monitor = true
 	max_contacts_reported = 8
@@ -126,6 +134,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 ## Soft reset. Back to the spawn, level untouched.
 func reset_to_spawn() -> void:
+	if is_eliminated:
+		return
 	var start := _find_spawn()
 	if start == null:
 		push_warning("Player: no PlayerStart in this scene, reset did nothing.")
@@ -172,7 +182,34 @@ func respawn(world_position: Vector3) -> void:
 	on_ground = false
 	freeze = was_frozen
 	sleeping = false
+	health = _max_health
 	_reset_equipment()
+
+
+func take_damage(amount := 1) -> void:
+	if is_eliminated or is_squished:
+		return
+	health -= amount
+	if health <= 0:
+		die()
+		return
+	enter_condition(Condition.HURT)
+	get_tree().create_timer(0.4).timeout.connect(exit_condition.bind(Condition.HURT))
+
+
+## Death zones, falls and running out of health all land here.
+func die() -> void:
+	if is_eliminated:
+		return
+	if not in_match:
+		respawn(spawn_position)
+		return
+	is_eliminated = true
+	enter_condition(Condition.DEAD)
+	if is_instance_valid(gadget) and gadget.get_parent() is GadgetMount:
+		gadget.get_parent().unequip(gadget)
+	set_active(false)
+	eliminated.emit()
 
 
 func _reset_equipment() -> void:

@@ -11,6 +11,8 @@ signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vect
 @export_range(0.0, 45.0, 0.1) var spread_degrees := 0.0
 @export var max_range := 300.0
 @export var impulse := 10.0
+## Health taken from a Player per pellet.
+@export var damage := 1
 
 @export_group("Effects")
 @export var tracer_color := Color(1.0, 0.85, 0.45)
@@ -56,7 +58,7 @@ func update_attachment(player: Player, mount: GadgetMount) -> void:
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(_cooldown - delta, 0.0)
 	_buffered = maxf(_buffered - delta, 0.0)
-	if not is_instance_valid(_player) or _player.is_squished:
+	if not is_instance_valid(_player) or _player.is_squished or _player is NPC:
 		return
 	if Input.is_action_just_pressed("activate_equipment"):
 		_buffered = 0.15
@@ -75,6 +77,19 @@ func _shoot() -> void:
 	var aim := camera.project_ray_normal(center)
 	var origin := camera.project_ray_origin(center)
 	origin += aim * origin.distance_to(_player.global_position)
+	_fire(origin, aim)
+
+
+## AI trigger: shoots from the holder towards a world point, if off cooldown.
+func fire_at(target: Vector3) -> void:
+	if not is_instance_valid(_player) or _cooldown > 0.0:
+		return
+	_cooldown = fire_interval
+	var origin := _player.global_position
+	_fire(origin, (target - origin).normalized())
+
+
+func _fire(origin: Vector3, aim: Vector3) -> void:
 	var space := get_world_3d().direct_space_state
 	for i in pellets:
 		var direction := _scatter(aim)
@@ -105,6 +120,8 @@ func _on_hit(result: Dictionary, direction: Vector3) -> void:
 	var body := result.collider as RigidBody3D
 	if body != null:
 		body.apply_impulse(direction * impulse, result.position - body.global_position)
+	if body is Player:
+		body.take_damage(damage)
 	_spawn_impact(result.position)
 	hit.emit(result.collider, result.position, result.normal, direction)
 

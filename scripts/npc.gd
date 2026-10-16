@@ -4,7 +4,7 @@ extends Player
 ## A computer-driven character. Rolls with the same forces as the player.
 ## To make one, instance any player_*.tscn and set its root script to this.
 
-enum Mode { IDLE, WANDER, GOAL }
+enum Mode { IDLE, WANDER, GOAL, FIGHT }
 
 @export_group("AI")
 @export var mode := Mode.WANDER
@@ -20,6 +20,11 @@ enum Mode { IDLE, WANDER, GOAL }
 @export var arrive_distance := 0.75
 ## Top rolling speed the AI steers towards.
 @export var max_speed := 6.0
+## FIGHT: with a gun, shoots at opponents inside this distance and hangs back
+## at a bit over half of it. Without one, rams them.
+@export var fight_range := 30.0
+## FIGHT: random miss distance added to each shot.
+@export var aim_error := 1.0
 
 signal finished
 
@@ -51,6 +56,8 @@ func _physics_process(delta: float) -> void:
 			roll_towards(goal.global_position if is_instance_valid(goal) else goal_position)
 		Mode.IDLE:
 			roll_towards(global_position)
+		Mode.FIGHT:
+			_fight()
 
 
 ## Called by finish areas. Celebrates and brakes to a stop; the level carries on.
@@ -77,6 +84,32 @@ func roll_towards(target: Vector3) -> void:
 		desired = to_target.normalized() * max_speed
 	var flat_velocity := Vector3(linear_velocity.x, 0.0, linear_velocity.z)
 	apply_central_force((desired - flat_velocity).limit_length(1.0) * speed_force)
+
+
+func _fight() -> void:
+	var target := _nearest_opponent()
+	if target == null:
+		roll_towards(global_position)
+		return
+	var gun := gadget as Gun
+	var distance := _flat_distance(target.global_position)
+	if gun != null and distance < fight_range * 0.6:
+		roll_towards(global_position)
+	else:
+		roll_towards(target.global_position)
+	if gun != null and distance < fight_range:
+		var miss := Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)) * aim_error
+		gun.fire_at(target.global_position + miss)
+
+
+func _nearest_opponent() -> Player:
+	var nearest: Player = null
+	for other: Player in get_tree().get_nodes_in_group(&"players"):
+		if other == self or other.is_eliminated:
+			continue
+		if nearest == null or _flat_distance(other.global_position) < _flat_distance(nearest.global_position):
+			nearest = other
+	return nearest
 
 
 func _pick_wander_target() -> void:

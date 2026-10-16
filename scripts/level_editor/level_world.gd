@@ -77,7 +77,7 @@ func _update_spawn(player: Player) -> void:
 func _physics_process(_delta: float) -> void:
 	if rig != null and is_instance_valid(rig.current_player) and not _finished:
 		if rig.current_player.global_position.y < fall_height:
-			rig.current_player.respawn(rig.current_player.spawn_position)
+			rig.current_player.die()
 
 func _on_completed(_player: Player) -> void:
 	if not _finished:
