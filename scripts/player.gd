@@ -10,7 +10,7 @@ const PRIORITY := [Condition.WIN, Condition.DEAD, Condition.HURT, Condition.DIZZ
 signal condition_changed(new_condition: Condition)
 
 ## Which vegetable this character is.
-enum VegetableType { ONION, TOMATO, EGG }
+enum VegetableType { ONION, TOMATO, EGG, ICECREAM, LOLLYPOP }
 
 ## Character stats — overridden per vegetable in each player_*.tscn.
 ## To change player size edit the transform scale for it's CollisionShape3D property

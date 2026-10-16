@@ -7,4 +7,5 @@
 [node name="IceCubeUpgrade" instance=ExtResource("1_plate")]
 gadget_scene = ExtResource("2_equipment")
 preview_scene = ExtResource("3_icon")
+melt_freeze_seconds = 0.5
 preview_scale = 1.0
