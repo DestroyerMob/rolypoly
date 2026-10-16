@@ -5,6 +5,7 @@
 [ext_resource type="Shape3D" path="res://models/vegetables/tomato/player_collision.tres" id="3_collision"]
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_l7lwj")]
+hit_color = Color(0.9, 0.06, 0.03, 1)
 mass = 1.2
 jump_impulse = 12.0
 health = 2

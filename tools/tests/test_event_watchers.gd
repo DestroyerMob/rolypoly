@@ -189,6 +189,30 @@ func test_free_for_all() -> void:
 	world.free()
 
 
+func test_hit_burst() -> void:
+	var world: Node3D = World.new()
+	root.add_child(world)
+	world.build(brawl_level(), false)
+	await physics_frame
+	await physics_frame
+	var npc: NPC = world.get_tree().get_nodes_in_group(&"players").filter(func(p): return p is NPC)[0]
+	var player: Player = world.rig.current_player
+	var before := root.find_children("*", "GPUParticles3D", true, false).size()
+	var hits := []
+	npc.gadget.hit.connect(func(collider, point, normal, _direction): hits.append([collider, point, normal]))
+	npc.gadget.spread_degrees = 0.0
+	npc.gadget.fire_at(player.global_position)
+	var bursts := root.find_children("*", "GPUParticles3D", true, false)
+	check(hits.size() == 1 and hits[0][0] == player, "The test shot must hit the player.")
+	check(bursts.size() == before + 1, "A shot that hits a player must spray pieces.")
+	if hits.size() == 1 and bursts.size() == before + 1:
+		var burst: GPUParticles3D = bursts[-1]
+		check(burst.global_position.is_equal_approx(hits[0][1]), "Pieces must come from where the player was hit.")
+		check((burst.global_basis * Vector3.UP).normalized().dot(hits[0][2]) > 0.99, "Pieces must spray out of the hit surface.")
+		check(burst.process_material.color == player.hit_color, "Pieces must be the hit character's colour.")
+	world.free()
+
+
 func test_editor() -> void:
 	var editor := preload("res://scenes/level_builder.tscn").instantiate() as LevelBuilder
 	root.add_child(editor)
@@ -239,6 +263,7 @@ func _run() -> void:
 	await test_watcher_logic()
 	await test_play()
 	await test_free_for_all()
+	await test_hit_burst()
 	await test_editor()
 	print("Event watcher tests: %d failure(s)." % failures)
 	quit(1 if failures > 0 else 0)

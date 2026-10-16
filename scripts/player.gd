@@ -36,6 +36,8 @@ var _teleport_queued := false
 var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness ourselves
 ## Distance from this character's origin down to its lowest point.
 @export var spawn_clearance := 0.25
+## Colour of the pieces knocked off when this character is shot.
+@export var hit_color := Color(0.85, 0.3, 0.1)
 var spawn_position: Vector3
 var gadget: Node3D
 var is_squished := false

@@ -7,6 +7,7 @@
 radius = 2.2
 
 [node name="Player" instance=ExtResource("1_player")]
+hit_color = Color(0.91, 0, 0.03, 1)
 continuous_cd = true
 spawn_clearance = 1.0
 

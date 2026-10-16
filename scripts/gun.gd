@@ -1,6 +1,9 @@
 class_name Gun
 extends Node3D
 
+## The blender's burst, reused for pieces knocked off a shot Player.
+const HIT_PARTICLES := preload("res://packed_scenes/produce_death_particles.tscn")
+
 signal fired
 signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vector3)
 
@@ -20,6 +23,8 @@ signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vect
 @export var tracer_seconds := 0.1
 @export var impact_radius := 0.8
 @export var flash_energy := 6.0
+## Pieces knocked off a Player by each pellet that hits.
+@export var hit_pieces := 16
 @export var kick_distance := 0.2
 @export var kick_degrees := 4.0
 
@@ -121,9 +126,33 @@ func _on_hit(result: Dictionary, direction: Vector3) -> void:
 	if body != null:
 		body.apply_impulse(direction * impulse, result.position - body.global_position)
 	if body is Player:
+		_spawn_hit_burst(body, result.position, result.normal, direction)
 		body.take_damage(damage)
 	_spawn_impact(result.position)
 	hit.emit(result.collider, result.position, result.normal, direction)
+
+
+## Sprays the hit character's colour out of the surface where the pellet landed.
+func _spawn_hit_burst(body: Player, point: Vector3, normal: Vector3, direction: Vector3) -> void:
+	if hit_pieces <= 0:
+		return
+	var outward := normal if not normal.is_zero_approx() else -direction
+	var particles := HIT_PARTICLES.instantiate() as GPUParticles3D
+	var material := particles.process_material.duplicate() as ParticleProcessMaterial
+	material.color = body.hit_color
+	material.spread = 35.0
+	material.initial_velocity_min = 4.0
+	material.initial_velocity_max = 8.0
+	particles.process_material = material
+	particles.amount = hit_pieces
+	particles.explosiveness = 1.0
+	particles.lifetime = 1.4
+	var scene := get_tree().current_scene if get_tree().current_scene != null else get_tree().root
+	scene.add_child(particles)
+	var up := Vector3.RIGHT if absf(outward.normalized().dot(Vector3.FORWARD)) > 0.99 else Vector3.FORWARD
+	particles.global_transform = Transform3D(Basis.looking_at(outward, up) * Basis(Vector3.RIGHT, -PI / 2), point)
+	particles.finished.connect(particles.queue_free)
+	particles.emitting = true
 
 
 func _spawn_tracer(from: Vector3, to: Vector3) -> void:
