@@ -157,12 +157,14 @@ omni_attenuation = 1.5
 
 [node name="IslandHousing" type="MeshInstance3D" parent="Fixtures" unique_id=88608328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 217, -500)
+visible = false
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("DownlightHousing")
 
 [node name="IslandDiffuser" type="MeshInstance3D" parent="Fixtures" unique_id=1109798148]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 215.6, -500)
+visible = false
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("DownlightDiffuser")
