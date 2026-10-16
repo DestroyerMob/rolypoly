@@ -4,6 +4,8 @@ extends RigidBody3D
 signal squished
 ## Knocked out of a match. Outside a match, dying just respawns.
 signal eliminated
+## Any death: falls, death zones, running out of health or being squished.
+signal died
 
 #ENUMS FOR PLAYER STATE CONDITIONS
 ## Highest Priority first 
@@ -201,6 +203,7 @@ func take_damage(amount := 1) -> void:
 func die() -> void:
 	if is_eliminated:
 		return
+	died.emit()
 	if not in_match:
 		respawn(spawn_position)
 		return
@@ -273,6 +276,7 @@ func squish_and_respawn(squish_duration := 0.18, respawn_delay := 0.55) -> void:
 	squish_tween.tween_interval(respawn_delay)
 	squish_tween.tween_callback(respawn.bind(spawn_position))
 	squished.emit()
+	died.emit()
 	
 ## Dev tool. Asks the physics server what overlaps the marble right now and
 ## prints each hit's full node path. The blue debug outlines tell you a shape

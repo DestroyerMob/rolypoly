@@ -2,20 +2,93 @@ extends RefCounted
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
+const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 const DIRECTORY := "user://levels"
 const VERSION := 1
 const MAX_OBJECTS := 1000
+const MAX_UID := 1000000000
 
 static func new_level() -> Dictionary:
-	return {"version": VERSION, "name": "My kitchen course", "player": Catalog.DEFAULT_PLAYER, "objects": [
+	return normalize({"version": VERSION, "name": "My kitchen course", "player": Catalog.DEFAULT_PLAYER, "objects": [
 		Catalog.record("spawn", Vector3(-45, 0, -475)),
 		Catalog.record("goal", Vector3(45, 0, -525)),
-	]}
+	]})
 
 static func normalize(document: Dictionary) -> Dictionary:
 	var result := document.duplicate(true)
 	result.objects = result.objects.filter(func(entry: Dictionary): return entry.id != "kitchen")
+	for entry in result.objects:
+		if entry.has("uid"):
+			entry.uid = int(entry.uid)
+	for entry in result.objects:
+		if not entry.has("uid"):
+			entry.uid = next_uid(result)
+	prune_links(result)
 	return result
+
+## Objects keep their uid for life, so links survive reordering and deletion.
+static func next_uid(document: Dictionary) -> int:
+	var highest := 0
+	for entry in document.objects:
+		highest = maxi(highest, int(entry.get("uid", 0)))
+	return highest + 1
+
+static func index_of_uid(document: Dictionary, uid: int) -> int:
+	for index in document.objects.size():
+		if int(document.objects[index].get("uid", 0)) == uid:
+			return index
+	return -1
+
+## Drops watcher links to objects that no longer exist or can't take the action.
+static func prune_links(document: Dictionary) -> void:
+	var ids := {}
+	for entry in document.objects:
+		ids[int(entry.get("uid", 0))] = entry.id
+	for entry in document.objects:
+		if entry.has("targets"):
+			var kept: Array = []
+			for target in entry.targets:
+				var uid := int(target.uid)
+				if ids.has(uid) and not ItemTriggers.action_named(ids[uid], target.action).is_empty():
+					kept.append({"uid": uid, "action": target.action, "mode": target.mode})
+			if kept.is_empty():
+				entry.erase("targets")
+			else:
+				entry.targets = kept
+		if entry.has("source"):
+			if ids.get(int(entry.source)) == "scale":
+				entry.source = int(entry.source)
+			else:
+				entry.erase("source")
+
+static func _whole_number(value: Variant) -> bool:
+	return (value is int or value is float) and is_finite(float(value)) and float(value) == floorf(float(value)) and value >= 1 and value <= MAX_UID
+
+static func _validate_links(value: Dictionary) -> String:
+	var ids := {}
+	for entry in value.objects:
+		if entry.has("uid"):
+			if not _whole_number(entry.uid):
+				return "An object has an invalid id."
+			if ids.has(int(entry.uid)):
+				return "Two objects share the same id."
+			ids[int(entry.uid)] = entry.id
+	for entry in value.objects:
+		if (entry.has("targets") or entry.has("source")) and entry.id != "watcher":
+			return "Only event watchers can link to other objects."
+		if entry.has("source") and not _whole_number(entry.source):
+			return "An event watcher has an invalid scale link."
+		if not entry.has("targets"):
+			continue
+		if not entry.targets is Array or entry.targets.size() > ItemTriggers.MAX_TARGETS:
+			return "An event watcher can have at most %d targets." % ItemTriggers.MAX_TARGETS
+		for target in entry.targets:
+			if not target is Dictionary or not _whole_number(target.get("uid")) or not target.get("action") is String or not ItemTriggers.mode_valid(target.get("mode")):
+				return "An event watcher has an invalid target."
+			var uid := int(target.uid)
+			if ids.has(uid) and ItemTriggers.action_named(ids[uid], target.action).is_empty():
+				return "An event watcher targets an action its object doesn't have."
+	return ""
 
 static func validate(value: Variant) -> String:
 	if not value is Dictionary:
@@ -50,7 +123,7 @@ static func validate(value: Variant) -> String:
 			var problem := ItemColours.validate(entry.id, entry.colour)
 			if not problem.is_empty():
 				return problem
-	return ""
+	return _validate_links(value)
 
 static func playable_error(document: Dictionary) -> String:
 	var starts := 0
@@ -62,7 +135,20 @@ static func playable_error(document: Dictionary) -> String:
 		return "Place exactly one Player start before playing."
 	if finishes == 0:
 		return "Place a Finish area before playing."
+	if not _finish_can_open(document):
+		return "Every Finish area starts closed. Open one at start or have an Event watcher open it."
 	return ""
+
+static func _finish_can_open(document: Dictionary) -> bool:
+	var opened := {}
+	for entry in document.objects:
+		for target in entry.get("targets", []):
+			if target.action == "enabled" and target.mode != "off":
+				opened[int(target.uid)] = true
+	for entry in document.objects:
+		if entry.id == "goal" and (entry.get("properties", {}).get("enabled", true) or opened.has(int(entry.get("uid", 0)))):
+			return true
+	return false
 
 static func valid_filename(filename: String) -> bool:
 	return filename == filename.get_file() and filename.ends_with(".json") and not filename.begins_with(".")

@@ -43,6 +43,13 @@ static func _build() -> Dictionary:
 			_num("ice_melt_seconds", "Ice melt time · seconds", 0.5, 30.0, 0.5),
 		],
 		"lighter": [_flag("lit", "Lit")],
+		"goal": [_flag("enabled", "Open at start")],
+		"watcher": [
+			_choice("event", "Watch for", [["Player deaths", 0], ["NPCs reaching a finish", 1], ["Weight on scale · kg", 2], ["Seconds since start", 3]]),
+			_choice("comparison", "Fires when the count is", [["At least", 0], ["At most", 1], ["Exactly", 2]]),
+			_num("threshold", "Value", 0.0, 1000.0, 0.05),
+			_flag("repeat", "Fire every time it becomes true"),
+		],
 		"roller": [
 			_flag("active", "Moving"),
 			_num("travel_distance", "Travel distance", 0.0, 20.0, 0.1),

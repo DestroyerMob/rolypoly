@@ -4,6 +4,7 @@ extends Node3D
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
+const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 const World = preload("res://scripts/level_editor/level_world.gd")
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
@@ -23,6 +24,8 @@ var world: Node3D
 var selected := -1
 var placing := false
 var moving := false
+## "target" or "source" while the next click links an object to the selected watcher.
+var linking := ""
 var palette_id := "counter"
 var placement: Dictionary = Catalog.record("counter")
 var undo_stack: Array[Dictionary] = []
@@ -181,7 +184,7 @@ func _create_ui() -> void:
 	search.text_changed.connect(func(_value: String): _fill_palette())
 	category = OptionButton.new()
 	category.custom_minimum_size.y = 42
-	for title in ["All", "Surfaces", "Kitchen", "Obstacles", "Powerups", "Level"]:
+	for title in ["All", "Surfaces", "Kitchen", "Obstacles", "Powerups", "Level", "Logic"]:
 		category.add_item(title)
 	column.add_child(category)
 	category.item_selected.connect(func(_index: int): _fill_palette())
@@ -440,6 +443,7 @@ func _choose_palette(index: int) -> void:
 func _set_tool(place: bool) -> void:
 	placing = place
 	moving = false
+	linking = ""
 	selected = -1
 	_make_ghost()
 	_refresh_inspector()
@@ -533,6 +537,7 @@ func _update_selection_box() -> void:
 	(selection_box.mesh as BoxMesh).size = bounds.size.max(Vector3.ONE * 0.2) + Vector3.ONE * 0.06
 	selection_box.transform = node.transform * Transform3D(Basis.IDENTITY, bounds.get_center())
 	selection_box.show()
+	world.draw_links(document)
 	_update_transform_gizmo()
 
 func _update_transform_gizmo() -> void:
@@ -691,7 +696,11 @@ func _input(event: InputEvent) -> void:
 			return
 		if build_mode:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			_set_tool(false)
+			if not linking.is_empty():
+				linking = ""
+				_status("Linking cancelled.")
+			else:
+				_set_tool(false)
 		else:
 			if _paused and not _completed:
 				_resume()
@@ -757,6 +766,9 @@ func _pick_index() -> int:
 func _world_click(force_place := false) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
+	if not linking.is_empty():
+		_link_pick(_pick_index())
+		return
 	if not moving and not (placing and force_place):
 		var index := _pick_index()
 		if index >= 0 or not placing:
@@ -780,6 +792,7 @@ func _world_click(force_place := false) -> void:
 		var data: Dictionary = document.objects[selected] if moving else placement.duplicate(true)
 		data.position = [point.x, point.y, point.z]
 		if not moving:
+			data.uid = Store.next_uid(document)
 			if data.id == "spawn":
 				for i in range(document.objects.size() - 1, -1, -1):
 					if document.objects[i].id == "spawn":
@@ -816,6 +829,8 @@ func _refresh_inspector() -> void:
 		selection_hint.text += "\nScale X, Y and Z to resize the trigger box. Hidden during play."
 	elif data.id == "spawn":
 		selection_hint.text += "\nThe player starts here. Hidden during play."
+	elif data.id == "watcher":
+		selection_hint.text += "\nCounts events while playing and triggers its targets. Hidden during play."
 	for index in transform_fields.size():
 		var key: String = ["position", "rotation", "scale"][index / 3]
 		transform_fields[index].set_value_no_signal(data[key][index % 3])
@@ -898,6 +913,149 @@ func _refresh_properties() -> void:
 		reset.visible = values.has(spec.name)
 		_property_resets[spec.name] = reset
 		group.add_child(row)
+	if data.id == "watcher":
+		_add_watcher_links(data, values.get("event", defaults.get("event")))
+
+func _add_watcher_links(data: Dictionary, event: int) -> void:
+	if event == 2:
+		_label(property_section, "Scale", 16)
+		var source_row := HBoxContainer.new()
+		source_row.add_theme_constant_override("separation", 8)
+		property_section.add_child(source_row)
+		var source_index := Store.index_of_uid(document, int(data.get("source", 0)))
+		var source_name := _muted(source_row, _object_name(source_index) if source_index >= 0 else "All scales added together")
+		source_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_button(source_row, "Pick…", _start_linking.bind("source")).tooltip_text = "Click a scale to read only that one."
+		if source_index >= 0:
+			_button(source_row, "✕", _clear_source).custom_minimum_size.x = 44
+	_separator(property_section)
+	_label(property_section, "Targets", 18)
+	var targets: Array = data.get("targets", [])
+	if targets.is_empty():
+		_muted(property_section, "Nothing happens yet. Link a target, such as a Finish area or a Masher.")
+	for target_index in targets.size():
+		var target: Dictionary = targets[target_index]
+		var object_index := Store.index_of_uid(document, int(target.uid))
+		if object_index < 0:
+			continue
+		var object_id: String = document.objects[object_index].id
+		var actions := ItemTriggers.actions(object_id)
+		var group := VBoxContainer.new()
+		group.name = "Target%d" % target_index
+		group.add_theme_constant_override("separation", 4)
+		property_section.add_child(group)
+		var title := HBoxContainer.new()
+		group.add_child(title)
+		var name_label := _label(title, _object_name(object_index), 16)
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var remove := _button(title, "✕", _remove_target.bind(target_index))
+		remove.tooltip_text = "Unlink this target."
+		remove.custom_minimum_size.x = 44
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 8)
+		group.add_child(row)
+		var action_choice := OptionButton.new()
+		action_choice.name = "Action"
+		action_choice.custom_minimum_size.y = 42
+		action_choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		for index in actions.size():
+			action_choice.add_item(actions[index].label)
+			if actions[index].name == target.action:
+				action_choice.select(index)
+		action_choice.item_selected.connect(_target_action_changed.bind(target_index))
+		row.add_child(action_choice)
+		if ItemTriggers.action_named(object_id, target.action).kind == "switch":
+			var mode_choice := OptionButton.new()
+			mode_choice.name = "Mode"
+			mode_choice.custom_minimum_size.y = 42
+			mode_choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			for index in ItemTriggers.MODES.size():
+				mode_choice.add_item(ItemTriggers.MODES[index][0])
+				if ItemTriggers.MODES[index][1] == target.mode:
+					mode_choice.select(index)
+			mode_choice.item_selected.connect(_target_mode_changed.bind(target_index))
+			row.add_child(mode_choice)
+	var link := _button(property_section, "Link target…", _start_linking.bind("target"))
+	link.name = "LinkTarget"
+	link.disabled = targets.size() >= ItemTriggers.MAX_TARGETS
+	link.tooltip_text = "Then click the object this watcher should switch."
+
+func _object_name(index: int) -> String:
+	return "%d · %s" % [index + 1, Catalog.ITEMS[document.objects[index].id].label]
+
+func _start_linking(kind: String) -> void:
+	if selected < 0 or document.objects[selected].id != "watcher":
+		return
+	linking = kind
+	placing = false
+	moving = false
+	_make_ghost()
+	_status("Click a scale for this watcher to read. Escape cancels." if kind == "source" else "Click the object this watcher should trigger. Escape cancels.")
+
+func _link_pick(index: int) -> void:
+	var watcher: Dictionary = document.objects[selected]
+	if index < 0 or index == selected:
+		_status("Click another object to link it, or press Escape to cancel.")
+		return
+	var other: Dictionary = document.objects[index]
+	var label: String = Catalog.ITEMS[other.id].label
+	if linking == "source":
+		if other.id != "scale":
+			_status("%s isn't a scale. Click an Electronic scale, or press Escape to cancel." % label)
+			return
+		_remember()
+		watcher.source = int(other.uid)
+		_status("The watcher now reads %s." % _object_name(index))
+	else:
+		var actions := ItemTriggers.actions(other.id)
+		if actions.is_empty():
+			_status("%s can't be triggered. Try a Finish area, obstacle, oven, grill or lighter." % label)
+			return
+		var targets: Array = watcher.get("targets", [])
+		if targets.any(func(target): return int(target.uid) == int(other.uid)):
+			_status("%s is already a target of this watcher." % label)
+			return
+		_remember()
+		targets.append({"uid": int(other.uid), "action": actions[0].name, "mode": "on"})
+		watcher.targets = targets
+		_status("Linked %s. Choose what happens to it in the Inspector." % _object_name(index))
+	linking = ""
+	world.draw_links(document)
+	_refresh_inspector()
+
+func _clear_source() -> void:
+	if selected < 0 or not document.objects[selected].has("source"):
+		return
+	_remember()
+	document.objects[selected].erase("source")
+	world.draw_links(document)
+	_refresh_inspector()
+
+func _remove_target(target_index: int) -> void:
+	if selected < 0:
+		return
+	_remember()
+	var watcher: Dictionary = document.objects[selected]
+	watcher.targets.remove_at(target_index)
+	if watcher.targets.is_empty():
+		watcher.erase("targets")
+	world.draw_links(document)
+	_refresh_inspector()
+
+func _target_action_changed(option: int, target_index: int) -> void:
+	if _rebuilding_ui or selected < 0:
+		return
+	var target: Dictionary = document.objects[selected].targets[target_index]
+	var object_id: String = document.objects[Store.index_of_uid(document, int(target.uid))].id
+	_remember()
+	target.action = ItemTriggers.actions(object_id)[option].name
+	_refresh_inspector.call_deferred()
+
+func _target_mode_changed(option: int, target_index: int) -> void:
+	if _rebuilding_ui or selected < 0:
+		return
+	_remember()
+	document.objects[selected].targets[target_index].mode = ItemTriggers.MODES[option][1]
 
 func _add_colour_row(data: Dictionary, reference: Color) -> void:
 	var group := VBoxContainer.new()
@@ -989,6 +1147,8 @@ func _property_changed(value: Variant, spec: Dictionary) -> void:
 	_store_properties(data, values)
 	if _property_resets.has(spec.name):
 		_property_resets[spec.name].visible = values.has(spec.name)
+	if data.id == "watcher" and spec.name == "event":
+		_refresh_inspector.call_deferred()
 
 func _reset_property(spec: Dictionary) -> void:
 	if selected < 0:
@@ -1033,6 +1193,7 @@ func _select_existing(index: int) -> void:
 	selected = index - 1
 	placing = false
 	moving = false
+	linking = ""
 	_make_ghost()
 	_refresh_inspector()
 	_update_selection_box()
@@ -1067,6 +1228,7 @@ func _duplicate_selected() -> void:
 	_remember()
 	var copy: Dictionary = document.objects[selected].duplicate(true)
 	copy.position[0] += snap_field.value
+	copy.uid = Store.next_uid(document)
 	document.objects.append(copy)
 	selected = document.objects.size() - 1
 	moving = false
@@ -1080,6 +1242,7 @@ func _delete_selected() -> void:
 	_remember()
 	var label: String = Catalog.ITEMS[document.objects[selected].id].label
 	document.objects.remove_at(selected)
+	Store.prune_links(document)
 	selected = -1
 	moving = false
 	_make_ghost()

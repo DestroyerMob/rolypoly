@@ -2,6 +2,13 @@ extends Area3D
 signal level_completed(player: Player)
 ## An NPC got here. Doesn't end the level.
 signal npc_finished(npc: NPC)
+## A closed finish ignores everything until a watcher opens it.
+@export var enabled := true:
+	set(value):
+		enabled = value
+		if enabled and is_inside_tree() and monitoring:
+			for body in get_overlapping_bodies():
+				_on_body_entered(body)
 var _finished := false
 
 func _ready() -> void:
@@ -9,6 +16,8 @@ func _ready() -> void:
 	_create_outline()
 
 func _on_body_entered(body: Node3D) -> void:
+	if not enabled:
+		return
 	if body is NPC:
 		if not body.has_finished:
 			body.reach_finish()
