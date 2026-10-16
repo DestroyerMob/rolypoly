@@ -22,6 +22,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
+	if body is NPC:
+		body.gadget_mount.equip.call_deferred(gadget_scene, gadget_overrides)
+		return
 	if not is_instance_valid(gadget_mount) or not is_instance_valid(gadget_mount.player_rig):
 		return
 	if body == gadget_mount.player_rig.current_player:

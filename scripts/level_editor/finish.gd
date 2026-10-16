@@ -1,5 +1,7 @@
 extends Area3D
 signal level_completed(player: Player)
+## An NPC got here. Doesn't end the level.
+signal npc_finished(npc: NPC)
 var _finished := false
 
 func _ready() -> void:
@@ -7,6 +9,11 @@ func _ready() -> void:
 	_create_outline()
 
 func _on_body_entered(body: Node3D) -> void:
+	if body is NPC:
+		if not body.has_finished:
+			body.reach_finish()
+			npc_finished.emit(body)
+		return
 	if body is Player and not _finished:
 		_finished = true
 		level_completed.emit(body)

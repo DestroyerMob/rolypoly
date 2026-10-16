@@ -3,6 +3,8 @@ extends Node3D
 
 ## Emitted the first time a Player drops into the pot.
 signal level_completed(player: Player)
+## An NPC dropped in. Doesn't end the level.
+signal npc_finished(npc: NPC)
 
 ## Scene loaded after the win. Leave empty to only emit the signal.
 @export_file("*.tscn") var return_scene := "res://scenes/main_menu_alternative.tscn"
@@ -44,6 +46,11 @@ func _build_wall_collision() -> void:
 	walls.add_child(collision)
 
 func _on_goal_area_body_entered(body: Node3D) -> void:
+	if body is NPC:
+		if not body.has_finished:
+			body.reach_finish()
+			npc_finished.emit(body)
+		return
 	var player := body as Player
 	if player == null or _finished:
 		return
