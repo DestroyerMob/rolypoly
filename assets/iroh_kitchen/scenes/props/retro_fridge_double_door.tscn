@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/iroh_kitchen/assets/models/props/retro_fridge_double_doors.glb" id="1_hndnh"]
+
+[node name="RetroFridgeDoubleDoor" type="StaticBody3D" unique_id=756755263]
+
+[node name="retro_fridge_double_doors" parent="." unique_id=263573461 instance=ExtResource("1_hndnh")]

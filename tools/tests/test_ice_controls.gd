@@ -22,19 +22,18 @@ func key(code: Key, pressed_: bool) -> void:
 	Input.parse_input_event(event)
 
 func run() -> void:
-	var level = load("res://scenes/levels/ice_block_kitchen.tscn").instantiate()
-	level.persist_best_score=false
+	var level = load("res://scenes/levels/ice_block.tscn").instantiate()
 	root.add_child(level)
 	current_scene=level
-	var player = level.get_node("Player")
-	var camera = level.get_node("Camera3D")
+	var player = level.get_node("PlayerRig/Player")
+	var camera = level.get_node("PlayerRig/Camera3D")
 	await frames(30)
 	var start: Vector3 = player.position
 	key(KEY_W,true)
 	await frames(100)
 	key(KEY_W,false)
 	check(player.position.distance_to(start)>3.0,"physical W key moves the player")
-	player.request_reset("TEST")
+	level.reset_checkpoint()
 	await frames(80)
 	start=player.position
 	var yaw_before: float = camera.yaw
@@ -52,7 +51,7 @@ func run() -> void:
 	await frames(3)
 	key(KEY_TAB,false)
 	check(camera.free_mode and paused,"Tab enables free view and pauses game")
-	var ice_before: float = player.ice_amount
+	var ice_before: float = player.gadget.get("_melt_progress")
 	start=player.position
 	var camera_before: Vector3 = camera.position
 	key(KEY_W,true)
@@ -61,13 +60,21 @@ func run() -> void:
 	key(KEY_W,false)
 	key(KEY_E,false)
 	check(camera.position.distance_to(camera_before)>1,"W / E moves free camera")
-	check(player.position.distance_to(start)<.01 and player.ice_amount==ice_before,"free view freezes player and melting")
+	check(player.position.distance_to(start)<.01 and player.gadget.get("_melt_progress")==ice_before,"free view freezes player and melting")
 	key(KEY_TAB,true)
 	await frames(3)
 	key(KEY_TAB,false)
 	check(not camera.free_mode and not paused,"Tab restores gameplay")
 	await frames(10)
-	check(absf(camera.position.distance_to(player.position)-camera.follow_distance)<.1,"camera returns to player")
+	check(camera.position.distance_to(player.position) <= camera.follow_distance + 2,"camera returns to player with collision-aware follow")
+	key(KEY_V,true)
+	await frames(3)
+	key(KEY_V,false)
+	check(camera.survey,"V toggles the wider survey angle")
+	key(KEY_C,true)
+	await frames(90)
+	key(KEY_C,false)
+	check(absf(camera.pitch-deg_to_rad(-30))<.01,"C restores a readable pitch")
 	key(KEY_D,true)
 	await frames(70)
 	key(KEY_D,false)

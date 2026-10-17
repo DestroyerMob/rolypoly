@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://assets/iroh_kitchen/materials/MM_WorldAligned.gdshader" id="1_ijjx0"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_Green_1K_BCpng.png" id="2_1m4nm"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_1K_N.png" id="3_w5io3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ijjx0")
+shader_parameter/albedo_texture = ExtResource("2_1m4nm")
+shader_parameter/albedo_tint = Color(0.40978417, 0.4406772, 0.26067483, 1)
+shader_parameter/albedo_brightness = 0.6000000285
+shader_parameter/roughness_value = 0.5
+shader_parameter/use_roughness_map = false
+shader_parameter/metallic_value = 0.22400001064
+shader_parameter/use_metallic_map = false
+shader_parameter/specular_value = 0.5
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("3_w5io3")
+shader_parameter/normal_strength = 0.3680004924800002
+shader_parameter/normal_reconstruct_z = true
+shader_parameter/normal_flip_green = false
+shader_parameter/world_scale = 200.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 90.00002137500002
+shader_parameter/uv_tiling = Vector2(1, 1)
+shader_parameter/world_space = true

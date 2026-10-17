@@ -140,9 +140,27 @@ func test_editor_flow() -> void:
 	editor.free()
 
 
+func test_long_funnel_channels() -> void:
+	var fixture := Node3D.new()
+	root.add_child(fixture)
+	var funnel = load("res://scenes/obstacles/funnel_long.tscn").instantiate()
+	fixture.add_child(funnel)
+	var destination := FunnelExit.new()
+	destination.name = "SavedExit"
+	destination.channel = 7
+	fixture.add_child(destination)
+	check(funnel._get_drop_target() == funnel.default_drop_point, "Channel 0 keeps the long funnel's built-in outlet.")
+	ItemProperties.apply(funnel, "funnel_long", {"channel": 7})
+	check(funnel._get_drop_target() == destination, "Long funnel resolves the editor's saved exit channel.")
+	funnel.channel = 0
+	funnel.drop_target_path = funnel.get_path_to(destination)
+	check(funnel._get_drop_target() == destination, "Manual long funnel destination remains supported.")
+	fixture.free()
+
 func _run() -> void:
 	test_specs_match_scenes()
 	test_apply_and_validate()
+	test_long_funnel_channels()
 	await test_gadget_overrides()
 	await test_editor_flow()
 	print("Item property tests: %d failure(s)." % failures)

@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://assets/models/obstacles/blender/housing.res" id="1_avlim"]
+[ext_resource type="ArrayMesh" path="res://assets/models/obstacles/blender/blade.res" id="3_aojoc"]
+
+[node name="BlenderModel" type="Node3D" unique_id=310644801]
+
+[node name="Housing" type="MeshInstance3D" parent="." unique_id=2080772580]
+transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 1.0974298, 0)
+mesh = ExtResource("1_avlim")
+
+[node name="BladePivot" type="Node3D" parent="." unique_id=1092834613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5836097, -5.7957173e-08)
+
+[node name="Blade" type="MeshInstance3D" parent="BladePivot" unique_id=1119568378]
+transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, -0.48617995, 5.7957173e-08)
+mesh = ExtResource("3_aojoc")

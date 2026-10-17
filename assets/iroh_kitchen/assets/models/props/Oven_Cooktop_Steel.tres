@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Metal_Scratched_1K_MR.png" id="1_4e8ts"]
+
+[resource]
+resource_name = "Oven_Cooktop_Steel"
+cull_mode = 2
+albedo_color = Color(0.102095224, 0.09513401, 0.086773105, 1)
+metallic = 0.47
+metallic_specular = 0.34
+normal_enabled = true
+normal_scale = -3.7
+normal_texture = ExtResource("1_4e8ts")
