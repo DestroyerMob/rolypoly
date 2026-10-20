@@ -44,6 +44,8 @@ const ITEMS := {
 	"umbrella": {"label": "Umbrella pickup", "category": "Powerups", "scene": preload("res://scenes/props/umbrella_upgrade.tscn")},
 	"cream": {"label": "Whipped cream pickup", "category": "Powerups", "scene": preload("res://scenes/props/whipped_cream_upgrade.tscn")},
 	"ice": {"label": "Ice cube pickup", "category": "Powerups", "scene": preload("res://scenes/props/ice_cube_upgrade.tscn")},
+	"sprinkles": {"label": "Sprinkles pickup", "category": "Powerups", "scene": preload("res://scenes/props/sprinkles_pickup.tscn")},
+	"nuts": {"label": "Nuts pickup", "category": "Powerups", "scene": preload("res://scenes/props/nuts_pickup.tscn")},
 	"gravity": {"label": "Gravity gun pickup", "category": "Powerups", "scene": preload("res://scenes/props/upgrade_plate.tscn")},
 	"m4a1": {"label": "M4A1 pickup", "category": "Powerups", "scene": preload("res://scenes/props/m4a1_upgrade.tscn")},
 	"shotgun": {"label": "Shotgun pickup", "category": "Powerups", "scene": preload("res://scenes/props/shotgun_upgrade.tscn")},

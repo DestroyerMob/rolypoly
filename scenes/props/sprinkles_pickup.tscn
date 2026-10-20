@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/topping_pickup.tscn" id="1_base"]
+
+[node name="SprinklesPickup" instance=ExtResource("1_base")]
+kind = 0
+topping_id = &"sprinkles"
+colours = Array[Color]([Color(0.95, 0.25, 0.4, 1), Color(1, 0.55, 0.15, 1), Color(1, 0.85, 0.2, 1), Color(0.3, 0.8, 0.4, 1), Color(0.25, 0.6, 0.95, 1), Color(0.65, 0.4, 0.9, 1), Color(1, 1, 1, 1)])
+piece_size = 1.0
+pieces = 150
