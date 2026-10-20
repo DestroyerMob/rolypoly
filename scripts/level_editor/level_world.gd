@@ -45,17 +45,18 @@ func _create_player(character: String) -> void:
 	rig.name = "PlayerRig"
 	rig.allow_character_swap = false
 	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
-	player.position = start_position + Vector3.UP * 2.2
+	Catalog.size_player(player)
+	player.position = start_position + Vector3.UP * 2.2 * Catalog.PLAYER_SIZE
 	rig.add_child(player)
 	var pivot := CameraPivot.new()
 	pivot.name = "CameraPivot"
 	pivot.player_rig = rig
 	pivot.position = player.position
-	pivot.follow_offset = Vector3(0, 1.5, 0)
+	pivot.follow_offset = Vector3(0, 1.5, 0) * Catalog.PLAYER_SIZE
 	var arm := SpringArm3D.new()
 	arm.name = "SpringArm3D"
-	arm.spring_length = 25.0
-	arm.margin = 0.5
+	arm.spring_length = 25.0 * Catalog.PLAYER_SIZE
+	arm.margin = 0.5 * Catalog.PLAYER_SIZE
 	pivot.add_child(arm)
 	play_camera = Camera3D.new()
 	play_camera.name = "Camera3D"
@@ -66,6 +67,9 @@ func _create_player(character: String) -> void:
 	mount.name = "GadgetMount"
 	mount.player_rig = rig
 	mount.camera = play_camera
+	mount.side_distance *= Catalog.PLAYER_SIZE
+	mount.height *= Catalog.PLAYER_SIZE
+	mount.model_offset *= Catalog.PLAYER_SIZE
 	rig.add_child(mount)
 	add_child(rig)
 	rig.player_swapped.connect(_update_spawn)
@@ -87,6 +91,7 @@ func _on_completed(_player: Player) -> void:
 ## The level's character standing on the start marker, as meshes only.
 static func character_preview(character: String) -> Node3D:
 	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
+	Catalog.size_player(player)
 	var model := Node3D.new()
 	model.name = "Character"
 	model.position = Vector3.UP * maxf(player.spawn_clearance, player.get_collision_clearance() + 0.05)

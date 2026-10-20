@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://dyfjqemhtc3ov"]
+
+[ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="1_0nxdr"]
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="3_ainy2"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="4_jsav2"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="6_d8n83"]
+[ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="7_qupw5"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="8_6mwsr"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="10_xn7sd"]
+[ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="12_hysbs"]
+[ext_resource type="PackedScene" uid="uid://1rtbg70qp4ra" path="res://scenes/props/Bowls/RedBowl.tscn" id="12_kuh2n"]
+[ext_resource type="PackedScene" uid="uid://d0ovyswq3kl06" path="res://scenes/props/cereal.tscn" id="14_y0i6e"]
+[ext_resource type="PackedScene" uid="uid://bcglepmuufbpx" path="res://scenes/obstacles/blender.tscn" id="16_00n84"]
+[ext_resource type="PackedScene" uid="uid://bixjatfjotmun" path="res://scenes/props/book.tscn" id="18_7k767"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="20_fygee"]
+[ext_resource type="PackedScene" path="res://packed_scenes/not_a_player_onion.tscn" id="21_onion"]
+
+[node name="MovementTutorial" type="Node3D" unique_id=619595399]
+
+[node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("1_0nxdr")]
+
+[node name="PlayerRig" type="Node" parent="." unique_id=36827212]
+script = ExtResource("3_ainy2")
+allow_character_swap = false
+
+[node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("4_jsav2")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -110.87532, 12.401711, -475)
+
+[node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=1540248872 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 2.2, -475)
+script = ExtResource("6_d8n83")
+player_rig = NodePath("..")
+follow_offset = Vector3(0, 1.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerRig/CameraPivot" unique_id=397317417]
+spring_length = 25.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/CameraPivot/SpringArm3D" unique_id=1495584162]
+current = true
+far = 3000.0
+
+[node name="GadgetMount" type="Node3D" parent="PlayerRig" unique_id=1532057491 node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("7_qupw5")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="Objects" type="Node3D" parent="." unique_id=385073192]
+
+[node name="Spawn_1" parent="Objects" unique_id=1485293716 instance=ExtResource("8_6mwsr")]
+transform = Transform3D(3.7022269, 0, 0, 0, 3.7022269, 0, 0, 0, 3.7022269, -93, 0, -475)
+
+[node name="Goal_2" parent="Objects" unique_id=142908771 instance=ExtResource("10_xn7sd")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 19, 27.874805, -471.32462)
+
+[node name="Cardboard_3" parent="Objects" unique_id=583796553 instance=ExtResource("12_hysbs")]
+transform = Transform3D(6.581023e-07, 15.055626, -1.3162046e-06, 15.055626, -6.581023e-07, 0, -5.7533134e-14, -1.3162046e-06, -15.055626, -116, 17.453842, -467)
+
+[node name="Cereal_4" parent="Objects" unique_id=271924064 instance=ExtResource("14_y0i6e")]
+transform = Transform3D(-0.023965199, 1.5998204, -6.6387007e-10, 1.594332, 0.023882983, 0.13242114, 0.1324063, 0.0019834377, -1.5945108, -69.45343, 16.048603, -449)
+flap_side = 0
+top_flap_length = 10.0
+top_open_degrees = 12.5
+title = 2
+
+[node name="Cereal_5" parent="Objects" unique_id=1718316272 instance=ExtResource("14_y0i6e")]
+transform = Transform3D(-1.0225605, 0, -1.5329719, 0, 1.8427244, 0, 1.5329719, 0, -1.0225605, -26, 26.45385, -465.0521)
+top_flap_length = 10.0
+top_open_degrees = -10.0
+
+[node name="Cereal_6" parent="Objects" unique_id=1496194070 instance=ExtResource("14_y0i6e")]
+transform = Transform3D(-0.124078736, 0, -1.8388186, 0, 1.843, 0, 1.8388186, 0, -0.124078736, -15, 27.285069, -506)
+title = 3
+
+[node name="Blender_7" parent="Objects" unique_id=1908961975 instance=ExtResource("16_00n84")]
+transform = Transform3D(17.01694, 0, 0, 0, 17.01694, 0, 0, 0, 17.01694, -88, -0.5461502, -514)
+
+[node name="Book_8" parent="Objects" unique_id=1147128421 instance=ExtResource("18_7k767")]
+transform = Transform3D(1.6340728, 0, 0, 0, 1.6340728, 0, 0, 0, 1.6340728, 14, -0.5461502, -531)
+title = 1
+
+[node name="Cardboard_9" parent="Objects" unique_id=1975057576 instance=ExtResource("12_hysbs")]
+transform = Transform3D(-11.448, 1.7286e-06, 0, -1.7286e-06, -11.448, 0, 0, 0, 11.448, 13, 10.985313, -464)
+
+[node name="Book_10" parent="Objects" unique_id=95506730 instance=ExtResource("18_7k767")]
+transform = Transform3D(-1.6577948, -0.008986395, -0.009294818, 0.0004434224, 1.1516589, -1.1925315, 0.012921003, -1.1924977, -1.1516215, 13, 12.913422, -493.72345)
+title = 5
+
+[node name="RedBowl" parent="Objects" unique_id=1457422625 instance=ExtResource("12_kuh2n")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 11.885553, 19.459347, -463.26657)
+
+[node name="Onion_1" parent="Objects" unique_id=594899182 instance=ExtResource("21_onion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.886, 27.233, -463.267)
+
+[node name="CollisionShape3D" parent="Objects/Onion_1" index="0" unique_id=181200873]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Onion_2" parent="Objects" unique_id=645599291 instance=ExtResource("21_onion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 27.233, -455.267)
+mass = 0.666
+
+[node name="CollisionShape3D" parent="Objects/Onion_2" index="0" unique_id=181200873]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+
+[node name="Onion_3" parent="Objects" unique_id=628184065 instance=ExtResource("21_onion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.886, 28.233, -463.267)
+mass = 1.73
+
+[node name="CollisionShape3D" parent="Objects/Onion_3" index="0" unique_id=181200873]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0)
+
+[node name="Onion_4" parent="Objects" unique_id=216498631 instance=ExtResource("21_onion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 28.233, -471.267)
+mass = 0.948
+
+[node name="CollisionShape3D" parent="Objects/Onion_4" index="0" unique_id=181200873]
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0)
+
+[node name="Onion_5" parent="Objects" unique_id=92460049 instance=ExtResource("21_onion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 40.233, -463.267)
+mass = 0.666
+
+[node name="CollisionShape3D" parent="Objects/Onion_5" index="0" unique_id=181200873]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+
+[node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("20_fygee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.54615, 0)
+
+[editable path="Objects/Onion_1"]
+[editable path="Objects/Onion_2"]
+[editable path="Objects/Onion_3"]
+[editable path="Objects/Onion_4"]
+[editable path="Objects/Onion_5"]
