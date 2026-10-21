@@ -7,8 +7,9 @@
 height = 1.6
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_fyi5p")]
+hit_color = Color(0.65, 0.47, 0.24, 1)
 mass = 0.6
-health = 1
+health = 60
 bounciness = 0.08
 vegetable_type = 2
 

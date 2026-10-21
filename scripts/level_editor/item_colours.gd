@@ -1,12 +1,5 @@
 extends RefCounted
 
-## The primary colour of each catalog item. Each item lists the parts that make up
-## its primary colour; a part names a material, a MeshInstance3D, or a colour
-## uniform of a ShaderMaterial. The first part found is the reference colour the
-## editor shows. The other parts are shades that stay as much lighter or darker
-## than the picked colour as they were than the reference, so two-tone pieces stay
-## two-tone. Textured materials only recolour their most colourful hue, so the
-## blender's red swatch changes while its greys and blacks stay put.
 
 const GRID := ["checker_a", "checker_b", "minor_line_color", "major_line_color"]
 const PICKUP := ["Brushed teal trim", "LightRing", "glow_color"]
@@ -48,15 +41,10 @@ const SPECS := {
 	"pot": ["Material.001"],
 }
 
-## Where to look for an item's parts when its material names are reused elsewhere
-## in the scene; the pot's floating egg also has a "Material.001".
 const ROOTS := {"pot": "Model"}
 
-## Each recoloured MeshInstance3D keeps its original materials here, by surface
-## (-1 for material_override), so colours can be changed again or removed.
 const SOURCES := &"primary_colour_sources"
 
-## Textures are analysed at most this size; larger ones are scaled down first.
 const MASK_SIZE := 512
 const TINT_SIZE := 1024
 
@@ -85,14 +73,10 @@ static func validate(id: String, value: Variant) -> String:
 	return ""
 
 
-## The item's own primary colour, ignoring any colour applied to it, or null when
-## none of its parts are present.
 static func own_colour(node: Node, id: String) -> Variant:
 	return _reference(_surfaces(node, id), id)
 
 
-## Recolours the item, or restores its own colours when colour is null. Pieces
-## that build their meshes in _ready are recoloured once they are ready.
 static func apply(node: Node, id: String, colour: Variant) -> void:
 	if not node.is_node_ready():
 		node.ready.connect(apply.bind(node, id, colour), CONNECT_ONE_SHOT)
@@ -209,7 +193,6 @@ static func _paint(material: Material, source: Material, names: Array, colour: C
 	if info.is_empty():
 		return
 	painted.albedo_texture = info.shade
-	# Outside the recoloured hue, the detail layer puts the original texture back.
 	if info.keep != null:
 		painted.detail_enabled = true
 		painted.detail_blend_mode = BaseMaterial3D.BLEND_MODE_MIX
@@ -218,7 +201,6 @@ static func _paint(material: Material, source: Material, names: Array, colour: C
 		painted.detail_mask = info.keep
 
 
-## The picked colour, lightened or darkened as far as original is from reference.
 static func _shade(picked: Color, reference: Color, original: Color) -> Color:
 	var from := _lightness(reference)
 	var to := _lightness(original)
@@ -231,18 +213,10 @@ static func _shade(picked: Color, reference: Color, original: Color) -> Color:
 	return result
 
 
-## Matches Image.adjust_bcs, which greys a pixel to the mean of its channels.
 static func _lightness(colour: Color) -> float:
 	return (colour.r + colour.g + colour.b) / 3.0
 
 
-## Splits a texture into the pixels of its most common saturated hue and the rest.
-## Returns {} for unreadable textures, otherwise:
-##   reference: the typical colour of those pixels, at their median lightness
-##   shade:     a grey texture, 1.0 at the reference, to multiply the new colour by;
-##              lighter pixels clamp, darker ones such as wood grain keep their contrast
-##   keep:      a mask that is white where the original texture should stay, or
-##              null when the whole texture takes the new colour
 static func _analyse(texture: Texture2D) -> Dictionary:
 	if texture == null:
 		return {}
@@ -318,7 +292,6 @@ static func _readable(texture: Texture2D) -> Image:
 	var source := texture.get_image()
 	if source == null or source.is_empty():
 		return null
-	# get_image can hand back the texture's own copy, so never change it in place.
 	var image := source.duplicate() as Image
 	if image.is_compressed() and image.decompress() != OK:
 		return null
@@ -336,7 +309,6 @@ static func _fitted(image: Image, limit: int) -> Image:
 	return fitted
 
 
-## Hue in degrees, or -1 for greys, near-blacks and washed-out pixels.
 static func _hue(r: int, g: int, b: int) -> int:
 	var high := maxi(r, maxi(g, b))
 	var span := high - mini(r, mini(g, b))

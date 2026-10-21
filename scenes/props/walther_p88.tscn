@@ -6,6 +6,7 @@
 [node name="WaltherP88" type="Node3D"]
 script = ExtResource("2_gun")
 fire_interval = 0.5
+damage = 25
 spread_degrees = 0.2
 impulse = 30.0
 kick_distance = 0.25

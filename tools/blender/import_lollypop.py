@@ -1,7 +1,3 @@
-"""Remove the stick and export a centered lollipop player model.
-
-Run with Blender --background --factory-startup --python tools/blender/import_lollypop.py.
-"""
 
 from pathlib import Path
 

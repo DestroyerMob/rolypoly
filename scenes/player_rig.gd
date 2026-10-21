@@ -9,8 +9,6 @@ const CHARACTERS := {
 	"swap_character_5": preload("res://packed_scenes/player_lollypop.tscn"),
 }
 
-## Number keys swap characters (the dev rig). Custom levels turn this off so the
-## level's chosen character is used for the whole run.
 @export var allow_character_swap := true
 
 ## Fire after pressing swap so the camera and other things can retarget 

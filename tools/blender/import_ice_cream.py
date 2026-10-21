@@ -1,8 +1,3 @@
-"""Center the supplied scoop and export a vanilla player model.
-
-Run with Blender --background --factory-startup --python tools/blender/import_ice_cream.py.
-Append -- --preview /absolute/path.png to render the exported model.
-"""
 
 import argparse
 from pathlib import Path

@@ -3,8 +3,6 @@ extends RefCounted
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 
-## The characters a level can be played as. A level plays as one of these for its
-## whole run; swapping characters is turned off in custom levels.
 const DEFAULT_PLAYER := "onion"
 const PLAYERS := {
 	"onion": {"label": "Onion", "scene": preload("res://packed_scenes/player_onion.tscn")},
@@ -27,6 +25,8 @@ const ITEMS := {
 	"spoon": {"label": "Wooden spoon", "category": "Kitchen", "scene": preload("res://scenes/props/wooden_spoon.tscn")},
 	"cardboard": {"label": "Cardboard box", "category": "Kitchen", "scene": preload("res://scenes/props/cardboard_box.tscn")},
 	"bottle": {"label": "Wine bottle", "category": "Kitchen", "scene": preload("res://scenes/props/winebottle.tscn")},
+	"cookbook": {"label": "Cookbook", "category": "Kitchen", "scene": preload("res://scenes/props/cookbook.tscn")},
+	"cereal_box": {"label": "Standing cereal box", "category": "Kitchen", "scene": preload("res://scenes/props/cereal_box.tscn")},
 	"roller": {"label": "Moving rolling pin", "category": "Obstacles", "scene": preload("res://scenes/obstacles/rolling_pin.tscn")},
 	"spinner": {"label": "Spinning rolling pin", "category": "Obstacles", "scene": preload("res://scenes/obstacles/rolling_pin_spinner.tscn")},
 	"log": {"label": "Rolling pin log", "category": "Obstacles", "scene": preload("res://scenes/obstacles/rolling_pin_log.tscn")},
@@ -51,14 +51,22 @@ const ITEMS := {
 	"produce": {"label": "Loose egg (gravity gun)", "category": "Kitchen", "scene": preload("res://packed_scenes/not_a_player_egg.tscn")},
 	"spawn": {"label": "Player start", "category": "Level", "scene": preload("res://scenes/level_editor/start.tscn")},
 	"goal": {"label": "Finish area", "category": "Level", "scene": preload("res://scenes/level_editor/finish.tscn")},
+	"watcher": {"label": "Event watcher", "category": "Logic", "scene": preload("res://scenes/level_editor/event_watcher.tscn")},
+	"npc": {"label": "NPC spawner", "category": "Level", "scene": preload("res://scenes/level_editor/npc_spawner.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
 	"book": {"label": "Book", "category": "Kitchen", "scene": preload("res://scenes/props/book.tscn")},
 	"cereal": {"label": "Cereal", "category": "Kitchen", "scene": preload("res://scenes/props/cereal.tscn")},
 	"funnel_exit": {"label": "Funnel exit", "category": "Level", "scene": preload("res://scenes/props/funnel_exit.tscn")},
 }
 
+const DEFAULT_MODE := "race"
+const MODES := {"race": "Race to the finish", "ffa": "Free for all"}
+
 static func player_of(document: Dictionary) -> String:
 	return document.get("player", DEFAULT_PLAYER)
+
+static func mode_of(document: Dictionary) -> String:
+	return document.get("mode", DEFAULT_MODE)
 
 static func record(id: String, position := Vector3.ZERO) -> Dictionary:
 	return {"id": id, "position": [position.x, position.y, position.z],

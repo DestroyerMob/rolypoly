@@ -6,6 +6,7 @@
 [node name="M4A1" type="Node3D"]
 script = ExtResource("2_gun")
 fire_interval = 0.09
+damage = 9
 automatic = true
 spread_degrees = 1.2
 impulse = 8.0

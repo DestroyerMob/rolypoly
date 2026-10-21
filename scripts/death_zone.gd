@@ -7,6 +7,6 @@ const ProduceBody := preload("res://scripts/produce_body.gd")
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		print("You died :( ")
-		body.call_deferred("respawn", body.spawn_position)
+		body.call_deferred("die")
 	elif kills_produce and body is ProduceBody:
 		body.queue_free()

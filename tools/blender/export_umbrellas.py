@@ -1,4 +1,3 @@
-"""Split the supplied FBX into upright, unit-height umbrella models for Godot."""
 from pathlib import Path
 
 import bpy

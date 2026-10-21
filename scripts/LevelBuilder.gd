@@ -4,6 +4,7 @@ extends Node3D
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
+const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 const World = preload("res://scripts/level_editor/level_world.gd")
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
@@ -23,6 +24,7 @@ var world: Node3D
 var selected := -1
 var placing := false
 var moving := false
+var linking := ""
 var palette_id := "counter"
 var placement: Dictionary = Catalog.record("counter")
 var undo_stack: Array[Dictionary] = []
@@ -34,6 +36,8 @@ var _mouse_position := Vector2.ZERO
 var _rebuilding_ui := false
 var _paused := false
 var _completed := false
+var _end_title := ""
+var _end_note := ""
 var _load_error := ""
 var _editor_camera_transform: Transform3D
 
@@ -43,6 +47,7 @@ var play_ui: Control
 var status: Label
 var name_field: LineEdit
 var player_choice: OptionButton
+var mode_choice: OptionButton
 var category: OptionButton
 var search: LineEdit
 var palette: ItemList
@@ -65,10 +70,21 @@ var _property_defaults: Dictionary = {}
 var _colour_reset: Button
 var _colour_before: Dictionary = {}
 var play_title: Label
+var match_status: Label
+var kill_feed: VBoxContainer
+var crosshair: Label
+var hurt_flash: ColorRect
+var hit_sound: AudioStreamPlayer
+var knockout_sound: AudioStreamPlayer
+var _crosshair_tween: Tween
+var _hurt_tween: Tween
 var browser: Window
 var confirm: ConfirmationDialog
 var pause_panel: PanelContainer
 var pause_title: Label
+var pause_note: Label
+var resume_button: Button
+var restart_button: Button
 var previews: Node
 var transform_gizmo: Control
 var move_handle_button: Button
@@ -163,6 +179,20 @@ func _create_ui() -> void:
 	player_choice.item_selected.connect(_player_chosen)
 	player_group.add_child(player_choice)
 	_muted(player_group, "Player character")
+	var mode_group := VBoxContainer.new()
+	mode_group.add_theme_constant_override("separation", 3)
+	toolbar.add_child(mode_group)
+	mode_choice = OptionButton.new()
+	mode_choice.name = "GameMode"
+	mode_choice.custom_minimum_size = Vector2(190, 42)
+	mode_choice.focus_mode = Control.FOCUS_NONE
+	mode_choice.tooltip_text = "Race: reach a Finish area. Free for all: knock out every NPC; last one standing wins."
+	for id in Catalog.MODES:
+		mode_choice.add_item(Catalog.MODES[id])
+		mode_choice.set_item_metadata(mode_choice.item_count - 1, id)
+	mode_choice.item_selected.connect(_mode_chosen)
+	mode_group.add_child(mode_choice)
+	_muted(mode_group, "Game mode")
 	_button(toolbar, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(toolbar, "Save copy", _save.bind(true))
 	_button(toolbar, "Save", _save.bind(false))
@@ -181,7 +211,7 @@ func _create_ui() -> void:
 	search.text_changed.connect(func(_value: String): _fill_palette())
 	category = OptionButton.new()
 	category.custom_minimum_size.y = 42
-	for title in ["All", "Surfaces", "Kitchen", "Obstacles", "Powerups", "Level"]:
+	for title in ["All", "Surfaces", "Kitchen", "Obstacles", "Powerups", "Level", "Logic"]:
 		category.add_item(title)
 	column.add_child(category)
 	category.item_selected.connect(func(_index: int): _fill_palette())
@@ -321,16 +351,44 @@ func _create_ui() -> void:
 	hud.add_child(play_ui)
 	play_title = _label(play_ui, "", 22)
 	play_title.position = Vector2(24, 20)
-	var crosshair := _label(play_ui, "+", 22)
+	match_status = _label(play_ui, "", 26)
+	match_status.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	match_status.offset_left = -420
+	match_status.offset_right = -24
+	match_status.offset_top = 20
+	match_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	match_status.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.75))
+	match_status.add_theme_constant_override("outline_size", 8)
+	kill_feed = VBoxContainer.new()
+	kill_feed.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	kill_feed.offset_left = -420
+	kill_feed.offset_right = -24
+	kill_feed.offset_top = 64
+	kill_feed.alignment = BoxContainer.ALIGNMENT_BEGIN
+	kill_feed.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	play_ui.add_child(kill_feed)
+	hurt_flash = ColorRect.new()
+	hurt_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	hurt_flash.color = Color(0.85, 0.05, 0.05, 0.0)
+	hurt_flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	play_ui.add_child(hurt_flash)
+	crosshair = _label(play_ui, "+", 22)
 	crosshair.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	crosshair.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	crosshair.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	crosshair.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.6))
+	crosshair.add_theme_constant_override("outline_size", 6)
+	hit_sound = _sound(_tone(1500.0, 0.06, 0.0))
+	knockout_sound = _sound(_tone(420.0, 0.28, -900.0))
 	pause_panel = _panel(play_ui, Control.PRESET_CENTER, Vector4(-230, -240, 230, 240))
 	var pause_buttons := VBoxContainer.new()
 	pause_buttons.add_theme_constant_override("separation", 14)
 	pause_panel.add_child(pause_buttons)
 	pause_title = _label(pause_buttons, "Paused", 30)
-	_muted(pause_buttons, "Return to editing or try the course again.")
-	EditorTheme.primary(_button(pause_buttons, "Resume", _resume))
-	_button(pause_buttons, "Restart level", _restart)
+	pause_note = _muted(pause_buttons, "")
+	resume_button = _button(pause_buttons, "Resume", _resume)
+	EditorTheme.primary(resume_button)
+	restart_button = _button(pause_buttons, "Restart level", _restart)
 	_button(pause_buttons, "Edit this level", _edit)
 	_button(pause_buttons, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(pause_buttons, "Main menu", _menu)
@@ -340,6 +398,10 @@ func _create_ui() -> void:
 	browser.hide()
 	browser.chosen.connect(_load_document)
 	browser.deleted.connect(_saved_level_deleted)
+	browser.moved.connect(func(from_filename: String, to_filename: String):
+		if filename == from_filename:
+			filename = to_filename
+	)
 	confirm = ConfirmationDialog.new()
 	confirm.theme = theme
 	confirm.title = "Unsaved changes"
@@ -440,6 +502,7 @@ func _choose_palette(index: int) -> void:
 func _set_tool(place: bool) -> void:
 	placing = place
 	moving = false
+	linking = ""
 	selected = -1
 	_make_ghost()
 	_refresh_inspector()
@@ -456,6 +519,10 @@ func _rebuild_world() -> void:
 	add_child(world)
 	world.build(document, build_mode)
 	world.completed.connect(_finish)
+	world.lost.connect(_lose)
+	if world.brawl != null:
+		world.brawl.damaged.connect(_match_damage)
+		world.brawl.knocked_out.connect(_match_knockout)
 	if build_mode:
 		camera.make_current()
 	_update_selection_box()
@@ -533,6 +600,7 @@ func _update_selection_box() -> void:
 	(selection_box.mesh as BoxMesh).size = bounds.size.max(Vector3.ONE * 0.2) + Vector3.ONE * 0.06
 	selection_box.transform = node.transform * Transform3D(Basis.IDENTITY, bounds.get_center())
 	selection_box.show()
+	world.draw_links(document)
 	_update_transform_gizmo()
 
 func _update_transform_gizmo() -> void:
@@ -611,6 +679,7 @@ func _process(delta: float) -> void:
 	history_actions[1].disabled = redo_stack.is_empty()
 	save_state.text = ("Unsaved changes" if dirty else "All changes saved") + "  ·  %d objects" % document.objects.size()
 	if not build_mode:
+		_update_match_status()
 		return
 	_update_transform_gizmo()
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -691,7 +760,11 @@ func _input(event: InputEvent) -> void:
 			return
 		if build_mode:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			_set_tool(false)
+			if not linking.is_empty():
+				linking = ""
+				_status("Linking cancelled.")
+			else:
+				_set_tool(false)
 		else:
 			if _paused and not _completed:
 				_resume()
@@ -757,6 +830,9 @@ func _pick_index() -> int:
 func _world_click(force_place := false) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
+	if not linking.is_empty():
+		_link_pick(_pick_index())
+		return
 	if not moving and not (placing and force_place):
 		var index := _pick_index()
 		if index >= 0 or not placing:
@@ -780,6 +856,7 @@ func _world_click(force_place := false) -> void:
 		var data: Dictionary = document.objects[selected] if moving else placement.duplicate(true)
 		data.position = [point.x, point.y, point.z]
 		if not moving:
+			data.uid = Store.next_uid(document)
 			if data.id == "spawn":
 				for i in range(document.objects.size() - 1, -1, -1):
 					if document.objects[i].id == "spawn":
@@ -816,6 +893,10 @@ func _refresh_inspector() -> void:
 		selection_hint.text += "\nScale X, Y and Z to resize the trigger box. Hidden during play."
 	elif data.id == "spawn":
 		selection_hint.text += "\nThe player starts here. Hidden during play."
+	elif data.id == "watcher":
+		selection_hint.text += "\nCounts events while playing and triggers its targets. Hidden during play."
+	elif data.id == "npc":
+		selection_hint.text += "\nAn NPC starts here. Hidden during play."
 	for index in transform_fields.size():
 		var key: String = ["position", "rotation", "scale"][index / 3]
 		transform_fields[index].set_value_no_signal(data[key][index % 3])
@@ -898,6 +979,149 @@ func _refresh_properties() -> void:
 		reset.visible = values.has(spec.name)
 		_property_resets[spec.name] = reset
 		group.add_child(row)
+	if data.id == "watcher":
+		_add_watcher_links(data, values.get("event", defaults.get("event")))
+
+func _add_watcher_links(data: Dictionary, event: int) -> void:
+	if event == 2:
+		_label(property_section, "Scale", 16)
+		var source_row := HBoxContainer.new()
+		source_row.add_theme_constant_override("separation", 8)
+		property_section.add_child(source_row)
+		var source_index := Store.index_of_uid(document, int(data.get("source", 0)))
+		var source_name := _muted(source_row, _object_name(source_index) if source_index >= 0 else "All scales added together")
+		source_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_button(source_row, "Pick…", _start_linking.bind("source")).tooltip_text = "Click a scale to read only that one."
+		if source_index >= 0:
+			_button(source_row, "✕", _clear_source).custom_minimum_size.x = 44
+	_separator(property_section)
+	_label(property_section, "Targets", 18)
+	var targets: Array = data.get("targets", [])
+	if targets.is_empty():
+		_muted(property_section, "Nothing happens yet. Link a target, such as a Finish area or a Masher.")
+	for target_index in targets.size():
+		var target: Dictionary = targets[target_index]
+		var object_index := Store.index_of_uid(document, int(target.uid))
+		if object_index < 0:
+			continue
+		var object_id: String = document.objects[object_index].id
+		var actions := ItemTriggers.actions(object_id)
+		var group := VBoxContainer.new()
+		group.name = "Target%d" % target_index
+		group.add_theme_constant_override("separation", 4)
+		property_section.add_child(group)
+		var title := HBoxContainer.new()
+		group.add_child(title)
+		var name_label := _label(title, _object_name(object_index), 16)
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var remove := _button(title, "✕", _remove_target.bind(target_index))
+		remove.tooltip_text = "Unlink this target."
+		remove.custom_minimum_size.x = 44
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 8)
+		group.add_child(row)
+		var action_choice := OptionButton.new()
+		action_choice.name = "Action"
+		action_choice.custom_minimum_size.y = 42
+		action_choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		for index in actions.size():
+			action_choice.add_item(actions[index].label)
+			if actions[index].name == target.action:
+				action_choice.select(index)
+		action_choice.item_selected.connect(_target_action_changed.bind(target_index))
+		row.add_child(action_choice)
+		if ItemTriggers.action_named(object_id, target.action).kind == "switch":
+			var mode_choice := OptionButton.new()
+			mode_choice.name = "Mode"
+			mode_choice.custom_minimum_size.y = 42
+			mode_choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			for index in ItemTriggers.MODES.size():
+				mode_choice.add_item(ItemTriggers.MODES[index][0])
+				if ItemTriggers.MODES[index][1] == target.mode:
+					mode_choice.select(index)
+			mode_choice.item_selected.connect(_target_mode_changed.bind(target_index))
+			row.add_child(mode_choice)
+	var link := _button(property_section, "Link target…", _start_linking.bind("target"))
+	link.name = "LinkTarget"
+	link.disabled = targets.size() >= ItemTriggers.MAX_TARGETS
+	link.tooltip_text = "Then click the object this watcher should switch."
+
+func _object_name(index: int) -> String:
+	return "%d · %s" % [index + 1, Catalog.ITEMS[document.objects[index].id].label]
+
+func _start_linking(kind: String) -> void:
+	if selected < 0 or document.objects[selected].id != "watcher":
+		return
+	linking = kind
+	placing = false
+	moving = false
+	_make_ghost()
+	_status("Click a scale for this watcher to read. Escape cancels." if kind == "source" else "Click the object this watcher should trigger. Escape cancels.")
+
+func _link_pick(index: int) -> void:
+	var watcher: Dictionary = document.objects[selected]
+	if index < 0 or index == selected:
+		_status("Click another object to link it, or press Escape to cancel.")
+		return
+	var other: Dictionary = document.objects[index]
+	var label: String = Catalog.ITEMS[other.id].label
+	if linking == "source":
+		if other.id != "scale":
+			_status("%s isn't a scale. Click an Electronic scale, or press Escape to cancel." % label)
+			return
+		_remember()
+		watcher.source = int(other.uid)
+		_status("The watcher now reads %s." % _object_name(index))
+	else:
+		var actions := ItemTriggers.actions(other.id)
+		if actions.is_empty():
+			_status("%s can't be triggered. Try a Finish area, obstacle, oven, grill or lighter." % label)
+			return
+		var targets: Array = watcher.get("targets", [])
+		if targets.any(func(target): return int(target.uid) == int(other.uid)):
+			_status("%s is already a target of this watcher." % label)
+			return
+		_remember()
+		targets.append({"uid": int(other.uid), "action": actions[0].name, "mode": "on"})
+		watcher.targets = targets
+		_status("Linked %s. Choose what happens to it in the Inspector." % _object_name(index))
+	linking = ""
+	world.draw_links(document)
+	_refresh_inspector()
+
+func _clear_source() -> void:
+	if selected < 0 or not document.objects[selected].has("source"):
+		return
+	_remember()
+	document.objects[selected].erase("source")
+	world.draw_links(document)
+	_refresh_inspector()
+
+func _remove_target(target_index: int) -> void:
+	if selected < 0:
+		return
+	_remember()
+	var watcher: Dictionary = document.objects[selected]
+	watcher.targets.remove_at(target_index)
+	if watcher.targets.is_empty():
+		watcher.erase("targets")
+	world.draw_links(document)
+	_refresh_inspector()
+
+func _target_action_changed(option: int, target_index: int) -> void:
+	if _rebuilding_ui or selected < 0:
+		return
+	var target: Dictionary = document.objects[selected].targets[target_index]
+	var object_id: String = document.objects[Store.index_of_uid(document, int(target.uid))].id
+	_remember()
+	target.action = ItemTriggers.actions(object_id)[option].name
+	_refresh_inspector.call_deferred()
+
+func _target_mode_changed(option: int, target_index: int) -> void:
+	if _rebuilding_ui or selected < 0:
+		return
+	_remember()
+	document.objects[selected].targets[target_index].mode = ItemTriggers.MODES[option][1]
 
 func _add_colour_row(data: Dictionary, reference: Color) -> void:
 	var group := VBoxContainer.new()
@@ -965,11 +1189,22 @@ func _player_chosen(index: int) -> void:
 	_rebuild_world()
 	_status("This level is now played as the %s. Players can't swap characters during it." % Catalog.PLAYERS[id].label.to_lower())
 
+func _mode_chosen(index: int) -> void:
+	var id: String = mode_choice.get_item_metadata(index)
+	if id == Catalog.mode_of(document):
+		return
+	_remember()
+	document.mode = id
+	_status("Free for all: knock out every NPC. NPCs need a weapon set in their spawner to shoot back." if id == "ffa" else "Race: reach a Finish area to complete the level.")
+
 func _sync_player_choice() -> void:
 	var current := Catalog.player_of(document)
 	for index in player_choice.item_count:
 		if player_choice.get_item_metadata(index) == current:
 			player_choice.select(index)
+	for index in mode_choice.item_count:
+		if mode_choice.get_item_metadata(index) == Catalog.mode_of(document):
+			mode_choice.select(index)
 
 func _property_choice_changed(index: int, spec: Dictionary) -> void:
 	_property_changed(spec.options[index][1], spec)
@@ -987,10 +1222,14 @@ func _property_changed(value: Variant, spec: Dictionary) -> void:
 	else:
 		values[spec.name] = coerced
 	_store_properties(data, values)
-	if spec.on != "gadget": #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly 
-		world.objects[selected].set(spec.name, coerced) #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly 
+	if spec.on != "gadget": #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly
+		world.objects[selected].set(spec.name, coerced) #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly
+	if data.id == "npc" and spec.name == "character":
+		_rebuild_world()
 	if _property_resets.has(spec.name):
 		_property_resets[spec.name].visible = values.has(spec.name)
+	if data.id == "watcher" and spec.name == "event":
+		_refresh_inspector.call_deferred()
 
 func _reset_property(spec: Dictionary) -> void:
 	if selected < 0:
@@ -1035,6 +1274,7 @@ func _select_existing(index: int) -> void:
 	selected = index - 1
 	placing = false
 	moving = false
+	linking = ""
 	_make_ghost()
 	_refresh_inspector()
 	_update_selection_box()
@@ -1069,6 +1309,7 @@ func _duplicate_selected() -> void:
 	_remember()
 	var copy: Dictionary = document.objects[selected].duplicate(true)
 	copy.position[0] += snap_field.value
+	copy.uid = Store.next_uid(document)
 	document.objects.append(copy)
 	selected = document.objects.size() - 1
 	moving = false
@@ -1082,6 +1323,7 @@ func _delete_selected() -> void:
 	_remember()
 	var label: String = Catalog.ITEMS[document.objects[selected].id].label
 	document.objects.remove_at(selected)
+	Store.prune_links(document)
 	selected = -1
 	moving = false
 	_make_ghost()
@@ -1201,20 +1443,134 @@ func _update_mode_ui() -> void:
 	grid.visible = build_mode and not surface_toggle.button_pressed
 	if is_instance_valid(ghost):
 		ghost.hide()
-	play_title.text = "%s · playing as the %s\nWASD: roll · Space: jump · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower()]
+	var brawl := Catalog.mode_of(document) == "ffa"
+	var goal := "last one standing wins" if brawl else "reach the finish"
+	var keys := "Esc: pause · Tab: edit" if brawl else "R: respawn · Esc: pause · Tab: edit"
+	play_title.text = "%s · playing as the %s · %s\nWASD: roll · Space: jump · Click: equipment\n%s" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower(), goal, keys]
+	match_status.text = ""
+	for line in kill_feed.get_children():
+		line.free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if build_mode else Input.MOUSE_MODE_CAPTURED
 
+func _update_match_status() -> void:
+	var brawl: FreeForAll = world.brawl if is_instance_valid(world) else null
+	if brawl == null or brawl.entrants == 0:
+		return
+	var player: Player = world.rig.current_player
+	var left := _opponents_left()
+	match_status.text = "♥ %d  ·  %d opponent%s left" % [maxi(player.health, 0), left, "" if left == 1 else "s"]
+	var ratio := clampf(float(player.health) / player.get_max_health(), 0.0, 1.0)
+	match_status.add_theme_color_override("font_color", Color(1, 0.45, 0.35).lerp(Color.WHITE, ratio))
+
+func _opponents_left() -> int:
+	return world.brawl.remaining() - int(not world.rig.current_player.is_eliminated)
+
+func _match_damage(victim: Player, _amount: int, by: Player) -> void:
+	var me: Player = world.rig.current_player
+	if by == me and victim != me:
+		_hitmarker(false)
+	elif victim == me:
+		if _hurt_tween != null:
+			_hurt_tween.kill()
+		hurt_flash.color.a = 0.28
+		_hurt_tween = create_tween()
+		_hurt_tween.tween_property(hurt_flash, "color:a", 0.0, 0.4)
+
+func _match_knockout(victim: Player, by: Player) -> void:
+	var me: Player = world.rig.current_player
+	var line := "%s knocked out %s" % [_fighter_name(by), _fighter_name(victim)] if by != null else "%s fell out" % _fighter_name(victim)
+	var label := _label(kill_feed, line, 18)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.add_theme_color_override("font_color", EditorTheme.ACCENT if by == me else Color.WHITE)
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.75))
+	label.add_theme_constant_override("outline_size", 6)
+	while kill_feed.get_child_count() > 6:
+		kill_feed.get_child(0).free()
+	var fade := label.create_tween()
+	fade.tween_interval(4.0)
+	fade.tween_property(label, "modulate:a", 0.0, 0.6)
+	fade.tween_callback(label.queue_free)
+	if by == me:
+		_hitmarker(true)
+
+func _fighter_name(player: Player) -> String:
+	return "You" if player == world.rig.current_player else String(player.name)
+
+func _hitmarker(knockout: bool) -> void:
+	if _crosshair_tween != null:
+		_crosshair_tween.kill()
+	crosshair.text = "✕"
+	crosshair.add_theme_color_override("font_color", Color(1, 0.3, 0.2) if knockout else Color.WHITE)
+	crosshair.pivot_offset = crosshair.size * 0.5
+	crosshair.scale = Vector2.ONE * (2.0 if knockout else 1.4)
+	(knockout_sound if knockout else hit_sound).play()
+	_crosshair_tween = create_tween()
+	_crosshair_tween.tween_property(crosshair, "scale", Vector2.ONE, 0.12)
+	_crosshair_tween.tween_interval(0.25 if knockout else 0.08)
+	_crosshair_tween.tween_callback(func():
+		crosshair.text = "+"
+		crosshair.remove_theme_color_override("font_color")
+	)
+
+func _sound(stream: AudioStream) -> AudioStreamPlayer:
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.volume_db = -8.0
+	add_child(player)
+	return player
+
+static func _tone(hertz: float, seconds: float, slide: float) -> AudioStreamWAV:
+	var rate := 22050
+	var data := PackedByteArray()
+	data.resize(int(rate * seconds) * 2)
+	var phase := 0.0
+	for i in data.size() / 2:
+		var t := float(i) / rate
+		phase += TAU * maxf(hertz + slide * t, 40.0) / rate
+		var envelope := pow(1.0 - t / seconds, 2.0)
+		data.encode_s16(i * 2, int(clampf(sin(phase) * envelope, -1, 1) * 20000))
+	var wav := AudioStreamWAV.new()
+	wav.format = AudioStreamWAV.FORMAT_16_BITS
+	wav.mix_rate = rate
+	wav.data = data
+	return wav
+
 func _finish() -> void:
+	if Catalog.mode_of(document) != "ffa":
+		_end("Level complete!", "Nice rolling. Play again or head back to the editor.")
+		return
+	_end("You win!", "Last one standing out of %d · %s." % [world.brawl.entrants, _knockouts_text()])
+
+func _lose() -> void:
+	var place: int = world.brawl.places.get(world.rig.current_player, world.brawl.remaining() + 1)
+	_end("Knocked out!", "You placed %s of %d · %s." % [_ordinal(place), world.brawl.entrants, _knockouts_text()])
+
+func _knockouts_text() -> String:
+	var count: int = world.brawl.knockouts.get(world.rig.current_player, 0)
+	return "%d knock-out%s" % [count, "" if count == 1 else "s"]
+
+static func _ordinal(number: int) -> String:
+	var suffix := "th"
+	if number % 100 < 11 or number % 100 > 13:
+		suffix = {1: "st", 2: "nd", 3: "rd"}.get(number % 10, "th")
+	return "%d%s" % [number, suffix]
+
+func _end(title: String, note: String) -> void:
 	if build_mode:
 		return
 	_completed = true
+	_end_title = title
+	_end_note = note
 	_pause(true)
 
-func _pause(won: bool) -> void:
+func _pause(_won: bool) -> void:
 	_paused = true
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	pause_title.text = "Level complete!" if won or _completed else "Paused"
+	pause_title.text = _end_title if _completed else "Paused"
+	pause_note.text = _end_note if _completed else "Return to editing or try the course again."
+	resume_button.text = "Play again" if _completed else "Resume"
+	restart_button.visible = not _completed
 	pause_panel.show()
 
 func _resume() -> void:
