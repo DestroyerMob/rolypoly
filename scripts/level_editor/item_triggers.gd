@@ -1,7 +1,5 @@
 extends RefCounted
 
-## What an event watcher can do to each kind of object while a level plays.
-## A switch is turned on, off or flipped. A pulse runs once each time it fires.
 
 const MODES := [["Turn on", "on"], ["Turn off", "off"], ["Toggle", "toggle"]]
 const MAX_TARGETS := 32

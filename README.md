@@ -23,6 +23,9 @@ Manage the list from **My levels** with four buttons:
 - **Remove level** takes it out of `levels/` and back into your saved levels.
 - **Move up** / **Move down** change its place in the order.
 
+The Play menu has 16 slots. When they are full, remove a level from the list
+before adding another; saved levels can still be played from **My levels**.
+
 The Play menu picks up changes straight away. Commit `levels/` to share them;
 reordering by hand is just moving lines in `level_order.txt`. These buttons write
 into the project, so they only work while the game runs from the Godot editor.

@@ -1,12 +1,9 @@
 class_name HealthBar
 extends Node3D
 
-## A small bar floating over a Player that always faces the camera. It sits
-## outside the rolling body's rotation, so it stays upright.
 
 const WIDTH := 3.0
 const HEIGHT := 0.35
-## How far above the character's centre the bar floats.
 const LIFT := 2.8
 
 var player: Player

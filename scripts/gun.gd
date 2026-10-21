@@ -1,7 +1,6 @@
 class_name Gun
 extends Node3D
 
-## The blender's burst, reused for pieces knocked off a shot Player.
 const HIT_PARTICLES := preload("res://packed_scenes/produce_death_particles.tscn")
 
 signal fired
@@ -14,7 +13,6 @@ signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vect
 @export_range(0.0, 45.0, 0.1) var spread_degrees := 0.0
 @export var max_range := 300.0
 @export var impulse := 10.0
-## Health taken from a Player per pellet. Characters have about 100.
 @export var damage := 10
 
 @export_group("Effects")
@@ -23,7 +21,6 @@ signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vect
 @export var tracer_seconds := 0.1
 @export var impact_radius := 0.8
 @export var flash_energy := 6.0
-## Pieces knocked off a Player by each pellet that hits.
 @export var hit_pieces := 16
 @export var kick_distance := 0.2
 @export var kick_degrees := 4.0
@@ -85,7 +82,6 @@ func _shoot() -> void:
 	_fire(origin, aim)
 
 
-## AI trigger: shoots from the holder towards a world point, if off cooldown.
 func fire_at(target: Vector3) -> void:
 	if not is_instance_valid(_player) or _cooldown > 0.0:
 		return
@@ -132,7 +128,6 @@ func _on_hit(result: Dictionary, direction: Vector3) -> void:
 	hit.emit(result.collider, result.position, result.normal, direction)
 
 
-## Sprays the hit character's colour out of the surface where the pellet landed.
 func _spawn_hit_burst(body: Player, point: Vector3, normal: Vector3, direction: Vector3) -> void:
 	if hit_pieces <= 0:
 		return

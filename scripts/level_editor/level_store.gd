@@ -4,15 +4,12 @@ const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 const DIRECTORY := "user://levels"
-## The level set: levels that ship with the game, played from the main menu's
-## numbered slots. A saved level with the same filename replaces one of these.
-## Run from the Godot editor, saving one writes it back here.
 const BUNDLED := "res://levels"
-## One level filename per line, in play order. Edit it by hand to reorder.
 const ORDER_FILE := "res://levels/level_order.txt"
 const VERSION := 1
 const MAX_OBJECTS := 1000
 const MAX_UID := 1000000000
+const MAX_LEVELS := 16
 
 static func new_level() -> Dictionary:
 	return normalize({"version": VERSION, "name": "My kitchen course", "player": Catalog.DEFAULT_PLAYER, "objects": [
@@ -32,7 +29,6 @@ static func normalize(document: Dictionary) -> Dictionary:
 	prune_links(result)
 	return result
 
-## Objects keep their uid for life, so links survive reordering and deletion.
 static func next_uid(document: Dictionary) -> int:
 	var highest := 0
 	for entry in document.objects:
@@ -45,7 +41,6 @@ static func index_of_uid(document: Dictionary, uid: int) -> int:
 			return index
 	return -1
 
-## Drops watcher links to objects that no longer exist or can't take the action.
 static func prune_links(document: Dictionary) -> void:
 	var ids := {}
 	for entry in document.objects:
@@ -165,7 +160,6 @@ static func _finish_can_open(document: Dictionary) -> bool:
 static func valid_filename(filename: String) -> bool:
 	return filename == filename.get_file() and filename.ends_with(".json") and not filename.begins_with(".")
 
-## Where a level is read from: the player's saved copy, else the bundled one.
 static func path_of(filename: String) -> String:
 	var saved := DIRECTORY.path_join(filename)
 	var bundled := BUNDLED.path_join(filename)
@@ -220,8 +214,6 @@ static func _write_level(directory: String, document: Dictionary, filename: Stri
 		return {"error": "Could not replace the save: %s" % error_string(result)}
 	return {"filename": filename}
 
-## The level set's filenames in play order: the order file first, then any
-## level in the folder it doesn't mention yet.
 static func level_set() -> Array[String]:
 	var order: Array[String] = []
 	if not DirAccess.dir_exists_absolute(BUNDLED):
@@ -238,17 +230,16 @@ static func level_set() -> Array[String]:
 			order.append(filename)
 	return order
 
-## Exporting and reordering write into the project, so they need the Godot editor.
 static func can_edit_set() -> bool:
 	return OS.has_feature("editor")
 
-## Moves a saved level into the level set, as the last level, under a filename
-## made from its name. Returns the new filename.
 static func add_to_set(filename: String) -> Dictionary:
 	if not can_edit_set():
 		return {"error": "Run the game from the Godot editor to change the level list."}
 	if is_bundled(filename):
 		return {"error": "This level is already in the level list."}
+	if level_set().size() >= MAX_LEVELS:
+		return {"error": "The Play menu supports %d levels. Remove a level from the list before adding another." % MAX_LEVELS}
 	var result := read_level(filename)
 	if result.has("error"):
 		return result
@@ -277,8 +268,6 @@ static func add_to_set(filename: String) -> Dictionary:
 	DirAccess.remove_absolute(DIRECTORY.path_join(filename))
 	return {"filename": exported, "number": order.size()}
 
-## Takes a level out of the set and back into the player's saved levels, so it
-## isn't lost. Returns its filename there.
 static func remove_from_set(filename: String) -> Dictionary:
 	if not can_edit_set():
 		return {"error": "Run the game from the Godot editor to change the level list."}
@@ -303,7 +292,6 @@ static func remove_from_set(filename: String) -> Dictionary:
 	var written := _write_order(order)
 	return {"error": written} if not written.is_empty() else {"filename": kept}
 
-## Moves a level in the set up (-1) or down (+1) the play order.
 static func move_in_set(filename: String, offset: int) -> Dictionary:
 	if not can_edit_set():
 		return {"error": "Run the game from the Godot editor to change the level list."}
@@ -325,7 +313,6 @@ static func _write_order(order: Array[String]) -> String:
 	file.close()
 	return ""
 
-## The level set in play order, then saved levels by name.
 static func list_levels() -> Array:
 	var levels: Array = []
 	var filenames: Array[String] = level_set()

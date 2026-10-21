@@ -1,9 +1,7 @@
 extends Window
 signal chosen(document: Dictionary, filename: String, editing: bool)
 signal deleted(filename: String)
-## Adding a level to the level list, or removing it, gives it a new filename.
 signal moved(from_filename: String, to_filename: String)
-## The level set's contents or order changed.
 signal set_changed
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
@@ -102,7 +100,7 @@ func _select(index: int) -> void:
 	var editable := Store.can_edit_set()
 	var count := Store.level_set().size()
 	_delete_button.disabled = bundled
-	_add_button.disabled = bundled or not editable or not entry.error.is_empty()
+	_add_button.disabled = bundled or not editable or not entry.error.is_empty() or count >= Store.MAX_LEVELS
 	_remove_button.disabled = not bundled or not editable
 	_up_button.disabled = not editable or entry.number <= 1
 	_down_button.disabled = not editable or entry.number == 0 or entry.number >= count
@@ -110,13 +108,14 @@ func _select(index: int) -> void:
 		_message.text = entry.error
 	elif entry.number > 0:
 		_message.text = "Level %d in the level list (levels/%s). Ready to play." % [entry.number, entry.filename]
+	elif editable and count >= Store.MAX_LEVELS:
+		_message.text = "Ready to play. The Play menu's %d slots are full; remove a level from the list before adding another." % Store.MAX_LEVELS
 	else:
 		_message.text = "Ready to play." + (" Add it to the level list to make it a numbered level in Play." if editable else "")
 
 func _selected_index() -> int:
 	return _list.get_selected_items()[0] if not _list.get_selected_items().is_empty() else -1
 
-## Reselects `filename` after the list is rebuilt.
 func _reselect(filename: String) -> void:
 	for index in _entries.size():
 		if _entries[index].filename == filename:

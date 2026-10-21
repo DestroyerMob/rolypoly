@@ -2,11 +2,8 @@ class_name Player
 extends RigidBody3D
 
 signal squished
-## Knocked out of a match. Outside a match, dying just respawns.
 signal eliminated
-## Any death: falls, death zones, running out of health or being squished.
 signal died
-## Took a hit. `source` is whoever fired, if anyone.
 signal damaged(amount: int, source: Player)
 
 #ENUMS FOR PLAYER STATE CONDITIONS
@@ -38,16 +35,13 @@ var _teleport_queued := false
 var _active_conditions: Array[Condition] = [] #We have to enforce uniqueness ourselves
 ## Distance from this character's origin down to its lowest point.
 @export var spawn_clearance := 0.25
-## Colour of the pieces knocked off when this character is shot.
 @export var hit_color := Color(0.85, 0.3, 0.1)
 var spawn_position: Vector3
 var gadget: Node3D
 var is_squished := false
 var squish_tween: Tween
-## Set by a match (e.g. FreeForAll). Dying then eliminates instead of respawning.
 var in_match := false
 var is_eliminated := false
-## Whoever last hurt this player and when (msec), for crediting knock-outs.
 var last_attacker: Player
 var last_hit_msec := 0
 var _max_health: int
@@ -141,7 +135,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"debug_probe"):
 		_probe_colliders()
 		
-## Soft reset. Back to the spawn, level untouched. Not mid-match: no escaping a fight.
 func reset_to_spawn() -> void:
 	if is_eliminated or in_match:
 		return
@@ -216,7 +209,6 @@ func take_damage(amount := 1, source: Player = null) -> void:
 	get_tree().create_timer(0.4).timeout.connect(exit_condition.bind(Condition.HURT))
 
 
-## Death zones, falls and running out of health all land here.
 func die() -> void:
 	if is_eliminated:
 		return
@@ -292,9 +284,13 @@ func squish_and_respawn(squish_duration := 0.18, respawn_delay := 0.55) -> void:
 		squish_tween.tween_property(visual, "scale", squashed_scale, squish_duration)
 
 	squish_tween.tween_interval(respawn_delay)
-	squish_tween.tween_callback(respawn.bind(spawn_position))
+	if in_match:
+		squish_tween.tween_callback(die)
+	else:
+		squish_tween.tween_callback(respawn.bind(spawn_position))
 	squished.emit()
-	died.emit()
+	if not in_match:
+		died.emit()
 	
 ## Dev tool. Asks the physics server what overlaps the marble right now and
 ## prints each hit's full node path. The blue debug outlines tell you a shape

@@ -1,7 +1,3 @@
-"""Convert the supplied CoreXY STL to a grounded, ten-unit-wide Godot asset.
-
-Run with Blender --background --factory-startup --python tools/blender/import_corexy.py.
-"""
 
 from pathlib import Path
 

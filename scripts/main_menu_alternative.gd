@@ -9,7 +9,6 @@ var _transitioning := false
 var _settings_shown := false
 var _levels_shown := false
 var _opening_scene := false
-## Level filenames in the order of the numbered slots.
 var _level_set: Array[String] = []
 
 @onready var _main_controls: Array[Control] = [$MainTitle, $MenuButtonsCenter]
@@ -74,8 +73,6 @@ func _show_levels(show_levels: bool) -> void:
 		_play_button.grab_focus()
 
 
-## Re-reads the level set, so exports, reorders and hand edits to
-## levels/level_order.txt show without restarting the game.
 func _refresh_level_slots() -> void:
 	_level_set = Store.level_set()
 	for child in $LevelGridCenter/LevelVBox/LevelGrid.get_children():
@@ -89,7 +86,6 @@ func _refresh_level_slots() -> void:
 			button.tooltip_text = level.document.name if level.has("document") else level.error
 
 
-## Plays a level from the level set (levels/level_order.txt).
 func _on_level_pressed(level_number: int) -> void:
 	if _transitioning or _opening_scene or level_number > _level_set.size():
 		return

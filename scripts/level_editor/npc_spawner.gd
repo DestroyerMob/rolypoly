@@ -1,12 +1,7 @@
 extends Marker3D
 
-## Level-editor marker that puts one NPC into the level when it's played.
-## The properties here are copied onto the NPC; health and handling come from
-## the character, the same as for the player.
 
-## Order matches the Character choice in item_properties.gd.
 const CHARACTERS := ["onion", "egg", "tomato", "ice_cream", "lollipop"]
-## Order matches the Starts with choice in item_properties.gd.
 const WEAPONS := ["", "res://scenes/props/walther_p88.tscn", "res://scenes/props/m4a1.tscn", "res://scenes/props/shotgun.tscn"]
 
 @export var character := 0
@@ -16,7 +11,6 @@ const WEAPONS := ["", "res://scenes/props/walther_p88.tscn", "res://scenes/props
 @export var fight_range := 30.0
 @export var aim_error := 1.0
 @export var reaction_time := 0.0
-## Fighting NPCs don't look for pickups, so give them a gun here.
 @export var weapon := 0
 
 
@@ -24,7 +18,6 @@ func character_key() -> String:
 	return CHARACTERS[clampi(character, 0, CHARACTERS.size() - 1)]
 
 
-## `scene` is the character's player scene, looked up from character_key().
 func spawn(scene: PackedScene) -> NPC:
 	var body: Player = scene.instantiate()
 	var stats := {}

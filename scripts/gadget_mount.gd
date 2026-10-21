@@ -2,7 +2,6 @@ class_name GadgetMount
 extends Node3D
 
 @export var player_rig: PlayerRig
-## Fixed wearer (e.g. an NPC). When unset, follows player_rig.current_player.
 @export var player: Player
 @export var camera: Camera3D
 @export var side_distance := 4.0

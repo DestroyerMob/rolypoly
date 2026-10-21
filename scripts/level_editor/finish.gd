@@ -1,8 +1,6 @@
 extends Area3D
 signal level_completed(player: Player)
-## An NPC got here. Doesn't end the level.
 signal npc_finished(npc: NPC)
-## A closed finish ignores everything until a watcher opens it.
 @export var enabled := true:
 	set(value):
 		enabled = value

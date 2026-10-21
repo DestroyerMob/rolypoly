@@ -1,36 +1,23 @@
 class_name NPC
 extends Player
 
-## A computer-driven character. Rolls with the same forces as the player.
-## To make one, instance any player_*.tscn and set its root script to this.
 
 enum Mode { IDLE, WANDER, GOAL, FIGHT }
 
 @export_group("AI")
 @export var mode := Mode.WANDER
-## Where GOAL mode rolls to. A node is followed if it moves.
 @export var goal: Node3D
-## Used by GOAL mode when no goal node is set.
 @export var goal_position := Vector3.ZERO
-## WANDER picks random points within this distance of the spawn.
 @export var wander_radius := 6.0
-## WANDER picks a new point after this long, even if it never arrived.
 @export var wander_interval := 4.0
-## Close enough to count as arrived.
 @export var arrive_distance := 0.75
-## Top rolling speed the AI steers towards.
 @export var max_speed := 6.0
-## FIGHT: with a gun, shoots at opponents inside this distance and hangs back
-## at a bit over half of it. Without one, rams them.
 @export var fight_range := 30.0
-## FIGHT: random miss distance added to each shot.
 @export var aim_error := 1.0
-## FIGHT: seconds an opponent must stay in clear sight before the first shot.
 @export var reaction_time := 0.0
 
 signal finished
 
-## FIGHT: seconds spent sliding sideways to get round whatever blocked the way.
 const DETOUR_TIME := 1.0
 
 var gadget_mount: GadgetMount
@@ -70,7 +57,6 @@ func _physics_process(delta: float) -> void:
 			_fight(delta)
 
 
-## Called by finish areas. Celebrates and brakes to a stop; the level carries on.
 func reach_finish() -> void:
 	if has_finished:
 		return
@@ -80,12 +66,10 @@ func reach_finish() -> void:
 	finished.emit()
 
 
-## Ignore the player's debug/reset keys.
 func _unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
-## Pushes towards a world point, steering out sideways drift so it doesn't orbit.
 func roll_towards(target: Vector3) -> void:
 	var to_target := target - global_position
 	to_target.y = 0.0
@@ -96,8 +80,6 @@ func roll_towards(target: Vector3) -> void:
 	apply_central_force((desired - flat_velocity).limit_length(1.0) * speed_force)
 
 
-## Hangs back and shoots at whoever it can see; rolls in to find a clear shot,
-## detouring round cover that's in the way.
 func _fight(delta: float) -> void:
 	var target := _nearest_opponent()
 	if target == null:
@@ -123,8 +105,6 @@ func _fight(delta: float) -> void:
 		gun.fire_at(target.global_position + miss)
 
 
-## Heads for `point`. After stalling against something, slides sideways for a
-## while to get round it, switching sides if that stalls too.
 func _route_to(point: Vector3, delta: float) -> Vector3:
 	var stalled := Vector2(linear_velocity.x, linear_velocity.z).length() < max_speed * 0.2
 	_stuck_time = _stuck_time + delta if stalled else 0.0
@@ -139,7 +119,6 @@ func _route_to(point: Vector3, delta: float) -> Vector3:
 	return global_position + ahead.cross(Vector3.UP) * _detour_side * 10.0
 
 
-## True when nothing but open air lies between this NPC and `other`.
 func can_see(other: Node3D) -> bool:
 	var query := PhysicsRayQueryParameters3D.create(global_position, other.global_position)
 	query.exclude = [get_rid()]

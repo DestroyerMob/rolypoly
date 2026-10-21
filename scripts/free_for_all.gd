@@ -1,28 +1,21 @@
 class_name FreeForAll
 extends Node
 
-## Last one standing. Drop into a level: every Player and NPC in the scene
-## joins the match, and dying (death zone, fall, no health) knocks them out.
 
-## `by` is whoever hurt them last, if that was recent enough to count.
 signal knocked_out(player: Player, by: Player)
 signal damaged(player: Player, amount: int, by: Player)
 signal match_won(winner: Player)
 
-## Anyone below this height is out, for arenas without death zones.
 @export var kill_height := -30.0
-## A fall still counts as a knock-out for whoever hit them within this long.
 @export var credit_seconds := 6.0
-## NPCs get a health bar overhead.
 @export var show_health_bars := true
 
-## Everyone who joined, including those since knocked out.
 var entrants := 0
-## Knock-outs credited to each player.
 var knockouts := {}
-## Finishing place of everyone knocked out, and of the winner: 1 is first.
 var places := {}
 var _alive: Array[Player] = []
+var _finish_pending := false
+var _finished := false
 
 
 func _ready() -> void:
@@ -52,6 +45,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_eliminated(player: Player) -> void:
+	if not player in _alive:
+		return
 	_alive.erase(player)
 	places[player] = _alive.size() + 1
 	var by := player.last_attacker
@@ -60,11 +55,21 @@ func _on_eliminated(player: Player) -> void:
 	if by != null:
 		knockouts[by] = knockouts.get(by, 0) + 1
 	knocked_out.emit(player, by)
-	if _alive.size() != 1:
+	if not _finish_pending:
+		_finish_pending = true
+		_finish_match.call_deferred()
+
+
+func _finish_match() -> void:
+	_finish_pending = false
+	if _finished or _alive.size() > 1:
+		return
+	_finished = true
+	set_physics_process(false)
+	if _alive.is_empty():
 		return
 	var winner := _alive[0]
 	places[winner] = 1
 	print("%s wins!" % winner.name)
 	winner.enter_condition(Player.Condition.WIN)
-	set_physics_process(false)
 	match_won.emit(winner)

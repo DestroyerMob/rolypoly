@@ -1,6 +1,5 @@
 extends Node3D
 signal completed
-## Free for all only: the player was knocked out.
 signal lost
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const PICK_LAYER := 1 << 19
@@ -10,7 +9,6 @@ var links: MeshInstance3D
 var rig: PlayerRig
 var mount: GadgetMount
 var play_camera: Camera3D
-## Free for all only: the running match, for the HUD.
 var brawl: FreeForAll
 var start_position := Vector3.ZERO
 var fall_height := -140.0
@@ -63,7 +61,6 @@ func node_of_uid(document: Dictionary, uid: int) -> Node3D:
 			return objects[index]
 	return null
 
-## Hands each watcher its targets, then feeds it the events it counts.
 func _wire_watchers(document: Dictionary) -> void:
 	for index in document.objects.size():
 		var entry: Dictionary = document.objects[index]
@@ -98,7 +95,6 @@ func _wire_watchers(document: Dictionary) -> void:
 					watcher.scale_weighed(weight, uid)
 			)
 
-## Everyone placed joins once spawned. Falling 30 below the lowest object is out.
 func _start_match() -> void:
 	brawl = FreeForAll.new()
 	brawl.name = "FreeForAll"
@@ -117,7 +113,6 @@ func _on_lost() -> void:
 		_finished = true
 		lost.emit.call_deferred()
 
-## Editor only: a line from each watcher to everything it targets or reads.
 func draw_links(document: Dictionary) -> void:
 	if is_instance_valid(links):
 		links.free()
@@ -200,7 +195,6 @@ func _on_completed(_player: Player) -> void:
 		_finished = true
 		completed.emit.call_deferred()
 
-## The level's character standing on the start marker, as meshes only.
 static func character_preview(character: String) -> Node3D:
 	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
 	var model := Node3D.new()

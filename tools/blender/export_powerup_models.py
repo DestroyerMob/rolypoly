@@ -1,4 +1,3 @@
-"""Export the supplied cream can and styled powerup base as reusable GLBs."""
 from pathlib import Path
 
 import bpy

@@ -1,9 +1,11 @@
 extends Node3D
 
-## Level-editor cereal box: a ProtoCerealBox stood on its base, so it rests on
-## whatever it's placed on like the other props do.
 
-@export var title := ProtoCerealBox.Title.LOOPIES
+@export var title := ProtoCerealBox.Title.LOOPIES:
+	set(value):
+		title = value
+		if is_node_ready():
+			$CerealBox.title = title
 
 
 func _ready() -> void:

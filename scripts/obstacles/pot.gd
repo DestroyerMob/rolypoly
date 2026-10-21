@@ -3,7 +3,6 @@ extends Node3D
 
 ## Emitted the first time a Player drops into the pot.
 signal level_completed(player: Player)
-## An NPC dropped in. Doesn't end the level.
 signal npc_finished(npc: NPC)
 
 ## Scene loaded after the win. Leave empty to only emit the signal.

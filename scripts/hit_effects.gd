@@ -1,11 +1,8 @@
 class_name HitEffects
 extends RefCounted
 
-## Feedback for a Player being hurt or knocked out: a white flash and squash on
-## the character, a floating damage number, and a burst when they're out.
 
 const FLASH_SECONDS := 0.08
-## Hits this close together (a shotgun's pellets) share one damage number.
 const NUMBER_MERGE_MSEC := 150
 
 static var _flash_material: StandardMaterial3D
@@ -114,7 +111,6 @@ static func _damage_number(player: Player, amount: int) -> void:
 	label.set_meta(&"tween", tween)
 
 
-## The character's main colour, for its knock-out burst.
 static func _colour_of(player: Player) -> Color:
 	if is_instance_valid(player.visual):
 		var material: Material = player.visual.get_active_material(0)

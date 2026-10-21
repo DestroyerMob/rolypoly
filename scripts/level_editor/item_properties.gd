@@ -44,10 +44,10 @@ static func _build() -> Dictionary:
 			_num("ice_melt_seconds", "Ice melt time · seconds", 0.5, 30.0, 0.5),
 		],
 		"lighter": [_flag("lit", "Lit")],
-		"book": [_choice("title", "Cover", [["Plain", 0], ["Macarons", 1], ["Udon, ramen & soba", 2], ["One-pot dinners", 3],
+		"cookbook": [_choice("title", "Cover", [["Plain", 0], ["Macarons", 1], ["Udon, ramen & soba", 2], ["One-pot dinners", 3],
 			["Cakes & dessert", 4], ["Breakfast in Bordighera", 5], ["Convert your friends", 6], ["Cucina italiana", 7],
 			["Spooky recipes", 8], ["Where's the lamb sauce", 9]])],
-		"cereal": [_choice("title", "Cereal", [["Plain", 0], ["Loco Choco", 1], ["Boring", 2], ["Loopies", 3]])],
+		"cereal_box": [_choice("title", "Cereal", [["Plain", 0], ["Loco Choco", 1], ["Boring", 2], ["Loopies", 3]])],
 		"goal": [_flag("enabled", "Open at start")],
 		"watcher": [
 			_choice("event", "Watch for", [["Player deaths", 0], ["NPCs reaching a finish", 1], ["Weight on scale · kg", 2], ["Seconds since start", 3]]),

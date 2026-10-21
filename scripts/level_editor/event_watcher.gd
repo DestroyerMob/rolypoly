@@ -1,7 +1,5 @@
 extends Node3D
 
-## Counts something happening in a custom level and, when the count meets the
-## condition, runs actions on the objects it targets. Invisible during play.
 
 const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 
@@ -11,10 +9,8 @@ enum Comparison { AT_LEAST, AT_MOST, EXACTLY }
 @export var event := Event.PLAYER_DEATHS
 @export var comparison := Comparison.AT_LEAST
 @export var threshold := 1.0
-## Fire again every time the condition becomes true, not just the first time.
 @export var repeat := false
 
-## Set by the level: [{node, id, action, mode}] and the scale to read, if any.
 var targets: Array[Dictionary] = []
 var source_uid := 0
 var fired := 0
@@ -45,7 +41,6 @@ func npc_finished() -> void:
 		_check()
 
 
-## Reads one scale, or every scale added together when no source is linked.
 func scale_weighed(weight: float, uid: int) -> void:
 	if event != Event.SCALE_WEIGHT or (source_uid != 0 and uid != source_uid):
 		return

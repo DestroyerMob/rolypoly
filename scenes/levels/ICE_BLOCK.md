@@ -58,18 +58,6 @@ Tab 切换自由观察并暂停游戏和融化；自由观察下 WASD 飞行、Q
 - Blender 源文件：`models/ice_delivery/moving_mouth.blend`、`spring_server.blend`；Godot 模型：同目录 `.glb`。
 - 重建模型：`tools/blender/build_delivery_mouth.py` / `build_spring_server.py`。重建关卡：`tools/build_ice_block.gd`（会覆盖本关及派生组件，手动调整后不要随意重跑）。
 
-## 验证
+## 手动验证
 
-`tools/tests/test_ice_block.gd` 覆盖整条路线的实际受力 / 碰撞通行（双压泥器按实时相位通过、绕行路、连续跳盘）、压泥器触发复活、渐进补冰、本体不回血、热表面融化、冰壳厚度、掉落返回、暂停、四个嘴巴相位下真实弹射（正确时机成功、错误时机错过，包括无壳玩家）、R 取消蓄力、开口外误触拒绝、评分边界及本体融完失败。
-
-`tools/tests/test_ice_combos.gd` 覆盖风扇预警 / 实际侧推 / 吹落复活、热捷径限时通行与耗冰、盘子承重下沉 / 入水复活 / 离开回浮，以及错误摆勺时机中断第二跳。
-
-2026-10-17 扩展验证：连续路线增加上坡、实际旋转桥、第五补冰点、间歇加热板。检查 17 秒冰壳与 24 秒本体融化速度，并验证合理选择时机后仍能保留三星所需生命。组合测试新增圆柱真实接触、旋转角度、站立失衡掉落复活、加热 / 冷却状态真实耗冰差异。
-
-`tools/tests/test_ice_controls.gd` 覆盖真实键盘事件的 WASD、方向键、Tab、C、V 以及自由观察暂停。自动路线使用受力导航并选择机关窗口，不代表任意操作或任意时机都可通过。
-
-本轮以上三套自动测试全部通过，并检查了路口、水槽和终点的实际跟随镜头截图。截图进程退出仍有 Godot Texture RID 泄漏警告；无 GDScript 运行报错。
-
-运行示例：`Godot --headless --path . --log-file /tmp/ice-block-test.log --fixed-fps 60 --script tools/tests/test_ice_block.gd`。
-
-这是组合机关修订版，仍需小组手动试玩来调整节奏和美术细节。自动路线测试通过不代表所有角度、所有操作都已经人工试玩。
+自动测试脚本已移除。请在 Godot 中运行本关，检查路线、机关、补冰、复活和终点投掷，并由小组手动试玩来调整节奏和美术细节。

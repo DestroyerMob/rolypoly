@@ -24,7 +24,6 @@ var world: Node3D
 var selected := -1
 var placing := false
 var moving := false
-## "target" or "source" while the next click links an object to the selected watcher.
 var linking := ""
 var palette_id := "counter"
 var placement: Dictionary = Catalog.record("counter")
@@ -71,9 +70,7 @@ var _property_defaults: Dictionary = {}
 var _colour_reset: Button
 var _colour_before: Dictionary = {}
 var play_title: Label
-## Free for all only: health and opponents left.
 var match_status: Label
-## Free for all only: who knocked out whom, newest last.
 var kill_feed: VBoxContainer
 var crosshair: Label
 var hurt_flash: ColorRect
@@ -1225,8 +1222,8 @@ func _property_changed(value: Variant, spec: Dictionary) -> void:
 	else:
 		values[spec.name] = coerced
 	_store_properties(data, values)
-	if spec.on != "gadget": #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly 
-		world.objects[selected].set(spec.name, coerced) #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly 
+	if spec.on != "gadget": #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly
+		world.objects[selected].set(spec.name, coerced) #Live Preview Fix: Added this to do ensure changes to the item properties would show instantly
 	if data.id == "npc" and spec.name == "character":
 		_rebuild_world()
 	if _property_resets.has(spec.name):
@@ -1455,7 +1452,6 @@ func _update_mode_ui() -> void:
 		line.free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if build_mode else Input.MOUSE_MODE_CAPTURED
 
-## Free for all only: "♥ 85  ·  2 opponents left".
 func _update_match_status() -> void:
 	var brawl: FreeForAll = world.brawl if is_instance_valid(world) else null
 	if brawl == null or brawl.entrants == 0:
@@ -1469,7 +1465,6 @@ func _update_match_status() -> void:
 func _opponents_left() -> int:
 	return world.brawl.remaining() - int(not world.rig.current_player.is_eliminated)
 
-## Hitmarker when the player lands a hit; a red flash when they take one.
 func _match_damage(victim: Player, _amount: int, by: Player) -> void:
 	var me: Player = world.rig.current_player
 	if by == me and victim != me:
@@ -1524,7 +1519,6 @@ func _sound(stream: AudioStream) -> AudioStreamPlayer:
 	add_child(player)
 	return player
 
-## A short blip that fades out, sliding in pitch by `slide` Hz per second.
 static func _tone(hertz: float, seconds: float, slide: float) -> AudioStreamWAV:
 	var rate := 22050
 	var data := PackedByteArray()
