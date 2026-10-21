@@ -7,6 +7,8 @@ signal player_released(player: Player)
 @export_category("Destination")
 @export_node_path("Node3D") var drop_target_path: NodePath
 @export var release_velocity := Vector3(0.0, -1.5, 0.0)
+## Same saved exit-channel contract as FunnelObstacle in the level editor.
+@export_range(0, 20) var channel := 0
 
 @export_category("Transition")
 @export_range(0.0, 1.0, 0.01) var transition_delay := 0.08
@@ -76,6 +78,11 @@ func _create_funnel_collision() -> void:
 
 
 func _get_drop_target() -> Node3D:
+	if channel > 0:
+		for exit in get_tree().get_nodes_in_group(&"funnel_exit"):
+			if exit is FunnelExit and exit.channel == channel:
+				return exit
+		push_warning("Long funnel channel %d has no matching FunnelExit." % channel)
 	if not drop_target_path.is_empty():
 		var target := get_node_or_null(drop_target_path) as Node3D
 		if target:

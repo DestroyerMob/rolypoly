@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_Planks_Scratched_1K_BC.jpg" id="1_le7e4"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_Planks_Scratched_1K_N.jpg" id="2_l8p1h"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_Planks_Scratched_1K_R.jpg" id="3_0vnuu"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.93717605, 0.87257206, 0.8352235, 1)
+albedo_texture = ExtResource("1_le7e4")
+roughness_texture = ExtResource("3_0vnuu")
+normal_enabled = true
+normal_scale = 4.3
+normal_texture = ExtResource("2_l8p1h")
+uv1_scale = Vector3(0.004, 0.004, 0.004)
+uv1_triplanar = true
+uv1_world_triplanar = true

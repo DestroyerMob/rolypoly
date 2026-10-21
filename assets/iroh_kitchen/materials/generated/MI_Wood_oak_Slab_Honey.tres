@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_oak_Slab_Honey_2K_BC.png" id="1_wr5l3"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_Oak_Slab_Honey_2K_N.png" id="2_gnw3a"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Wood_Oak_Slab_Honey_2K_R.png" id="3_ak6og"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_wr5l3")
+roughness_texture = ExtResource("3_ak6og")
+normal_enabled = true
+normal_texture = ExtResource("2_gnw3a")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

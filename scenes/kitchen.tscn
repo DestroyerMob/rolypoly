@@ -67,33 +67,6 @@ albedo_color = Color(0.68235296, 0.32156864, 0.23137255, 1)
 [node name="kitchen" unique_id=1492366184 instance=ExtResource("interior")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76)
 
-[node name="glass_old_fashion_002" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="1" unique_id=27330995]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_003" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="2" unique_id=981352560]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_004" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="3" unique_id=1959790510]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_005" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="4" unique_id=2002599247]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_006" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="5" unique_id=1340067564]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_007" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="6" unique_id=1858565617]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_008" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="7" unique_id=686972242]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_009" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="8" unique_id=1909207788]
-surface_material_override/0 = null
-
-[node name="glass_old_fashion_010" parent="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2" parent_id_path=PackedInt32Array(1505683664) index="9" unique_id=1513907771]
-surface_material_override/0 = null
-
 [node name="_Lighting" parent="." index="1" unique_id=971610010]
 visible = false
 
@@ -263,18 +236,6 @@ metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]
 [editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_champagne_flute"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_collin"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_flute"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_martini"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_old_fashion"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_pint"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_port"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_red_wine"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_red_wine_2"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine_2"]
-[editable path="_Set/_Dressing/_Props/_Glasses/glass_white_wine_3"]
 [editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2"]
 [editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2"]
 [editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3"]

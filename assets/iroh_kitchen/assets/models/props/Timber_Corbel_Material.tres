@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Timber_Log_2K_BC.png" id="1_ywwby"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Timber_Log_2K_N.png" id="2_cj7ik"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Timber_Log_2K_R.png" id="3_f4fb1"]
+
+[resource]
+resource_name = "Timber_Corbel_Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_ywwby")
+metallic_specular = 0.0
+roughness = 0.61
+roughness_texture = ExtResource("3_f4fb1")
+normal_enabled = true
+normal_scale = 7.21
+normal_texture = ExtResource("2_cj7ik")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

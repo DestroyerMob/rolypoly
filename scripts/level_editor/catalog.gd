@@ -56,6 +56,9 @@ const ITEMS := {
 	"watcher": {"label": "Event watcher", "category": "Logic", "scene": preload("res://scenes/level_editor/event_watcher.tscn")},
 	"npc": {"label": "NPC spawner", "category": "Level", "scene": preload("res://scenes/level_editor/npc_spawner.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
+	"book": {"label": "Book", "category": "Kitchen", "scene": preload("res://scenes/props/book.tscn")},
+	"cereal": {"label": "Cereal", "category": "Kitchen", "scene": preload("res://scenes/props/cereal.tscn")},
+	"funnel_exit": {"label": "Funnel exit", "category": "Level", "scene": preload("res://scenes/props/funnel_exit.tscn")},
 }
 
 ## How a level is won. A race needs a Finish area; a free for all needs NPCs.

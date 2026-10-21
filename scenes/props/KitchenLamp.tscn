@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dq6gswh5ejm2w"]
+
+[ext_resource type="PackedScene" uid="uid://bpxv7itjkef57" path="res://assets/models/props/KitchenLamp.glb" id="1_e7mv7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_be312"]
+height = 0.1923809
+radius = 0.14453125
+
+[node name="KitchenLamp" type="StaticBody3D" unique_id=1136259580]
+
+[node name="KitchenLamp" parent="." unique_id=1872807843 instance=ExtResource("1_e7mv7")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -50, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2095189328]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -11.131767, 0)
+shape = SubResource("CylinderShape3D_be312")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1454375446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.509766, 0)
+light_color = Color(1, 0.8509804, 0.627451, 1)
+light_energy = 2000.0
+light_indirect_energy = 1.5
+light_size = 800.0

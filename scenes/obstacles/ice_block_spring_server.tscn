@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ice_delivery/launcher.gd" id="1_1ww7h"]
+[ext_resource type="PackedScene" path="res://models/ice_delivery/spring_server.glb" id="2_4kymh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm8yg"]
+albedo_color = Color(0.9490196, 0.8745098, 0.7294118, 1)
+roughness = 0.48
+
+[sub_resource type="BoxMesh" id="BoxMesh_lhu0a"]
+size = Vector3(8.8, 0.3, 8.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8mell"]
+size = Vector3(8.8, 0.3, 8.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8luq"]
+size = Vector3(7, 6, 7)
+
+[node name="SpringServer" type="Node3D" unique_id=2121698963]
+script = ExtResource("1_1ww7h")
+
+[node name="Model" type="Node3D" parent="." unique_id=1354561958 instance=ExtResource("2_4kymh")]
+
+[node name="Plate" type="StaticBody3D" parent="." unique_id=1046286797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Plate" unique_id=1061253038]
+visible = false
+material_override = SubResource("StandardMaterial3D_sm8yg")
+mesh = SubResource("BoxMesh_lhu0a")
+
+[node name="Collision" type="CollisionShape3D" parent="Plate" unique_id=48809155]
+shape = SubResource("BoxShape3D_8mell")
+
+[node name="PickupArea" type="Area3D" parent="." unique_id=1358400640]
+
+[node name="Collision" type="CollisionShape3D" parent="PickupArea" unique_id=313807339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_v8luq")
+
+[node name="Sign" type="Label3D" parent="." unique_id=184906756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+pixel_size = 0.014
+billboard = 1
+modulate = Color(0.7137255, 0.95686275, 0.8901961, 1)
+outline_modulate = Color(0.09411765, 0.2, 0.18431373, 1)
+text = "SPRING SERVER
+Step onto the plate • E"
+font_size = 44
+outline_size = 8
