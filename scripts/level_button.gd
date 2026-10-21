@@ -3,7 +3,11 @@ extends Button
 
 @export var level_number: int = 1
 @export_range(0, 3) var stars_earned: int = 0
-@export var unlocked: bool = true
+@export var unlocked: bool = true:
+	set(value):
+		unlocked = value
+		if is_node_ready():
+			_update_lock()
 
 @onready var level_label: Label = $VBoxContainer/LevelLabel
 @onready var stars: HBoxContainer = $VBoxContainer/Stars

@@ -401,6 +401,10 @@ func _create_ui() -> void:
 	browser.hide()
 	browser.chosen.connect(_load_document)
 	browser.deleted.connect(_saved_level_deleted)
+	browser.moved.connect(func(from_filename: String, to_filename: String):
+		if filename == from_filename:
+			filename = to_filename
+	)
 	confirm = ConfirmationDialog.new()
 	confirm.theme = theme
 	confirm.title = "Unsaved changes"

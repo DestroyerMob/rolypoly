@@ -4,9 +4,12 @@ const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 const DIRECTORY := "user://levels"
-## Levels that ship with the game. A saved level with the same filename replaces
-## one of these. Run from the Godot editor, saving one writes it back here.
+## The level set: levels that ship with the game, played from the main menu's
+## numbered slots. A saved level with the same filename replaces one of these.
+## Run from the Godot editor, saving one writes it back here.
 const BUNDLED := "res://levels"
+## One level filename per line, in play order. Edit it by hand to reorder.
+const ORDER_FILE := "res://levels/level_order.txt"
 const VERSION := 1
 const MAX_OBJECTS := 1000
 const MAX_UID := 1000000000
@@ -195,7 +198,9 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 		filename = "level_%s_%s.json" % [str(Time.get_unix_time_from_system()).replace(".", "_"), str(randi())]
 	if not valid_filename(filename):
 		return {"error": "Invalid level filename."}
-	var directory := BUNDLED if is_bundled(filename) and OS.has_feature("editor") else DIRECTORY
+	return _write_level(BUNDLED if is_bundled(filename) and OS.has_feature("editor") else DIRECTORY, document, filename)
+
+static func _write_level(directory: String, document: Dictionary, filename: String) -> Dictionary:
 	var result := DirAccess.make_dir_recursive_absolute(directory)
 	if result != OK:
 		return {"error": "Could not create the save folder: %s" % error_string(result)}
@@ -215,13 +220,120 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 		return {"error": "Could not replace the save: %s" % error_string(result)}
 	return {"filename": filename}
 
+## The level set's filenames in play order: the order file first, then any
+## level in the folder it doesn't mention yet.
+static func level_set() -> Array[String]:
+	var order: Array[String] = []
+	if not DirAccess.dir_exists_absolute(BUNDLED):
+		return order
+	var present := Array(DirAccess.get_files_at(BUNDLED)).filter(func(filename: String): return valid_filename(filename))
+	if FileAccess.file_exists(ORDER_FILE):
+		for line in FileAccess.get_file_as_string(ORDER_FILE).split("\n"):
+			var filename := line.strip_edges()
+			if filename in present and not filename in order:
+				order.append(filename)
+	present.sort()
+	for filename: String in present:
+		if not filename in order:
+			order.append(filename)
+	return order
+
+## Exporting and reordering write into the project, so they need the Godot editor.
+static func can_edit_set() -> bool:
+	return OS.has_feature("editor")
+
+## Moves a saved level into the level set, as the last level, under a filename
+## made from its name. Returns the new filename.
+static func add_to_set(filename: String) -> Dictionary:
+	if not can_edit_set():
+		return {"error": "Run the game from the Godot editor to change the level list."}
+	if is_bundled(filename):
+		return {"error": "This level is already in the level list."}
+	var result := read_level(filename)
+	if result.has("error"):
+		return result
+	var problem := playable_error(result.document)
+	if not problem.is_empty():
+		return {"error": problem + " Finish it before adding it to the level list."}
+	var stem: String = result.document.name.to_snake_case().validate_filename().replace(" ", "_")
+	stem = stem.lstrip("._") if not stem.lstrip("._").is_empty() else "level"
+	var exported := stem + ".json"
+	var copy := 2
+	while FileAccess.file_exists(BUNDLED.path_join(exported)) or FileAccess.file_exists(DIRECTORY.path_join(exported)) and exported != filename:
+		exported = "%s_%d.json" % [stem, copy]
+		copy += 1
+	DirAccess.make_dir_recursive_absolute(BUNDLED)
+	var file := FileAccess.open(BUNDLED.path_join(exported), FileAccess.WRITE)
+	if file == null:
+		return {"error": "Could not write into the level set: %s" % error_string(FileAccess.get_open_error())}
+	file.store_string(JSON.stringify(result.document, "\t"))
+	file.close()
+	var order := level_set()
+	order.erase(exported)
+	order.append(exported)
+	var written := _write_order(order)
+	if not written.is_empty():
+		return {"error": written}
+	DirAccess.remove_absolute(DIRECTORY.path_join(filename))
+	return {"filename": exported, "number": order.size()}
+
+## Takes a level out of the set and back into the player's saved levels, so it
+## isn't lost. Returns its filename there.
+static func remove_from_set(filename: String) -> Dictionary:
+	if not can_edit_set():
+		return {"error": "Run the game from the Godot editor to change the level list."}
+	if not is_bundled(filename):
+		return {"error": "This level isn't in the level list."}
+	var result := read_level(filename)
+	if result.has("error"):
+		return result
+	var kept := filename
+	var copy := 2
+	while FileAccess.file_exists(DIRECTORY.path_join(kept)):
+		kept = "%s_%d.json" % [filename.get_basename(), copy]
+		copy += 1
+	var saved := _write_level(DIRECTORY, result.document, kept)
+	if saved.has("error"):
+		return saved
+	var order := level_set()
+	order.erase(filename)
+	var removed := DirAccess.remove_absolute(BUNDLED.path_join(filename))
+	if removed != OK:
+		return {"error": "Could not remove the level from levels/: %s" % error_string(removed)}
+	var written := _write_order(order)
+	return {"error": written} if not written.is_empty() else {"filename": kept}
+
+## Moves a level in the set up (-1) or down (+1) the play order.
+static func move_in_set(filename: String, offset: int) -> Dictionary:
+	if not can_edit_set():
+		return {"error": "Run the game from the Godot editor to change the level list."}
+	var order := level_set()
+	var index := order.find(filename)
+	var target := index + offset
+	if index < 0 or target < 0 or target >= order.size():
+		return {"error": "That level can't move any further."}
+	order.remove_at(index)
+	order.insert(target, filename)
+	var written := _write_order(order)
+	return {"error": written} if not written.is_empty() else {"number": target + 1}
+
+static func _write_order(order: Array[String]) -> String:
+	var file := FileAccess.open(ORDER_FILE, FileAccess.WRITE)
+	if file == null:
+		return "Could not write the level order: %s" % error_string(FileAccess.get_open_error())
+	file.store_string("\n".join(order) + "\n")
+	file.close()
+	return ""
+
+## The level set in play order, then saved levels by name.
 static func list_levels() -> Array:
 	var levels: Array = []
-	var filenames := {}
-	for directory in [DIRECTORY, BUNDLED]:
-		if DirAccess.dir_exists_absolute(directory):
-			for filename in DirAccess.get_files_at(directory):
-				filenames[filename] = true
+	var filenames: Array[String] = level_set()
+	if DirAccess.dir_exists_absolute(DIRECTORY):
+		var saved := Array(DirAccess.get_files_at(DIRECTORY))
+		for filename: String in saved:
+			if not filename in filenames:
+				filenames.append(filename)
 	for filename: String in filenames:
 		if not valid_filename(filename):
 			continue
@@ -231,14 +343,21 @@ static func list_levels() -> Array:
 		else:
 			levels.append({"filename": filename, "name": result.document.name,
 				"error": playable_error(result.document)})
-	levels.sort_custom(func(a: Dictionary, b: Dictionary): return a.name.naturalnocasecmp_to(b.name) < 0)
+	var in_set := level_set()
+	for entry in levels:
+		entry.number = in_set.find(entry.filename) + 1
+	levels.sort_custom(func(a: Dictionary, b: Dictionary):
+		if (a.number > 0) != (b.number > 0) or a.number > 0:
+			return a.number > 0 and (b.number == 0 or a.number < b.number)
+		return a.name.naturalnocasecmp_to(b.name) < 0
+	)
 	return levels
 
 static func delete_level(filename: String) -> Dictionary:
 	if not valid_filename(filename):
 		return {"error": "Invalid level filename."}
 	if is_bundled(filename):
-		return {"error": "This level comes with the game and can't be deleted."}
+		return {"error": "This level is in the level list. Remove it from the list first."}
 	var result := DirAccess.remove_absolute(DIRECTORY.path_join(filename))
 	if result != OK:
 		return {"error": "Could not delete the saved level: %s" % error_string(result)}

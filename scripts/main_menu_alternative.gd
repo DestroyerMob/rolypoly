@@ -1,6 +1,6 @@
 extends Node3D
 
-const LEVEL_SCENES: Dictionary = {}
+const Store = preload("res://scripts/level_editor/level_store.gd")
 const KITCHEN_GYM := "res://scenes/gym_pieces.tscn"
 
 var _camera_tween: Tween
@@ -9,6 +9,8 @@ var _transitioning := false
 var _settings_shown := false
 var _levels_shown := false
 var _opening_scene := false
+## Level filenames in the order of the numbered slots.
+var _level_set: Array[String] = []
 
 @onready var _main_controls: Array[Control] = [$MainTitle, $MenuButtonsCenter]
 @onready var _settings_controls: Array[Control] = [$SettingsTitle, $SettingsButtonsCenter]
@@ -22,7 +24,8 @@ var _opening_scene := false
 func _ready() -> void:
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	preload("res://scripts/level_editor/level_browser.gd").install(self, $MenuButtonsCenter/MenuButtons)
+	var browser: Variant = preload("res://scripts/level_editor/level_browser.gd").install(self, $MenuButtonsCenter/MenuButtons)
+	browser.set_changed.connect(_refresh_level_slots)
 	_main_camera_transform = $Camera3D.global_transform
 	_level_grid.hide()
 	for control in _settings_controls:
@@ -39,6 +42,7 @@ func _ready() -> void:
 		var button := child as LevelButton
 		if button != null:
 			button.pressed.connect(_on_level_pressed.bind(button.level_number))
+	_refresh_level_slots()
 	_volume_slider.set_value_no_signal($MenuMusic.volume_percent)
 	_volume_value.text = "Muted" if _volume_slider.value == 0.0 else "%d%%" % _volume_slider.value
 	_volume_slider.value_changed.connect(_on_music_volume_changed)
@@ -60,6 +64,7 @@ func _show_levels(show_levels: bool) -> void:
 	_levels_shown = show_levels
 	_level_grid.visible = show_levels
 	if show_levels:
+		_refresh_level_slots()
 		$LevelGridCenter/LevelVBox/BackButton.grab_focus()
 		for child in $LevelGridCenter/LevelVBox/LevelGrid.get_children():
 			if child is LevelButton and not child.disabled:
@@ -69,10 +74,42 @@ func _show_levels(show_levels: bool) -> void:
 		_play_button.grab_focus()
 
 
+## Re-reads the level set, so exports, reorders and hand edits to
+## levels/level_order.txt show without restarting the game.
+func _refresh_level_slots() -> void:
+	_level_set = Store.level_set()
+	for child in $LevelGridCenter/LevelVBox/LevelGrid.get_children():
+		var button := child as LevelButton
+		if button == null:
+			continue
+		button.unlocked = button.level_number <= _level_set.size()
+		button.tooltip_text = ""
+		if button.unlocked:
+			var level := Store.read_level(_level_set[button.level_number - 1])
+			button.tooltip_text = level.document.name if level.has("document") else level.error
+
+
+## Plays a level from the level set (levels/level_order.txt).
 func _on_level_pressed(level_number: int) -> void:
-	var path: String = LEVEL_SCENES.get(level_number, "")
-	if not path.is_empty():
-		_open_scene(path)
+	if _transitioning or _opening_scene or level_number > _level_set.size():
+		return
+	var filename := _level_set[level_number - 1]
+	var level := Store.read_level(filename)
+	var problem: String = level.get("error", "")
+	if problem.is_empty():
+		problem = Store.playable_error(level.document)
+	if not problem.is_empty():
+		_message.title = "Could not open level"
+		_message.dialog_text = problem
+		_message.popup_centered()
+		return
+	_opening_scene = true
+	var result := Store.launch(get_tree(), level.document, filename, false)
+	if result != OK:
+		_opening_scene = false
+		_message.title = "Could not open level"
+		_message.dialog_text = "Please try again. (%s)" % error_string(result)
+		_message.popup_centered()
 
 
 func _open_scene(path: String) -> void:
