@@ -28,6 +28,7 @@ static func _gun() -> Array:
 		_whole("pellets", "Pellets per shot", 1, 30, "gadget"),
 		_num("spread_degrees", "Spread · degrees", 0.0, 45.0, 0.1, "gadget"),
 		_num("impulse", "Push per pellet", 0.0, 200.0, 0.5, "gadget"),
+		_whole("damage", "Damage per pellet", 0, 100, "gadget"),
 	]
 
 
@@ -43,6 +44,10 @@ static func _build() -> Dictionary:
 			_num("ice_melt_seconds", "Ice melt time · seconds", 0.5, 30.0, 0.5),
 		],
 		"lighter": [_flag("lit", "Lit")],
+		"book": [_choice("title", "Cover", [["Plain", 0], ["Macarons", 1], ["Udon, ramen & soba", 2], ["One-pot dinners", 3],
+			["Cakes & dessert", 4], ["Breakfast in Bordighera", 5], ["Convert your friends", 6], ["Cucina italiana", 7],
+			["Spooky recipes", 8], ["Where's the lamb sauce", 9]])],
+		"cereal": [_choice("title", "Cereal", [["Plain", 0], ["Loco Choco", 1], ["Boring", 2], ["Loopies", 3]])],
 		"goal": [_flag("enabled", "Open at start")],
 		"watcher": [
 			_choice("event", "Watch for", [["Player deaths", 0], ["NPCs reaching a finish", 1], ["Weight on scale · kg", 2], ["Seconds since start", 3]]),
@@ -147,6 +152,7 @@ static func _build() -> Dictionary:
 			_num("wander_radius", "Wander radius", 1.0, 200.0, 0.5),
 			_num("fight_range", "Fight · shooting range", 2.0, 300.0, 1.0),
 			_num("aim_error", "Fight · aim error", 0.0, 20.0, 0.1),
+			_num("reaction_time", "Fight · reaction time · seconds", 0.0, 3.0, 0.05),
 			_choice("weapon", "Starts with", [["Nothing (rams)", 0], ["Walther P88", 1], ["M4A1", 2], ["Shotgun", 3]]),
 		],
 		"m4a1": _gun(),

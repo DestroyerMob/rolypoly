@@ -5,10 +5,28 @@ A physics rolling game built in Godot 4.7.
 ## Main menu
 
 The game starts in `scenes/main_menu_alternative.tscn`. **Play** opens the level
-selector: all numbered slots are currently empty and locked. Levels 1 and 2 have
-been cleared for new courses.
+selector, whose numbered slots play the level set (below) in order; slots past
+the end of the set stay locked.
 Use **Back** or **Escape** to close the selector. **Kitchen Gym** opens the equipment
 playground; **Settings** controls menu music.
+
+## The level list
+
+The game's numbered levels live in `levels/` as level-editor files, and
+`levels/level_order.txt` lists them one filename per line: line 1 is Level 1.
+A level in the folder but missing from the file plays after the listed ones.
+
+Manage the list from **My levels** with four buttons:
+
+- **Add level** moves the selected saved level into `levels/`, under a filename
+  made from its name, as the last numbered level.
+- **Remove level** takes it out of `levels/` and back into your saved levels.
+- **Move up** / **Move down** change its place in the order.
+
+The Play menu picks up changes straight away. Commit `levels/` to share them;
+reordering by hand is just moving lines in `level_order.txt`. These buttons write
+into the project, so they only work while the game runs from the Godot editor.
+Levels in the list can be edited and saved there too.
 
 ## Build and play your own levels
 

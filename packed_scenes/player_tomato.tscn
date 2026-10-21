@@ -8,7 +8,7 @@
 hit_color = Color(0.9, 0.06, 0.03, 1)
 mass = 1.2
 jump_impulse = 12.0
-health = 2
+health = 80
 bounciness = 0.4
 vegetable_type = 1
 

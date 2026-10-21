@@ -10,6 +10,8 @@ var links: MeshInstance3D
 var rig: PlayerRig
 var mount: GadgetMount
 var play_camera: Camera3D
+## Free for all only: the running match, for the HUD.
+var brawl: FreeForAll
 var start_position := Vector3.ZERO
 var fall_height := -140.0
 var _lowest := INF
@@ -98,7 +100,7 @@ func _wire_watchers(document: Dictionary) -> void:
 
 ## Everyone placed joins once spawned. Falling 30 below the lowest object is out.
 func _start_match() -> void:
-	var brawl := FreeForAll.new()
+	brawl = FreeForAll.new()
 	brawl.name = "FreeForAll"
 	brawl.kill_height = _lowest - 30.0
 	add_child(brawl)

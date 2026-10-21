@@ -27,6 +27,8 @@ const ITEMS := {
 	"spoon": {"label": "Wooden spoon", "category": "Kitchen", "scene": preload("res://scenes/props/wooden_spoon.tscn")},
 	"cardboard": {"label": "Cardboard box", "category": "Kitchen", "scene": preload("res://scenes/props/cardboard_box.tscn")},
 	"bottle": {"label": "Wine bottle", "category": "Kitchen", "scene": preload("res://scenes/props/winebottle.tscn")},
+	"book": {"label": "Cookbook", "category": "Kitchen", "scene": preload("res://scenes/props/cookbook.tscn")},
+	"cereal": {"label": "Cereal box", "category": "Kitchen", "scene": preload("res://scenes/props/cereal_box.tscn")},
 	"roller": {"label": "Moving rolling pin", "category": "Obstacles", "scene": preload("res://scenes/obstacles/rolling_pin.tscn")},
 	"spinner": {"label": "Spinning rolling pin", "category": "Obstacles", "scene": preload("res://scenes/obstacles/rolling_pin_spinner.tscn")},
 	"log": {"label": "Rolling pin log", "category": "Obstacles", "scene": preload("res://scenes/obstacles/rolling_pin_log.tscn")},

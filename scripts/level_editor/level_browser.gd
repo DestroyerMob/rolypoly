@@ -1,12 +1,20 @@
 extends Window
 signal chosen(document: Dictionary, filename: String, editing: bool)
 signal deleted(filename: String)
+## Adding a level to the level list, or removing it, gives it a new filename.
+signal moved(from_filename: String, to_filename: String)
+## The level set's contents or order changed.
+signal set_changed
 const EditorTheme = preload("res://scripts/level_editor/editor_theme.gd")
 const Store = preload("res://scripts/level_editor/level_store.gd")
 var _list: ItemList
 var _message: Label
 var _entries: Array = []
 var _delete_button: Button
+var _add_button: Button
+var _remove_button: Button
+var _up_button: Button
+var _down_button: Button
 
 func _ready() -> void:
 	theme = EditorTheme.create()
@@ -53,6 +61,26 @@ func _ready() -> void:
 				button.pressed.connect(_delete)
 			"New level": button.pressed.connect(func(): chosen.emit.call_deferred(Store.new_level(), "", true))
 			"Close": button.pressed.connect(hide)
+	var set_row := HBoxContainer.new()
+	column.add_child(set_row)
+	var editor_only := "" if Store.can_edit_set() else " Run the game from the Godot editor to change the level list."
+	_add_button = _set_button(set_row, "Add level", _add,
+		"Add this level to the game's level list (the levels/ folder), as the last numbered level in Play. Commit it to share it." + editor_only)
+	_remove_button = _set_button(set_row, "Remove level", _remove,
+		"Take this level out of the level list and back into your saved levels." + editor_only)
+	_up_button = _set_button(set_row, "Move up", _move.bind(-1), "Play this level earlier in the level list." + editor_only)
+	_down_button = _set_button(set_row, "Move down", _move.bind(1), "Play this level later in the level list." + editor_only)
+
+func _set_button(row: HBoxContainer, text: String, action: Callable, tip: String) -> Button:
+	var button := Button.new()
+	button.text = text
+	button.custom_minimum_size.y = 46
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.tooltip_text = tip
+	button.disabled = true
+	button.pressed.connect(action)
+	row.add_child(button)
+	return button
 
 func show_levels() -> void:
 	_refresh_levels()
@@ -61,14 +89,83 @@ func show_levels() -> void:
 func _refresh_levels() -> void:
 	_entries = Store.list_levels()
 	_list.clear()
-	_delete_button.disabled = true
+	for button in [_delete_button, _add_button, _remove_button, _up_button, _down_button]:
+		button.disabled = true
 	for entry in _entries:
-		_list.add_item(entry.name + (" — draft / unavailable" if not entry.error.is_empty() else ""))
+		var label: String = ("Level %d · %s" % [entry.number, entry.name]) if entry.number > 0 else entry.name
+		_list.add_item(label + (" — draft / unavailable" if not entry.error.is_empty() else ""))
 	_message.text = "Choose a saved level to play or edit." if not _entries.is_empty() else "No saved levels yet. Create a new level to get started."
 
 func _select(index: int) -> void:
-	_delete_button.disabled = false
-	_message.text = _entries[index].error if not _entries[index].error.is_empty() else "Ready to play."
+	var entry: Dictionary = _entries[index]
+	var bundled := Store.is_bundled(entry.filename)
+	var editable := Store.can_edit_set()
+	var count := Store.level_set().size()
+	_delete_button.disabled = bundled
+	_add_button.disabled = bundled or not editable or not entry.error.is_empty()
+	_remove_button.disabled = not bundled or not editable
+	_up_button.disabled = not editable or entry.number <= 1
+	_down_button.disabled = not editable or entry.number == 0 or entry.number >= count
+	if not entry.error.is_empty():
+		_message.text = entry.error
+	elif entry.number > 0:
+		_message.text = "Level %d in the level list (levels/%s). Ready to play." % [entry.number, entry.filename]
+	else:
+		_message.text = "Ready to play." + (" Add it to the level list to make it a numbered level in Play." if editable else "")
+
+func _selected_index() -> int:
+	return _list.get_selected_items()[0] if not _list.get_selected_items().is_empty() else -1
+
+## Reselects `filename` after the list is rebuilt.
+func _reselect(filename: String) -> void:
+	for index in _entries.size():
+		if _entries[index].filename == filename:
+			_list.select(index)
+			_select(index)
+
+func _add() -> void:
+	var index := _selected_index()
+	if index < 0:
+		return
+	var entry: Dictionary = _entries[index]
+	var result := Store.add_to_set(entry.filename)
+	if result.has("error"):
+		_message.text = result.error
+		return
+	_refresh_levels()
+	_reselect(result.filename)
+	_message.text = "Added “%s” as Level %d (levels/%s). Commit the levels folder to share it." % [entry.name, result.number, result.filename]
+	moved.emit(entry.filename, result.filename)
+	set_changed.emit()
+
+func _remove() -> void:
+	var index := _selected_index()
+	if index < 0:
+		return
+	var entry: Dictionary = _entries[index]
+	var result := Store.remove_from_set(entry.filename)
+	if result.has("error"):
+		_message.text = result.error
+		return
+	_refresh_levels()
+	_reselect(result.filename)
+	_message.text = "Removed “%s” from the level list. It's back in your saved levels." % entry.name
+	moved.emit(entry.filename, result.filename)
+	set_changed.emit()
+
+func _move(offset: int) -> void:
+	var index := _selected_index()
+	if index < 0:
+		return
+	var entry: Dictionary = _entries[index]
+	var result := Store.move_in_set(entry.filename, offset)
+	if result.has("error"):
+		_message.text = result.error
+		return
+	_refresh_levels()
+	_reselect(entry.filename)
+	_message.text = "“%s” is now Level %d." % [entry.name, result.number]
+	set_changed.emit()
 
 func _delete() -> void:
 	if _list.get_selected_items().is_empty():
@@ -102,7 +199,7 @@ func _open(editing: bool) -> void:
 		return
 	chosen.emit.call_deferred(result.document, entry.filename, editing)
 
-static func install(menu: Node, container: Node) -> void:
+static func install(menu: Node, container: Node) -> Window:
 	var browser: Window = load("res://scripts/level_editor/level_browser.gd").new()
 	menu.add_child(browser)
 	browser.hide()
@@ -114,7 +211,7 @@ static func install(menu: Node, container: Node) -> void:
 	var button := container.get_node_or_null("LevelEditorButton") as Button
 	if button != null:
 		button.pressed.connect(browser.show_levels)
-		return
+		return browser
 	button = Button.new()
 	button.name = "LevelEditorButton"
 	button.text = "Level editor / My levels"
@@ -129,3 +226,4 @@ static func install(menu: Node, container: Node) -> void:
 	container.add_child(button)
 	container.move_child(button, 1)
 	button.pressed.connect(browser.show_levels)
+	return browser
