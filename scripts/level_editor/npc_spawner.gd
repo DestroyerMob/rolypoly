@@ -15,6 +15,7 @@ const WEAPONS := ["", "res://scenes/props/walther_p88.tscn", "res://scenes/props
 @export var wander_radius := 6.0
 @export var fight_range := 30.0
 @export var aim_error := 1.0
+@export var reaction_time := 0.0
 ## Fighting NPCs don't look for pickups, so give them a gun here.
 @export var weapon := 0
 
@@ -34,16 +35,17 @@ func spawn(scene: PackedScene) -> NPC:
 	var npc := body as NPC
 	for property_name in stats:
 		npc.set(property_name, stats[property_name])
-	npc.name = "NPC"
+	npc.name = character_key().to_pascal_case()
 	npc.mode = mode
 	npc.max_speed = max_speed
 	npc.wander_radius = wander_radius
 	npc.fight_range = fight_range
 	npc.aim_error = aim_error
+	npc.reaction_time = reaction_time
 	if mode == NPC.Mode.GOAL:
 		npc.goal = get_tree().get_first_node_in_group(&"finish") as Node3D
 	npc.position = global_position + Vector3.UP * 2.2
-	add_sibling(npc)
+	add_sibling(npc, true)
 	npc.respawn(global_position + Vector3.UP * npc.spawn_clearance)
 	if weapon > 0 and weapon < WEAPONS.size():
 		npc.gadget_mount.equip(load(WEAPONS[weapon]))

@@ -67,8 +67,9 @@ func _refresh_levels() -> void:
 	_message.text = "Choose a saved level to play or edit." if not _entries.is_empty() else "No saved levels yet. Create a new level to get started."
 
 func _select(index: int) -> void:
-	_delete_button.disabled = false
-	_message.text = _entries[index].error if not _entries[index].error.is_empty() else "Ready to play."
+	var bundled := Store.is_bundled(_entries[index].filename)
+	_delete_button.disabled = bundled
+	_message.text = _entries[index].error if not _entries[index].error.is_empty() else ("Comes with the game. Ready to play." if bundled else "Ready to play.")
 
 func _delete() -> void:
 	if _list.get_selected_items().is_empty():

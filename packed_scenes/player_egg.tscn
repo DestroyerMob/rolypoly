@@ -8,7 +8,7 @@ height = 1.6
 
 [node name="Player" unique_id=1887833892 instance=ExtResource("1_fyi5p")]
 mass = 0.6
-health = 1
+health = 60
 bounciness = 0.08
 vegetable_type = 2
 

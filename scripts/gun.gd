@@ -11,8 +11,8 @@ signal hit(collider: Object, position: Vector3, normal: Vector3, direction: Vect
 @export_range(0.0, 45.0, 0.1) var spread_degrees := 0.0
 @export var max_range := 300.0
 @export var impulse := 10.0
-## Health taken from a Player per pellet.
-@export var damage := 1
+## Health taken from a Player per pellet. Characters have about 100.
+@export var damage := 10
 
 @export_group("Effects")
 @export var tracer_color := Color(1.0, 0.85, 0.45)
@@ -121,7 +121,7 @@ func _on_hit(result: Dictionary, direction: Vector3) -> void:
 	if body != null:
 		body.apply_impulse(direction * impulse, result.position - body.global_position)
 	if body is Player:
-		body.take_damage(damage)
+		body.take_damage(damage, _player)
 	_spawn_impact(result.position)
 	hit.emit(result.collider, result.position, result.normal, direction)
 

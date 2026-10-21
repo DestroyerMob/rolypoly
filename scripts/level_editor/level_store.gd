@@ -4,6 +4,9 @@ const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
 const DIRECTORY := "user://levels"
+## Levels that ship with the game. A saved level with the same filename replaces
+## one of these. Run from the Godot editor, saving one writes it back here.
+const BUNDLED := "res://levels"
 const VERSION := 1
 const MAX_OBJECTS := 1000
 const MAX_UID := 1000000000
@@ -159,10 +162,19 @@ static func _finish_can_open(document: Dictionary) -> bool:
 static func valid_filename(filename: String) -> bool:
 	return filename == filename.get_file() and filename.ends_with(".json") and not filename.begins_with(".")
 
+## Where a level is read from: the player's saved copy, else the bundled one.
+static func path_of(filename: String) -> String:
+	var saved := DIRECTORY.path_join(filename)
+	var bundled := BUNDLED.path_join(filename)
+	return bundled if not FileAccess.file_exists(saved) and FileAccess.file_exists(bundled) else saved
+
+static func is_bundled(filename: String) -> bool:
+	return path_of(filename).begins_with(BUNDLED)
+
 static func read_level(filename: String) -> Dictionary:
 	if not valid_filename(filename):
 		return {"error": "Invalid level filename."}
-	var file := FileAccess.open(DIRECTORY.path_join(filename), FileAccess.READ)
+	var file := FileAccess.open(path_of(filename), FileAccess.READ)
 	if file == null:
 		return {"error": "Could not open the saved level (%s)." % error_string(FileAccess.get_open_error())}
 	if file.get_length() > 4 * 1024 * 1024:
@@ -179,14 +191,15 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 	var problem := validate(document)
 	if not problem.is_empty():
 		return {"error": problem}
-	var result := DirAccess.make_dir_recursive_absolute(DIRECTORY)
-	if result != OK:
-		return {"error": "Could not create the save folder: %s" % error_string(result)}
 	if filename.is_empty():
 		filename = "level_%s_%s.json" % [str(Time.get_unix_time_from_system()).replace(".", "_"), str(randi())]
 	if not valid_filename(filename):
 		return {"error": "Invalid level filename."}
-	var destination := DIRECTORY.path_join(filename)
+	var directory := BUNDLED if is_bundled(filename) and OS.has_feature("editor") else DIRECTORY
+	var result := DirAccess.make_dir_recursive_absolute(directory)
+	if result != OK:
+		return {"error": "Could not create the save folder: %s" % error_string(result)}
+	var destination := directory.path_join(filename)
 	var temporary := destination + ".tmp"
 	var file := FileAccess.open(temporary, FileAccess.WRITE)
 	if file == null:
@@ -204,9 +217,12 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 
 static func list_levels() -> Array:
 	var levels: Array = []
-	if not DirAccess.dir_exists_absolute(DIRECTORY):
-		return levels
-	for filename in DirAccess.get_files_at(DIRECTORY):
+	var filenames := {}
+	for directory in [DIRECTORY, BUNDLED]:
+		if DirAccess.dir_exists_absolute(directory):
+			for filename in DirAccess.get_files_at(directory):
+				filenames[filename] = true
+	for filename: String in filenames:
 		if not valid_filename(filename):
 			continue
 		var result := read_level(filename)
@@ -221,6 +237,8 @@ static func list_levels() -> Array:
 static func delete_level(filename: String) -> Dictionary:
 	if not valid_filename(filename):
 		return {"error": "Invalid level filename."}
+	if is_bundled(filename):
+		return {"error": "This level comes with the game and can't be deleted."}
 	var result := DirAccess.remove_absolute(DIRECTORY.path_join(filename))
 	if result != OK:
 		return {"error": "Could not delete the saved level: %s" % error_string(result)}

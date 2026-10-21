@@ -38,6 +38,7 @@ var _rebuilding_ui := false
 var _paused := false
 var _completed := false
 var _end_title := ""
+var _end_note := ""
 var _load_error := ""
 var _editor_camera_transform: Transform3D
 
@@ -70,10 +71,23 @@ var _property_defaults: Dictionary = {}
 var _colour_reset: Button
 var _colour_before: Dictionary = {}
 var play_title: Label
+## Free for all only: health and opponents left.
+var match_status: Label
+## Free for all only: who knocked out whom, newest last.
+var kill_feed: VBoxContainer
+var crosshair: Label
+var hurt_flash: ColorRect
+var hit_sound: AudioStreamPlayer
+var knockout_sound: AudioStreamPlayer
+var _crosshair_tween: Tween
+var _hurt_tween: Tween
 var browser: Window
 var confirm: ConfirmationDialog
 var pause_panel: PanelContainer
 var pause_title: Label
+var pause_note: Label
+var resume_button: Button
+var restart_button: Button
 var previews: Node
 var transform_gizmo: Control
 var move_handle_button: Button
@@ -340,16 +354,44 @@ func _create_ui() -> void:
 	hud.add_child(play_ui)
 	play_title = _label(play_ui, "", 22)
 	play_title.position = Vector2(24, 20)
-	var crosshair := _label(play_ui, "+", 22)
+	match_status = _label(play_ui, "", 26)
+	match_status.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	match_status.offset_left = -420
+	match_status.offset_right = -24
+	match_status.offset_top = 20
+	match_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	match_status.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.75))
+	match_status.add_theme_constant_override("outline_size", 8)
+	kill_feed = VBoxContainer.new()
+	kill_feed.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	kill_feed.offset_left = -420
+	kill_feed.offset_right = -24
+	kill_feed.offset_top = 64
+	kill_feed.alignment = BoxContainer.ALIGNMENT_BEGIN
+	kill_feed.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	play_ui.add_child(kill_feed)
+	hurt_flash = ColorRect.new()
+	hurt_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	hurt_flash.color = Color(0.85, 0.05, 0.05, 0.0)
+	hurt_flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	play_ui.add_child(hurt_flash)
+	crosshair = _label(play_ui, "+", 22)
 	crosshair.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	crosshair.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	crosshair.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	crosshair.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.6))
+	crosshair.add_theme_constant_override("outline_size", 6)
+	hit_sound = _sound(_tone(1500.0, 0.06, 0.0))
+	knockout_sound = _sound(_tone(420.0, 0.28, -900.0))
 	pause_panel = _panel(play_ui, Control.PRESET_CENTER, Vector4(-230, -240, 230, 240))
 	var pause_buttons := VBoxContainer.new()
 	pause_buttons.add_theme_constant_override("separation", 14)
 	pause_panel.add_child(pause_buttons)
 	pause_title = _label(pause_buttons, "Paused", 30)
-	_muted(pause_buttons, "Return to editing or try the course again.")
-	EditorTheme.primary(_button(pause_buttons, "Resume", _resume))
-	_button(pause_buttons, "Restart level", _restart)
+	pause_note = _muted(pause_buttons, "")
+	resume_button = _button(pause_buttons, "Resume", _resume)
+	EditorTheme.primary(resume_button)
+	restart_button = _button(pause_buttons, "Restart level", _restart)
 	_button(pause_buttons, "Edit this level", _edit)
 	_button(pause_buttons, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(pause_buttons, "Main menu", _menu)
@@ -477,6 +519,9 @@ func _rebuild_world() -> void:
 	world.build(document, build_mode)
 	world.completed.connect(_finish)
 	world.lost.connect(_lose)
+	if world.brawl != null:
+		world.brawl.damaged.connect(_match_damage)
+		world.brawl.knocked_out.connect(_match_knockout)
 	if build_mode:
 		camera.make_current()
 	_update_selection_box()
@@ -633,6 +678,7 @@ func _process(delta: float) -> void:
 	history_actions[1].disabled = redo_stack.is_empty()
 	save_state.text = ("Unsaved changes" if dirty else "All changes saved") + "  ·  %d objects" % document.objects.size()
 	if not build_mode:
+		_update_match_status()
 		return
 	_update_transform_gizmo()
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -1394,21 +1440,127 @@ func _update_mode_ui() -> void:
 	grid.visible = build_mode and not surface_toggle.button_pressed
 	if is_instance_valid(ghost):
 		ghost.hide()
-	var goal := "last one standing wins" if Catalog.mode_of(document) == "ffa" else "reach the finish"
-	play_title.text = "%s · playing as the %s · %s\nWASD: roll · Space: jump · Click: equipment\nR: respawn · Esc: pause · Tab: edit" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower(), goal]
+	var brawl := Catalog.mode_of(document) == "ffa"
+	var goal := "last one standing wins" if brawl else "reach the finish"
+	var keys := "Esc: pause · Tab: edit" if brawl else "R: respawn · Esc: pause · Tab: edit"
+	play_title.text = "%s · playing as the %s · %s\nWASD: roll · Space: jump · Click: equipment\n%s" % [document.name, Catalog.PLAYERS[Catalog.player_of(document)].label.to_lower(), goal, keys]
+	match_status.text = ""
+	for line in kill_feed.get_children():
+		line.free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if build_mode else Input.MOUSE_MODE_CAPTURED
 
+## Free for all only: "♥ 85  ·  2 opponents left".
+func _update_match_status() -> void:
+	var brawl: FreeForAll = world.brawl if is_instance_valid(world) else null
+	if brawl == null or brawl.entrants == 0:
+		return
+	var player: Player = world.rig.current_player
+	var left := _opponents_left()
+	match_status.text = "♥ %d  ·  %d opponent%s left" % [maxi(player.health, 0), left, "" if left == 1 else "s"]
+	var ratio := clampf(float(player.health) / player.get_max_health(), 0.0, 1.0)
+	match_status.add_theme_color_override("font_color", Color(1, 0.45, 0.35).lerp(Color.WHITE, ratio))
+
+func _opponents_left() -> int:
+	return world.brawl.remaining() - int(not world.rig.current_player.is_eliminated)
+
+## Hitmarker when the player lands a hit; a red flash when they take one.
+func _match_damage(victim: Player, _amount: int, by: Player) -> void:
+	var me: Player = world.rig.current_player
+	if by == me and victim != me:
+		_hitmarker(false)
+	elif victim == me:
+		if _hurt_tween != null:
+			_hurt_tween.kill()
+		hurt_flash.color.a = 0.28
+		_hurt_tween = create_tween()
+		_hurt_tween.tween_property(hurt_flash, "color:a", 0.0, 0.4)
+
+func _match_knockout(victim: Player, by: Player) -> void:
+	var me: Player = world.rig.current_player
+	var line := "%s knocked out %s" % [_fighter_name(by), _fighter_name(victim)] if by != null else "%s fell out" % _fighter_name(victim)
+	var label := _label(kill_feed, line, 18)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.add_theme_color_override("font_color", EditorTheme.ACCENT if by == me else Color.WHITE)
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.75))
+	label.add_theme_constant_override("outline_size", 6)
+	while kill_feed.get_child_count() > 6:
+		kill_feed.get_child(0).free()
+	var fade := label.create_tween()
+	fade.tween_interval(4.0)
+	fade.tween_property(label, "modulate:a", 0.0, 0.6)
+	fade.tween_callback(label.queue_free)
+	if by == me:
+		_hitmarker(true)
+
+func _fighter_name(player: Player) -> String:
+	return "You" if player == world.rig.current_player else String(player.name)
+
+func _hitmarker(knockout: bool) -> void:
+	if _crosshair_tween != null:
+		_crosshair_tween.kill()
+	crosshair.text = "✕"
+	crosshair.add_theme_color_override("font_color", Color(1, 0.3, 0.2) if knockout else Color.WHITE)
+	crosshair.pivot_offset = crosshair.size * 0.5
+	crosshair.scale = Vector2.ONE * (2.0 if knockout else 1.4)
+	(knockout_sound if knockout else hit_sound).play()
+	_crosshair_tween = create_tween()
+	_crosshair_tween.tween_property(crosshair, "scale", Vector2.ONE, 0.12)
+	_crosshair_tween.tween_interval(0.25 if knockout else 0.08)
+	_crosshair_tween.tween_callback(func():
+		crosshair.text = "+"
+		crosshair.remove_theme_color_override("font_color")
+	)
+
+func _sound(stream: AudioStream) -> AudioStreamPlayer:
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.volume_db = -8.0
+	add_child(player)
+	return player
+
+## A short blip that fades out, sliding in pitch by `slide` Hz per second.
+static func _tone(hertz: float, seconds: float, slide: float) -> AudioStreamWAV:
+	var rate := 22050
+	var data := PackedByteArray()
+	data.resize(int(rate * seconds) * 2)
+	var phase := 0.0
+	for i in data.size() / 2:
+		var t := float(i) / rate
+		phase += TAU * maxf(hertz + slide * t, 40.0) / rate
+		var envelope := pow(1.0 - t / seconds, 2.0)
+		data.encode_s16(i * 2, int(clampf(sin(phase) * envelope, -1, 1) * 20000))
+	var wav := AudioStreamWAV.new()
+	wav.format = AudioStreamWAV.FORMAT_16_BITS
+	wav.mix_rate = rate
+	wav.data = data
+	return wav
+
 func _finish() -> void:
-	_end("You win!" if Catalog.mode_of(document) == "ffa" else "Level complete!")
+	if Catalog.mode_of(document) != "ffa":
+		_end("Level complete!", "Nice rolling. Play again or head back to the editor.")
+		return
+	_end("You win!", "Last one standing out of %d · %s." % [world.brawl.entrants, _knockouts_text()])
 
 func _lose() -> void:
-	_end("Knocked out!")
+	var place: int = world.brawl.places.get(world.rig.current_player, world.brawl.remaining() + 1)
+	_end("Knocked out!", "You placed %s of %d · %s." % [_ordinal(place), world.brawl.entrants, _knockouts_text()])
 
-func _end(title: String) -> void:
+func _knockouts_text() -> String:
+	var count: int = world.brawl.knockouts.get(world.rig.current_player, 0)
+	return "%d knock-out%s" % [count, "" if count == 1 else "s"]
+
+static func _ordinal(number: int) -> String:
+	var suffix := "th"
+	if number % 100 < 11 or number % 100 > 13:
+		suffix = {1: "st", 2: "nd", 3: "rd"}.get(number % 10, "th")
+	return "%d%s" % [number, suffix]
+
+func _end(title: String, note: String) -> void:
 	if build_mode:
 		return
 	_completed = true
 	_end_title = title
+	_end_note = note
 	_pause(true)
 
 func _pause(_won: bool) -> void:
@@ -1416,6 +1568,9 @@ func _pause(_won: bool) -> void:
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	pause_title.text = _end_title if _completed else "Paused"
+	pause_note.text = _end_note if _completed else "Return to editing or try the course again."
+	resume_button.text = "Play again" if _completed else "Resume"
+	restart_button.visible = not _completed
 	pause_panel.show()
 
 func _resume() -> void:

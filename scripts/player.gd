@@ -6,6 +6,8 @@ signal squished
 signal eliminated
 ## Any death: falls, death zones, running out of health or being squished.
 signal died
+## Took a hit. `source` is whoever fired, if anyone.
+signal damaged(amount: int, source: Player)
 
 #ENUMS FOR PLAYER STATE CONDITIONS
 ## Highest Priority first 
@@ -21,7 +23,7 @@ enum VegetableType { ONION, TOMATO, EGG }
 @export_group("Character Stats")
 @export var speed_force := 20.0
 @export var jump_impulse := 9.5
-@export var health := 3
+@export var health := 100
 @export_range(0.0, 1.0) var bounciness := 0.3
 @export var vegetable_type: VegetableType = VegetableType.ONION
 
@@ -43,6 +45,9 @@ var squish_tween: Tween
 ## Set by a match (e.g. FreeForAll). Dying then eliminates instead of respawning.
 var in_match := false
 var is_eliminated := false
+## Whoever last hurt this player and when (msec), for crediting knock-outs.
+var last_attacker: Player
+var last_hit_msec := 0
 var _max_health: int
 
 func _ready() -> void:
@@ -134,9 +139,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"debug_probe"):
 		_probe_colliders()
 		
-## Soft reset. Back to the spawn, level untouched.
+## Soft reset. Back to the spawn, level untouched. Not mid-match: no escaping a fight.
 func reset_to_spawn() -> void:
-	if is_eliminated:
+	if is_eliminated or in_match:
 		return
 	var start := _find_spawn()
 	if start == null:
@@ -185,13 +190,23 @@ func respawn(world_position: Vector3) -> void:
 	freeze = was_frozen
 	sleeping = false
 	health = _max_health
+	last_attacker = null
 	_reset_equipment()
 
 
-func take_damage(amount := 1) -> void:
+func get_max_health() -> int:
+	return _max_health
+
+
+func take_damage(amount := 1, source: Player = null) -> void:
 	if is_eliminated or is_squished:
 		return
 	health -= amount
+	if source != null and source != self:
+		last_attacker = source
+		last_hit_msec = Time.get_ticks_msec()
+	damaged.emit(amount, source)
+	HitEffects.hit(self, amount)
 	if health <= 0:
 		die()
 		return
@@ -209,6 +224,7 @@ func die() -> void:
 		return
 	is_eliminated = true
 	enter_condition(Condition.DEAD)
+	HitEffects.knockout(self)
 	if is_instance_valid(gadget) and gadget.get_parent().has_method("unequip"):
 		gadget.get_parent().unequip(gadget)
 	set_active(false)
