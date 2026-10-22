@@ -3,13 +3,14 @@ extends CanvasLayer
 
 ## The end-of-level card: a title banner, up to three stars, and Retry / Next Level / Home.
 
+const Store = preload("res://scripts/level_editor/level_store.gd")
+
 signal retry_pressed
 signal next_pressed
 signal home_pressed
 
 @export var level_title := "Level Complete"
 @export_range(0, 3) var stars := 3
-@export_file("*.tscn") var next_level_scene := ""
 @export_file("*.tscn") var home_scene := "res://scenes/main_menu_alternative.tscn"
 @export var pause_game := true
 @export var show_mouse := true
@@ -56,7 +57,7 @@ func _refresh() -> void:
 	_title.text = level_title
 	for index in _stars.get_child_count():
 		_stars.get_child(index).set("lit", index < stars)
-	_next.visible = not next_level_scene.is_empty() or not next_pressed.get_connections().is_empty()
+	_next.visible = not _next_entry().is_empty() or not next_pressed.get_connections().is_empty()
 
 
 func _play_intro() -> void:
@@ -83,9 +84,9 @@ func _on_retry() -> void:
 
 func _on_next() -> void:
 	next_pressed.emit()
-	if next_pressed.get_connections().is_empty() and not next_level_scene.is_empty():
-		_resume()
-		get_tree().change_scene_to_file(next_level_scene)
+	var entry := _next_entry()
+	if next_pressed.get_connections().is_empty() and not entry.is_empty():
+		_open_entry(entry)
 
 
 func _on_home() -> void:
@@ -93,6 +94,30 @@ func _on_home() -> void:
 	if home_pressed.get_connections().is_empty():
 		_resume()
 		get_tree().change_scene_to_file(home_scene)
+
+
+## The level after this one in the Play menu's level list, or "" if this is the last
+## or isn't in the list.
+func _next_entry() -> String:
+	var current := get_tree().current_scene
+	if current == null:
+		return ""
+	var order := Store.level_set()
+	var index := order.find(current.scene_file_path)
+	return order[index + 1] if index >= 0 and index + 1 < order.size() else ""
+
+
+func _open_entry(entry: String) -> void:
+	if Store.is_scene(entry):
+		_resume()
+		get_tree().change_scene_to_file(entry)
+		return
+	var level := Store.read_level(entry)
+	if level.has("error") or not Store.playable_error(level.document).is_empty():
+		push_warning("Could not open the next level (%s): %s" % [entry, level.get("error", Store.playable_error(level.document))])
+		return
+	_resume()
+	Store.launch(get_tree(), level.document, entry, false)
 
 
 func _resume() -> void:

@@ -20,7 +20,6 @@
 
 [node name="LevelComplete" parent="." unique_id=1726107290 instance=ExtResource("1_ggyh0")]
 level_title = "Movement Tutorial"
-next_level_scene = "res://scenes/levels/runway_level_01.tscn"
 start_hidden = true
 
 [node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("1_0nxdr")]
