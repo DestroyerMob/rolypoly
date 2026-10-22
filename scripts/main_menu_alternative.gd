@@ -82,14 +82,16 @@ func _refresh_level_slots() -> void:
 		button.unlocked = button.level_number <= _level_set.size()
 		button.tooltip_text = ""
 		if button.unlocked:
-			var level := Store.read_level(_level_set[button.level_number - 1])
-			button.tooltip_text = level.document.name if level.has("document") else level.error
+			button.tooltip_text = Store.entry_name(_level_set[button.level_number - 1])
 
 
 func _on_level_pressed(level_number: int) -> void:
 	if _transitioning or _opening_scene or level_number > _level_set.size():
 		return
 	var filename := _level_set[level_number - 1]
+	if Store.is_scene(filename):
+		_open_scene(filename)
+		return
 	var level := Store.read_level(filename)
 	var problem: String = level.get("error", "")
 	if problem.is_empty():

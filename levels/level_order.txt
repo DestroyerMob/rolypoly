@@ -1,2 +1,3 @@
+res://scenes/levels/movement_tutorial.tscn
 kitchen_workshop.json
 island_brawl.json

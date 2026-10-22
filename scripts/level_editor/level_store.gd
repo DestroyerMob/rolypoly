@@ -214,6 +214,18 @@ static func _write_level(directory: String, document: Dictionary, filename: Stri
 		return {"error": "Could not replace the save: %s" % error_string(result)}
 	return {"filename": filename}
 
+## A level list entry can also be a hand-built scene, written in level_order.txt as its
+## res:// path (for example res://scenes/levels/movement_tutorial.tscn).
+static func is_scene(entry: String) -> bool:
+	return entry.begins_with("res://") and entry.ends_with(".tscn")
+
+## The name shown for a level list entry.
+static func entry_name(entry: String) -> String:
+	if is_scene(entry):
+		return entry.get_file().get_basename().capitalize()
+	var result := read_level(entry)
+	return result.document.name if result.has("document") else result.error
+
 static func level_set() -> Array[String]:
 	var order: Array[String] = []
 	if not DirAccess.dir_exists_absolute(BUNDLED):
@@ -222,7 +234,7 @@ static func level_set() -> Array[String]:
 	if FileAccess.file_exists(ORDER_FILE):
 		for line in FileAccess.get_file_as_string(ORDER_FILE).split("\n"):
 			var filename := line.strip_edges()
-			if filename in present and not filename in order:
+			if (filename in present or is_scene(filename) and ResourceLoader.exists(filename)) and not filename in order:
 				order.append(filename)
 	present.sort()
 	for filename: String in present:
