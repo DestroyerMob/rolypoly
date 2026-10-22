@@ -1,0 +1,248 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/level_complete.tscn" id="1_66ng2"]
+[ext_resource type="Script" path="res://scripts/level_complete.gd" id="2_qttlf"]
+[ext_resource type="Script" path="res://scripts/star_goals/star_goal_finish.gd" id="3_co50t"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/empty_kitchen.tscn" id="4_8ac2q"]
+[ext_resource type="Script" path="res://scripts/level_editor/kitchen_base.gd" id="5_xl14b"]
+[ext_resource type="Script" path="res://scenes/player_rig.gd" id="6_wexoe"]
+[ext_resource type="PackedScene" path="res://packed_scenes/player_ice_cream.tscn" id="7_3fo67"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="8_l8xyk"]
+[ext_resource type="Script" path="res://scripts/ice_cream_trail.gd" id="9_coa3g"]
+[ext_resource type="Script" path="res://scripts/ice_cream_toppings.gd" id="10_sp0ie"]
+[ext_resource type="Script" path="res://scenes/prototyping/camera_pivot.gd" id="11_tmf0t"]
+[ext_resource type="Script" path="res://scripts/gadget_mount.gd" id="12_m6ox8"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="13_lh1um"]
+[ext_resource type="Script" path="res://scripts/level_editor/start.gd" id="14_0qdbs"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="15_3mvyh"]
+[ext_resource type="Script" path="res://scripts/level_editor/finish.gd" id="16_qb5ge"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/funnel.tscn" id="17_8gfma"]
+[ext_resource type="Script" path="res://scripts/obstacles/funnel.gd" id="18_qmoid"]
+[ext_resource type="PackedScene" path="res://scenes/props/ice_cube_upgrade.tscn" id="19_6orat"]
+[ext_resource type="Script" path="res://scripts/upgrade_plate.gd" id="20_8ot46"]
+[ext_resource type="PackedScene" path="res://scenes/props/ice_cube.tscn" id="21_40sh4"]
+[ext_resource type="PackedScene" path="res://assets/models/props/ice_cube/cooler_box.glb" id="22_14evb"]
+[ext_resource type="PackedScene" path="res://scenes/props/nuts_pickup.tscn" id="23_wb4c8"]
+[ext_resource type="Script" path="res://scripts/topping_pickup.gd" id="24_bhhb1"]
+[ext_resource type="PackedScene" path="res://scenes/props/sprinkles_pickup.tscn" id="25_agllf"]
+[ext_resource type="PackedScene" path="res://scenes/props/book.tscn" id="26_jtdqm"]
+[ext_resource type="Script" path="res://scripts/proto_book.gd" id="27_qvv5l"]
+[ext_resource type="PackedScene" path="res://scenes/props/winebottle.tscn" id="28_0y4y2"]
+[ext_resource type="PackedScene" path="res://scenes/props/cookbook.tscn" id="29_sphf0"]
+[ext_resource type="PackedScene" path="res://scenes/props/wooden_spoon.tscn" id="30_2434u"]
+[ext_resource type="PackedScene" path="res://scenes/props/marshmallow_pickup.tscn" id="31_phys7"]
+[ext_resource type="PackedScene" path="res://scenes/props/chocolate_sauce_pickup.tscn" id="32_qn6is"]
+[ext_resource type="PackedScene" path="res://scenes/props/pistachio_sauce_pickup.tscn" id="33_t6ce4"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="34_fkc1g"]
+[ext_resource type="Script" path="res://scripts/death_zone.gd" id="35_o2pxf"]
+
+[sub_resource type="SphereShape3D" id="Shape_scoop"]
+radius = 2.2
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4mlgn"]
+friction = 0.65
+
+[node name="IcecreamRun" type="Node3D" unique_id=1133494483]
+
+[node name="LevelComplete" type="CanvasLayer" parent="." unique_id=1726107290 instance=ExtResource("1_66ng2")]
+layer = 20
+script = ExtResource("2_qttlf")
+level_title = "Icecream Run"
+
+[node name="StarGoals" type="Node" parent="." unique_id=236548165]
+
+[node name="FinishGoal" type="Node" parent="StarGoals" unique_id=1832386171]
+script = ExtResource("3_co50t")
+description = "Finish the level"
+stars_worth = 3
+
+[node name="EmptyKitchen" type="Node3D" parent="." unique_id=1547140200 instance=ExtResource("4_8ac2q")]
+script = ExtResource("5_xl14b")
+
+[node name="PlayerRig" type="Node" parent="." unique_id=427085460]
+script = ExtResource("6_wexoe")
+allow_character_swap = false
+
+[node name="Player" parent="PlayerRig" unique_id=706891313 instance=ExtResource("7_3fo67")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 582, 18, 160)
+gravity_scale = 2.0
+continuous_cd = true
+script = ExtResource("8_l8xyk")
+speed_force = 15.0
+vegetable_type = 3
+spawn_clearance = 1.0
+hit_color = Color(0.97, 0.95, 0.88, 1)
+
+[node name="CollisionShape3D" parent="PlayerRig/Player" index="0" unique_id=181200873]
+transform = Transform3D(0.4545, 0, 0, 0, 0.4545, 0, 0, 0, 0.4545, 0, 0, 0)
+shape = SubResource("Shape_scoop")
+debug_color = Color(0.36453402, 0.4798193, 1, 0.41960785)
+
+[node name="MeshInstance3D" parent="PlayerRig/Player/CollisionShape3D" index="0" unique_id=1398664333]
+layers = 3
+
+[node name="Trail" parent="PlayerRig/Player" index="1" unique_id=1293000586]
+script = ExtResource("9_coa3g")
+stamp_size = 1.4
+spacing = 0.55
+ground_reach = 0.3
+
+[node name="Toppings" parent="PlayerRig/Player" index="2"]
+script = ExtResource("10_sp0ie")
+
+[node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=790065794 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 582, 18, 160)
+script = ExtResource("11_tmf0t")
+player_rig = NodePath("..")
+follow_offset = Vector3(0, 1.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerRig/CameraPivot" unique_id=568089944]
+spring_length = 40.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/CameraPivot/SpringArm3D" unique_id=1842582371]
+current = true
+far = 3000.0
+
+[node name="GadgetMount" type="Node3D" parent="PlayerRig" unique_id=1119167537 node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("12_m6ox8")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+side_distance = 20.0
+height = 4.0
+model_offset = Vector3(0, -2.75, 0)
+
+[node name="Objects" type="Node3D" parent="." unique_id=56092717]
+
+[node name="Spawn_1" type="Marker3D" parent="Objects" unique_id=1879914980 instance=ExtResource("13_lh1um")]
+transform = Transform3D(3.3183, 0, 0, 0, 3.3183, 0, 0, 0, 3.3183, 582, 9.5, 160)
+script = ExtResource("14_0qdbs")
+
+[node name="Goal_2" type="Area3D" parent="Objects" unique_id=985053501 instance=ExtResource("15_3mvyh")]
+transform = Transform3D(1.8438, 0, 0, 0, 1.8438, 0, 0, 0, 1.8438, 358, 9.5, 173)
+collision_layer = 0
+script = ExtResource("16_qb5ge")
+
+[node name="Funnel_3" type="Node3D" parent="Objects" unique_id=259827820 instance=ExtResource("17_8gfma")]
+transform = Transform3D(3.8355, 0, 0, 0, 3.8355, 0, 0, 0, 3.8355, 361.5, 9.5, 173)
+script = ExtResource("18_qmoid")
+
+[node name="Ice_4" type="Node3D" parent="Objects" unique_id=1164743815 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("19_6orat")]
+transform = Transform3D(6.8306, 0, 0, 0, 6.8306, 0, 0, 0, 6.8306, 579, 9.5, 29)
+script = ExtResource("20_8ot46")
+gadget_scene = ExtResource("21_40sh4")
+preview_scene = ExtResource("22_14evb")
+gadget_mount = NodePath("../../PlayerRig/GadgetMount")
+melt_freeze_seconds = 0.5
+preview_scale = 1.0
+
+[node name="Ice_5" type="Node3D" parent="Objects" unique_id=1328272758 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("19_6orat")]
+transform = Transform3D(5.3883, 0, 0, 0, 5.3883, 0, 0, 0, 5.3883, 426, 9.5, 3)
+script = ExtResource("20_8ot46")
+gadget_scene = ExtResource("21_40sh4")
+preview_scene = ExtResource("22_14evb")
+gadget_mount = NodePath("../../PlayerRig/GadgetMount")
+melt_freeze_seconds = 0.5
+preview_scale = 1.0
+
+[node name="Nuts_6" type="Area3D" parent="Objects" unique_id=1827198828 instance=ExtResource("23_wb4c8")]
+transform = Transform3D(7.3984, 0, 0, 0, 7.3984, 0, 0, 0, 7.3984, 488, -20.5, 233)
+script = ExtResource("24_bhhb1")
+kind = 1
+topping_id = &"nuts"
+colours = Array[Color]([Color(0.72, 0.5, 0.26, 1), Color(0.62, 0.41, 0.2, 1), Color(0.8, 0.6, 0.34, 1)])
+piece_size = 1.2
+pieces = 80
+pieces_per_second = 60.0
+spread_degrees = 55.0
+
+[node name="Sprinkles_7" type="Area3D" parent="Objects" unique_id=1638078899 instance=ExtResource("25_agllf")]
+transform = Transform3D(9.9188, 0, 0, 0, 9.9188, 0, 0, 0, 9.9188, 425, 74, -1)
+script = ExtResource("24_bhhb1")
+colours = Array[Color]([Color(0.95, 0.25, 0.4, 1), Color(1, 0.55, 0.15, 1), Color(1, 0.85, 0.2, 1), Color(0.3, 0.8, 0.4, 1), Color(0.25, 0.6, 0.95, 1), Color(0.65, 0.4, 0.9, 1), Color(1, 1, 1, 1)])
+
+[node name="Book_8" type="Node3D" parent="Objects" unique_id=1147128421 instance=ExtResource("26_jtdqm")]
+transform = Transform3D(-9.310089e-08, 2, -9.310089e-08, 0, -8.742278e-08, -2.1299, -2.1299, -8.742278e-08, 4.069569e-15, 461, 28.5, -24)
+script = ExtResource("27_qvv5l")
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="Book_9" type="Node3D" parent="Objects" unique_id=1500671602 instance=ExtResource("26_jtdqm")]
+transform = Transform3D(-9.310089e-08, 1.9, -8.305164e-08, 0, -8.305164e-08, -1.9, -2.1299, -8.305164e-08, 3.6303023e-15, 467, 28.5, -24)
+script = ExtResource("27_qvv5l")
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="Book_10" type="Node3D" parent="Objects" unique_id=1882924958 instance=ExtResource("26_jtdqm")]
+transform = Transform3D(-9.310089e-08, -2.1299, 9.310089e-08, 0, -9.310089e-08, -2.1299, 2.1299, -9.310089e-08, 4.069569e-15, 479, 28.5, -24)
+script = ExtResource("27_qvv5l")
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"
+
+[node name="Bottle_11" type="RigidBody3D" parent="Objects" unique_id=1584647438 instance=ExtResource("28_0y4y2")]
+transform = Transform3D(26.7804, 0, 0, 0, 26.7804, 0, 0, 0, 26.7804, 456, 9.5, -21)
+
+[node name="Cookbook_12" type="Node3D" parent="Objects" unique_id=1847506594 instance=ExtResource("29_sphf0")]
+transform = Transform3D(-8.030656e-08, 1.2990966, 1.2990966, 0, 1.2990966, -1.2990966, -1.8372, -5.6785318e-08, -5.6785318e-08, 512, 25.5, -24)
+script = ExtResource("27_qvv5l")
+title = 9
+
+[node name="Cookbook_13" type="Node3D" parent="Objects" unique_id=420641059 instance=ExtResource("29_sphf0")]
+transform = Transform3D(-8.030656e-08, 1.8372, -8.742278e-08, 0, -8.030656e-08, -2, -1.8372, -8.030656e-08, 3.821371e-15, 480, 31.5, -21.5)
+script = ExtResource("27_qvv5l")
+title = 9
+
+[node name="Cookbook_14" type="Node3D" parent="Objects" unique_id=759740538 instance=ExtResource("29_sphf0")]
+transform = Transform3D(-8.030656e-08, 1.591062, 0.91859996, 0, 0.91859996, -1.591062, -1.8372, -6.9547525e-08, -4.0153278e-08, 497, 28.5, -24)
+script = ExtResource("27_qvv5l")
+title = 9
+
+[node name="Spoon_15" type="RigidBody3D" parent="Objects" unique_id=995646545 instance=ExtResource("30_2434u")]
+transform = Transform3D(3.851489, -2.6968417, -4.110444e-07, -2.6968417, -3.851489, 0, -3.3670787e-07, 2.357654e-07, -4.7018, 467, 67, -27)
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_4mlgn")
+continuous_cd = true
+
+[node name="Spoon_16" type="RigidBody3D" parent="Objects" unique_id=1609125581 instance=ExtResource("30_2434u")]
+transform = Transform3D(-3.851489, 2.6968417, 4.110444e-07, 2.6968417, 3.851489, 0, -3.3670787e-07, 2.357654e-07, -4.7018, 468, 67, -21)
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_4mlgn")
+continuous_cd = true
+
+[node name="Marshmallow_17" type="Area3D" parent="Objects" unique_id=1852163532 instance=ExtResource("31_phys7")]
+transform = Transform3D(14.306468, 0, 0, 0, 14.306468, 0, 0, 0, 14.306468, 614, 16.499992, 254)
+script = ExtResource("24_bhhb1")
+kind = 3
+topping_id = &"marshmallow"
+colours = Array[Color]([Color(1, 0.55, 0.72, 1), Color(1, 1, 1, 1), Color(1, 0.7, 0.82, 1), Color(0.98, 0.98, 0.96, 1)])
+pieces = 80
+pieces_per_second = 60.0
+spread_degrees = 55.0
+
+[node name="ChocolateSauce_18" type="Area3D" parent="Objects" unique_id=335292353 instance=ExtResource("32_qn6is")]
+transform = Transform3D(1, 0, 0, 0, 1.70788, 0, 0, 0, 1, 558, 9.499992, 334)
+script = ExtResource("24_bhhb1")
+kind = 2
+topping_id = &"chocolate_sauce"
+colours = Array[Color]([Color(0.26, 0.12, 0.06, 1), Color(0.2, 0.09, 0.04, 1)])
+piece_size = 0.7
+pieces = 300
+pieces_per_second = 150.0
+spread_degrees = 75.0
+refill_per_second = 40.0
+
+[node name="PistachioSauce_19" type="Area3D" parent="Objects" unique_id=1153117328 instance=ExtResource("33_t6ce4")]
+transform = Transform3D(1.4779595, 0, 0, 0, 1.4779595, 0, 0, 0, 1.4779595, 616, 80.5, 61)
+script = ExtResource("24_bhhb1")
+kind = 4
+topping_id = &"pistachio_sauce"
+colours = Array[Color]([Color(0.56, 0.74, 0.36, 1), Color(0.5, 0.68, 0.3, 1)])
+piece_size = 0.7
+pieces = 300
+pieces_per_second = 150.0
+spread_degrees = 75.0
+
+[node name="DeathZone" type="Area3D" parent="." unique_id=1645222076 instance=ExtResource("34_fkc1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50.5, 0)
+script = ExtResource("35_o2pxf")
+
+[connection signal="level_completed" from="Objects/Goal_2" to="LevelComplete" method="show_on_finish"]
+
+[editable path="PlayerRig/Player"]

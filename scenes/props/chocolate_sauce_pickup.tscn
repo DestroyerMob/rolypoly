@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/topping_pickup.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/sauce_drip.gd" id="2_drip"]
+
+[node name="ChocolateSaucePickup" instance=ExtResource("1_base")]
+kind = 2
+topping_id = &"chocolate_sauce"
+colours = Array[Color]([Color(0.26, 0.12, 0.06, 1), Color(0.2, 0.09, 0.04, 1)])
+piece_size = 0.7
+pieces = 300
+pieces_per_second = 150.0
+spread_degrees = 75.0
+refill_per_second = 40.0
+puddle_radius = 8.0
+
+[node name="Drip" type="Node3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
+script = ExtResource("2_drip")
+colour = Color(0.26, 0.12, 0.06, 1)

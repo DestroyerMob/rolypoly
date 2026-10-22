@@ -16,6 +16,10 @@ const DEATH_ZONE := preload("res://scenes/death_zone.tscn")
 const RIG_SCRIPT := "res://scenes/player_rig.gd"
 const PIVOT_SCRIPT := "res://scenes/prototyping/camera_pivot.gd"
 const MOUNT_SCRIPT := "res://scripts/gadget_mount.gd"
+const LEVEL_COMPLETE := preload("res://scenes/level_complete.tscn")
+const FINISH_GOAL_SCRIPT := "res://scripts/star_goals/star_goal_finish.gd"
+## The Player node's scale, as in the hand-built levels. Force, jump and gravity follow it.
+const PLAYER_SCALE := 5.0
 
 
 func _initialize() -> void:
@@ -45,6 +49,23 @@ func _convert(source: String, output: String) -> int:
 	var rig := _add_player_rig(root, document)
 	var mount := rig.get_node("GadgetMount") as GadgetMount
 
+	var complete := LEVEL_COMPLETE.instantiate()
+	complete.set("level_title", document.name)
+	complete.set("start_hidden", true)
+	root.add_child(complete)
+	root.move_child(complete, 0)
+
+	var goals := Node.new()
+	goals.name = "StarGoals"
+	root.add_child(goals)
+	root.move_child(goals, 1)
+	var finish_goal := Node.new()
+	finish_goal.name = "FinishGoal"
+	finish_goal.set_script(load(FINISH_GOAL_SCRIPT))
+	finish_goal.set("description", "Finish the level")
+	finish_goal.set("stars_worth", 3)
+	goals.add_child(finish_goal)
+
 	var objects := Node3D.new()
 	objects.name = "Objects"
 	root.add_child(objects)
@@ -55,8 +76,14 @@ func _convert(source: String, output: String) -> int:
 		node.name = "%s_%d" % [String(entry.id).to_pascal_case(), index + 1]
 		objects.add_child(node)
 		lowest = minf(lowest, node.position.y)
+		if entry.id == "goal":
+			node.connect("level_completed", Callable(complete, "show_on_finish"), CONNECT_PERSIST)
 
 	var death := DEATH_ZONE.instantiate() as Node3D
+	# The death zone scene connects its own signal; saving that again would connect it twice.
+	var area := death as Area3D
+	for connection in area.body_entered.get_connections():
+		area.body_entered.disconnect(connection.callable)
 	death.position.y = lowest - 30.0
 	root.add_child(death)
 
@@ -105,19 +132,21 @@ func _add_player_rig(root: Node3D, document: Dictionary) -> Node:
 	rig.name = "PlayerRig"
 	rig.set("allow_character_swap", false)
 	var player: Player = Catalog.PLAYERS[Catalog.player_of(document)].scene.instantiate()
-	Catalog.size_player(player)
-	player.position = start + Vector3.UP * 2.2 * Catalog.PLAYER_SIZE
+	player.scale = Vector3.ONE * PLAYER_SCALE
+	player.speed_force = 15.0
+	player.jump_impulse = 9.0
+	player.position = start + Vector3.UP * 8.5
 	rig.add_child(player)
 
 	var pivot: Node3D = load(PIVOT_SCRIPT).new()
 	pivot.name = "CameraPivot"
 	pivot.position = player.position
 	pivot.set("player_rig", rig)
-	pivot.set("follow_offset", Vector3(0, 1.5, 0) * Catalog.PLAYER_SIZE)
+	pivot.set("follow_offset", Vector3(0, 1.5, 0))
 	var arm := SpringArm3D.new()
 	arm.name = "SpringArm3D"
-	arm.spring_length = 25.0 * Catalog.PLAYER_SIZE
-	arm.margin = 0.5 * Catalog.PLAYER_SIZE
+	arm.spring_length = 40.0
+	arm.margin = 0.5
 	pivot.add_child(arm)
 	var camera := Camera3D.new()
 	camera.name = "Camera3D"
@@ -130,9 +159,9 @@ func _add_player_rig(root: Node3D, document: Dictionary) -> Node:
 	mount.name = "GadgetMount"
 	mount.set("player_rig", rig)
 	mount.set("camera", camera)
-	mount.set("side_distance", mount.get("side_distance") * Catalog.PLAYER_SIZE)
-	mount.set("height", mount.get("height") * Catalog.PLAYER_SIZE)
-	mount.set("model_offset", mount.get("model_offset") * Catalog.PLAYER_SIZE)
+	mount.set("side_distance", mount.get("side_distance") * PLAYER_SCALE)
+	mount.set("height", mount.get("height") * PLAYER_SCALE)
+	mount.set("model_offset", mount.get("model_offset") * PLAYER_SCALE)
 	rig.add_child(mount)
 
 	root.add_child(rig)

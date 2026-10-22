@@ -44,10 +44,14 @@ func clear() -> void:
 		layer.stuck = 0
 
 
+## How a piece sits on the ball: lying along the surface (sprinkles), tumbled at random
+## (nuts, marshmallows), or flat against it with its up axis along the surface normal (sauce).
+enum Orientation { LAY, TUMBLE, FLAT }
+
 ## Sticks `count` pieces of `mesh` around the side of the ball facing `world_point`.
 ## `size` scales the pieces and `spread_degrees` is how wide an area they cover.
 func stick_topping(topping_id: StringName, mesh: Mesh, colours: Array[Color], world_point: Vector3,
-		count: int, size := 1.0, spread_degrees := 40.0, align_flat := true) -> void:
+		count: int, size := 1.0, spread_degrees := 40.0, orientation := Orientation.LAY) -> void:
 	if _player == null or count <= 0:
 		return
 	var layer := _layer_for(topping_id, mesh)
@@ -66,7 +70,7 @@ func stick_topping(topping_id: StringName, mesh: Mesh, colours: Array[Color], wo
 		var direction := _scatter(base, deg_to_rad(spread_degrees))
 		var normal := (to_local.basis * direction).normalized()
 		var position := to_local * (centre + direction * radius)
-		var basis := _orientation(normal, align_flat) * Basis.from_scale(Vector3.ONE * piece_scale * _rng.randf_range(0.8, 1.2))
+		var basis := _orientation(normal, orientation) * Basis.from_scale(Vector3.ONE * piece_scale * _rng.randf_range(0.8, 1.2))
 		var slot: int = layer.stuck % multimesh.instance_count
 		multimesh.set_instance_transform(slot, Transform3D(basis, position))
 		if multimesh.use_colors and not colours.is_empty():
@@ -82,9 +86,10 @@ func _scatter(direction: Vector3, spread: float) -> Vector3:
 	return direction.rotated(axis, spread * sqrt(_rng.randf())).normalized()
 
 
-## Sprinkle-like pieces lie flat along the surface; chunky pieces tumble in any direction.
-func _orientation(normal: Vector3, align_flat: bool) -> Basis:
-	if not align_flat:
+func _orientation(normal: Vector3, mode: int) -> Basis:
+	if mode == Orientation.FLAT:
+		return Basis(Quaternion(Vector3.UP, normal)) * Basis(Vector3.UP, _rng.randf() * TAU)
+	if mode == Orientation.TUMBLE:
 		return Basis(Quaternion(Vector3.UP, normal)) * Basis(Vector3(_rng.randf(), _rng.randf(), _rng.randf()).normalized(), _rng.randf() * TAU)
 	var reference := Vector3.RIGHT if absf(normal.dot(Vector3.RIGHT)) < 0.95 else Vector3.FORWARD
 	var along := normal.cross(reference).normalized().rotated(normal, _rng.randf() * TAU)
