@@ -112,6 +112,8 @@ func _on_home() -> void:
 	home_pressed.emit()
 	if home_pressed.get_connections().is_empty():
 		_resume()
+		# The main menu opens straight onto the level grid.
+		get_tree().set_meta(&"show_level_grid", true)
 		get_tree().change_scene_to_file(home_scene)
 
 

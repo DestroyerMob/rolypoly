@@ -47,6 +47,9 @@ func _ready() -> void:
 	_volume_value.text = "Muted" if _volume_slider.value == 0.0 else "%d%%" % _volume_slider.value
 	_volume_slider.value_changed.connect(_on_music_volume_changed)
 	_play_button.grab_focus()
+	if get_tree().has_meta(&"show_level_grid"):
+		get_tree().remove_meta(&"show_level_grid")
+		_show_levels(true)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
