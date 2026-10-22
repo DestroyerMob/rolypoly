@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://be7rsk3bhv14k"]
+
+[resource]
+resource_name = "Oven_Cream_Detail"
+cull_mode = 2
+albedo_color = Color(0.91627353, 0.87034494, 0.7735731, 1)
+metallic = 0.15
+roughness = 0.38

@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://wkdv0jkqgj4r"]
+
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="1_7omol"]
+[ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="2_stcn7"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="3_ofdgt"]
+[ext_resource type="PackedScene" uid="uid://yknpw461u0cy" path="res://scenes/props/box_start.tscn" id="4_gvbnr"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="4_ncilh"]
+[ext_resource type="PackedScene" uid="uid://di7tcvjgbu4c5" path="res://scenes/obstacles/pot.tscn" id="5_1h32m"]
+[ext_resource type="Script" uid="uid://cnqv1ieg4fx1y" path="res://scripts/art_box.gd" id="6_4b3au"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="6_7yasx"]
+[ext_resource type="Texture2D" uid="uid://lix6rsehqbd1" path="res://assets/textures/T_Canvas_1K_N.jpg" id="120_k07j7"]
+[ext_resource type="Texture2D" uid="uid://bsfwf0ec5r3fg" path="res://assets/textures/T_Canvas_1K_R.jpg" id="121_57b3k"]
+[ext_resource type="PackedScene" uid="uid://jmnrx0iw1wfc" path="res://scenes/level_editor/kitchen_interior.tscn" id="interior"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpamo"]
+albedo_color = Color(0.9490196, 0.92156863, 0.8627451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oni1y"]
+albedo_color = Color(0.8901961, 0.85882354, 0.7764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym2or"]
+albedo_color = Color(0.85882354, 0.7882353, 0.68235296, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r507"]
+albedo_color = Color(0.8980392, 0.77254903, 0.7411765, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwwv7"]
+albedo_color = Color(0.654902, 0.7254902, 0.7137255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tch4j"]
+albedo_color = Color(0.58431375, 0.6666667, 0.6039216, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwl01"]
+albedo_color = Color(0.2509804, 0.3254902, 0.40784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qopy"]
+albedo_color = Color(0.3529412, 0.38039216, 0.21960784, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g78nq"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.8862745, 0.64705884, 0.36862746, 1)
+roughness_texture = ExtResource("121_57b3k")
+normal_enabled = true
+normal_texture = ExtResource("120_k07j7")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ku4q0"]
+albedo_color = Color(0.8117647, 0.4392157, 0.25490198, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_215yb"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.827451, 0.6, 0.19607843, 1)
+roughness_texture = ExtResource("121_57b3k")
+normal_enabled = true
+normal_texture = ExtResource("120_k07j7")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebl41"]
+albedo_color = Color(0.68235296, 0.32156864, 0.23137255, 1)
+
+[node name="kitchen" unique_id=1492366184 instance=ExtResource("interior")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76)
+
+[node name="_Lighting" parent="." index="1" unique_id=971610010]
+visible = false
+
+[node name="_Systems" type="Node" parent="." index="4" unique_id=1408849608]
+
+[node name="PlayerRig" type="Node" parent="_Systems" index="0" unique_id=1496141724]
+script = ExtResource("1_7omol")
+
+[node name="Player" parent="_Systems/PlayerRig" index="0" unique_id=1887833892 instance=ExtResource("2_stcn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9987793, -8.149996, -100.973145)
+
+[node name="CameraPivot" type="Node3D" parent="_Systems/PlayerRig" index="1" unique_id=962648531 node_paths=PackedStringArray("player_rig")]
+script = ExtResource("3_ofdgt")
+player_rig = NodePath("..")
+initial_yaw_degrees = -67.2
+initial_follow_distance = 3.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="_Systems/PlayerRig/CameraPivot" index="0" unique_id=193844503]
+spring_length = 17.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="_Systems/PlayerRig/CameraPivot/SpringArm3D" index="0" unique_id=918557119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70, 0)
+fov = 80.0
+
+[node name="_Course" type="Node" parent="." index="5" unique_id=1919119446]
+
+[node name="PlayerStart2" parent="_Course" index="0" unique_id=1221152246 instance=ExtResource("4_ncilh")]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, -92, 12, -471)
+
+[node name="BoxStart" parent="_Course" index="1" unique_id=953123952 instance=ExtResource("4_gvbnr")]
+transform = Transform3D(25.98076, 0, 14.999999, 0, 29.999998, 0, -14.999999, 0, 25.98076, -92, 7.3499975, -471)
+
+[node name="FinishArea" parent="_Course" index="2" unique_id=1707823974 instance=ExtResource("6_7yasx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, -1, -526)
+
+[node name="_Pieces" type="Node" parent="_Course" index="3" unique_id=1211791188]
+
+[node name="_Static" type="Node" parent="_Course/_Pieces" index="0" unique_id=1077978003]
+
+[node name="_Movers" type="Node" parent="_Course/_Pieces" index="1" unique_id=1045172506]
+
+[node name="_Hazards" type="Node" parent="_Course/_Pieces" index="2" unique_id=1734536097]
+
+[node name="_Goal" type="Node" parent="_Course" index="4" unique_id=1303801495]
+
+[node name="Pot" parent="_Course/_Goal" index="0" unique_id=1184813120 instance=ExtResource("5_1h32m")]
+transform = Transform3D(0.5245805, 0, 14.990824, 0, 14.999997, 0, -14.990824, 0, 0.5245805, 2.9536114, 20.43175, -747.3513)
+
+[node name="_Climbable" type="Node" parent="_Course" index="5" unique_id=1557883015]
+
+[node name="Climbing_Object" type="StaticBody3D" parent="_Course/_Climbable" index="0" unique_id=1427969487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 404, -36, -110)
+script = ExtResource("6_4b3au")
+size = Vector3(5, 220, 30)
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="_Development" type="Node" parent="." index="6" unique_id=937245346]
+
+[node name="_Colours" type="Node" parent="." index="7" unique_id=1621058512]
+
+[node name="Warm_Ivory_F2EBDC" type="StaticBody3D" parent="_Colours" index="0" unique_id=682995179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_dpamo")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Warm_Cream_E3DBC6" type="StaticBody3D" parent="_Colours" index="1" unique_id=329643278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_oni1y")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Natural_Wood_DBC9AE" type="StaticBody3D" parent="_Colours" index="2" unique_id=1065847717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_ym2or")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Pale_Pink_Blush_E5C5BD" type="StaticBody3D" parent="_Colours" index="3" unique_id=2035753175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_4r507")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Soft_Sage_Blue_A7B9B6" type="StaticBody3D" parent="_Colours" index="4" unique_id=48358567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_hwwv7")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Sage_Green_95AA9A" type="StaticBody3D" parent="_Colours" index="5" unique_id=463044853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_tch4j")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Slate_Blue_405368" type="StaticBody3D" parent="_Colours" index="6" unique_id=1066071997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_fwl01")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Olive_Green_5A6138" type="StaticBody3D" parent="_Colours" index="7" unique_id=2042542780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_7qopy")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="MutedMustard_E2A55E" type="StaticBody3D" parent="_Colours" index="8" unique_id=316984468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_g78nq")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="Terracota_CF7041" type="StaticBody3D" parent="_Colours" index="9" unique_id=1226470330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_ku4q0")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="MustardYellow_D39932" type="StaticBody3D" parent="_Colours" index="10" unique_id=1119564623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_215yb")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[node name="TerracottaRust_AE523B" type="StaticBody3D" parent="_Colours" index="11" unique_id=923100178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1733, -100, -336.14948)
+visible = false
+script = ExtResource("6_4b3au")
+size = Vector3(1100, 0.5, 1400)
+material = SubResource("StandardMaterial3D_ebl41")
+metadata/_custom_type_script = "uid://cnqv1ieg4fx1y"
+
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Beer_Tallie"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Brandy"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Cognac"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Gin"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Mix"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Moonshine"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Rum"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Sparkling"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Spirit"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Tanqueray"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Vodka"]
+[editable path="_Set/_Dressing/_Props/_Bar_Bottles/Bottle_Whiskey"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_collin2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_old_fashion3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/Bottle_Beer_Bottle"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_4"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine4"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_champagne_flute3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_red_wine3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine_5"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_white_wine3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf2"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf3"]
+[editable path="_Set/_Dressing/_Props/_HighBar_Bench/glass_martini_shelf4"]
+[editable path="_Lighting"]

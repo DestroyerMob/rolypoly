@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/m4a1/m4a1.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="2_gun"]
+
+[node name="M4A1" type="Node3D"]
+script = ExtResource("2_gun")
+fire_interval = 0.09
+damage = 9
+automatic = true
+spread_degrees = 1.2
+impulse = 8.0
+kick_distance = 0.12
+kick_degrees = 1.5
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.333, -2.5)

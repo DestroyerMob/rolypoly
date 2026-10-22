@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Plaster_Cream_1K_BC.jpg" id="1_h7ogt"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Plaster_Cream_1K_N.jpg" id="2_d307m"]
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Plaster_Cream_1K_R.jpg" id="3_pg4l3"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.99740034, 0.9194094, 0.90165555, 1)
+albedo_texture = ExtResource("1_h7ogt")
+roughness_texture = ExtResource("3_pg4l3")
+normal_enabled = true
+normal_texture = ExtResource("2_d307m")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_offset = Vector3(2, 5, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true

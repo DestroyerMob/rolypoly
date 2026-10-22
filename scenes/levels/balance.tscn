@@ -1,0 +1,244 @@
+[gd_scene format=3 uid="uid://c4tmht78olkej"]
+
+[ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="1_kitchen"]
+[ext_resource type="PackedScene" uid="uid://bcvt6pnkjyksy" path="res://scenes/level_complete.tscn" id="2_complete"]
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="3_rig"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="4_player"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="5_pivot"]
+[ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="6_mount"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="7_start"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="8_finish"]
+[ext_resource type="PackedScene" uid="uid://1rtbg70qp4ra" path="res://scenes/props/Bowls/RedBowl.tscn" id="9_bowl"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="10_death"]
+[ext_resource type="Script" uid="uid://rfiv5xf0sdsh" path="res://scripts/star_goals/star_goal_finish.gd" id="11_finish_goal"]
+[ext_resource type="Script" uid="uid://clc836qpyvxe8" path="res://scripts/star_goals/star_goal_time.gd" id="12_time_goal"]
+[ext_resource type="Script" uid="uid://dqwde22uww7am" path="res://scripts/star_goals/star_goal_collect.gd" id="13_collect_goal"]
+[ext_resource type="PackedScene" path="res://scenes/props/sprinkle_coin.tscn" id="31_coin"]
+
+[sub_resource type="StandardMaterial3D" id="Material_wood"]
+albedo_color = Color(0.74, 0.52, 0.3, 1)
+roughness = 0.65
+
+[sub_resource type="BoxMesh" id="Mesh_36x6_0x50"]
+size = Vector3(36, 6, 50)
+
+[sub_resource type="BoxShape3D" id="Shape_36x6_0x50"]
+size = Vector3(36, 6, 50)
+
+[sub_resource type="BoxMesh" id="Mesh_66x6_0x30"]
+size = Vector3(66, 6, 30)
+
+[sub_resource type="BoxShape3D" id="Shape_66x6_0x30"]
+size = Vector3(66, 6, 30)
+
+[sub_resource type="StandardMaterial3D" id="Material_rail"]
+albedo_color = Color(0.45, 0.28, 0.14, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="Mesh_66x7x3"]
+size = Vector3(66, 7, 3)
+
+[sub_resource type="BoxShape3D" id="Shape_66x7x3"]
+size = Vector3(66, 7, 3)
+
+[sub_resource type="BoxMesh" id="Mesh_30x6_0x44"]
+size = Vector3(30, 6, 44)
+
+[sub_resource type="BoxShape3D" id="Shape_30x6_0x44"]
+size = Vector3(30, 6, 44)
+
+[sub_resource type="BoxMesh" id="Mesh_72x6_0x20"]
+size = Vector3(72, 6, 20)
+
+[sub_resource type="BoxShape3D" id="Shape_72x6_0x20"]
+size = Vector3(72, 6, 20)
+
+[sub_resource type="BoxMesh" id="Mesh_14x18_0x14"]
+size = Vector3(14, 18, 14)
+
+[sub_resource type="BoxShape3D" id="Shape_14x18_0x14"]
+size = Vector3(14, 18, 14)
+
+[sub_resource type="BoxMesh" id="Mesh_44x10x44"]
+size = Vector3(44, 10, 44)
+
+[sub_resource type="BoxShape3D" id="Shape_44x10x44"]
+size = Vector3(44, 10, 44)
+
+[node name="Balance" type="Node3D" unique_id=1430279407]
+
+[node name="LevelComplete" parent="." unique_id=379718127 instance=ExtResource("2_complete")]
+level_title = "Balance"
+start_hidden = true
+
+[node name="StarGoals" type="Node" parent="." unique_id=1657167443]
+
+[node name="FinishGoal" type="Node" parent="StarGoals" unique_id=979193372]
+script = ExtResource("11_finish_goal")
+description = "Finish the level"
+
+[node name="TimeGoal" type="Node" parent="StarGoals" unique_id=789230276]
+script = ExtResource("12_time_goal")
+seconds_limit = 25.0
+description = "Finish in under 25 seconds"
+
+[node name="CollectGoal" type="Node" parent="StarGoals" unique_id=270568066]
+script = ExtResource("13_collect_goal")
+description = "Collect 5 sprinkles"
+
+[node name="EmptyKitchen" parent="." unique_id=1027648621 instance=ExtResource("1_kitchen")]
+
+[node name="PlayerRig" type="Node" parent="." unique_id=73269707]
+script = ExtResource("3_rig")
+allow_character_swap = false
+
+[node name="Player" parent="PlayerRig" unique_id=1165490579 instance=ExtResource("4_player")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -112, 29.6, -498)
+speed_force = 15.0
+jump_impulse = 9
+
+[node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=2138658377 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112, 29.6, -498)
+script = ExtResource("5_pivot")
+player_rig = NodePath("..")
+follow_offset = Vector3(0, 1.5, 0)
+initial_yaw_degrees = -90.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerRig/CameraPivot" unique_id=160354935]
+spring_length = 40.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/CameraPivot/SpringArm3D" unique_id=1020400321]
+current = true
+far = 3000.0
+
+[node name="GadgetMount" type="Node3D" parent="PlayerRig" unique_id=1298281235 node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("6_mount")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="Course" type="Node3D" parent="." unique_id=277502400]
+
+[node name="StartPad" type="StaticBody3D" parent="Course" unique_id=70323136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108, 21, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/StartPad" unique_id=1387202062]
+material_override = SubResource("Material_wood")
+mesh = SubResource("Mesh_36x6_0x50")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/StartPad" unique_id=1860242898]
+shape = SubResource("Shape_36x6_0x50")
+
+[node name="Plank1" type="StaticBody3D" parent="Course" unique_id=1320100470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 21, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/Plank1" unique_id=1131999404]
+material_override = SubResource("Material_wood")
+mesh = SubResource("Mesh_66x6_0x30")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/Plank1" unique_id=512741475]
+shape = SubResource("Shape_66x6_0x30")
+
+[node name="Rail1" type="StaticBody3D" parent="Course" unique_id=1046591363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 27.5, -511.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/Rail1" unique_id=354289723]
+material_override = SubResource("Material_rail")
+mesh = SubResource("Mesh_66x7x3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/Rail1" unique_id=133778144]
+shape = SubResource("Shape_66x7x3")
+
+[node name="MidPad" type="StaticBody3D" parent="Course" unique_id=2120294610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 21, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/MidPad" unique_id=1192846486]
+material_override = SubResource("Material_wood")
+mesh = SubResource("Mesh_30x6_0x44")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/MidPad" unique_id=755867918]
+shape = SubResource("Shape_30x6_0x44")
+
+[node name="Plank2" type="StaticBody3D" parent="Course" unique_id=1230669951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 21, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/Plank2" unique_id=1292009240]
+material_override = SubResource("Material_wood")
+mesh = SubResource("Mesh_72x6_0x20")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/Plank2" unique_id=1304154225]
+shape = SubResource("Shape_72x6_0x20")
+
+[node name="StartPillar" type="StaticBody3D" parent="Course" unique_id=301265834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108, 9, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/StartPillar" unique_id=745147333]
+material_override = SubResource("Material_rail")
+mesh = SubResource("Mesh_14x18_0x14")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/StartPillar" unique_id=669482700]
+shape = SubResource("Shape_14x18_0x14")
+
+[node name="MidPillar" type="StaticBody3D" parent="Course" unique_id=1127673690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 9, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/MidPillar" unique_id=2119129397]
+material_override = SubResource("Material_rail")
+mesh = SubResource("Mesh_14x18_0x14")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/MidPillar" unique_id=1517925188]
+shape = SubResource("Shape_14x18_0x14")
+
+[node name="BowlBoard" type="StaticBody3D" parent="Course" unique_id=1920889587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 5, -498)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/BowlBoard" unique_id=1764281507]
+material_override = SubResource("Material_wood")
+mesh = SubResource("Mesh_44x10x44")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/BowlBoard" unique_id=1099477913]
+shape = SubResource("Shape_44x10x44")
+
+[node name="Coins" type="Node3D" parent="." unique_id=1836258514]
+
+[node name="SprinkleCoin1" parent="Coins" unique_id=1547890320 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.72573, 30.5, -514.2982)
+
+[node name="SprinkleCoin2" parent="Coins" unique_id=123436321 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 30.5, -498)
+colour = Color(1, 0.6, 0.2, 1)
+
+[node name="SprinkleCoin3" parent="Coins" unique_id=1816162125 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.71845, 33.957367, -511.54932)
+colour = Color(1, 0.9, 0.25, 1)
+
+[node name="SprinkleCoin4" parent="Coins" unique_id=1625568830 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 30.5, -498)
+colour = Color(0.35, 0.85, 0.45, 1)
+
+[node name="SprinkleCoin5" parent="Coins" unique_id=565857698 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.010403, 30.5, -480.9736)
+colour = Color(0.3, 0.65, 1, 1)
+
+[node name="SprinkleCoin6" parent="Coins" unique_id=1011984033 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 30.5, -498)
+colour = Color(0.7, 0.45, 0.95, 1)
+
+[node name="SprinkleCoin7" parent="Coins" unique_id=1022367268 instance=ExtResource("31_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.42865, 34.517788, -511.36346)
+
+[node name="Objects" type="Node3D" parent="." unique_id=1146250013]
+
+[node name="Spawn" parent="Objects" unique_id=1223861242 instance=ExtResource("7_start")]
+transform = Transform3D(3.7, 0, 0, 0, 3.7, 0, 0, 0, 3.7, -112, 24, -498)
+
+[node name="Goal" parent="Objects" unique_id=896058482 instance=ExtResource("8_finish")]
+transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 3, 100, 15, -498)
+
+[node name="RedBowl" parent="Objects" unique_id=782980119 instance=ExtResource("9_bowl")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 100, 10, -498)
+
+[node name="DeathZone" parent="." unique_id=1217734141 instance=ExtResource("10_death")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[connection signal="level_completed" from="Objects/Goal" to="LevelComplete" method="show_on_finish"]

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bucyrb5cnvaq"]
+
+[resource]
+resource_name = "Oven_Smoked_Glass"
+cull_mode = 2
+albedo_color = Color(0.053989902, 0.18926683, 0.1100774, 0.09019608)
+metallic = 0.22
+metallic_specular = 0.11
+roughness = 0.1

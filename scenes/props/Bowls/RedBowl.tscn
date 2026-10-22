@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://1rtbg70qp4ra"]
+
+[ext_resource type="PackedScene" uid="uid://c2wyuodfai75x" path="res://assets/models/props/bowls/bowl.glb" id="1_si2kk"]
+[ext_resource type="Shape3D" path="res://scenes/props/Bowls/red_bowl_collision.res" id="2_hollow"]
+
+[node name="RedBowl" type="StaticBody3D" unique_id=1457422625]
+
+[node name="Sketchfab_Scene" parent="." unique_id=1696509503 instance=ExtResource("1_si2kk")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0.93658304)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=576245316]
+shape = ExtResource("2_hollow")

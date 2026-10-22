@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wa8rno1ch4pr"]
+
+[ext_resource type="Texture2D" uid="uid://cq1we7yg0vukb" path="res://assets/textures/T_Tile_Marble_Nero_Marquina_1K_BC.jpg" id="1_hhcoa"]
+[ext_resource type="Texture2D" uid="uid://duyorf3i4ad8" path="res://assets/textures/T_Tile_Marble_Nero_Marquina_1K_N.jpg" id="2_21vrm"]
+[ext_resource type="Texture2D" uid="uid://de5im2pyugc04" path="res://assets/textures/T_Tile_Marble_Nero_Marquina_1K_R.jpg" id="3_mnkma"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_hhcoa")
+roughness_texture = ExtResource("3_mnkma")
+normal_enabled = true
+normal_texture = ExtResource("2_21vrm")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

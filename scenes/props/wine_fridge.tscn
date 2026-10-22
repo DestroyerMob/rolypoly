@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bpflum6p7h0n4"]
+
+[ext_resource type="PackedScene" uid="uid://bhx43whkqrul1" path="res://assets/models/props/wine_fridge.glb" id="1_a1rks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_be312"]
+size = Vector3(0.809021, 2.3577728, 0.90834045)
+
+[node name="WineFridge" type="StaticBody3D" unique_id=122692770]
+
+[node name="Sketchfab_Scene" parent="." unique_id=1321119893 instance=ExtResource("1_a1rks")]
+transform = Transform3D(144, 0, 0, 0, 144, 0, 0, 0, 144, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2064332380]
+transform = Transform3D(91, 0, 0, 0, 91, 0, 0, 0, 91, 0.7940092, 110.06723, -0.008392334)
+shape = SubResource("BoxShape3D_be312")

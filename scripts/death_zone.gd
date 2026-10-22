@@ -1,7 +1,12 @@
 extends Area3D
 
-#On death restart scene
+const ProduceBody := preload("res://scripts/produce_body.gd")
+
+@export var kills_produce := true
+
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		print("You died :( ")
-		get_tree().reload_current_scene()
+		body.call_deferred("die")
+	elif kills_produce and body is ProduceBody:
+		body.queue_free()

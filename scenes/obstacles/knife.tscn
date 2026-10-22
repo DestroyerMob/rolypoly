@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d368ew4qamyqu"]
+
+[ext_resource type="PackedScene" uid="uid://disd4xf2b84do" path="res://assets/models/obstacles/Knife.glb" id="1_jg8em"]
+[ext_resource type="Script" uid="uid://cf5oiyo28xbao" path="res://scripts/obstacles/knife.gd" id="1_jy42b"]
+[ext_resource type="Script" uid="uid://uvbxldb0soic" path="res://scripts/death_zone.gd" id="3_death"]
+
+[sub_resource type="BoxShape3D" id="Shape_blade"]
+size = Vector3(0.062, 0.27, 0.026)
+
+[node name="knife" type="Node3D" unique_id=1530698396]
+script = ExtResource("1_jy42b")
+
+[node name="model" parent="." unique_id=1765628846 instance=ExtResource("1_jg8em")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="DeathZone" type="Area3D" parent="model" unique_id=1282661255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015, 0.295, 0)
+collision_layer = 0
+monitorable = false
+script = ExtResource("3_death")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="model/DeathZone" unique_id=224099002]
+shape = SubResource("Shape_blade")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1795512105]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[connection signal="body_entered" from="model/DeathZone" to="model/DeathZone" method="_on_body_entered"]
+
+[editable path="model"]

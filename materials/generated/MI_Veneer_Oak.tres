@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bahrhafjtqu3c"]
+
+[ext_resource type="Texture2D" uid="uid://bxdfpmjq0rdjg" path="res://assets/textures/T_Wood_Green_1K_BCpng.png" id="1_jjtbc"]
+[ext_resource type="Texture2D" uid="uid://mfjgkag5af3" path="res://assets/textures/T_Veneer_Oak_1K_N.jpg" id="2_qdps1"]
+[ext_resource type="Texture2D" uid="uid://dndgbnm4rqajv" path="res://assets/textures/T_Veneer_Oak_1K_R.jpg" id="3_m2emm"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_jjtbc")
+roughness_texture = ExtResource("3_m2emm")
+normal_enabled = true
+normal_texture = ExtResource("2_qdps1")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

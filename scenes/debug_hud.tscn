@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cxvb5wg6fqf2k"]
+
+[ext_resource type="Script" uid="uid://dy3dwk1h2ippk" path="res://scenes/debug_hud.gd" id="1_36slo"]
+
+[node name="DebugHud" type="RichTextLabel" unique_id=2145298498]
+offset_right = 1.0
+offset_bottom = 23.0
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("1_36slo")

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ymwuh3cy1cbn"]
+
+[ext_resource type="PackedScene" uid="uid://xhk3md7pin5a" path="res://assets/models/props/bead_curtain_sun.glb" id="1_r1elo"]
+
+[node name="BeadCurtain" type="StaticBody3D" unique_id=226984409]
+
+[node name="bead_curtain_sun" parent="." unique_id=909159082 instance=ExtResource("1_r1elo")]
+
+[node name="Curtain_Threads" parent="bead_curtain_sun" index="0" unique_id=810048639]
+cast_shadow = 0
+
+[node name="Curtain_Beads" parent="bead_curtain_sun" index="1" unique_id=826299851]
+cast_shadow = 0
+
+[editable path="bead_curtain_sun"]

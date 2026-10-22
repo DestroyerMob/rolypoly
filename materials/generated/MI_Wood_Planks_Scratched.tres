@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cwemm6ktomkjx"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.988197, 0.86041576, 0.76046914, 1)
+normal_enabled = true
+normal_scale = 4.3
+uv1_scale = Vector3(0.004, 0.004, 0.004)
+uv1_triplanar = true
+uv1_world_triplanar = true

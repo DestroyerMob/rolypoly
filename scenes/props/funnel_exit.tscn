@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://t20u6oyjw418"]
+
+[ext_resource type="Script" uid="uid://8s45g2ujej80" path="res://scripts/props/funnel_exit.gd" id="1_lfrsu"]
+
+[node name="FunnelExit" type="Node3D" unique_id=378506821]
+script = ExtResource("1_lfrsu")

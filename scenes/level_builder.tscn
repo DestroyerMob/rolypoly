@@ -1,3 +1,14 @@
 [gd_scene format=3 uid="uid://dohfdsgyakvk0"]
 
+[ext_resource type="Script" uid="uid://btmyyfjadhpbe" path="res://scripts/LevelBuilder.gd" id="1_kkt7t"]
+[ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="2_kitchen"]
+
 [node name="LevelBuilder" type="Node3D" unique_id=1059189124]
+script = ExtResource("1_kkt7t")
+
+[node name="KitchenBase" parent="." unique_id=1204481542 instance=ExtResource("2_kitchen")]
+
+[node name="EditorCamera" type="Camera3D" parent="." unique_id=83625023]
+transform = Transform3D(0.7880108, -0.2984786, 0.5384697, 0, 0.8746197, 0.4848096, -0.6156615, -0.3820352, 0.68920976, 180, 165, -270)
+current = true
+far = 3000.0

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bslui6kat6cd0"]
+
+[ext_resource type="PackedScene" uid="uid://cbco5gt70lkg6" path="res://assets/models/props/timber_corbel.glb" id="1_0mds5"]
+
+[node name="TimberCorbel" type="StaticBody3D" unique_id=2035662424]
+
+[node name="timber_corbel" parent="." unique_id=198508544 instance=ExtResource("1_0mds5")]
+
+[node name="Timber_Corbel" parent="timber_corbel" index="0" unique_id=1444493657]
+cast_shadow = 0
+
+[editable path="timber_corbel"]

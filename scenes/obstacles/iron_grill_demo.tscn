@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://bf8hsbveigvkc"]
+
+[ext_resource type="PackedScene" path="res://scenes/obstacles/iron_grill.tscn" id="1_grill"]
+[ext_resource type="PackedScene" path="res://scenes/props/lighter.tscn" id="2_lighter"]
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="3_rig"]
+[ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="4_player"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="5_camera"]
+[ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="6_start"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="7_death"]
+[ext_resource type="PackedScene" path="res://scenes/props/ice_cube_upgrade.tscn" id="8_ice"]
+[ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="9_mount"]
+
+[sub_resource type="StandardMaterial3D" id="Material_top"]
+albedo_color = Color(0.24, 0.32, 0.36, 1)
+metallic = 0.25
+roughness = 0.65
+
+[sub_resource type="BoxMesh" id="Mesh_platform"]
+size = Vector3(20, 1.2, 10)
+
+[sub_resource type="BoxShape3D" id="Shape_platform"]
+size = Vector3(20, 1.2, 10)
+
+[sub_resource type="StandardMaterial3D" id="Material_bottom"]
+albedo_color = Color(0.22, 0.42, 0.33, 1)
+metallic = 0.15
+roughness = 0.7
+
+[sub_resource type="ProceduralSkyMaterial" id="Material_sky"]
+sky_top_color = Color(0.12, 0.19, 0.28, 1)
+sky_horizon_color = Color(0.58, 0.66, 0.73, 1)
+ground_bottom_color = Color(0.09, 0.12, 0.16, 1)
+ground_horizon_color = Color(0.42, 0.49, 0.56, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("Material_sky")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_color = Color(0.72, 0.81, 1, 1)
+ambient_light_energy = 0.5
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.6
+glow_bloom = 0.06
+
+[node name="IronGrillDemo" type="Node3D" unique_id=1794589513]
+
+[node name="Course" type="Node3D" parent="." unique_id=1732746527]
+
+[node name="IronGrill" parent="Course" unique_id=1677503487 instance=ExtResource("1_grill")]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 12, 0)
+
+[node name="UpperPlatform" type="StaticBody3D" parent="Course" unique_id=1035046412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.831488, 19.92289)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/UpperPlatform" unique_id=212838685]
+material_override = SubResource("Material_top")
+mesh = SubResource("Mesh_platform")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/UpperPlatform" unique_id=562354659]
+shape = SubResource("Shape_platform")
+
+[node name="StartLabel" type="Label3D" parent="Course/UpperPlatform" unique_id=2002874119]
+transform = Transform3D(1, 0, 0, 0, 7.54979e-08, 1, 0, -1, 7.54979e-08, -7, 0.63, 2)
+pixel_size = 0.018
+modulate = Color(0.77, 0.91, 1, 1)
+text = "START"
+font_size = 64
+outline_size = 8
+
+[node name="LowerPlatform" type="StaticBody3D" parent="Course" unique_id=308108110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.968512, -19.92289)
+
+[node name="Mesh" type="MeshInstance3D" parent="Course/LowerPlatform" unique_id=1921485514]
+material_override = SubResource("Material_bottom")
+mesh = SubResource("Mesh_platform")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Course/LowerPlatform" unique_id=463596759]
+shape = SubResource("Shape_platform")
+
+[node name="LandingLabel" type="Label3D" parent="Course/LowerPlatform" unique_id=1533699377]
+transform = Transform3D(1, 0, 0, 0, 7.54979e-08, 1, 0, -1, 7.54979e-08, 0, 0.63, -2.5)
+pixel_size = 0.018
+modulate = Color(0.8, 1, 0.85, 1)
+text = "LANDING"
+font_size = 64
+outline_size = 8
+
+[node name="Lighter" parent="Course" unique_id=262120885 instance=ExtResource("2_lighter")]
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 7, 1.5, -0.45)
+
+[node name="PlayerStart" parent="Course" unique_id=1324961010 instance=ExtResource("6_start")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.731487, 20.5)
+preview_radius = 2.2
+
+[node name="IcePowerup" parent="Course" unique_id=1829826977 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("8_ice")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 17.431488, 20.5)
+gadget_mount = NodePath("../../PlayerRig/GadgetMount")
+
+[node name="Label" type="Label3D" parent="Course/IcePowerup" unique_id=310222200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+pixel_size = 0.012
+billboard = 1
+modulate = Color(0.6, 0.9, 1, 1)
+text = "ICE"
+font_size = 64
+outline_size = 8
+
+[node name="DeathZone" parent="Course" unique_id=931399624 instance=ExtResource("7_death")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, 0)
+
+[node name="PlayerRig" type="Node" parent="." unique_id=2021789433]
+script = ExtResource("3_rig")
+
+[node name="Player" parent="PlayerRig" unique_id=1707870277 instance=ExtResource("4_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.731487, 20.5)
+continuous_cd = true
+
+[node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=1747705010 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.731487, 20.5)
+script = ExtResource("5_camera")
+player_rig = NodePath("..")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerRig/CameraPivot" unique_id=511438336]
+transform = Transform3D(1, 0, 0, 0, 0.9063078, 0.42261824, 0, -0.42261824, 0.9063078, 0, 0, 0)
+spring_length = 17.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/CameraPivot/SpringArm3D" unique_id=1294338823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.5)
+current = true
+fov = 80.0
+far = 500.0
+
+[node name="GadgetMount" type="Node3D" parent="PlayerRig" unique_id=2116857536 node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("9_mount")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="Lighting" type="Node3D" parent="." unique_id=1251712835]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=1151210945]
+environment = SubResource("Environment_demo")
+
+[node name="Sun" type="DirectionalLight3D" parent="Lighting" unique_id=174396776]
+transform = Transform3D(0.87758255, 0.36018303, -0.31641275, 0, 0.6599831, 0.7512804, 0.47942555, -0.6593106, 0.57918966, 0, 0, 0)
+light_color = Color(1, 0.91, 0.78, 1)
+light_energy = 1.4
+shadow_enabled = true
+directional_shadow_max_distance = 150.0
+
+[node name="Fill" type="DirectionalLight3D" parent="Lighting" unique_id=1550614662]
+transform = Transform3D(-0.8011436, 0.23305601, 0.5512293, 0, 0.921061, -0.38941833, -0.5984721, -0.31198, -0.7379021, 0, 0, 0)
+light_color = Color(0.57, 0.72, 1, 1)
+light_energy = 0.65
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=775076934]
+
+[node name="Instructions" type="Label" parent="HUD" unique_id=2007956063]
+offset_left = 28.0
+offset_top = 24.0
+offset_right = 760.0
+offset_bottom = 100.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+text = "IRON GRILL
+WASD / arrows: roll   ·   Space: jump   ·   Mouse: orbit
+R: reset   ·   1–5: change character   ·   Esc: release mouse
+ICE melts in 60 seconds, or 6 on the grill. Collect it again to refresh."

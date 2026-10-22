@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="1_onion"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onion"]
+friction = 0.8
+bounce = 0.12
+
+[node name="NotAPlayerOnion" instance=ExtResource("1_onion")]
+physics_material_override = SubResource("PhysicsMaterial_onion")
+script = null

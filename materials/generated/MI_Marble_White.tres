@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ch26n4c5y1vjd"]
+
+[ext_resource type="Texture2D" uid="uid://gqa7n7ij6ofb" path="res://assets/textures/T_Marble_White_1K_BC.jpg" id="1_yh56y"]
+[ext_resource type="Texture2D" uid="uid://d0ar8ek613fhl" path="res://assets/textures/T_Marble_White_1K_N.jpg" id="2_84jcg"]
+[ext_resource type="Texture2D" uid="uid://76bmnqd87bpd" path="res://assets/textures/T_Marble_White_1K_R.jpg" id="3_0tsw5"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_yh56y")
+roughness_texture = ExtResource("3_0tsw5")
+normal_enabled = true
+normal_texture = ExtResource("2_84jcg")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

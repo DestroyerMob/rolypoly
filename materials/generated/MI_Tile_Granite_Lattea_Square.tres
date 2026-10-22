@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dutmrqsvqk0ac"]
+
+[ext_resource type="Texture2D" uid="uid://cso35i3jvirsv" path="res://assets/textures/T_Tile_Granite_Lattea_Square_1K_BC.jpg" id="1_cjh3g"]
+[ext_resource type="Texture2D" uid="uid://du8nlb1074ljk" path="res://assets/textures/T_Tile_Granite_Lattea_Square_1K_N.jpg" id="2_lg15g"]
+[ext_resource type="Texture2D" uid="uid://dcoa7h51u703" path="res://assets/textures/T_Tile_Granite_Lattea_Square_1K_R.jpg" id="3_7xrli"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_cjh3g")
+roughness_texture = ExtResource("3_7xrli")
+normal_enabled = true
+normal_scale = 15.4
+normal_texture = ExtResource("2_lg15g")
+uv1_scale = Vector3(0.004, 0.004, 0.004)
+uv1_triplanar = true
+uv1_world_triplanar = true

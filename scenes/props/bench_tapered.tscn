@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d36ht3s4se84j"]
+
+[ext_resource type="PackedScene" uid="uid://dq1v4splr5muu" path="res://assets/models/props/bench_tapered_smooth.glb" id="1_xjnat"]
+[ext_resource type="Shape3D" path="res://assets/models/props/bench_tapered_collision.tres" id="2_collision"]
+
+[node name="BenchTapered" type="StaticBody3D" unique_id=1162987810]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=946198312]
+shape = ExtResource("2_collision")
+
+[node name="bench_tapered_smooth" parent="." unique_id=1824487391 instance=ExtResource("1_xjnat")]
+
+[editable path="bench_tapered_smooth"]

@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c0tf6ouceudam"]
+
+[ext_resource type="Texture2D" uid="uid://be44g35sphkro" path="res://assets/textures/T_Tile_Ceramic_Glazed_White_Vertical_1K_BC.jpg" id="1_4bj64"]
+[ext_resource type="Texture2D" uid="uid://b41yftltuqbdh" path="res://assets/textures/T_Tile_Ceramic_Glazed_White_Vertical_1K_N.jpg" id="2_hefd4"]
+[ext_resource type="Texture2D" uid="uid://bnnff0b451sb5" path="res://assets/textures/T_Tile_Ceramic_Glazed_White_Vertical_1K_R.jpg" id="3_x61ip"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_4bj64")
+roughness_texture = ExtResource("3_x61ip")
+normal_enabled = true
+normal_texture = ExtResource("2_hefd4")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

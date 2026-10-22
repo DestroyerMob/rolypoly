@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="PackedScene" path="res://packed_scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="2_oven"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/death_zone.tscn" id="4_death"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(18, 1, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(18, 1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.26, 0.20, 0.15, 1)
+roughness = 0.84
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_demo"]
+sky_top_color = Color(0.025, 0.06, 0.09, 1)
+sky_horizon_color = Color(0.55, 0.39, 0.24, 1)
+ground_bottom_color = Color(0.02, 0.018, 0.016, 1)
+ground_horizon_color = Color(0.30, 0.21, 0.16, 1)
+
+[sub_resource type="Sky" id="Sky_demo"]
+sky_material = SubResource("ProceduralSkyMaterial_demo")
+
+[sub_resource type="Environment" id="Environment_demo"]
+background_mode = 2
+sky = SubResource("Sky_demo")
+ambient_light_source = 3
+ambient_light_color = Color(0.72, 0.82, 1, 1)
+ambient_light_energy = 0.58
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 1.25
+
+[node name="DistinctOvenDemo" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+position = Vector3(0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_floor")
+mesh = SubResource("BoxMesh_floor")
+
+[node name="DistinctOven" parent="." instance=ExtResource("2_oven")]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 0.75, 5.4)
+
+[node name="DeathZone" parent="." instance=ExtResource("4_death")]
+position = Vector3(0, -5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(11.5, 9.5, 13.5)
+fov = 62.0
+script = ExtResource("3_camera")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-52, -36, 0)
+light_color = Color(1, 0.84, 0.68, 1)
+light_energy = 1.25
+shadow_enabled = true
+
+[node name="FillLight" type="OmniLight3D" parent="."]
+position = Vector3(-5, 6, 5)
+light_color = Color(0.38, 0.60, 1, 1)
+light_energy = 8.0
+omni_range = 18.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_demo")

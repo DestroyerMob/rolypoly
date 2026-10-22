@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://fqamj02i121d"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_twewy"]
+
+[resource]
+resource_name = "Box"
+cull_mode = 2
+albedo_color = Color(0.5307593, 0.47761774, 0.34598824, 1)
+roughness = 0.5
+normal_texture = SubResource("NoiseTexture2D_twewy")

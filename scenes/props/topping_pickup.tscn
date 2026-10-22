@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://2lryntmomen5"]
+
+[ext_resource type="Script" uid="uid://csh7xtoxsb4iu" path="res://scripts/topping_pickup.gd" id="1_script"]
+
+[sub_resource type="SphereShape3D" id="Shape_trigger"]
+radius = 1.8
+
+[node name="ToppingPickup" type="Area3D" unique_id=2140545499]
+script = ExtResource("1_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=800507566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("Shape_trigger")

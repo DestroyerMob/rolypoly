@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dodpqwhtiexpg"]
+
+[ext_resource type="Texture2D" uid="uid://basgyk1fmie3k" path="res://assets/textures/T_Cork_1K_BC.jpg" id="1_ffrh7"]
+[ext_resource type="Texture2D" uid="uid://cjhhvyw6t5kin" path="res://assets/textures/T_Cork_1K_N.jpg" id="2_i06gq"]
+[ext_resource type="Texture2D" uid="uid://63r03aghphho" path="res://assets/textures/T_Cork_1K_R.jpg" id="3_xv6kf"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_ffrh7")
+roughness_texture = ExtResource("3_xv6kf")
+normal_enabled = true
+normal_texture = ExtResource("2_i06gq")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

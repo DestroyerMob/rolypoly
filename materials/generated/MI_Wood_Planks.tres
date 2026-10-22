@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://3myk3t2vysrx"]
+
+[ext_resource type="Texture2D" uid="uid://c71yu0a2smttu" path="res://assets/textures/T_Wood_Planks_1K_BC.jpg" id="1_uwa57"]
+[ext_resource type="Texture2D" uid="uid://dy6vtyo0aj66d" path="res://assets/textures/T_Wood_Planks_1K_N.jpg" id="2_gbx7w"]
+[ext_resource type="Texture2D" uid="uid://brf32jlitwjq5" path="res://assets/textures/T_Wood_Planks_1K_R.jpg" id="3_l35qq"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_uwa57")
+roughness_texture = ExtResource("3_l35qq")
+normal_enabled = true
+normal_texture = ExtResource("2_gbx7w")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

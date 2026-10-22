@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3]
+
+[sub_resource type="Curve" id="Curve_size"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.65, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="Texture_size"]
+curve = SubResource("Curve_size")
+
+[sub_resource type="ParticleProcessMaterial" id="Material_process"]
+direction = Vector3(0, 1, 0)
+spread = 4.0
+initial_velocity_min = 8.0
+initial_velocity_max = 11.0
+gravity = Vector3(0, -17, 0)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.4
+scale_curve = SubResource("Texture_size")
+collision_mode = 1
+collision_friction = 0.4
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Material_fragments"]
+vertex_color_use_as_albedo = true
+roughness = 0.65
+
+[sub_resource type="BoxMesh" id="Mesh_fragment"]
+material = SubResource("Material_fragments")
+size = Vector3(0.06, 0.085, 0.045)
+
+[node name="ProduceDeathParticles" type="GPUParticles3D"]
+emitting = false
+amount = 66
+lifetime = 2.2
+one_shot = true
+explosiveness = 0.0
+randomness = 0.1
+visibility_aabb = AABB(-22, -42, -22, 44, 50, 44)
+local_coords = false
+collision_base_size = 0.045
+process_material = SubResource("Material_process")
+draw_pass_1 = SubResource("Mesh_fragment")

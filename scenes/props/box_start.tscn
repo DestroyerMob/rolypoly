@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://yknpw461u0cy"]
+
+[ext_resource type="PackedScene" uid="uid://cvcmiuroex4jf" path="res://scenes/player_start.tscn" id="1_fili6"]
+[ext_resource type="PackedScene" uid="uid://441h24eqo2yc" path="res://assets/models/props/box_closed.glb" id="1_iob1o"]
+[ext_resource type="Texture2D" uid="uid://ck250854bpuud" path="res://textures/GameTitle.png" id="2_3jev0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yy73"]
+size = Vector3(0.9, 0.49, 0.65)
+
+[node name="BoxStart" type="StaticBody3D" unique_id=953123952]
+
+[node name="PlayerStart" parent="." unique_id=2025540899 instance=ExtResource("1_fili6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2698849, 0)
+preview_radius = 0.05
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1459404708]
+shape = SubResource("BoxShape3D_5yy73")
+
+[node name="box_closed" parent="CollisionShape3D" unique_id=1478448319 instance=ExtResource("1_iob1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002903767, -0.2674408, -0.018503904)
+
+[node name="Decal" type="Decal" parent="." unique_id=803103243]
+transform = Transform3D(1, 0, 0, 0, 0.03443116, -0.9994071, 0, 0.9994071, 0.03443116, 0, 0, 0.32845938)
+size = Vector3(0.5, 0.2, 0.504)
+texture_albedo = ExtResource("2_3jev0")

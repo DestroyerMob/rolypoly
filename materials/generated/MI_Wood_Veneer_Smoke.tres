@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cafyirxll5v7q"]
+
+[ext_resource type="Texture2D" uid="uid://bxdfpmjq0rdjg" path="res://assets/textures/T_Wood_Green_1K_BCpng.png" id="1_db3rn"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.8414209, 0.82896864, 0.90101707, 1)
+albedo_texture = ExtResource("1_db3rn")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

@@ -1,0 +1,34 @@
+extends Node3D
+
+var _body_states: Array[Dictionary] = []
+var _resettable: Array[Node3D] = []
+
+func _ready() -> void:
+	_configure_colliders($KitchenInterior)
+	for node in $KitchenInterior.find_children("*", "CollisionObject3D", true, false):
+		if node is RigidBody3D:
+			_body_states.append({"body": node, "transform": node.transform,
+				"freeze": node.freeze, "sleeping": node.sleeping})
+		elif node is DistinctOven or node is SinkableDish:
+			_resettable.append(node)
+
+func reset() -> void:
+	for state in _body_states:
+		var body: RigidBody3D = state.body
+		if not is_instance_valid(body):
+			continue
+		body.transform = state.transform
+		body.linear_velocity = Vector3.ZERO
+		body.angular_velocity = Vector3.ZERO
+		body.freeze = state.freeze
+		body.sleeping = state.sleeping
+		body.reset_physics_interpolation()
+	for node in _resettable:
+		if node is DistinctOven:
+			node.reset_immediately()
+		elif node is SinkableDish:
+			node.reset_immediately()
+
+func _configure_colliders(kitchen: Node3D) -> void:
+	for body in kitchen.find_children("*", "StaticBody3D", true, false):
+		body.disable_mode = CollisionObject3D.DISABLE_MODE_KEEP_ACTIVE

@@ -1,0 +1,83 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bf5d2atf7gkle"
+path="res://.godot/imported/SinkBasin.glb-2a3fa0fb1ca0c72858d9b3989bd27708.scn"
+
+[deps]
+
+source_file="res://assets/models/obstacles/sink/SinkBasin.glb"
+dest_files=["res://.godot/imported/SinkBasin.glb-2a3fa0fb1ca0c72858d9b3989bd27708.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Dish_Coral": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Dish_Coral.tres",
+"use_external/path": "uid://8s8dwrcql8je"
+},
+"Dish_Golden_Yellow": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Dish_Golden_Yellow.tres",
+"use_external/path": "uid://dhmnor3quncf5"
+},
+"Sink_Brushed_Steel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Sink_Brushed_Steel.tres",
+"use_external/path": "uid://cvpdkx2gsw2ak"
+},
+"Sink_Dark_Steel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Sink_Dark_Steel.tres",
+"use_external/path": "uid://dlndll77nhxhw"
+},
+"Sink_Deep_Teal_Cabinet": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Sink_Deep_Teal_Cabinet.tres",
+"use_external/path": "uid://d1p78uomgqjn4"
+},
+"Sink_Warm_Brass": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Sink_Warm_Brass.tres",
+"use_external/path": "uid://gi6itkdntqrg"
+},
+"Sink_Warm_Ceramic": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/obstacles/sink/Sink_Warm_Ceramic.tres",
+"use_external/path": "uid://c3au7or5mnr1x"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

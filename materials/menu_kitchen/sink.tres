@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "Kitchen Sink"
+albedo_color = Color(0.6, 0.61, 0.62, 1)
+metallic = 0.65
+roughness = 0.3

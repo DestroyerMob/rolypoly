@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ba84gvwit658c"]
+
+[ext_resource type="PackedScene" uid="uid://duj7ukyyhno8d" path="res://assets/models/props/retro_fridge_double_doors.glb" id="1_hndnh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sage"]
+albedo_color = Color(0.584, 0.667, 0.604, 1)
+metallic = 0.08
+metallic_specular = 0.0
+roughness = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_be312"]
+size = Vector3(0.48498535, 1.1365967, 0.4296875)
+
+[node name="RetroFridgeDoubleDoor" type="StaticBody3D" unique_id=756755263]
+
+[node name="retro_fridge_double_doors" parent="." unique_id=263573461 instance=ExtResource("1_hndnh")]
+
+[node name="Fridge_Body" parent="retro_fridge_double_doors" parent_id_path=PackedInt32Array(263573461) index="0"]
+material_override = SubResource("StandardMaterial3D_sage")
+
+[node name="Upper_Door_Left" parent="retro_fridge_double_doors" parent_id_path=PackedInt32Array(263573461) index="4"]
+material_override = SubResource("StandardMaterial3D_sage")
+
+[node name="Upper_Door_Right" parent="retro_fridge_double_doors" parent_id_path=PackedInt32Array(263573461) index="5"]
+material_override = SubResource("StandardMaterial3D_sage")
+
+[node name="Lower_Drawer" parent="retro_fridge_double_doors" parent_id_path=PackedInt32Array(263573461) index="6"]
+material_override = SubResource("StandardMaterial3D_sage")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1783003704]
+transform = Transform3D(200, 0, 0, 0, 160, 0, 0, 0, 200, -0.13427734, 91.310486, 5.078125)
+shape = SubResource("BoxShape3D_be312")
+
+[editable path="retro_fridge_double_doors"]

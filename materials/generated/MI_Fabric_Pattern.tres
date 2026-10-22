@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6dfwrbpp4tk8"]
+
+[ext_resource type="Texture2D" uid="uid://bcerm2ta10j3w" path="res://assets/textures/T_Fabric_Pattern_1K_BC.jpg" id="1_j752e"]
+[ext_resource type="Texture2D" uid="uid://c6omrno6xwofu" path="res://assets/textures/T_Fabric_Pattern_1K_N.jpg" id="2_s3u6n"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_j752e")
+roughness = 0.6
+normal_enabled = true
+normal_texture = ExtResource("2_s3u6n")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

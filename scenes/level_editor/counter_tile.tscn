@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Material" path="res://materials/menu_kitchen/countertops.tres" id="1"]
+[sub_resource type="BoxMesh" id="Mesh"]
+size = Vector3(8, 1, 8)
+material = ExtResource("1")
+[sub_resource type="BoxShape3D" id="Shape"]
+size = Vector3(8, 1, 8)
+[node name="CounterTile" type="StaticBody3D"]
+[node name="Mesh" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.5, 0)
+mesh = SubResource("Mesh")
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("Shape")

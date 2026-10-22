@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bd7accqu8v6uy"]
+
+[ext_resource type="Shader" uid="uid://bh5jhkiri6yks" path="res://assets/iroh_kitchen/materials/level_prototyping/world_grid_prototype.gdshader" id="1_fqk85"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fqk85")
+shader_parameter/cell_size = 100.0
+shader_parameter/subdivisions = 5.0
+shader_parameter/major_line_width = 1.0
+shader_parameter/minor_line_width = 0.25
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/checker_a = Color(1, 0.9098039, 0.30588236, 1)
+shader_parameter/checker_b = Color(1, 0.9764706, 0.5764706, 1)
+shader_parameter/major_line_color = Color(0.88, 0.89, 0.92, 1)
+shader_parameter/minor_line_color = Color(0.52, 0.53, 0.56, 1)
+shader_parameter/checker_strength = 1.0
+shader_parameter/show_axes = true
+shader_parameter/axis_x_color = Color(0.85, 0.25, 0.25, 1)
+shader_parameter/axis_z_color = Color(0.25, 0.45, 0.9, 1)
+shader_parameter/roughness_value = 0.85
+shader_parameter/metallic_value = 0.0
+shader_parameter/triplanar_sharpness = 8.0

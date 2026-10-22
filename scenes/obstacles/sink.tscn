@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://c1tv3el0xi06y"]
+
+[ext_resource type="PackedScene" uid="uid://bf5d2atf7gkle" path="res://assets/models/obstacles/sink/SinkBasin.glb" id="1_sink"]
+[ext_resource type="Material" uid="uid://be7rsk3bhv14k" path="res://assets/models/props/Oven_Cream_Detail.tres" id="2_ori06"]
+[ext_resource type="PackedScene" uid="uid://bfks1yo7744k2" path="res://assets/models/obstacles/sink/SinkPlate.glb" id="2_plate"]
+[ext_resource type="PackedScene" uid="uid://cq1oc8jf7ou8p" path="res://assets/models/obstacles/sink/SinkBowl.glb" id="3_bowl"]
+[ext_resource type="Shader" uid="uid://bilhhkms18i3g" path="res://assets/shaders/sink_water.gdshader" id="4_water"]
+[ext_resource type="Script" uid="uid://dh51a6rve1rrf" path="res://scripts/obstacles/sinkable_dish.gd" id="5_dish"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bottom"]
+size = Vector3(9.45, 0.36, 6.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_side"]
+size = Vector3(0.68, 3.3, 7.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_end"]
+size = Vector3(10.55, 3.3, 0.68)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
+render_priority = 1
+shader = ExtResource("4_water")
+shader_parameter/shallow_color = Color(0.05, 0.55, 0.72, 0.68)
+shader_parameter/deep_color = Color(0.015, 0.2, 0.38, 0.82)
+shader_parameter/highlight_color = Color(0.62, 0.94, 1, 1)
+shader_parameter/wave_height = 0.045
+shader_parameter/wave_speed = 1.15
+shader_parameter/wave_scale = 11.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_water"]
+material = SubResource("ShaderMaterial_water")
+size = Vector2(9.35, 6.35)
+subdivide_width = 56
+subdivide_depth = 42
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dish"]
+friction = 0.88
+rough = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_plate"]
+height = 0.18
+radius = 1.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_plate_sensor"]
+height = 0.85
+radius = 1.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bowl"]
+height = 0.42
+radius = 0.98
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bowl_sensor"]
+height = 0.95
+radius = 0.93
+
+[node name="Sink" type="Node3D" unique_id=898737514]
+
+[node name="Model" parent="." unique_id=682238863 instance=ExtResource("1_sink")]
+
+[node name="Sink_BackCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="0" unique_id=712943277]
+visible = false
+
+[node name="Sink_CabinetBase" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="3" unique_id=933634403]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetEnd_1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="4" unique_id=864577673]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetEnd_-1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="5" unique_id=957682340]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetSide_1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="6" unique_id=73409168]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_CabinetSide_-1" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="7" unique_id=1518058117]
+material_override = ExtResource("2_ori06")
+
+[node name="Sink_FaucetBase" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="10" unique_id=768647294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2694192, -5.8599997)
+
+[node name="Sink_FaucetNozzle" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="11" unique_id=686547495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4294195, -2.55)
+
+[node name="Sink_FaucetPipe" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="12" unique_id=1857637007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43058085, -2)
+
+[node name="Sink_FrontCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="13" unique_id=250304589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7494192, 3.94)
+visible = false
+
+[node name="Sink_FrontWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="14" unique_id=241594928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67, 3.52)
+
+[node name="Sink_LeftCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="15" unique_id=616489324]
+visible = false
+
+[node name="Sink_LeftWall" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="16" unique_id=529786297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.66, 0)
+
+[node name="Sink_RightCounter" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="17" unique_id=538294613]
+visible = false
+
+[node name="Sink_RimAccent_+4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="19" unique_id=1479571169]
+visible = false
+
+[node name="Sink_RimAccent_-4_8" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="20" unique_id=1654470406]
+visible = false
+
+[node name="Sink_TapBase_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="21" unique_id=731415586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.129419, -5.8599997)
+
+[node name="Sink_TapBase_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="22" unique_id=815363283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.129419, -5.8599997)
+
+[node name="Sink_TapHandle_+1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="23" unique_id=1885401220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.5294192, -5.8599997)
+
+[node name="Sink_TapHandle_-1_2" parent="Model/SinkBasin_Root" parent_id_path=PackedInt32Array(682238863, 128109887) index="24" unique_id=583000703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.5294192, -5.8599997)
+
+[node name="BasinCollision" type="StaticBody3D" parent="." unique_id=370516374]
+
+[node name="Bottom" type="CollisionShape3D" parent="BasinCollision" unique_id=343153929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036563575, 0)
+shape = SubResource("BoxShape3D_bottom")
+
+[node name="LeftWall" type="CollisionShape3D" parent="BasinCollision" unique_id=2129654235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 1.2934364, 0)
+shape = SubResource("BoxShape3D_side")
+
+[node name="RightWall" type="CollisionShape3D" parent="BasinCollision" unique_id=1084803471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 1.2934364, 0)
+shape = SubResource("BoxShape3D_side")
+
+[node name="FrontWall" type="CollisionShape3D" parent="BasinCollision" unique_id=1129155267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2934364, 3.53)
+shape = SubResource("BoxShape3D_end")
+
+[node name="BackWall" type="CollisionShape3D" parent="BasinCollision" unique_id=545235820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2934364, -3.53)
+shape = SubResource("BoxShape3D_end")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=102910603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7634363, 0)
+mesh = SubResource("PlaneMesh_water")
+
+[node name="Dishes" type="Node3D" parent="." unique_id=1378981031]
+
+[node name="PlateFrontLeft" type="AnimatableBody3D" parent="Dishes" unique_id=628661572]
+transform = Transform3D(0.9838437, 0, 0.17902958, 0, 1, 0, -0.17902958, 0, 0.9838437, -3.1, 2.22, 2)
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+phase_degrees = 15.0
+
+[node name="Model" parent="Dishes/PlateFrontLeft" unique_id=61042359 instance=ExtResource("2_plate")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateFrontLeft" unique_id=884657370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.039937496, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/PlateFrontLeft" unique_id=138512443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateFrontLeft/PlayerSensor" unique_id=1586598941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.60042286, 0)
+shape = SubResource("CylinderShape3D_plate_sensor")
+
+[node name="BowlFrontRight" type="AnimatableBody3D" parent="Dishes" unique_id=1732697533]
+transform = Transform3D(0.94923544, 0, -0.31456655, 0, 1, 0, 0.31456655, 0, 0.94923544, 3.05, 2.13, 1.65)
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.08
+sink_speed = 0.32
+bob_speed = 1.15
+phase_degrees = 105.0
+
+[node name="Model" parent="Dishes/BowlFrontRight" unique_id=300477018 instance=ExtResource("3_bowl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlFrontRight" unique_id=851287011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30684114, 0)
+shape = SubResource("CylinderShape3D_bowl")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/BowlFrontRight" unique_id=1036402311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlFrontRight/PlayerSensor" unique_id=1061378736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5085497, 0)
+shape = SubResource("CylinderShape3D_bowl_sensor")
+
+[node name="PlateMiddle" type="AnimatableBody3D" parent="Dishes" unique_id=1671691288]
+transform = Transform3D(0.87758255, 0, 0.47942555, 0, 1, 0, -0.47942555, 0, 0.87758255, 0, 2.23, 0)
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.12
+sink_speed = 0.34
+bob_speed = 1.55
+phase_degrees = 210.0
+
+[node name="Model" parent="Dishes/PlateMiddle" unique_id=1928293125 instance=ExtResource("2_plate")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateMiddle" unique_id=1257520336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56354666, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/PlateMiddle" unique_id=109701028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateMiddle/PlayerSensor" unique_id=2111886100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6035466, 0)
+shape = SubResource("CylinderShape3D_plate_sensor")
+
+[node name="BowlBackLeft" type="AnimatableBody3D" parent="Dishes" unique_id=1673590017]
+transform = Transform3D(0.9286646, 0, 0.37092048, 0, 1, 0, -0.37092048, 0, 0.9286646, -3, 2.13, -1.65)
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_speed = 0.31
+return_speed = 0.7
+bob_speed = 1.25
+phase_degrees = -70.0
+
+[node name="Model" parent="Dishes/BowlBackLeft" unique_id=938436121 instance=ExtResource("3_bowl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlBackLeft" unique_id=1032381808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42354655, 0)
+shape = SubResource("CylinderShape3D_bowl")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/BowlBackLeft" unique_id=1028870787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/BowlBackLeft/PlayerSensor" unique_id=51320946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6035466, 0)
+shape = SubResource("CylinderShape3D_bowl_sensor")
+
+[node name="PlateBackRight" type="AnimatableBody3D" parent="Dishes" unique_id=850184414]
+transform = Transform3D(0.97589743, 0, -0.21822962, 0, 1, 0, 0.21822962, 0, 0.97589743, 3.1, 2.22, -2)
+physics_material_override = SubResource("PhysicsMaterial_dish")
+script = ExtResource("5_dish")
+sink_depth = 1.0
+sink_speed = 0.38
+return_speed = 0.85
+bob_speed = 1.7
+phase_degrees = 55.0
+
+[node name="Model" parent="Dishes/PlateBackRight" unique_id=730423574 instance=ExtResource("2_plate")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight" unique_id=1252264800]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, -0.56354666, 0)
+shape = SubResource("CylinderShape3D_plate")
+
+[node name="PlayerSensor" type="Area3D" parent="Dishes/PlateBackRight" unique_id=1792733371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dishes/PlateBackRight/PlayerSensor" unique_id=1914905418]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, -0.6035466, 0)
+shape = SubResource("CylinderShape3D_plate_sensor")
+
+[editable path="Model"]

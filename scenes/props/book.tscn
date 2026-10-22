@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bixjatfjotmun"]
+
+[ext_resource type="Script" uid="uid://cniuqsauwxbyo" path="res://scripts/proto_book.gd" id="1_s0fqw"]
+
+[node name="ProtoBook" type="Node3D" unique_id=1147128421]
+script = ExtResource("1_s0fqw")
+metadata/_custom_type_script = "uid://cniuqsauwxbyo"

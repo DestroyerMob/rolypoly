@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://causgno2fl427"]
+
+[ext_resource type="Texture2D" uid="uid://py8k8q2f87ii" path="res://assets/textures/T_Flagstone_Floor_Warm_1K_BC.png" id="1_af15v"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_af15v")
+roughness = 0.6
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true

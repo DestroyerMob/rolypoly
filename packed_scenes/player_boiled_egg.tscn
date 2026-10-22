@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1deqnrkiwpjp"]
+
+[ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_utt43"]
+[ext_resource type="PackedScene" uid="uid://ch3gwcp33g4o" path="res://models/vegetables/egg/egg.glb" id="2_n26e1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57pk1"]
+height = 1.6
+
+[node name="Player" unique_id=1887833892 instance=ExtResource("1_utt43")]
+vegetable_type = 2
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21113563, 0)
+shape = SubResource("CapsuleShape3D_57pk1")
+
+[node name="MeshInstance3D" parent="CollisionShape3D" index="0" unique_id=1398664333]
+visible = false
+
+[node name="egg" parent="CollisionShape3D" index="1" unique_id=92104476 instance=ExtResource("2_n26e1")]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0.040023208, 0)

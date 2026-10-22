@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cqeksmyrsuffi"]
+
+[ext_resource type="PackedScene" uid="uid://cdedks54hdrpg" path="res://assets/models/props/mugs/coffee_machine.glb" id="1_nbkom"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_be312"]
+height = 1.9648466
+radius = 0.41308594
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_we7e7"]
+height = 1.4629364
+radius = 0.50878906
+
+[node name="CoffeeMachine" type="StaticBody3D" unique_id=2048380305]
+
+[node name="Sketchfab_Scene" parent="." unique_id=56600082 instance=ExtResource("1_nbkom")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=695774836]
+transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 50, -0.40242004, 5.5411935, 0)
+shape = SubResource("CylinderShape3D_be312")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1792079790]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0.39566803, 32.547485, -11.014191)
+shape = SubResource("CylinderShape3D_we7e7")

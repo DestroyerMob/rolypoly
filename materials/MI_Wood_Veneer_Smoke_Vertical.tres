@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cmbe1r74t2fjf"]
+
+[ext_resource type="Shader" uid="uid://bugtqom484xb5" path="res://materials/MM_WorldAligned.gdshader" id="1_qqnth"]
+[ext_resource type="Texture2D" uid="uid://cgvb302whehvq" path="res://assets/textures/T_Tile_Slate_Floor_1K_N.jpg" id="2_gvulb"]
+[ext_resource type="Texture2D" uid="uid://cgaat0nggdjkj" path="res://assets/textures/T_Flagstone_Floor_1K_R.jpg" id="3_gvulb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qqnth")
+shader_parameter/albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/albedo_brightness = 1.0
+shader_parameter/roughness_value = 0.5
+shader_parameter/use_roughness_map = false
+shader_parameter/roughness_map = ExtResource("3_gvulb")
+shader_parameter/metallic_value = 0.0
+shader_parameter/use_metallic_map = false
+shader_parameter/use_ao_map = false
+shader_parameter/ao_strength = 1.0
+shader_parameter/use_normal_map = true
+shader_parameter/normal_map = ExtResource("2_gvulb")
+shader_parameter/normal_strength = -1.5649999793375
+shader_parameter/world_scale = 300.0
+shader_parameter/triplanar_sharpness = 4.0
+shader_parameter/world_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation_degrees = 90.00002137500002
+shader_parameter/world_space = true

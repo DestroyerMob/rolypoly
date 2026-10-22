@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/winebottle.glb" id="1_w7n6s"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w7n6s"]
+
+[node name="Winebottle" type="RigidBody3D" unique_id=1584647438]
+
+[node name="winebottle" parent="." unique_id=1033383885 instance=ExtResource("1_w7n6s")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=30645909]
+transform = Transform3D(0.5, 0, 0, 0, 0.77141833, 0, 0, 0, 0.5, 0, 0.81842875, 0)
+shape = SubResource("CylinderShape3D_w7n6s")

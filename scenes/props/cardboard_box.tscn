@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/props/cardboard_box.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/props/cardboard_box.gd" id="2_collision"]
+
+[node name="CardboardBox" type="Node3D"]
+script = ExtResource("2_collision")
+
+[node name="Model" parent="." instance=ExtResource("1_model")]

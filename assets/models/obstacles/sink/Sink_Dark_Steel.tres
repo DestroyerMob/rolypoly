@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dlndll77nhxhw"]
+
+[resource]
+resource_name = "Sink_Dark_Steel"
+cull_mode = 2
+albedo_color = Color(0.3133042, 0.36556464, 0.39588127, 1)
+metallic = 0.72
+roughness = 0.32
