@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dyfjqemhtc3ov"]
 
 [ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="1_0nxdr"]
+[ext_resource type="PackedScene" uid="uid://bcvt6pnkjyksy" path="res://scenes/level_complete.tscn" id="1_ggyh0"]
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="3_ainy2"]
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="4_jsav2"]
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="6_d8n83"]
@@ -16,6 +17,11 @@
 [ext_resource type="PackedScene" path="res://packed_scenes/not_a_player_onion.tscn" id="21_onion"]
 
 [node name="MovementTutorial" type="Node3D" unique_id=619595399]
+
+[node name="LevelComplete" parent="." unique_id=1726107290 instance=ExtResource("1_ggyh0")]
+level_title = "Movement Tutorial"
+next_level_scene = "res://scenes/levels/runway_level_01.tscn"
+start_hidden = true
 
 [node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("1_0nxdr")]
 
@@ -125,6 +131,8 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 
 [node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("20_fygee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.54615, 0)
+
+[connection signal="level_completed" from="Objects/Goal_2" to="LevelComplete" method="show_on_finish"]
 
 [editable path="Objects/Onion_1"]
 [editable path="Objects/Onion_2"]
