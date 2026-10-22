@@ -19,9 +19,9 @@ enum VegetableType { ONION, TOMATO, EGG, ICECREAM, LOLLYPOP }
 ## To change player size edit the transform scale for it's CollisionShape3D property
 @export_group("Character Stats")
 @export var speed_force := 20.0
-@export var jump_impulse := 9.5
+@export var jump_impulse := 9
 @export var health := 100
-@export_range(0.0, 1.0) var bounciness := 0.3
+@export_range(0.0, 1.0) var bounciness := 0.1
 @export var vegetable_type: VegetableType = VegetableType.ONION
 
 @onready var collider := $CollisionShape3D
@@ -45,8 +45,16 @@ var is_eliminated := false
 var last_attacker: Player
 var last_hit_msec := 0
 var _max_health: int
+## How many times larger than normal the player is, from the scale of the Player node.
+## Force, jump and gravity grow with it, so a big player rolls, jumps and falls like a normal
+## one, only bigger.
+var size_factor := 1.0
+var _body_scale := Vector3.ONE
 
 func _ready() -> void:
+	_body_scale = scale
+	size_factor = maxf(scale.x, 0.01)
+	gravity_scale *= size_factor
 	spawn_position = global_position
 	_max_health = health
 	add_to_group(&"players")
@@ -178,7 +186,7 @@ func respawn(world_position: Vector3) -> void:
 		if is_instance_valid(visual):
 			visual.scale = original_visual_scale
 	freeze = true
-	global_transform = Transform3D(Basis.IDENTITY, world_position)
+	global_transform = Transform3D(Basis.from_scale(_body_scale), world_position)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	on_ground = false
@@ -239,7 +247,7 @@ func move(input: Vector2) -> void:
 	var wish := Vector3(input.x, 0.0, input.y)
 
 	if camera == null:
-		apply_central_force(wish * speed_force)
+		apply_central_force(wish * speed_force * size_factor)
 		return
 
 	var right := camera.global_basis.x
@@ -248,14 +256,14 @@ func move(input: Vector2) -> void:
 	back.y = 0.0
 	var direction := right.normalized() * input.x + back.normalized() * input.y
 
-	apply_central_force(direction * speed_force)
+	apply_central_force(direction * speed_force * size_factor)
 	
 func jump() -> void:
 	if not on_ground:
 		if is_instance_valid(gadget) and gadget.has_method("air_jump"):
 			gadget.air_jump(self)
 		return
-	apply_central_impulse(Vector3.UP * jump_impulse)
+	apply_central_impulse(Vector3.UP * jump_impulse * size_factor)
 	on_ground = false
 
 func has_ground_contact(state: PhysicsDirectBodyState3D) -> bool:
