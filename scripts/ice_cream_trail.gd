@@ -32,6 +32,8 @@ static var _blob_cache: Texture2D
 var _player: Player
 var _collider: CollisionShape3D
 var _base_scale := Vector3.ONE
+## How much larger than normal the player is, from the scale of the Player node.
+var _size := 1.0
 var _canvas: MultiMeshInstance3D
 var _multimesh: MultiMesh
 var _stamped := 0
@@ -54,6 +56,7 @@ func _ready() -> void:
 		set_physics_process(false)
 		return
 	_base_scale = _collider.scale
+	_size = _player.scale.x
 	_rng.randomize()
 	_canvas = _create_canvas()
 	_multimesh = _canvas.multimesh
@@ -75,12 +78,12 @@ func _physics_process(delta: float) -> void:
 			_set_frost(false)
 	else:
 		_melt(delta / melt_seconds)
-	if _dying or _player.linear_velocity.length() < min_speed:
+	if _dying or _player.linear_velocity.length() < min_speed * _size:
 		return
 
 	var origin := _player.global_position
 	_ray.from = origin
-	_ray.to = origin + Vector3.DOWN * (_player.get_collision_clearance() + ground_reach)
+	_ray.to = origin + Vector3.DOWN * ((_player.get_collision_clearance() + ground_reach) * _size)
 	_ray.exclude = [_player.get_rid()]
 	_ray.collision_mask = _player.collision_mask
 	var hit := _player.get_world_3d().direct_space_state.intersect_ray(_ray)
@@ -90,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var point: Vector3 = hit.position
-	if _has_last and point.distance_to(_last_point) < maxf(spacing * _applied_scale, 0.15):
+	if _has_last and point.distance_to(_last_point) < maxf(spacing * _applied_scale * _size, 0.15):
 		return
 	_has_last = true
 	_last_point = point
@@ -168,9 +171,9 @@ func _finish_death() -> void:
 func _stamp(point: Vector3, normal: Vector3) -> void:
 	# The blob tapers as the ice cream shrinks, with a little variety so they do
 	# not look stamped from one mould.
-	var size := stamp_size * _applied_scale * _rng.randf_range(0.85, 1.15)
+	var size := stamp_size * _applied_scale * _size * _rng.randf_range(0.85, 1.15)
 	var stretch := _rng.randf_range(0.8, 1.25)
-	var placement := _blob_transform(point, normal, size * stretch, size / stretch, _rng.randf() * TAU, lift)
+	var placement := _blob_transform(point, normal, size * stretch, size / stretch, _rng.randf() * TAU, lift * _size)
 
 	var capacity := _multimesh.instance_count
 	_multimesh.set_instance_transform(_stamped % capacity, placement)

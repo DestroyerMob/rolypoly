@@ -57,7 +57,7 @@ func stick_topping(topping_id: StringName, mesh: Mesh, colours: Array[Color], wo
 	var centre := collider.global_position
 	var radius := (collider.shape as SphereShape3D).radius * collider.global_transform.basis.get_scale().x * surface_fit
 	var to_local := visual.global_transform.affine_inverse()
-	var piece_scale := size / visual.global_transform.basis.get_scale().x
+	var piece_scale := size * _player.scale.x / visual.global_transform.basis.get_scale().x
 
 	var base := (world_point - centre).normalized()
 	if base.is_zero_approx():

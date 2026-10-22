@@ -67,8 +67,7 @@ func _earned_stars(player: Node) -> int:
 		return stars
 	var total := 0
 	for goal in goals:
-		if goal.is_earned(player):
-			total += goal.stars_worth
+		total += goal.earned_stars(player)
 	return mini(total, 3)
 
 
