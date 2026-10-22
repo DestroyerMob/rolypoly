@@ -4,13 +4,14 @@ extends CanvasLayer
 ## The end-of-level card: a title banner, up to three stars, and Retry / Next Level / Home.
 
 const Store = preload("res://scripts/level_editor/level_store.gd")
+const Progress = preload("res://scripts/level_progress.gd")
 
 signal retry_pressed
 signal next_pressed
 signal home_pressed
 
 @export var level_title := "Level Complete"
-@export_range(0, 3) var stars := 3
+@export_range(0, 3) var stars := 0
 @export_file("*.tscn") var home_scene := "res://scenes/main_menu_alternative.tscn"
 @export var pause_game := true
 @export var show_mouse := true
@@ -34,12 +35,17 @@ func _ready() -> void:
 
 
 ## Shows the card. Pass a title or star count to override what is set in the Inspector.
-func show_result(result_title := "", star_count := -1) -> void:
+func show_result(result_title := "", star_count := -1, player: Node = null) -> void:
 	if not result_title.is_empty():
 		level_title = result_title
 	if star_count >= 0:
 		stars = star_count
+	else:
+		stars = _earned_stars(player)
 	_refresh()
+	var current := get_tree().current_scene
+	if current != null:
+		Progress.record(current.scene_file_path, stars)
 	visible = true
 	if pause_game:
 		get_tree().paused = true
@@ -49,8 +55,21 @@ func show_result(result_title := "", star_count := -1) -> void:
 
 
 ## For connecting to a finish area's level_completed signal, which passes the player.
-func show_on_finish(_player: Node = null) -> void:
-	show_result()
+func show_on_finish(player: Node = null) -> void:
+	show_result("", -1, player)
+
+
+## Adds up the stars of every StarGoal in the level that was earned, capped at 3. A level with
+## no goals keeps the `stars` set in the Inspector.
+func _earned_stars(player: Node) -> int:
+	var goals := get_tree().get_nodes_in_group(&"star_goal")
+	if goals.is_empty():
+		return stars
+	var total := 0
+	for goal in goals:
+		if goal.is_earned(player):
+			total += goal.stars_worth
+	return mini(total, 3)
 
 
 func _refresh() -> void:

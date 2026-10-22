@@ -2,7 +2,11 @@ class_name LevelButton
 extends Button
 
 @export var level_number: int = 1
-@export_range(0, 3) var stars_earned: int = 0
+@export_range(0, 3) var stars_earned: int = 0:
+	set(value):
+		stars_earned = value
+		if is_node_ready():
+			_update_stars()
 @export var unlocked: bool = true:
 	set(value):
 		unlocked = value

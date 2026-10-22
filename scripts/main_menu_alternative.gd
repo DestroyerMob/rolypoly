@@ -1,6 +1,7 @@
 extends Node3D
 
 const Store = preload("res://scripts/level_editor/level_store.gd")
+const Progress = preload("res://scripts/level_progress.gd")
 const KITCHEN_GYM := "res://scenes/gym_pieces.tscn"
 
 var _camera_tween: Tween
@@ -81,8 +82,11 @@ func _refresh_level_slots() -> void:
 			continue
 		button.unlocked = button.level_number <= _level_set.size()
 		button.tooltip_text = ""
+		button.stars_earned = 0
 		if button.unlocked:
-			button.tooltip_text = Store.entry_name(_level_set[button.level_number - 1])
+			var entry := _level_set[button.level_number - 1]
+			button.tooltip_text = Store.entry_name(entry)
+			button.stars_earned = Progress.stars(entry)
 
 
 func _on_level_pressed(level_number: int) -> void:

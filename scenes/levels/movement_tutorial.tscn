@@ -15,12 +15,20 @@
 [ext_resource type="PackedScene" uid="uid://bixjatfjotmun" path="res://scenes/props/book.tscn" id="18_7k767"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="20_fygee"]
 [ext_resource type="PackedScene" path="res://packed_scenes/not_a_player_onion.tscn" id="21_onion"]
+[ext_resource type="Script" uid="uid://rfiv5xf0sdsh" path="res://scripts/star_goals/star_goal_finish.gd" id="22_finishgoal"]
 
 [node name="MovementTutorial" type="Node3D" unique_id=619595399]
 
 [node name="LevelComplete" parent="." unique_id=1726107290 instance=ExtResource("1_ggyh0")]
 level_title = "Movement Tutorial"
 start_hidden = true
+
+[node name="StarGoals" type="Node" parent="." unique_id=142365312]
+
+[node name="FinishGoal" type="Node" parent="StarGoals" unique_id=19080733]
+script = ExtResource("22_finishgoal")
+description = "Finish the level"
+stars_worth = 3
 
 [node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("1_0nxdr")]
 
@@ -56,7 +64,7 @@ camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
 transform = Transform3D(3.7022269, 0, 0, 0, 3.7022269, 0, 0, 0, 3.7022269, -93, 0, -475)
 
 [node name="Goal_2" parent="Objects" unique_id=142908771 instance=ExtResource("10_xn7sd")]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 19, 27.874805, -471.32462)
+transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 3, 11.344542, 24.547504, -462.919)
 
 [node name="Cardboard_3" parent="Objects" unique_id=583796553 instance=ExtResource("12_hysbs")]
 transform = Transform3D(6.581023e-07, 15.055626, -1.3162046e-06, 15.055626, -6.581023e-07, 0, -5.7533134e-14, -1.3162046e-06, -15.055626, -116, 17.453842, -467)
