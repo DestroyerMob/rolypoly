@@ -1,13 +1,18 @@
 extends Node3D
 signal completed
+signal lost
 const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const PICK_LAYER := 1 << 19
 var objects: Array[Node3D] = []
+var watchers: Array = []
+var links: MeshInstance3D
 var rig: PlayerRig
 var mount: GadgetMount
 var play_camera: Camera3D
+var brawl: FreeForAll
 var start_position := Vector3.ZERO
 var fall_height := -140.0
+var _lowest := INF
 var _finished := false
 
 func build(document: Dictionary, editing: bool) -> void:
@@ -28,17 +33,121 @@ func build(document: Dictionary, editing: bool) -> void:
 			preview.visible = editing
 			if editing and entry.id == "spawn":
 				preview.add_child(character_preview(Catalog.player_of(document)))
+			elif editing and entry.id == "npc":
+				preview.add_child(character_preview(node.character_key()))
 		add_child(node)
 		objects.append(node)
 		fall_height = minf(fall_height, node.position.y - 30.0)
+		_lowest = minf(_lowest, node.position.y)
 		if editing:
 			freeze_for_edit(node)
 			add_pick_body(node)
 		elif entry.id == "goal":
 			node.connect("level_completed", _on_completed)
-	if not editing:
+		elif entry.id == "npc":
+			node.spawn.call_deferred(Catalog.PLAYERS[node.character_key()].scene)
+	if editing:
+		draw_links(document)
+	else:
+		_wire_watchers(document)
+		if Catalog.mode_of(document) == "ffa":
+			_start_match()
 		_update_spawn(rig.current_player)
 		rig.current_player.respawn(rig.current_player.spawn_position)
+
+func node_of_uid(document: Dictionary, uid: int) -> Node3D:
+	for index in document.objects.size():
+		if int(document.objects[index].get("uid", 0)) == uid:
+			return objects[index]
+	return null
+
+func _wire_watchers(document: Dictionary) -> void:
+	for index in document.objects.size():
+		var entry: Dictionary = document.objects[index]
+		if entry.id != "watcher":
+			continue
+		var watcher: Variant = objects[index]
+		for target in entry.get("targets", []):
+			var node := node_of_uid(document, int(target.uid))
+			if node != null:
+				var target_index: int = node.get_meta("level_index")
+				watcher.targets.append({"node": node, "id": document.objects[target_index].id,
+					"action": target.action, "mode": target.mode})
+		watcher.source_uid = int(entry.get("source", 0))
+		watchers.append(watcher)
+	if watchers.is_empty():
+		return
+	rig.current_player.died.connect(func():
+		for watcher in watchers:
+			watcher.player_died()
+	)
+	for index in document.objects.size():
+		var entry: Dictionary = document.objects[index]
+		if entry.id == "goal":
+			objects[index].connect("npc_finished", func(_npc: NPC):
+				for watcher in watchers:
+					watcher.npc_finished()
+			)
+		elif entry.id == "scale":
+			var uid := int(entry.get("uid", 0))
+			objects[index].connect("weight_changed", func(weight: float, _id: StringName):
+				for watcher in watchers:
+					watcher.scale_weighed(weight, uid)
+			)
+
+func _start_match() -> void:
+	brawl = FreeForAll.new()
+	brawl.name = "FreeForAll"
+	brawl.kill_height = _lowest - 30.0
+	add_child(brawl)
+	brawl.match_won.connect(func(winner: Player):
+		if winner == rig.current_player:
+			_on_completed(winner)
+		else:
+			_on_lost()
+	)
+	rig.current_player.eliminated.connect(_on_lost)
+
+func _on_lost() -> void:
+	if not _finished:
+		_finished = true
+		lost.emit.call_deferred()
+
+func draw_links(document: Dictionary) -> void:
+	if is_instance_valid(links):
+		links.free()
+	var mesh := ImmediateMesh.new()
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.vertex_color_use_as_albedo = true
+	material.no_depth_test = true
+	var drawn := false
+	for index in document.objects.size():
+		var entry: Dictionary = document.objects[index]
+		if entry.id != "watcher":
+			continue
+		var from := objects[index].global_transform * bounds_of(objects[index]).get_center()
+		var ends: Array = []
+		for target in entry.get("targets", []):
+			ends.append([node_of_uid(document, int(target.uid)), Color(0.75, 0.6, 1)])
+		if entry.has("source"):
+			ends.append([node_of_uid(document, int(entry.source)), Color(0.4, 0.95, 0.75)])
+		for end in ends:
+			if end[0] == null:
+				continue
+			if not drawn:
+				mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
+				drawn = true
+			mesh.surface_set_color(end[1])
+			mesh.surface_add_vertex(from)
+			mesh.surface_add_vertex(end[0].global_transform * bounds_of(end[0]).get_center())
+	if drawn:
+		mesh.surface_end()
+	links = MeshInstance3D.new()
+	links.name = "WatcherLinks"
+	links.mesh = mesh
+	links.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(links)
 
 func _create_player(character: String) -> void:
 	rig = PlayerRig.new()
@@ -79,16 +188,17 @@ func _update_spawn(player: Player) -> void:
 	player.spawn_position = start_position + Vector3.UP * player.spawn_clearance
 
 func _physics_process(_delta: float) -> void:
-	if rig != null and is_instance_valid(rig.current_player) and not _finished:
-		if rig.current_player.global_position.y < fall_height:
-			rig.current_player.respawn(rig.current_player.spawn_position)
+	if _finished:
+		return
+	for player: Player in get_tree().get_nodes_in_group(&"players"):
+		if player.global_position.y < fall_height:
+			player.die()
 
 func _on_completed(_player: Player) -> void:
 	if not _finished:
 		_finished = true
 		completed.emit.call_deferred()
 
-## The level's character standing on the start marker, as meshes only.
 static func character_preview(character: String) -> Node3D:
 	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
 	Catalog.size_player(player)

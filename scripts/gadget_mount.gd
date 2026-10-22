@@ -2,6 +2,7 @@ class_name GadgetMount
 extends Node3D
 
 @export var player_rig: PlayerRig
+@export var player: Player
 @export var camera: Camera3D
 @export var side_distance := 4.0
 @export var height := 0.8
@@ -13,7 +14,16 @@ var _gadget: Node3D
 
 
 func _ready() -> void:
-	player_rig.player_swapped.connect(func(_player: Player): _update_attachment())
+	if is_instance_valid(player_rig):
+		player_rig.player_swapped.connect(func(_player: Player): _update_attachment())
+
+
+func get_wearer() -> Player:
+	if is_instance_valid(player):
+		return player
+	if is_instance_valid(player_rig) and is_instance_valid(player_rig.current_player):
+		return player_rig.current_player
+	return null
 
 
 func equip(scene: PackedScene, overrides: Dictionary = {}) -> void:
@@ -37,9 +47,9 @@ func unequip(expected_gadget: Node3D = null) -> void:
 	if expected_gadget != null and expected_gadget != _gadget:
 		return
 	if is_instance_valid(_gadget):
-		if is_instance_valid(player_rig) and is_instance_valid(player_rig.current_player):
-			if player_rig.current_player.gadget == _gadget:
-				player_rig.current_player.gadget = null
+		var wearer := get_wearer()
+		if wearer != null and wearer.gadget == _gadget:
+			wearer.gadget = null
 		remove_child(_gadget)
 		_gadget.queue_free()
 	_gadget = null
@@ -58,17 +68,15 @@ func _physics_process(_delta: float) -> void:
 func _update_attachment() -> void:
 	if not is_instance_valid(_gadget):
 		return
-	visible = is_instance_valid(player_rig) and is_instance_valid(camera)
+	var wearer := get_wearer()
+	visible = wearer != null and (is_instance_valid(camera) or is_instance_valid(player))
 	if not visible:
 		return
-	visible = is_instance_valid(player_rig.current_player)
-	if not visible:
-		return
-	player_rig.current_player.gadget = _gadget
-	var aim := camera.global_basis.orthonormalized()
+	wearer.gadget = _gadget
+	var aim := camera.global_basis.orthonormalized() if is_instance_valid(camera) else Basis.IDENTITY
 	var right := Vector3(aim.x.x, 0, aim.x.z).normalized()
-	global_transform = Transform3D(aim, player_rig.current_player.global_position
+	global_transform = Transform3D(aim, wearer.global_position
 		+ right * side_distance + Vector3.UP * height)
 	_gadget.position = model_offset
 	if _gadget.has_method("update_attachment"):
-		_gadget.update_attachment(player_rig.current_player, self)
+		_gadget.update_attachment(wearer, self)

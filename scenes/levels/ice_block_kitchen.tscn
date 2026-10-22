@@ -1,27 +1,26 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://otcolqm7vi6g"]
 
-[ext_resource type="Script" path="res://scripts/ice/ice_level.gd" id="1_cur5o"]
-[ext_resource type="Shader" path="res://assets/shaders/ice_kitchen_surface.gdshader" id="2_j1yte"]
+[ext_resource type="Script" uid="uid://l5a8xw6npr3m" path="res://scripts/ice/ice_level.gd" id="1_cur5o"]
+[ext_resource type="Shader" uid="uid://bah4rp8wue15a" path="res://assets/shaders/ice_kitchen_surface.gdshader" id="2_j1yte"]
 [ext_resource type="PackedScene" path="res://scenes/ice/cold_station.tscn" id="3_m8k2k"]
 [ext_resource type="PackedScene" path="res://scenes/ice/hotplate.tscn" id="4_vjwjy"]
 [ext_resource type="PackedScene" path="res://scenes/ice/crosswind_fan.tscn" id="5_n8owp"]
 [ext_resource type="PackedScene" path="res://scenes/ice/rotating_ice_platter.tscn" id="6_yyki6"]
 [ext_resource type="PackedScene" path="res://scenes/ice/freezer_door.tscn" id="7_1wq0w"]
 [ext_resource type="PackedScene" path="res://scenes/ice/steam_kettle.tscn" id="8_i2h2s"]
-[ext_resource type="Script" path="res://scripts/ice/ice_crystal.gd" id="9_gbs6k"]
-[ext_resource type="PackedScene" path="res://assets/models/ice_kitchen/DessertBowl.glb" id="10_xjfi4"]
-[ext_resource type="Script" path="res://scripts/ice/ice_zone.gd" id="11_fgfiu"]
-[ext_resource type="PackedScene" path="res://assets/models/ice_kitchen/FreezerCabinet.glb" id="12_7t8lc"]
-[ext_resource type="PackedScene" path="res://assets/models/ice_kitchen/IceSink.glb" id="13_i0mmy"]
-[ext_resource type="Shader" path="res://assets/shaders/sink_water.gdshader" id="14_p1r08"]
-[ext_resource type="Script" path="res://scripts/obstacles/sinkable_dish.gd" id="15_s1slr"]
-[ext_resource type="PackedScene" path="res://scenes/props/distinct_oven.tscn" id="16_tg1gi"]
-[ext_resource type="Script" path="res://scripts/props/distinct_oven.gd" id="17_1mpjt"]
-[ext_resource type="PackedScene" path="res://assets/models/obstacles/sink/SinkBowl.glb" id="18_1ttxe"]
-[ext_resource type="Script" path="res://scripts/ice/ice_player.gd" id="19_eyl15"]
-[ext_resource type="Shader" path="res://assets/shaders/ice_shell.gdshader" id="20_ixef8"]
-[ext_resource type="Script" path="res://scripts/ice/ice_camera.gd" id="21_ecmo2"]
-[ext_resource type="Script" path="res://scripts/ice/ice_map.gd" id="22_kjn70"]
+[ext_resource type="Script" uid="uid://57n6davpuio8" path="res://scripts/ice/ice_crystal.gd" id="9_gbs6k"]
+[ext_resource type="PackedScene" uid="uid://c4f5ci7rioc0v" path="res://assets/models/ice_kitchen/DessertBowl.glb" id="10_xjfi4"]
+[ext_resource type="Script" uid="uid://na7mok8ropes" path="res://scripts/ice/ice_zone.gd" id="11_fgfiu"]
+[ext_resource type="PackedScene" uid="uid://cn8pd768we55o" path="res://assets/models/ice_kitchen/FreezerCabinet.glb" id="12_7t8lc"]
+[ext_resource type="PackedScene" uid="uid://cgv5dog48m1d0" path="res://assets/models/ice_kitchen/IceSink.glb" id="13_i0mmy"]
+[ext_resource type="Shader" uid="uid://bilhhkms18i3g" path="res://assets/shaders/sink_water.gdshader" id="14_p1r08"]
+[ext_resource type="Script" uid="uid://dh51a6rve1rrf" path="res://scripts/obstacles/sinkable_dish.gd" id="15_s1slr"]
+[ext_resource type="PackedScene" uid="uid://c0naubia5smf1" path="res://scenes/props/distinct_oven.tscn" id="16_tg1gi"]
+[ext_resource type="PackedScene" uid="uid://cq1oc8jf7ou8p" path="res://assets/models/obstacles/sink/SinkBowl.glb" id="18_1ttxe"]
+[ext_resource type="Script" uid="uid://c83er6jk6xv6i" path="res://scripts/ice/ice_player.gd" id="19_eyl15"]
+[ext_resource type="Shader" uid="uid://d2tv6u4vqpkey" path="res://assets/shaders/ice_shell.gdshader" id="20_ixef8"]
+[ext_resource type="Script" uid="uid://dxhqejnt6nl36" path="res://scripts/ice/ice_camera.gd" id="21_ecmo2"]
+[ext_resource type="Script" uid="uid://cfxeka6tc1qbp" path="res://scripts/ice/ice_map.gd" id="22_kjn70"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5vgv"]
 albedo_color = Color(0.09019608, 0.28627452, 0.29411766, 1)
@@ -1684,11 +1683,11 @@ size = Vector3(0.08, 0.015, 4)
 render_priority = 0
 shader = ExtResource("14_p1r08")
 shader_parameter/shallow_color = Color(0.08, 0.56, 0.65, 0.78)
-shader_parameter/deep_color = null
-shader_parameter/highlight_color = null
-shader_parameter/wave_height = null
-shader_parameter/wave_speed = null
-shader_parameter/wave_scale = null
+shader_parameter/deep_color = Color(0.015, 0.2, 0.38, 0.82)
+shader_parameter/highlight_color = Color(0.62, 0.94, 1, 1)
+shader_parameter/wave_height = 0.045
+shader_parameter/wave_speed = 1.15
+shader_parameter/wave_scale = 11.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6ivru"]
 size = Vector2(15, 13)
@@ -2013,6 +2012,9 @@ size = Vector3(7.2, 8, 0.35)
 albedo_color = Color(0.5254902, 0.7490196, 0.78039217, 1)
 metallic = 0.12
 roughness = 0.3
+emission_enabled = true
+emission = Color(1, 0.827451, 0.5921569, 1)
+emission_energy_multiplier = 1.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_qd1bk"]
 size = Vector3(6.5, 7.3, 0.12)
@@ -2939,7 +2941,7 @@ radius = 0.6
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uwff1"]
 render_priority = 0
 shader = ExtResource("20_ixef8")
-shader_parameter/ice_color = null
+shader_parameter/ice_color = Color(0.12, 0.48, 0.69, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_xjeii"]
 radius = 0.6
@@ -4362,43 +4364,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6, 5.2, -49)
 material_override = SubResource("ShaderMaterial_cr1gs")
 mesh = SubResource("BoxMesh_12ux1")
 
-[node name="ColdStation" type="Node3D" parent="." unique_id=535302008 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation" parent="." unique_id=535302008 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08, 5)
 
-[node name="Hotplate" type="Node3D" parent="." unique_id=383253937 instance=ExtResource("4_vjwjy")]
+[node name="Hotplate" parent="." unique_id=383253937 instance=ExtResource("4_vjwjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08, -3)
 
-[node name="ColdStation2" type="Node3D" parent="." unique_id=1801415066 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation2" parent="." unique_id=1801415066 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08, -10)
 
-[node name="CrosswindFan" type="Node3D" parent="." unique_id=1623161893 instance=ExtResource("5_n8owp")]
+[node name="CrosswindFan" parent="." unique_id=1623161893 instance=ExtResource("5_n8owp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 3, -16)
 
-[node name="ColdStation3" type="Node3D" parent="." unique_id=252228537 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation3" parent="." unique_id=252228537 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.08, -22)
 
-[node name="RotatingIcePlatter" type="Node3D" parent="." unique_id=1967943389 instance=ExtResource("6_yyki6")]
+[node name="RotatingIcePlatter" parent="." unique_id=1967943389 instance=ExtResource("6_yyki6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.96, -23)
 
-[node name="ColdStation4" type="Node3D" parent="." unique_id=1519567257 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation4" parent="." unique_id=1519567257 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3.08, -24)
 
-[node name="FreezerDoor" type="Node3D" parent="." unique_id=818886041 instance=ExtResource("7_1wq0w")]
+[node name="FreezerDoor" parent="." unique_id=818886041 instance=ExtResource("7_1wq0w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, -31)
 
-[node name="CrosswindFan2" type="Node3D" parent="." unique_id=1463395153 instance=ExtResource("5_n8owp")]
+[node name="CrosswindFan2" parent="." unique_id=1463395153 instance=ExtResource("5_n8owp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 23, 3, -37)
 
-[node name="Hotplate2" type="Node3D" parent="." unique_id=1683132324 instance=ExtResource("4_vjwjy")]
+[node name="Hotplate2" parent="." unique_id=1683132324 instance=ExtResource("4_vjwjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3.08, -40)
 
-[node name="ColdStation5" type="Node3D" parent="." unique_id=646148731 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation5" parent="." unique_id=646148731 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3.08, -45)
 
-[node name="ColdStation6" type="Node3D" parent="." unique_id=663244654 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation6" parent="." unique_id=663244654 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5.08, -53)
 
-[node name="SteamKettle" type="Node3D" parent="." unique_id=1140428199 instance=ExtResource("8_i2h2s")]
+[node name="SteamKettle" parent="." unique_id=1140428199 instance=ExtResource("8_i2h2s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 3, -16)
 
 [node name="RecipeBalcony" type="StaticBody3D" parent="." unique_id=2049117358]
@@ -4421,7 +4423,7 @@ mesh = SubResource("BoxMesh_ysmaw")
 [node name="@CollisionShape3D@18" type="CollisionShape3D" parent="BalconyReturn" unique_id=1267977937]
 shape = SubResource("BoxShape3D_qpsx4")
 
-[node name="ColdStation7" type="Node3D" parent="." unique_id=1606334767 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation7" parent="." unique_id=1606334767 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5.94, -9)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1785268126]
@@ -4585,7 +4587,7 @@ mesh = SubResource("BoxMesh_lu7l4")
 [node name="@CollisionShape3D@25" type="CollisionShape3D" parent="CounterLip4" unique_id=1940968920]
 shape = SubResource("BoxShape3D_a5npc")
 
-[node name="DessertBowl" type="Node3D" parent="." unique_id=1636814871 instance=ExtResource("10_xjfi4")]
+[node name="DessertBowl" parent="." unique_id=1636814871 instance=ExtResource("10_xjfi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -53)
 
 [node name="DessertSpoon" type="StaticBody3D" parent="." unique_id=1884203756]
@@ -5059,10 +5061,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.13, 0)
 material_override = SubResource("StandardMaterial3D_ftgl3")
 mesh = SubResource("BoxMesh_dyyqf")
 
-[node name="RotatingIcePlatter2" type="Node3D" parent="." unique_id=1834417081 instance=ExtResource("6_yyki6")]
+[node name="RotatingIcePlatter2" parent="." unique_id=1834417081 instance=ExtResource("6_yyki6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.96, -35)
 
-[node name="ColdStation8" type="Node3D" parent="." unique_id=769059849 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation8" parent="." unique_id=769059849 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.08, -38)
 
 [node name="Label3D7" type="Label3D" parent="." unique_id=237425995]
@@ -5079,7 +5081,7 @@ DESSERT ↑"
 font_size = 30
 outline_size = 5
 
-[node name="FreezerCabinet" type="Node3D" parent="." unique_id=937246687 instance=ExtResource("12_7t8lc")]
+[node name="FreezerCabinet" parent="." unique_id=937246687 instance=ExtResource("12_7t8lc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -42)
 
 [node name="FreezerShelf" type="StaticBody3D" parent="." unique_id=147604617]
@@ -5150,7 +5152,7 @@ light_color = Color(0.5254902, 0.8627451, 1, 1)
 light_energy = 2.0
 omni_range = 7.0
 
-[node name="IceSink" type="Node3D" parent="." unique_id=1745847974 instance=ExtResource("13_i0mmy")]
+[node name="IceSink" parent="." unique_id=1745847974 instance=ExtResource("13_i0mmy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 3, -32)
 
 [node name="SinkCabinet" type="MeshInstance3D" parent="." unique_id=1462159627]
@@ -5238,7 +5240,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.13, 0)
 material_override = SubResource("StandardMaterial3D_ftgl3")
 mesh = SubResource("BoxMesh_alkw5")
 
-[node name="ColdStation9" type="Node3D" parent="." unique_id=1529316600 instance=ExtResource("3_m8k2k")]
+[node name="ColdStation9" parent="." unique_id=1529316600 instance=ExtResource("3_m8k2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4, 3.08, -26)
 
 [node name="GlacialWater" type="MeshInstance3D" parent="." unique_id=273170429]
@@ -5882,10 +5884,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.7, 3.04, -38)
 material_override = SubResource("StandardMaterial3D_005x8")
 mesh = SubResource("BoxMesh_7ids0")
 
-[node name="DistinctOven" type="StaticBody3D" parent="." unique_id=2073759136 instance=ExtResource("16_tg1gi")]
+[node name="DistinctOven" parent="." unique_id=2073759136 instance=ExtResource("16_tg1gi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, -55)
 physics_material_override = SubResource("PhysicsMaterial_oven")
-script = ExtResource("17_1mpjt")
 
 [node name="DiningTable" type="MeshInstance3D" parent="." unique_id=432032387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 18)
@@ -6693,13 +6694,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.045, 1)
 material_override = SubResource("StandardMaterial3D_h5vgv")
 mesh = SubResource("BoxMesh_0om31")
 
-[node name="SinkBowl" type="Node3D" parent="." unique_id=1849330802 instance=ExtResource("18_1ttxe")]
+[node name="SinkBowl" parent="." unique_id=1849330802 instance=ExtResource("18_1ttxe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.9, 3.24, 1.1)
 
-[node name="@Node3D@63" type="Node3D" parent="." unique_id=1751968173 instance=ExtResource("18_1ttxe")]
+[node name="@Node3D@63" parent="." unique_id=1751968173 instance=ExtResource("18_1ttxe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.9, 3.42, 1.1)
 
-[node name="@Node3D@64" type="Node3D" parent="." unique_id=1337379828 instance=ExtResource("18_1ttxe")]
+[node name="@Node3D@64" parent="." unique_id=1337379828 instance=ExtResource("18_1ttxe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.9, 3.6, 1.1)
 
 [node name="TeaTowel2" type="MeshInstance3D" parent="." unique_id=907232043]
@@ -6742,13 +6743,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.699999, 3.045, -34)
 material_override = SubResource("StandardMaterial3D_h5vgv")
 mesh = SubResource("BoxMesh_627t3")
 
-[node name="@Node3D@65" type="Node3D" parent="." unique_id=808916274 instance=ExtResource("18_1ttxe")]
+[node name="@Node3D@65" parent="." unique_id=808916274 instance=ExtResource("18_1ttxe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 21.8, 3.24, -33.9)
 
-[node name="@Node3D@66" type="Node3D" parent="." unique_id=474117663 instance=ExtResource("18_1ttxe")]
+[node name="@Node3D@66" parent="." unique_id=474117663 instance=ExtResource("18_1ttxe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 21.8, 3.42, -33.9)
 
-[node name="@Node3D@67" type="Node3D" parent="." unique_id=1268984995 instance=ExtResource("18_1ttxe")]
+[node name="@Node3D@67" parent="." unique_id=1268984995 instance=ExtResource("18_1ttxe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 21.8, 3.6, -33.9)
 
 [node name="PendantCord" type="MeshInstance3D" parent="." unique_id=1710352266]

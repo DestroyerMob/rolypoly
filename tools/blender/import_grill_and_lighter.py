@@ -1,9 +1,3 @@
-"""Convert the supplied grill and lighter archives into reusable Godot models.
-
-Run with Blender --background --factory-startup --disable-autoexec --python
-tools/blender/import_grill_and_lighter.py after extracting the archives into
-their respective assets/models directories. Original sources stay untouched.
-"""
 
 from pathlib import Path
 

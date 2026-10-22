@@ -10,6 +10,7 @@ radius = 2.2
 
 [node name="Player" unique_id=706891313 instance=ExtResource("1_player")]
 vegetable_type = 3
+hit_color = Color(0.97, 0.95, 0.88, 1)
 spawn_clearance = 1.0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=181200873]

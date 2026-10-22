@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/ice_cube.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/ice_delivery/shell.gd" id="2"]
+
+[node name="IceBlockShell" instance=ExtResource("1")]
+script = ExtResource("2")
+size_multiplier = 1.35
+ambient_melt_seconds = 22.0

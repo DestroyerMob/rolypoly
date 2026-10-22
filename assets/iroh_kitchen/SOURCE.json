@@ -1,0 +1,582 @@
+{
+  "branch": "origin/dev/iroh",
+  "commit": "b39ba8c4a22bb68463d24b2fe525a85b3bd250ce",
+  "note": "Environment-only snapshot. Original project files unchanged.",
+  "files": [
+    {
+      "source": "materials/level_prototyping/world_grid_prototype.gdshader",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/world_grid_prototype.gdshader",
+      "bytes": 3859
+    },
+    {
+      "source": "materials/level_prototyping/MI_NEUT_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_NEUT_world_grid_prototype.tres",
+      "bytes": 1029
+    },
+    {
+      "source": "materials/level_prototyping/MI_ACC_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_ACC_world_grid_prototype.tres",
+      "bytes": 1029
+    },
+    {
+      "source": "materials/level_prototyping/MI_RDIR_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_RDIR_world_grid_prototype.tres",
+      "bytes": 1029
+    },
+    {
+      "source": "materials/level_prototyping/MI_GATE_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_GATE_world_grid_prototype.tres",
+      "bytes": 1028
+    },
+    {
+      "source": "materials/level_prototyping/MI_REST_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_REST_world_grid_prototype.tres",
+      "bytes": 1029
+    },
+    {
+      "source": "materials/level_prototyping/MI_HAZA_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_HAZA_world_grid_prototype.tres",
+      "bytes": 1022
+    },
+    {
+      "source": "materials/level_prototyping/MI_SURF_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_SURF_world_grid_prototype.tres",
+      "bytes": 1029
+    },
+    {
+      "source": "materials/level_prototyping/MI_MOVE_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_MOVE_world_grid_prototype.tres",
+      "bytes": 1009
+    },
+    {
+      "source": "materials/level_prototyping/MI_GOAL_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_GOAL_world_grid_prototype.tres",
+      "bytes": 1009
+    },
+    {
+      "source": "materials/level_prototyping/MI_CHEC_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_CHEC_world_grid_prototype.tres",
+      "bytes": 1001
+    },
+    {
+      "source": "materials/level_prototyping/MI_DEAD_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_DEAD_world_grid_prototype.tres",
+      "bytes": 1020
+    },
+    {
+      "source": "materials/level_prototyping/MI_FURN_world_grid_prototype.tres",
+      "output": "assets/iroh_kitchen/materials/level_prototyping/MI_FURN_world_grid_prototype.tres",
+      "bytes": 1059
+    },
+    {
+      "source": "scripts/proto_piece.gd",
+      "output": "assets/iroh_kitchen/scripts/proto_piece.gd",
+      "bytes": 3874
+    },
+    {
+      "source": "scripts/proto_box.gd",
+      "output": "assets/iroh_kitchen/scripts/proto_box.gd",
+      "bytes": 431
+    },
+    {
+      "source": "scripts/player_start.gd",
+      "output": "assets/iroh_kitchen/scripts/player_start.gd",
+      "bytes": 1574
+    },
+    {
+      "source": "scripts/player.gd",
+      "output": "assets/iroh_kitchen/scripts/player.gd",
+      "bytes": 6860
+    },
+    {
+      "source": "scripts/props/distinct_oven.gd",
+      "output": "assets/iroh_kitchen/scripts/props/distinct_oven.gd",
+      "bytes": 4338
+    },
+    {
+      "source": "scenes/props/distinct_oven.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/distinct_oven.tscn",
+      "bytes": 7242
+    },
+    {
+      "source": "assets/textures/T_Plaster_Cream_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Plaster_Cream_1K_BC.jpg",
+      "bytes": 927217
+    },
+    {
+      "source": "assets/textures/T_Plaster_Cream_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Plaster_Cream_1K_N.jpg",
+      "bytes": 2594651
+    },
+    {
+      "source": "assets/textures/T_Plaster_Cream_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Plaster_Cream_1K_R.jpg",
+      "bytes": 142970
+    },
+    {
+      "source": "materials/generated/MI_Plaster_Cream.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Plaster_Cream.tres",
+      "bytes": 775
+    },
+    {
+      "source": "assets/models/obstacles/blender/blender_model.tscn",
+      "output": "assets/iroh_kitchen/assets/models/obstacles/blender/blender_model.tscn",
+      "bytes": 895
+    },
+    {
+      "source": "assets/textures/T_Veneer_Rosewood_North_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Veneer_Rosewood_North_1K_BC.jpg",
+      "bytes": 601653
+    },
+    {
+      "source": "assets/textures/T_Veneer_Rosewood_North_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Veneer_Rosewood_North_1K_N.jpg",
+      "bytes": 119273
+    },
+    {
+      "source": "assets/textures/T_Veneer_Rosewood_North_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Veneer_Rosewood_North_1K_R.jpg",
+      "bytes": 282032
+    },
+    {
+      "source": "materials/generated/MI_Veneer_Rosewood_North.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Veneer_Rosewood_North.tres",
+      "bytes": 770
+    },
+    {
+      "source": "assets/textures/T_Tile_Pattern_Star_2x2_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Pattern_Star_2x2_1K_BC.jpg",
+      "bytes": 941832
+    },
+    {
+      "source": "assets/textures/T_Tile_Pattern_Star_2x2_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Pattern_Star_2x2_1K_N.jpg",
+      "bytes": 1017025
+    },
+    {
+      "source": "assets/textures/T_Tile_Pattern_Star_2x2_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Pattern_Star_2x2_1K_R.jpg",
+      "bytes": 436492
+    },
+    {
+      "source": "materials/generated/MI_Tile_Pattern_Star_2x2.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Tile_Pattern_Star_2x2.tres",
+      "bytes": 710
+    },
+    {
+      "source": "scripts/proto_cylinder.gd",
+      "output": "assets/iroh_kitchen/scripts/proto_cylinder.gd",
+      "bytes": 668
+    },
+    {
+      "source": "scripts/art_box.gd",
+      "output": "assets/iroh_kitchen/scripts/art_box.gd",
+      "bytes": 9530
+    },
+    {
+      "source": "scripts/arch_niche.gd",
+      "output": "assets/iroh_kitchen/scripts/arch_niche.gd",
+      "bytes": 8119
+    },
+    {
+      "source": "scripts/art_wall.gd",
+      "output": "assets/iroh_kitchen/scripts/art_wall.gd",
+      "bytes": 9710
+    },
+    {
+      "source": "scripts/wall_opening.gd",
+      "output": "assets/iroh_kitchen/scripts/wall_opening.gd",
+      "bytes": 2057
+    },
+    {
+      "source": "assets/textures/T_Metal_Scratched_1K_MR.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Metal_Scratched_1K_MR.png",
+      "bytes": 1649791
+    },
+    {
+      "source": "materials/MI_Metal_Cabinets_Handle.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Metal_Cabinets_Handle.tres",
+      "bytes": 362
+    },
+    {
+      "source": "scenes/props/handle_bar.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/handle_bar.tscn",
+      "bytes": 968
+    },
+    {
+      "source": "materials/MM_WorldAligned.gdshader",
+      "output": "assets/iroh_kitchen/materials/MM_WorldAligned.gdshader",
+      "bytes": 17585
+    },
+    {
+      "source": "assets/textures/T_Wood_Green_1K_BCpng.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_Green_1K_BCpng.png",
+      "bytes": 1760900
+    },
+    {
+      "source": "assets/textures/T_Wood_1K_N.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_1K_N.png",
+      "bytes": 3243189
+    },
+    {
+      "source": "materials/MI_Wood_Veneer_Cabinets_Vertical.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Wood_Veneer_Cabinets_Vertical.tres",
+      "bytes": 1404
+    },
+    {
+      "source": "scripts/shaker_front.gd",
+      "output": "assets/iroh_kitchen/scripts/shaker_front.gd",
+      "bytes": 5565
+    },
+    {
+      "source": "materials/generated/MI_Plaster_Cream_Dark.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Plaster_Cream_Dark.tres",
+      "bytes": 773
+    },
+    {
+      "source": "assets/textures/T_Tile_Terracotta_Square_Neutral_2K_BC.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Terracotta_Square_Neutral_2K_BC.png",
+      "bytes": 1375248
+    },
+    {
+      "source": "scenes/props/Knob_Round.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/Knob_Round.tscn",
+      "bytes": 953
+    },
+    {
+      "source": "assets/textures/T_Tile_Terracotta_Square_Neutral_2K_N.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Terracotta_Square_Neutral_2K_N.png",
+      "bytes": 1296412
+    },
+    {
+      "source": "assets/textures/T_Tile_Terracotta_Square_Neutral_2K_R.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Terracotta_Square_Neutral_2K_R.png",
+      "bytes": 1081119
+    },
+    {
+      "source": "assets/textures/T_Tile_Floor_Pattern_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Floor_Pattern_1K_BC.jpg",
+      "bytes": 1084946
+    },
+    {
+      "source": "assets/textures/T_Tile_Floor_Pattern_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Floor_Pattern_1K_N.jpg",
+      "bytes": 496927
+    },
+    {
+      "source": "assets/textures/T_Tile_Floor_Pattern_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Floor_Pattern_1K_R.jpg",
+      "bytes": 391110
+    },
+    {
+      "source": "materials/generated/MI_Tile_Floor_Pattern.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Tile_Floor_Pattern.tres",
+      "bytes": 795
+    },
+    {
+      "source": "assets/models/props/timber_corbel.glb",
+      "output": "assets/iroh_kitchen/assets/models/props/timber_corbel.glb",
+      "bytes": 9788
+    },
+    {
+      "source": "scenes/building/timber_corbel.tscn",
+      "output": "assets/iroh_kitchen/scenes/building/timber_corbel.tscn",
+      "bytes": 432
+    },
+    {
+      "source": "assets/shaders/sink_water.gdshader",
+      "output": "assets/iroh_kitchen/assets/shaders/sink_water.gdshader",
+      "bytes": 1354
+    },
+    {
+      "source": "scripts/obstacles/sinkable_dish.gd",
+      "output": "assets/iroh_kitchen/scripts/obstacles/sinkable_dish.gd",
+      "bytes": 2154
+    },
+    {
+      "source": "scenes/obstacles/sink.tscn",
+      "output": "assets/iroh_kitchen/scenes/obstacles/sink.tscn",
+      "bytes": 12048
+    },
+    {
+      "source": "materials/MI_Wood_Veneer_Cabinets_Vertical_Shaker_Front_Light.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Wood_Veneer_Cabinets_Vertical_Shaker_Front_Light.tres",
+      "bytes": 1250
+    },
+    {
+      "source": "assets/textures/T_Canvas_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Canvas_1K_BC.jpg",
+      "bytes": 212516
+    },
+    {
+      "source": "assets/textures/T_Canvas_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Canvas_1K_N.jpg",
+      "bytes": 273275
+    },
+    {
+      "source": "assets/textures/T_Canvas_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Canvas_1K_R.jpg",
+      "bytes": 54344
+    },
+    {
+      "source": "materials/generated/MI_Canvas.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Canvas.tres",
+      "bytes": 723
+    },
+    {
+      "source": "assets/textures/T_Wood_Planks_Scratched_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_Planks_Scratched_1K_BC.jpg",
+      "bytes": 1346766
+    },
+    {
+      "source": "assets/textures/T_Wood_Planks_Scratched_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_Planks_Scratched_1K_N.jpg",
+      "bytes": 1156879
+    },
+    {
+      "source": "assets/textures/T_Wood_Planks_Scratched_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_Planks_Scratched_1K_R.jpg",
+      "bytes": 366507
+    },
+    {
+      "source": "materials/generated/MI_Wood_Planks_Scratched.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Wood_Planks_Scratched.tres",
+      "bytes": 791
+    },
+    {
+      "source": "assets/textures/T_Tile_Azulejo_Olive_listello_Hor_1K_BC.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Azulejo_Olive_listello_Hor_1K_BC.png",
+      "bytes": 1544448
+    },
+    {
+      "source": "assets/textures/T_Timber_Log_2K_BC.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Timber_Log_2K_BC.png",
+      "bytes": 2312710
+    },
+    {
+      "source": "assets/models/props/retro_fridge_double_doors.glb",
+      "output": "assets/iroh_kitchen/assets/models/props/retro_fridge_double_doors.glb",
+      "bytes": 56848
+    },
+    {
+      "source": "scenes/props/retro_fridge_double_door.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/retro_fridge_double_door.tscn",
+      "bytes": 332
+    },
+    {
+      "source": "assets/textures/T_Timber_Log_2K_N.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Timber_Log_2K_N.png",
+      "bytes": 2390168
+    },
+    {
+      "source": "assets/hdr/belfast_farmhouse_4k.hdr",
+      "output": "assets/iroh_kitchen/assets/hdr/belfast_farmhouse_4k.hdr",
+      "bytes": 24810875
+    },
+    {
+      "source": "assets/textures/T_Timber_Log_2K_R.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Timber_Log_2K_R.png",
+      "bytes": 341539
+    },
+    {
+      "source": "assets/models/props/Timber_Corbel_Material.tres",
+      "output": "assets/iroh_kitchen/assets/models/props/Timber_Corbel_Material.tres",
+      "bytes": 758
+    },
+    {
+      "source": "materials/MI_Island_Base.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Island_Base.tres",
+      "bytes": 1232
+    },
+    {
+      "source": "scenes/props/winebottle.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/winebottle.tscn",
+      "bytes": 605
+    },
+    {
+      "source": "assets/models/props/table_tapered.glb",
+      "output": "assets/iroh_kitchen/assets/models/props/table_tapered.glb",
+      "bytes": 3848
+    },
+    {
+      "source": "assets/textures/T_Wood_oak_Slab_Honey_2K_BC.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_oak_Slab_Honey_2K_BC.png",
+      "bytes": 1047233
+    },
+    {
+      "source": "assets/textures/T_Wood_Oak_Slab_Honey_2K_N.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_Oak_Slab_Honey_2K_N.png",
+      "bytes": 1131613
+    },
+    {
+      "source": "assets/textures/T_Wood_Oak_Slab_Honey_2K_R.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Wood_Oak_Slab_Honey_2K_R.png",
+      "bytes": 743399
+    },
+    {
+      "source": "materials/MI_Wood_Oak_Slab_Honey.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Wood_Oak_Slab_Honey.tres",
+      "bytes": 1552
+    },
+    {
+      "source": "scenes/props/table_tapered.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/table_tapered.tscn",
+      "bytes": 569
+    },
+    {
+      "source": "assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_BC.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_BC.png",
+      "bytes": 543072
+    },
+    {
+      "source": "assets/models/props/bead_curtain_sun.glb",
+      "output": "assets/iroh_kitchen/assets/models/props/bead_curtain_sun.glb",
+      "bytes": 2401880
+    },
+    {
+      "source": "scenes/props/bead_curtain.tscn",
+      "output": "assets/iroh_kitchen/scenes/props/bead_curtain.tscn",
+      "bytes": 544
+    },
+    {
+      "source": "assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_N.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_N.png",
+      "bytes": 525779
+    },
+    {
+      "source": "assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_R.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Azulejo_Olive_listello_Vert_1K_R.png",
+      "bytes": 199105
+    },
+    {
+      "source": "materials/MI_Island_Base_Dark.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Island_Base_Dark.tres",
+      "bytes": 1275
+    },
+    {
+      "source": "assets/models/props/Oven_Cooktop_Steel.tres",
+      "output": "assets/iroh_kitchen/assets/models/props/Oven_Cooktop_Steel.tres",
+      "bytes": 420
+    },
+    {
+      "source": "scripts/taper_box.gd",
+      "output": "assets/iroh_kitchen/scripts/taper_box.gd",
+      "bytes": 14108
+    },
+    {
+      "source": "assets/textures/T_Veneer_Rosewood_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Veneer_Rosewood_1K_BC.jpg",
+      "bytes": 609778
+    },
+    {
+      "source": "assets/textures/T_Veneer_Rosewood_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Veneer_Rosewood_1K_N.jpg",
+      "bytes": 138031
+    },
+    {
+      "source": "assets/textures/T_Veneer_Rosewood_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Veneer_Rosewood_1K_R.jpg",
+      "bytes": 329358
+    },
+    {
+      "source": "materials/generated/MI_Veneer_Rosewood.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Veneer_Rosewood.tres",
+      "bytes": 751
+    },
+    {
+      "source": "assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_BC.jpg",
+      "bytes": 933732
+    },
+    {
+      "source": "assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_N.jpg",
+      "bytes": 125566
+    },
+    {
+      "source": "assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Marble_Verde_Guatemala_Square_1K_R.jpg",
+      "bytes": 373492
+    },
+    {
+      "source": "materials/generated/MI_Tile_Marble_Verde_Guatemala_Square.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Tile_Marble_Verde_Guatemala_Square.tres",
+      "bytes": 749
+    },
+    {
+      "source": "assets/textures/T_Tile_Marble_Pattern_Star_Octagon_BC.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Marble_Pattern_Star_Octagon_BC.jpg",
+      "bytes": 1142564
+    },
+    {
+      "source": "assets/textures/T_Tile_Marble_Pattern_Star_Octagon_N.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Marble_Pattern_Star_Octagon_N.jpg",
+      "bytes": 254836
+    },
+    {
+      "source": "assets/textures/T_Tile_Marble_Pattern_Star_Octagon_R.jpg",
+      "output": "assets/iroh_kitchen/assets/textures/T_Tile_Marble_Pattern_Star_Octagon_R.jpg",
+      "bytes": 494811
+    },
+    {
+      "source": "materials/MI_Tile_Star_Octagon.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Tile_Star_Octagon.tres",
+      "bytes": 1626
+    },
+    {
+      "source": "materials/generated/MI_Wood_oak_Slab_Honey.tres",
+      "output": "assets/iroh_kitchen/materials/generated/MI_Wood_oak_Slab_Honey.tres",
+      "bytes": 704
+    },
+    {
+      "source": "assets/textures/T_Limestone_TypeA_2K_BC.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Limestone_TypeA_2K_BC.png",
+      "bytes": 1222255
+    },
+    {
+      "source": "assets/textures/T_Limestone_TypeA_2K_N.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Limestone_TypeA_2K_N.png",
+      "bytes": 1385968
+    },
+    {
+      "source": "assets/textures/T_Limestone_TypeA_2K_R.png",
+      "output": "assets/iroh_kitchen/assets/textures/T_Limestone_TypeA_2K_R.png",
+      "bytes": 919909
+    },
+    {
+      "source": "materials/MI_Tile_Terracotta_Square.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Tile_Terracotta_Square.tres",
+      "bytes": 1404
+    },
+    {
+      "source": "assets/textures/lemon_tree.png",
+      "output": "assets/iroh_kitchen/assets/textures/lemon_tree.png",
+      "bytes": 1809835
+    },
+    {
+      "source": "assets/models/props/MI_Mural_Lemon.tres",
+      "output": "assets/iroh_kitchen/assets/models/props/MI_Mural_Lemon.tres",
+      "bytes": 446
+    },
+    {
+      "source": "materials/MI_Wood_Veneer_Cabinets_Vertical_Island.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Wood_Veneer_Cabinets_Vertical_Island.tres",
+      "bytes": 1403
+    },
+    {
+      "source": "materials/MI_Wood_Veneer_Cabinets_Vertical_Island_Dark.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Wood_Veneer_Cabinets_Vertical_Island_Dark.tres",
+      "bytes": 1412
+    },
+    {
+      "source": "materials/MI_Limestone.tres",
+      "output": "assets/iroh_kitchen/materials/MI_Limestone.tres",
+      "bytes": 1574
+    },
+    {
+      "source": "scenes/prototyping/proto_kitchen_studio.tscn",
+      "output": "assets/iroh_kitchen/scenes/prototyping/proto_kitchen_studio.tscn",
+      "bytes": 117553
+    }
+  ]
+}

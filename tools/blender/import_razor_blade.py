@@ -1,7 +1,3 @@
-"""Convert the supplied razor blade FBX and textures into a Godot GLB.
-
-Run with Blender --background --factory-startup --python tools/blender/import_razor_blade.py.
-"""
 
 from pathlib import Path
 

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/iroh_kitchen/assets/textures/T_Metal_Scratched_1K_MR.png" id="1_trh8e"]
+
+[resource]
+albedo_color = Color(0.71292627, 0.5585982, 0.26579666, 1)
+metallic = 1.0
+metallic_texture = ExtResource("1_trh8e")
+normal_enabled = true
+normal_texture = ExtResource("1_trh8e")

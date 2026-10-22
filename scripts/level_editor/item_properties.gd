@@ -28,6 +28,7 @@ static func _gun() -> Array:
 		_whole("pellets", "Pellets per shot", 1, 30, "gadget"),
 		_num("spread_degrees", "Spread · degrees", 0.0, 45.0, 0.1, "gadget"),
 		_num("impulse", "Push per pellet", 0.0, 200.0, 0.5, "gadget"),
+		_whole("damage", "Damage per pellet", 0, 100, "gadget"),
 	]
 
 
@@ -43,6 +44,17 @@ static func _build() -> Dictionary:
 			_num("ice_melt_seconds", "Ice melt time · seconds", 0.5, 30.0, 0.5),
 		],
 		"lighter": [_flag("lit", "Lit")],
+		"cookbook": [_choice("title", "Cover", [["Plain", 0], ["Macarons", 1], ["Udon, ramen & soba", 2], ["One-pot dinners", 3],
+			["Cakes & dessert", 4], ["Breakfast in Bordighera", 5], ["Convert your friends", 6], ["Cucina italiana", 7],
+			["Spooky recipes", 8], ["Where's the lamb sauce", 9]])],
+		"cereal_box": [_choice("title", "Cereal", [["Plain", 0], ["Loco Choco", 1], ["Boring", 2], ["Loopies", 3]])],
+		"goal": [_flag("enabled", "Open at start")],
+		"watcher": [
+			_choice("event", "Watch for", [["Player deaths", 0], ["NPCs reaching a finish", 1], ["Weight on scale · kg", 2], ["Seconds since start", 3]]),
+			_choice("comparison", "Fires when the count is", [["At least", 0], ["At most", 1], ["Exactly", 2]]),
+			_num("threshold", "Value", 0.0, 1000.0, 0.05),
+			_flag("repeat", "Fire every time it becomes true"),
+		],
 		"roller": [
 			_flag("active", "Moving"),
 			_num("travel_distance", "Travel distance", 0.0, 20.0, 0.1),
@@ -137,6 +149,16 @@ static func _build() -> Dictionary:
 			_num("pull_speed", "Pull speed", 1.0, 60.0, 1.0, "gadget"),
 			_num("grab_range", "Grab range", 5.0, 300.0, 1.0, "gadget"),
 			_num("launch_impulse", "Launch force", 0.0, 200.0, 1.0, "gadget"),
+		],
+		"npc": [
+			_choice("character", "Character", [["Onion", 0], ["Egg", 1], ["Tomato", 2], ["Ice cream", 3], ["Lollipop", 4]]),
+			_choice("mode", "Behaviour", [["Wander", 1], ["Fight", 3], ["Race to finish", 2], ["Stand still", 0]]),
+			_num("max_speed", "Top speed", 1.0, 40.0, 0.5),
+			_num("wander_radius", "Wander radius", 1.0, 200.0, 0.5),
+			_num("fight_range", "Fight · shooting range", 2.0, 300.0, 1.0),
+			_num("aim_error", "Fight · aim error", 0.0, 20.0, 0.1),
+			_num("reaction_time", "Fight · reaction time · seconds", 0.0, 3.0, 0.05),
+			_choice("weapon", "Starts with", [["Nothing (rams)", 0], ["Walther P88", 1], ["M4A1", 2], ["Shotgun", 3]]),
 		],
 		"m4a1": _gun(),
 		"shotgun": _gun(),
