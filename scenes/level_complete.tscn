@@ -1,0 +1,368 @@
+[gd_scene format=3 uid="uid://bcvt6pnkjyksy"]
+
+[ext_resource type="Script" uid="uid://c01j4tshjs0g4" path="res://scripts/level_complete.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cnnl237g1annm" path="res://scripts/star_icon.gd" id="2_star"]
+[ext_resource type="Texture2D" uid="uid://dsopej6vask7k" path="res://textures/icons/retry.svg" id="3_retry"]
+[ext_resource type="Texture2D" uid="uid://dl1vprd31rfpw" path="res://textures/icons/play.svg" id="4_play"]
+[ext_resource type="Texture2D" uid="uid://btt2pwc4oad2t" path="res://textures/icons/home.svg" id="5_home"]
+
+[sub_resource type="StyleBoxFlat" id="Card"]
+content_margin_left = 48.0
+content_margin_top = 70.0
+content_margin_right = 48.0
+content_margin_bottom = 48.0
+bg_color = Color(0.99, 0.96, 0.88, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.93, 0.87, 0.74, 1)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+corner_detail = 10
+shadow_color = Color(0.15, 0.08, 0.02, 0.35)
+shadow_size = 24
+shadow_offset = Vector2(0, 12)
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="Banner"]
+content_margin_left = 64.0
+content_margin_top = 18.0
+content_margin_right = 64.0
+content_margin_bottom = 24.0
+bg_color = Color(1, 0.78, 0.3, 1)
+border_width_bottom = 8
+border_color = Color(0.86, 0.56, 0.12, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="SystemFont" id="SystemFont_round"]
+font_names = PackedStringArray("Arial Rounded MT Bold", "Nunito", "Baloo 2", "Trebuchet MS", "Arial")
+font_weight = 800
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="Pill"]
+content_margin_left = 36.0
+content_margin_top = 8.0
+content_margin_right = 36.0
+content_margin_bottom = 8.0
+bg_color = Color(0.95, 0.9, 0.8, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="RetryNormal"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 22.0
+bg_color = Color(0.58, 0.36, 0.82, 1)
+border_width_bottom = 10
+border_color = Color(0.4, 0.22, 0.62, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="RetryPressed"]
+content_margin_left = 16.0
+content_margin_top = 22.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
+bg_color = Color(0.58, 0.36, 0.82, 1)
+border_width_bottom = 4
+border_color = Color(0.4, 0.22, 0.62, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="RetryHover"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 22.0
+bg_color = Color(0.65, 0.43, 0.89, 1)
+border_width_bottom = 10
+border_color = Color(0.4, 0.22, 0.62, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[sub_resource type="StyleBoxFlat" id="NextNormal"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 22.0
+bg_color = Color(0.3, 0.7, 0.3, 1)
+border_width_bottom = 10
+border_color = Color(0.18, 0.5, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="NextPressed"]
+content_margin_left = 16.0
+content_margin_top = 22.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
+bg_color = Color(0.3, 0.7, 0.3, 1)
+border_width_bottom = 4
+border_color = Color(0.18, 0.5, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="NextHover"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 22.0
+bg_color = Color(0.37, 0.77, 0.37, 1)
+border_width_bottom = 10
+border_color = Color(0.18, 0.5, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="HomeNormal"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 22.0
+bg_color = Color(0.27, 0.55, 0.9, 1)
+border_width_bottom = 10
+border_color = Color(0.16, 0.38, 0.7, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="HomePressed"]
+content_margin_left = 16.0
+content_margin_top = 22.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
+bg_color = Color(0.27, 0.55, 0.9, 1)
+border_width_bottom = 4
+border_color = Color(0.16, 0.38, 0.7, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="HomeHover"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 22.0
+bg_color = Color(0.34, 0.62, 0.97, 1)
+border_width_bottom = 10
+border_color = Color(0.16, 0.38, 0.7, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[node name="LevelComplete" type="CanvasLayer" unique_id=1726107290]
+layer = 20
+script = ExtResource("1_script")
+start_hidden = false
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1983446866]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.06, 0.14, 0.55)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1378742714]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="Center" unique_id=1447513087]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Card")
+
+[node name="Content" type="VBoxContainer" parent="Center/Card" unique_id=1759399555]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="BannerRow" type="CenterContainer" parent="Center/Card/Content" unique_id=1696068266]
+layout_mode = 2
+
+[node name="Banner" type="PanelContainer" parent="Center/Card/Content/BannerRow" unique_id=1521771514]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Banner")
+
+[node name="Title" type="Label" parent="Center/Card/Content/BannerRow/Banner" unique_id=50968774]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.27, 0.15, 0.08, 1)
+theme_override_fonts/font = SubResource("SystemFont_round")
+theme_override_font_sizes/font_size = 64
+text = "Level Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="Center/Card/Content" unique_id=1979934005]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Star1" type="Control" parent="Center/Card/Content/Stars" unique_id=2112055006]
+custom_minimum_size = Vector2(170, 160)
+layout_mode = 2
+script = ExtResource("2_star")
+
+[node name="Star2" type="Control" parent="Center/Card/Content/Stars" unique_id=174606419]
+custom_minimum_size = Vector2(170, 160)
+layout_mode = 2
+script = ExtResource("2_star")
+
+[node name="Star3" type="Control" parent="Center/Card/Content/Stars" unique_id=424752254]
+custom_minimum_size = Vector2(170, 160)
+layout_mode = 2
+script = ExtResource("2_star")
+
+[node name="SubtitleRow" type="CenterContainer" parent="Center/Card/Content" unique_id=1674385156]
+layout_mode = 2
+
+[node name="Subtitle" type="PanelContainer" parent="Center/Card/Content/SubtitleRow" unique_id=1087551552]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Pill")
+
+[node name="Label" type="Label" parent="Center/Card/Content/SubtitleRow/Subtitle" unique_id=790374517]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36, 0.25, 0.18, 1)
+theme_override_fonts/font = SubResource("SystemFont_round")
+theme_override_font_sizes/font_size = 34
+text = "Level Complete!"
+
+[node name="Spacer" type="Control" parent="Center/Card/Content" unique_id=1743467153]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Card/Content" unique_id=1818841025]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Center/Card/Content/Buttons" unique_id=1212780139]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.05, 0.1, 0.55)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 72
+theme_override_fonts/font = SubResource("SystemFont_round")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("RetryNormal")
+theme_override_styles/pressed = SubResource("RetryPressed")
+theme_override_styles/hover = SubResource("RetryHover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Retry"
+icon = ExtResource("3_retry")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="NextButton" type="Button" parent="Center/Card/Content/Buttons" unique_id=1034541804]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.05, 0.1, 0.55)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 72
+theme_override_fonts/font = SubResource("SystemFont_round")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("NextNormal")
+theme_override_styles/pressed = SubResource("NextPressed")
+theme_override_styles/hover = SubResource("NextHover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Next Level"
+icon = ExtResource("4_play")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="HomeButton" type="Button" parent="Center/Card/Content/Buttons" unique_id=864028918]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.05, 0.1, 0.55)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 72
+theme_override_fonts/font = SubResource("SystemFont_round")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("HomeNormal")
+theme_override_styles/pressed = SubResource("HomePressed")
+theme_override_styles/hover = SubResource("HomeHover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Home"
+icon = ExtResource("5_home")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true

@@ -3,6 +3,13 @@ extends RefCounted
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 
+## How much bigger than the player scenes the character is in the level creator and in
+## scenes made from its levels. The kitchen is built at 100 units to a metre, so a character
+## about 1 unit in radius looks like a marble. 3 makes it about the size of a tennis ball.
+const PLAYER_SIZE := 3.0
+
+## The characters a level can be played as. A level plays as one of these for its
+## whole run; swapping characters is turned off in custom levels.
 const DEFAULT_PLAYER := "onion"
 const PLAYERS := {
 	"onion": {"label": "Onion", "scene": preload("res://packed_scenes/player_onion.tscn")},
@@ -44,6 +51,8 @@ const ITEMS := {
 	"umbrella": {"label": "Umbrella pickup", "category": "Powerups", "scene": preload("res://scenes/props/umbrella_upgrade.tscn")},
 	"cream": {"label": "Whipped cream pickup", "category": "Powerups", "scene": preload("res://scenes/props/whipped_cream_upgrade.tscn")},
 	"ice": {"label": "Ice cube pickup", "category": "Powerups", "scene": preload("res://scenes/props/ice_cube_upgrade.tscn")},
+	"sprinkles": {"label": "Sprinkles pickup", "category": "Powerups", "scene": preload("res://scenes/props/sprinkles_pickup.tscn")},
+	"nuts": {"label": "Nuts pickup", "category": "Powerups", "scene": preload("res://scenes/props/nuts_pickup.tscn")},
 	"gravity": {"label": "Gravity gun pickup", "category": "Powerups", "scene": preload("res://scenes/props/upgrade_plate.tscn")},
 	"m4a1": {"label": "M4A1 pickup", "category": "Powerups", "scene": preload("res://scenes/props/m4a1_upgrade.tscn")},
 	"shotgun": {"label": "Shotgun pickup", "category": "Powerups", "scene": preload("res://scenes/props/shotgun_upgrade.tscn")},
@@ -59,6 +68,20 @@ const ITEMS := {
 	"funnel_exit": {"label": "Funnel exit", "category": "Level", "scene": preload("res://scenes/props/funnel_exit.tscn")},
 }
 
+## Scales a character up by `factor` while keeping it feeling the same to play: forces, jump
+## and gravity grow with it, so it rolls, jumps and falls like the original, only bigger.
+## Call this before the player enters the tree.
+static func size_player(player: Player, factor := PLAYER_SIZE) -> void:
+	var collider := player.get_node("CollisionShape3D") as CollisionShape3D
+	collider.scale *= factor
+	player.speed_force *= factor
+	player.jump_impulse *= factor
+	player.gravity_scale *= factor
+	player.spawn_clearance *= factor
+	var trail := player.get_node_or_null("Trail")
+	if trail != null and "stamp_size" in trail:
+		for property in ["stamp_size", "spacing", "ground_reach", "min_speed"]:
+			trail.set(property, trail.get(property) * factor)
 const DEFAULT_MODE := "race"
 const MODES := {"race": "Race to the finish", "ffa": "Free for all"}
 

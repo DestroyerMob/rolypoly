@@ -38,6 +38,8 @@ var _stamped := 0
 var _progress := 0.0
 var _applied_scale := 1.0
 var _dying := false
+var _frozen_for := 0.0
+var _frost: StandardMaterial3D
 var _has_last := false
 var _last_point := Vector3.ZERO
 var _rng := RandomNumberGenerator.new()
@@ -67,7 +69,12 @@ func _physics_process(delta: float) -> void:
 		_has_last = false
 		return
 
-	_melt(delta / melt_seconds)
+	if _frozen_for > 0.0:
+		_frozen_for -= delta
+		if _frozen_for <= 0.0:
+			_set_frost(false)
+	else:
+		_melt(delta / melt_seconds)
 	if _dying or _player.linear_velocity.length() < min_speed:
 		return
 
@@ -98,6 +105,26 @@ func refresh(amount := 1.0) -> void:
 		return
 	_progress = maxf(_progress - amount, 0.0)
 	_update_scale()
+
+
+## Stops the ice cream melting for `seconds`, keeping its current size. Ice pickups call this
+## every frame while the ice cream is on them. Calling it again just restarts the timer.
+func freeze_melt(seconds: float) -> void:
+	if seconds <= 0.0 or _dying:
+		return
+	if _frozen_for <= 0.0:
+		_set_frost(true)
+	_frozen_for = seconds
+
+
+func _set_frost(on: bool) -> void:
+	if _frost == null:
+		_frost = StandardMaterial3D.new()
+		_frost.albedo_color = Color(0.65, 0.88, 1.0, 0.4)
+		_frost.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		_frost.roughness = 0.1
+	for node in _collider.find_children("*", "GeometryInstance3D", true, false):
+		node.material_overlay = _frost if on else null
 
 
 func _melt(amount: float) -> void:
@@ -131,6 +158,8 @@ func _die() -> void:
 
 func _finish_death() -> void:
 	_dying = false
+	_frozen_for = 0.0
+	_set_frost(false)
 	_player.exit_condition(Player.Condition.DEAD)
 	_progress = 0.0
 	_apply_scale(1.0)

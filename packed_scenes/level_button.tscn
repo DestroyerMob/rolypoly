@@ -1,32 +1,76 @@
 [gd_scene format=3 uid="uid://bj1eja51yxl7s"]
 
 [ext_resource type="Script" uid="uid://cdujbdbak7euj" path="res://scripts/level_button.gd" id="1_lvlbtn"]
-[ext_resource type="Texture2D" uid="uid://h0ygq6l3u6r2" path="res://textures/LevelsButton.png" id="2_lvlbox"]
-[ext_resource type="Texture2D" path="res://textures/LevelsButtonLocked.png" id="3_lvllock"]
+[ext_resource type="Script" path="res://scripts/star_icon.gd" id="5_staricon"]
 [ext_resource type="Texture2D" path="res://textures/icons/lock.svg" id="4_lockicon"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_locked"]
-texture = ExtResource("3_lvllock")
+[sub_resource type="StyleBoxFlat" id="Style_normal"]
+bg_color = Color(0.3, 0.7, 0.3, 1)
+border_width_bottom = 10
+border_color = Color(0.18, 0.5, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_normal"]
-texture = ExtResource("2_lvlbox")
+[sub_resource type="StyleBoxFlat" id="Style_hover"]
+bg_color = Color(0.37, 0.77, 0.37, 1)
+border_width_bottom = 10
+border_color = Color(0.18, 0.5, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pressed"]
-texture = ExtResource("2_lvlbox")
-modulate_color = Color(0.8, 0.8, 0.8, 1)
+[sub_resource type="StyleBoxFlat" id="Style_pressed"]
+bg_color = Color(0.3, 0.7, 0.3, 1)
+border_width_bottom = 4
+border_color = Color(0.18, 0.5, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hover"]
-texture = ExtResource("2_lvlbox")
-modulate_color = Color(1.15, 1.15, 1.15, 1)
+[sub_resource type="StyleBoxFlat" id="Style_locked"]
+bg_color = Color(0.82, 0.79, 0.74, 1)
+border_width_bottom = 10
+border_color = Color(0.68, 0.64, 0.58, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="Style_focus"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 10
+anti_aliasing_size = 1.5
 
 [node name="LevelButton" type="Button" unique_id=894641680]
 custom_minimum_size = Vector2(125, 125)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_pressed")
-theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_locked")
+theme_override_styles/normal = SubResource("Style_normal")
+theme_override_styles/pressed = SubResource("Style_pressed")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/disabled = SubResource("Style_locked")
+theme_override_styles/focus = SubResource("Style_focus")
 script = ExtResource("1_lvlbtn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=479611065]
@@ -49,20 +93,20 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Star1" type="Label" parent="VBoxContainer/Stars" unique_id=176110555]
+[node name="Star1" type="Control" parent="VBoxContainer/Stars" unique_id=176110555]
+custom_minimum_size = Vector2(36, 34)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "★"
+script = ExtResource("5_staricon")
 
-[node name="Star2" type="Label" parent="VBoxContainer/Stars" unique_id=736906666]
+[node name="Star2" type="Control" parent="VBoxContainer/Stars" unique_id=736906666]
+custom_minimum_size = Vector2(36, 34)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "★"
+script = ExtResource("5_staricon")
 
-[node name="Star3" type="Label" parent="VBoxContainer/Stars" unique_id=1795361977]
+[node name="Star3" type="Control" parent="VBoxContainer/Stars" unique_id=1795361977]
+custom_minimum_size = Vector2(36, 34)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "★"
+script = ExtResource("5_staricon")
 
 [node name="Lock" type="TextureRect" parent="VBoxContainer"]
 visible = false

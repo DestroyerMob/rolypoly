@@ -1,6 +1,7 @@
 extends Node3D
 
 const Store = preload("res://scripts/level_editor/level_store.gd")
+const Progress = preload("res://scripts/level_progress.gd")
 const KITCHEN_GYM := "res://scenes/gym_pieces.tscn"
 
 var _camera_tween: Tween
@@ -46,6 +47,9 @@ func _ready() -> void:
 	_volume_value.text = "Muted" if _volume_slider.value == 0.0 else "%d%%" % _volume_slider.value
 	_volume_slider.value_changed.connect(_on_music_volume_changed)
 	_play_button.grab_focus()
+	if get_tree().has_meta(&"show_level_grid"):
+		get_tree().remove_meta(&"show_level_grid")
+		_show_levels(true)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -81,15 +85,20 @@ func _refresh_level_slots() -> void:
 			continue
 		button.unlocked = button.level_number <= _level_set.size()
 		button.tooltip_text = ""
+		button.stars_earned = 0
 		if button.unlocked:
-			var level := Store.read_level(_level_set[button.level_number - 1])
-			button.tooltip_text = level.document.name if level.has("document") else level.error
+			var entry := _level_set[button.level_number - 1]
+			button.tooltip_text = Store.entry_name(entry)
+			button.stars_earned = Progress.stars(entry)
 
 
 func _on_level_pressed(level_number: int) -> void:
 	if _transitioning or _opening_scene or level_number > _level_set.size():
 		return
 	var filename := _level_set[level_number - 1]
+	if Store.is_scene(filename):
+		_open_scene(filename)
+		return
 	var level := Store.read_level(filename)
 	var problem: String = level.get("error", "")
 	if problem.is_empty():
