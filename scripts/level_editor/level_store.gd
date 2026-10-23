@@ -3,7 +3,11 @@ const Catalog = preload("res://scripts/level_editor/catalog.gd")
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 const ItemTriggers = preload("res://scripts/level_editor/item_triggers.gd")
+## Saved levels on this computer only. Exported builds save here, since the
+## project is read-only there.
 const DIRECTORY := "user://levels"
+## Saved levels kept in the repo. Run from the Godot editor, levels save here.
+const CUSTOM := "res://levels/custom"
 const BUNDLED := "res://levels"
 const ORDER_FILE := "res://levels/level_order.txt"
 const VERSION := 1
@@ -160,13 +164,20 @@ static func _finish_can_open(document: Dictionary) -> bool:
 static func valid_filename(filename: String) -> bool:
 	return filename == filename.get_file() and filename.ends_with(".json") and not filename.begins_with(".")
 
+## Where new and edited saved levels go: the repo when run from the editor.
+static func saved_directory() -> String:
+	return CUSTOM if can_edit_set() else DIRECTORY
+
+## Where a level is read from: a copy on this computer, else the repo's saved
+## levels, else the level list.
 static func path_of(filename: String) -> String:
-	var saved := DIRECTORY.path_join(filename)
-	var bundled := BUNDLED.path_join(filename)
-	return bundled if not FileAccess.file_exists(saved) and FileAccess.file_exists(bundled) else saved
+	for directory in [DIRECTORY, CUSTOM, BUNDLED]:
+		if FileAccess.file_exists(directory.path_join(filename)):
+			return directory.path_join(filename)
+	return saved_directory().path_join(filename)
 
 static func is_bundled(filename: String) -> bool:
-	return path_of(filename).begins_with(BUNDLED)
+	return path_of(filename).get_base_dir() == BUNDLED
 
 static func read_level(filename: String) -> Dictionary:
 	if not valid_filename(filename):
@@ -192,7 +203,15 @@ static func save_level(document: Dictionary, filename: String = "") -> Dictionar
 		filename = "level_%s_%s.json" % [str(Time.get_unix_time_from_system()).replace(".", "_"), str(randi())]
 	if not valid_filename(filename):
 		return {"error": "Invalid level filename."}
-	return _write_level(BUNDLED if is_bundled(filename) and OS.has_feature("editor") else DIRECTORY, document, filename)
+	var result := _write_level(BUNDLED if is_bundled(filename) and can_edit_set() else saved_directory(), document, filename)
+	if not result.has("error") and can_edit_set():
+		_forget_local_copy(filename)
+	return result
+
+## Run from the editor, a level saved into the repo replaces this computer's copy.
+static func _forget_local_copy(filename: String) -> void:
+	if FileAccess.file_exists(DIRECTORY.path_join(filename)):
+		DirAccess.remove_absolute(DIRECTORY.path_join(filename))
 
 static func _write_level(directory: String, document: Dictionary, filename: String) -> Dictionary:
 	var result := DirAccess.make_dir_recursive_absolute(directory)
@@ -262,9 +281,10 @@ static func add_to_set(filename: String) -> Dictionary:
 	stem = stem.lstrip("._") if not stem.lstrip("._").is_empty() else "level"
 	var exported := stem + ".json"
 	var copy := 2
-	while FileAccess.file_exists(BUNDLED.path_join(exported)) or FileAccess.file_exists(DIRECTORY.path_join(exported)) and exported != filename:
+	while FileAccess.file_exists(BUNDLED.path_join(exported)) or exported != filename and (FileAccess.file_exists(CUSTOM.path_join(exported)) or FileAccess.file_exists(DIRECTORY.path_join(exported))):
 		exported = "%s_%d.json" % [stem, copy]
 		copy += 1
+	var source := path_of(filename)
 	DirAccess.make_dir_recursive_absolute(BUNDLED)
 	var file := FileAccess.open(BUNDLED.path_join(exported), FileAccess.WRITE)
 	if file == null:
@@ -277,7 +297,8 @@ static func add_to_set(filename: String) -> Dictionary:
 	var written := _write_order(order)
 	if not written.is_empty():
 		return {"error": written}
-	DirAccess.remove_absolute(DIRECTORY.path_join(filename))
+	DirAccess.remove_absolute(source)
+	_forget_local_copy(filename)
 	return {"filename": exported, "number": order.size()}
 
 static func remove_from_set(filename: String) -> Dictionary:
@@ -290,10 +311,10 @@ static func remove_from_set(filename: String) -> Dictionary:
 		return result
 	var kept := filename
 	var copy := 2
-	while FileAccess.file_exists(DIRECTORY.path_join(kept)):
+	while FileAccess.file_exists(CUSTOM.path_join(kept)) or FileAccess.file_exists(DIRECTORY.path_join(kept)):
 		kept = "%s_%d.json" % [filename.get_basename(), copy]
 		copy += 1
-	var saved := _write_level(DIRECTORY, result.document, kept)
+	var saved := _write_level(saved_directory(), result.document, kept)
 	if saved.has("error"):
 		return saved
 	var order := level_set()
@@ -328,11 +349,11 @@ static func _write_order(order: Array[String]) -> String:
 static func list_levels() -> Array:
 	var levels: Array = []
 	var filenames: Array[String] = level_set()
-	if DirAccess.dir_exists_absolute(DIRECTORY):
-		var saved := Array(DirAccess.get_files_at(DIRECTORY))
-		for filename: String in saved:
-			if not filename in filenames:
-				filenames.append(filename)
+	for directory in [CUSTOM, DIRECTORY]:
+		if DirAccess.dir_exists_absolute(directory):
+			for filename: String in DirAccess.get_files_at(directory):
+				if not filename in filenames:
+					filenames.append(filename)
 	for filename: String in filenames:
 		if not valid_filename(filename):
 			continue
@@ -357,9 +378,10 @@ static func delete_level(filename: String) -> Dictionary:
 		return {"error": "Invalid level filename."}
 	if is_bundled(filename):
 		return {"error": "This level is in the level list. Remove it from the list first."}
-	var result := DirAccess.remove_absolute(DIRECTORY.path_join(filename))
+	var result := DirAccess.remove_absolute(path_of(filename))
 	if result != OK:
 		return {"error": "Could not delete the saved level: %s" % error_string(result)}
+	_forget_local_copy(filename)
 	return {"filename": filename}
 
 static func launch(tree: SceneTree, document: Dictionary, filename: String, editing: bool) -> Error:

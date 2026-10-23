@@ -1,4 +1,3 @@
 res://scenes/levels/movement_tutorial.tscn
 res://scenes/levels/balance.tscn
-kitchen_workshop.json
 island_brawl.json
