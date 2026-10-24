@@ -157,8 +157,9 @@ func _spawn_tracer(from: Vector3, to: Vector3) -> void:
 	var y := (to - from) / length
 	var x := y.cross(Vector3.UP if absf(y.dot(Vector3.UP)) < 0.99 else Vector3.RIGHT).normalized()
 	var mesh := CylinderMesh.new()
-	mesh.top_radius = tracer_width * 0.5
-	mesh.bottom_radius = tracer_width * 0.5
+	var size := _player.size_factor if is_instance_valid(_player) else 1.0
+	mesh.top_radius = tracer_width * 0.5 * size
+	mesh.bottom_radius = tracer_width * 0.5 * size
 	mesh.height = 1.0
 	mesh.radial_segments = 6
 	mesh.rings = 1
@@ -175,8 +176,9 @@ func _spawn_tracer(from: Vector3, to: Vector3) -> void:
 
 func _spawn_impact(position: Vector3) -> void:
 	var mesh := SphereMesh.new()
-	mesh.radius = impact_radius
-	mesh.height = impact_radius * 2.0
+	var size := _player.size_factor if is_instance_valid(_player) else 1.0
+	mesh.radius = impact_radius * size
+	mesh.height = impact_radius * 2.0 * size
 	mesh.radial_segments = 8
 	mesh.rings = 4
 	mesh.material = _tracer_material

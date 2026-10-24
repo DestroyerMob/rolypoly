@@ -106,6 +106,9 @@ static func validate(value: Variant) -> String:
 		return "This level uses an unknown player character."
 	if value.has("mode") and not (value.mode is String and Catalog.MODES.has(value.mode)):
 		return "This level uses an unknown game mode."
+	if value.has("character_size") and not ((value.character_size is float or value.character_size is int)
+			and value.character_size >= Catalog.CHARACTER_SIZES.x and value.character_size <= Catalog.CHARACTER_SIZES.y):
+		return "This level's character size must be %s to %s." % [Catalog.CHARACTER_SIZES.x, Catalog.CHARACTER_SIZES.y]
 	if not value.get("objects") is Array or value.objects.size() > MAX_OBJECTS:
 		return "A level can contain at most %d objects." % MAX_OBJECTS
 	for entry in value.objects:

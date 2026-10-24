@@ -49,6 +49,7 @@ var status: Label
 var name_field: LineEdit
 var player_choice: OptionButton
 var mode_choice: OptionButton
+var size_field: SpinBox
 var category: OptionButton
 var search: LineEdit
 var palette: ItemList
@@ -197,6 +198,20 @@ func _create_ui() -> void:
 	mode_choice.item_selected.connect(_mode_chosen)
 	mode_group.add_child(mode_choice)
 	_muted(mode_group, "Game mode")
+	var size_group := VBoxContainer.new()
+	size_group.add_theme_constant_override("separation", 3)
+	toolbar.add_child(size_group)
+	size_field = SpinBox.new()
+	size_field.name = "CharacterSize"
+	size_field.min_value = Catalog.CHARACTER_SIZES.x
+	size_field.max_value = Catalog.CHARACTER_SIZES.y
+	size_field.step = 0.5
+	size_field.suffix = "×"
+	size_field.custom_minimum_size = Vector2(110, 42)
+	size_field.tooltip_text = "How big the player and NPCs are. Level 1 plays at 5×. NPC speeds and ranges are set for 1× and grow with this."
+	size_field.value_changed.connect(_character_size_chosen)
+	size_group.add_child(size_field)
+	_muted(size_group, "Character size")
 	_button(toolbar, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(toolbar, "Save copy", _save.bind(true))
 	_button(toolbar, "Save", _save.bind(false))
@@ -399,6 +414,7 @@ func _create_ui() -> void:
 
 	if not start_in_editor:
 		level_complete = LevelCompleteScene.instantiate()
+		level_complete.start_hidden = true
 		add_child(level_complete)
 		level_complete.retry_pressed.connect(_restart)
 	browser = Browser.new()
@@ -1207,6 +1223,14 @@ func _mode_chosen(index: int) -> void:
 	document.mode = id
 	_status("Free for all: knock out every NPC. NPCs need a weapon set in their spawner to shoot back." if id == "ffa" else "Race: reach a Finish area to complete the level.")
 
+func _character_size_chosen(value: float) -> void:
+	if is_equal_approx(value, Catalog.character_size_of(document)):
+		return
+	_remember()
+	document.character_size = value
+	_rebuild_world()
+	_status("Characters are now %s× normal size." % value)
+
 func _sync_player_choice() -> void:
 	var current := Catalog.player_of(document)
 	for index in player_choice.item_count:
@@ -1215,6 +1239,7 @@ func _sync_player_choice() -> void:
 	for index in mode_choice.item_count:
 		if mode_choice.get_item_metadata(index) == Catalog.mode_of(document):
 			mode_choice.select(index)
+	size_field.set_value_no_signal(Catalog.character_size_of(document))
 
 func _property_choice_changed(index: int, spec: Dictionary) -> void:
 	_property_changed(spec.options[index][1], spec)
@@ -1490,7 +1515,7 @@ func _match_damage(victim: Player, _amount: int, by: Player) -> void:
 
 func _match_knockout(victim: Player, by: Player) -> void:
 	var me: Player = world.rig.current_player
-	var line := "%s knocked out %s" % [_fighter_name(by), _fighter_name(victim)] if by != null else "%s fell out" % _fighter_name(victim)
+	var line := "%s knocked out %s" % [_fighter_name(by), _fighter_name(victim)] if by != null else "%s is out" % _fighter_name(victim)
 	var label := _label(kill_feed, line, 18)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	label.add_theme_color_override("font_color", EditorTheme.ACCENT if by == me else Color.WHITE)
