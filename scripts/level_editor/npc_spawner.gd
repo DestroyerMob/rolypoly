@@ -18,7 +18,8 @@ func character_key() -> String:
 	return CHARACTERS[clampi(character, 0, CHARACTERS.size() - 1)]
 
 
-func spawn(scene: PackedScene) -> NPC:
+## `size` is the level's character size; the NPC is scaled up like the player.
+func spawn(scene: PackedScene, size := 1.0) -> NPC:
 	var body: Player = scene.instantiate()
 	var stats := {}
 	for property in body.get_property_list():
@@ -37,7 +38,8 @@ func spawn(scene: PackedScene) -> NPC:
 	npc.reaction_time = reaction_time
 	if mode == NPC.Mode.GOAL:
 		npc.goal = get_tree().get_first_node_in_group(&"finish") as Node3D
-	npc.position = global_position + Vector3.UP * 2.2
+	load("res://scripts/level_editor/catalog.gd").size_player(npc, size)
+	npc.position = global_position + Vector3.UP * 2.2 * size
 	add_sibling(npc, true)
 	npc.respawn(global_position + Vector3.UP * npc.spawn_clearance)
 	if weapon > 0 and weapon < WEAPONS.size():

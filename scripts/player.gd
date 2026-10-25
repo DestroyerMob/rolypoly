@@ -45,20 +45,20 @@ var is_eliminated := false
 var last_attacker: Player
 var last_hit_msec := 0
 var _max_health: int
-## How many times larger than normal the player is, from the scale of the Player node.
-## Force, jump and gravity grow with it, so a big player rolls, jumps and falls like a normal
-## one, only bigger.
-var size_factor := 1.0
+## How many times larger than normal the player is: set by Catalog.size_player, then
+## multiplied by the scale of the Player node. Force, jump and gravity grow with it, so a big
+## player rolls, jumps and falls like a normal one, only bigger.
+@export var size_factor := 1.0
 var _body_scale := Vector3.ONE
 
 func _ready() -> void:
 	_body_scale = scale
-	size_factor = maxf(scale.x, 0.01)
+	size_factor *= maxf(scale.x, 0.01)
 	gravity_scale *= size_factor
 	spawn_position = global_position
 	_max_health = health
 	add_to_group(&"players")
-	spawn_clearance = maxf(spawn_clearance, get_collision_clearance() + 0.05)
+	spawn_clearance = maxf(spawn_clearance, get_collision_clearance() * size_factor + 0.05)
 	contact_monitor = true
 	max_contacts_reported = 8
 	var material := physics_material_override if physics_material_override else PhysicsMaterial.new()

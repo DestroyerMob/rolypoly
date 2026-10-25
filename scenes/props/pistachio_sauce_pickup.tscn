@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/topping_pickup.tscn" id="1_base"]
+
+[node name="PistachioSaucePickup" instance=ExtResource("1_base")]
+kind = 4
+topping_id = &"pistachio_sauce"
+colours = Array[Color]([Color(0.56, 0.74, 0.36, 1), Color(0.5, 0.68, 0.3, 1)])
+piece_size = 0.7
+pieces = 300
+pieces_per_second = 150.0
+spread_degrees = 75.0
+puddle_radius = 8.0

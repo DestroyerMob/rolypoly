@@ -86,6 +86,13 @@ enum SizeMode {
 
 var _syncing := false
 
+## Leave empty to use the function colour from fn. Set to override by hand.
+@export var surface_material: Material:
+	set(value):
+		surface_material = value
+		_rebuild()
+		
+
 
 ## Greys out whichever pair is not currently driving.
 func _validate_property(property: Dictionary) -> void:
@@ -134,10 +141,11 @@ func _segment_count() -> int:
 func _rebuild() -> void:
 	if not is_inside_tree():
 		return
+		
 
 	_clear_generated()
 
-	var material: Material = MATERIALS.get(fn)
+	var material: Material = surface_material if surface_material != null else MATERIALS.get(fn)
 	var half_angle := deg_to_rad(arc_degrees) * 0.5
 	var count := _segment_count()
 	var step := (half_angle * 2.0) / float(count)

@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://c1jcsre0mpduc"]
+
+[ext_resource type="PackedScene" uid="uid://bcvt6pnkjyksy" path="res://scenes/level_complete.tscn" id="1_q0elx"]
+[ext_resource type="Script" uid="uid://rfiv5xf0sdsh" path="res://scripts/star_goals/star_goal_finish.gd" id="2_1umc1"]
+[ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="3_bqclk"]
+[ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="4_aswnm"]
+[ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="5_i61qy"]
+[ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="6_lkb6c"]
+[ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="7_5s116"]
+[ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="8_m4xuv"]
+[ext_resource type="Script" uid="uid://dkxg7si8ov8uo" path="res://scripts/ui/vignette.gd" id="8_wyw4x"]
+[ext_resource type="Shader" uid="uid://cev032ajcxaq8" path="res://shaders/vignette.gdshader" id="9_pglyy"]
+[ext_resource type="PackedScene" uid="uid://ikm0btoc24oy" path="res://scenes/level_editor/finish.tscn" id="9_vos1h"]
+[ext_resource type="Material" uid="uid://fqamj02i121d" path="res://materials/props/Box.tres" id="10_53qiv"]
+[ext_resource type="PackedScene" uid="uid://d0ovyswq3kl06" path="res://scenes/props/cereal.tscn" id="11_ehdeg"]
+[ext_resource type="PackedScene" uid="uid://ogb6wkutp4lw" path="res://scenes/obstacles/boiling_pot.tscn" id="12_4ri30"]
+[ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="16_eqlr4"]
+[ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="16_q0elx"]
+[ext_resource type="PackedScene" uid="uid://bpinkqqaq3u4w" path="res://scenes/props/cookbook.tscn" id="17_1umc1"]
+[ext_resource type="PackedScene" uid="uid://bwghfcy21irpb" path="res://scenes/prototyping/proto_half_pipe.tscn" id="18_bqclk"]
+[ext_resource type="Material" uid="uid://dodpqwhtiexpg" path="res://materials/generated/MI_Cork.tres" id="19_aswnm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pglyy"]
+shader = ExtResource("9_pglyy")
+shader_parameter/strength = 0.0
+shader_parameter/tint = Color(0, 0, 0, 0.85)
+shader_parameter/radius = 0.35
+shader_parameter/softness = 0.45
+
+[node name="PotTutorial" type="Node3D" unique_id=619595399]
+
+[node name="LevelComplete" parent="." unique_id=1726107290 instance=ExtResource("1_q0elx")]
+level_title = "Get to the Pot"
+start_hidden = true
+
+[node name="StartGoals" type="Node" parent="." unique_id=142365312]
+
+[node name="FinishGoal" type="Node" parent="StartGoals" unique_id=19080733]
+script = ExtResource("2_1umc1")
+description = "Finish the level"
+stars_worth = 3
+
+[node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("3_bqclk")]
+
+[node name="PlayerRig" type="Node" parent="." unique_id=36827212]
+script = ExtResource("4_aswnm")
+allow_character_swap = false
+
+[node name="Player" parent="PlayerRig" unique_id=1887833892 instance=ExtResource("5_i61qy")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -98.34567, 46.903336, -492.68518)
+speed_force = 15.0
+jump_impulse = 9
+
+[node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=1540248872 node_paths=PackedStringArray("player_rig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 2.2, -475)
+script = ExtResource("6_lkb6c")
+player_rig = NodePath("..")
+follow_offset = Vector3(0, 1.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerRig/CameraPivot" unique_id=397317417]
+spring_length = 25.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="PlayerRig/CameraPivot/SpringArm3D" unique_id=1495584162]
+current = true
+far = 3000.0
+
+[node name="GadgetMount" type="Node3D" parent="PlayerRig" unique_id=1532057491 node_paths=PackedStringArray("player_rig", "camera")]
+script = ExtResource("7_5s116")
+player_rig = NodePath("..")
+camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="Vignette" type="CanvasLayer" parent="PlayerRig" unique_id=1705885581]
+script = ExtResource("8_wyw4x")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerRig/Vignette" unique_id=1293242269]
+material = SubResource("ShaderMaterial_pglyy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Objects" type="Node3D" parent="." unique_id=385073192]
+
+[node name="Spawn_1" parent="Objects" unique_id=1485293716 instance=ExtResource("8_m4xuv")]
+transform = Transform3D(3.7022269, 0, 0, 0, 3.7022269, 0, 0, 0, 3.7022269, -101.84756, 38.00371, -492.5126)
+
+[node name="ProtoCerealBox" parent="Objects" unique_id=271924064 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.21831, 19.578846, -492.47562)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox2" parent="Objects" unique_id=1511608832 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.28278, 19.578846, -492.18845)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox3" parent="Objects" unique_id=619093356 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.547523, 19.578846, -492.18845)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox4_Jump" parent="Objects" unique_id=1668388932 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2.9020653, 19.578846, -492.18845)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox18" parent="Objects" unique_id=1084092461 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(-4.371139e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371139e-08, 20.902065, 19.578846, -495.18848)
+width = 30.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox19" parent="Objects" unique_id=485911730 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(-4.371139e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371139e-08, 20.902065, 19.578846, -465.18848)
+width = 30.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox20" parent="Objects" unique_id=1938718559 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(-4.371139e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371139e-08, 20.902065, 19.578846, -525.1885)
+width = 30.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox8" parent="Objects" unique_id=1230601411 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 38.902065, 19.578846, -534.1885)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox11" parent="Objects" unique_id=371241724 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 63.90207, 19.578846, -534.1885)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox9" parent="Objects" unique_id=2072543875 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 38.902065, 19.578846, -492.18848)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox10" parent="Objects" unique_id=1084974258 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 63.90207, 19.578846, -492.18848)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox12" parent="Objects" unique_id=1211997601 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 38.902065, 19.578846, -459.18848)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox13" parent="Objects" unique_id=1116597649 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 63.90207, 19.578846, -459.18848)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox16" parent="Objects" unique_id=1248456265 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 38.902065, 19.578846, -475.18848)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox17" parent="Objects" unique_id=188030136 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 63.90207, 19.578846, -475.18848)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox14" parent="Objects" unique_id=577293182 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 38.902065, 19.578846, -512.1885)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="ProtoCerealBox15" parent="Objects" unique_id=1364648080 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 63.90207, 19.578846, -512.1885)
+width = 25.0
+height = 40.0
+depth = 10.0
+
+[node name="LoopiesLauncher" parent="Objects" unique_id=1470826604 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 2.902069, 19.578846, -534.1885)
+width = 25.0
+height = 40.0
+depth = 10.0
+title = 3
+body_color = Color(0.5434947, 0.99999994, 0.15977705, 1)
+mat_body = ExtResource("10_53qiv")
+zone_color = Color(1, 0.51, 0.9918332, 0.15294118)
+
+[node name="Goal_1" parent="Objects" unique_id=142908771 instance=ExtResource("9_vos1h")]
+transform = Transform3D(3.4999998, 0, 0, 0, 1, 0, 0, 0, 2.9999998, 3.3445406, 23.547504, -744.919)
+
+[node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("16_eqlr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.54615, 0)
+
+[node name="BoilingPot" parent="." unique_id=1449997410 instance=ExtResource("12_4ri30")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3, 19, -745)
+
+[node name="RollingPin" parent="." unique_id=1688522341 instance=ExtResource("16_q0elx")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 44, 41, -456)
+travel_distance = 8.0
+
+[node name="RollingPin2" parent="." unique_id=1290665592 instance=ExtResource("16_q0elx")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 44, 41, -521)
+travel_distance = 8.0
+
+[node name="RollingPin3" parent="." unique_id=931885742 instance=ExtResource("16_q0elx")]
+transform = Transform3D(-2.1855695e-07, 0, -5, 0, 5, 0, 5, 0, -2.1855695e-07, 55, 41, -491)
+travel_distance = 9.0
+starting_direction = -1
+
+[node name="Cookbook" parent="." unique_id=1468105954 instance=ExtResource("17_1umc1")]
+transform = Transform3D(-2.1110984e-07, -1.2940954, -4.829629, -5.65667e-08, 4.829629, -1.2940954, 5, -1.0658141e-14, -2.1855695e-07, 139.00002, 40.000015, -496)
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
+
+[node name="Cookbook2" parent="." unique_id=775161594 instance=ExtResource("17_1umc1")]
+transform = Transform3D(-2.1110976e-07, 4.9999995, -2.582802e-07, -4.999999, -2.1110975e-07, 2.7512357e-07, 2.7512368e-07, -2.1855692e-07, 4.9999995, 193, 9.000015, -496)
+width = 24.0
+height = 16.0
+thickness = 5.0
+front_open_degrees = 50.0
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
+
+[node name="Cookbook3" parent="." unique_id=1778445406 instance=ExtResource("17_1umc1")]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -0.9659258, -0.25881907, -1.131334e-08, 0.25881907, -0.9659258, -4.222196e-08, 372, 7, -634)
+width = 50.0
+height = 42.0
+front_open_degrees = 73.0
+back_open_degrees = 87.5
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
+
+[node name="Cookbook4" parent="." unique_id=348081286 instance=ExtResource("17_1umc1")]
+transform = Transform3D(2.9802322e-08, -1, -8.593335e-08, -1, -2.9802322e-08, 1.1313343e-08, -1.1313345e-08, 8.593335e-08, -1, 69, 16, -744)
+width = 50.0
+height = 42.0
+front_open_degrees = 83.5
+back_open_degrees = 60.0
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
+
+[node name="ProtoCerealBox" parent="Cookbook4" unique_id=621674634 instance=ExtResource("11_ehdeg")]
+transform = Transform3D(-4.371139e-08, 5.613103e-08, -1, -1.1573567e-07, 1, 5.6131025e-08, 1, 1.1573567e-07, -4.371138e-08, 6, -58, 0)
+width = 30.0
+depth = 14.0
+bottom_flap_length = 30.0
+bottom_open_degrees = 64.0
+title = 2
+
+[node name="ProtoHalfPipe" parent="." unique_id=365574967 instance=ExtResource("18_bqclk")]
+transform = Transform3D(-2.1855696e-07, 0, 5, -1.2940953, 4.829629, -5.6566705e-08, -4.829629, -1.2940953, -2.111098e-07, 371, 39.32574, -548)
+size_mode = 1
+height = 4.192970442890602
+width = 16.282310367126385
+radius = 10.0
+arc_degrees = 109.0
+length = 9.0
+surface_material = ExtResource("19_aswnm")
+
+[node name="ProtoHalfPipe2" parent="." unique_id=78707240 instance=ExtResource("18_bqclk")]
+transform = Transform3D(-4.829629, -1.2940953, 5.7573664e-07, -1.2940953, 4.829629, 1.5426818e-07, -5.960464e-07, 0, -4.9999995, 329, 14.325741, -492)
+size_mode = 1
+height = 8.103544264973173
+width = 32.154274424688694
+radius = 20.0
+arc_degrees = 107.0
+length = 9.0
+surface_material = ExtResource("19_aswnm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=963231526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 331, 126, -553)
+light_energy = 31.13
+omni_range = 268.299
+omni_attenuation = 0.661
+
+[connection signal="level_completed" from="Objects/Goal_1" to="LevelComplete" method="show_on_finish"]

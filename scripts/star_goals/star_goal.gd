@@ -17,3 +17,9 @@ func _ready() -> void:
 ## Whether the goal was met. `player` is the player who reached the finish, if known.
 func is_earned(_player: Node = null) -> bool:
 	return false
+
+
+## How many stars this goal gives. All-or-nothing goals give `stars_worth` when earned; a goal
+## with levels of success overrides this to give 0 to 3.
+func earned_stars(player: Node = null) -> int:
+	return stars_worth if is_earned(player) else 0

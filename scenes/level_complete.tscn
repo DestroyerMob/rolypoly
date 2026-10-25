@@ -200,7 +200,7 @@ anti_aliasing_size = 1.5
 [node name="LevelComplete" type="CanvasLayer" unique_id=1726107290]
 layer = 20
 script = ExtResource("1_script")
-start_hidden = false
+start_hidden = true
 
 [node name="Dim" type="ColorRect" parent="." unique_id=1983446866]
 anchors_preset = 15

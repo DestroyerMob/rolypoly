@@ -92,6 +92,8 @@ var _mat_cache := {}
 	set(value):
 		flap_thickness = maxf(value, 0.02)
 		_rebuild()
+## How far the player can nudge the aim away from the goal, in degrees. Rotates camera to goal
+@export_range(0.0, 45.0, 0.5) var aim_clamp_degrees := 10.0
 
 ## 0 closed and flat. Positive lifts the free edge, 90 is upright, 180 folds
 ## it back over the hinge. Negative drops it below the lid, which is the
@@ -142,15 +144,35 @@ var _mat_cache := {}
 		collision_enabled = value
 		_rebuild()
 
+# ----- aimring ------------------------------------------------------------
+@export_group("AimRing")
+## True while the player is on this box's aim ring.
+var _player_on_ring := false
+## A faint column over the ring so players can see the launch spot.
+@export var show_zone := true:
+	set(value):
+		show_zone = value
+		_rebuild()
 
+## Colour of the column. Keep alpha low, around 0.1, for the faint look.
+@export var zone_color := Color(1.0, 1.0, 1.0, 0.12):
+	set(value):
+		zone_color = value
+		_rebuild()
+		
 func _ready() -> void:
 	_rebuild()
 func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
-	if event is InputEventKey and event.pressed and event.physical_keycode == KEY_Z:
+	if title != Title.LOOPIES or not _player_on_ring:
+		return
+	if event is InputEventKey and event.pressed and event.physical_keycode == KEY_F:
 		var hinge := get_node_or_null("TopHinge") as Node3D
 		if hinge:
+			var v := _vignette()
+			if v:
+				v.pulse(2.0)
 			create_tween().tween_property(hinge, "rotation_degrees:x", 135.0, 0.2)
 
 func _rebuild() -> void:
@@ -255,6 +277,40 @@ func _build_flap(is_top: bool) -> void:
 		ring.position = Vector3(0.0, size.y * 0.5 + 0.05,
 			-side_sign * size.z * 0.1)
 		panel.add_child(ring)
+		#Job 4: A trigger over the ring. Standing on it hands the camera to the goal; leaving hands it back.
+		var zone := Area3D.new()
+		zone.name = "AimZone"
+		var shape := CollisionShape3D.new()
+		var cylinder := CylinderShape3D.new()
+		cylinder.radius = r
+		cylinder.height = r
+		shape.shape = cylinder
+		zone.add_child(shape)
+		zone.position = ring.position + Vector3(0.0, r * 0.5, 0.0)
+		zone.body_entered.connect(_on_aim_zone_entered)
+		zone.body_exited.connect(_on_aim_zone_exited)
+		panel.add_child(zone)
+		#Job 5: A visible copy of the trigger. Open tube, no caps, unshaded,
+		#so it reads as a soft glass column rather than a solid object.
+		if show_zone:
+			var column := MeshInstance3D.new()
+			column.name = "ZoneColumn"
+			var tube := CylinderMesh.new()
+			tube.top_radius = cylinder.radius
+			tube.bottom_radius = cylinder.radius
+			tube.height = cylinder.height
+			tube.cap_top = false
+			tube.cap_bottom = false
+			column.mesh = tube
+			var glow := StandardMaterial3D.new()
+			glow.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+			glow.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			glow.cull_mode = BaseMaterial3D.CULL_DISABLED
+			glow.albedo_color = zone_color
+			column.material_override = glow
+			column.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			column.position = zone.position
+			panel.add_child(column)
 
 # --------------------------------------------------------------------------
 # Builders
@@ -384,3 +440,40 @@ func _body_material() -> Material:
 func _carton_bevel_used() -> float:
 	var limit := minf(minf(width, height), depth) * 0.49
 	return clampf(carton_bevel, 0.0, limit)
+	
+func _on_aim_zone_entered(body: Node3D) -> void:
+	if Engine.is_editor_hint() or not body is Player:
+		return
+	_player_on_ring = true
+	var v := _vignette()
+	if v:
+		v.set_ring(true)
+	var rig := _camera_rig()
+	var goal := get_tree().get_first_node_in_group(&"goal") as Node3D
+	print("rig: ", rig, "  goal: ", goal)
+	if rig and goal:
+		rig.begin_aim(goal, aim_clamp_degrees)
+
+
+func _on_aim_zone_exited(body: Node3D) -> void:
+	if Engine.is_editor_hint() or not body is Player:
+		return
+	_player_on_ring = false
+	var v := _vignette()
+	if v:
+		v.set_ring(false)
+	var rig := _camera_rig()
+	if rig:
+		rig.end_aim()
+
+
+## Walks up from the active camera to whichever node owns begin_aim, so this
+## works whether the script sits on the Camera3D or on a pivot above it.
+func _camera_rig() -> Node:
+	var node: Node = get_viewport().get_camera_3d()
+	while node != null and not node.has_method("begin_aim"):
+		node = node.get_parent()
+	return node
+# Vignette Helper
+func _vignette() -> Node:
+	return get_tree().get_first_node_in_group(&"vignette")

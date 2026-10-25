@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://t2rx48ftkx4r"]
+
+[ext_resource type="PackedScene" uid="uid://c4f5ci7rioc0v" path="res://assets/models/ice_kitchen/DessertBowl.glb" id="1_pooc4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_be312"]
+height = 1.2182617
+radius = 1.9589844
+
+[node name="IcecreamBowl" type="StaticBody3D" unique_id=1849473372]
+
+[node name="DessertBowl" parent="." unique_id=2109355105 instance=ExtResource("1_pooc4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1091904083]
+transform = Transform3D(0.9999602, 0, 0.008926125, 0, 1, 0, -0.008926125, 0, 0.9999602, 0, 0.6606798, 0)
+shape = SubResource("CylinderShape3D_be312")

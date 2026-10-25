@@ -19,13 +19,14 @@ func _init(target: Player) -> void:
 
 
 func _ready() -> void:
-	add_child(_quad(Vector2(WIDTH + 0.16, HEIGHT + 0.16), Color(0.08, 0.06, 0.06, 0.85), 0.0, QuadMesh.new()))
-	add_child(_quad(Vector2(WIDTH, HEIGHT), Color.WHITE, 0.02, _fill_mesh, _fill_material))
+	var size := player.size_factor
+	add_child(_quad(Vector2(WIDTH + 0.16, HEIGHT + 0.16) * size, Color(0.08, 0.06, 0.06, 0.85), 0.0, QuadMesh.new()))
+	add_child(_quad(Vector2(WIDTH, HEIGHT) * size, Color.WHITE, 0.02, _fill_mesh, _fill_material))
 	_update_fill()
 
 
 func _process(_delta: float) -> void:
-	global_position = player.global_position + Vector3.UP * LIFT
+	global_position = player.global_position + Vector3.UP * LIFT * player.size_factor
 	if player.health != _shown:
 		_update_fill()
 
@@ -33,8 +34,9 @@ func _process(_delta: float) -> void:
 func _update_fill() -> void:
 	_shown = player.health
 	var ratio := clampf(float(player.health) / maxf(player.get_max_health(), 1.0), 0.0, 1.0)
-	_fill_mesh.size = Vector2(maxf(WIDTH * ratio, 0.001), HEIGHT)
-	_fill_mesh.center_offset = Vector3(-WIDTH * (1.0 - ratio) * 0.5, 0.0, 0.02)
+	var width := WIDTH * player.size_factor
+	_fill_mesh.size = Vector2(maxf(width * ratio, 0.001), HEIGHT * player.size_factor)
+	_fill_mesh.center_offset = Vector3(-width * (1.0 - ratio) * 0.5, 0.0, 0.02 * player.size_factor)
 	_fill_material.albedo_color = Color(0.9, 0.2, 0.15).lerp(Color(1, 0.8, 0.2), clampf(ratio * 2.0, 0, 1)).lerp(Color(0.35, 0.9, 0.4), clampf(ratio * 2.0 - 1.0, 0, 1))
 
 

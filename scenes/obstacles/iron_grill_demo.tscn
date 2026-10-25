@@ -118,7 +118,6 @@ script = ExtResource("3_rig")
 
 [node name="Player" parent="PlayerRig" unique_id=1707870277 instance=ExtResource("4_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.731487, 20.5)
-continuous_cd = true
 
 [node name="CameraPivot" type="Node3D" parent="PlayerRig" unique_id=1747705010 node_paths=PackedStringArray("player_rig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.731487, 20.5)

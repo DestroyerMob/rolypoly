@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ce4fmlbtv7hth"]
+
+[ext_resource type="PackedScene" uid="uid://ccwx7l8lkxnn" path="res://assets/models/props/glass/Bottle_Beer_Bottle.glb" id="1_bottle"]
+[ext_resource type="ArrayMesh" path="res://assets/models/props/glass/chocolate_fill.res" id="2_fill"]
+[ext_resource type="Texture2D" uid="uid://b4b4endmetvid" path="res://assets/textures/chocolate_sauce_label.png" id="3_label"]
+[ext_resource type="ArrayMesh" path="res://assets/models/props/glass/chocolate_label.res" id="4_label_mesh"]
+
+[sub_resource type="StandardMaterial3D" id="Material_cap"]
+albedo_color = Color(0.82, 0.6, 0.18, 1)
+metallic = 0.85
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Material_glass"]
+transparency = 1
+albedo_color = Color(1, 0.96, 0.9, 0.1)
+metallic = 0.1
+metallic_specular = 1.0
+roughness = 0.04
+rim_enabled = true
+rim_tint = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Material_chocolate"]
+albedo_color = Color(0.36, 0.16, 0.07, 1)
+roughness = 0.12
+emission_enabled = true
+emission = Color(0.28, 0.1, 0.03, 1)
+emission_energy_multiplier = 0.6
+clearcoat_enabled = true
+clearcoat = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Material_label"]
+albedo_texture = ExtResource("3_label")
+roughness = 0.65
+
+[node name="ChocolateSauceBottleModel" type="Node3D" unique_id=948082685]
+
+[node name="Bottle" parent="." unique_id=1576677893 instance=ExtResource("1_bottle")]
+
+[node name="Cork_37_001" parent="Bottle" index="0" unique_id=1693482098]
+surface_material_override/0 = SubResource("Material_cap")
+surface_material_override/1 = SubResource("Material_glass")
+
+[node name="Chocolate" type="MeshInstance3D" parent="." unique_id=2141231529]
+mesh = ExtResource("2_fill")
+surface_material_override/0 = SubResource("Material_chocolate")
+
+[node name="Label" type="MeshInstance3D" parent="." unique_id=738719105]
+mesh = ExtResource("4_label_mesh")
+surface_material_override/0 = SubResource("Material_label")
+
+[editable path="Bottle"]

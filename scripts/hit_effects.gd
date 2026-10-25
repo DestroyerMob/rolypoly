@@ -26,15 +26,15 @@ static func knockout(player: Player) -> void:
 	burst.lifetime = 0.9
 	burst.direction = Vector3.UP
 	burst.spread = 180.0
-	burst.initial_velocity_min = 8.0
-	burst.initial_velocity_max = 18.0
-	burst.gravity = Vector3(0, -25, 0)
+	burst.initial_velocity_min = 8.0 * player.size_factor
+	burst.initial_velocity_max = 18.0 * player.size_factor
+	burst.gravity = Vector3(0, -25, 0) * player.size_factor
 	burst.scale_amount_min = 0.6
 	burst.scale_amount_max = 1.2
 	burst.color = _colour_of(player)
 	var mesh := SphereMesh.new()
-	mesh.radius = 0.25
-	mesh.height = 0.5
+	mesh.radius = 0.25 * player.size_factor
+	mesh.height = 0.5 * player.size_factor
 	mesh.radial_segments = 6
 	mesh.rings = 3
 	var material := StandardMaterial3D.new()
@@ -94,7 +94,7 @@ static func _damage_number(player: Player, amount: int) -> void:
 		label.render_priority = 10
 		label.outline_render_priority = 9
 		player.get_parent().add_child(label)
-		label.global_position = player.global_position + Vector3(randf_range(-0.8, 0.8), 2.2, randf_range(-0.8, 0.8))
+		label.global_position = player.global_position + Vector3(randf_range(-0.8, 0.8), 2.2, randf_range(-0.8, 0.8)) * player.size_factor
 		label.set_meta(&"started", now)
 		player.set_meta(&"hit_number", label)
 	label.set_meta(&"amount", amount)
@@ -105,7 +105,7 @@ static func _damage_number(player: Player, amount: int) -> void:
 	label.scale = Vector3.ONE * 1.4
 	var tween := label.create_tween().set_parallel()
 	tween.tween_property(label, "scale", Vector3.ONE, 0.12)
-	tween.tween_property(label, "global_position:y", label.global_position.y + 3.0, 0.8)
+	tween.tween_property(label, "global_position:y", label.global_position.y + 3.0 * player.size_factor, 0.8)
 	tween.tween_property(label, "modulate:a", 0.0, 0.35).set_delay(0.45)
 	tween.chain().tween_callback(label.queue_free)
 	label.set_meta(&"tween", tween)

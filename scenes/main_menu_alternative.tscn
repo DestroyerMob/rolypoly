@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ctmge4npvbnl6" path="res://packed_scenes/player_onion.tscn" id="3_onion"]
 [ext_resource type="PackedScene" uid="uid://ludy2gtx25yy" path="res://packed_scenes/player_tomato.tscn" id="4_tomato"]
 [ext_resource type="PackedScene" uid="uid://bw0rr7rnpumuh" path="res://packed_scenes/player_naked_onion.tscn" id="5_onion"]
-[ext_resource type="PackedScene" uid="uid://cq7uaiijddevi" path="res://scenes/prototyping/kitchen_set.tscn" id="6_kitchen"]
+[ext_resource type="PackedScene" path="res://scenes/prototyping/kitchen_set.tscn" id="6_kitchen"]
 [ext_resource type="Texture2D" uid="uid://ck250854bpuud" path="res://textures/GameTitle.png" id="7_3m32m"]
 [ext_resource type="Texture2D" uid="uid://dl1vprd31rfpw" path="res://textures/icons/play.svg" id="8_tcdr2"]
 [ext_resource type="Texture2D" uid="uid://ckiybmp0rb74e" path="res://textures/icons/trophy.svg" id="9_nql72"]
@@ -153,14 +153,6 @@ shadow_color = Color(0, 0, 0, 0.2)
 shadow_size = 4
 shadow_offset = Vector2(0, 3)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qeeg"]
-content_margin_left = 34.0
-bg_color = Color(0.64, 0.45, 0.24, 1)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
-
 [sub_resource type="Environment" id="Environment_hfrvr"]
 ambient_light_source = 2
 ambient_light_color = Color(1, 0.9, 0.8, 1)
@@ -178,10 +170,10 @@ corner_radius_top_right = 44
 corner_radius_bottom_right = 44
 corner_radius_bottom_left = 44
 corner_detail = 10
-anti_aliasing_size = 1.5
 shadow_color = Color(0.15, 0.08, 0.02, 0.35)
 shadow_size = 24
 shadow_offset = Vector2(0, 12)
+anti_aliasing_size = 1.5
 
 [sub_resource type="StyleBoxFlat" id="Style_volume_panel"]
 content_margin_left = 24.0
@@ -478,24 +470,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_lbdfu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yv21h")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
 text = "Level editor / My levels"
-alignment = 0
-
-[node name="Kitchen Gym" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1788298352]
-custom_minimum_size = Vector2(400, 76)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_constants/h_separation = 22
-theme_override_constants/icon_max_width = 26
-theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_2qeeg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8ummh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bldjp")
-theme_override_styles/focus = SubResource("StyleBoxFlat_wsbcx")
-text = "Kitchen Gym"
-icon = ExtResource("8_tcdr2")
 alignment = 0
 
 [node name="AchievementsButton" type="Button" parent="MenuButtonsCenter/MenuButtons" unique_id=1952813082]
