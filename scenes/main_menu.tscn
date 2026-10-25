@@ -282,7 +282,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137, -2.25, 0)
 
 [node name="Face" parent="VegViewportContainer/OnionViewport/OnionPivot/Onion" unique_id=1315605660 instance=ExtResource("11_face")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6595171, 0.113529086, 2.1999183, 1.0431988)
-visible = false
 normal_face = ExtResource("12_uwu")
 
 [node name="TomatoPivot" type="Node3D" parent="VegViewportContainer/OnionViewport" unique_id=799105270]

@@ -113,22 +113,22 @@ func set_doors_open(opened: bool, immediate := false) -> void:
 func _on_interaction_body_entered(body: Node3D) -> void:
 	if body is Player and not _players_in_range.has(body):
 		_players_in_range.append(body)
-		interaction_prompt.visible = true
+		#interaction_prompt.visible = true
 		_update_interaction_prompt()
 
 
 func _on_interaction_body_exited(body: Node3D) -> void:
 	_players_in_range.erase(body)
-	interaction_prompt.visible = not _players_in_range.is_empty()
+	#interaction_prompt.visible = not _players_in_range.is_empty()
 
 
 func _update_interaction_prompt() -> void:
 	if not is_node_ready():
 		return
-	interaction_prompt.text = "[F] FIRE: %s     [E] DOORS: %s" % [
-		"ON" if burners_on else "OFF",
-		"OPEN" if doors_open else "CLOSED",
-	]
+	#interaction_prompt.text = "[F] FIRE: %s     [E] DOORS: %s" % [
+		#"ON" if burners_on else "OFF",
+		#"OPEN" if doors_open else "CLOSED",
+	#]
 
 
 func _create_door_pivot(side: String, hinge_x: float) -> Node3D:

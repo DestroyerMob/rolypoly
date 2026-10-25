@@ -57,21 +57,6 @@ directional_shadow_split_2 = 0.25
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 1400.0
 
-[node name="SinkWindow" type="SpotLight3D" parent="Daylight" unique_id=1836104828]
-transform = Transform3D(0, -0.309017, 0.95105654, 0, 0.95105654, 0.309017, -1, 0, 0, 392, 130, -565)
-light_color = Color(1, 0.88, 0.72, 1)
-light_energy = 800.0
-light_volumetric_fog_energy = 0.7
-light_size = 30.0
-light_specular = 0.25
-shadow_enabled = true
-shadow_bias = 0.08
-shadow_normal_bias = 2.0
-spot_range = 650.0
-spot_attenuation = 1.1
-spot_angle = 65.0
-spot_angle_attenuation = 0.6
-
 [node name="RangeWindow" type="SpotLight3D" parent="Daylight" unique_id=915266016]
 transform = Transform3D(-1, 0, 0, 0, 0.95105654, 0.309017, 0, 0.309017, -0.95105654, -250, 112, -789)
 light_color = Color(0.65, 0.77, 1, 1)
@@ -91,7 +76,7 @@ spot_angle_attenuation = 0.6
 [node name="Island" type="SpotLight3D" parent="PracticalLights" unique_id=473153270]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -6, 211, -500)
 light_color = Color(1, 0.88, 0.73, 1)
-light_energy = 800.0
+light_energy = 7.336
 light_volumetric_fog_energy = 0.15
 light_size = 10.0
 shadow_enabled = true
@@ -103,17 +88,17 @@ spot_angle = 52.0
 spot_angle_attenuation = 0.7
 
 [node name="RangeHood" type="SpotLight3D" parent="PracticalLights" unique_id=118533554]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1, 118, -764)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1, 186.1173, -821.0572)
 light_color = Color(1, 0.86, 0.68, 1)
-light_energy = 350.0
+light_energy = 11.179
 light_volumetric_fog_energy = 0.1
 light_size = 8.0
 shadow_enabled = true
 shadow_bias = 0.08
 shadow_normal_bias = 1.5
-spot_range = 240.0
+spot_range = 144.334
 spot_attenuation = 1.1
-spot_angle = 60.0
+spot_angle = 43.49
 spot_angle_attenuation = 0.6
 
 [node name="Bar" type="SpotLight3D" parent="PracticalLights" unique_id=1253748907]
@@ -182,7 +167,7 @@ cast_shadow = 0
 mesh = SubResource("DownlightDiffuser")
 
 [node name="HoodStrip" type="MeshInstance3D" parent="Fixtures" unique_id=1564328923]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 123.5, -764)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 188.01175, -829.8895)
 layers = 131073
 cast_shadow = 0
 mesh = SubResource("HoodStrip")

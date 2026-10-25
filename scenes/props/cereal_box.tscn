@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c52wrtvvf4641"]
 
-[ext_resource type="Script" path="res://scripts/props/cereal_stand.gd" id="1"]
+[ext_resource type="Script" uid="uid://csft2w0lm5jsk" path="res://scripts/props/cereal_stand.gd" id="1"]
 
-[node name="CerealBox" type="Node3D"]
+[node name="CerealBox" type="Node3D" unique_id=1807471620]
 script = ExtResource("1")
