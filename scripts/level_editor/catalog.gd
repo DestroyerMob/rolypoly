@@ -118,6 +118,8 @@ static func instantiate(data: Dictionary, mount: GadgetMount = null) -> Node3D:
 	if data.id == "gravity":
 		node.set("gadget_scene", preload("res://scenes/props/gravity_gun.tscn"))
 		node.set("preview_scale", 1.0)
+	if data.id in ["produce", "onion"]:
+		node.add_to_group(&"vegetable")
 	if data.id == "pot":
 		node.set("return_scene", "")
 		node.get_node("GoalArea").monitoring = false

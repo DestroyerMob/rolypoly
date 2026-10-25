@@ -1,0 +1,522 @@
+{
+	"version": 1,
+	"name": "Weigh-in",
+	"player": "onion",
+	"character_size": 5.0,
+	"objects": [
+		{
+			"id": "spawn",
+			"uid": 1,
+			"position": [
+				-118,
+				-0.55,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.7,
+				3.7,
+				3.7
+			]
+		},
+		{
+			"id": "gravity",
+			"uid": 2,
+			"position": [
+				-95,
+				-0.55,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"grab_range": 160.0
+			}
+		},
+		{
+			"id": "scale",
+			"uid": 3,
+			"position": [
+				-5,
+				-0.55,
+				-482
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				15.0,
+				15.0,
+				15.0
+			]
+		},
+		{
+			"id": "lighter",
+			"uid": 4,
+			"position": [
+				-40,
+				-0.55,
+				-462
+			],
+			"rotation": [
+				0.0,
+				-20.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"lit": false
+			}
+		},
+		{
+			"id": "cookbook",
+			"uid": 5,
+			"position": [
+				-65,
+				-0.55,
+				-515
+			],
+			"rotation": [
+				0.0,
+				-10.0,
+				0.0
+			],
+			"scale": [
+				1.66,
+				1.66,
+				1.66
+			],
+			"properties": {
+				"title": 3
+			}
+		},
+		{
+			"id": "bowl",
+			"uid": 6,
+			"position": [
+				-65,
+				3.9,
+				-515
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				15.0,
+				15.0,
+				15.0
+			]
+		},
+		{
+			"id": "onion",
+			"uid": 7,
+			"position": [
+				-59,
+				13,
+				-515
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				7.0,
+				7.0,
+				7.0
+			]
+		},
+		{
+			"id": "onion",
+			"uid": 8,
+			"position": [
+				-71,
+				13,
+				-515
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				7.0,
+				7.0,
+				7.0
+			]
+		},
+		{
+			"id": "onion",
+			"uid": 9,
+			"position": [
+				-65,
+				13,
+				-522
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				7.0,
+				7.0,
+				7.0
+			]
+		},
+		{
+			"id": "cardboard",
+			"uid": 10,
+			"position": [
+				35,
+				10.985,
+				-520
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				-180.0
+			],
+			"scale": [
+				11.448,
+				11.448,
+				11.448
+			]
+		},
+		{
+			"id": "produce",
+			"uid": 11,
+			"position": [
+				25,
+				25.7,
+				-515
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				2.5,
+				2.5,
+				2.5
+			]
+		},
+		{
+			"id": "produce",
+			"uid": 12,
+			"position": [
+				45,
+				25.7,
+				-515
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				2.5,
+				2.5,
+				2.5
+			]
+		},
+		{
+			"id": "produce",
+			"uid": 13,
+			"position": [
+				35,
+				25.7,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				2.5,
+				2.5,
+				2.5
+			]
+		},
+		{
+			"id": "cereal_box",
+			"uid": 14,
+			"position": [
+				50,
+				-0.55,
+				-462
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3
+			}
+		},
+		{
+			"id": "produce",
+			"uid": 15,
+			"position": [
+				42,
+				62,
+				-462
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				2.5,
+				2.5,
+				2.5
+			]
+		},
+		{
+			"id": "produce",
+			"uid": 16,
+			"position": [
+				58,
+				62,
+				-462
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				2.5,
+				2.5,
+				2.5
+			]
+		},
+		{
+			"id": "bowl",
+			"uid": 17,
+			"position": [
+				108,
+				-0.55,
+				-512
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				20.0,
+				20.0,
+				20.0
+			]
+		},
+		{
+			"id": "goal",
+			"uid": 18,
+			"position": [
+				108,
+				1.5,
+				-512
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.5,
+				1.0,
+				3.0
+			],
+			"properties": {
+				"enabled": false
+			}
+		},
+		{
+			"id": "cookbook",
+			"uid": 19,
+			"position": [
+				108,
+				-0.55,
+				-467
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.66,
+				1.66,
+				1.66
+			],
+			"properties": {
+				"title": 7
+			}
+		},
+		{
+			"id": "cookbook",
+			"uid": 20,
+			"position": [
+				108,
+				4.5,
+				-476
+			],
+			"rotation": [
+				0.0,
+				4.0,
+				0.0
+			],
+			"scale": [
+				1.66,
+				1.66,
+				1.66
+			],
+			"properties": {
+				"title": 2
+			}
+		},
+		{
+			"id": "lighter",
+			"uid": 21,
+			"position": [
+				84,
+				-0.55,
+				-528
+			],
+			"rotation": [
+				0.0,
+				25.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"lit": false
+			}
+		},
+		{
+			"id": "cookbook",
+			"uid": 22,
+			"position": [
+				-25,
+				-0.55,
+				-535
+			],
+			"rotation": [
+				0.0,
+				-25.0,
+				0.0
+			],
+			"scale": [
+				1.66,
+				1.66,
+				1.66
+			],
+			"properties": {
+				"title": 5
+			}
+		},
+		{
+			"id": "watcher",
+			"uid": 23,
+			"position": [
+				-125,
+				-0.55,
+				-545
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"event": 2,
+				"comparison": 0,
+				"threshold": 2.5
+			},
+			"targets": [
+				{
+					"uid": 4,
+					"action": "lit",
+					"mode": "on"
+				}
+			],
+			"source": 3
+		},
+		{
+			"id": "watcher",
+			"uid": 24,
+			"position": [
+				-120,
+				-0.55,
+				-545
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"event": 2,
+				"comparison": 0,
+				"threshold": 5.0
+			},
+			"targets": [
+				{
+					"uid": 18,
+					"action": "enabled",
+					"mode": "on"
+				},
+				{
+					"uid": 21,
+					"action": "lit",
+					"mode": "on"
+				}
+			],
+			"source": 3
+		}
+	]
+}

@@ -11,7 +11,7 @@ var mount: GadgetMount
 var play_camera: Camera3D
 var brawl: FreeForAll
 var start_position := Vector3.ZERO
-var fall_height := -140.0
+var fall_height := INF
 var _lowest := INF
 var _finished := false
 
@@ -90,7 +90,7 @@ func _wire_watchers(document: Dictionary) -> void:
 			)
 		elif entry.id == "scale":
 			var uid := int(entry.get("uid", 0))
-			objects[index].connect("weight_changed", func(weight: float, _id: StringName):
+			objects[index].get_node("WeighingPlatform").connect("weight_changed", func(weight: float, _id: StringName):
 				for watcher in watchers:
 					watcher.scale_weighed(weight, uid)
 			)

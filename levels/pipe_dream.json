@@ -1,0 +1,804 @@
+{
+	"version": 1,
+	"name": "Pipe dream",
+	"player": "tomato",
+	"character_size": 5.0,
+	"objects": [
+		{
+			"id": "spawn",
+			"uid": 1,
+			"position": [
+				-120,
+				-0.55,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.7,
+				3.7,
+				3.7
+			]
+		},
+		{
+			"id": "cereal_box",
+			"uid": 2,
+			"position": [
+				-72,
+				-0.55,
+				-535
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 1
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 3,
+			"position": [
+				-72,
+				-0.55,
+				-498
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 4,
+			"position": [
+				-72,
+				-0.55,
+				-461
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 2
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 5,
+			"position": [
+				-5,
+				-0.55,
+				-535
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 6,
+			"position": [
+				-5,
+				-0.55,
+				-498
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 1
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 7,
+			"position": [
+				-5,
+				-0.55,
+				-461
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 2
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 8,
+			"position": [
+				62,
+				-0.55,
+				-535
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 2
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 9,
+			"position": [
+				62,
+				-0.55,
+				-498
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 1
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 10,
+			"position": [
+				62,
+				-0.55,
+				-461
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 11,
+			"position": [
+				-95,
+				-0.55,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 1
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 12,
+			"position": [
+				-52,
+				18,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 1
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 13,
+			"position": [
+				-95,
+				-0.55,
+				-470
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 2
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 14,
+			"position": [
+				-95,
+				5,
+				-605
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 2
+			}
+		},
+		{
+			"id": "lighter",
+			"uid": 15,
+			"position": [
+				-84,
+				-0.55,
+				-548
+			],
+			"rotation": [
+				0.0,
+				-30.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"lit": false
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 16,
+			"position": [
+				-27,
+				-0.55,
+				-465
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 3
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 17,
+			"position": [
+				-118,
+				18,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 3
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 18,
+			"position": [
+				-27,
+				-0.55,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 4
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 19,
+			"position": [
+				14,
+				18,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 4
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 20,
+			"position": [
+				-27,
+				-0.55,
+				-535
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 5
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 21,
+			"position": [
+				-27,
+				5,
+				-605
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 5
+			}
+		},
+		{
+			"id": "spinner",
+			"uid": 22,
+			"position": [
+				-44,
+				-0.55,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				4.0,
+				4.0,
+				4.0
+			],
+			"properties": {
+				"rotation_speed_degrees": 120.0
+			}
+		},
+		{
+			"id": "lighter",
+			"uid": 23,
+			"position": [
+				-17,
+				-0.55,
+				-517
+			],
+			"rotation": [
+				0.0,
+				20.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"lit": false
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 24,
+			"position": [
+				38,
+				-0.55,
+				-470
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 6
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 25,
+			"position": [
+				95,
+				45,
+				-520
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 6
+			}
+		},
+		{
+			"id": "funnel",
+			"uid": 26,
+			"position": [
+				38,
+				-0.55,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 7
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 27,
+			"position": [
+				-52,
+				18,
+				-500
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 7
+			}
+		},
+		{
+			"id": "masher",
+			"uid": 28,
+			"position": [
+				38,
+				5.25,
+				-470
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				8.0,
+				8.0,
+				8.0
+			],
+			"properties": {
+				"wait_time": 1.2
+			}
+		},
+		{
+			"id": "lighter",
+			"uid": 29,
+			"position": [
+				52,
+				-0.55,
+				-490
+			],
+			"rotation": [
+				0.0,
+				-15.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"lit": false
+			}
+		},
+		{
+			"id": "cardboard",
+			"uid": 30,
+			"position": [
+				95,
+				10.985,
+				-520
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				-180.0
+			],
+			"scale": [
+				11.448,
+				11.448,
+				11.448
+			]
+		},
+		{
+			"id": "bowl",
+			"uid": 31,
+			"position": [
+				95,
+				19.46,
+				-520
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				20.0,
+				20.0,
+				20.0
+			]
+		},
+		{
+			"id": "goal",
+			"uid": 32,
+			"position": [
+				95,
+				21.0,
+				-520
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.5,
+				1.0,
+				3.0
+			]
+		},
+		{
+			"id": "cookbook",
+			"uid": 33,
+			"position": [
+				100,
+				-0.55,
+				-468
+			],
+			"rotation": [
+				0.0,
+				70.0,
+				0.0
+			],
+			"scale": [
+				1.66,
+				1.66,
+				1.66
+			],
+			"properties": {
+				"title": 6
+			}
+		},
+		{
+			"id": "watcher",
+			"uid": 34,
+			"position": [
+				-130,
+				-0.55,
+				-548
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"event": 0,
+				"comparison": 0,
+				"threshold": 2.0
+			},
+			"targets": [
+				{
+					"uid": 15,
+					"action": "lit",
+					"mode": "on"
+				},
+				{
+					"uid": 23,
+					"action": "lit",
+					"mode": "on"
+				},
+				{
+					"uid": 29,
+					"action": "lit",
+					"mode": "on"
+				}
+			]
+		},
+		{
+			"id": "watcher",
+			"uid": 35,
+			"position": [
+				-125,
+				-0.55,
+				-548
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"event": 3,
+				"comparison": 0,
+				"threshold": 90.0
+			},
+			"targets": [
+				{
+					"uid": 15,
+					"action": "lit",
+					"mode": "on"
+				},
+				{
+					"uid": 23,
+					"action": "lit",
+					"mode": "on"
+				},
+				{
+					"uid": 29,
+					"action": "lit",
+					"mode": "on"
+				}
+			]
+		}
+	]
+}
