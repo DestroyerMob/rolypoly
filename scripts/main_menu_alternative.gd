@@ -2,7 +2,6 @@ extends Node3D
 
 const Store = preload("res://scripts/level_editor/level_store.gd")
 const Progress = preload("res://scripts/level_progress.gd")
-const KITCHEN_GYM := "res://scenes/gym_pieces.tscn"
 
 var _camera_tween: Tween
 var _main_camera_transform: Transform3D
@@ -33,7 +32,6 @@ func _ready() -> void:
 		control.modulate.a = 0.0
 	_play_button.pressed.connect(_show_levels.bind(true))
 	$LevelGridCenter/LevelVBox/BackButton.pressed.connect(_show_levels.bind(false))
-	$"MenuButtonsCenter/MenuButtons/Kitchen Gym".pressed.connect(_open_scene.bind(KITCHEN_GYM))
 	$MenuButtonsCenter/MenuButtons/AchievementsButton.pressed.connect(_show_achievements)
 	$MenuButtonsCenter/MenuButtons/SettingsButton.pressed.connect(_show_settings.bind(true))
 	$MenuButtonsCenter/MenuButtons/QuitButton.pressed.connect(_quit)

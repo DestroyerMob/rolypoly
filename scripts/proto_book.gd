@@ -113,6 +113,20 @@ var _mat_cache := {}
 	set(value):
 		back_open_degrees = value
 		_rebuild()
+# ----- cover animation ----------------------------------------------------
+@export_group("Cover Animation")
+@export var animate_front := false
+@export var animate_back := false
+## How far past its set angle the cover opens.
+@export_range(-180.0, 180.0, 0.5) var anim_open_degrees := 90.0
+@export_range(0.01, 10.0, 0.01) var anim_open_time := 0.4
+@export_range(0.0, 10.0, 0.05) var anim_hold_open := 0.5
+@export_range(0.01, 10.0, 0.01) var anim_return_time := 1.0
+@export_range(0.0, 10.0, 0.05) var anim_hold_closed := 1.5
+## Stagger this across books for a ripple.
+@export_range(0.0, 10.0, 0.05) var anim_start_delay := 0.0
+
+
 # ----- title --------------------------------------------------------------
 @export_group("Title")
 ## Pick a book and its front, back and spine textures load automatically.
@@ -167,6 +181,8 @@ var _mat_cache := {}
 ## reason ArtBox does: setters fire before the node is in the tree.
 func _ready() -> void:
 	_rebuild()
+	if not Engine.is_editor_hint() and (animate_front or animate_back):
+		_start_cover_cycle()
 
 
 ## Turns the exports into geometry. Safe to run constantly, as it replaces
@@ -323,7 +339,9 @@ func _box(p_name: String, size: Vector3, pos: Vector3, mat: Material,
 	#       lets the marble sink through the cover as it swings.
 	var body: PhysicsBody3D
 	if movable:
-		body = AnimatableBody3D.new()
+		var animatable := AnimatableBody3D.new()
+		animatable.sync_to_physics = false
+		body = animatable
 	else:
 		body = StaticBody3D.new()
 	body.name = p_name + "Body"
@@ -397,3 +415,31 @@ func _material_for(path: String) -> Material:
 func _adopt(node: Node) -> void:
 	node.set_meta(GENERATED, true)
 	add_child(node)
+
+
+func _start_cover_cycle() -> void:
+	if anim_start_delay > 0.0:
+		await get_tree().create_timer(anim_start_delay, false).timeout
+	if animate_front:
+		_cycle_hinge("FrontHinge", front_open_degrees, 1.0)
+	if animate_back:
+		_cycle_hinge("BackHinge", back_open_degrees, -1.0)
+
+
+## Loops one cover: open, hold, return, hold. The back cover's hinge turns
+## the negative way, hence the sign.
+func _cycle_hinge(hinge_name: String, base: float, sign: float) -> void:
+	var hinge := get_node_or_null(hinge_name) as Node3D
+	if hinge == null:
+		return
+	var closed := base * sign
+	var opened := (base + anim_open_degrees) * sign
+	var t := create_tween()
+	t.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	t.set_loops()
+	t.tween_property(hinge, "rotation_degrees:z", opened, anim_open_time) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	t.tween_interval(anim_hold_open)
+	t.tween_property(hinge, "rotation_degrees:z", closed, anim_return_time) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_interval(anim_hold_closed)

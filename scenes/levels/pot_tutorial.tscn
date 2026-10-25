@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="16_q0elx"]
 [ext_resource type="PackedScene" path="res://scenes/props/cookbook.tscn" id="17_1umc1"]
 [ext_resource type="PackedScene" uid="uid://bwghfcy21irpb" path="res://scenes/prototyping/proto_half_pipe.tscn" id="18_bqclk"]
+[ext_resource type="Material" uid="uid://dodpqwhtiexpg" path="res://materials/generated/MI_Cork.tres" id="19_aswnm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pglyy"]
 shader = ExtResource("9_pglyy")
@@ -259,6 +260,7 @@ width = 16.282310367126385
 radius = 10.0
 arc_degrees = 109.0
 length = 9.0
+surface_material = ExtResource("19_aswnm")
 
 [node name="ProtoHalfPipe2" parent="." unique_id=78707240 instance=ExtResource("18_bqclk")]
 transform = Transform3D(-4.829629, -1.2940953, 5.7573664e-07, -1.2940953, 4.829629, 1.5426818e-07, -5.960464e-07, 0, -4.9999995, 329, 14.325741, -492)
@@ -268,6 +270,7 @@ width = 32.154274424688694
 radius = 20.0
 arc_degrees = 107.0
 length = 9.0
+surface_material = ExtResource("19_aswnm")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=963231526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 331, 126, -553)
