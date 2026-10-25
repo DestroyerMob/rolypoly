@@ -139,21 +139,20 @@ func _add_player_rig(root: Node3D, document: Dictionary) -> Node:
 	rig.name = "PlayerRig"
 	rig.set("allow_character_swap", false)
 	var player: Player = Catalog.PLAYERS[Catalog.player_of(document)].scene.instantiate()
-	player.scale = Vector3.ONE * PLAYER_SCALE
-	player.speed_force = 15.0
-	player.jump_impulse = 9.0
-	player.position = start + Vector3.UP * 8.5
+	var size := Catalog.character_size_of(document)
+	Catalog.size_player(player, size)
+	player.position = start + Vector3.UP * 2.2 * size
 	rig.add_child(player)
 
 	var pivot: Node3D = load(PIVOT_SCRIPT).new()
 	pivot.name = "CameraPivot"
 	pivot.position = player.position
 	pivot.set("player_rig", rig)
-	pivot.set("follow_offset", Vector3(0, 1.5, 0))
+	pivot.set("follow_offset", Vector3(0, 1.5, 0) * size)
 	var arm := SpringArm3D.new()
 	arm.name = "SpringArm3D"
-	arm.spring_length = 40.0
-	arm.margin = 0.5
+	arm.spring_length = 20.0 + 5.0 * size
+	arm.margin = 0.5 * size
 	pivot.add_child(arm)
 	var camera := Camera3D.new()
 	camera.name = "Camera3D"
@@ -166,9 +165,6 @@ func _add_player_rig(root: Node3D, document: Dictionary) -> Node:
 	mount.name = "GadgetMount"
 	mount.set("player_rig", rig)
 	mount.set("camera", camera)
-	mount.set("side_distance", mount.get("side_distance") * PLAYER_SCALE)
-	mount.set("height", mount.get("height") * PLAYER_SCALE)
-	mount.set("model_offset", mount.get("model_offset") * PLAYER_SCALE)
 	rig.add_child(mount)
 
 	root.add_child(rig)

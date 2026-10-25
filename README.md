@@ -147,12 +147,16 @@ objects; gameplay never changes the authored transforms.
 
 ### Saves
 
-Courses are versioned JSON files in Godot's `user://levels/` directory. They remain
-available after quitting the game. On macOS the default location is:
+Courses are versioned JSON files. When the game runs from the Godot editor they
+save into the repo, in `levels/custom/`, so commit that folder to share them with
+the team. Courses in the level list stay in `levels/` itself.
 
-`~/Library/Application Support/Godot/app_userdata/RolyPoly/levels/`
-
-To move a course to another installation, copy its JSON file into that game's
+An exported game can't write into the project, so there they save to Godot's
+`user://levels/` directory instead (on macOS,
+`~/Library/Application Support/Godot/app_userdata/RolyPoly/levels/`). My levels
+shows both folders. A course saved there on an older version keeps working, and
+moves into `levels/custom/` the next time it's saved from the editor. To move a
+course to another installation, copy its JSON file into that game's
 `user://levels/` folder. The browser shows malformed or unsupported files with an
 error instead of trying to instantiate them. Scene IDs come from the built-in
 catalog; save files cannot supply arbitrary resource paths or scripts.
@@ -165,7 +169,7 @@ shortcut or command line, for example:
 godot --path /path/to/roly-poly res://scenes/custom_level.tscn -- --custom-level=level_filename.json
 ```
 
-The filename is relative to `user://levels/`. Without that argument, running the
+The filename is looked up in `user://levels/`, `levels/custom/` and then `levels/`. Without that argument, running the
 player scene directly uses the starter layout. Normal players can use My levels
 from the game's main menu.
 

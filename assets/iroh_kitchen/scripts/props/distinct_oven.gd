@@ -118,10 +118,10 @@ func _on_interaction_body_exited(body: Node3D) -> void:
 func _update_interaction_prompt() -> void:
 	if not is_node_ready():
 		return
-	interaction_prompt.text = "[F] FIRE: %s     [E] DOORS: %s" % [
-		"ON" if burners_on else "OFF",
-		"OPEN" if doors_open else "CLOSED",
-	]
+	#interaction_prompt.text = "[F] FIRE: %s     [E] DOORS: %s" % [
+		#"ON" if burners_on else "OFF",
+		#"OPEN" if doors_open else "CLOSED",
+	#]
 
 
 func _create_door_pivot(side: String, hinge_x: float) -> Node3D:

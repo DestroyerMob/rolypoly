@@ -1,0 +1,498 @@
+{
+	"version": 1,
+	"name": "Kitchen tour",
+	"player": "onion",
+	"character_size": 5.0,
+	"objects": [
+		{
+			"id": "spawn",
+			"uid": 1,
+			"position": [
+				-88,
+				-0.55,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.7,
+				3.7,
+				3.7
+			]
+		},
+		{
+			"id": "funnel",
+			"uid": 2,
+			"position": [
+				-118,
+				-0.55,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				6.0,
+				6.0,
+				6.0
+			],
+			"properties": {
+				"channel": 1
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 3,
+			"position": [
+				-112,
+				22.37,
+				-480
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 1
+			}
+		},
+		{
+			"id": "cereal",
+			"uid": 4,
+			"position": [
+				-95.1,
+				6.41,
+				-480
+			],
+			"rotation": [
+				-90.0,
+				90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3,
+				"has_flaps": false
+			}
+		},
+		{
+			"id": "cereal",
+			"uid": 5,
+			"position": [
+				-39.4,
+				6.41,
+				-480
+			],
+			"rotation": [
+				-90.0,
+				90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 1,
+				"has_flaps": false
+			}
+		},
+		{
+			"id": "cereal",
+			"uid": 6,
+			"position": [
+				16.4,
+				6.41,
+				-480
+			],
+			"rotation": [
+				-90.0,
+				90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 2,
+				"has_flaps": false
+			}
+		},
+		{
+			"id": "cereal",
+			"uid": 7,
+			"position": [
+				72.1,
+				6.41,
+				-480
+			],
+			"rotation": [
+				-90.0,
+				90.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3,
+				"has_flaps": false
+			}
+		},
+		{
+			"id": "masher",
+			"uid": 8,
+			"position": [
+				-78,
+				13.37,
+				-480
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				8.0,
+				8.0,
+				8.0
+			]
+		},
+		{
+			"id": "roller",
+			"uid": 9,
+			"position": [
+				-44,
+				13.37,
+				-480
+			],
+			"rotation": [
+				0.0,
+				90.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"travel_distance": 5.0,
+				"travel_speed": 2.0
+			}
+		},
+		{
+			"id": "spinner",
+			"uid": 10,
+			"position": [
+				-6,
+				13.37,
+				-480
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				4.0,
+				4.0,
+				4.0
+			],
+			"properties": {
+				"rotation_speed_degrees": 90.0
+			}
+		},
+		{
+			"id": "knife",
+			"uid": 11,
+			"position": [
+				32,
+				13.37,
+				-497
+			],
+			"rotation": [
+				0.0,
+				-90.0,
+				0.0
+			],
+			"scale": [
+				4.5,
+				4.5,
+				4.5
+			]
+		},
+		{
+			"id": "funnel",
+			"uid": 12,
+			"position": [
+				86,
+				13.37,
+				-480
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				5.0,
+				5.0,
+				5.0
+			],
+			"properties": {
+				"channel": 2
+			}
+		},
+		{
+			"id": "funnel_exit",
+			"uid": 13,
+			"position": [
+				110,
+				66,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"channel": 2
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 14,
+			"position": [
+				110,
+				-0.55,
+				-523
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 1
+			}
+		},
+		{
+			"id": "cereal_box",
+			"uid": 15,
+			"position": [
+				110,
+				-0.55,
+				-537
+			],
+			"rotation": [
+				0.0,
+				180.0,
+				0.0
+			],
+			"scale": [
+				1.843,
+				1.843,
+				1.843
+			],
+			"properties": {
+				"title": 3
+			}
+		},
+		{
+			"id": "umbrella",
+			"uid": 16,
+			"position": [
+				110,
+				54.75,
+				-530
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				2.5,
+				2.5,
+				2.5
+			],
+			"properties": {
+				"max_fall_speed": 10.0
+			}
+		},
+		{
+			"id": "lighter",
+			"uid": 17,
+			"position": [
+				84,
+				-0.55,
+				-545
+			],
+			"rotation": [
+				0.0,
+				30.0,
+				0.0
+			],
+			"scale": [
+				3.0,
+				3.0,
+				3.0
+			],
+			"properties": {
+				"lit": true
+			}
+		},
+		{
+			"id": "cardboard",
+			"uid": 18,
+			"position": [
+				-40,
+				10.985,
+				-527
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				-180.0
+			],
+			"scale": [
+				11.448,
+				11.448,
+				11.448
+			]
+		},
+		{
+			"id": "bowl",
+			"uid": 19,
+			"position": [
+				-40,
+				19.46,
+				-527
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				20.0,
+				20.0,
+				20.0
+			]
+		},
+		{
+			"id": "goal",
+			"uid": 20,
+			"position": [
+				-40,
+				21.0,
+				-527
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				3.5,
+				1.0,
+				3.0
+			]
+		},
+		{
+			"id": "cookbook",
+			"uid": 21,
+			"position": [
+				20,
+				-0.55,
+				-528
+			],
+			"rotation": [
+				0.0,
+				20.0,
+				0.0
+			],
+			"scale": [
+				1.66,
+				1.66,
+				1.66
+			],
+			"properties": {
+				"title": 4
+			}
+		},
+		{
+			"id": "watcher",
+			"uid": 22,
+			"position": [
+				-125,
+				-0.55,
+				-545
+			],
+			"rotation": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"properties": {
+				"event": 0,
+				"comparison": 0,
+				"threshold": 3.0
+			},
+			"targets": [
+				{
+					"uid": 8,
+					"action": "active",
+					"mode": "off"
+				},
+				{
+					"uid": 9,
+					"action": "active",
+					"mode": "off"
+				},
+				{
+					"uid": 10,
+					"action": "active",
+					"mode": "off"
+				}
+			]
+		}
+	]
+}

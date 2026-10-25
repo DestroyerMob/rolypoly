@@ -3,8 +3,8 @@ extends RefCounted
 const ItemProperties = preload("res://scripts/level_editor/item_properties.gd")
 const ItemColours = preload("res://scripts/level_editor/item_colours.gd")
 
-## How much bigger than the player scenes the character is in the level creator and in
-## scenes made from its levels. The kitchen is built at 100 units to a metre, so a character
+## How much bigger than the player scenes characters are in a level that doesn't set its
+## own character size. The kitchen is built at 100 units to a metre, so a character
 ## about 1 unit in radius looks like a marble. 3 makes it about the size of a tennis ball.
 const PLAYER_SIZE := 3.0
 
@@ -67,20 +67,20 @@ const ITEMS := {
 	"watcher": {"label": "Event watcher", "category": "Logic", "scene": preload("res://scenes/level_editor/event_watcher.tscn")},
 	"npc": {"label": "NPC spawner", "category": "Level", "scene": preload("res://scenes/level_editor/npc_spawner.tscn")},
 	"pot": {"label": "Pot", "category": "Kitchen", "scene": preload("res://scenes/obstacles/pot.tscn")},
+	"bowl": {"label": "Red bowl", "category": "Kitchen", "scene": preload("res://scenes/props/Bowls/RedBowl.tscn")},
+	"onion": {"label": "Loose onion", "category": "Kitchen", "scene": preload("res://packed_scenes/not_a_player_onion.tscn")},
 	"book": {"label": "Book", "category": "Kitchen", "scene": preload("res://scenes/props/book.tscn")},
 	"cereal": {"label": "Cereal", "category": "Kitchen", "scene": preload("res://scenes/props/cereal.tscn")},
 	"funnel_exit": {"label": "Funnel exit", "category": "Level", "scene": preload("res://scenes/props/funnel_exit.tscn")},
 }
 
-## Scales a character up by `factor` while keeping it feeling the same to play: forces, jump
-## and gravity grow with it, so it rolls, jumps and falls like the original, only bigger.
-## Call this before the player enters the tree.
+## Scales a character up by `factor` while keeping it feeling the same to play: through
+## its size_factor, forces, jump and gravity grow with it, so it rolls, jumps and falls like
+## the original, only bigger. Call this before the player enters the tree.
 static func size_player(player: Player, factor := PLAYER_SIZE) -> void:
 	var collider := player.get_node("CollisionShape3D") as CollisionShape3D
 	collider.scale *= factor
-	player.speed_force *= factor
-	player.jump_impulse *= factor
-	player.gravity_scale *= factor
+	player.size_factor *= factor
 	player.spawn_clearance *= factor
 	var trail := player.get_node_or_null("Trail")
 	if trail != null and "stamp_size" in trail:
@@ -94,6 +94,13 @@ static func player_of(document: Dictionary) -> String:
 
 static func mode_of(document: Dictionary) -> String:
 	return document.get("mode", DEFAULT_MODE)
+
+## The range a level's character size can be set to. Level 1 plays at 5.
+const CHARACTER_SIZES := Vector2(0.5, 10.0)
+
+## How many times the player scenes' size the player and NPCs are in this level.
+static func character_size_of(document: Dictionary) -> float:
+	return float(document.get("character_size", PLAYER_SIZE))
 
 static func record(id: String, position := Vector3.ZERO) -> Dictionary:
 	return {"id": id, "position": [position.x, position.y, position.z],
@@ -115,6 +122,8 @@ static func instantiate(data: Dictionary, mount: GadgetMount = null) -> Node3D:
 	if data.id == "gravity":
 		node.set("gadget_scene", preload("res://scenes/props/gravity_gun.tscn"))
 		node.set("preview_scale", 1.0)
+	if data.id in ["produce", "onion"]:
+		node.add_to_group(&"vegetable")
 	if data.id == "pot":
 		node.set("return_scene", "")
 		node.get_node("GoalArea").monitoring = false

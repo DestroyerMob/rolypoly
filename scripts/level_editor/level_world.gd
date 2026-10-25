@@ -11,7 +11,7 @@ var mount: GadgetMount
 var play_camera: Camera3D
 var brawl: FreeForAll
 var start_position := Vector3.ZERO
-var fall_height := -140.0
+var fall_height := INF
 var _lowest := INF
 var _finished := false
 
@@ -23,7 +23,7 @@ func build(document: Dictionary, editing: bool) -> void:
 		for entry in document.objects:
 			if entry.id == "spawn":
 				start_position = Catalog.vector(entry.position)
-		_create_player(Catalog.player_of(document))
+		_create_player(Catalog.player_of(document), Catalog.character_size_of(document))
 	for index in document.objects.size():
 		var entry: Dictionary = document.objects[index]
 		var node := Catalog.instantiate(entry, mount)
@@ -32,9 +32,9 @@ func build(document: Dictionary, editing: bool) -> void:
 		if preview != null:
 			preview.visible = editing
 			if editing and entry.id == "spawn":
-				preview.add_child(character_preview(Catalog.player_of(document)))
+				preview.add_child(character_preview(Catalog.player_of(document), Catalog.character_size_of(document)))
 			elif editing and entry.id == "npc":
-				preview.add_child(character_preview(node.character_key()))
+				preview.add_child(character_preview(node.character_key(), Catalog.character_size_of(document)))
 		add_child(node)
 		objects.append(node)
 		fall_height = minf(fall_height, node.position.y - 30.0)
@@ -45,7 +45,7 @@ func build(document: Dictionary, editing: bool) -> void:
 		elif entry.id == "goal":
 			node.connect("level_completed", _on_completed)
 		elif entry.id == "npc":
-			node.spawn.call_deferred(Catalog.PLAYERS[node.character_key()].scene)
+			node.spawn.call_deferred(Catalog.PLAYERS[node.character_key()].scene, Catalog.character_size_of(document))
 	if editing:
 		draw_links(document)
 	else:
@@ -90,7 +90,7 @@ func _wire_watchers(document: Dictionary) -> void:
 			)
 		elif entry.id == "scale":
 			var uid := int(entry.get("uid", 0))
-			objects[index].connect("weight_changed", func(weight: float, _id: StringName):
+			objects[index].get_node("WeighingPlatform").connect("weight_changed", func(weight: float, _id: StringName):
 				for watcher in watchers:
 					watcher.scale_weighed(weight, uid)
 			)
@@ -149,23 +149,23 @@ func draw_links(document: Dictionary) -> void:
 	links.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(links)
 
-func _create_player(character: String) -> void:
+func _create_player(character: String, size: float) -> void:
 	rig = PlayerRig.new()
 	rig.name = "PlayerRig"
 	rig.allow_character_swap = false
 	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
-	Catalog.size_player(player)
-	player.position = start_position + Vector3.UP * 2.2 * Catalog.PLAYER_SIZE
+	Catalog.size_player(player, size)
+	player.position = start_position + Vector3.UP * 2.2 * size
 	rig.add_child(player)
 	var pivot := CameraPivot.new()
 	pivot.name = "CameraPivot"
 	pivot.player_rig = rig
 	pivot.position = player.position
-	pivot.follow_offset = Vector3(0, 1.5, 0) * Catalog.PLAYER_SIZE
+	pivot.follow_offset = Vector3(0, 1.5, 0) * size
 	var arm := SpringArm3D.new()
 	arm.name = "SpringArm3D"
-	arm.spring_length = 25.0 * Catalog.PLAYER_SIZE
-	arm.margin = 0.5 * Catalog.PLAYER_SIZE
+	arm.spring_length = 20.0 + 5.0 * size
+	arm.margin = 0.5 * size
 	pivot.add_child(arm)
 	play_camera = Camera3D.new()
 	play_camera.name = "Camera3D"
@@ -176,9 +176,6 @@ func _create_player(character: String) -> void:
 	mount.name = "GadgetMount"
 	mount.player_rig = rig
 	mount.camera = play_camera
-	mount.side_distance *= Catalog.PLAYER_SIZE
-	mount.height *= Catalog.PLAYER_SIZE
-	mount.model_offset *= Catalog.PLAYER_SIZE
 	rig.add_child(mount)
 	add_child(rig)
 	rig.player_swapped.connect(_update_spawn)
@@ -199,9 +196,9 @@ func _on_completed(_player: Player) -> void:
 		_finished = true
 		completed.emit.call_deferred()
 
-static func character_preview(character: String) -> Node3D:
+static func character_preview(character: String, size := Catalog.PLAYER_SIZE) -> Node3D:
 	var player: Player = Catalog.PLAYERS[character].scene.instantiate()
-	Catalog.size_player(player)
+	Catalog.size_player(player, size)
 	var model := Node3D.new()
 	model.name = "Character"
 	model.position = Vector3.UP * maxf(player.spawn_clearance, player.get_collision_clearance() + 0.05)

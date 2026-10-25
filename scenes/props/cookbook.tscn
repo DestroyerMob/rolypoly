@@ -1,7 +1,15 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bpinkqqaq3u4w"]
 
-[ext_resource type="Script" path="res://scripts/proto_book.gd" id="1"]
+[ext_resource type="Script" uid="uid://cniuqsauwxbyo" path="res://scripts/proto_book.gd" id="1"]
 
-[node name="Cookbook" type="Node3D"]
+[node name="Cookbook" type="Node3D" unique_id=1593203222]
 script = ExtResource("1")
+animate_front = null
+animate_back = null
+anim_open_degrees = null
+anim_open_time = null
+anim_hold_open = null
+anim_return_time = null
+anim_hold_closed = null
+anim_start_delay = null
 title = 9

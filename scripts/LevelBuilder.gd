@@ -12,6 +12,7 @@ const Browser = preload("res://scripts/level_editor/level_browser.gd")
 const Previews = preload("res://scripts/level_editor/palette_previews.gd")
 const TransformGizmo = preload("res://scripts/level_editor/transform_gizmo.gd")
 const GizmoMode = TransformGizmo.Mode
+const LevelCompleteScene = preload("res://scenes/level_complete.tscn")
 
 @export var start_in_editor := true
 
@@ -48,6 +49,7 @@ var status: Label
 var name_field: LineEdit
 var player_choice: OptionButton
 var mode_choice: OptionButton
+var size_field: SpinBox
 var category: OptionButton
 var search: LineEdit
 var palette: ItemList
@@ -79,6 +81,9 @@ var knockout_sound: AudioStreamPlayer
 var _crosshair_tween: Tween
 var _hurt_tween: Tween
 var browser: Window
+## The end-of-level card shared with the hand-built levels. Only used when the level
+## is played on its own; play-testing from the editor keeps the pause panel.
+var level_complete: LevelComplete
 var confirm: ConfirmationDialog
 var pause_panel: PanelContainer
 var pause_title: Label
@@ -193,6 +198,20 @@ func _create_ui() -> void:
 	mode_choice.item_selected.connect(_mode_chosen)
 	mode_group.add_child(mode_choice)
 	_muted(mode_group, "Game mode")
+	var size_group := VBoxContainer.new()
+	size_group.add_theme_constant_override("separation", 3)
+	toolbar.add_child(size_group)
+	size_field = SpinBox.new()
+	size_field.name = "CharacterSize"
+	size_field.min_value = Catalog.CHARACTER_SIZES.x
+	size_field.max_value = Catalog.CHARACTER_SIZES.y
+	size_field.step = 0.5
+	size_field.suffix = "×"
+	size_field.custom_minimum_size = Vector2(110, 42)
+	size_field.tooltip_text = "How big the player and NPCs are. Level 1 plays at 5×. NPC speeds and ranges are set for 1× and grow with this."
+	size_field.value_changed.connect(_character_size_chosen)
+	size_group.add_child(size_field)
+	_muted(size_group, "Character size")
 	_button(toolbar, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(toolbar, "Save copy", _save.bind(true))
 	_button(toolbar, "Save", _save.bind(false))
@@ -393,6 +412,11 @@ func _create_ui() -> void:
 	_button(pause_buttons, "My levels", func(): _guard_unsaved(browser.show_levels))
 	_button(pause_buttons, "Main menu", _menu)
 
+	if not start_in_editor:
+		level_complete = LevelCompleteScene.instantiate()
+		level_complete.start_hidden = true
+		add_child(level_complete)
+		level_complete.retry_pressed.connect(_restart)
 	browser = Browser.new()
 	add_child(browser)
 	browser.hide()
@@ -739,6 +763,8 @@ func _placement_point() -> Variant:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		_mouse_position = event.position
+	if is_instance_valid(level_complete) and level_complete.visible:
+		return
 	if transform_gizmo.dragging:
 		transform_gizmo.handle_drag_input(event)
 		return
@@ -1197,6 +1223,14 @@ func _mode_chosen(index: int) -> void:
 	document.mode = id
 	_status("Free for all: knock out every NPC. NPCs need a weapon set in their spawner to shoot back." if id == "ffa" else "Race: reach a Finish area to complete the level.")
 
+func _character_size_chosen(value: float) -> void:
+	if is_equal_approx(value, Catalog.character_size_of(document)):
+		return
+	_remember()
+	document.character_size = value
+	_rebuild_world()
+	_status("Characters are now %s× normal size." % value)
+
 func _sync_player_choice() -> void:
 	var current := Catalog.player_of(document)
 	for index in player_choice.item_count:
@@ -1205,6 +1239,7 @@ func _sync_player_choice() -> void:
 	for index in mode_choice.item_count:
 		if mode_choice.get_item_metadata(index) == Catalog.mode_of(document):
 			mode_choice.select(index)
+	size_field.set_value_no_signal(Catalog.character_size_of(document))
 
 func _property_choice_changed(index: int, spec: Dictionary) -> void:
 	_property_changed(spec.options[index][1], spec)
@@ -1429,6 +1464,8 @@ func _edit() -> void:
 	_status("Back in the editor. The original layout has been restored.")
 
 func _restart() -> void:
+	if is_instance_valid(level_complete):
+		level_complete.hide()
 	_paused = false
 	_completed = false
 	$KitchenBase.reset()
@@ -1478,7 +1515,7 @@ func _match_damage(victim: Player, _amount: int, by: Player) -> void:
 
 func _match_knockout(victim: Player, by: Player) -> void:
 	var me: Player = world.rig.current_player
-	var line := "%s knocked out %s" % [_fighter_name(by), _fighter_name(victim)] if by != null else "%s fell out" % _fighter_name(victim)
+	var line := "%s knocked out %s" % [_fighter_name(by), _fighter_name(victim)] if by != null else "%s is out" % _fighter_name(victim)
 	var label := _label(kill_feed, line, 18)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	label.add_theme_color_override("font_color", EditorTheme.ACCENT if by == me else Color.WHITE)
@@ -1535,15 +1572,21 @@ static func _tone(hertz: float, seconds: float, slide: float) -> AudioStreamWAV:
 	wav.data = data
 	return wav
 
+## Finishing a race is worth 3 stars, like a hand-built level's finish goal.
 func _finish() -> void:
 	if Catalog.mode_of(document) != "ffa":
-		_end("Level complete!", "Nice rolling. Play again or head back to the editor.")
+		_end("Level complete!", "Nice rolling. Play again or head back to the editor.", document.name, "Level Complete!", 3)
 		return
-	_end("You win!", "Last one standing out of %d · %s." % [world.brawl.entrants, _knockouts_text()])
+	var summary := "Last one standing out of %d · %s" % [world.brawl.entrants, _knockouts_text()]
+	_end("You win!", summary + ".", "You win!", summary, 3)
 
+## A match that's lost still earns stars for placing well: 2 for the top three, 1 for the top half.
 func _lose() -> void:
+	var entrants: int = world.brawl.entrants
 	var place: int = world.brawl.places.get(world.rig.current_player, world.brawl.remaining() + 1)
-	_end("Knocked out!", "You placed %s of %d · %s." % [_ordinal(place), world.brawl.entrants, _knockouts_text()])
+	var stars := 2 if place <= 3 else (1 if place <= entrants / 2 else 0)
+	_end("Knocked out!", "You placed %s of %d · %s." % [_ordinal(place), entrants, _knockouts_text()],
+		"Knocked out · %s of %d" % [_ordinal(place), entrants], _knockouts_text(), stars, false)
 
 func _knockouts_text() -> String:
 	var count: int = world.brawl.knockouts.get(world.rig.current_player, 0)
@@ -1555,13 +1598,22 @@ static func _ordinal(number: int) -> String:
 		suffix = {1: "st", 2: "nd", 3: "rd"}.get(number % 10, "th")
 	return "%d%s" % [number, suffix]
 
-func _end(title: String, note: String) -> void:
+## `card_title`, `card_subtitle` and `stars` are for the level complete card; the pause
+## panel uses `title` and `note`.
+func _end(title: String, note: String, card_title: String, card_subtitle: String, stars: int, won := true) -> void:
 	if build_mode:
 		return
 	_completed = true
 	_end_title = title
 	_end_note = note
-	_pause(true)
+	if not is_instance_valid(level_complete):
+		_pause(true)
+		return
+	_paused = true
+	level_complete.level_entry = filename
+	level_complete.next_allowed = won
+	level_complete.subtitle = card_subtitle
+	level_complete.show_result(card_title, stars)
 
 func _pause(_won: bool) -> void:
 	_paused = true
