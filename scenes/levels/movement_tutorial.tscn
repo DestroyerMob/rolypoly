@@ -91,48 +91,50 @@ title = 3
 transform = Transform3D(17.01694, 0, 0, 0, 17.01694, 0, 0, 0, 17.01694, -88, -0.5461502, -514)
 
 [node name="Book_8" parent="Objects" unique_id=1147128421 instance=ExtResource("18_7k767")]
-transform = Transform3D(1.6340728, 0, 0, 0, 1.6340728, 0, 0, 0, 1.6340728, 14, -0.5461502, -531)
+transform = Transform3D(1.6340728, 0, 0, 0, 1.6340728, 0, 0, 0, 1.6340728, 14, -0.5461502, -537.9876)
 title = 1
 
 [node name="Cardboard_9" parent="Objects" unique_id=1975057576 instance=ExtResource("12_hysbs")]
-transform = Transform3D(-11.448, 1.7286e-06, 0, -1.7286e-06, -11.448, 0, 0, 0, 11.448, 13, 10.985313, -464)
+transform = Transform3D(-11.448, 1.7286e-06, 0, -1.7286e-06, -11.448, 0, 0, 0, 11.448, 13, 10.985313, -458.67276)
 
 [node name="Book_10" parent="Objects" unique_id=95506730 instance=ExtResource("18_7k767")]
-transform = Transform3D(-1.6577948, -0.008986395, -0.009294818, 0.0004434224, 1.1516589, -1.1925315, 0.012921003, -1.1924977, -1.1516215, 13, 12.913422, -493.72345)
+transform = Transform3D(-1.657795, -0.008986393, -0.009294816, -0.001760249, 1.3376696, -0.97932994, 0.012808224, -0.9792901, -1.3376386, 13, 12.587053, -497.0606)
+width = 17.0
+height = 27.5
 title = 5
 
 [node name="RedBowl" parent="Objects" unique_id=1457422625 instance=ExtResource("12_kuh2n")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 11.885553, 19.459347, -463.26657)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 11.885553, 19.459347, -461.20242)
 
 [node name="Onion_1" parent="Objects" unique_id=594899182 instance=ExtResource("21_onion")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.886, 27.233, -463.267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.886, 27.233, -460.44672)
 
 [node name="CollisionShape3D" parent="Objects/Onion_1" index="0" unique_id=181200873]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Onion_2" parent="Objects" unique_id=645599291 instance=ExtResource("21_onion")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 27.233, -455.267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 27.233, -452.44672)
 mass = 0.666
 
 [node name="CollisionShape3D" parent="Objects/Onion_2" index="0" unique_id=181200873]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 
 [node name="Onion_3" parent="Objects" unique_id=628184065 instance=ExtResource("21_onion")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.886, 28.233, -463.267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.886, 28.233, -460.44672)
 mass = 1.73
 
 [node name="CollisionShape3D" parent="Objects/Onion_3" index="0" unique_id=181200873]
 transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0)
 
 [node name="Onion_4" parent="Objects" unique_id=216498631 instance=ExtResource("21_onion")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 28.233, -471.267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 28.233, -468.44672)
 mass = 0.948
 
 [node name="CollisionShape3D" parent="Objects/Onion_4" index="0" unique_id=181200873]
 transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0)
 
 [node name="Onion_5" parent="Objects" unique_id=92460049 instance=ExtResource("21_onion")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 40.233, -463.267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.886, 40.233, -460.44672)
 mass = 0.666
 
 [node name="CollisionShape3D" parent="Objects/Onion_5" index="0" unique_id=181200873]
