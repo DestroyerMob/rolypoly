@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bclq5lc6u7fsx" path="res://scenes/prototyping/camera_pivot.gd" id="6_d8n83"]
 [ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="7_qupw5"]
 [ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="8_6mwsr"]
-[ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="10_xn7sd"]
+[ext_resource type="PackedScene" uid="uid://ikm0btoc24oy" path="res://scenes/level_editor/finish.tscn" id="10_xn7sd"]
 [ext_resource type="PackedScene" path="res://scenes/props/cardboard_box.tscn" id="12_hysbs"]
 [ext_resource type="PackedScene" uid="uid://1rtbg70qp4ra" path="res://scenes/props/Bowls/RedBowl.tscn" id="12_kuh2n"]
 [ext_resource type="PackedScene" uid="uid://d0ovyswq3kl06" path="res://scenes/props/cereal.tscn" id="14_y0i6e"]
@@ -31,6 +31,7 @@ description = "Finish the level"
 stars_worth = 3
 
 [node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("1_0nxdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039733887, 0, 0.20169067)
 
 [node name="PlayerRig" type="Node" parent="." unique_id=36827212]
 script = ExtResource("3_ainy2")
@@ -59,6 +60,11 @@ far = 3000.0
 script = ExtResource("7_qupw5")
 player_rig = NodePath("..")
 camera = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="Label3D" type="Label3D" parent="PlayerRig" unique_id=365204482]
+transform = Transform3D(0.19228718, 0, -0.9813387, 0, 1, 0, 0.9813387, 0, 0.19228718, 19.481333, 9.220535, -548.6589)
+pixel_size = 0.1566
+text = "Press Spacebar to Jump"
 
 [node name="Objects" type="Node3D" parent="." unique_id=385073192]
 
@@ -91,20 +97,14 @@ title = 3
 transform = Transform3D(17.01694, 0, 0, 0, 17.01694, 0, 0, 0, 17.01694, -88, -0.5461502, -514)
 
 [node name="Book_8" parent="Objects" unique_id=1147128421 instance=ExtResource("18_7k767")]
-transform = Transform3D(1.6340728, 0, 0, 0, 1.6340728, 0, 0, 0, 1.6340728, 14, -0.5461502, -537.9876)
+transform = Transform3D(1.6340728, 0, 0, 0, 1.6340728, 0, 0, 0, 1.6340728, 14, -0.5461502, -538.7452)
 title = 1
 
 [node name="Cardboard_9" parent="Objects" unique_id=1975057576 instance=ExtResource("12_hysbs")]
-transform = Transform3D(-11.448, 1.7286e-06, 0, -1.7286e-06, -11.448, 0, 0, 0, 11.448, 13, 10.985313, -458.67276)
-
-[node name="Book_10" parent="Objects" unique_id=95506730 instance=ExtResource("18_7k767")]
-transform = Transform3D(-1.657795, -0.008986393, -0.009294816, -0.001760249, 1.3376696, -0.97932994, 0.012808224, -0.9792901, -1.3376386, 13, 12.587053, -497.0606)
-width = 17.0
-height = 27.5
-title = 5
+transform = Transform3D(-11.448, 1.7286e-06, 0, -1.7286e-06, -11.448, 0, 0, 0, 11.448, 13, 6.790436, -458.67276)
 
 [node name="RedBowl" parent="Objects" unique_id=1457422625 instance=ExtResource("12_kuh2n")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 11.885553, 19.459347, -461.20242)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 11.885553, 14.528584, -461.20242)
 
 [node name="Onion_1" parent="Objects" unique_id=594899182 instance=ExtResource("21_onion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.886, 27.233, -460.44672)
@@ -142,6 +142,14 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 
 [node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("20_fygee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.54615, 0)
+
+[node name="ProtoCerealBox" parent="." unique_id=883908956 instance=ExtResource("14_y0i6e")]
+transform = Transform3D(-0.99999994, -5.3461388e-08, -6.917094e-08, -8.528791e-08, 0.42280507, 0.90622073, -1.9201998e-08, 0.90622073, -0.42280507, 13.741638, 16.065268, -498.9014)
+top_flap_length = 12.0
+bottom_flap_length = 20.0
+top_open_degrees = 63.0
+bottom_open_degrees = 84.0
+title = 2
 
 [connection signal="level_completed" from="Objects/Goal_2" to="LevelComplete" method="show_on_finish"]
 

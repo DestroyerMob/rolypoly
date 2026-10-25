@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ogb6wkutp4lw" path="res://scenes/obstacles/boiling_pot.tscn" id="12_4ri30"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="16_eqlr4"]
 [ext_resource type="PackedScene" uid="uid://d0h83qb8l63vs" path="res://scenes/obstacles/rolling_pin.tscn" id="16_q0elx"]
-[ext_resource type="PackedScene" path="res://scenes/props/cookbook.tscn" id="17_1umc1"]
+[ext_resource type="PackedScene" uid="uid://bpinkqqaq3u4w" path="res://scenes/props/cookbook.tscn" id="17_1umc1"]
 [ext_resource type="PackedScene" uid="uid://bwghfcy21irpb" path="res://scenes/prototyping/proto_half_pipe.tscn" id="18_bqclk"]
 [ext_resource type="Material" uid="uid://dodpqwhtiexpg" path="res://materials/generated/MI_Cork.tres" id="19_aswnm"]
 
@@ -222,6 +222,14 @@ starting_direction = -1
 
 [node name="Cookbook" parent="." unique_id=1468105954 instance=ExtResource("17_1umc1")]
 transform = Transform3D(-2.1110984e-07, -1.2940954, -4.829629, -5.65667e-08, 4.829629, -1.2940954, 5, -1.0658141e-14, -2.1855695e-07, 139.00002, 40.000015, -496)
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
 
 [node name="Cookbook2" parent="." unique_id=775161594 instance=ExtResource("17_1umc1")]
 transform = Transform3D(-2.1110976e-07, 4.9999995, -2.582802e-07, -4.999999, -2.1110975e-07, 2.7512357e-07, 2.7512368e-07, -2.1855692e-07, 4.9999995, 193, 9.000015, -496)
@@ -229,6 +237,14 @@ width = 24.0
 height = 16.0
 thickness = 5.0
 front_open_degrees = 50.0
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
 
 [node name="Cookbook3" parent="." unique_id=1778445406 instance=ExtResource("17_1umc1")]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -0.9659258, -0.25881907, -1.131334e-08, 0.25881907, -0.9659258, -4.222196e-08, 372, 7, -634)
@@ -236,6 +252,14 @@ width = 50.0
 height = 42.0
 front_open_degrees = 73.0
 back_open_degrees = 87.5
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
 
 [node name="Cookbook4" parent="." unique_id=348081286 instance=ExtResource("17_1umc1")]
 transform = Transform3D(2.9802322e-08, -1, -8.593335e-08, -1, -2.9802322e-08, 1.1313343e-08, -1.1313345e-08, 8.593335e-08, -1, 69, 16, -744)
@@ -243,6 +267,14 @@ width = 50.0
 height = 42.0
 front_open_degrees = 83.5
 back_open_degrees = 60.0
+animate_front = false
+animate_back = false
+anim_open_degrees = 90.0
+anim_open_time = 0.4
+anim_hold_open = 0.5
+anim_return_time = 1.0
+anim_hold_closed = 1.5
+anim_start_delay = 0.0
 
 [node name="ProtoCerealBox" parent="Cookbook4" unique_id=621674634 instance=ExtResource("11_ehdeg")]
 transform = Transform3D(-4.371139e-08, 5.613103e-08, -1, -1.1573567e-07, 1, 5.6131025e-08, 1, 1.1573567e-07, -4.371138e-08, 6, -58, 0)
