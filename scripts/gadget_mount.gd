@@ -75,8 +75,11 @@ func _update_attachment() -> void:
 	wearer.gadget = _gadget
 	var aim := camera.global_basis.orthonormalized() if is_instance_valid(camera) else Basis.IDENTITY
 	var right := Vector3(aim.x.x, 0, aim.x.z).normalized()
+	# Gadgets and their offsets grow with a scaled-up wearer.
+	var size := wearer.size_factor
 	global_transform = Transform3D(aim, wearer.global_position
-		+ right * side_distance + Vector3.UP * height)
-	_gadget.position = model_offset
+		+ (right * side_distance + Vector3.UP * height) * size)
+	_gadget.position = model_offset * size
+	_gadget.scale = Vector3.ONE * size
 	if _gadget.has_method("update_attachment"):
 		_gadget.update_attachment(wearer, self)

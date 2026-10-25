@@ -1,4 +1,6 @@
 res://scenes/levels/movement_tutorial.tscn
+kitchen_tour.json
 res://scenes/levels/balance.tscn
-kitchen_workshop.json
+weigh_in.json
+pipe_dream.json
 island_brawl.json

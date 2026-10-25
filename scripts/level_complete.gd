@@ -11,14 +11,22 @@ signal next_pressed
 signal home_pressed
 
 @export var level_title := "Level Complete"
+## The line under the stars.
+@export var subtitle := "Level Complete!"
 @export_range(0, 3) var stars := 0
 @export_file("*.tscn") var home_scene := "res://scenes/main_menu_alternative.tscn"
 @export var pause_game := true
 @export var show_mouse := true
 @export var start_hidden := true
+## The level's entry in the level list, when that isn't the current scene's file: a
+## level-editor level is played inside custom_level.tscn, so it passes its filename.
+var level_entry := ""
+## Hide Next Level, e.g. after losing.
+var next_allowed := true
 
 @onready var _card: Control = %Card
 @onready var _title: Label = %Title
+@onready var _subtitle: Label = $Center/Card/Content/SubtitleRow/Subtitle/Label
 @onready var _stars: Control = %Stars
 @onready var _retry: Button = %RetryButton
 @onready var _next: Button = %NextButton
@@ -43,9 +51,7 @@ func show_result(result_title := "", star_count := -1, player: Node = null) -> v
 	else:
 		stars = _earned_stars(player)
 	_refresh()
-	var current := get_tree().current_scene
-	if current != null:
-		Progress.record(current.scene_file_path, stars)
+	Progress.record(_entry(), stars)
 	visible = true
 	if pause_game:
 		get_tree().paused = true
@@ -74,9 +80,10 @@ func _earned_stars(player: Node) -> int:
 
 func _refresh() -> void:
 	_title.text = level_title
+	_subtitle.text = subtitle
 	for index in _stars.get_child_count():
 		_stars.get_child(index).set("lit", index < stars)
-	_next.visible = not _next_entry().is_empty() or not next_pressed.get_connections().is_empty()
+	_next.visible = next_allowed and (not _next_entry().is_empty() or not next_pressed.get_connections().is_empty())
 
 
 func _play_intro() -> void:
@@ -120,12 +127,16 @@ func _on_home() -> void:
 ## The level after this one in the Play menu's level list, or "" if this is the last
 ## or isn't in the list.
 func _next_entry() -> String:
-	var current := get_tree().current_scene
-	if current == null:
-		return ""
 	var order := Store.level_set()
-	var index := order.find(current.scene_file_path)
+	var index := order.find(_entry())
 	return order[index + 1] if index >= 0 and index + 1 < order.size() else ""
+
+
+func _entry() -> String:
+	if not level_entry.is_empty():
+		return level_entry
+	var current := get_tree().current_scene
+	return current.scene_file_path if current != null else ""
 
 
 func _open_entry(entry: String) -> void:
