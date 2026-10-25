@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" path="res://scenes/props/cookbook.tscn" id="29_sphf0"]
 [ext_resource type="PackedScene" path="res://scenes/props/wooden_spoon.tscn" id="30_2434u"]
 [ext_resource type="PackedScene" path="res://scenes/props/marshmallow_pickup.tscn" id="31_phys7"]
-[ext_resource type="PackedScene" path="res://scenes/props/chocolate_sauce_pickup.tscn" id="32_qn6is"]
+[ext_resource type="PackedScene" uid="uid://8hq8scj7ahs3" path="res://scenes/props/chocolate_sauce_pickup.tscn" id="32_qn6is"]
 [ext_resource type="PackedScene" path="res://scenes/props/pistachio_sauce_pickup.tscn" id="33_t6ce4"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="34_fkc1g"]
 
@@ -27,6 +27,9 @@ radius = 2.2
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4mlgn"]
 friction = 0.65
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_be312"]
+size = Vector3(41.53534, 10.96875, 42.63444)
 
 [node name="IcecreamRun" type="Node3D" unique_id=1133494483]
 
@@ -81,7 +84,7 @@ model_offset = Vector3(0, -2.75, 0)
 transform = Transform3D(3.3183, 0, 0, 0, 3.3183, 0, 0, 0, 3.3183, 582, 9.5, 160)
 
 [node name="Goal_2" parent="Objects" unique_id=985053501 instance=ExtResource("15_3mvyh")]
-transform = Transform3D(1.8438, 0, 0, 0, 1.8438, 0, 0, 0, 1.8438, 358, 9.5, 173)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 360.4643, 9.5, 173.14983)
 
 [node name="IcecreamBowl" parent="Objects" unique_id=1849473372 instance=ExtResource("10_x4j7d")]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 361.69025, 9.5, 173.34354)
@@ -91,7 +94,7 @@ transform = Transform3D(6.8306, 0, 0, 0, 6.8306, 0, 0, 0, 6.8306, 579, 9.5, 29)
 gadget_mount = NodePath("../../PlayerRig/GadgetMount")
 
 [node name="Ice_5" parent="Objects" unique_id=1328272758 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("19_6orat")]
-transform = Transform3D(5.3883, 0, 0, 0, 5.3883, 0, 0, 0, 5.3883, 426, 9.5, 3)
+transform = Transform3D(5.3883, 0, 0, 0, 5.3883, 0, 0, 0, 5.3883, 536.3469, 9.5, 226.98376)
 gadget_mount = NodePath("../../PlayerRig/GadgetMount")
 
 [node name="Nuts_6" parent="Objects" unique_id=1827198828 instance=ExtResource("23_wb4c8")]
@@ -133,10 +136,24 @@ physics_material_override = SubResource("PhysicsMaterial_4mlgn")
 transform = Transform3D(14.306468, 0, 0, 0, 14.306468, 0, 0, 0, 14.306468, 614, 16.499992, 254)
 
 [node name="ChocolateSauce_18" parent="Objects" unique_id=335292353 instance=ExtResource("32_qn6is")]
-transform = Transform3D(1, 0, 0, 0, 1.70788, 0, 0, 0, 1, 558, 9.499992, 334)
+transform = Transform3D(1, 0, 0, 0, 1.70788, 0, 0, 0, 1, 549.6404, 9.499992, 331.71344)
 
 [node name="PistachioSauce_19" parent="Objects" unique_id=1153117328 instance=ExtResource("33_t6ce4")]
-transform = Transform3D(1.4779595, 0, 0, 0, 1.4779595, 0, 0, 0, 1.4779595, 616, 80.5, 61)
+transform = Transform3D(1.4779595, 0, 0, 0, 1.4779595, 0, 0, 0, 1.4779595, 422.03235, 9.5, 7.1966934)
+
+[node name="CupsInDrawer" type="RigidBody3D" parent="Objects" unique_id=809605601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 486.0855, -15.05528, 302.05927)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/CupsInDrawer" unique_id=2144304090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8338623, 0.09936619, -7.0992737)
+shape = SubResource("BoxShape3D_be312")
+
+[node name="IceBox" type="RigidBody3D" parent="Objects" unique_id=644677794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 558.7176, -1.3196974, 160.86497)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/IceBox" unique_id=348506605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6713257, 2.7580147, -1.1559448)
+shape = SubResource("BoxShape3D_be312")
 
 [node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("34_fkc1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50.5, 0)

@@ -10,23 +10,15 @@ static var _blob_cache: Texture2D
 
 @export var stamp_texture: Texture2D
 @export var colour := Color(0.99, 0.95, 0.84)
-## Blob diameter in world units while the ice cream is full size.
 @export_range(0.2, 20.0, 0.1) var stamp_size := 3.0
-## Distance travelled between blobs at full size. Shrinks with the ball.
 @export_range(0.1, 10.0, 0.1) var spacing := 1.2
-## Most blobs kept. Past this the oldest are reused, so raise it for very long levels.
 @export_range(100, 20000) var max_stamps := 6000
-## No trail while the ball is slower than this.
 @export_range(0.0, 20.0, 0.05) var min_speed := 0.75
-## How far below the ball's underside still counts as ground.
 @export_range(0.0, 5.0, 0.05) var ground_reach := 0.6
-## How far each blob floats above the surface, to avoid flicker against it.
 @export_range(0.0, 0.5, 0.005) var lift := 0.05
 
 @export_group("Melting")
-## Seconds from full size until the ice cream has melted away, if nothing cools it.
-@export_range(1.0, 600.0, 1.0) var melt_seconds := 45.0
-## Size at the moment it melts away, as a fraction of its starting size.
+@export_range(1.0, 600.0, 1.0) var melt_seconds := 120.0
 @export_range(0.05, 1.0, 0.01) var min_scale := 0.35
 
 var _player: Player

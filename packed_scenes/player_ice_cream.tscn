@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://djiilbxcqnx2h" path="res://packed_scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://drqrgskwiqmlh" path="res://models/desserts/ice_cream/vanilla_ice_cream.glb" id="2_model"]
 [ext_resource type="Script" uid="uid://cl8fnfyoewtxc" path="res://scripts/ice_cream_trail.gd" id="3_trail"]
-[ext_resource type="Script" path="res://scripts/ice_cream_toppings.gd" id="4_toppings"]
+[ext_resource type="Script" uid="uid://cgrt31i0qu3wq" path="res://scripts/ice_cream_toppings.gd" id="4_toppings"]
 
 [sub_resource type="SphereShape3D" id="Shape_scoop"]
 radius = 2.2
 
 [node name="Player" unique_id=706891313 instance=ExtResource("1_player")]
 vegetable_type = 3
-hit_color = Color(0.97, 0.95, 0.88, 1)
 spawn_clearance = 1.0
+hit_color = Color(0.97, 0.95, 0.88, 1)
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=181200873]
 transform = Transform3D(0.4545, 0, 0, 0, 0.4545, 0, 0, 0, 0.4545, 0, 0, 0)
@@ -29,5 +29,5 @@ stamp_size = 1.4
 spacing = 0.55
 ground_reach = 0.3
 
-[node name="Toppings" type="Node3D" parent="." index="2"]
+[node name="Toppings" type="Node3D" parent="." index="2" unique_id=17763457]
 script = ExtResource("4_toppings")

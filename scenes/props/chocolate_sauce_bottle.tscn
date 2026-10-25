@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/chocolate_sauce_bottle_model.tscn" id="1_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_body"]
+height = 26.7
+radius = 3.5
+
+[node name="ChocolateSauceBottle" type="RigidBody3D"]
+mass = 0.5
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.35, 0)
+shape = SubResource("CylinderShape3D_body")
