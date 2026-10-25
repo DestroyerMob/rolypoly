@@ -18,6 +18,7 @@ const PIVOT_SCRIPT := "res://scenes/prototyping/camera_pivot.gd"
 const MOUNT_SCRIPT := "res://scripts/gadget_mount.gd"
 const LEVEL_COMPLETE := preload("res://scenes/level_complete.tscn")
 const FINISH_GOAL_SCRIPT := "res://scripts/star_goals/star_goal_finish.gd"
+const TOPPINGS_GOAL_SCRIPT := "res://scripts/star_goals/star_goal_toppings.gd"
 ## The Player node's scale, as in the hand-built levels. Force, jump and gravity follow it.
 const PLAYER_SCALE := 5.0
 
@@ -60,10 +61,16 @@ func _convert(source: String, output: String) -> int:
 	root.add_child(goals)
 	root.move_child(goals, 1)
 	var finish_goal := Node.new()
-	finish_goal.name = "FinishGoal"
-	finish_goal.set_script(load(FINISH_GOAL_SCRIPT))
-	finish_goal.set("description", "Finish the level")
-	finish_goal.set("stars_worth", 3)
+	if Catalog.player_of(document) == "ice_cream":
+		# The ice cream is scored on the toppings it finishes with: 1, 3 and 5 for each star.
+		finish_goal.name = "ToppingsGoal"
+		finish_goal.set_script(load(TOPPINGS_GOAL_SCRIPT))
+		finish_goal.set("description", "Collect toppings: 1 for one star, 3 for two, 5 for three")
+	else:
+		finish_goal.name = "FinishGoal"
+		finish_goal.set_script(load(FINISH_GOAL_SCRIPT))
+		finish_goal.set("description", "Finish the level")
+		finish_goal.set("stars_worth", 3)
 	goals.add_child(finish_goal)
 
 	var objects := Node3D.new()

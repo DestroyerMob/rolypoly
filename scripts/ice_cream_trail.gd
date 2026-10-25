@@ -52,6 +52,8 @@ func _ready() -> void:
 	_rng.randomize()
 	_canvas = _create_canvas()
 	_multimesh = _canvas.multimesh
+	_player.died.connect(reset_melt)
+	_player.squished.connect(reset_melt)
 
 
 func _physics_process(delta: float) -> void:
@@ -149,6 +151,17 @@ func _die() -> void:
 	_player.enter_condition(Player.Condition.DEAD)
 	# The same squash and respawn the mashers use; it respawns at the player's spawn point.
 	_player.squish_and_respawn(0.35, 1.0)
+
+
+## Back to full size, as at the start. Any death does this; a melt death does it once the
+## respawn has finished, so it is left to _finish_death.
+func reset_melt() -> void:
+	if _dying:
+		return
+	_progress = 0.0
+	_frozen_for = 0.0
+	_set_frost(false)
+	_apply_scale(1.0)
 
 
 func _finish_death() -> void:

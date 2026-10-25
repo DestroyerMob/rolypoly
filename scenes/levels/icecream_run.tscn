@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cal6x0tb7xeyw"]
 
 [ext_resource type="PackedScene" uid="uid://bcvt6pnkjyksy" path="res://scenes/level_complete.tscn" id="1_66ng2"]
-[ext_resource type="Script" uid="uid://rfiv5xf0sdsh" path="res://scripts/star_goals/star_goal_finish.gd" id="3_co50t"]
+[ext_resource type="Script" uid="uid://cojo3kgw7swrs" path="res://scripts/star_goals/star_goal_toppings.gd" id="3_co50t"]
 [ext_resource type="PackedScene" uid="uid://dgx21qto44btu" path="res://scenes/level_editor/empty_kitchen.tscn" id="4_8ac2q"]
 [ext_resource type="Script" uid="uid://b6hendj5mjbf7" path="res://scenes/player_rig.gd" id="6_wexoe"]
 [ext_resource type="PackedScene" uid="uid://bmdnaqfa84dhu" path="res://packed_scenes/player_ice_cream.tscn" id="7_3fo67"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://bpqv8kp5hfaio" path="res://scripts/gadget_mount.gd" id="12_m6ox8"]
 [ext_resource type="PackedScene" path="res://scenes/level_editor/start.tscn" id="13_lh1um"]
 [ext_resource type="PackedScene" path="res://scenes/level_editor/finish.tscn" id="15_3mvyh"]
-[ext_resource type="PackedScene" path="res://scenes/props/ice_cube_upgrade.tscn" id="19_6orat"]
 [ext_resource type="PackedScene" path="res://scenes/props/nuts_pickup.tscn" id="23_wb4c8"]
 [ext_resource type="PackedScene" path="res://scenes/props/sprinkles_pickup.tscn" id="25_agllf"]
 [ext_resource type="PackedScene" uid="uid://bixjatfjotmun" path="res://scenes/props/book.tscn" id="26_jtdqm"]
@@ -21,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://8hq8scj7ahs3" path="res://scenes/props/chocolate_sauce_pickup.tscn" id="32_qn6is"]
 [ext_resource type="PackedScene" path="res://scenes/props/pistachio_sauce_pickup.tscn" id="33_t6ce4"]
 [ext_resource type="PackedScene" uid="uid://13eepn7as43i" path="res://scenes/death_zone.tscn" id="34_fkc1g"]
+[ext_resource type="Script" uid="uid://n6yvxd5ycsqg" path="res://scripts/stop_melting_zone.gd" id="40_melt"]
 
 [sub_resource type="SphereShape3D" id="Shape_scoop"]
 radius = 2.2
@@ -31,6 +31,9 @@ friction = 0.65
 [sub_resource type="BoxShape3D" id="BoxShape3D_be312"]
 size = Vector3(41.53534, 10.96875, 42.63444)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_coldzone"]
+size = Vector3(38.54779, 25, 35.27008)
+
 [node name="IcecreamRun" type="Node3D" unique_id=1133494483]
 
 [node name="LevelComplete" parent="." unique_id=1726107290 instance=ExtResource("1_66ng2")]
@@ -40,8 +43,7 @@ level_title = "Icecream Run"
 
 [node name="FinishGoal" type="Node" parent="StarGoals" unique_id=1832386171]
 script = ExtResource("3_co50t")
-description = "Finish the level"
-stars_worth = 3
+description = "Collect toppings: 1 for one star, 3 for two, 5 for three"
 
 [node name="EmptyKitchen" parent="." unique_id=1547140200 instance=ExtResource("4_8ac2q")]
 
@@ -88,14 +90,6 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 360.4643, 9.5, 173.1498
 
 [node name="IcecreamBowl" parent="Objects" unique_id=1849473372 instance=ExtResource("10_x4j7d")]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 361.69025, 9.5, 173.34354)
-
-[node name="Ice_4" parent="Objects" unique_id=1164743815 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("19_6orat")]
-transform = Transform3D(6.8306, 0, 0, 0, 6.8306, 0, 0, 0, 6.8306, 579, 9.5, 29)
-gadget_mount = NodePath("../../PlayerRig/GadgetMount")
-
-[node name="Ice_5" parent="Objects" unique_id=1328272758 node_paths=PackedStringArray("gadget_mount") instance=ExtResource("19_6orat")]
-transform = Transform3D(5.3883, 0, 0, 0, 5.3883, 0, 0, 0, 5.3883, 536.3469, 9.5, 226.98376)
-gadget_mount = NodePath("../../PlayerRig/GadgetMount")
 
 [node name="Nuts_6" parent="Objects" unique_id=1827198828 instance=ExtResource("23_wb4c8")]
 transform = Transform3D(7.3984, 0, 0, 0, 7.3984, 0, 0, 0, 7.3984, 488, -20.5, 233)
@@ -148,12 +142,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 486.0855, -15.05528, 302.0592
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8338623, 0.09936619, -7.0992737)
 shape = SubResource("BoxShape3D_be312")
 
+[node name="IcecreamBowl2" parent="Objects" unique_id=1695431691 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -20.621624, 261.72235)
+
+[node name="IcecreamBowl3" parent="Objects" unique_id=1121716018 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -18.079304, 261.72235)
+
+[node name="IcecreamBowl4" parent="Objects" unique_id=481258611 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -15.831645, 261.72235)
+
+[node name="IcecreamBowl5" parent="Objects" unique_id=807843915 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -13.797457, 261.72235)
+
+[node name="IcecreamBowl6" parent="Objects" unique_id=370845991 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -12.029692, 261.72235)
+
+[node name="IcecreamBowl7" parent="Objects" unique_id=2133451314 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -10.048095, 261.72235)
+
+[node name="IcecreamBowl8" parent="Objects" unique_id=976806570 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -7.9819636, 261.72235)
+
+[node name="IcecreamBowl14" parent="Objects" unique_id=266689871 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4922864, 0.2322401, 0, -0.2322401, 3.4922864, 0, 0, 0, 3.5, 497.41266, -5.8049808, 261.72235)
+
+[node name="IcecreamBowl9" parent="Objects" unique_id=1315947590 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -20.621624, 245.37799)
+
+[node name="IcecreamBowl10" parent="Objects" unique_id=2103696838 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -18.079304, 245.37799)
+
+[node name="IcecreamBowl11" parent="Objects" unique_id=1900382681 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -15.831645, 245.37799)
+
+[node name="IcecreamBowl12" parent="Objects" unique_id=474426633 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313158, 0, -0.025313158, 3.4999084, 0, 0, 0, 3.5, 497.41266, -13.797457, 245.37799)
+
+[node name="IcecreamBowl13" parent="Objects" unique_id=570129977 instance=ExtResource("10_x4j7d")]
+transform = Transform3D(3.4999084, 0.025313156, 0, -0.02528484, 3.4959931, 0.16550456, 0.0011969836, -0.16550022, 3.4960847, 497.41266, -12.029692, 245.37799)
+
 [node name="IceBox" type="RigidBody3D" parent="Objects" unique_id=644677794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 558.7176, -1.3196974, 160.86497)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/IceBox" unique_id=348506605]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6713257, 2.7580147, -1.1559448)
 shape = SubResource("BoxShape3D_be312")
+
+[node name="StopMelting" type="Area3D" parent="Objects/IceBox" unique_id=2007698063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6713, 8.5, -1.1559)
+script = ExtResource("40_melt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/IceBox/StopMelting" unique_id=1470289404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3150635, 0, -0.17300415)
+shape = SubResource("BoxShape3D_coldzone")
 
 [node name="DeathZone" parent="." unique_id=1645222076 instance=ExtResource("34_fkc1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50.5, 0)
