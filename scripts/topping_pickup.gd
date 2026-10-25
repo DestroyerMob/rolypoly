@@ -32,6 +32,7 @@ var _puddle: MeshInstance3D
 
 
 func _ready() -> void:
+	add_to_group(&"topping_pickup")
 	collision_layer = 0
 	monitorable = false
 	_mesh = _mesh_for(kind)
@@ -40,6 +41,15 @@ func _ready() -> void:
 		_build_puddle()
 	else:
 		_build_pile()
+
+
+## Fills the pile again, as at the start of the level.
+func reset() -> void:
+	_remaining = pieces
+	_budget = 0.0
+	_refill_budget = 0.0
+	_refill_in = 0.0
+	_update_pile()
 
 
 func _is_sauce() -> bool:
