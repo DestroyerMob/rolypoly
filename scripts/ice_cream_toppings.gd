@@ -17,6 +17,7 @@ var _player: Player
 var _layers := {}   # topping id -> {multimesh, stuck}
 var _holder: Node3D
 var _rng := RandomNumberGenerator.new()
+var _deaf_until_frame := 0
 
 
 func _ready() -> void:
@@ -25,30 +26,45 @@ func _ready() -> void:
 		push_warning("IceCreamToppings must be a child of a Player.")
 		return
 	_rng.randomize()
-	_player.squished.connect(func(): if lose_on_death: clear())
+	_player.squished.connect(_on_player_lost)
+	_player.died.connect(_on_player_lost)
 
 
 ## Names of the toppings currently on the ice cream.
 func carried() -> Array:
-	return _layers.keys()
+	return _layers.keys().filter(func(id): return _layers[id].stuck > 0)
 
 
 func has_topping(topping_id: StringName) -> bool:
-	return _layers.has(topping_id)
+	return _layers.has(topping_id) and _layers[topping_id].stuck > 0
 
 
+func _on_player_lost() -> void:
+	if lose_on_death:
+		clear()
+
+
+## Takes every topping off the ice cream and refills the piles in the level, so they can be
+## collected again.
 func clear() -> void:
 	for id in _layers:
 		var layer: Dictionary = _layers[id]
 		layer.multimesh.visible_instance_count = 0
 		layer.stuck = 0
+	get_tree().call_group(&"topping_pickup", &"reset")
+	# A pile the player was standing in must not hand its pieces straight back before the respawn.
+	_deaf_until_frame = Engine.get_physics_frames() + 18
 
+
+## How a piece sits on the ball: lying along the surface (sprinkles), tumbled at random
+## (nuts, marshmallows), or flat against it with its up axis along the surface normal (sauce).
+enum Orientation { LAY, TUMBLE, FLAT }
 
 ## Sticks `count` pieces of `mesh` around the side of the ball facing `world_point`.
 ## `size` scales the pieces and `spread_degrees` is how wide an area they cover.
 func stick_topping(topping_id: StringName, mesh: Mesh, colours: Array[Color], world_point: Vector3,
-		count: int, size := 1.0, spread_degrees := 40.0, align_flat := true) -> void:
-	if _player == null or count <= 0:
+		count: int, size := 1.0, spread_degrees := 40.0, orientation := Orientation.LAY) -> void:
+	if _player == null or count <= 0 or _player.is_squished or Engine.get_physics_frames() < _deaf_until_frame:
 		return
 	var layer := _layer_for(topping_id, mesh)
 	var multimesh: MultiMesh = layer.multimesh
@@ -57,7 +73,7 @@ func stick_topping(topping_id: StringName, mesh: Mesh, colours: Array[Color], wo
 	var centre := collider.global_position
 	var radius := (collider.shape as SphereShape3D).radius * collider.global_transform.basis.get_scale().x * surface_fit
 	var to_local := visual.global_transform.affine_inverse()
-	var piece_scale := size / visual.global_transform.basis.get_scale().x
+	var piece_scale := size * _player.scale.x / visual.global_transform.basis.get_scale().x
 
 	var base := (world_point - centre).normalized()
 	if base.is_zero_approx():
@@ -66,7 +82,7 @@ func stick_topping(topping_id: StringName, mesh: Mesh, colours: Array[Color], wo
 		var direction := _scatter(base, deg_to_rad(spread_degrees))
 		var normal := (to_local.basis * direction).normalized()
 		var position := to_local * (centre + direction * radius)
-		var basis := _orientation(normal, align_flat) * Basis.from_scale(Vector3.ONE * piece_scale * _rng.randf_range(0.8, 1.2))
+		var basis := _orientation(normal, orientation) * Basis.from_scale(Vector3.ONE * piece_scale * _rng.randf_range(0.8, 1.2))
 		var slot: int = layer.stuck % multimesh.instance_count
 		multimesh.set_instance_transform(slot, Transform3D(basis, position))
 		if multimesh.use_colors and not colours.is_empty():
@@ -82,9 +98,10 @@ func _scatter(direction: Vector3, spread: float) -> Vector3:
 	return direction.rotated(axis, spread * sqrt(_rng.randf())).normalized()
 
 
-## Sprinkle-like pieces lie flat along the surface; chunky pieces tumble in any direction.
-func _orientation(normal: Vector3, align_flat: bool) -> Basis:
-	if not align_flat:
+func _orientation(normal: Vector3, mode: int) -> Basis:
+	if mode == Orientation.FLAT:
+		return Basis(Quaternion(Vector3.UP, normal)) * Basis(Vector3.UP, _rng.randf() * TAU)
+	if mode == Orientation.TUMBLE:
 		return Basis(Quaternion(Vector3.UP, normal)) * Basis(Vector3(_rng.randf(), _rng.randf(), _rng.randf()).normalized(), _rng.randf() * TAU)
 	var reference := Vector3.RIGHT if absf(normal.dot(Vector3.RIGHT)) < 0.95 else Vector3.FORWARD
 	var along := normal.cross(reference).normalized().rotated(normal, _rng.randf() * TAU)

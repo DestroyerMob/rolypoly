@@ -16,6 +16,11 @@ const DEATH_ZONE := preload("res://scenes/death_zone.tscn")
 const RIG_SCRIPT := "res://scenes/player_rig.gd"
 const PIVOT_SCRIPT := "res://scenes/prototyping/camera_pivot.gd"
 const MOUNT_SCRIPT := "res://scripts/gadget_mount.gd"
+const LEVEL_COMPLETE := preload("res://scenes/level_complete.tscn")
+const FINISH_GOAL_SCRIPT := "res://scripts/star_goals/star_goal_finish.gd"
+const TOPPINGS_GOAL_SCRIPT := "res://scripts/star_goals/star_goal_toppings.gd"
+## The Player node's scale, as in the hand-built levels. Force, jump and gravity follow it.
+const PLAYER_SCALE := 5.0
 
 
 func _initialize() -> void:
@@ -45,6 +50,29 @@ func _convert(source: String, output: String) -> int:
 	var rig := _add_player_rig(root, document)
 	var mount := rig.get_node("GadgetMount") as GadgetMount
 
+	var complete := LEVEL_COMPLETE.instantiate()
+	complete.set("level_title", document.name)
+	complete.set("start_hidden", true)
+	root.add_child(complete)
+	root.move_child(complete, 0)
+
+	var goals := Node.new()
+	goals.name = "StarGoals"
+	root.add_child(goals)
+	root.move_child(goals, 1)
+	var finish_goal := Node.new()
+	if Catalog.player_of(document) == "ice_cream":
+		# The ice cream is scored on the toppings it finishes with: 1, 3 and 5 for each star.
+		finish_goal.name = "ToppingsGoal"
+		finish_goal.set_script(load(TOPPINGS_GOAL_SCRIPT))
+		finish_goal.set("description", "Collect toppings: 1 for one star, 3 for two, 5 for three")
+	else:
+		finish_goal.name = "FinishGoal"
+		finish_goal.set_script(load(FINISH_GOAL_SCRIPT))
+		finish_goal.set("description", "Finish the level")
+		finish_goal.set("stars_worth", 3)
+	goals.add_child(finish_goal)
+
 	var objects := Node3D.new()
 	objects.name = "Objects"
 	root.add_child(objects)
@@ -55,8 +83,14 @@ func _convert(source: String, output: String) -> int:
 		node.name = "%s_%d" % [String(entry.id).to_pascal_case(), index + 1]
 		objects.add_child(node)
 		lowest = minf(lowest, node.position.y)
+		if entry.id == "goal":
+			node.connect("level_completed", Callable(complete, "show_on_finish"), CONNECT_PERSIST)
 
 	var death := DEATH_ZONE.instantiate() as Node3D
+	# The death zone scene connects its own signal; saving that again would connect it twice.
+	var area := death as Area3D
+	for connection in area.body_entered.get_connections():
+		area.body_entered.disconnect(connection.callable)
 	death.position.y = lowest - 30.0
 	root.add_child(death)
 

@@ -58,7 +58,7 @@ func _ready() -> void:
 	spawn_position = global_position
 	_max_health = health
 	add_to_group(&"players")
-	spawn_clearance = maxf(spawn_clearance, get_collision_clearance() + 0.05)
+	spawn_clearance = maxf(spawn_clearance, get_collision_clearance() * size_factor + 0.05)
 	contact_monitor = true
 	max_contacts_reported = 8
 	var material := physics_material_override if physics_material_override else PhysicsMaterial.new()
